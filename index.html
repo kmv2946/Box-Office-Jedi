@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Box Office Jedi — Box Office Results, Charts & Analysis</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- ══════════════════════════════════════════════════════════
+       LEFT SIDEBAR
+  ══════════════════════════════════════════════════════════ -->
+  <nav class="sidebar">
+
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+
+    <!-- Search bar -->
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+
+      <span class="nav-banner">FEATURES &amp; MORE</span>
+      <ul>
+        <li><a href="forecast.html">THE FORECAST</a></li>
+        <li><a href="news.html">MOVIE NEWS</a></li>
+        <li><a href="releases.html">RELEASE DATES</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li class="derby"><a href="derby.html">DERBY GAME</a></li>
+      </ul>
+    </div>
+
+    <a href="index.html" class="sidebar-home">HOME</a>
+
+  </nav>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       CENTER MAIN CONTENT
+  ══════════════════════════════════════════════════════════ -->
+  <main class="main-content">
+
+    <!-- Site wordmark header -->
+    <header class="site-header">
+      <div class="wordmark">
+        <img src="assets/images/boj-logo.svg" alt="Box Office Jedi" style="max-width:396px;height:auto;margin:0 auto;">
+      </div>
+      <div class="updated-line">Updated <span id="last-updated">4/6/2026 2:06 P.M. Eastern Time</span></div>
+      <div class="tagline"><a href="derby.html">Predict 'Super Mario Galaxy' opening weekend in the Box Office Derby...</a></div>
+    </header>
+
+    <!-- Quick Links bar -->
+    <div class="quick-links">
+      <span class="ql-label">Quick Links:</span><a href="daily.html">Daily Box Office <span class="ql-paren">(Sun.)</span></a><span class="sep">|</span><a href="weekend.html">Weekend Box Office <span class="ql-paren">(Apr. 3&ndash;5)</span></a><span class="sep">|</span><a href="movie.html?title=Super%20Mario%20Galaxy%20Movie">#1 Movie: &#8216;Super Mario Galaxy Movie&#8217;</a>
+    </div>
+
+    <!-- Homepage content: two-column layout -->
+    <div class="home-content">
+
+      <!-- LEFT COLUMN: Weekend Chart + Latest Updates -->
+      <div class="home-left">
+
+        <!-- WEEKEND TOP 5 -->
+        <div class="home-section">
+          <div class="cell-header" id="weekend-chart-header">WEEKEND ACTUALS</div>
+          <div class="home-section-body">
+            <table class="home-chart-table" id="weekend-top5">
+              <tbody id="weekend-top5-body">
+                <tr><td class="hc-rank">1.</td><td class="hc-title"><a href="weekend.html">Movie Title</a></td><td class="hc-gross">$77,061,953</td></tr>
+                <tr><td class="hc-rank">2.</td><td class="hc-title"><a href="weekend.html">Movie Title</a></td><td class="hc-gross">$77,061,953</td></tr>
+                <tr><td class="hc-rank">3.</td><td class="hc-title"><a href="weekend.html">Movie Title</a></td><td class="hc-gross">$77,061,953</td></tr>
+                <tr><td class="hc-rank">4.</td><td class="hc-title"><a href="weekend.html">Movie Title</a></td><td class="hc-gross">$77,061,953</td></tr>
+                <tr><td class="hc-rank">5.</td><td class="hc-title"><a href="weekend.html">Movie Title</a></td><td class="hc-gross">$77,061,953</td></tr>
+              </tbody>
+            </table>
+            <a href="weekend.html" class="view-chart-link">&gt;VIEW FULL WEEKEND CHART</a>
+          </div>
+        </div>
+
+        <!-- LATEST UPDATES -->
+        <div class="home-section">
+          <div class="cell-header">LATEST UPDATES</div>
+          <div class="home-section-body">
+            <div class="updates-date-label" id="updates-date-label">Monday, Apr. 6</div>
+            <ul class="updates-list" id="updates-list">
+              <li><a href="weekend.html">WEEKEND: 3-day Actuals</a></li>
+              <li><a href="derby.html">DERBY: Results; Project Hail Mary Game</a></li>
+              <li><a href="yearly.html">YEARLY: 2026 Domestic Grosses</a></li>
+              <li><a href="daily.html">DAILY: Sunday, 4/5</a></li>
+              <li><a href="daily.html">DAILY: Saturday, 4/4</a></li>
+              <li><a href="alltime.html">ALL TIME: Top Domestic Grosses</a></li>
+              <li><a href="showdowns.html">SHOWDOWN: Featured Comparison</a></li>
+            </ul>
+            <a href="news.html" class="more-updates-link">&gt; MORE UPDATES</a>
+          </div>
+        </div>
+
+      </div><!-- /home-left -->
+
+      <!-- RIGHT COLUMN: Top Stories -->
+      <div class="home-right">
+        <div class="cell-header">TOP STORIES</div>
+
+        <div class="home-right-body">
+
+          <!-- Main story with photo -->
+          <div class="top-story-main" id="top-story-main">
+            <img class="top-story-photo" id="top-story-photo" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="IMAGE PLACEHOLDER">
+            <div class="top-story-headline"><a href="news.html" id="top-story-link">&#8216;Spider-Man 2&#8217; Amazes on Opening Day</a></div>
+            <div class="top-story-byline" id="top-story-byline">by Keaton Ventura</div>
+            <p class="top-story-teaser" id="top-story-teaser">
+              July 1 &#8211; <strong>Spider-Man 2</strong> made no sacrifice in its Wednesday bow, capturing a stunning $40.4 million, the biggest opening day ever recorded...
+            </p>
+          </div>
+
+          <div class="story-divider"></div>
+
+          <!-- Story 2 -->
+          <div class="top-story-secondary">
+            <div class="top-story-headline"><a href="forecast.html">The Forecast: This Weekend&#8217;s Predictions</a></div>
+            <div class="top-story-byline">by Keaton Ventura</div>
+            <p class="top-story-teaser">
+              April 2026 &#8211; Weekend box office predictions and analysis for the upcoming frame...
+            </p>
+          </div>
+
+          <div class="story-divider"></div>
+
+          <!-- Story 3 -->
+          <div class="top-story-secondary">
+            <div class="top-story-headline"><a href="news.html">Weekend Roundup: Latest Box Office Results</a></div>
+            <div class="top-story-byline">by Keaton Ventura</div>
+            <p class="top-story-teaser">
+              The latest weekend totals are in. Check the full chart for complete results...
+            </p>
+          </div>
+
+          <div class="stories-more-link">&gt; MORE: <a href="news.html">News</a> | <a href="forecast.html">Features</a></div>
+
+        </div><!-- /home-right-body -->
+
+      </div><!-- /home-right -->
+
+    </div><!-- /home-content -->
+
+  </main>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       RIGHT SIDEBAR
+  ══════════════════════════════════════════════════════════ -->
+  <aside class="right-sidebar">
+
+    <!-- Theater Counts -->
+    <div class="widget">
+      <div class="widget-header">THEATER COUNTS</div>
+      <div class="widget-body" id="theater-widget">
+        <div class="widget-subheader" id="theater-date">—</div>
+        <div id="theater-rows">
+          <div class="theater-row">
+            <span class="t-title">Loading...</span>
+            <span class="t-count">—</span>
+          </div>
+        </div>
+        <a href="weekend.html" class="widget-more-link">&gt; MORE COUNTS</a>
+      </div>
+    </div>
+
+    <!-- The Forecast promo -->
+    <div class="widget">
+      <div class="widget-header">THE FORECAST</div>
+      <div class="widget-body">
+        <p>Read this weekend's box office predictions. <a href="forecast.html"><strong>Click here &gt;</strong></a></p>
+      </div>
+    </div>
+
+    <!-- Derby promo -->
+    <div class="widget">
+      <div class="widget-header" style="background:#7F170E;">DERBY GAME</div>
+      <div class="widget-body" style="background:#e8f4fd;">
+        <p>Predict the weekend box office. Enter the <a href="derby.html"><strong>Derby Game &gt;</strong></a></p>
+      </div>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="widget">
+      <div class="widget-header">NEWSLETTER</div>
+      <div class="widget-body">
+        <p>Receive box office reports by email.</p>
+        <p><a href="mailto:keatonventura@gmail.com?subject=Subscribe%20to%20Box%20Office%20Jedi"><strong>SUBSCRIBE</strong></a></p>
+      </div>
+    </div>
+
+  </aside>
+
+</div><!-- /page-wrapper -->
+
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">"Serving your box office needs since 2026."</span>
+  <div style="margin-top:8px;">
+    <img src="assets/images/flag_sm_anim.gif" alt="American flag" style="display:inline-block;height:auto;">
+  </div>
+</footer>
+
+
+<script>
+  // ── Footer year ──────────────────────────────────────────────────────────
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+  // ── Sidebar search ───────────────────────────────────────────────────────
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+
+  // ── Format numbers ───────────────────────────────────────────────────────
+  function fmt(n) {
+    if (!n) return '—';
+    return '$' + n.toLocaleString('en-US');
+  }
+  function fmtM(n) {
+    if (!n) return '—';
+    return '$' + (n / 1000000).toFixed(1) + 'M';
+  }
+  function shortDate(iso) {
+    const d = new Date(iso);
+    return (d.getMonth()+1) + '/' + d.getDate();
+  }
+  function longDate(iso) {
+    const d = new Date(iso);
+    return d.toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric' });
+  }
+
+  // ── Load data and populate page ──────────────────────────────────────────
+  async function loadHomepageData() {
+    // Weekend data → top 5 table + theater counts + updated line
+    try {
+      const wr = await fetch('data/weekend.json');
+      if (wr.ok) {
+        const wd = await wr.json();
+
+        // Updated line
+        if (wd.updated) {
+          const d = new Date(wd.updated);
+          const datePart = d.toLocaleDateString('en-US', {
+            month: 'long', day: 'numeric', year: 'numeric',
+            timeZone: 'America/New_York'
+          });
+          const timePart = d.toLocaleTimeString('en-US', {
+            hour: 'numeric', minute: '2-digit',
+            timeZone: 'America/New_York'
+          });
+          document.getElementById('last-updated').textContent =
+            `${datePart} ${timePart} Eastern Time`;
+        }
+
+        if (wd.chart && wd.chart.length) {
+          // Weekend Top 5 table
+          const chartLabel = wd.is_estimates ? 'WEEKEND ESTIMATES' : 'WEEKEND ACTUALS';
+          document.getElementById('weekend-chart-header').textContent = chartLabel;
+
+          const top5 = wd.chart.slice(0, 5).map((m, i) => {
+            const title = m.title.length > 22 ? m.title.slice(0, 21) + '…' : m.title;
+            return `<tr class="${i % 2 === 0 ? 'hc-odd' : 'hc-even'}">
+              <td class="hc-rank">${m.rank}.</td>
+              <td class="hc-title"><a href="movie.html?id=${m.tmdb_id||''}&title=${encodeURIComponent(m.title)}">${title}</a></td>
+              <td class="hc-gross">${fmtM(m.weekend_gross)}</td>
+            </tr>`;
+          }).join('');
+          document.getElementById('weekend-top5-body').innerHTML = top5;
+
+          // Theater counts widget
+          const dateLabel = wd.updated ? longDate(wd.updated) : 'Latest Weekend';
+          document.getElementById('theater-date').textContent = dateLabel;
+          const rowsHtml = wd.chart.slice(0, 3).map(m => {
+            const shortTitle = m.title.length > 16 ? m.title.slice(0, 15) + '…' : m.title;
+            return `<div class="theater-row">
+              <span class="t-title">${shortTitle}</span>
+              <span class="t-count">${m.theaters ? m.theaters.toLocaleString() : '—'}</span>
+            </div>`;
+          }).join('');
+          document.getElementById('theater-rows').innerHTML =
+            rowsHtml + '<a href="weekend.html" class="widget-more-link">&gt; MORE COUNTS</a>';
+
+          // Latest updates date label
+          if (wd.updated) {
+            const d2 = new Date(wd.updated);
+            const day = d2.toLocaleDateString('en-US',{weekday:'long',month:'short',day:'numeric',timeZone:'America/New_York'});
+            document.getElementById('updates-date-label').textContent = day;
+          }
+        }
+      }
+    } catch(e) { /* data not available yet */ }
+
+    // Tagline movie title — use top now-playing film if available
+    try {
+      const npr = await fetch('data/now_playing.json');
+      if (npr.ok) {
+        const npd = await npr.json();
+        if (npd.movies && npd.movies[0]) {
+          document.getElementById('tagline-movie').textContent =
+            "'" + npd.movies[0].title + "'";
+        }
+      }
+    } catch(e) { /* keep placeholder */ }
+  }
+
+  loadHomepageData();
+</script>
+
+</body>
+</html>

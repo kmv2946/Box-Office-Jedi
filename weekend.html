@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekend Box Office — Box Office Jedi</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+
+    /* ── Weekend index page header ───────────────────────────────── */
+    .wknd-page-header {
+      padding: 10px 14px 6px;
+      text-align: center;
+      border-bottom: 1px solid #CCCCCC;
+      margin-bottom: 0;
+    }
+    .wknd-site-label {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 13px;
+      color: #00239C;
+      margin: 0 0 2px;
+    }
+    .wknd-page-title {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 28px;
+      color: #000;
+      margin: 0 0 10px;
+      letter-spacing: -0.5px;
+    }
+
+    /* ── Year navigation ─────────────────────────────────────────── */
+    .wknd-year-nav {
+      padding: 8px 14px 6px;
+      text-align: center;
+      border-bottom: 1px solid #CCCCCC;
+    }
+    .wknd-year-current {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 26px;
+      color: #000;
+    }
+    .wknd-year-sep {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 18px;
+      color: #00007B;
+    }
+    .wknd-year-link {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 18px;
+      color: #00007B;
+      text-decoration: none;
+    }
+    .wknd-year-link:hover { text-decoration: underline; }
+    .wknd-year-row2 {
+      margin-top: 2px;
+    }
+    .wknd-year-row2 .wknd-year-link,
+    .wknd-year-row2 .wknd-year-sep {
+      font-size: 15px;
+    }
+
+    /* ── Weekend index table ─────────────────────────────────────── */
+    .wknd-chart-wrap {
+      padding: 10px 14px 14px;
+    }
+    .wknd-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #AAAAAA;
+    }
+    .wknd-table thead th {
+      background: #DCDCDC;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 11px;
+      color: #000;
+      padding: 5px 10px;
+      text-align: left;
+      border-bottom: 1px solid #999;
+      border-right: 1px solid #BBBBBB;
+      white-space: nowrap;
+    }
+    .wknd-table thead th:last-child { border-right: none; }
+    .wknd-table thead th.num { text-align: right; }
+
+    /* Data rows */
+    .wknd-table tbody tr.wknd-row td {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      color: #000;
+      padding: 4px 10px;
+      border-bottom: 1px solid #DDDDDD;
+      border-right: 1px solid #EEEEEE;
+      vertical-align: middle;
+    }
+    .wknd-table tbody tr.wknd-row td:last-child { border-right: none; }
+    .wknd-table tbody tr.wknd-row:nth-child(odd)  td { background: #F4F4FE; }
+    .wknd-table tbody tr.wknd-row:nth-child(even) td { background: #FFFFFF; }
+
+    /* Latest weekend highlight */
+    .wknd-table tbody tr.wknd-row.wknd-latest td {
+      background: #FFFFA6 !important;
+    }
+
+    /* Month separator rows */
+    .wknd-table tbody tr.wknd-month-sep td {
+      background: #FFFFFF;
+      padding: 3px 0;
+      border-bottom: none;
+      border-right: none;
+    }
+
+    /* Weekend date link */
+    .wknd-date-link {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #00007B;
+      text-decoration: none;
+    }
+    .wknd-date-link:hover { text-decoration: underline; color: #0000F5 !important; }
+
+    /* Number cells */
+    .wknd-table tbody tr.wknd-row td.num {
+      text-align: right;
+      font-weight: normal;
+    }
+
+    /* #1 Film cell */
+    .wknd-table tbody tr.wknd-row td.top-film {
+      text-align: center;
+    }
+
+    /* Week number */
+    .wknd-table tbody tr.wknd-row td.wknd-weeknum {
+      text-align: right;
+      color: #444;
+      font-size: 13px;
+    }
+
+    /* Change colors */
+    .chg-up   { color: #006600; }
+    .chg-down { color: #CC0000; }
+
+    /* Estimates note */
+    .wknd-estimates-flag {
+      font-size: 11px;
+      color: #999;
+      font-style: italic;
+      margin-left: 4px;
+    }
+
+    /* No-data state */
+    .wknd-empty {
+      text-align: center;
+      padding: 30px;
+      color: #666;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li class="active"><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">FEATURES &amp; MORE</span>
+      <ul>
+        <li><a href="forecast.html">THE FORECAST</a></li>
+        <li><a href="news.html">MOVIE NEWS</a></li>
+        <li><a href="releases.html">RELEASE DATES</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li class="derby"><a href="derby.html">DERBY GAME</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+
+  <main class="main-content">
+
+    <!-- Page title -->
+    <div class="wknd-page-header">
+      <p class="wknd-site-label">BOX OFFICE JEDI</p>
+      <h1 class="wknd-page-title">WEEKEND BOX OFFICE</h1>
+    </div>
+
+    <!-- Year navigation -->
+    <div class="wknd-year-nav">
+      <div id="year-nav-row1"><!-- injected by JS --></div>
+      <div class="wknd-year-row2" id="year-nav-row2"><!-- injected by JS --></div>
+    </div>
+
+    <!-- Weekend index table -->
+    <div class="wknd-chart-wrap">
+      <table class="wknd-table" id="wknd-table">
+        <thead>
+          <tr>
+            <th style="width:160px;">Click to view Top 10</th>
+            <th class="num">Top 10 Total</th>
+            <th class="num">Change</th>
+            <th class="top-film" style="text-align:center;">#1 Picture</th>
+            <th class="num">Week</th>
+          </tr>
+        </thead>
+        <tbody id="wknd-body">
+          <tr><td colspan="5" class="wknd-empty">Loading data...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+
+  <aside class="right-sidebar">
+
+    <div class="widget">
+      <div class="widget-header">WEEKEND CHARTS</div>
+      <div class="widget-body">
+        <p>
+          <a href="weekend.html"><strong>All Weekends</strong></a><br>
+          <a href="daily.html">Daily Chart</a><br>
+          <a href="yearly.html">Yearly Chart</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-header">THE FORECAST</div>
+      <div class="widget-body">
+        <p>Read this weekend&#8217;s predictions. <a href="forecast.html"><strong>Click here &gt;</strong></a></p>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-header" style="background:#7F170E;">DERBY GAME</div>
+      <div class="widget-body" style="background:#e8f4fd;">
+        <p>Predict the weekend box office. <a href="derby.html"><strong>Play now &gt;</strong></a></p>
+      </div>
+    </div>
+
+  </aside>
+
+</div><!-- /page-wrapper -->
+
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">"Serving your box office needs since 2026."</span>
+  <div style="margin-top:8px;">
+    <img src="assets/images/flag_sm_anim.gif" alt="American flag" style="display:inline-block;height:auto;">
+  </div>
+</footer>
+
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+
+  // ── Formatting helpers ──────────────────────────────────────────
+  function fmtTotal(n) {
+    if (!n) return '—';
+    return '$' + n.toLocaleString('en-US');
+  }
+  function fmtChange(n) {
+    if (n === null || n === undefined) return '—';
+    const sign = n >= 0 ? '+' : '';
+    const cls  = n >= 0 ? 'chg-up' : 'chg-down';
+    return `<span class="${cls}">${sign}${n.toFixed(1)}%</span>`;
+  }
+
+  // ── Date helpers ────────────────────────────────────────────────
+  function isoToLocal(iso) {
+    const [y, m, d] = iso.split('-').map(Number);
+    return new Date(y, m - 1, d);
+  }
+  // "April 4-6" style label
+  function weekendLabel(from, to) {
+    const d1 = isoToLocal(from);
+    const d2 = isoToLocal(to);
+    const months = ['January','February','March','April','May','June',
+                    'July','August','September','October','November','December'];
+    if (d1.getMonth() === d2.getMonth()) {
+      return months[d1.getMonth()] + ' ' + d1.getDate() + '-' + d2.getDate();
+    }
+    return months[d1.getMonth()] + ' ' + d1.getDate() + '-' +
+           months[d2.getMonth()].slice(0,3) + '. ' + d2.getDate();
+  }
+  function monthOf(iso) {
+    return iso.slice(0, 7); // "YYYY-MM"
+  }
+  const MONTHS = ['January','February','March','April','May','June',
+                  'July','August','September','October','November','December'];
+
+  // ── Year nav ────────────────────────────────────────────────────
+  function buildYearNav(currentYear) {
+    const thisYear = new Date().getFullYear();
+    const startYear = 2026; // site launch year
+
+    // Build list from current year back to start
+    const years = [];
+    for (let y = thisYear; y >= startYear; y--) years.push(y);
+
+    const row1 = [];
+    const row2 = [];
+
+    years.forEach((y, i) => {
+      if (y === currentYear) {
+        const el = `<span class="wknd-year-current">${y}</span>`;
+        i < 5 ? row1.push(el) : row2.push(el);
+      } else {
+        const el = `<a class="wknd-year-link" href="weekend.html?year=${y}">${y}</a>`;
+        i < 5 ? row1.push(el) : row2.push(el);
+      }
+    });
+
+    const sep = `<span class="wknd-year-sep"> - </span>`;
+    document.getElementById('year-nav-row1').innerHTML = row1.join(sep);
+    if (row2.length) {
+      document.getElementById('year-nav-row2').innerHTML = row2.join(sep);
+    }
+  }
+
+  // ── Build the index table ───────────────────────────────────────
+  function buildTable(weekends, latestDateFrom) {
+    const tbody = document.getElementById('wknd-body');
+    tbody.innerHTML = '';
+
+    // Sort descending (most recent first, matching BOM)
+    weekends.sort((a, b) => b.date_from > a.date_from ? 1 : -1);
+
+    let lastMonth = null;
+
+    weekends.forEach((w, idx) => {
+      const currentMonth = monthOf(w.date_from);
+
+      // Month separator (blank row between months)
+      if (lastMonth !== null && currentMonth !== lastMonth) {
+        const sepTr = document.createElement('tr');
+        sepTr.className = 'wknd-month-sep';
+        const sepTd = document.createElement('td');
+        sepTd.setAttribute('colspan', '5');
+        sepTr.appendChild(sepTd);
+        tbody.appendChild(sepTr);
+      }
+      lastMonth = currentMonth;
+
+      const tr = document.createElement('tr');
+      tr.className = 'wknd-row';
+      if (w.date_from === latestDateFrom) tr.classList.add('wknd-latest');
+
+      // Date link → individual weekend chart
+      const label = weekendLabel(w.date_from, w.date_to);
+      const chartHref = `weekend-chart.html?date=${w.date_from}`;
+      const estimatesFlag = w.is_estimates
+        ? `<span class="wknd-estimates-flag">est.</span>` : '';
+
+      const totalFmt = w.top_total ? fmtTotal(w.top_total) : '—';
+
+      tr.innerHTML = `
+        <td><a class="wknd-date-link" href="${chartHref}">${label}</a></td>
+        <td class="num">${totalFmt}${estimatesFlag}</td>
+        <td class="num">${w.change_pct !== null && w.change_pct !== undefined ? fmtChange(w.change_pct) : '—'}</td>
+        <td class="top-film">${w.top_film || '—'}</td>
+        <td class="wknd-weeknum">${w.week_number || '—'}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  // ── Load data ───────────────────────────────────────────────────
+  async function load() {
+    const params = new URLSearchParams(window.location.search);
+    const reqYear = params.get('year') ? parseInt(params.get('year')) : new Date().getFullYear();
+
+    buildYearNav(reqYear);
+
+    try {
+      // Try the full weekends index first
+      const r = await fetch(`data/weekends.json`);
+      if (!r.ok) throw new Error('no weekends.json');
+      const d = await r.json();
+
+      // Filter to requested year
+      let weekends = (d.weekends || []).filter(w => w.date_from.startsWith(reqYear + '-'));
+
+      if (!weekends.length) {
+        // Try falling back to weekend.json (single latest weekend)
+        throw new Error('no data for year');
+      }
+
+      // Latest weekend = most recent date_from
+      const latestDateFrom = weekends.reduce((best, w) =>
+        w.date_from > best ? w.date_from : best, '');
+
+      buildTable(weekends, latestDateFrom);
+
+    } catch(e) {
+      // Fallback: try weekend.json (single weekend scrape)
+      try {
+        const r2 = await fetch('data/weekend.json');
+        if (!r2.ok) throw new Error();
+        const d2 = await r2.json();
+        if (!d2.date_from && !d2.date) throw new Error();
+
+        const dateFrom = d2.date_from || d2.date;
+        const dateTo   = d2.date_to   || d2.date;
+        const top1     = d2.chart && d2.chart[0] ? d2.chart[0].title : '—';
+        const topTotal = d2.chart ? d2.chart.slice(0, 10).reduce((s, m) => s + (m.weekend_gross || 0), 0) : 0;
+
+        const weekends = [{
+          date_from:   dateFrom,
+          date_to:     dateTo,
+          week_number: d2.week_number || '—',
+          top_total:   topTotal || null,
+          change_pct:  null,
+          top_film:    top1,
+          is_estimates: d2.is_estimates || false
+        }];
+
+        buildTable(weekends, dateFrom);
+
+      } catch(e2) {
+        document.getElementById('wknd-body').innerHTML =
+          `<tr><td colspan="5" class="wknd-empty">Weekend data not yet available. Run the scraper to populate this chart.</td></tr>`;
+      }
+    }
+  }
+
+  load();
+</script>
+
+</body>
+</html>

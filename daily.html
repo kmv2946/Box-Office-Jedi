@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Box Office — Box Office Jedi</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+
+    /* ── Daily page header ───────────────────────────────────────── */
+    .daily-page-header {
+      padding: 8px 12px 0;
+    }
+    .daily-page-title {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 22px;
+      color: #00239C;
+      margin: 0 0 6px;
+    }
+
+    /* ── Date navigation bar ─────────────────────────────────────── */
+    .daily-nav {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: #DCDCDC;
+      border-top: 1px solid #999;
+      border-bottom: 1px solid #999;
+      padding: 4px 8px;
+      margin: 0 0 6px;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+    }
+    .daily-nav-arrow {
+      font-weight: bold;
+      color: #00239C;
+      text-decoration: none;
+      padding: 2px 6px;
+      white-space: nowrap;
+    }
+    .daily-nav-arrow:hover { text-decoration: underline; }
+    .daily-nav-sep {
+      color: #999;
+      padding: 0 4px;
+    }
+    .daily-nav-label {
+      font-weight: bold;
+      color: #000;
+      flex: 1;
+      text-align: center;
+    }
+
+    /* ── Estimates notice ────────────────────────────────────────── */
+    .daily-estimates-notice {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      color: #555;
+      font-style: italic;
+      margin: 0 12px 6px;
+    }
+
+    /* ── Main chart table ────────────────────────────────────────── */
+    .daily-chart-wrap {
+      padding: 0 12px 10px;
+      overflow-x: auto;
+    }
+    .daily-chart-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #AAAAAA;
+    }
+
+    /* Column headers */
+    .daily-chart-table thead tr.day-header-row th {
+      background: #00239C;
+      color: #fff;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      padding: 5px 8px;
+      text-align: center;
+      border-left: 1px solid #3355BB;
+      white-space: nowrap;
+    }
+    .daily-chart-table thead tr.day-header-row th.dc-rank-head,
+    .daily-chart-table thead tr.day-header-row th.dc-title-head {
+      background: #444;
+      text-align: left;
+      border-left: none;
+    }
+    .daily-chart-table thead tr.day-header-row th.dc-title-head {
+      border-left: 1px solid #666;
+    }
+
+    /* Data rows */
+    .daily-chart-table tbody tr:nth-child(odd)  td { background: #F4F4FE; }
+    .daily-chart-table tbody tr:nth-child(even) td { background: #FFFFFF; }
+    .daily-chart-table tbody td {
+      border-bottom: 1px solid #DDDDDD;
+      border-left: 1px solid #DDDDDD;
+      vertical-align: middle;
+      padding: 0;
+    }
+    .daily-chart-table tbody td:first-child {
+      border-left: none;
+    }
+
+    /* Rank cell */
+    .dc-rank {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 13px;
+      color: #000;
+      text-align: center;
+      width: 28px;
+      padding: 5px 4px;
+      white-space: nowrap;
+    }
+
+    /* Title cell */
+    .dc-title-cell {
+      padding: 5px 8px;
+      min-width: 140px;
+      border-left: 1px solid #DDDDDD;
+    }
+    .dc-title-link {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .dc-title-link:hover { text-decoration: underline; color: #0000F5 !important; }
+    .dc-theaters {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      font-size: 12px;
+      color: #000;
+      display: block;
+      margin-top: 1px;
+    }
+
+    /* Day data cell */
+    .dc-day-cell {
+      padding: 4px 8px;
+      text-align: right;
+      min-width: 110px;
+      line-height: 1.5;
+    }
+    .dc-day-cell.na-cell {
+      text-align: center;
+      color: #999;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+    }
+    .dc-gross {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      font-size: 13px;
+      color: #00007B;
+      display: block;
+    }
+    .dc-change-avg {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      font-size: 12px;
+      display: block;
+    }
+    .dc-change {
+      color: #EA3526;
+    }
+    .dc-avg {
+      color: #000;
+    }
+    .dc-total-day {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      font-size: 12px;
+      color: #75147C;
+      display: block;
+    }
+
+    /* Footnote */
+    .daily-footnote {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      color: #555;
+      margin: 4px 12px 12px;
+    }
+
+    /* ── KEY section ─────────────────────────────────────────────── */
+    .daily-key-wrap {
+      margin: 0 12px 16px;
+      border: 1px solid #AAAAAA;
+      display: inline-block;
+    }
+    .daily-key-header {
+      background: #DCDCDC;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      padding: 3px 10px;
+      border-bottom: 1px solid #AAAAAA;
+      text-align: center;
+    }
+    .daily-key-table {
+      border-collapse: collapse;
+    }
+    .daily-key-table td {
+      padding: 6px 14px;
+      vertical-align: top;
+      font-size: 13px;
+      border-right: 1px solid #AAAAAA;
+    }
+    .daily-key-table td:last-child { border-right: none; }
+    .key-title {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 13px;
+      color: #000;
+      display: block;
+    }
+    .key-theaters {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      color: #000;
+      display: block;
+      margin-top: 4px;
+    }
+    .key-gross {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      color: #00007B;
+      display: block;
+    }
+    .key-change {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      display: block;
+      margin-top: 4px;
+    }
+    .key-total {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      color: #75147C;
+      display: block;
+      margin-top: 2px;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li class="active"><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">FEATURES &amp; MORE</span>
+      <ul>
+        <li><a href="forecast.html">THE FORECAST</a></li>
+        <li><a href="news.html">MOVIE NEWS</a></li>
+        <li><a href="releases.html">RELEASE DATES</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li class="derby"><a href="derby.html">DERBY GAME</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+
+  <main class="main-content">
+
+    <div class="daily-page-header">
+      <h1 class="daily-page-title">DAILY BOX OFFICE</h1>
+    </div>
+
+    <!-- Date navigation -->
+    <div class="daily-nav">
+      <a class="daily-nav-arrow" id="nav-prev" href="#">&lt;&lt; PREVIOUS</a>
+      <span class="daily-nav-sep">|</span>
+      <span class="daily-nav-label" id="nav-label">Loading...</span>
+      <span class="daily-nav-sep">|</span>
+      <a class="daily-nav-arrow" id="nav-next" href="#">NEXT &gt;&gt;</a>
+    </div>
+
+    <div class="daily-estimates-notice" id="estimates-notice" style="display:none;">
+      * Figures are estimates and will be updated when actuals are reported.
+    </div>
+
+    <!-- Chart table -->
+    <div class="daily-chart-wrap">
+      <table class="daily-chart-table" id="daily-chart-table">
+        <thead>
+          <tr class="day-header-row" id="day-header-row">
+            <th class="dc-rank-head">#</th>
+            <th class="dc-title-head">Title</th>
+            <!-- Day columns inserted by JS -->
+          </tr>
+        </thead>
+        <tbody id="daily-chart-body">
+          <tr><td colspan="3" style="padding:20px;text-align:center;color:#666;font-family:Verdana,sans-serif;font-size:12px;">Loading data...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="daily-footnote">* Ranked by selected day.</p>
+
+    <!-- KEY -->
+    <div class="daily-key-wrap">
+      <div class="daily-key-header">KEY</div>
+      <table class="daily-key-table">
+        <tr>
+          <td>
+            <span class="key-title">TITLE</span>
+            <span class="key-theaters">Theater Count</span>
+          </td>
+          <td>
+            <span class="key-gross">Daily Gross</span>
+            <span class="key-change"><span class="dc-change">% Change</span> / <span class="dc-avg">Average</span></span>
+            <span class="key-total">Total Gross / Day #</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+  </main>
+
+
+  <aside class="right-sidebar">
+
+    <div class="widget">
+      <div class="widget-header">DAILY BOX OFFICE</div>
+      <div class="widget-body">
+        <p>
+          <a href="daily.html"><strong>Today&#8217;s Chart</strong></a><br>
+          <a href="weekend.html">Weekend Chart</a><br>
+          <a href="yearly.html">Yearly Chart</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-header">THE FORECAST</div>
+      <div class="widget-body">
+        <p>Read this weekend&#8217;s predictions. <a href="forecast.html"><strong>Click here &gt;</strong></a></p>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-header" style="background:#7F170E;">DERBY GAME</div>
+      <div class="widget-body" style="background:#e8f4fd;">
+        <p>Predict the weekend box office. <a href="derby.html"><strong>Play now &gt;</strong></a></p>
+      </div>
+    </div>
+
+  </aside>
+
+</div><!-- /page-wrapper -->
+
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">"Serving your box office needs since 2026."</span>
+  <div style="margin-top:8px;">
+    <img src="assets/images/flag_sm_anim.gif" alt="American flag" style="display:inline-block;height:auto;">
+  </div>
+</footer>
+
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+
+  // ── Formatting helpers ──────────────────────────────────────────
+  function fmtGross(n) {
+    if (!n && n !== 0) return 'N/A';
+    if (n >= 1000000) return '$' + (n / 1000000).toFixed(2) + 'M';
+    return '$' + n.toLocaleString('en-US');
+  }
+  function fmtTotal(n) {
+    if (!n && n !== 0) return '—';
+    if (n >= 1000000) return '$' + (n / 1000000).toFixed(1) + 'M';
+    return '$' + n.toLocaleString('en-US');
+  }
+  function fmtAvg(n) {
+    if (!n) return '—';
+    return '$' + Math.round(n).toLocaleString('en-US');
+  }
+  function fmtChange(n) {
+    if (n === null || n === undefined) return '—';
+    const sign = n >= 0 ? '+' : '';
+    return sign + n.toFixed(1) + '%';
+  }
+  function fmtTheaters(n) {
+    if (!n) return '—';
+    return n.toLocaleString('en-US') + ' theaters';
+  }
+
+  // ── Date formatting ─────────────────────────────────────────────
+  function isoToDateObj(iso) {
+    // Parse YYYY-MM-DD as local date (avoid UTC shift)
+    const [y, m, d] = iso.split('-').map(Number);
+    return new Date(y, m - 1, d);
+  }
+  function fmtNavLabel(iso) {
+    const d = isoToDateObj(iso);
+    return d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+  }
+  function fmtDayHeader(iso) {
+    const d = isoToDateObj(iso);
+    const dow = d.toLocaleDateString('en-US', { weekday: 'short' });
+    const md  = (d.getMonth() + 1) + '/' + d.getDate();
+    return dow + '<br>' + md;
+  }
+  function prevDate(iso) {
+    const d = isoToDateObj(iso);
+    d.setDate(d.getDate() - 1);
+    return d.toISOString().slice(0, 10);
+  }
+  function nextDate(iso) {
+    const d = isoToDateObj(iso);
+    d.setDate(d.getDate() + 1);
+    return d.toISOString().slice(0, 10);
+  }
+
+  // ── Build the chart ─────────────────────────────────────────────
+  function buildChart(days) {
+    // `days` is an array of day objects: { date, is_estimates, chart[] }
+    // Sort days chronologically
+    days.sort((a, b) => a.date < b.date ? -1 : 1);
+
+    const primaryDay = days[days.length - 1]; // last (most recent) day
+
+    // Navigation
+    document.getElementById('nav-label').textContent = fmtNavLabel(primaryDay.date);
+    document.getElementById('nav-prev').href = 'daily.html?date=' + prevDate(primaryDay.date);
+    const today = new Date();
+    const todayIso = today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
+    const nextIso = nextDate(primaryDay.date);
+    if (nextIso <= todayIso) {
+      document.getElementById('nav-next').href = 'daily.html?date=' + nextIso;
+    } else {
+      document.getElementById('nav-next').style.color = '#999';
+      document.getElementById('nav-next').style.cursor = 'default';
+      document.getElementById('nav-next').removeAttribute('href');
+    }
+
+    if (primaryDay.is_estimates) {
+      document.getElementById('estimates-notice').style.display = 'block';
+    }
+
+    // Build header row
+    const headerRow = document.getElementById('day-header-row');
+    days.forEach(day => {
+      const th = document.createElement('th');
+      th.innerHTML = fmtDayHeader(day.date);
+      headerRow.appendChild(th);
+    });
+
+    // Build a lookup: title → { dayDate: rowData }
+    const allTitles = {};
+    days.forEach(day => {
+      (day.chart || []).forEach(row => {
+        if (!allTitles[row.title]) {
+          allTitles[row.title] = { _meta: row, days: {} };
+        }
+        allTitles[row.title].days[day.date] = row;
+      });
+    });
+
+    // Sort by primary day rank
+    const primaryChart = primaryDay.chart || [];
+    const sortedTitles = primaryChart.map(r => r.title);
+    // Add any titles that appear in other days but not primary
+    Object.keys(allTitles).forEach(t => {
+      if (!sortedTitles.includes(t)) sortedTitles.push(t);
+    });
+
+    // Build tbody
+    const tbody = document.getElementById('daily-chart-body');
+    tbody.innerHTML = '';
+
+    sortedTitles.forEach((title, idx) => {
+      const meta = allTitles[title]?._meta || {};
+      const primaryRow = allTitles[title]?.days[primaryDay.date] || null;
+      const rank = primaryRow ? primaryRow.rank : (idx + 1);
+      const tmdbId = meta.tmdb_id || '';
+
+      const tr = document.createElement('tr');
+
+      // Rank
+      const rankTd = document.createElement('td');
+      rankTd.className = 'dc-rank';
+      rankTd.textContent = rank + '.';
+      tr.appendChild(rankTd);
+
+      // Title + theaters (from primary day)
+      const titleTd = document.createElement('td');
+      titleTd.className = 'dc-title-cell';
+      const theaters = primaryRow ? fmtTheaters(primaryRow.theaters) : '—';
+      titleTd.innerHTML =
+        `<a class="dc-title-link" href="movie.html?id=${tmdbId}&title=${encodeURIComponent(title)}">${title}</a>` +
+        `<span class="dc-theaters">${theaters}</span>`;
+      tr.appendChild(titleTd);
+
+      // Day columns
+      days.forEach(day => {
+        const td = document.createElement('td');
+        td.className = 'dc-day-cell';
+        const dr = allTitles[title]?.days[day.date];
+        if (!dr) {
+          td.classList.add('na-cell');
+          td.textContent = 'N/A';
+        } else {
+          const grossHtml   = `<span class="dc-gross">${fmtGross(dr.daily_gross)}</span>`;
+          const changeHtml  = `<span class="dc-change-avg"><span class="dc-change">${fmtChange(dr.pct_change)}</span> <span class="dc-avg">/ ${fmtAvg(dr.avg_per_theater)}</span></span>`;
+          const totalHtml   = `<span class="dc-total-day">${fmtTotal(dr.total_gross)} / Day ${dr.days_in_release || '—'}</span>`;
+          td.innerHTML = grossHtml + changeHtml + totalHtml;
+        }
+        tr.appendChild(td);
+      });
+
+      tbody.appendChild(tr);
+    });
+  }
+
+  // ── Load data ───────────────────────────────────────────────────
+  async function load() {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const reqDate = params.get('date');
+
+      const r = await fetch('data/daily.json');
+      if (!r.ok) throw new Error('No data');
+      const d = await r.json();
+
+      // Support both single-day {date, chart} and multi-day {days:[...]}
+      let days = [];
+      if (d.days && Array.isArray(d.days)) {
+        days = d.days;
+      } else if (d.date && d.chart) {
+        days = [{ date: d.date, is_estimates: d.is_estimates || false, chart: d.chart }];
+      } else {
+        throw new Error('Unknown data format');
+      }
+
+      // If a specific date is requested, filter or find the matching week
+      if (reqDate) {
+        const matching = days.filter(dy => dy.date === reqDate);
+        if (matching.length) days = matching;
+        // else fall through and show whatever we have
+      }
+
+      if (!days.length || !days[0].chart || !days[0].chart.length) {
+        throw new Error('Empty chart');
+      }
+
+      buildChart(days);
+
+    } catch(e) {
+      document.getElementById('nav-label').textContent = 'Data unavailable';
+      document.getElementById('daily-chart-body').innerHTML =
+        `<tr><td colspan="3" style="padding:20px;text-align:center;color:#666;font-family:Verdana,sans-serif;font-size:12px;">
+          Daily data not yet available. Run the scraper to populate this chart.
+        </td></tr>`;
+    }
+  }
+
+  load();
+</script>
+
+</body>
+</html>

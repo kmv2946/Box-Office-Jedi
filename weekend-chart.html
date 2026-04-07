@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekend Chart — Box Office Jedi</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+
+    /* ── Individual weekend chart header ─────────────────────────── */
+    .wc-page-header {
+      padding: 10px 14px 8px;
+      text-align: center;
+      border-bottom: 1px solid #CCCCCC;
+    }
+    .wc-site-label {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 13px;
+      color: #00239C;
+      margin: 0 0 2px;
+    }
+    .wc-page-title {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 28px;
+      color: #000;
+      margin: 0;
+      text-decoration: underline;
+      letter-spacing: -0.5px;
+    }
+    .wc-date-range {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 20px;
+      color: #990000;
+      margin: 6px 0 0;
+    }
+
+    /* ── Story block ─────────────────────────────────────────────── */
+    .wc-story-block {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px 10px;
+      border-bottom: 1px solid #CCCCCC;
+    }
+    .wc-story-photo {
+      width: 100px;
+      height: 80px;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1px solid #CCC;
+    }
+    .wc-story-photo-placeholder {
+      width: 100px;
+      height: 80px;
+      background: #DDDDE8;
+      flex-shrink: 0;
+      border: 1px solid #BBB;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wc-story-text {}
+    .wc-story-headline {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 15px;
+      color: #00239C;
+      margin: 0 0 4px;
+    }
+    .wc-story-teaser {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0 0 6px;
+      line-height: 1.4;
+    }
+    .wc-story-link {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 15px;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .wc-story-link:hover { text-decoration: underline; }
+
+    /* ── Chart table ─────────────────────────────────────────────── */
+    .wc-chart-wrap {
+      padding: 8px 14px 14px;
+      overflow-x: auto;
+    }
+    .wc-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #AAAAAA;
+      font-size: 13px;
+    }
+
+    /* Header */
+    .wc-table thead th {
+      background: #CCCCDD;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 13px;
+      color: #000;
+      padding: 5px 8px;
+      text-align: center;
+      border-right: 1px solid #BBBBCC;
+      border-bottom: 2px solid #888899;
+      white-space: nowrap;
+    }
+    .wc-table thead th:last-child { border-right: none; }
+    .wc-table thead th.th-title { text-align: center; }
+
+    /* Rows */
+    .wc-table tbody tr.wc-row td {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      color: #000;
+      padding: 4px 8px;
+      border-bottom: 1px solid #CCCCDD;
+      border-right: 1px solid #DDDDEE;
+      vertical-align: middle;
+    }
+    .wc-table tbody tr.wc-row td:last-child { border-right: none; }
+
+    /* Alternating row colors: odd = white, even = light blue */
+    .wc-table tbody tr.wc-row:nth-child(odd)  td { background: #FFFFFF; }
+    .wc-table tbody tr.wc-row:nth-child(even) td { background: #EEEEFF; }
+
+    /* New film highlight overrides row color */
+    .wc-table tbody tr.wc-row.wc-new td { background: #FFFFA6 !important; }
+
+    /* Rank columns */
+    .wc-tw, .wc-lw {
+      text-align: center;
+      width: 28px;
+      font-weight: normal;
+      color: #333;
+    }
+    .wc-lw-new {
+      font-weight: bold;
+      color: #333;
+    }
+
+    /* Title cell — top 10: Times Bold Blue; 11+: Times Regular Black */
+    .wc-title-cell { min-width: 160px; }
+    .wc-title-top {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .wc-title-top:hover { text-decoration: underline; color: #0000F5 !important; }
+    .wc-title-lower {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      font-size: 14px;
+      color: #000;
+      text-decoration: none;
+    }
+    .wc-title-lower:hover { text-decoration: underline; color: #0000F5 !important; }
+
+    /* Studio */
+    .wc-studio { text-align: center; white-space: nowrap; }
+
+    /* Number columns */
+    .wc-num { text-align: right; white-space: nowrap; }
+
+    /* Theater count/change: "3,183 / -230" format */
+    .wc-theaters { text-align: right; white-space: nowrap; }
+
+    /* % Change colors */
+    .wc-chg-up   { color: #006600; }
+    .wc-chg-down { color: #CC0000; }
+    .wc-chg-new  { color: #555; }
+
+    /* Footnote */
+    .wc-footnote {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      color: #777;
+      margin: 4px 14px 12px;
+    }
+
+    /* Back nav */
+    .wc-back-nav {
+      padding: 6px 14px 0;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+    }
+    .wc-back-nav a {
+      color: #00239C;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .wc-back-nav a:hover { text-decoration: underline; }
+
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li class="active"><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">FEATURES &amp; MORE</span>
+      <ul>
+        <li><a href="forecast.html">THE FORECAST</a></li>
+        <li><a href="news.html">MOVIE NEWS</a></li>
+        <li><a href="releases.html">RELEASE DATES</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li class="derby"><a href="derby.html">DERBY GAME</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+
+  <main class="main-content">
+
+    <!-- Back to index -->
+    <div class="wc-back-nav">
+      <a href="weekend.html">&lt;&lt; All Weekends</a>
+    </div>
+
+    <!-- Page header -->
+    <div class="wc-page-header">
+      <p class="wc-site-label">BOX OFFICE JEDI</p>
+      <h1 class="wc-page-title">WEEKEND BOX OFFICE</h1>
+      <div class="wc-date-range" id="wc-date-range">Loading...</div>
+    </div>
+
+    <!-- Story block -->
+    <div class="wc-story-block" id="wc-story-block" style="display:none;">
+      <div class="wc-story-photo-placeholder" id="wc-story-photo-wrap">
+        <!-- photo injected if available -->
+      </div>
+      <div class="wc-story-text">
+        <div class="wc-story-headline" id="wc-story-headline"></div>
+        <p class="wc-story-teaser" id="wc-story-teaser"></p>
+        <a class="wc-story-link" id="wc-story-link" href="news.html">&gt;&gt;&gt; CLICK HERE TO READ THE FULL STORY</a>
+      </div>
+    </div>
+
+    <!-- Chart -->
+    <div class="wc-chart-wrap">
+      <table class="wc-table" id="wc-table">
+        <thead>
+          <tr>
+            <th class="wc-tw">TW</th>
+            <th class="wc-lw">LW</th>
+            <th class="th-title">Title <span style="font-weight:normal;font-size:11px;">(Click to view movie page)</span></th>
+            <th class="wc-studio">Studio</th>
+            <th class="wc-num">Weekend Gross</th>
+            <th class="wc-num">% Change</th>
+            <th class="wc-theaters">Theaters / Chg</th>
+            <th class="wc-num">Average</th>
+            <th class="wc-num">Total Gross</th>
+            <th class="wc-num">Week&nbsp;#</th>
+          </tr>
+        </thead>
+        <tbody id="wc-body">
+          <tr><td colspan="10" style="padding:24px;text-align:center;color:#666;font-family:Verdana,sans-serif;font-size:12px;">Loading data...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="wc-footnote" id="wc-estimates-note" style="display:none;">
+      * Figures are estimates and will be updated when actuals are reported.
+    </p>
+    <p class="wc-footnote">Data via The Numbers.</p>
+
+  </main>
+
+
+  <aside class="right-sidebar">
+
+    <div class="widget">
+      <div class="widget-header">WEEKEND CHARTS</div>
+      <div class="widget-body">
+        <p>
+          <a href="weekend.html"><strong>All Weekends</strong></a><br>
+          <a href="daily.html">Daily Chart</a><br>
+          <a href="yearly.html">Yearly Chart</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-header">TOP 10 THEATER COUNTS</div>
+      <div class="widget-body" style="padding:0;">
+        <table style="width:100%;border-collapse:collapse;font-size:12px;font-family:'Times New Roman',Times,serif;">
+          <tbody id="theater-widget-body">
+            <tr><td colspan="2" style="padding:8px;color:#999;font-family:Verdana,sans-serif;font-size:11px;">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-header">THE FORECAST</div>
+      <div class="widget-body">
+        <p>Read this weekend&#8217;s predictions. <a href="forecast.html"><strong>Click here &gt;</strong></a></p>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-header" style="background:#7F170E;">DERBY GAME</div>
+      <div class="widget-body" style="background:#e8f4fd;">
+        <p>Predict the weekend box office. <a href="derby.html"><strong>Play now &gt;</strong></a></p>
+      </div>
+    </div>
+
+  </aside>
+
+</div><!-- /page-wrapper -->
+
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">"Serving your box office needs since 2026."</span>
+  <div style="margin-top:8px;">
+    <img src="assets/images/flag_sm_anim.gif" alt="American flag" style="display:inline-block;height:auto;">
+  </div>
+</footer>
+
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+
+  // ── Formatting helpers ──────────────────────────────────────────
+  function fmtGross(n) {
+    if (!n && n !== 0) return '—';
+    return '$' + n.toLocaleString('en-US');
+  }
+  function fmtAvg(n) {
+    if (!n) return '—';
+    return '$' + Math.round(n).toLocaleString('en-US');
+  }
+  function fmtTheaters(count, change) {
+    const c = count ? count.toLocaleString('en-US') : '—';
+    if (change === null || change === undefined || change === 0) return c + ' / —';
+    const sign = change > 0 ? '+' : '';
+    return c + ' / ' + sign + change.toLocaleString('en-US');
+  }
+  function fmtChange(pct, isNew) {
+    if (isNew) return '<span class="wc-chg-new">—</span>';
+    if (pct === null || pct === undefined) return '—';
+    const sign = pct >= 0 ? '+' : '';
+    const cls  = pct >= 0 ? 'wc-chg-up' : 'wc-chg-down';
+    return `<span class="${cls}">${sign}${pct.toFixed(0)}%</span>`;
+  }
+
+  // ── Date range label ────────────────────────────────────────────
+  function isoToLocal(iso) {
+    const [y, m, d] = iso.split('-').map(Number);
+    return new Date(y, m - 1, d);
+  }
+  const MONTHS = ['January','February','March','April','May','June',
+                  'July','August','September','October','November','December'];
+  function dateRangeLabel(fromIso, toIso) {
+    const d1 = isoToLocal(fromIso);
+    const d2 = isoToLocal(toIso);
+    const y  = d2.getFullYear();
+    if (d1.getMonth() === d2.getMonth()) {
+      return MONTHS[d1.getMonth()] + ' ' + d1.getDate() + ' - ' + d2.getDate() + ', ' + y;
+    }
+    return MONTHS[d1.getMonth()] + ' ' + d1.getDate() + ' - ' +
+           MONTHS[d2.getMonth()] + ' ' + d2.getDate() + ', ' + y;
+  }
+
+  // ── Build chart ─────────────────────────────────────────────────
+  function buildChart(data) {
+    // Date range
+    const fromIso = data.date_from || data.date;
+    const toIso   = data.date_to   || data.date;
+    if (fromIso) {
+      document.getElementById('wc-date-range').textContent = dateRangeLabel(fromIso, toIso);
+      document.title = dateRangeLabel(fromIso, toIso) + ' — Box Office Jedi';
+    }
+
+    // Estimates notice
+    if (data.is_estimates) {
+      document.getElementById('wc-estimates-note').style.display = 'block';
+    }
+
+    // Story block (if weekend.json carries a story object)
+    if (data.story && (data.story.headline || data.story.teaser)) {
+      const s = data.story;
+      document.getElementById('wc-story-block').style.display = 'flex';
+      document.getElementById('wc-story-headline').textContent = s.headline || '';
+      document.getElementById('wc-story-teaser').textContent   = s.teaser   || '';
+      if (s.link) document.getElementById('wc-story-link').href = s.link;
+      if (s.photo) {
+        const img = document.createElement('img');
+        img.src = s.photo;
+        img.className = 'wc-story-photo';
+        img.alt = s.headline || 'Weekend story';
+        const wrap = document.getElementById('wc-story-photo-wrap');
+        wrap.innerHTML = '';
+        wrap.appendChild(img);
+        wrap.style.background = 'none';
+        wrap.style.border = 'none';
+      }
+    }
+
+    // Chart rows
+    const chart = data.chart || [];
+    const tbody = document.getElementById('wc-body');
+    tbody.innerHTML = '';
+
+    chart.forEach((m, i) => {
+      const rank  = m.rank || (i + 1);
+      const isTop = rank <= 10;
+      const isNew = m.is_new || false;
+      const lwDisplay = isNew
+        ? '<span class="wc-lw-new">N</span>'
+        : (m.last_rank ? m.last_rank : '—');
+
+      const titleCls  = isTop ? 'wc-title-top' : 'wc-title-lower';
+      const movieHref = `movie.html?id=${m.tmdb_id || ''}&title=${encodeURIComponent(m.title)}`;
+
+      const tr = document.createElement('tr');
+      tr.className = 'wc-row' + (isNew ? ' wc-new' : '');
+
+      tr.innerHTML = `
+        <td class="wc-tw">${rank}</td>
+        <td class="wc-lw">${lwDisplay}</td>
+        <td class="wc-title-cell"><a class="${titleCls}" href="${movieHref}">${m.title}</a></td>
+        <td class="wc-studio">${m.distributor ? abbrevStudio(m.distributor) : '—'}</td>
+        <td class="wc-num">${fmtGross(m.weekend_gross)}</td>
+        <td class="wc-num">${fmtChange(m.change_pct, isNew)}</td>
+        <td class="wc-theaters">${fmtTheaters(m.theaters, m.theater_change)}</td>
+        <td class="wc-num">${fmtAvg(m.avg_per_theater)}</td>
+        <td class="wc-num">${fmtGross(m.total_gross)}</td>
+        <td class="wc-num">${m.weeks_in_release || '—'}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    // Theater count sidebar widget
+    const twRows = chart.slice(0, 10).map((m, i) => {
+      const bg = (i % 2 === 0) ? '#FFFFFF' : '#EEEEFF';
+      const name = m.title.length > 18 ? m.title.slice(0, 17) + '…' : m.title;
+      return `<tr style="background:${bg};">
+        <td style="padding:3px 8px;border-bottom:1px solid #EEE;">${name}</td>
+        <td style="padding:3px 8px;text-align:right;border-bottom:1px solid #EEE;white-space:nowrap;">${m.theaters ? m.theaters.toLocaleString('en-US') : '—'}</td>
+      </tr>`;
+    }).join('');
+    document.getElementById('theater-widget-body').innerHTML = twRows;
+  }
+
+  // ── Studio abbreviator ──────────────────────────────────────────
+  function abbrevStudio(s) {
+    const map = {
+      'Warner Bros.': 'WB', 'Warner Bros': 'WB',
+      'Universal Pictures': 'Uni.', 'Universal': 'Uni.',
+      'Sony Pictures': 'Sony', 'Columbia Pictures': 'Sony',
+      'Walt Disney Pictures': 'BV', 'Disney': 'BV', 'Buena Vista': 'BV',
+      'Paramount Pictures': 'Par.', 'Paramount': 'Par.',
+      '20th Century Fox': 'Fox', '20th Century Studios': 'Fox',
+      'DreamWorks': 'DW', 'DreamWorks Animation': 'DW',
+      'Lionsgate': 'LGF', 'Lionsgate Films': 'LGF',
+      'MGM': 'MGM', 'Miramax': 'Mira.',
+      'New Line Cinema': 'NL',
+      'Summit Entertainment': 'Sum.',
+      'Focus Features': 'Foc.',
+      'A24': 'A24',
+      'Netflix': 'Net.',
+      'Amazon': 'Amaz.',
+      'Apple': 'Apple'
+    };
+    return map[s] || s.slice(0, 5) + '.';
+  }
+
+  // ── Load data ───────────────────────────────────────────────────
+  async function load() {
+    const params   = new URLSearchParams(window.location.search);
+    const reqDate  = params.get('date');
+
+    try {
+      // Try weekends.json first (has historical data), fall back to weekend.json
+      let data = null;
+
+      if (reqDate) {
+        try {
+          const r = await fetch('data/weekends.json');
+          if (r.ok) {
+            const idx = await r.json();
+            // weekends.json is the index; individual chart data may be embedded
+            const match = (idx.charts || {})[reqDate];
+            if (match) { data = match; }
+          }
+        } catch(e) { /* fall through */ }
+      }
+
+      if (!data) {
+        // Default: load current weekend.json
+        const r = await fetch('data/weekend.json');
+        if (!r.ok) throw new Error('No data');
+        data = await r.json();
+      }
+
+      if (!data.chart || !data.chart.length) throw new Error('Empty');
+
+      buildChart(data);
+
+    } catch(e) {
+      document.getElementById('wc-date-range').textContent = 'Data unavailable';
+      document.getElementById('wc-body').innerHTML =
+        `<tr><td colspan="10" style="padding:24px;text-align:center;color:#666;font-family:Verdana,sans-serif;font-size:12px;">
+          Weekend chart data not yet available.
+        </td></tr>`;
+    }
+  }
+
+  load();
+</script>
+
+</body>
+</html>

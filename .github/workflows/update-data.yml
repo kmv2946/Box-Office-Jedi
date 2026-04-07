@@ -1,0 +1,62 @@
+# Box Office Jedi — Automated Data Pipeline
+# ============================================
+# This GitHub Action runs every day at 9am ET (14:00 UTC) and:
+#   1. Scrapes The Numbers for daily + weekend + yearly box office data
+#   2. Syncs TMDB for movie details and now-playing list
+#   3. Commits the updated JSON files to the repo
+#   4. Netlify automatically deploys the new data to the live site
+#
+# You can also trigger this manually from GitHub → Actions → "Update Box Office Data" → Run workflow
+
+name: Update Box Office Data
+
+on:
+  schedule:
+    # 9:00 AM Eastern Time (14:00 UTC) — daily
+    - cron: "0 14 * * *"
+  workflow_dispatch:  # Allow manual trigger from GitHub UI
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4 lxml
+
+      - name: Run The Numbers scraper
+        run: python3 scripts/scrape_the_numbers.py
+        # If scraping fails (site down, blocked, etc.), the step is skipped
+        # and the existing data files remain unchanged
+        continue-on-error: true
+
+      - name: Run TMDB sync (weekly — only on Mondays)
+        # TMDB data changes slowly; syncing weekly is fine and saves API calls
+        if: github.event_name == 'workflow_dispatch' || (github.event_name == 'schedule' && github.event.schedule == '0 14 * * 1')
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: python3 scripts/tmdb_api.py
+        continue-on-error: true
+
+      - name: Commit updated data files
+        run: |
+          git config user.name "Box Office Jedi Bot"
+          git config user.email "bot@boxofficejedi.com"
+          git add data/
+          # Only commit if there are actual changes
+          git diff --staged --quiet || git commit -m "📊 Auto-update box office data $(date +'%Y-%m-%d')"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.8.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Showdowns — Box Office Jedi</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .showdown-page-card {
+      border: 1px solid #ccc;
+      margin-bottom: 16px;
+      background: #fff;
+    }
+    .showdown-card-header {
+      background: #DCDCDC;
+      padding: 6px 10px;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 13px;
+      border-bottom: 1px solid #bbb;
+    }
+    .showdown-card-body {
+      padding: 10px;
+    }
+    .showdown-compare-row {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr;
+      gap: 8px;
+      align-items: center;
+      text-align: center;
+    }
+    .showdown-film {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .showdown-film .film-gross {
+      font-size: 12px;
+      font-weight: normal;
+      color: #333;
+    }
+    .showdown-vs {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 20px;
+      color: #00239C;
+      text-align: center;
+    }
+    .showdown-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 12px;
+    }
+    .showdown-table th {
+      background: #F0F0F0;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      padding: 4px 8px;
+      border-bottom: 1px solid #ccc;
+      text-align: right;
+    }
+    .showdown-table th:first-child { text-align: left; }
+    .showdown-table td {
+      padding: 4px 8px;
+      border-bottom: 1px solid #eee;
+      text-align: right;
+    }
+    .showdown-table td:first-child { text-align: left; font-weight: bold; }
+    .showdown-table tr:nth-child(odd) td { background: #F4F4FE; }
+    .showdown-winner { color: #006600; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">FEATURES &amp; MORE</span>
+      <ul>
+        <li><a href="forecast.html">THE FORECAST</a></li>
+        <li><a href="news.html">MOVIE NEWS</a></li>
+        <li><a href="releases.html">RELEASE DATES</a></li>
+        <li class="active"><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li class="derby"><a href="derby.html">DERBY GAME</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+  <main class="main-content">
+    <div class="page-header">
+      <h1>Showdowns</h1>
+      <div class="page-subtitle">Head-to-head box office comparisons</div>
+    </div>
+
+    <div style="padding:10px 12px;">
+
+      <!--
+        HOW TO ADD A SHOWDOWN
+        ======================
+        Copy one of the showdown-page-card blocks below and update with the films,
+        stats, and any notes. Each showdown lives on this page as its own card.
+        For a more detailed showdown, you can also link to a separate page.
+      -->
+
+      <!-- PLACEHOLDER SHOWDOWN — replace with real data -->
+      <div class="showdown-page-card">
+        <div class="showdown-card-header">Featured Showdown</div>
+        <div class="showdown-card-body">
+          <div class="showdown-compare-row">
+            <div class="showdown-film">
+              [Film A]
+              <div class="film-gross">$—M total</div>
+            </div>
+            <div class="showdown-vs">VS</div>
+            <div class="showdown-film">
+              [Film B]
+              <div class="film-gross">$—M total</div>
+            </div>
+          </div>
+          <table class="showdown-table">
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>[Film A]</th>
+                <th>[Film B]</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Opening Weekend</td><td>$—M</td><td>$—M</td></tr>
+              <tr><td>Opening Theaters</td><td>—</td><td>—</td></tr>
+              <tr><td>Opening Avg</td><td>$—</td><td>$—</td></tr>
+              <tr><td>Total Domestic</td><td>$—M</td><td>$—M</td></tr>
+              <tr><td>Budget</td><td>$—M</td><td>$—M</td></tr>
+              <tr><td>Legs (Total/Open)</td><td>—x</td><td>—x</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <p style="font-size:12px;color:#777;font-family:Verdana,sans-serif;">
+        More showdowns coming soon. Have a comparison you'd like to see?
+        <a href="mailto:keatonventura@gmail.com">Suggest one.</a>
+      </p>
+
+    </div>
+  </main>
+
+  <aside class="right-sidebar">
+    <div class="widget">
+      <div class="widget-header">ALL TIME</div>
+      <div class="widget-body">
+        <p>View all-time records. <a href="alltime.html"><strong>Click here &gt;</strong></a></p>
+      </div>
+    </div>
+    <div class="widget">
+      <div class="widget-header" style="background:#7F170E;">DERBY GAME</div>
+      <div class="widget-body" style="background:#e8f4fd;">
+        <p>Predict the weekend. <a href="derby.html"><strong>Play now &gt;</strong></a></p>
+      </div>
+    </div>
+  </aside>
+
+</div>
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">"Serving your box office needs since 2026."</span>
+  <div class="footer-flag">
+    <img src="assets/images/flag_sm_anim.gif" alt="American flag" style="display:inline-block;height:auto;">
+  </div>
+</footer>
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+</script>
+
+</body>
+</html>

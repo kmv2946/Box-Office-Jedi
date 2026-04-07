@@ -1,0 +1,884 @@
+/* ============================================================
+   BOX OFFICE JEDI — Main Stylesheet
+   Design system by Keaton Ventura
+   ============================================================
+
+   COLOR PALETTE
+   -------------
+   Background ............. #F9F9F9
+   Links / Clickable ....... #00239C
+   Headlines (non-link) .... #000000
+   Body text ............... #000000
+   Alt row A ............... #F4F4FE
+   Alt row B ............... #FFFFFF
+   Sections ................ #DCDCDC
+   Micro-sections .......... #F0F0F0
+   Banners ................. #7F170E
+   Logo gold ............... #F7CE55
+   Derby highlight ......... #97CCF6
+
+   FONTS
+   -----
+   Headlines ............... Verdana Bold
+   Movie titles / Subheads . Times New Roman Bold
+   Body text ............... Times New Roman Regular
+   ============================================================ */
+
+
+/* ── Reset & Base ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14px;
+  line-height: 1.5;
+  background: #F9F9F9;
+  color: #000000;
+}
+
+a {
+  color: #00239C;
+  text-decoration: none;
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+}
+a:hover {
+  text-decoration: underline;
+  color: #0000F5 !important;
+}
+a:hover * {
+  color: #0000F5 !important;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+
+/* ── Page Layout ──────────────────────────────────────────── */
+.page-wrapper {
+  max-width: 1060px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+}
+
+
+/* ── Left Sidebar ─────────────────────────────────────────── */
+.sidebar {
+  width: 178px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+  overflow-y: auto;
+  border-right: 1px solid #bbb;
+}
+
+/* Scrollbar styling (webkit) */
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: #bbb; }
+
+/* Logo block */
+.sidebar-logo {
+  background: #F7CE55;
+  padding: 4px 6px;
+  text-align: center;
+  display: block;
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+.sidebar-logo:hover { text-decoration: none; }
+.sidebar-logo .logo-top,
+.sidebar-logo .logo-bottom {
+  display: inline;
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 13px;
+  letter-spacing: 0.03em;
+}
+.sidebar-logo .logo-top {
+  color: #000000;
+}
+.sidebar-logo .logo-bottom {
+  color: #7F170E;
+  margin-left: 4px;
+}
+
+/* Section banners */
+.nav-banner {
+  display: block;
+  background: #7F170E;
+  color: #ffffff;
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 10px;
+  padding: 3px 6px;
+  letter-spacing: 0.05em;
+  text-align: center;
+  border: 1px solid #ffffff;
+}
+
+/* Nav list */
+.sidebar-nav ul {
+  list-style: none;
+  background: #DCDCDC;
+}
+.sidebar-nav ul li a {
+  display: block;
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 11px;
+  color: #00239C;
+  padding: 3px 8px;
+  border-bottom: 1px solid #ffffff;
+}
+.sidebar-nav ul li a:hover {
+  background: #F5F5F5;
+  color: #0000F5;
+  text-decoration: none;
+}
+.sidebar-nav ul li.active a {
+  background: #b8b8cc;
+}
+
+/* Derby special */
+.sidebar-nav ul li.derby a {
+  background: #97CCF6;
+  color: #00239C;
+}
+.sidebar-nav ul li.derby a:hover {
+  background: #7db8e8;
+  text-decoration: none;
+}
+
+/* Home link */
+.sidebar-home {
+  display: block;
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  color: #000000;
+  padding: 5px 8px 6px;
+  background: #DCDCDC;
+}
+.sidebar-home:hover {
+  text-decoration: underline;
+}
+
+
+/* ── Sidebar Search ───────────────────────────────────────── */
+.sidebar-search {
+  display: flex;
+  background: #DCDCDC;
+  border-bottom: 1px solid #fff;
+  padding: 3px 5px;
+  gap: 3px;
+}
+.sidebar-search input[type="text"] {
+  flex: 1;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 10px;
+  padding: 2px 4px;
+  border: 1px solid #999;
+  min-width: 0;
+}
+.sidebar-search button {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 10px;
+  padding: 2px 6px;
+  background: #7F170E;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.sidebar-search button:hover { background: #9e1e11; }
+
+
+/* ── Quick Links bar ──────────────────────────────────────── */
+.quick-links {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 11px;
+  color: #333;
+  padding: 2px 8px;
+  background: #F0F0F0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.quick-links > span.ql-label {
+  font-weight: bold;
+  color: #000;
+  margin-right: 4px;
+}
+.quick-links a {
+  color: #00239C;
+  font-size: 11px;
+}
+.quick-links .ql-paren {
+  font-weight: normal;
+}
+.quick-links .sep {
+  color: #999;
+  margin: 0 4px;
+  font-weight: normal;
+}
+
+
+/* ── Site Header (center column top) ─────────────────────── */
+.site-header {
+  text-align: center;
+  padding: 10px 6px 6px;
+}
+.site-header .wordmark svg {
+  max-width: 100%;
+  height: auto;
+}
+.site-header .updated-line {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  font-size: 16px;
+  color: #000;
+  margin-top: 3px;
+}
+.site-header .tagline {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  color: #00239C;
+  margin-top: 1px;
+}
+
+
+/* ── Main Content ─────────────────────────────────────────── */
+.main-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* 2-column content grid */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid #999;
+  border-left: 1px solid #999;
+  margin: 6px 0;
+}
+
+.content-cell {
+  padding: 8px 10px;
+  border-right: 1px solid #999;
+  border-bottom: 1px solid #999;
+}
+
+/* Module headers — red box wrapping text only (web 1.0 style).
+   display:table makes the block shrink-wrap to text width. */
+.cell-header {
+  display: table;
+  background: #7F170E;
+  color: #ffffff;
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 11px;
+  padding: 3px 8px;
+  letter-spacing: 0.05em;
+  margin-bottom: 0;
+}
+
+
+/* ── Homepage Two-Column Layout ───────────────────────────── */
+.home-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 4px;
+  margin: 4px 4px 6px;
+}
+
+.home-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Red header sits ABOVE the gray bordered content box */
+.home-section {
+  /* no border — border lives on the body below */
+}
+.home-section-body {
+  border: 1px solid #DCDCDC;
+  padding: 0 0 4px;
+}
+
+.home-right {
+  display: flex;
+  flex-direction: column;
+}
+/* The content box inside home-right (below the red header) */
+.home-right-body {
+  border: 1px solid #DCDCDC;
+  display: flex;
+  flex-direction: column;
+}
+/* Prevent TOP STORIES header from stretching full-width in flex container */
+.home-right > .cell-header {
+  align-self: flex-start;
+}
+
+/* ── Weekend Top 5 ────────────────────────────────────────── */
+.home-chart-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.home-chart-table tr:nth-child(odd)  { background: #F4F4FE; }
+.home-chart-table tr:nth-child(even) { background: #FFFFFF; }
+.home-chart-table td {
+  font-size: 13px;
+  padding: 2px 4px;
+  border-bottom: 1px solid #e8e8e8;
+}
+.home-chart-table td.hc-rank {
+  font-family: Tahoma, Geneva, sans-serif;
+  font-weight: normal;
+  font-size: 13px;
+  width: 26px;
+  padding-left: 6px;
+  padding-right: 3px;
+  white-space: nowrap;
+  color: #000;
+  border-right: 1px solid #ccc;
+}
+.home-chart-table td.hc-title {
+  width: auto;
+  border-right: 1px solid #ccc;
+}
+.home-chart-table td.hc-title a {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 13px;
+  color: #00239C;
+}
+.home-chart-table td.hc-gross {
+  text-align: right;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-weight: normal;
+  font-size: 13px;
+  white-space: nowrap;
+  padding-right: 6px;
+  color: #000;
+}
+.view-chart-link {
+  display: block;
+  text-align: right;
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  color: #00239C;
+  padding: 4px 8px;
+  border-top: 1px solid #e0e0e0;
+  background: #F9F9F9;
+}
+
+/* ── Latest Updates ───────────────────────────────────────── */
+.updates-date-label {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  text-align: center;
+  background: #DCDCDC;
+  padding: 4px 6px;
+  border-bottom: 1px solid #e0e0e0;
+}
+.updates-list {
+  list-style: none;
+}
+.updates-list li {
+  font-size: 12px;
+  padding: 4px 8px;
+}
+.updates-list li:nth-child(odd)  { background: #F4F4FE; }
+.updates-list li:nth-child(even) { background: #FFFFFF; }
+.updates-list li a {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  color: #00239C;
+}
+.updates-list li .update-date {
+  color: #555;
+  font-weight: bold;
+  margin-right: 4px;
+  font-family: Verdana, Geneva, sans-serif;
+}
+.more-updates-link {
+  display: block;
+  text-align: right;
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  color: #00239C;
+  padding: 5px 8px;
+  border-top: 1px solid #e0e0e0;
+  background: #F9F9F9;
+}
+
+/* ── Top Stories ──────────────────────────────────────────── */
+.top-story-main {
+  padding: 8px 8px 0;
+}
+.top-story-photo {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  background: #111;
+  color: #777;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 11px;
+  text-align: center;
+  line-height: 140px;
+  margin-bottom: 6px;
+  display: block;
+}
+.top-story-headline {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 1.3;
+  margin-bottom: 2px;
+}
+.top-story-headline a {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  color: #00239C;
+}
+.top-story-byline {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: normal;
+  font-size: 11px;
+  color: #333;
+  margin-bottom: 5px;
+}
+.top-story-teaser {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #000;
+}
+.top-story-teaser strong {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+}
+.top-story-secondary {
+  padding: 0 8px;
+}
+.story-divider {
+  border-top: 1px solid #ccc;
+  margin: 7px 0;
+}
+.stories-more-link {
+  display: block;
+  text-align: right;
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  color: #00239C;
+  padding: 5px 8px;
+  border-top: 1px solid #e0e0e0;
+  background: #F9F9F9;
+  margin-top: auto;
+}
+.stories-more-link a {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  color: #00239C;
+}
+.read-more {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 11px;
+  color: #00239C;
+}
+
+
+/* ── News & Views ─────────────────────────────────────────── */
+.news-list {
+  list-style: none;
+}
+.news-list li {
+  padding: 4px 6px;
+  font-size: 13px;
+}
+.news-list li:nth-child(odd)  { background: #F4F4FE; }
+.news-list li:nth-child(even) { background: #FFFFFF; }
+.more-link {
+  display: block;
+  text-align: right;
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 11px;
+  margin-top: 6px;
+  color: #00239C;
+}
+
+
+/* ── Latest Updates ───────────────────────────────────────── */
+.updates-list {
+  list-style: none;
+}
+.updates-list li {
+  font-size: 12px;
+  padding: 3px 6px;
+}
+.updates-list li:nth-child(odd)  { background: #F4F4FE; }
+.updates-list li:nth-child(even) { background: #FFFFFF; }
+.updates-list li .update-date {
+  color: #555;
+  font-weight: bold;
+  margin-right: 4px;
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+
+/* ── Spotlight / Showdowns ────────────────────────────────── */
+.showdown-feature {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.showdown-movie {
+  text-align: center;
+}
+.showdown-movie img {
+  width: 58px;
+  height: 82px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+  background: #e0e0e0;
+  margin: 0 auto;
+}
+.showdown-movie span {
+  display: block;
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 10px;
+  color: #00239C;
+  margin-top: 3px;
+  max-width: 70px;
+}
+.vs-badge {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  color: #00239C;
+}
+.showdown-links {
+  list-style: disc;
+  padding-left: 16px;
+}
+.showdown-links li {
+  font-size: 12px;
+  padding: 2px 0;
+}
+
+
+/* ── Right Sidebar ────────────────────────────────────────── */
+.right-sidebar {
+  width: 188px;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.widget {
+  border-bottom: 1px solid #bbb;
+}
+
+.widget-header {
+  background: #7F170E;
+  color: #ffffff;
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 11px;
+  padding: 4px 8px;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+.widget-body {
+  background: #F0F0F0;
+  padding: 5px 8px;
+  font-size: 12px;
+}
+
+.widget-subheader {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  text-align: center;
+  padding: 3px 0 4px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 4px;
+}
+
+.theater-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 2px 0;
+  font-size: 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+.theater-row .t-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 6px;
+}
+.theater-row .t-count {
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.widget-more-link {
+  display: block;
+  text-align: right;
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 11px;
+  padding-top: 4px;
+  color: #00239C;
+}
+
+.widget-body p {
+  font-size: 12px;
+  line-height: 1.5;
+  margin-bottom: 5px;
+}
+.widget-body p strong {
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+
+/* ── Data Tables (charts) ─────────────────────────────────── */
+.chart-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.chart-table thead tr {
+  background: #7F170E;
+  color: #ffffff;
+}
+.chart-table thead th {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 11px;
+  padding: 5px 8px;
+  text-align: left;
+  white-space: nowrap;
+}
+.chart-table thead th.num {
+  text-align: right;
+}
+.chart-table tbody tr:nth-child(odd) {
+  background: #F4F4FE;
+}
+.chart-table tbody tr:nth-child(even) {
+  background: #FFFFFF;
+}
+.chart-table tbody tr:hover {
+  background: #e4e4f4;
+}
+.chart-table tbody td {
+  padding: 4px 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+.chart-table tbody td.num {
+  text-align: right;
+  font-family: 'Times New Roman', Times, serif;
+}
+.chart-table tbody td.rank {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  text-align: center;
+  width: 30px;
+}
+.chart-table tbody td.title a {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  color: #00239C;
+}
+.chart-table .change-up   { color: #006600; font-weight: bold; }
+.chart-table .change-down { color: #aa0000; font-weight: bold; }
+.chart-table .change-new  { color: #7F170E; font-weight: bold; font-family: Verdana, sans-serif; font-size: 11px; }
+
+/* Page headers for inner pages */
+.page-header {
+  background: #DCDCDC;
+  border-bottom: 2px solid #7F170E;
+  padding: 8px 12px;
+}
+.page-header h1 {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  color: #000000;
+}
+.page-header .page-subtitle {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 13px;
+  color: #333;
+  margin-top: 2px;
+}
+
+
+/* ── Footer ───────────────────────────────────────────────── */
+.site-footer {
+  text-align: center;
+  padding: 16px 16px 14px;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 11px;
+  color: #555;
+  background: #F9F9F9;
+}
+.site-footer .footer-tagline {
+  display: block;
+  font-style: italic;
+  margin-top: 4px;
+  color: #333;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 13px;
+}
+.site-footer .footer-flag {
+  margin-top: 8px;
+}
+
+
+/* ── Utility ──────────────────────────────────────────────── */
+.text-center  { text-align: center; }
+.text-right   { text-align: right; }
+.bold         { font-weight: bold; }
+.tahoma       { font-family: Verdana, Geneva, sans-serif; }
+.micro-section { background: #F0F0F0; }
+
+/* Editorial pages (Forecast, News) */
+.editorial-body {
+  padding: 12px 16px;
+  max-width: 680px;
+}
+.editorial-body article h2 {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 4px;
+  color: #000;
+}
+.editorial-body article h2 a {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  color: #000;
+  text-decoration: none;
+}
+.editorial-body article h2 a:hover {
+  text-decoration: underline;
+  color: #00239C;
+}
+.editorial-body .byline-name {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: normal;
+  font-size: 13px;
+  color: #000;
+}
+.editorial-body .byline-name a {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: normal;
+  font-size: 13px;
+  color: #00239C;
+}
+.editorial-body .byline-date {
+  display: block;
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: normal;
+  font-size: 10px;
+  color: #333;
+  margin-top: 2px;
+  margin-bottom: 12px;
+}
+/* Legacy byline class — keep for compat */
+.editorial-body .byline {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 13px;
+  font-weight: normal;
+  color: #000;
+  margin-bottom: 2px;
+}
+.editorial-body h3 {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  font-size: 16px;
+  margin: 12px 0 4px;
+  color: #000;
+}
+.editorial-body p {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
+  line-height: 1.65;
+  margin-bottom: 10px;
+}
+/* In-text movie title link (first mention): Times Bold, Blue */
+.editorial-body p a {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  font-size: 16px;
+  color: #00239C;
+}
+.editorial-body p a:hover {
+  text-decoration: underline;
+  color: #0000F5;
+}
+/* In-text movie title already linked (subsequent): Times Bold only */
+.editorial-body p strong {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+}
+.post-list {
+  list-style: none;
+}
+.post-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
+.post-list .post-title {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+}
+.post-list .post-date {
+  font-size: 12px;
+  color: #666;
+  font-family: Verdana, Geneva, sans-serif;
+  margin-top: 2px;
+}
+.post-list .post-excerpt {
+  font-size: 13px;
+  margin-top: 4px;
+  color: #222;
+}

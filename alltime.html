@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All-Time Chart — Box Office Jedi</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li class="active"><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">FEATURES &amp; MORE</span>
+      <ul>
+        <li><a href="forecast.html">THE FORECAST</a></li>
+        <li><a href="news.html">MOVIE NEWS</a></li>
+        <li><a href="releases.html">RELEASE DATES</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li class="derby"><a href="derby.html">DERBY GAME</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+  <main class="main-content">
+    <div class="page-header">
+      <h1>All-Time Box Office</h1>
+      <div class="page-subtitle">Worldwide revenue — ranked by total gross (TMDB data)</div>
+    </div>
+
+    <div style="padding:10px 12px;">
+      <table class="chart-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Release Date</th>
+            <th class="num">Worldwide Gross</th>
+          </tr>
+        </thead>
+        <tbody id="alltime-body">
+          <tr><td colspan="4" style="text-align:center;padding:20px;color:#666;">Loading data...</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:11px;color:#777;margin-top:8px;font-family:Verdana,sans-serif;">
+        Data via TMDB. Worldwide revenue. <span id="alltime-updated"></span>
+      </p>
+    </div>
+  </main>
+
+  <aside class="right-sidebar">
+    <div class="widget">
+      <div class="widget-header">YEARLY CHART</div>
+      <div class="widget-body">
+        <p>View year-to-date results. <a href="yearly.html"><strong>Click here &gt;</strong></a></p>
+      </div>
+    </div>
+    <div class="widget">
+      <div class="widget-header">SHOWDOWNS</div>
+      <div class="widget-body">
+        <p>Compare movies head-to-head. <a href="showdowns.html"><strong>Click here &gt;</strong></a></p>
+      </div>
+    </div>
+  </aside>
+
+</div>
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">"Serving your box office needs since 2026."</span>
+  <div class="footer-flag">
+    <img src="assets/images/flag_sm_anim.gif" alt="American flag" style="display:inline-block;height:auto;">
+  </div>
+</footer>
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+  function fmtB(n) {
+    if (!n) return '—';
+    if (n >= 1000000000) return '$' + (n/1000000000).toFixed(2) + 'B';
+    return '$' + (n/1000000).toFixed(1) + 'M';
+  }
+
+  async function load() {
+    try {
+      const r = await fetch('data/alltime.json');
+      if (!r.ok) throw new Error();
+      const d = await r.json();
+      if (d.updated) document.getElementById('alltime-updated').textContent =
+        'Last updated: ' + new Date(d.updated).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+      if (!d.chart || !d.chart.length) throw new Error();
+
+      const rows = d.chart.map(m => {
+        const year = m.release_date ? m.release_date.slice(0,4) : '—';
+        return `<tr>
+          <td class="rank">${m.rank}</td>
+          <td class="title"><a href="movie.html?id=${m.tmdb_id}&title=${encodeURIComponent(m.title)}">${m.title}</a></td>
+          <td>${year}</td>
+          <td class="num">${fmtB(m.revenue)}</td>
+        </tr>`;
+      }).join('');
+      document.getElementById('alltime-body').innerHTML = rows;
+    } catch(e) {
+      document.getElementById('alltime-body').innerHTML =
+        '<tr><td colspan="4" style="text-align:center;padding:20px;color:#666;font-family:Verdana,sans-serif;">All-time data not yet available. Run the TMDB sync script to populate.</td></tr>';
+    }
+  }
+  load();
+</script>
+
+</body>
+</html>
