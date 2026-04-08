@@ -1,0 +1,81 @@
+# Box Office Jedi — Historical Weekend Backfill
+# ===============================================
+# ONE-TIME workflow. Scrapes every weekend from 2007 to the present
+# and populates:
+#   data/weekends/YYYY-MM-DD.json   — full chart for each past weekend
+#   data/weekends.json              — master index for the weekend index page
+#
+# How to run:
+#   GitHub → Actions → "Historical Weekend Backfill" → Run workflow
+#
+# Takes ~40 minutes. Only needs to be run once.
+# After that, the daily scraper (update-data.yml) keeps things current.
+#
+# Safe to re-run — the --skip-existing flag means already-scraped
+# weekends are not re-fetched (only new ones are added).
+
+name: Historical Weekend Backfill
+
+on:
+  workflow_dispatch:
+    inputs:
+      start_date:
+        description: "Start date (YYYY-MM-DD, must be a Friday). Default: 2007-01-05"
+        required: false
+        default: "2007-01-05"
+      end_date:
+        description: "End date (YYYY-MM-DD, must be a Friday). Leave blank for most recent weekend."
+        required: false
+        default: ""
+      skip_existing:
+        description: "Skip dates that already have a JSON file? (true/false)"
+        required: false
+        default: "true"
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360   # 6-hour limit — well above the ~40 min expected runtime
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4 lxml
+
+      - name: Run historical backfill scraper
+        run: |
+          ARGS="--start ${{ github.event.inputs.start_date }}"
+
+          if [ -n "${{ github.event.inputs.end_date }}" ]; then
+            ARGS="$ARGS --end ${{ github.event.inputs.end_date }}"
+          fi
+
+          if [ "${{ github.event.inputs.skip_existing }}" = "true" ]; then
+            ARGS="$ARGS --skip-existing"
+          fi
+
+          echo "Running: python3 scripts/scrape_historical.py $ARGS"
+          python3 scripts/scrape_historical.py $ARGS
+
+      - name: Commit and push historical data
+        run: |
+          git config user.name "Box Office Jedi Bot"
+          git config user.email "bot@boxofficejedi.com"
+          git add data/weekends/ data/weekends.json
+          if ! git diff --staged --quiet; then
+            COUNT=$(git diff --staged --name-only | wc -l)
+            git commit -m "📅 Historical backfill — $COUNT weekend files added"
+            git push
+          else
+            echo "No new data files — nothing to commit."
+          fi
