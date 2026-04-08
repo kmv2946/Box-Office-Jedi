@@ -115,20 +115,57 @@ def scrape_daily(date: datetime = None) -> list[dict]:
 
     for row in rows:
         cells = row.find_all("td")
-        if len(cells) < 5:
+        if len(cells) < 4:
             continue
         try:
-            entry = {
-                "rank":          int(cells[0].get_text(strip=True).replace("#", "") or 0),
-                "title":         cells[1].get_text(strip=True),
-                "movie_url":     cells[1].find("a")["href"] if cells[1].find("a") else "",
-                "distributor":   cells[2].get_text(strip=True) if len(cells) > 2 else "",
-                "daily_gross":   parse_money(cells[3].get_text(strip=True)),
-                "theaters":      int(cells[4].get_text(strip=True).replace(",", "") or 0) if len(cells) > 4 else 0,
-                "avg_per_theater": parse_money(cells[5].get_text(strip=True)) if len(cells) > 5 else 0,
-                "total_gross":   parse_money(cells[6].get_text(strip=True)) if len(cells) > 6 else 0,
-                "days_in_release": int(cells[7].get_text(strip=True) or 0) if len(cells) > 7 else 0,
-            }
+            # The Numbers daily columns (no distributor column):
+            # 0: Rank | 1: Title | 2: Daily Gross | 3: Theaters
+            # 4: Avg | 5: Total Gross | 6: Days in Release
+
+            def safe_int(s):
+                try:
+                    return int(s.replace(",", "").replace("#", "").strip() or 0)
+                except (ValueError, AttributeError):
+                    return 0
+
+            # % change lives between gross and theaters on some pages
+            # Try to detect by checking if cell[3] looks like a theater count (no $)
+            raw3 = cells[3].get_text(strip=True) if len(cells) > 3 else ""
+            has_pct_col = "%" in (cells[3].get_text(strip=True) if len(cells) > 3 else "")
+
+            if has_pct_col:
+                # Layout: Rank | Title | Gross | %Chg | Theaters | Avg | Total | Days
+                pct_text = cells[3].get_text(strip=True)
+                try:
+                    pct_change = float(pct_text.replace("%", "").replace("+", ""))
+                except ValueError:
+                    pct_change = None
+                entry = {
+                    "rank":            safe_int(cells[0].get_text(strip=True)),
+                    "title":           cells[1].get_text(strip=True),
+                    "movie_url":       cells[1].find("a")["href"] if cells[1].find("a") else "",
+                    "distributor":     "",
+                    "daily_gross":     parse_money(cells[2].get_text(strip=True)),
+                    "pct_change":      pct_change,
+                    "theaters":        safe_int(cells[4].get_text(strip=True)) if len(cells) > 4 else 0,
+                    "avg_per_theater": parse_money(cells[5].get_text(strip=True)) if len(cells) > 5 else 0,
+                    "total_gross":     parse_money(cells[6].get_text(strip=True)) if len(cells) > 6 else 0,
+                    "days_in_release": safe_int(cells[7].get_text(strip=True)) if len(cells) > 7 else 0,
+                }
+            else:
+                # Layout: Rank | Title | Gross | Theaters | Avg | Total | Days
+                entry = {
+                    "rank":            safe_int(cells[0].get_text(strip=True)),
+                    "title":           cells[1].get_text(strip=True),
+                    "movie_url":       cells[1].find("a")["href"] if cells[1].find("a") else "",
+                    "distributor":     "",
+                    "daily_gross":     parse_money(cells[2].get_text(strip=True)),
+                    "pct_change":      None,
+                    "theaters":        safe_int(cells[3].get_text(strip=True)),
+                    "avg_per_theater": parse_money(cells[4].get_text(strip=True)) if len(cells) > 4 else 0,
+                    "total_gross":     parse_money(cells[5].get_text(strip=True)) if len(cells) > 5 else 0,
+                    "days_in_release": safe_int(cells[6].get_text(strip=True)) if len(cells) > 6 else 0,
+                }
             if entry["title"] and entry["daily_gross"] > 0:
                 results.append(entry)
         except (ValueError, TypeError, KeyError):
@@ -178,31 +215,39 @@ def scrape_weekend(date: datetime = None) -> list[dict]:
 
     for row in rows:
         cells = row.find_all("td")
-        if len(cells) < 5:
+        if len(cells) < 4:
             continue
         try:
-            # Parse % change (e.g. "-42%" or "NEW")
+            # The Numbers weekend columns (no distributor column):
+            # 0: Rank | 1: Title | 2: Weekend Gross | 3: Theaters
+            # 4: % Change | 5: Avg | 6: Total Gross | 7: Week #
+
             change_text = cells[4].get_text(strip=True) if len(cells) > 4 else ""
-            if change_text.upper() == "NEW":
-                change_pct = None  # New release
-            else:
+            # New releases show "-" or blank, not "NEW"
+            is_new = change_text in ("", "-", "n/a") or change_text.upper() == "NEW"
+            try:
+                change_pct = None if is_new else float(change_text.replace("%", "").replace("+", ""))
+            except ValueError:
+                change_pct = None
+
+            def safe_int(s):
                 try:
-                    change_pct = float(change_text.replace("%", "").replace("+", ""))
-                except ValueError:
-                    change_pct = None
+                    return int(s.replace(",", "").replace("#", "").strip() or 0)
+                except (ValueError, AttributeError):
+                    return 0
 
             entry = {
-                "rank":            int(cells[0].get_text(strip=True).replace("#", "") or 0),
-                "title":           cells[1].get_text(strip=True),
-                "movie_url":       cells[1].find("a")["href"] if cells[1].find("a") else "",
-                "distributor":     cells[2].get_text(strip=True) if len(cells) > 2 else "",
-                "weekend_gross":   parse_money(cells[3].get_text(strip=True)),
-                "change_pct":      change_pct,
-                "is_new":          change_text.upper() == "NEW",
-                "theaters":        int(cells[5].get_text(strip=True).replace(",", "") or 0) if len(cells) > 5 else 0,
-                "avg_per_theater": parse_money(cells[6].get_text(strip=True)) if len(cells) > 6 else 0,
-                "total_gross":     parse_money(cells[7].get_text(strip=True)) if len(cells) > 7 else 0,
-                "weeks_in_release": int(cells[8].get_text(strip=True) or 0) if len(cells) > 8 else 0,
+                "rank":             safe_int(cells[0].get_text(strip=True)),
+                "title":            cells[1].get_text(strip=True),
+                "movie_url":        cells[1].find("a")["href"] if cells[1].find("a") else "",
+                "distributor":      "",
+                "weekend_gross":    parse_money(cells[2].get_text(strip=True)),
+                "theaters":         safe_int(cells[3].get_text(strip=True)),
+                "change_pct":       change_pct,
+                "is_new":           is_new,
+                "avg_per_theater":  parse_money(cells[5].get_text(strip=True)) if len(cells) > 5 else 0,
+                "total_gross":      parse_money(cells[6].get_text(strip=True)) if len(cells) > 6 else 0,
+                "weeks_in_release": safe_int(cells[7].get_text(strip=True)) if len(cells) > 7 else 0,
             }
             if entry["title"] and entry["weekend_gross"] > 0:
                 results.append(entry)
