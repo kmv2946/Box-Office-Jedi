@@ -306,6 +306,73 @@ def scrape_yearly(year: int = None) -> list[dict]:
     return results
 
 
+# ── Enrich weekend data with derived fields ───────────────────────────────────
+
+def enrich_weekend(current: list[dict], previous_path: str, yearly: list[dict]) -> list[dict]:
+    """
+    Add calculated fields to the weekend chart:
+      - avg_per_theater  : weekend_gross / theaters
+      - last_rank        : rank from previous weekend (None if new)
+      - change_pct       : % change in gross vs previous weekend
+      - theater_change   : theater count difference vs previous weekend
+      - total_gross      : from year-to-date chart
+      - is_new           : True if not in previous weekend's chart
+    """
+    # Load previous weekend for LW comparisons
+    prev_by_title = {}
+    try:
+        with open(previous_path, "r", encoding="utf-8") as f:
+            prev_data = json.load(f)
+        for m in prev_data.get("chart", []):
+            prev_by_title[m["title"].lower()] = m
+    except (FileNotFoundError, json.JSONDecodeError):
+        pass  # No previous data yet — first run
+
+    # Build total gross lookup from yearly chart
+    yearly_by_title = {}
+    for m in yearly:
+        yearly_by_title[m["title"].lower()] = m.get("total_gross", 0)
+
+    enriched = []
+    for m in current:
+        key = m["title"].lower()
+        prev = prev_by_title.get(key)
+
+        # Average per theater
+        theaters = m.get("theaters") or 0
+        gross    = m.get("weekend_gross") or 0
+        avg = round(gross / theaters) if theaters > 0 else 0
+
+        # LW comparisons
+        if prev:
+            last_rank      = prev.get("rank")
+            prev_gross     = prev.get("weekend_gross") or 0
+            prev_theaters  = prev.get("theaters") or 0
+            change_pct     = round((gross - prev_gross) / prev_gross * 100, 1) if prev_gross > 0 else None
+            theater_change = (theaters - prev_theaters) if theaters > 0 and prev_theaters > 0 else None
+            is_new         = False
+        else:
+            last_rank      = None
+            change_pct     = None
+            theater_change = None
+            is_new         = True
+
+        # Total gross from yearly chart (most accurate running total)
+        total_gross = yearly_by_title.get(key) or m.get("total_gross") or 0
+
+        enriched.append({
+            **m,
+            "avg_per_theater":  avg,
+            "last_rank":        last_rank,
+            "change_pct":       change_pct,
+            "theater_change":   theater_change,
+            "total_gross":      total_gross,
+            "is_new":           is_new,
+        })
+
+    return enriched
+
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
@@ -321,19 +388,32 @@ def main():
         "chart": daily
     })
 
-    # Weekend chart (most recent completed weekend)
-    weekend = scrape_weekend()
-    save_json("weekend.json", {
-        "updated": now.isoformat(),
-        "chart": weekend
-    })
-
-    # Yearly chart (current year)
+    # Yearly chart first — needed to enrich weekend with total grosses
     yearly = scrape_yearly()
     save_json("yearly.json", {
         "updated": now.isoformat(),
         "year": now.year,
         "chart": yearly
+    })
+
+    # Weekend chart — enrich with calculated fields before saving
+    prev_path = os.path.join(DATA_DIR, "weekend.json")
+    weekend_raw = scrape_weekend()
+    weekend_enriched = enrich_weekend(weekend_raw, prev_path, yearly)
+
+    # Determine date range for this weekend (Friday–Sunday)
+    today = now.date()
+    days_since_sunday = today.weekday() + 1 if today.weekday() < 6 else 0
+    sunday  = today - timedelta(days=days_since_sunday % 7)
+    friday  = sunday - timedelta(days=2)
+    week_num = int(sunday.strftime("%U"))
+
+    save_json("weekend.json", {
+        "updated":   now.isoformat(),
+        "date_from": str(friday),
+        "date_to":   str(sunday),
+        "week_number": week_num,
+        "chart":     weekend_enriched
     })
 
     print("\n" + "=" * 60)
