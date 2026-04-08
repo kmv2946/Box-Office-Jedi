@@ -458,7 +458,7 @@
         <td class="wc-num">${fmtGross(m.weekend_gross)}</td>
         <td class="wc-num">${fmtChange(m.change_pct, isNew)}</td>
         <td class="wc-theaters">${fmtTheaters(m.theaters, m.theater_change)}</td>
-        <td class="wc-num">${fmtAvg(m.avg_per_theater)}</td>
+        <td class="wc-num">${fmtAvg(m.avg_per_theater || (m.theaters > 0 ? Math.round(m.weekend_gross / m.theaters) : 0))}</td>
         <td class="wc-num">${fmtGross(m.total_gross)}</td>
         <td class="wc-num">${m.weeks_in_release || '—'}</td>
       `;
