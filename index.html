@@ -88,7 +88,7 @@
                 <tr><td class="hc-rank">5.</td><td class="hc-title"><a href="weekend.html">Movie Title</a></td><td class="hc-gross">$77,061,953</td></tr>
               </tbody>
             </table>
-            <a href="weekend.html" class="view-chart-link">&gt;VIEW FULL WEEKEND CHART</a>
+            <a href="weekend-chart.html" id="view-chart-link" class="view-chart-link">&gt;VIEW FULL WEEKEND CHART</a>
           </div>
         </div>
 
@@ -240,7 +240,7 @@
   }
   function fmtM(n) {
     if (!n) return '—';
-    return '$' + (n / 1000000).toFixed(1) + 'M';
+    return '$' + n.toLocaleString('en-US');
   }
   function shortDate(iso) {
     const d = new Date(iso);
@@ -278,6 +278,11 @@
           // Weekend Top 5 table
           const chartLabel = wd.is_estimates ? 'WEEKEND ESTIMATES' : 'WEEKEND ACTUALS';
           document.getElementById('weekend-chart-header').textContent = chartLabel;
+
+          // Update "VIEW FULL WEEKEND CHART" link to the specific weekend
+          const chartDate = wd.date_from || wd.date || '';
+          const chartLink = chartDate ? `weekend-chart.html?date=${chartDate}` : 'weekend-chart.html';
+          document.getElementById('view-chart-link').href = chartLink;
 
           const top5 = wd.chart.slice(0, 5).map((m, i) => {
             const title = m.title.length > 22 ? m.title.slice(0, 21) + '…' : m.title;

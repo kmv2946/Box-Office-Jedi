@@ -11,7 +11,7 @@
     .wknd-page-header {
       padding: 10px 14px 6px;
       text-align: center;
-      border-bottom: 1px solid #CCCCCC;
+      border-bottom: none;
       margin-bottom: 0;
     }
     .wknd-site-label {
@@ -32,9 +32,9 @@
 
     /* ── Year navigation ─────────────────────────────────────────── */
     .wknd-year-nav {
-      padding: 8px 14px 6px;
+      padding: 8px 14px 10px;
       text-align: center;
-      border-bottom: 1px solid #CCCCCC;
+      border-bottom: none;
     }
     .wknd-year-current {
       font-family: 'Times New Roman', Times, serif;
@@ -56,13 +56,19 @@
       text-decoration: none;
     }
     .wknd-year-link:hover { text-decoration: underline; }
-    .wknd-year-row2 {
-      margin-top: 2px;
+    .wknd-year-nav-bottom {
+      border-top: 1px solid #CCCCCC;
+      margin-top: 0;
+      padding-top: 8px;
     }
-    .wknd-year-row2 .wknd-year-link,
-    .wknd-year-row2 .wknd-year-sep {
+    .wknd-year-more-link {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
       font-size: 15px;
+      color: #00007B;
+      text-decoration: none;
     }
+    .wknd-year-more-link:hover { text-decoration: underline; }
 
     /* ── Weekend index table ─────────────────────────────────────── */
     .wknd-chart-wrap {
@@ -75,18 +81,18 @@
     }
     .wknd-table thead th {
       background: #DCDCDC;
-      font-family: Verdana, Geneva, sans-serif;
-      font-weight: bold;
-      font-size: 11px;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      font-size: 13px;
       color: #000;
       padding: 5px 10px;
-      text-align: left;
-      border-bottom: 1px solid #999;
-      border-right: 1px solid #BBBBBB;
+      text-align: center;
+      border-bottom: 1px solid #FFFFFF;
+      border-right: 1px solid #FFFFFF;
       white-space: nowrap;
     }
     .wknd-table thead th:last-child { border-right: none; }
-    .wknd-table thead th.num { text-align: right; }
+    .wknd-table thead th.num { text-align: center; }
 
     /* Data rows */
     .wknd-table tbody tr.wknd-row td {
@@ -109,10 +115,12 @@
 
     /* Month separator rows */
     .wknd-table tbody tr.wknd-month-sep td {
-      background: #FFFFFF;
-      padding: 3px 0;
-      border-bottom: none;
+      background: #BBBBBB;
+      padding: 4px 0;
+      border-bottom: 1px solid #999999;
       border-right: none;
+      line-height: 0;
+      font-size: 0;
     }
 
     /* Weekend date link */
@@ -208,10 +216,9 @@
       <h1 class="wknd-page-title">WEEKEND BOX OFFICE</h1>
     </div>
 
-    <!-- Year navigation -->
+    <!-- Year navigation (top) -->
     <div class="wknd-year-nav">
-      <div id="year-nav-row1"><!-- injected by JS --></div>
-      <div class="wknd-year-row2" id="year-nav-row2"><!-- injected by JS --></div>
+      <div id="year-nav-top"><!-- injected by JS --></div>
     </div>
 
     <!-- Weekend index table -->
@@ -222,7 +229,7 @@
             <th style="width:160px;">Click to view Top 10</th>
             <th class="num">Top 10 Total</th>
             <th class="num">Change</th>
-            <th class="top-film" style="text-align:center;">#1 Picture</th>
+            <th style="text-align:center;">#1 Picture</th>
             <th class="num">Week</th>
           </tr>
         </thead>
@@ -230,6 +237,11 @@
           <tr><td colspan="5" class="wknd-empty">Loading data...</td></tr>
         </tbody>
       </table>
+    </div>
+
+    <!-- Year navigation (bottom) -->
+    <div class="wknd-year-nav wknd-year-nav-bottom">
+      <div id="year-nav-bottom"><!-- injected by JS --></div>
     </div>
 
   </main>
@@ -271,7 +283,9 @@
   Box Office Jedi &copy; <span id="footer-year">2026</span>
   <span class="footer-tagline">"Serving your box office needs since 2026."</span>
   <div style="margin-top:8px;">
-    <img src="assets/images/flag_sm_anim.gif" alt="American flag" style="display:inline-block;height:auto;">
+    <a href="https://www.netflix.com" target="_blank" rel="noopener">
+      <img src="assets/images/free-dvd-rentals.gif" alt="Free DVD Rentals" style="display:inline-block;height:auto;">
+    </a>
   </div>
 </footer>
 
@@ -323,31 +337,54 @@
                   'July','August','September','October','November','December'];
 
   // ── Year nav ────────────────────────────────────────────────────
-  function buildYearNav(currentYear) {
+  function yearEl(y, currentYear) {
+    if (y === currentYear) {
+      return `<span class="wknd-year-current">${y}</span>`;
+    }
+    return `<a class="wknd-year-link" href="weekend.html?year=${y}">${y}</a>`;
+  }
+
+  function buildYearNav(currentYear, containerId) {
     const thisYear = new Date().getFullYear();
-    const startYear = 2026; // site launch year
+    const primaryStart = 2007;   // primary row goes back to 2007
+    const extendedStart = 1995;  // "more years" goes back to 1995
 
-    // Build list from current year back to start
-    const years = [];
-    for (let y = thisYear; y >= startYear; y--) years.push(y);
+    // Primary years: thisYear down to 2007 (or site launch if later)
+    const primaryYears = [];
+    for (let y = Math.max(thisYear, 2026); y >= primaryStart; y--) primaryYears.push(y);
 
-    const row1 = [];
-    const row2 = [];
-
-    years.forEach((y, i) => {
-      if (y === currentYear) {
-        const el = `<span class="wknd-year-current">${y}</span>`;
-        i < 5 ? row1.push(el) : row2.push(el);
-      } else {
-        const el = `<a class="wknd-year-link" href="weekend.html?year=${y}">${y}</a>`;
-        i < 5 ? row1.push(el) : row2.push(el);
-      }
-    });
+    // Extended years: 2006 down to 1995
+    const extendedYears = [];
+    for (let y = primaryStart - 1; y >= extendedStart; y--) extendedYears.push(y);
 
     const sep = `<span class="wknd-year-sep"> - </span>`;
-    document.getElementById('year-nav-row1').innerHTML = row1.join(sep);
-    if (row2.length) {
-      document.getElementById('year-nav-row2').innerHTML = row2.join(sep);
+
+    const primaryHtml = primaryYears.map(y => yearEl(y, currentYear)).join(sep);
+
+    let extendedHtml = '';
+    if (extendedYears.length) {
+      extendedHtml = `
+        <span class="wknd-year-sep"> - </span>
+        <a class="wknd-year-more-link" href="#" onclick="toggleMoreYears(event, '${containerId}')">more years &raquo;</a>
+        <span class="wknd-more-years" id="more-years-${containerId}" style="display:none;">
+          ${sep}${extendedYears.map(y => yearEl(y, currentYear)).join(sep)}
+        </span>`;
+    }
+
+    const container = document.getElementById(containerId);
+    if (container) container.innerHTML = primaryHtml + extendedHtml;
+  }
+
+  function toggleMoreYears(e, containerId) {
+    e.preventDefault();
+    const el = document.getElementById('more-years-' + containerId);
+    const link = e.target;
+    if (el.style.display === 'none') {
+      el.style.display = 'inline';
+      link.textContent = '\u00ab less years';
+    } else {
+      el.style.display = 'none';
+      link.textContent = 'more years \u00bb';
     }
   }
 
@@ -403,7 +440,8 @@
     const params = new URLSearchParams(window.location.search);
     const reqYear = params.get('year') ? parseInt(params.get('year')) : new Date().getFullYear();
 
-    buildYearNav(reqYear);
+    buildYearNav(reqYear, 'year-nav-top');
+    buildYearNav(reqYear, 'year-nav-bottom');
 
     try {
       // Try the full weekends index first
