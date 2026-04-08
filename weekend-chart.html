@@ -508,23 +508,18 @@
     const reqDate  = params.get('date');
 
     try {
-      // Try weekends.json first (has historical data), fall back to weekend.json
       let data = null;
 
       if (reqDate) {
+        // Try the per-date file first (data/weekends/YYYY-MM-DD.json)
         try {
-          const r = await fetch('data/weekends.json');
-          if (r.ok) {
-            const idx = await r.json();
-            // weekends.json is the index; individual chart data may be embedded
-            const match = (idx.charts || {})[reqDate];
-            if (match) { data = match; }
-          }
+          const r = await fetch(`data/weekends/${reqDate}.json`);
+          if (r.ok) { data = await r.json(); }
         } catch(e) { /* fall through */ }
       }
 
       if (!data) {
-        // Default: load current weekend.json
+        // Fallback: current weekend
         const r = await fetch('data/weekend.json');
         if (!r.ok) throw new Error('No data');
         data = await r.json();

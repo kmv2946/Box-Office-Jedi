@@ -72,11 +72,62 @@ def parse_money(s: str) -> int:
 
 def save_json(filename: str, data: dict | list):
     """Save data as formatted JSON to the data/ directory."""
-    os.makedirs(DATA_DIR, exist_ok=True)
     path = os.path.join(DATA_DIR, filename)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
     print(f"  ✓ Saved {path}")
+
+
+def update_weekends_index(date_from: str, date_to: str, week_number: int,
+                          chart: list[dict], is_estimates: bool = False):
+    """
+    Append or update the weekends.json master index with a summary of this weekend.
+    The index powers the weekend.html year-view page.
+    """
+    index_path = os.path.join(DATA_DIR, "weekends.json")
+
+    # Load existing index
+    try:
+        with open(index_path, "r", encoding="utf-8") as f:
+            idx = json.load(f)
+        weekends = idx.get("weekends", [])
+    except (FileNotFoundError, json.JSONDecodeError):
+        weekends = []
+
+    # Remove any existing entry for this date (we'll replace it)
+    weekends = [w for w in weekends if w.get("date_from") != date_from]
+
+    # Build summary entry
+    top10 = chart[:10]
+    top_total = sum(m.get("weekend_gross", 0) for m in top10)
+    top_film  = chart[0]["title"] if chart else "—"
+
+    # Change vs previous entry in index (if any)
+    prev_entries = [w for w in weekends if w.get("date_from") < date_from]
+    prev_total   = prev_entries[-1].get("top_total") if prev_entries else None
+    change_pct   = None
+    if prev_total and prev_total > 0:
+        change_pct = round((top_total - prev_total) / prev_total * 100, 1)
+
+    summary = {
+        "date_from":    date_from,
+        "date_to":      date_to,
+        "week_number":  week_number,
+        "top_film":     top_film,
+        "top_total":    top_total,
+        "change_pct":   change_pct,
+        "is_estimates": is_estimates,
+    }
+    weekends.append(summary)
+
+    # Sort descending
+    weekends.sort(key=lambda w: w["date_from"], reverse=True)
+
+    save_json("weekends.json", {
+        "updated":  datetime.now().isoformat(),
+        "weekends": weekends,
+    })
 
 
 # ── Daily Chart ───────────────────────────────────────────────────────────────
@@ -408,18 +459,29 @@ def main():
     friday  = sunday - timedelta(days=2)
     week_num = int(sunday.strftime("%U"))
 
-    save_json("weekend.json", {
-        "updated":   now.isoformat(),
-        "date_from": str(friday),
-        "date_to":   str(sunday),
+    weekend_payload = {
+        "updated":     now.isoformat(),
+        "date_from":   str(friday),
+        "date_to":     str(sunday),
         "week_number": week_num,
-        "chart":     weekend_enriched
-    })
+        "chart":       weekend_enriched
+    }
+
+    # Save current weekend (for homepage / fallback)
+    save_json("weekend.json", weekend_payload)
+
+    # Save per-date file so individual chart pages can load historical data
+    save_json(f"weekends/{friday}.json", weekend_payload)
+
+    # Update the master index (drives weekend.html year view)
+    update_weekends_index(str(friday), str(sunday), week_num, weekend_enriched)
 
     print("\n" + "=" * 60)
     print("Done! JSON files written to data/")
     print("  data/daily.json")
     print("  data/weekend.json")
+    print(f"  data/weekends/{friday}.json")
+    print("  data/weekends.json (index updated)")
     print("  data/yearly.json")
 
 
