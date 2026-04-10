@@ -7,103 +7,130 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <style>
 
-    /* ── Article page layout ──────────────────────────────────────── */
     .article-wrap {
-      padding: 18px 20px 30px;
-      max-width: 700px;
+      padding: 16px 20px 30px;
+      max-width: 680px;
     }
+
+    /* Back link */
+    .article-back {
+      display: block;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      margin-bottom: 12px;
+    }
+    .article-back a { color: #00239C; text-decoration: none; }
+    .article-back a:hover { text-decoration: underline; }
 
     /* Label above headline */
     .article-label {
       font-family: Verdana, Geneva, sans-serif;
+      font-size: 10pt;
       font-weight: normal;
-      font-size: 11px;
-      color: #777777;
-      letter-spacing: 0.08em;
+      color: #777;
       text-transform: uppercase;
-      margin-bottom: 4px;
+      letter-spacing: 0.06em;
+      margin-bottom: 2px;
     }
 
-    /* Headline */
+    /* Headline — Verdana Bold 18pt */
     .article-headline {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 30px;
-      color: #000000;
-      line-height: 1.15;
-      margin: 0 0 8px;
+      font-size: 18pt;
+      color: #000;
+      line-height: 1.2;
+      margin: 0 0 4px;
     }
 
-    /* Deck */
+    /* Deck — Times Italic */
     .article-deck {
       font-family: 'Times New Roman', Times, serif;
       font-style: italic;
-      font-size: 17px;
-      color: #333333;
+      font-size: 14pt;
+      color: #333;
+      margin: 0 0 6px;
       line-height: 1.4;
-      margin: 0 0 8px;
     }
 
-    /* Byline */
-    .article-byline {
+    /* Byline — Verdana Regular 13pt */
+    .article-byline-name {
       font-family: Verdana, Geneva, sans-serif;
-      font-size: 11px;
-      color: #777777;
-      margin-bottom: 20px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid #CCCCCC;
+      font-weight: normal;
+      font-size: 13pt;
+      color: #000;
+      margin: 0;
     }
 
-    /* Body text */
-    .article-body p {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 16px;
-      line-height: 1.7;
-      color: #000000;
+    /* Date — Verdana Regular 10pt */
+    .article-byline-date {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 10pt;
+      color: #000;
+      display: block;
       margin-bottom: 14px;
     }
 
-    /* Bold in body = Times Bold */
-    .article-body p strong {
+    /* Body text — Times Regular 16pt, justified */
+    .article-body p {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16pt;
+      line-height: 1.65;
+      color: #000;
+      margin-bottom: 12px;
+      text-align: justify;
+    }
+
+    /* Drop cap on first paragraph */
+    .article-body p.drop-cap::first-letter {
       font-family: 'Times New Roman', Times, serif;
       font-weight: bold;
+      font-size: 4.2em;
+      line-height: 0.75;
+      float: left;
+      margin: 4px 4px 0 0;
+      color: #00239C;
     }
 
-    /* Italic in body = Times Italic */
-    .article-body p em {
+    /* First mention of a film: Times Bold 16pt Blue link */
+    .article-body a.film-link {
       font-family: 'Times New Roman', Times, serif;
-      font-style: italic;
+      font-weight: bold;
+      font-size: 16pt;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .article-body a.film-link:hover { text-decoration: underline; }
+
+    /* Subsequent mention: Times Bold Black, no link */
+    .article-body .film {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 16pt;
+      color: #000;
     }
 
-    /* Pullquote */
-    .article-pullquote {
+    /* Italic in body */
+    .article-body em {
       font-family: 'Times New Roman', Times, serif;
       font-style: italic;
-      font-size: 18px;
-      color: #333333;
-      line-height: 1.55;
-      margin: 18px 0;
-      padding: 4px 0 4px 18px;
-      border-left: 3px solid #CCCCCC;
     }
 
     /* Forecast table */
-    .forecast-table-wrap {
-      margin-top: 20px;
-    }
+    .forecast-table-wrap { margin-top: 18px; }
     .forecast-table-label {
       font-family: Verdana, Geneva, sans-serif;
-      font-weight: normal;
       font-size: 10px;
-      color: #777777;
-      letter-spacing: 0.08em;
+      color: #777;
       text-transform: uppercase;
+      letter-spacing: 0.07em;
       margin-bottom: 4px;
+      font-weight: bold;
     }
     .forecast-table {
       width: 100%;
       border-collapse: collapse;
-      font-family: 'Times New Roman', Times, serif;
     }
     .forecast-table thead th {
       font-family: Verdana, Geneva, sans-serif;
@@ -111,9 +138,9 @@
       font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      color: #555555;
+      color: #555;
       background: #EEEEEE;
-      padding: 6px 10px;
+      padding: 5px 10px;
       text-align: left;
       border-bottom: 2px solid #CCCCCC;
     }
@@ -122,44 +149,14 @@
       font-family: 'Times New Roman', Times, serif;
       font-size: 15px;
       color: #000;
-      padding: 6px 10px;
+      padding: 5px 10px;
       border-bottom: 1px solid #EEEEEE;
     }
-    .forecast-table tbody td.num { text-align: right; }
-    .forecast-table tbody tr:nth-child(odd) td { background: #F8F8F8; }
+    .forecast-table tbody tr:nth-child(odd)  td { background: #F4F4FE; }
     .forecast-table tbody tr:nth-child(even) td { background: #FFFFFF; }
-    .forecast-table tbody tr.fc-top td {
-      background: #FFFFA6 !important;
-    }
-    .forecast-table tbody td.fc-rank {
-      font-weight: bold;
-      color: #555;
-      width: 28px;
-    }
-    .forecast-table tbody td.fc-title {
-      font-weight: bold;
-    }
-    .forecast-table tbody td.fc-gross {
-      text-align: right;
-      font-weight: bold;
-      color: #00007B;
-    }
-    .forecast-table tbody tr.fc-top td.fc-gross {
-      color: #00239C;
-    }
-
-    /* Back link */
-    .article-back {
-      font-family: Verdana, Geneva, sans-serif;
-      font-size: 11px;
-      margin-bottom: 14px;
-      display: block;
-    }
-    .article-back a {
-      color: #00239C;
-      text-decoration: none;
-    }
-    .article-back a:hover { text-decoration: underline; }
+    .forecast-table tbody td.fc-rank { font-weight: bold; color: #555; width: 28px; text-align: right; }
+    .forecast-table tbody td.fc-title { font-weight: bold; }
+    .forecast-table tbody td.fc-gross { text-align: right; font-weight: bold; color: #00007B; }
 
   </style>
 </head>
@@ -205,15 +202,14 @@
       <div class="article-label">Weekend Forecast &middot; April 11&ndash;13, 2026</div>
       <h1 class="article-headline">FORECAST: Holy Mario</h1>
       <p class="article-deck">Mario repeats, a Roman holiday may or may not happen, and Hoppers persists.</p>
-      <div class="article-byline">Box Office Jedi staff &middot; Friday, April 10, 2026</div>
+      <p class="article-byline-name">by Box Office Jedi staff</p>
+      <span class="article-byline-date">Friday, April 10, 2026</span>
 
       <div class="article-body">
 
-        <p><strong>Super Mario Galaxy</strong> is poised to repeat at number one this weekend, with <strong>Project Hail Mary</strong> continuing its journey into the infinite. On Wednesday, the two movies&#8217; totals were only $2 million apart &#8212; like two shuttles hurtling through the universe, passing each other for a split second, just in time to salute each other.</p>
+        <p class="drop-cap"><a href="#" class="film-link">Super Mario Galaxy</a> is poised to repeat at number one this weekend, with <a href="#" class="film-link">Project Hail Mary</a> continuing its journey into the infinite. On Wednesday, the two movies&#8217; totals were only $2 million apart &#8212; like two shuttles hurtling through the universe, passing each other for a split second, just in time to salute each other.</p>
 
         <p>One year ago, <em>Minecraft</em> was going into its second weekend, another massively successful video game adaptation. Minecraft dropped 51.8% in its sophomore frame, from $162.7 million to $78 million.</p>
-
-        <div class="article-pullquote">Can we just stop for a second. Look at these numbers. Listen to the nonchalance with which I name them.</div>
 
         <p>We all remember the ground crumbling beneath our feet in May 2002 when we first heard that Spider-Man opening weekend number on the radio. What did they say? It couldn&#8217;t have been $114 million. Movies don&#8217;t open over $100 million. That&#8217;s technically impossible.</p>
 
@@ -221,19 +217,19 @@
 
         <p>Now here we are at the 16th weekend of 2026, posting numbers that would have required hospitalization in any previous era of cinema. Let&#8217;s appreciate them, even though you might think to yourself, boy that sounds like cheating.</p>
 
-        <p>The first <em>Mario</em> fell 36.9% in its second weekend. Both Marios had 5-day opening weekends so the comparison is clean. Will <em>Galaxy</em> fall more? Probably. Here&#8217;s the thing about sequels to events. In 2023, we had never fathomed a Mario movie before. We&#8217;d had Tomb Raider, Resident Evil, Prince of Persia, Sonic &#8212; and eventually Doom &#8212; and we thought we&#8217;d mapped the entire territory of what video game IP could do theatrically. But there was this glaring void. We never got a Mario. A big-budget family Mario. So it really felt like an event. Galaxy was always going to be enormous, but we had already gotten Mario. The kids wanted more, sure, but it wasn&#8217;t the resurrection of Christ or anything like that.</p>
+        <p>The first <em>Mario</em> fell 36.9% in its second weekend. Both Marios had 5-day opening weekends so the comparison is clean. Will <span class="film">Galaxy</span> fall more? Probably. Here&#8217;s the thing about sequels to events. In 2023, we had never fathomed a Mario movie before. We&#8217;d had Tomb Raider, Resident Evil, Prince of Persia, Sonic &#8212; and eventually Doom &#8212; and we thought we&#8217;d mapped the entire territory of what video game IP could do theatrically. But there was this glaring void. We never got a Mario. A big-budget family Mario. So it really felt like an event. <span class="film">Galaxy</span> was always going to be enormous, but we had already gotten Mario. The kids wanted more, sure, but it wasn&#8217;t the resurrection of Christ or anything like that.</p>
 
         <p>Given its weekday behavior, I&#8217;m predicting just below a 50% drop, and just below $70 million for its second lap.</p>
 
-        <p><strong>Project Hail Mary</strong> will drop a respectable 33% in its fourth frame, regaining some of the families it lost to Mario last weekend. That&#8217;s exactly in line with the fourth-weekend drops of <em>Gravity</em> and <em>The Lego Movie</em>. We don&#8217;t have a showdown for that yet because we&#8217;re just getting things up and running here, but this movie has a ton of weekends left in it. Don&#8217;t worry.</p>
+        <p><span class="film">Project Hail Mary</span> will drop a respectable 33% in its fourth frame, regaining some of the families it lost to Mario last weekend. That&#8217;s exactly in line with the fourth-weekend drops of <em>Gravity</em> and <em>The Lego Movie</em>. We don&#8217;t have a showdown for that yet because we&#8217;re just getting things up and running here, but this movie has a ton of weekends left in it. Don&#8217;t worry.</p>
 
-        <p>Part of me believes <strong>You, Me &amp; Tuscany</strong> will overperform. It&#8217;s an antidote to <em>The Drama</em>&#8217;s diabolical look at love, offering something more wholesome. But with <em>Reminders of Him</em> still in theaters, it could very well bomb. <em>Under the Tuscan Sun</em> opened just below $10 million in 2003. Let&#8217;s give it that.</p>
+        <p>Part of me believes <a href="#" class="film-link">You, Me &amp; Tuscany</a> will overperform. It&#8217;s an antidote to <a href="#" class="film-link">The Drama</a>&#8217;s diabolical look at love, offering something more wholesome. But with <a href="#" class="film-link">Reminders of Him</a> still in theaters, it could very well bomb. <em>Under the Tuscan Sun</em> opened just below $10 million in 2003. Let&#8217;s give it that.</p>
 
-        <p><strong>The Drama</strong> will drop roughly 47%, a little better than <em>Materialists</em>. Owen Gleiberman is all about it rewiring A24 or something. Not a bad drop.</p>
+        <p><span class="film">The Drama</span> will drop roughly 47%, a little better than <em>Materialists</em>. Owen Gleiberman is all about it rewiring A24 or something. Not a bad drop.</p>
 
-        <p><strong>Hoppers</strong> is doing fine. Hopping along just fine. It feels like it should be closer to $200 million by now, but you never know what&#8217;ll happen when you take your eyes of the box office for a week or two.</p>
+        <p><a href="#" class="film-link">Hoppers</a> is doing fine. Hopping along just fine. It feels like it should be closer to $200 million by now, but you never know what&#8217;ll happen when you take your eyes off the box office for a week or two.</p>
 
-        <p>Finally, coming off a strong run in Japan, the new Neon release <strong>Exit 8</strong> &#8212; based on the looping horror video game &#8212; could post an above-average per-screen average in limited. Theater counts haven&#8217;t been confirmed, so hard to say if that&#8217;s enough to crack the top ten.</p>
+        <p>Finally, coming off a strong run in Japan, the new Neon release <a href="#" class="film-link">Exit 8</a> &#8212; based on the looping horror video game &#8212; could post an above-average per-screen average in limited. Theater counts haven&#8217;t been confirmed, so hard to say if that&#8217;s enough to crack the top ten.</p>
 
         <p>Here&#8217;s the official Box Office Jedi prediction for this weekend:</p>
 
@@ -248,48 +244,48 @@
               </tr>
             </thead>
             <tbody>
-              <tr class="fc-top">
-                <td class="fc-rank num">1</td>
+              <tr>
+                <td class="fc-rank">1</td>
                 <td class="fc-title">Super Mario Galaxy</td>
                 <td class="fc-gross">$67.3M</td>
               </tr>
               <tr>
-                <td class="fc-rank num">2</td>
+                <td class="fc-rank">2</td>
                 <td class="fc-title">Project Hail Mary</td>
                 <td class="fc-gross">$21.2M</td>
               </tr>
               <tr>
-                <td class="fc-rank num">3</td>
+                <td class="fc-rank">3</td>
                 <td class="fc-title">You, Me &amp; Tuscany</td>
                 <td class="fc-gross">$9.8M</td>
               </tr>
               <tr>
-                <td class="fc-rank num">4</td>
+                <td class="fc-rank">4</td>
                 <td class="fc-title">The Drama</td>
                 <td class="fc-gross">$7.6M</td>
               </tr>
               <tr>
-                <td class="fc-rank num">5</td>
+                <td class="fc-rank">5</td>
                 <td class="fc-title">Hoppers</td>
                 <td class="fc-gross">$3.7M</td>
               </tr>
               <tr>
-                <td class="fc-rank num">6</td>
+                <td class="fc-rank">6</td>
                 <td class="fc-title">Reminders of Him</td>
                 <td class="fc-gross">$1.2M</td>
               </tr>
               <tr>
-                <td class="fc-rank num">7</td>
+                <td class="fc-rank">7</td>
                 <td class="fc-title">A Great Awakening</td>
                 <td class="fc-gross">$1.1M</td>
               </tr>
               <tr>
-                <td class="fc-rank num">8</td>
+                <td class="fc-rank">8</td>
                 <td class="fc-title">They Will Kill You</td>
                 <td class="fc-gross">$1.0M</td>
               </tr>
               <tr>
-                <td class="fc-rank num">9</td>
+                <td class="fc-rank">9</td>
                 <td class="fc-title">Ready or Not 2</td>
                 <td class="fc-gross">$1.0M</td>
               </tr>
