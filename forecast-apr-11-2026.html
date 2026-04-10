@@ -139,45 +139,27 @@
     }
 
     /* Forecast table */
-    .forecast-table-wrap { margin-top: 14px; }
-    .forecast-table-label {
-      font-family: Verdana, Geneva, sans-serif;
-      font-size: 10px;
-      color: #777;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      margin-bottom: 4px;
-      font-weight: bold;
+    .forecast-table-wrap {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
     }
     .forecast-table {
-      width: 100%;
       border-collapse: collapse;
+      width: auto;
     }
-    .forecast-table thead th {
-      font-family: Verdana, Geneva, sans-serif;
-      font-weight: bold;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #555;
-      background: #EEEEEE;
-      padding: 5px 10px;
-      text-align: left;
-      border-bottom: 2px solid #CCCCCC;
-    }
-    .forecast-table thead th.num { text-align: right; }
     .forecast-table tbody td {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 15px;
+      font-size: 16pt;
       color: #000;
-      padding: 5px 10px;
+      padding: 3px 16px 3px 6px;
       border-bottom: 1px solid #EEEEEE;
     }
     .forecast-table tbody tr:nth-child(odd)  td { background: #F4F4FE; }
     .forecast-table tbody tr:nth-child(even) td { background: #FFFFFF; }
-    .forecast-table tbody td.fc-rank { font-weight: bold; color: #555; width: 28px; text-align: right; }
-    .forecast-table tbody td.fc-title { font-weight: bold; }
-    .forecast-table tbody td.fc-gross { text-align: right; font-weight: bold; color: #00007B; }
+    .forecast-table tbody td.fc-rank { color: #555; width: 24px; text-align: right; padding-right: 10px; }
+    .forecast-table tbody td.fc-title { font-weight: bold; white-space: nowrap; }
+    .forecast-table tbody td.fc-gross { text-align: right; color: #00007B; white-space: nowrap; padding-right: 4px; }
 
   </style>
 </head>
@@ -268,15 +250,7 @@
         <p>Here&#8217;s the official Box Office Jedi prediction for this weekend:</p>
 
         <div class="forecast-table-wrap">
-          <div class="forecast-table-label">Weekend Forecast &middot; Apr 11&ndash;13</div>
           <table class="forecast-table">
-            <thead>
-              <tr>
-                <th class="num">#</th>
-                <th>Title</th>
-                <th class="num">Predicted Gross</th>
-              </tr>
-            </thead>
             <tbody>
               <tr>
                 <td class="fc-rank">1</td>
