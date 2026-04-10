@@ -235,12 +235,14 @@ def scrape_weekend(date: datetime = None) -> list[dict]:
     Defaults to most recent completed weekend.
     """
     if date is None:
-        # Find the most recent Friday
+        # Find the most recently COMPLETED weekend's Friday
         today = datetime.now()
         days_since_friday = (today.weekday() - 4) % 7
         date = today - timedelta(days=days_since_friday)
-        # If it's before Monday morning (data not posted yet), go back another week
-        if today.weekday() < 1:
+        # Go back one more week if:
+        #   - It's Friday or Saturday (current weekend just started, data not posted yet)
+        #   - It's Monday morning (previous weekend data may not be posted yet)
+        if today.weekday() in (4, 5) or today.weekday() < 1:
             date -= timedelta(days=7)
 
     date_str = date.strftime("%Y/%m/%d")
@@ -447,17 +449,19 @@ def main():
         "chart": yearly
     })
 
+    # Determine date range for the most recently completed weekend
+    today = now.date()
+    days_since_friday = (today.weekday() - 4) % 7
+    friday = today - timedelta(days=days_since_friday)
+    if today.weekday() in (4, 5) or today.weekday() < 1:
+        friday -= timedelta(days=7)
+    sunday   = friday + timedelta(days=2)
+    week_num = int(sunday.strftime("%U"))
+
     # Weekend chart — enrich with calculated fields before saving
     prev_path = os.path.join(DATA_DIR, "weekend.json")
-    weekend_raw = scrape_weekend()
+    weekend_raw = scrape_weekend(date=datetime(friday.year, friday.month, friday.day))
     weekend_enriched = enrich_weekend(weekend_raw, prev_path, yearly)
-
-    # Determine date range for this weekend (Friday–Sunday)
-    today = now.date()
-    days_since_sunday = today.weekday() + 1 if today.weekday() < 6 else 0
-    sunday  = today - timedelta(days=days_since_sunday % 7)
-    friday  = sunday - timedelta(days=2)
-    week_num = int(sunday.strftime("%U"))
 
     weekend_payload = {
         "updated":     now.isoformat(),
