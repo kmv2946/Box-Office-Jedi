@@ -231,10 +231,41 @@ def main():
     # Movie detail pages for each all-time entry
     print("\n[Movie Pages] Fetching details for top 100...")
     os.makedirs(os.path.join(DATA_DIR, "movies"), exist_ok=True)
+    scraped_ids = set()
     for movie in alltime[:100]:
         detail = fetch_movie_detail(movie["tmdb_id"])
         if detail:
             save_json(f"movies/{movie['tmdb_id']}.json", detail)
+            scraped_ids.add(movie["tmdb_id"])
+
+    # Pinned movie IDs — always scrape these regardless of chart position
+    # (add current releases here so posters are always available)
+    PINNED_IDS = [
+        1226863,   # The Super Mario Galaxy Movie (2026)
+        502356,    # The Super Mario Bros. Movie (2023)
+        950387,    # A Minecraft Movie (2025)
+    ]
+    print("\n[Pinned] Fetching details for pinned movie IDs...")
+    for tmdb_id in PINNED_IDS:
+        if tmdb_id not in scraped_ids:
+            detail = fetch_movie_detail(tmdb_id)
+            if detail:
+                save_json(f"movies/{tmdb_id}.json", detail)
+                scraped_ids.add(tmdb_id)
+
+    # Weekend chart movies — scrape any movies from recent weekends not already fetched
+    print("\n[Weekend] Fetching details for recent weekend chart movies...")
+    weekend_file = os.path.join(DATA_DIR, "weekend.json")
+    if os.path.exists(weekend_file):
+        with open(weekend_file) as f:
+            wd = json.load(f)
+        for entry in wd.get("chart", []):
+            tid = entry.get("tmdb_id")
+            if tid and tid not in scraped_ids:
+                detail = fetch_movie_detail(tid)
+                if detail:
+                    save_json(f"movies/{tid}.json", detail)
+                    scraped_ids.add(tid)
 
     # Now-playing (for Derby dropdowns)
     now_playing = fetch_now_playing()
