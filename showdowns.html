@@ -30,7 +30,7 @@
     .sd-tabs {
       display: flex;
       border-bottom: 2px solid #7F170E;
-      margin: 0 10px;
+      margin: 0 24px;
     }
     .sd-tab {
       font-family: Verdana, Geneva, sans-serif;
@@ -59,7 +59,7 @@
     /* ── Panels ───────────────────────────────────────────────────── */
     .sd-panel { display: none; }
     .sd-panel.active { display: block; }
-    .sd-wrap { padding: 0 10px 24px; overflow-x: auto; }
+    .sd-wrap { padding: 0 24px 24px; overflow-x: auto; }
 
     /* ── Shared table styles ───────────────────────────────────────── */
     .sd-table {
@@ -68,13 +68,22 @@
       table-layout: fixed;
     }
 
+    /* ── Column color classes ──────────────────────────────────────── */
+    .sd-col-1 { background: #FFFED1; }
+    .sd-col-2 { background: #E4FCD1; }
+    .sd-col-3 { background: #FBD9D8; }
+
+    /* ── Column left borders ───────────────────────────────────────── */
+    .sd-col-1 { border-left: 2px solid #CCCCAA; }
+    .sd-col-2 { border-left: 2px solid #B8DEB0; }
+    .sd-col-3 { border-left: 2px solid #DDB0AC; }
+
     /* Poster + title header cell */
     .sd-head-cell {
       text-align: center;
       padding: 10px 8px 6px;
       vertical-align: bottom;
       border-bottom: 2px solid #7F170E;
-      background: #FFFFFF;
     }
     .sd-poster-placeholder {
       width: 90px;
@@ -153,9 +162,7 @@
       text-align: center;
       vertical-align: middle;
     }
-    .sd-table tr:nth-child(even) .sd-movie { background: #F4F4FE; }
-    .sd-table tr:nth-child(odd)  .sd-movie { background: #FFFFFF; }
-    .sd-movie.best { background: #FFFFA6 !important; font-weight: bold; }
+    .sd-movie.best { font-weight: bold; }
 
     /* Links in data cells */
     .sd-table a.val-link {
@@ -172,18 +179,16 @@
       font-size: 13px;
       color: #000;
       padding: 6px 10px;
-      border-bottom: 1px solid #EEEEEE;
+      border-bottom: 1px solid #DDDDDD;
       text-align: center;
       vertical-align: top;
       line-height: 1.5;
-      background: #FFFFFF;
     }
-    .sd-table tr:nth-child(even) .sd-wknd-cell { background: #F4F4FE; }
-    .sd-wknd-cell.best { background: #FFFFA6 !important; }
-    .wg  { font-weight: bold; font-size: 14px; display: block; }
+    .wg  { font-size: 14px; display: block; }
+    .wg.best { font-weight: bold; }
     .wm  { font-size: 12px; color: #00239C; display: block; }
     .wch { font-size: 12px; color: #CC0000; display: block; }
-    .wgt { font-size: 12px; font-weight: bold; display: block; }
+    .wgt { font-size: 12px; display: block; }
     .wpend { color: #999; font-style: italic; font-size: 12px; }
 
   </style>
@@ -242,15 +247,15 @@
           <thead>
             <tr>
               <th class="sd-corner"></th>
-              <th class="sd-head-cell">
+              <th class="sd-head-cell sd-col-1">
                 <div class="sd-poster-placeholder">POSTER</div>
                 <a class="sd-movie-title-link" href="#">Super Mario Galaxy</a>
               </th>
-              <th class="sd-head-cell">
+              <th class="sd-head-cell sd-col-2">
                 <div class="sd-poster-placeholder">POSTER</div>
                 <a class="sd-movie-title-link" href="#">The Super Mario Bros. Movie</a>
               </th>
-              <th class="sd-head-cell">
+              <th class="sd-head-cell sd-col-3">
                 <div class="sd-poster-placeholder">POSTER</div>
                 <a class="sd-movie-title-link" href="#">Minecraft: The Movie</a>
               </th>
@@ -259,51 +264,51 @@
           <tbody>
             <tr>
               <td class="sd-label">Genre</td>
-              <td class="sd-movie">Animation / Adventure</td>
-              <td class="sd-movie">Animation / Adventure</td>
-              <td class="sd-movie">Adventure / Comedy</td>
+              <td class="sd-movie sd-col-1">Animation / Adventure</td>
+              <td class="sd-movie sd-col-2">Animation / Adventure</td>
+              <td class="sd-movie sd-col-3">Adventure / Comedy</td>
             </tr>
             <tr>
               <td class="sd-label">Studio</td>
-              <td class="sd-movie"><a class="val-link" href="#">Universal / Illumination</a></td>
-              <td class="sd-movie"><a class="val-link" href="#">Universal / Illumination</a></td>
-              <td class="sd-movie"><a class="val-link" href="#">Warner Bros.</a></td>
+              <td class="sd-movie sd-col-1"><a class="val-link" href="#">Universal / Illumination</a></td>
+              <td class="sd-movie sd-col-2"><a class="val-link" href="#">Universal / Illumination</a></td>
+              <td class="sd-movie sd-col-3"><a class="val-link" href="#">Warner Bros.</a></td>
             </tr>
             <tr>
               <td class="sd-label">Release Date</td>
-              <td class="sd-movie"><a class="val-link" href="#">April 4, 2026</a></td>
-              <td class="sd-movie"><a class="val-link" href="#">April 5, 2023</a></td>
-              <td class="sd-movie"><a class="val-link" href="#">April 4, 2025</a></td>
+              <td class="sd-movie sd-col-1"><a class="val-link" href="#">April 4, 2026</a></td>
+              <td class="sd-movie sd-col-2"><a class="val-link" href="#">April 5, 2023</a></td>
+              <td class="sd-movie sd-col-3"><a class="val-link" href="#">April 4, 2025</a></td>
             </tr>
             <tr>
               <td class="sd-label">Opening Weekend</td>
-              <td class="sd-movie">$131,703,340</td>
-              <td class="sd-movie best">$146,361,245</td>
-              <td class="sd-movie">$131,258,000</td>
+              <td class="sd-movie sd-col-1" data-val="131703340">$131,703,340</td>
+              <td class="sd-movie sd-col-2" data-val="146361245">$146,361,245</td>
+              <td class="sd-movie sd-col-3" data-val="131258000">$131,258,000</td>
             </tr>
             <tr>
               <td class="sd-label">Domestic Gross</td>
-              <td class="sd-movie"><em>In release</em></td>
-              <td class="sd-movie">$574,934,330</td>
-              <td class="sd-movie best">$577,100,000</td>
+              <td class="sd-movie sd-col-1"><em>In release</em></td>
+              <td class="sd-movie sd-col-2" data-val="574934330">$574,934,330</td>
+              <td class="sd-movie sd-col-3" data-val="577100000">$577,100,000</td>
             </tr>
             <tr>
               <td class="sd-label">Production Budget</td>
-              <td class="sd-movie">—</td>
-              <td class="sd-movie">$100 million</td>
-              <td class="sd-movie best">$150 million</td>
+              <td class="sd-movie sd-col-1">—</td>
+              <td class="sd-movie sd-col-2" data-val="100000000">$100 million</td>
+              <td class="sd-movie sd-col-3" data-val="150000000">$150 million</td>
             </tr>
             <tr>
               <td class="sd-label">Running Time</td>
-              <td class="sd-movie">—</td>
-              <td class="sd-movie">1 hr. 32 min.</td>
-              <td class="sd-movie">1 hr. 41 min.</td>
+              <td class="sd-movie sd-col-1">—</td>
+              <td class="sd-movie sd-col-2">1 hr. 32 min.</td>
+              <td class="sd-movie sd-col-3">1 hr. 41 min.</td>
             </tr>
             <tr>
               <td class="sd-label">MPAA Rating</td>
-              <td class="sd-movie">PG</td>
-              <td class="sd-movie">PG</td>
-              <td class="sd-movie">PG</td>
+              <td class="sd-movie sd-col-1">PG</td>
+              <td class="sd-movie sd-col-2">PG</td>
+              <td class="sd-movie sd-col-3">PG</td>
             </tr>
           </tbody>
         </table>
@@ -321,15 +326,15 @@
           <thead>
             <tr>
               <th class="sd-corner-wknd"></th>
-              <th class="sd-head-cell">
+              <th class="sd-head-cell sd-col-1">
                 <div class="sd-poster-placeholder">POSTER</div>
                 <a class="sd-movie-title-link" href="#">Super Mario Galaxy</a>
               </th>
-              <th class="sd-head-cell">
+              <th class="sd-head-cell sd-col-2">
                 <div class="sd-poster-placeholder">POSTER</div>
                 <a class="sd-movie-title-link" href="#">The Super Mario Bros. Movie</a>
               </th>
-              <th class="sd-head-cell">
+              <th class="sd-head-cell sd-col-3">
                 <div class="sd-poster-placeholder">POSTER</div>
                 <a class="sd-movie-title-link" href="#">Minecraft: The Movie</a>
               </th>
@@ -338,19 +343,19 @@
           <tbody>
             <tr>
               <td class="sd-wknd-label">1</td>
-              <td class="sd-wknd-cell">
+              <td class="sd-wknd-cell sd-col-1" data-val="131703340">
                 <span class="wg">$131,703,340</span>
                 <span class="wm">4-6-26 / <b>1</b> / 4,310 / $30,557</span>
                 <span class="wch">—</span>
                 <span class="wgt">$131,703,340</span>
               </td>
-              <td class="sd-wknd-cell best">
+              <td class="sd-wknd-cell sd-col-2" data-val="146361245">
                 <span class="wg">$146,361,245</span>
                 <span class="wm">4-9-23 / <b>1</b> / 4,343 / $33,692</span>
                 <span class="wch">—</span>
                 <span class="wgt">$204,601,495</span>
               </td>
-              <td class="sd-wknd-cell">
+              <td class="sd-wknd-cell sd-col-3" data-val="131258000">
                 <span class="wg">$131,258,000</span>
                 <span class="wm">4-6-25 / <b>1</b> / 4,212 / $31,158</span>
                 <span class="wch">—</span>
@@ -359,19 +364,19 @@
             </tr>
             <tr>
               <td class="sd-wknd-label">2</td>
-              <td class="sd-wknd-cell">
+              <td class="sd-wknd-cell sd-col-1" data-val="67000000">
                 <span class="wg">Est. ~$67M</span>
                 <span class="wm">4-13-26 / <b>1</b> / — / —</span>
                 <span class="wch">Est. −49%</span>
                 <span class="wgt">—</span>
               </td>
-              <td class="sd-wknd-cell best">
+              <td class="sd-wknd-cell sd-col-2" data-val="87117540">
                 <span class="wg">$87,117,540</span>
                 <span class="wm">4-16-23 / <b>1</b> / 4,343 / $20,059</span>
                 <span class="wch">−40.5%</span>
                 <span class="wgt">$315,065,704</span>
               </td>
-              <td class="sd-wknd-cell">
+              <td class="sd-wknd-cell sd-col-3" data-val="78000000">
                 <span class="wg">$78,000,000</span>
                 <span class="wm">4-13-25 / <b>1</b> / 4,212 / $18,519</span>
                 <span class="wch">−51.8%</span>
@@ -380,16 +385,16 @@
             </tr>
             <tr>
               <td class="sd-wknd-label">3</td>
-              <td class="sd-wknd-cell">
+              <td class="sd-wknd-cell sd-col-1" data-val="0">
                 <span class="wpend">Data pending</span>
               </td>
-              <td class="sd-wknd-cell best">
+              <td class="sd-wknd-cell sd-col-2" data-val="51657860">
                 <span class="wg">$51,657,860</span>
                 <span class="wm">4-23-23 / <b>1</b> / 4,247 / $12,163</span>
                 <span class="wch">−40.7%</span>
                 <span class="wgt">$385,082,328</span>
               </td>
-              <td class="sd-wknd-cell">
+              <td class="sd-wknd-cell sd-col-3" data-val="44100000">
                 <span class="wg">$44,100,000</span>
                 <span class="wm">4-20-25 / <b>1</b> / 3,980 / $11,080</span>
                 <span class="wch">−43.5%</span>
@@ -398,16 +403,16 @@
             </tr>
             <tr>
               <td class="sd-wknd-label">4</td>
-              <td class="sd-wknd-cell">
+              <td class="sd-wknd-cell sd-col-1" data-val="0">
                 <span class="wpend">Data pending</span>
               </td>
-              <td class="sd-wknd-cell best">
+              <td class="sd-wknd-cell sd-col-2" data-val="35341279">
                 <span class="wg">$35,341,279</span>
                 <span class="wm">4-30-23 / <b>1</b> / 4,109 / $8,601</span>
                 <span class="wch">−31.6%</span>
                 <span class="wgt">$432,824,062</span>
               </td>
-              <td class="sd-wknd-cell">
+              <td class="sd-wknd-cell sd-col-3" data-val="27500000">
                 <span class="wg">$27,500,000</span>
                 <span class="wm">4-27-25 / <b>2</b> / 3,650 / $7,534</span>
                 <span class="wch">−37.6%</span>
@@ -416,16 +421,16 @@
             </tr>
             <tr>
               <td class="sd-wknd-label">5</td>
-              <td class="sd-wknd-cell">
+              <td class="sd-wknd-cell sd-col-1" data-val="0">
                 <span class="wpend">Data pending</span>
               </td>
-              <td class="sd-wknd-cell best">
+              <td class="sd-wknd-cell sd-col-2" data-val="22066095">
                 <span class="wg">$22,066,095</span>
                 <span class="wm">5-7-23 / <b>2</b> / 3,930 / $5,614</span>
                 <span class="wch">−37.6%</span>
                 <span class="wgt">$467,490,996</span>
               </td>
-              <td class="sd-wknd-cell">
+              <td class="sd-wknd-cell sd-col-3" data-val="19200000">
                 <span class="wg">$19,200,000</span>
                 <span class="wm">5-4-25 / <b>3</b> / 3,210 / $5,981</span>
                 <span class="wch">−30.2%</span>
@@ -491,6 +496,32 @@
     document.querySelectorAll('.sd-panel').forEach(p => p.classList.remove('active'));
     document.getElementById('panel-' + panel).classList.add('active');
   }
+
+  // Per-metric bolding: bold only the highest data-val in each row
+  function applyBolding() {
+    document.querySelectorAll('.sd-table tbody tr').forEach(function(row) {
+      var cells = row.querySelectorAll('[data-val]');
+      if (!cells.length) return;
+      var vals = Array.from(cells).map(function(c) { return parseFloat(c.dataset.val) || 0; });
+      var max = Math.max.apply(null, vals);
+      if (max <= 0) return;
+      cells.forEach(function(c, i) {
+        if (vals[i] === max) {
+          // Summary table: bold the cell itself
+          if (c.classList.contains('sd-movie')) {
+            c.classList.add('best');
+          }
+          // Weekend table: bold the .wg span inside the cell
+          if (c.classList.contains('sd-wknd-cell')) {
+            var wg = c.querySelector('.wg');
+            if (wg) wg.classList.add('best');
+          }
+        }
+      });
+    });
+  }
+
+  applyBolding();
 </script>
 
 </body>

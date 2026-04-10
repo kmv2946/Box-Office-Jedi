@@ -285,7 +285,7 @@
           document.getElementById('view-chart-link').href = chartLink;
 
           const top5 = wd.chart.slice(0, 5).map((m, i) => {
-            const title = m.title.length > 22 ? m.title.slice(0, 21) + '…' : m.title;
+            const title = (m.title || '').length > 22 ? (m.title || '').slice(0, 21) + '…' : (m.title || '—');
             return `<tr class="${i % 2 === 0 ? 'hc-odd' : 'hc-even'}">
               <td class="hc-rank">${m.rank}.</td>
               <td class="hc-title"><a href="movie.html?id=${m.tmdb_id||''}&title=${encodeURIComponent(m.title)}">${title}</a></td>
