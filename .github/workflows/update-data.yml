@@ -57,6 +57,7 @@ jobs:
           # Only commit and push if there are actual changes
           if ! git diff --staged --quiet; then
             git commit -m "📊 Auto-update box office data $(date +'%Y-%m-%d')"
+            git pull --rebase origin main
             git push
           else
             echo "No data changes — skipping commit."
