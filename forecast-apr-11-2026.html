@@ -8,29 +8,25 @@
   <style>
 
     .article-wrap {
-      padding: 16px 20px 30px;
-      max-width: 680px;
+      padding: 0;
     }
 
-    /* Back link */
-    .article-back {
-      display: block;
-      font-family: Verdana, Geneva, sans-serif;
-      font-size: 11px;
-      margin-bottom: 12px;
+    /* FORECAST section bar at top */
+    .article-section-header {
+      padding: 4px 10px 2px;
     }
-    .article-back a { color: #00239C; text-decoration: none; }
-    .article-back a:hover { text-decoration: underline; }
-
-    /* Label above headline */
-    .article-label {
+    .article-section-header a {
       font-family: Verdana, Geneva, sans-serif;
-      font-size: 10pt;
-      font-weight: normal;
-      color: #777;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 2px;
+      font-weight: bold;
+      font-size: 14px;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .article-section-header a:hover { text-decoration: underline; }
+    .article-section-bar {
+      height: 5px;
+      background: #7F170E;
+      margin-bottom: 10px;
     }
 
     /* Headline — Verdana Bold 18pt */
@@ -39,61 +35,81 @@
       font-weight: bold;
       font-size: 18pt;
       color: #000;
-      line-height: 1.2;
-      margin: 0 0 4px;
+      line-height: 1.15;
+      margin: 0 10px 3px;
     }
 
-    /* Deck — Times Italic */
-    .article-deck {
-      font-family: 'Times New Roman', Times, serif;
-      font-style: italic;
-      font-size: 14pt;
-      color: #333;
-      margin: 0 0 6px;
-      line-height: 1.4;
-    }
-
-    /* Byline — Verdana Regular 13pt */
+    /* Byline */
     .article-byline-name {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: normal;
       font-size: 13pt;
       color: #000;
-      margin: 0;
+      margin: 0 10px 1px;
     }
-
-    /* Date — Verdana Regular 10pt */
     .article-byline-date {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: normal;
       font-size: 10pt;
       color: #000;
       display: block;
-      margin-bottom: 14px;
+      margin: 0 10px 10px;
     }
 
-    /* Body text — Times Regular 16pt, justified */
+    /* Body text — Times Regular 16pt, justified, tight leading */
+    .article-body {
+      padding: 0 10px;
+    }
     .article-body p {
       font-family: 'Times New Roman', Times, serif;
       font-size: 16pt;
-      line-height: 1.65;
+      line-height: 1.35;
       color: #000;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       text-align: justify;
     }
 
-    /* Drop cap on first paragraph */
+    /* Drop cap */
     .article-body p.drop-cap::first-letter {
       font-family: 'Times New Roman', Times, serif;
       font-weight: bold;
-      font-size: 4.2em;
+      font-size: 4em;
       line-height: 0.75;
       float: left;
-      margin: 4px 4px 0 0;
+      margin: 5px 3px 0 0;
       color: #00239C;
     }
 
-    /* First mention of a film: Times Bold 16pt Blue link */
+    /* Placeholder image */
+    .article-img {
+      float: left;
+      margin: 0 12px 8px 0;
+      border: 1px solid #CCCCCC;
+    }
+    .article-img-placeholder {
+      width: 200px;
+      height: 150px;
+      background: #CCCCCC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      color: #666;
+      text-align: center;
+    }
+    .article-img-caption {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 10px;
+      color: #333;
+      text-align: center;
+      background: #EEEEEE;
+      padding: 3px 4px;
+      width: 200px;
+      box-sizing: border-box;
+    }
+
+    /* First mention of a film: Times Bold Blue link */
     .article-body a.film-link {
       font-family: 'Times New Roman', Times, serif;
       font-weight: bold;
@@ -103,22 +119,27 @@
     }
     .article-body a.film-link:hover { text-decoration: underline; }
 
-    /* Subsequent mention: Times Bold Black, no link */
+    /* Subsequent mention: Times Bold Black */
     .article-body .film {
       font-family: 'Times New Roman', Times, serif;
       font-weight: bold;
-      font-size: 16pt;
-      color: #000;
     }
 
-    /* Italic in body */
+    /* Italic */
     .article-body em {
       font-family: 'Times New Roman', Times, serif;
       font-style: italic;
     }
 
+    /* Clearfix after image */
+    .clearfix::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
     /* Forecast table */
-    .forecast-table-wrap { margin-top: 18px; }
+    .forecast-table-wrap { margin-top: 14px; }
     .forecast-table-label {
       font-family: Verdana, Geneva, sans-serif;
       font-size: 10px;
@@ -197,17 +218,27 @@
   <main class="main-content">
     <div class="article-wrap">
 
-      <span class="article-back">&larr; <a href="forecast.html">The Forecast</a></span>
+      <!-- Section header -->
+      <div class="article-section-header">
+        <a href="forecast.html">FORECAST</a>
+      </div>
+      <div class="article-section-bar"></div>
 
-      <div class="article-label">Weekend Forecast &middot; April 11&ndash;13, 2026</div>
       <h1 class="article-headline">FORECAST: Holy Mario</h1>
-      <p class="article-deck">Mario repeats, a Roman holiday may or may not happen, and Hoppers persists.</p>
       <p class="article-byline-name">by Box Office Jedi staff</p>
       <span class="article-byline-date">Friday, April 10, 2026</span>
 
       <div class="article-body">
 
-        <p class="drop-cap"><a href="#" class="film-link">Super Mario Galaxy</a> is poised to repeat at number one this weekend, with <a href="#" class="film-link">Project Hail Mary</a> continuing its journey into the infinite. On Wednesday, the two movies&#8217; totals were only $2 million apart &#8212; like two shuttles hurtling through the universe, passing each other for a split second, just in time to salute each other.</p>
+        <div class="clearfix">
+          <!-- Placeholder image — replace src with actual movie image when available -->
+          <figure class="article-img">
+            <div class="article-img-placeholder">[ IMAGE ]</div>
+            <figcaption class="article-img-caption"><strong>Super Mario Galaxy</strong></figcaption>
+          </figure>
+
+          <p class="drop-cap"><a href="#" class="film-link">Super Mario Galaxy</a> is poised to repeat at number one this weekend, with <a href="#" class="film-link">Project Hail Mary</a> continuing its journey into the infinite. On Wednesday, the two movies&#8217; totals were only $2 million apart &#8212; like two shuttles hurtling through the universe, passing each other for a split second, just in time to salute each other.</p>
+        </div>
 
         <p>One year ago, <em>Minecraft</em> was going into its second weekend, another massively successful video game adaptation. Minecraft dropped 51.8% in its sophomore frame, from $162.7 million to $78 million.</p>
 
