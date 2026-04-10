@@ -255,10 +255,26 @@
   async function loadHomepageData() {
     // Weekend data → top 5 table + theater counts + updated line
     try {
+      let wd = null;
       const wr = await fetch('data/weekend.json');
-      if (wr.ok) {
-        const wd = await wr.json();
+      if (wr.ok) wd = await wr.json();
 
+      // If current weekend has no chart data, fall back to most recent with data
+      if (!wd || !wd.chart || !wd.chart.length) {
+        try {
+          const idxr = await fetch('data/weekends.json');
+          if (idxr.ok) {
+            const idx = await idxr.json();
+            const recent = (idx.weekends || []).find(w => w.top_total > 0);
+            if (recent) {
+              const dr = await fetch(`data/weekends/${recent.date_from}.json`);
+              if (dr.ok) wd = await dr.json();
+            }
+          }
+        } catch(e2) { /* keep wd as-is */ }
+      }
+
+      if (wd) {
         // Updated line
         if (wd.updated) {
           const d = new Date(wd.updated);
@@ -298,7 +314,7 @@
           const dateLabel = wd.updated ? longDate(wd.updated) : 'Latest Weekend';
           document.getElementById('theater-date').textContent = dateLabel;
           const rowsHtml = wd.chart.slice(0, 3).map(m => {
-            const shortTitle = m.title.length > 16 ? m.title.slice(0, 15) + '…' : m.title;
+            const shortTitle = (m.title || '—').length > 16 ? (m.title || '').slice(0, 15) + '…' : (m.title || '—');
             return `<div class="theater-row">
               <span class="t-title">${shortTitle}</span>
               <span class="t-count">${m.theaters ? m.theaters.toLocaleString() : '—'}</span>
@@ -314,7 +330,8 @@
             document.getElementById('updates-date-label').textContent = day;
           }
         }
-      }
+      } // end if wd.chart
+      } // end if wd
     } catch(e) { /* data not available yet */ }
 
     // Tagline movie title — use top now-playing film if available
