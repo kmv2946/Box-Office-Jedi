@@ -23,11 +23,10 @@
     .daily-nav {
       display: flex;
       align-items: center;
-      gap: 0;
       background: #DCDCDC;
       border-top: 1px solid #999;
       border-bottom: 1px solid #999;
-      padding: 4px 8px;
+      padding: 5px 10px;
       margin: 0 0 6px;
       font-family: Verdana, Geneva, sans-serif;
       font-size: 12px;
@@ -36,10 +35,15 @@
       font-weight: bold;
       color: #00239C;
       text-decoration: none;
-      padding: 2px 6px;
+      padding: 2px 8px;
       white-space: nowrap;
     }
     .daily-nav-arrow:hover { text-decoration: underline; }
+    .daily-nav-arrow.disabled {
+      color: #999;
+      cursor: default;
+      pointer-events: none;
+    }
     .daily-nav-sep {
       color: #999;
       padding: 0 4px;
@@ -49,6 +53,7 @@
       color: #000;
       flex: 1;
       text-align: center;
+      font-size: 12px;
     }
 
     /* ── Estimates notice ────────────────────────────────────────── */
@@ -57,7 +62,7 @@
       font-size: 11px;
       color: #555;
       font-style: italic;
-      margin: 0 12px 6px;
+      margin: 0 12px 4px;
     }
 
     /* ── Main chart table ────────────────────────────────────────── */
@@ -69,6 +74,7 @@
       width: 100%;
       border-collapse: collapse;
       border: 1px solid #AAAAAA;
+      min-width: 420px;
     }
 
     /* Column headers */
@@ -78,18 +84,20 @@
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
       font-size: 12px;
-      padding: 5px 8px;
+      padding: 5px 10px;
       text-align: center;
       border-left: 1px solid #3355BB;
       white-space: nowrap;
     }
-    .daily-chart-table thead tr.day-header-row th.dc-rank-head,
+    .daily-chart-table thead tr.day-header-row th.dc-rank-head {
+      background: #444;
+      text-align: center;
+      border-left: none;
+      width: 30px;
+    }
     .daily-chart-table thead tr.day-header-row th.dc-title-head {
       background: #444;
       text-align: left;
-      border-left: none;
-    }
-    .daily-chart-table thead tr.day-header-row th.dc-title-head {
       border-left: 1px solid #666;
     }
 
@@ -102,9 +110,7 @@
       vertical-align: middle;
       padding: 0;
     }
-    .daily-chart-table tbody td:first-child {
-      border-left: none;
-    }
+    .daily-chart-table tbody td:first-child { border-left: none; }
 
     /* Rank cell */
     .dc-rank {
@@ -113,15 +119,15 @@
       font-size: 13px;
       color: #000;
       text-align: center;
-      width: 28px;
-      padding: 5px 4px;
+      width: 30px;
+      padding: 6px 4px;
       white-space: nowrap;
     }
 
     /* Title cell */
     .dc-title-cell {
-      padding: 5px 8px;
-      min-width: 140px;
+      padding: 5px 10px;
+      min-width: 160px;
       border-left: 1px solid #DDDDDD;
     }
     .dc-title-link {
@@ -130,53 +136,59 @@
       font-size: 14px;
       color: #00239C;
       text-decoration: none;
+      text-transform: uppercase;
     }
-    .dc-title-link:hover { text-decoration: underline; color: #0000F5 !important; }
+    .dc-title-link:hover { text-decoration: underline; color: #0000F5; }
+    .dc-studio {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 10px;
+      color: #666;
+      display: block;
+      margin-top: 1px;
+    }
     .dc-theaters {
       font-family: 'Times New Roman', Times, serif;
       font-weight: normal;
       font-size: 12px;
-      color: #000;
+      color: #333;
       display: block;
       margin-top: 1px;
     }
 
     /* Day data cell */
     .dc-day-cell {
-      padding: 4px 8px;
+      padding: 5px 10px;
       text-align: right;
-      min-width: 110px;
+      min-width: 120px;
       line-height: 1.5;
+      border-left: 1px solid #DDDDDD;
     }
     .dc-day-cell.na-cell {
       text-align: center;
-      color: #999;
+      color: #bbb;
       font-family: Verdana, Geneva, sans-serif;
       font-size: 12px;
+      min-width: 80px;
     }
     .dc-gross {
       font-family: 'Times New Roman', Times, serif;
-      font-weight: normal;
       font-size: 13px;
       color: #00007B;
       display: block;
     }
     .dc-change-avg {
       font-family: 'Times New Roman', Times, serif;
-      font-weight: normal;
-      font-size: 12px;
+      font-size: 11px;
       display: block;
     }
-    .dc-change {
-      color: #EA3526;
-    }
-    .dc-avg {
-      color: #000;
-    }
+    .dc-change-pos { color: #008000; }
+    .dc-change-neg { color: #CC0000; }
+    .dc-change-neu { color: #555; }
+    .dc-avg { color: #555; }
     .dc-total-day {
       font-family: 'Times New Roman', Times, serif;
-      font-weight: normal;
-      font-size: 12px;
+      font-size: 11px;
       color: #75147C;
       display: block;
     }
@@ -204,48 +216,35 @@
       border-bottom: 1px solid #AAAAAA;
       text-align: center;
     }
-    .daily-key-table {
-      border-collapse: collapse;
-    }
+    .daily-key-table { border-collapse: collapse; }
     .daily-key-table td {
-      padding: 6px 14px;
+      padding: 6px 16px;
       vertical-align: top;
-      font-size: 13px;
+      font-size: 12px;
       border-right: 1px solid #AAAAAA;
     }
     .daily-key-table td:last-child { border-right: none; }
-    .key-title {
+    .key-label {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 13px;
+      font-size: 12px;
       color: #000;
       display: block;
     }
-    .key-theaters {
+    .key-sub {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 13px;
-      color: #000;
-      display: block;
-      margin-top: 4px;
-    }
-    .key-gross {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 13px;
-      color: #00007B;
-      display: block;
-    }
-    .key-change {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 13px;
-      display: block;
-      margin-top: 4px;
-    }
-    .key-total {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 13px;
-      color: #75147C;
+      font-size: 12px;
       display: block;
       margin-top: 2px;
+    }
+
+    /* Loading / error state */
+    .daily-loading {
+      padding: 30px;
+      text-align: center;
+      color: #666;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
     }
 
   </style>
@@ -296,11 +295,11 @@
       <span class="daily-nav-sep">|</span>
       <span class="daily-nav-label" id="nav-label">Loading...</span>
       <span class="daily-nav-sep">|</span>
-      <a class="daily-nav-arrow" id="nav-next" href="#">NEXT &gt;&gt;</a>
+      <a class="daily-nav-arrow disabled" id="nav-next" href="#">NEXT &gt;&gt;</a>
     </div>
 
     <div class="daily-estimates-notice" id="estimates-notice" style="display:none;">
-      * Figures are estimates and will be updated when actuals are reported.
+      * Figures marked with an asterisk are estimates and will be updated when actuals are reported.
     </div>
 
     <!-- Chart table -->
@@ -309,17 +308,16 @@
         <thead>
           <tr class="day-header-row" id="day-header-row">
             <th class="dc-rank-head">#</th>
-            <th class="dc-title-head">Title</th>
-            <!-- Day columns inserted by JS -->
+            <th class="dc-title-head">Title / Studio</th>
           </tr>
         </thead>
         <tbody id="daily-chart-body">
-          <tr><td colspan="3" style="padding:20px;text-align:center;color:#666;font-family:Verdana,sans-serif;font-size:12px;">Loading data...</td></tr>
+          <tr><td colspan="3" class="daily-loading">Loading data...</td></tr>
         </tbody>
       </table>
     </div>
 
-    <p class="daily-footnote">* Ranked by selected day.</p>
+    <p class="daily-footnote">* Ranked by the most recent day shown. Figures in thousands.</p>
 
     <!-- KEY -->
     <div class="daily-key-wrap">
@@ -327,13 +325,14 @@
       <table class="daily-key-table">
         <tr>
           <td>
-            <span class="key-title">TITLE</span>
-            <span class="key-theaters">Theater Count</span>
+            <span class="key-label">TITLE</span>
+            <span class="key-sub" style="color:#666;">Studio</span>
+            <span class="key-sub" style="color:#333;">Theaters</span>
           </td>
           <td>
-            <span class="key-gross">Daily Gross</span>
-            <span class="key-change"><span class="dc-change">% Change</span> / <span class="dc-avg">Average</span></span>
-            <span class="key-total">Total Gross / Day #</span>
+            <span class="key-sub" style="color:#00007B;">Daily Gross</span>
+            <span class="key-sub"><span class="dc-change-neg">% Change</span> / <span class="dc-avg">Avg</span></span>
+            <span class="key-sub" style="color:#75147C;">Total to Date / Day #</span>
           </td>
         </tr>
       </table>
@@ -396,150 +395,307 @@
 
   // ── Formatting helpers ──────────────────────────────────────────
   function fmtGross(n) {
-    if (!n && n !== 0) return 'N/A';
-    if (n >= 1000000) return '$' + (n / 1000000).toFixed(2) + 'M';
+    if (n === null || n === undefined) return '—';
     return '$' + n.toLocaleString('en-US');
   }
   function fmtTotal(n) {
-    if (!n && n !== 0) return '—';
-    if (n >= 1000000) return '$' + (n / 1000000).toFixed(1) + 'M';
+    if (n === null || n === undefined) return '—';
+    if (n >= 1000000) return '$' + (n / 1000000).toFixed(2) + 'M';
     return '$' + n.toLocaleString('en-US');
   }
   function fmtAvg(n) {
-    if (!n) return '—';
+    if (n === null || n === undefined) return null;
     return '$' + Math.round(n).toLocaleString('en-US');
   }
   function fmtChange(n) {
-    if (n === null || n === undefined) return '—';
+    if (n === null || n === undefined) return null;
     const sign = n >= 0 ? '+' : '';
     return sign + n.toFixed(1) + '%';
   }
   function fmtTheaters(n) {
-    if (!n) return '—';
+    if (!n) return null;
     return n.toLocaleString('en-US') + ' theaters';
   }
 
-  // ── Date formatting ─────────────────────────────────────────────
+  // ── Date helpers ────────────────────────────────────────────────
   function isoToDateObj(iso) {
-    // Parse YYYY-MM-DD as local date (avoid UTC shift)
     const [y, m, d] = iso.split('-').map(Number);
     return new Date(y, m - 1, d);
   }
-  function fmtNavLabel(iso) {
-    const d = isoToDateObj(iso);
-    return d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+  function dateToIso(d) {
+    return d.getFullYear() + '-' +
+      String(d.getMonth() + 1).padStart(2, '0') + '-' +
+      String(d.getDate()).padStart(2, '0');
   }
+  function todayIso() {
+    return dateToIso(new Date());
+  }
+
+  // Day of week: 0=Sun, 1=Mon, ..., 6=Sat
+  function isWeekendDay(iso) {
+    const dow = isoToDateObj(iso).getDay();
+    return dow === 0 || dow === 5 || dow === 6; // Fri=5, Sat=6, Sun=0
+  }
+
+  // Return all dates in the same display group as the given date
+  // Weekend: Fri, Sat, Sun  |  Weekday: Mon, Tue, Wed, Thu
+  function getGroupDates(iso) {
+    const d = isoToDateObj(iso);
+    const dow = d.getDay(); // 0=Sun
+    let anchor;
+    let offsets;
+
+    if (dow === 0 || dow === 5 || dow === 6) {
+      // Weekend group: find Friday
+      if (dow === 5)      anchor = new Date(d);
+      else if (dow === 6) { anchor = new Date(d); anchor.setDate(d.getDate() - 1); }
+      else                { anchor = new Date(d); anchor.setDate(d.getDate() - 2); } // Sunday
+      offsets = [0, 1, 2]; // Fri, Sat, Sun
+    } else {
+      // Weekday group: find Monday
+      anchor = new Date(d);
+      anchor.setDate(d.getDate() - (dow - 1)); // Monday
+      offsets = [0, 1, 2, 3]; // Mon, Tue, Wed, Thu
+    }
+
+    return offsets.map(i => {
+      const dd = new Date(anchor);
+      dd.setDate(anchor.getDate() + i);
+      return dateToIso(dd);
+    });
+  }
+
+  // Return a date in the previous group
+  function prevGroupDate(iso) {
+    const d = isoToDateObj(iso);
+    const dow = d.getDay();
+    const isWeekend = (dow === 0 || dow === 5 || dow === 6);
+    const groupDates = getGroupDates(iso);
+    const firstDate = isoToDateObj(groupDates[0]);
+
+    if (isWeekend) {
+      // From Fri anchor, prev group = weekday group starting Mon (4 days before Fri)
+      const prev = new Date(firstDate);
+      prev.setDate(firstDate.getDate() - 4);
+      return dateToIso(prev); // This is the Monday
+    } else {
+      // From Mon anchor, prev group = weekend group starting Fri (3 days before Mon)
+      const prev = new Date(firstDate);
+      prev.setDate(firstDate.getDate() - 3);
+      return dateToIso(prev); // This is the Friday
+    }
+  }
+
+  // Return a date in the next group
+  function nextGroupDate(iso) {
+    const groupDates = getGroupDates(iso);
+    const firstDate = isoToDateObj(groupDates[0]);
+    const d = isoToDateObj(iso);
+    const dow = d.getDay();
+    const isWeekend = (dow === 0 || dow === 5 || dow === 6);
+
+    if (isWeekend) {
+      // From Fri anchor, next group = weekday group starting Mon (3 days after Fri)
+      const next = new Date(firstDate);
+      next.setDate(firstDate.getDate() + 3);
+      return dateToIso(next); // This is the Monday
+    } else {
+      // From Mon anchor, next group = weekend group starting Fri (4 days after Mon)
+      const next = new Date(firstDate);
+      next.setDate(firstDate.getDate() + 4);
+      return dateToIso(next); // This is the Friday
+    }
+  }
+
+  // Format the group date range label
+  function fmtGroupLabel(groupDates, loadedDates) {
+    const available = groupDates.filter(d => loadedDates.includes(d));
+    const dates = available.length ? available : groupDates;
+
+    const MONTHS = ['January','February','March','April','May','June',
+                    'July','August','September','October','November','December'];
+    const DAYS_SHORT = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+    const first = isoToDateObj(dates[0]);
+    const last  = isoToDateObj(dates[dates.length - 1]);
+    const month = MONTHS[first.getMonth()];
+    const year  = first.getFullYear();
+
+    if (dates.length === 1) {
+      return DAYS_SHORT[first.getDay()] + ', ' + month + ' ' + first.getDate() + ', ' + year;
+    }
+    // e.g. "Fri–Sun, April 3–5, 2026"
+    const d1 = DAYS_SHORT[first.getDay()];
+    const d2 = DAYS_SHORT[last.getDay()];
+    return d1 + '–' + d2 + ', ' + month + ' ' + first.getDate() + '–' + last.getDate() + ', ' + year;
+  }
+
+  // Format a column header day
   function fmtDayHeader(iso) {
     const d = isoToDateObj(iso);
-    const dow = d.toLocaleDateString('en-US', { weekday: 'short' });
+    const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const dow = DAYS[d.getDay()];
     const md  = (d.getMonth() + 1) + '/' + d.getDate();
     return dow + '<br>' + md;
   }
-  function prevDate(iso) {
-    const d = isoToDateObj(iso);
-    d.setDate(d.getDate() - 1);
-    return d.toISOString().slice(0, 10);
-  }
-  function nextDate(iso) {
-    const d = isoToDateObj(iso);
-    d.setDate(d.getDate() + 1);
-    return d.toISOString().slice(0, 10);
-  }
 
   // ── Build the chart ─────────────────────────────────────────────
-  function buildChart(days) {
-    // `days` is an array of day objects: { date, is_estimates, chart[] }
-    // Sort days chronologically
-    days.sort((a, b) => a.date < b.date ? -1 : 1);
+  function buildChart(groupDates, dayDataMap, allIndexDates, currentDate) {
+    // groupDates: ordered array of ISO dates in the group (e.g. ['2026-04-06','2026-04-07','2026-04-08','2026-04-09'])
+    // dayDataMap: { 'YYYY-MM-DD': { date, is_estimates, chart:[] }, ... }
+    // allIndexDates: all available dates from index
+    // currentDate: the date from the URL (used as "primary")
 
-    const primaryDay = days[days.length - 1]; // last (most recent) day
-
-    // Navigation
-    document.getElementById('nav-label').textContent = fmtNavLabel(primaryDay.date);
-    document.getElementById('nav-prev').href = 'daily.html?date=' + prevDate(primaryDay.date);
-    const today = new Date();
-    const todayIso = today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
-    const nextIso = nextDate(primaryDay.date);
-    if (nextIso <= todayIso) {
-      document.getElementById('nav-next').href = 'daily.html?date=' + nextIso;
-    } else {
-      document.getElementById('nav-next').style.color = '#999';
-      document.getElementById('nav-next').style.cursor = 'default';
-      document.getElementById('nav-next').removeAttribute('href');
+    // Only show columns that have data
+    const loadedDates = groupDates.filter(d => dayDataMap[d]);
+    if (!loadedDates.length) {
+      showError('No data available for this period.');
+      return;
     }
 
-    if (primaryDay.is_estimates) {
+    // Pick the most recent loaded date as "primary" for ranking
+    const primaryDate = loadedDates[loadedDates.length - 1];
+
+    // ── Update navigation ──
+    document.getElementById('nav-label').textContent = fmtGroupLabel(groupDates, loadedDates);
+
+    // PREVIOUS: always a link
+    const prevDate = prevGroupDate(groupDates[0]);
+    document.getElementById('nav-prev').href = 'daily.html?date=' + prevDate;
+
+    // NEXT: link only if there's a future group with data
+    const nextDate = nextGroupDate(groupDates[0]);
+    const nextGroupAllDates = getGroupDates(nextDate);
+    const hasNextData = nextGroupAllDates.some(d => allIndexDates.includes(d));
+    const navNext = document.getElementById('nav-next');
+    const nextIsInFuture = nextGroupAllDates.every(d => d > todayIso());
+    if (hasNextData && !nextIsInFuture) {
+      navNext.href = 'daily.html?date=' + nextDate;
+      navNext.classList.remove('disabled');
+    } else {
+      navNext.removeAttribute('href');
+      navNext.classList.add('disabled');
+    }
+
+    // Show estimates notice if any loaded day has estimates
+    const hasEstimates = loadedDates.some(d => dayDataMap[d].is_estimates);
+    if (hasEstimates) {
       document.getElementById('estimates-notice').style.display = 'block';
     }
 
-    // Build header row
+    // ── Build column headers ──
     const headerRow = document.getElementById('day-header-row');
-    days.forEach(day => {
+    // Remove any previously added th elements beyond the first 2
+    while (headerRow.children.length > 2) headerRow.removeChild(headerRow.lastChild);
+    loadedDates.forEach(iso => {
       const th = document.createElement('th');
-      th.innerHTML = fmtDayHeader(day.date);
+      th.innerHTML = fmtDayHeader(iso);
       headerRow.appendChild(th);
     });
 
-    // Build a lookup: title → { dayDate: rowData }
-    const allTitles = {};
-    days.forEach(day => {
-      (day.chart || []).forEach(row => {
-        if (!allTitles[row.title]) {
-          allTitles[row.title] = { _meta: row, days: {} };
-        }
-        allTitles[row.title].days[day.date] = row;
+    // ── Collect all titles, preserving primary day ranking ──
+    const primaryChart = (dayDataMap[primaryDate] || {}).chart || [];
+    const sortedTitles = primaryChart.map(r => r.title);
+
+    // Add titles from other days not in primary
+    loadedDates.forEach(iso => {
+      if (iso === primaryDate) return;
+      (dayDataMap[iso].chart || []).forEach(r => {
+        if (!sortedTitles.includes(r.title)) sortedTitles.push(r.title);
       });
     });
 
-    // Sort by primary day rank
-    const primaryChart = primaryDay.chart || [];
-    const sortedTitles = primaryChart.map(r => r.title);
-    // Add any titles that appear in other days but not primary
-    Object.keys(allTitles).forEach(t => {
-      if (!sortedTitles.includes(t)) sortedTitles.push(t);
+    // Build a lookup: title → { meta, days: { iso: rowData } }
+    const titleMap = {};
+    loadedDates.forEach(iso => {
+      (dayDataMap[iso].chart || []).forEach(row => {
+        if (!titleMap[row.title]) titleMap[row.title] = { meta: row, days: {} };
+        titleMap[row.title].days[iso] = row;
+      });
     });
 
-    // Build tbody
+    // ── Build tbody ──
     const tbody = document.getElementById('daily-chart-body');
     tbody.innerHTML = '';
 
     sortedTitles.forEach((title, idx) => {
-      const meta = allTitles[title]?._meta || {};
-      const primaryRow = allTitles[title]?.days[primaryDay.date] || null;
+      const entry = titleMap[title];
+      if (!entry) return;
+      const primaryRow = entry.days[primaryDate];
       const rank = primaryRow ? primaryRow.rank : (idx + 1);
+      const meta = entry.meta;
       const tmdbId = meta.tmdb_id || '';
+      const studio = meta.distributor || '';
+
+      // Theater count: use first available day (weekend days have them, weekdays may not)
+      let theaters = null;
+      for (const iso of loadedDates) {
+        if (entry.days[iso] && entry.days[iso].theaters) {
+          theaters = entry.days[iso].theaters;
+          break;
+        }
+      }
 
       const tr = document.createElement('tr');
 
-      // Rank
+      // Rank cell
       const rankTd = document.createElement('td');
       rankTd.className = 'dc-rank';
       rankTd.textContent = rank + '.';
       tr.appendChild(rankTd);
 
-      // Title + theaters (from primary day)
+      // Title cell
       const titleTd = document.createElement('td');
       titleTd.className = 'dc-title-cell';
-      const theaters = primaryRow ? fmtTheaters(primaryRow.theaters) : '—';
-      titleTd.innerHTML =
-        `<a class="dc-title-link" href="movie.html?id=${tmdbId}&title=${encodeURIComponent(title)}">${title}</a>` +
-        `<span class="dc-theaters">${theaters}</span>`;
+      let titleHtml = '';
+      if (tmdbId) {
+        titleHtml += `<a class="dc-title-link" href="movie.html?id=${tmdbId}&title=${encodeURIComponent(title)}">${title}</a>`;
+      } else {
+        titleHtml += `<span class="dc-title-link" style="cursor:default;">${title}</span>`;
+      }
+      if (studio) titleHtml += `<span class="dc-studio">${studio}</span>`;
+      if (theaters) titleHtml += `<span class="dc-theaters">${fmtTheaters(theaters)}</span>`;
+      titleTd.innerHTML = titleHtml;
       tr.appendChild(titleTd);
 
       // Day columns
-      days.forEach(day => {
+      loadedDates.forEach(iso => {
         const td = document.createElement('td');
         td.className = 'dc-day-cell';
-        const dr = allTitles[title]?.days[day.date];
+        const dr = entry.days[iso];
+
         if (!dr) {
           td.classList.add('na-cell');
-          td.textContent = 'N/A';
+          td.innerHTML = '&mdash;';
         } else {
-          const grossHtml   = `<span class="dc-gross">${fmtGross(dr.daily_gross)}</span>`;
-          const changeHtml  = `<span class="dc-change-avg"><span class="dc-change">${fmtChange(dr.pct_change)}</span> <span class="dc-avg">/ ${fmtAvg(dr.avg_per_theater)}</span></span>`;
-          const totalHtml   = `<span class="dc-total-day">${fmtTotal(dr.total_gross)} / Day ${dr.days_in_release || '—'}</span>`;
-          td.innerHTML = grossHtml + changeHtml + totalHtml;
+          const estMark = dayDataMap[iso].is_estimates ? '*' : '';
+          const grossHtml = `<span class="dc-gross">${fmtGross(dr.daily_gross)}${estMark}</span>`;
+
+          let changeAvgHtml = '';
+          const changeStr = fmtChange(dr.pct_change);
+          const avgStr = dr.avg_per_theater ? fmtAvg(dr.avg_per_theater) : null;
+          if (changeStr || avgStr) {
+            let changePart = '';
+            if (changeStr) {
+              const cls = dr.pct_change > 0 ? 'dc-change-pos' : (dr.pct_change < 0 ? 'dc-change-neg' : 'dc-change-neu');
+              changePart = `<span class="${cls}">${changeStr}</span>`;
+            }
+            const avgPart = avgStr ? `<span class="dc-avg"> / ${avgStr}</span>` : '';
+            changeAvgHtml = `<span class="dc-change-avg">${changePart}${avgPart}</span>`;
+          }
+
+          let totalDayHtml = '';
+          const totalStr = dr.total_gross ? fmtTotal(dr.total_gross) : null;
+          const dayNum = dr.days_in_release || null;
+          if (totalStr || dayNum) {
+            const totalPart = totalStr || '';
+            const dayPart = dayNum ? ` / Day ${dayNum}` : '';
+            totalDayHtml = `<span class="dc-total-day">${totalPart}${dayPart}</span>`;
+          }
+
+          td.innerHTML = grossHtml + changeAvgHtml + totalDayHtml;
         }
+
         tr.appendChild(td);
       });
 
@@ -547,45 +703,56 @@
     });
   }
 
+  function showError(msg) {
+    document.getElementById('nav-label').textContent = 'Data unavailable';
+    document.getElementById('daily-chart-body').innerHTML =
+      `<tr><td colspan="6" class="daily-loading">${msg}</td></tr>`;
+  }
+
   // ── Load data ───────────────────────────────────────────────────
   async function load() {
     try {
+      // 1. Load index
+      const idxResp = await fetch('data/daily/index.json');
+      if (!idxResp.ok) throw new Error('Index not found');
+      const idx = await idxResp.json();
+      const allIndexDates = idx.dates || [];
+
+      if (!allIndexDates.length) throw new Error('No data in index');
+
+      // 2. Determine which date to show
       const params = new URLSearchParams(window.location.search);
-      const reqDate = params.get('date');
+      let reqDate = params.get('date');
 
-      const r = await fetch('data/daily.json');
-      if (!r.ok) throw new Error('No data');
-      const d = await r.json();
-
-      // Support both single-day {date, chart} and multi-day {days:[...]}
-      let days = [];
-      if (d.days && Array.isArray(d.days)) {
-        days = d.days;
-      } else if (d.date && d.chart) {
-        days = [{ date: d.date, is_estimates: d.is_estimates || false, chart: d.chart }];
-      } else {
-        throw new Error('Unknown data format');
+      if (!reqDate) {
+        // Default: most recent available date
+        reqDate = allIndexDates[allIndexDates.length - 1];
       }
 
-      // If a specific date is requested, filter or find the matching week
-      if (reqDate) {
-        const matching = days.filter(dy => dy.date === reqDate);
-        if (matching.length) days = matching;
-        // else fall through and show whatever we have
+      // 3. Determine the display group
+      const groupDates = getGroupDates(reqDate);
+
+      // 4. Load data for each day in the group that's in the index
+      const dayDataMap = {};
+      const fetches = groupDates
+        .filter(d => allIndexDates.includes(d))
+        .map(async (d) => {
+          const r = await fetch('data/daily/' + d + '.json');
+          if (r.ok) {
+            const data = await r.json();
+            dayDataMap[d] = data;
+          }
+        });
+      await Promise.all(fetches);
+
+      if (!Object.keys(dayDataMap).length) {
+        throw new Error('No data for this period. Try navigating to another date.');
       }
 
-      if (!days.length || !days[0].chart || !days[0].chart.length) {
-        throw new Error('Empty chart');
-      }
-
-      buildChart(days);
+      buildChart(groupDates, dayDataMap, allIndexDates, reqDate);
 
     } catch(e) {
-      document.getElementById('nav-label').textContent = 'Data unavailable';
-      document.getElementById('daily-chart-body').innerHTML =
-        `<tr><td colspan="3" style="padding:20px;text-align:center;color:#666;font-family:Verdana,sans-serif;font-size:12px;">
-          Daily data not yet available. Run the scraper to populate this chart.
-        </td></tr>`;
+      showError(e.message || 'Daily data not available.');
     }
   }
 
