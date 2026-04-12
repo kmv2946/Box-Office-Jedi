@@ -120,16 +120,17 @@
 
     .sd-wknd-cell {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 12px; color: #000;
+      font-size: 13px; color: #000;
       padding: 4px 6px; border: 1px solid #A8A8A8;
-      text-align: center; vertical-align: top; line-height: 1.45;
+      text-align: center; vertical-align: top; line-height: 1.5;
     }
-    .wg  { font-size: 13px; display: block; }
+    .wg  { font-size: 14px; display: block; }
     .wg.best { font-weight: bold; }
-    .wm  { font-size: 10px; color: #00239C; display: block; }
-    .wch { font-size: 10px; color: #CC0000; display: block; }
-    .wgt { font-size: 10px; display: block; }
-    .wpend { color: #999; font-style: italic; font-size: 11px; }
+    .wm  { font-size: 12px; color: #00239C; display: block; }
+    .wth { font-size: 12px; color: #555; display: block; }
+    .wch { font-size: 12px; color: #CC0000; display: block; }
+    .wgt { font-size: 12px; display: block; }
+    .wpend { color: #999; font-style: italic; font-size: 12px; }
 
   </style>
 </head>
@@ -192,27 +193,22 @@
               <th class="sd-head-cell sd-col-1">
                 <img class="sd-poster" src="https://image.tmdb.org/t/p/w342/d4ie3f6QTvNw40V770Uzo87SDZn.jpg" alt="Twister">
                 <a class="sd-movie-title-link" href="#">Twister</a>
-                <span class="sd-movie-year">1996</span>
               </th>
               <th class="sd-head-cell sd-col-2">
                 <img class="sd-poster" src="https://image.tmdb.org/t/p/w342/a3vQS7JKqlOb3MdVJHuTCP9s7Mg.jpg" alt="Deep Impact">
                 <a class="sd-movie-title-link" href="#">Deep Impact</a>
-                <span class="sd-movie-year">1998</span>
               </th>
               <th class="sd-head-cell sd-col-3">
                 <img class="sd-poster" src="https://image.tmdb.org/t/p/w342/yhIsVvcUm7QxzLfT6HW2wLf5ajY.jpg" alt="The Mummy">
                 <a class="sd-movie-title-link" href="#">The Mummy</a>
-                <span class="sd-movie-year">1999</span>
               </th>
               <th class="sd-head-cell sd-col-4">
                 <img class="sd-poster" src="https://image.tmdb.org/t/p/w342/kdJsW7hcy1lrj7tdMPycTAQPAiR.jpg" alt="The Mummy Returns">
                 <a class="sd-movie-title-link" href="#">The Mummy Returns</a>
-                <span class="sd-movie-year">2001</span>
               </th>
               <th class="sd-head-cell sd-col-5">
                 <img class="sd-poster" src="https://image.tmdb.org/t/p/w342/kjdJntyBeEvqm9w97QGBdxPptzj.jpg" alt="Spider-Man">
                 <a class="sd-movie-title-link" href="#">Spider-Man</a>
-                <span class="sd-movie-year">2002</span>
               </th>
             </tr>
           </thead>
@@ -289,9 +285,6 @@
     <!-- Weekend -->
     <div class="sd-panel" id="panel-weekend">
       <div class="sd-wrap">
-        <p style="font-family:Verdana,sans-serif;font-size:10px;color:#777;padding:6px 0 4px;text-align:center;">
-          Weekend Gross &nbsp;/&nbsp; Date &nbsp;/&nbsp; Rank &nbsp;/&nbsp; Theaters &nbsp;/&nbsp; Avg &nbsp;/&nbsp; % Change &nbsp;/&nbsp; Gross-to-Date
-        </p>
         <table class="sd-table" style="min-width:680px;">
           <thead>
             <tr>
@@ -299,27 +292,22 @@
               <th class="sd-head-cell sd-col-1">
                 <img class="sd-poster" src="https://image.tmdb.org/t/p/w342/d4ie3f6QTvNw40V770Uzo87SDZn.jpg" alt="Twister">
                 <a class="sd-movie-title-link" href="#">Twister</a>
-                <span class="sd-movie-year">1996</span>
               </th>
               <th class="sd-head-cell sd-col-2">
                 <img class="sd-poster" src="https://image.tmdb.org/t/p/w342/a3vQS7JKqlOb3MdVJHuTCP9s7Mg.jpg" alt="Deep Impact">
                 <a class="sd-movie-title-link" href="#">Deep Impact</a>
-                <span class="sd-movie-year">1998</span>
               </th>
               <th class="sd-head-cell sd-col-3">
                 <img class="sd-poster" src="https://image.tmdb.org/t/p/w342/yhIsVvcUm7QxzLfT6HW2wLf5ajY.jpg" alt="The Mummy">
                 <a class="sd-movie-title-link" href="#">The Mummy</a>
-                <span class="sd-movie-year">1999</span>
               </th>
               <th class="sd-head-cell sd-col-4">
                 <img class="sd-poster" src="https://image.tmdb.org/t/p/w342/kdJsW7hcy1lrj7tdMPycTAQPAiR.jpg" alt="The Mummy Returns">
                 <a class="sd-movie-title-link" href="#">The Mummy Returns</a>
-                <span class="sd-movie-year">2001</span>
               </th>
               <th class="sd-head-cell sd-col-5">
                 <img class="sd-poster" src="https://image.tmdb.org/t/p/w342/kjdJntyBeEvqm9w97QGBdxPptzj.jpg" alt="Spider-Man">
                 <a class="sd-movie-title-link" href="#">Spider-Man</a>
-                <span class="sd-movie-year">2002</span>
               </th>
             </tr>
           </thead>
@@ -328,31 +316,36 @@
               <td class="sd-wknd-label">1</td>
               <td class="sd-wknd-cell sd-col-1" data-val="41059405">
                 <span class="wg">$41,059,405</span>
-                <span class="wm">5-12-96 / <b>1</b> / 2,403 / $17,087</span>
+                <span class="wm">5-12-96 / <b>1</b></span>
+                <span class="wth">2,403 / $17,087</span>
                 <span class="wch">—</span>
                 <span class="wgt">$41,059,405</span>
               </td>
               <td class="sd-wknd-cell sd-col-2" data-val="41152394">
                 <span class="wg">$41,152,394</span>
-                <span class="wm">5-10-98 / <b>1</b> / 3,004 / $13,700</span>
+                <span class="wm">5-10-98 / <b>1</b></span>
+                <span class="wth">3,004 / $13,700</span>
                 <span class="wch">—</span>
                 <span class="wgt">$41,152,394</span>
               </td>
               <td class="sd-wknd-cell sd-col-3" data-val="43369635">
                 <span class="wg">$43,369,635</span>
-                <span class="wm">5-9-99 / <b>1</b> / 3,210 / $13,511</span>
+                <span class="wm">5-9-99 / <b>1</b></span>
+                <span class="wth">3,210 / $13,511</span>
                 <span class="wch">—</span>
                 <span class="wgt">$43,369,635</span>
               </td>
               <td class="sd-wknd-cell sd-col-4" data-val="68139035">
                 <span class="wg">$68,139,035</span>
-                <span class="wm">5-6-01 / <b>1</b> / 3,401 / $20,035</span>
+                <span class="wm">5-6-01 / <b>1</b></span>
+                <span class="wth">3,401 / $20,035</span>
                 <span class="wch">—</span>
                 <span class="wgt">$68,139,035</span>
               </td>
               <td class="sd-wknd-cell sd-col-5" data-val="114844116">
                 <span class="wg">$114,844,116</span>
-                <span class="wm">5-5-02 / <b>1</b> / 3,615 / $31,769</span>
+                <span class="wm">5-5-02 / <b>1</b></span>
+                <span class="wth">3,615 / $31,769</span>
                 <span class="wch">—</span>
                 <span class="wgt">$114,844,116</span>
               </td>
@@ -361,31 +354,36 @@
               <td class="sd-wknd-label">2</td>
               <td class="sd-wknd-cell sd-col-1" data-val="23627872">
                 <span class="wg">$23,627,872</span>
-                <span class="wm">5-19-96 / <b>2</b> / 2,765 / $8,546</span>
+                <span class="wm">5-19-96 / <b>2</b></span>
+                <span class="wth">2,765 / $8,546</span>
                 <span class="wch">−42.5%</span>
                 <span class="wgt">$92,831,618</span>
               </td>
               <td class="sd-wknd-cell sd-col-2" data-val="21177961">
                 <span class="wg">$21,177,961</span>
-                <span class="wm">5-17-98 / <b>2</b> / 3,004 / $7,050</span>
+                <span class="wm">5-17-98 / <b>2</b></span>
+                <span class="wth">3,004 / $7,050</span>
                 <span class="wch">−48.5%</span>
                 <span class="wgt">$79,004,745</span>
               </td>
               <td class="sd-wknd-cell sd-col-3" data-val="28880000">
                 <span class="wg">$28,880,000</span>
-                <span class="wm">5-16-99 / <b>1</b> / 3,210 / $8,996</span>
+                <span class="wm">5-16-99 / <b>1</b></span>
+                <span class="wth">3,210 / $8,996</span>
                 <span class="wch">−33.4%</span>
                 <span class="wgt">$87,978,427</span>
               </td>
               <td class="sd-wknd-cell sd-col-4" data-val="33050000">
                 <span class="wg">$33,050,000</span>
-                <span class="wm">5-13-01 / <b>1</b> / 3,401 / $9,718</span>
+                <span class="wm">5-13-01 / <b>1</b></span>
+                <span class="wth">3,401 / $9,718</span>
                 <span class="wch">−51.5%</span>
                 <span class="wgt">$117,960,000</span>
               </td>
               <td class="sd-wknd-cell sd-col-5" data-val="71410068">
                 <span class="wg">$71,410,068</span>
-                <span class="wm">5-12-02 / <b>1</b> / 3,615 / $19,754</span>
+                <span class="wm">5-12-02 / <b>1</b></span>
+                <span class="wth">3,615 / $19,754</span>
                 <span class="wch">−37.8%</span>
                 <span class="wgt">$225,372,949</span>
               </td>
@@ -394,31 +392,36 @@
               <td class="sd-wknd-label">3</td>
               <td class="sd-wknd-cell sd-col-1" data-val="18518000">
                 <span class="wg">$18,518,000</span>
-                <span class="wm">5-26-96 / <b>2</b> / 2,765 / $6,697</span>
+                <span class="wm">5-26-96 / <b>2</b></span>
+                <span class="wth">2,765 / $6,697</span>
                 <span class="wch">−21.6%</span>
                 <span class="wgt">$132,065,000</span>
               </td>
               <td class="sd-wknd-cell sd-col-2" data-val="13700000">
                 <span class="wg">$13,700,000</span>
-                <span class="wm">5-24-98 / <b>3</b> / 2,850 / $4,807</span>
+                <span class="wm">5-24-98 / <b>3</b></span>
+                <span class="wth">2,850 / $4,807</span>
                 <span class="wch">−35.3%</span>
                 <span class="wgt">$104,040,000</span>
               </td>
               <td class="sd-wknd-cell sd-col-3" data-val="17590000">
                 <span class="wg">$17,590,000</span>
-                <span class="wm">5-23-99 / <b>2</b> / 3,005 / $5,853</span>
+                <span class="wm">5-23-99 / <b>2</b></span>
+                <span class="wth">3,005 / $5,853</span>
                 <span class="wch">−39.1%</span>
                 <span class="wgt">$118,440,000</span>
               </td>
               <td class="sd-wknd-cell sd-col-4" data-val="21270000">
                 <span class="wg">$21,270,000</span>
-                <span class="wm">5-20-01 / <b>2</b> / 3,282 / $6,480</span>
+                <span class="wm">5-20-01 / <b>2</b></span>
+                <span class="wth">3,282 / $6,480</span>
                 <span class="wch">−35.7%</span>
                 <span class="wgt">$151,760,000</span>
               </td>
               <td class="sd-wknd-cell sd-col-5" data-val="45512462">
                 <span class="wg">$45,512,462</span>
-                <span class="wm">5-19-02 / <b>1</b> / 3,615 / $12,591</span>
+                <span class="wm">5-19-02 / <b>1</b></span>
+                <span class="wth">3,615 / $12,591</span>
                 <span class="wch">−36.3%</span>
                 <span class="wgt">$302,146,000</span>
               </td>
@@ -427,31 +430,36 @@
               <td class="sd-wknd-label">4</td>
               <td class="sd-wknd-cell sd-col-1" data-val="12505000">
                 <span class="wg">$12,505,000</span>
-                <span class="wm">6-2-96 / <b>2</b> / 2,765 / $4,522</span>
+                <span class="wm">6-2-96 / <b>2</b></span>
+                <span class="wth">2,765 / $4,522</span>
                 <span class="wch">−32.5%</span>
                 <span class="wgt">$162,000,000</span>
               </td>
               <td class="sd-wknd-cell sd-col-2" data-val="8600000">
                 <span class="wg">$8,600,000</span>
-                <span class="wm">5-31-98 / <b>4</b> / 2,500 / $3,440</span>
+                <span class="wm">5-31-98 / <b>4</b></span>
+                <span class="wth">2,500 / $3,440</span>
                 <span class="wch">−37.2%</span>
                 <span class="wgt">$122,000,000</span>
               </td>
               <td class="sd-wknd-cell sd-col-3" data-val="10400000">
                 <span class="wg">$10,400,000</span>
-                <span class="wm">5-30-99 / <b>3</b> / 2,650 / $3,924</span>
+                <span class="wm">5-30-99 / <b>3</b></span>
+                <span class="wth">2,650 / $3,924</span>
                 <span class="wch">−40.9%</span>
                 <span class="wgt">$138,000,000</span>
               </td>
               <td class="sd-wknd-cell sd-col-4" data-val="13400000">
                 <span class="wg">$13,400,000</span>
-                <span class="wm">5-27-01 / <b>3</b> / 2,900 / $4,620</span>
+                <span class="wm">5-27-01 / <b>3</b></span>
+                <span class="wth">2,900 / $4,620</span>
                 <span class="wch">−37.0%</span>
                 <span class="wgt">$173,490,000</span>
               </td>
               <td class="sd-wknd-cell sd-col-5" data-val="28509808">
                 <span class="wg">$28,509,808</span>
-                <span class="wm">5-26-02 / <b>2</b> / 3,515 / $8,112</span>
+                <span class="wm">5-26-02 / <b>2</b></span>
+                <span class="wth">3,515 / $8,112</span>
                 <span class="wch">−37.4%</span>
                 <span class="wgt">$346,564,000</span>
               </td>
@@ -460,31 +468,36 @@
               <td class="sd-wknd-label">5</td>
               <td class="sd-wknd-cell sd-col-1" data-val="8140000">
                 <span class="wg">$8,140,000</span>
-                <span class="wm">6-9-96 / <b>3</b> / 2,500 / $3,256</span>
+                <span class="wm">6-9-96 / <b>3</b></span>
+                <span class="wth">2,500 / $3,256</span>
                 <span class="wch">−34.9%</span>
                 <span class="wgt">$185,000,000</span>
               </td>
               <td class="sd-wknd-cell sd-col-2" data-val="5900000">
                 <span class="wg">$5,900,000</span>
-                <span class="wm">6-7-98 / <b>5</b> / 2,100 / $2,810</span>
+                <span class="wm">6-7-98 / <b>5</b></span>
+                <span class="wth">2,100 / $2,810</span>
                 <span class="wch">−31.4%</span>
                 <span class="wgt">$133,500,000</span>
               </td>
               <td class="sd-wknd-cell sd-col-3" data-val="6700000">
                 <span class="wg">$6,700,000</span>
-                <span class="wm">6-6-99 / <b>4</b> / 2,100 / $3,190</span>
+                <span class="wm">6-6-99 / <b>4</b></span>
+                <span class="wth">2,100 / $3,190</span>
                 <span class="wch">−35.6%</span>
                 <span class="wgt">$149,500,000</span>
               </td>
               <td class="sd-wknd-cell sd-col-4" data-val="8900000">
                 <span class="wg">$8,900,000</span>
-                <span class="wm">6-3-01 / <b>4</b> / 2,600 / $3,423</span>
+                <span class="wm">6-3-01 / <b>4</b></span>
+                <span class="wth">2,600 / $3,423</span>
                 <span class="wch">−33.6%</span>
                 <span class="wgt">$188,700,000</span>
               </td>
               <td class="sd-wknd-cell sd-col-5" data-val="17798631">
                 <span class="wg">$17,798,631</span>
-                <span class="wm">6-2-02 / <b>2</b> / 3,400 / $5,235</span>
+                <span class="wm">6-2-02 / <b>2</b></span>
+                <span class="wth">3,400 / $5,235</span>
                 <span class="wch">−37.6%</span>
                 <span class="wgt">$374,795,000</span>
               </td>
