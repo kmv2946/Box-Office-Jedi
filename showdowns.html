@@ -16,14 +16,40 @@
       color: #00239C;
       text-decoration: none;
     }
-    .sd-section-bar { height: 5px; background: #7F170E; margin-bottom: 10px; }
+    .sd-section-bar { height: 5px; background: #7F170E; margin-bottom: 0; }
+
+    /* ── Showdown selector ─────────────────────────────────────────── */
+    .sd-selector-bar {
+      display: flex;
+      background: #222;
+      padding: 0 16px;
+      gap: 2px;
+      align-items: flex-end;
+    }
+    .sd-selector-btn {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 10px;
+      padding: 5px 14px;
+      cursor: pointer;
+      color: #AAA;
+      background: #333;
+      border: none;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .sd-selector-btn:hover { color: #FFF; background: #444; }
+    .sd-selector-btn.active { color: #FFF; background: #7F170E; }
+
     .sd-title {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
       font-size: 24px;
       color: #7F170E;
       text-align: center;
-      margin: 10px 0 14px;
+      margin: 12px 0 14px;
     }
 
     /* ── Tab navigation ────────────────────────────────────────────── */
@@ -57,6 +83,8 @@
     }
 
     /* ── Panels ───────────────────────────────────────────────────── */
+    .sd-showdown { display: none; }
+    .sd-showdown.active { display: block; }
     .sd-panel { display: none; }
     .sd-panel.active { display: block; }
     .sd-wrap { padding: 0 16px 20px; overflow-x: auto; }
@@ -74,6 +102,8 @@
     .sd-col-1 { background: #FFFED1; }
     .sd-col-2 { background: #E4FCD1; }
     .sd-col-3 { background: #FBD9D8; }
+    .sd-col-4 { background: #D1EDFC; }
+    .sd-col-5 { background: #F0D1FC; }
 
     /* Poster + title header cell */
     .sd-head-cell {
@@ -84,8 +114,8 @@
       border-bottom: 2px solid #7F170E;
     }
     .sd-poster-placeholder {
-      width: 80px;
-      height: 118px;
+      width: 68px;
+      height: 100px;
       background: #CCCCCC;
       display: flex;
       align-items: center;
@@ -97,8 +127,8 @@
       border: 1px solid #BBBBBB;
     }
     .sd-poster {
-      width: 80px;
-      height: 118px;
+      width: 68px;
+      height: 100px;
       object-fit: cover;
       display: block;
       margin: 0 auto 5px;
@@ -113,6 +143,12 @@
       display: block;
       line-height: 1.3;
     }
+    .sd-movie-year {
+      font-family: Verdana, sans-serif;
+      font-size: 9px;
+      color: #666;
+      display: block;
+    }
     .sd-movie-title-link:hover { text-decoration: underline; }
 
     /* Row label (left column) */
@@ -123,7 +159,7 @@
       padding: 4px 8px;
       border: 1px solid #A8A8A8;
       background: #F0F0F0;
-      width: 120px;
+      width: 110px;
       vertical-align: middle;
     }
     .sd-wknd-label {
@@ -135,21 +171,20 @@
       border: 1px solid #A8A8A8;
       background: #F0F0F0;
       text-align: center;
-      width: 45px;
+      width: 40px;
       vertical-align: middle;
     }
-    /* top-left corner label */
     .sd-corner {
       background: #F0F0F0;
       border: 1px solid #A8A8A8;
       border-bottom: 2px solid #7F170E;
-      width: 120px;
+      width: 110px;
     }
     .sd-corner-wknd {
       background: #F0F0F0;
       border: 1px solid #A8A8A8;
       border-bottom: 2px solid #7F170E;
-      width: 45px;
+      width: 40px;
     }
 
     /* Data cells — summary */
@@ -157,7 +192,7 @@
       font-family: 'Times New Roman', Times, serif;
       font-size: 13px;
       color: #000;
-      padding: 4px 8px;
+      padding: 4px 6px;
       border: 1px solid #A8A8A8;
       text-align: center;
       vertical-align: middle;
@@ -178,7 +213,7 @@
       font-family: 'Times New Roman', Times, serif;
       font-size: 12px;
       color: #000;
-      padding: 4px 8px;
+      padding: 4px 6px;
       border: 1px solid #A8A8A8;
       text-align: center;
       vertical-align: top;
@@ -186,9 +221,9 @@
     }
     .wg  { font-size: 13px; display: block; }
     .wg.best { font-weight: bold; }
-    .wm  { font-size: 11px; color: #00239C; display: block; }
-    .wch { font-size: 11px; color: #CC0000; display: block; }
-    .wgt { font-size: 11px; display: block; }
+    .wm  { font-size: 10px; color: #00239C; display: block; }
+    .wch { font-size: 10px; color: #CC0000; display: block; }
+    .wgt { font-size: 10px; display: block; }
     .wpend { color: #999; font-style: italic; font-size: 11px; }
 
   </style>
@@ -231,216 +266,554 @@
 
     <div class="sd-page-header"><a href="showdowns.html">SHOWDOWNS</a></div>
     <div class="sd-section-bar"></div>
-    <div class="sd-title">MARIO SHOWDOWN</div>
 
-    <!-- Tabs -->
-    <div class="sd-tabs">
-      <a class="sd-tab active" href="#" onclick="switchTab(event,'summary')">Summary Stats</a>
-      <a class="sd-tab" href="#" onclick="switchTab(event,'weekend')">Weekend Box Office</a>
+    <!-- ══ Showdown selector ══ -->
+    <div class="sd-selector-bar">
+      <a class="sd-selector-btn active" href="#" onclick="switchShowdown(event,'mario')">Mario Showdown</a>
+      <a class="sd-selector-btn" href="#" onclick="switchShowdown(event,'summer')">Summer Giants</a>
     </div>
 
+    <div class="sd-title" id="sd-title">MARIO SHOWDOWN</div>
 
-    <!-- ══ SUMMARY STATS ══ -->
-    <div class="sd-panel active" id="panel-summary">
-      <div class="sd-wrap">
-        <table class="sd-table">
-          <thead>
-            <tr>
-              <th class="sd-corner"></th>
-              <th class="sd-head-cell sd-col-1">
-                <img class="sd-poster" src="https://image.tmdb.org/t/p/w342/eJGWx219ZcEMVQJhAgMiqo8tYY.jpg" alt="The Super Mario Galaxy Movie">
-                <a class="sd-movie-title-link" href="#">The Super Mario Galaxy Movie</a>
-              </th>
-              <th class="sd-head-cell sd-col-2">
-                <img class="sd-poster" src="https://image.tmdb.org/t/p/w342/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg" alt="The Super Mario Bros. Movie">
-                <a class="sd-movie-title-link" href="#">The Super Mario Bros. Movie</a>
-              </th>
-              <th class="sd-head-cell sd-col-3">
-                <img class="sd-poster" src="https://image.tmdb.org/t/p/w342/yFHHfHcUgGAxziP1C3lLt0q2T4s.jpg" alt="A Minecraft Movie">
-                <a class="sd-movie-title-link" href="#">A Minecraft Movie</a>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="sd-label">Genre</td>
-              <td class="sd-movie sd-col-1">Animation / Adventure</td>
-              <td class="sd-movie sd-col-2">Animation / Adventure</td>
-              <td class="sd-movie sd-col-3">Adventure / Comedy</td>
-            </tr>
-            <tr>
-              <td class="sd-label">Studio</td>
-              <td class="sd-movie sd-col-1"><a class="val-link" href="#">Universal / Illumination</a></td>
-              <td class="sd-movie sd-col-2"><a class="val-link" href="#">Universal / Illumination</a></td>
-              <td class="sd-movie sd-col-3"><a class="val-link" href="#">Warner Bros.</a></td>
-            </tr>
-            <tr>
-              <td class="sd-label">Release Date</td>
-              <td class="sd-movie sd-col-1"><a class="val-link" href="#">April 4, 2026</a></td>
-              <td class="sd-movie sd-col-2"><a class="val-link" href="#">April 5, 2023</a></td>
-              <td class="sd-movie sd-col-3"><a class="val-link" href="#">April 4, 2025</a></td>
-            </tr>
-            <tr>
-              <td class="sd-label">Opening Weekend</td>
-              <td class="sd-movie sd-col-1" data-val="131703340">$131,703,340</td>
-              <td class="sd-movie sd-col-2" data-val="146361245">$146,361,245</td>
-              <td class="sd-movie sd-col-3" data-val="131258000">$131,258,000</td>
-            </tr>
-            <tr>
-              <td class="sd-label">Domestic Gross</td>
-              <td class="sd-movie sd-col-1"><em>In release</em></td>
-              <td class="sd-movie sd-col-2" data-val="574934330">$574,934,330</td>
-              <td class="sd-movie sd-col-3" data-val="577100000">$577,100,000</td>
-            </tr>
-            <tr>
-              <td class="sd-label">Production Budget</td>
-              <td class="sd-movie sd-col-1">—</td>
-              <td class="sd-movie sd-col-2" data-val="100000000">$100 million</td>
-              <td class="sd-movie sd-col-3" data-val="150000000">$150 million</td>
-            </tr>
-            <tr>
-              <td class="sd-label">Running Time</td>
-              <td class="sd-movie sd-col-1">—</td>
-              <td class="sd-movie sd-col-2">1 hr. 32 min.</td>
-              <td class="sd-movie sd-col-3">1 hr. 41 min.</td>
-            </tr>
-            <tr>
-              <td class="sd-label">MPAA Rating</td>
-              <td class="sd-movie sd-col-1">PG</td>
-              <td class="sd-movie sd-col-2">PG</td>
-              <td class="sd-movie sd-col-3">PG</td>
-            </tr>
-          </tbody>
-        </table>
+
+    <!-- ════════════════════════════════════════════
+         SHOWDOWN 1: MARIO
+         ════════════════════════════════════════════ -->
+    <div class="sd-showdown active" id="showdown-mario">
+
+      <div class="sd-tabs">
+        <a class="sd-tab active" href="#" onclick="switchTab(event,'mario','summary')">Summary Stats</a>
+        <a class="sd-tab" href="#" onclick="switchTab(event,'mario','weekend')">Weekend Box Office</a>
       </div>
-    </div>
 
-
-    <!-- ══ WEEKEND BOX OFFICE ══ -->
-    <div class="sd-panel" id="panel-weekend">
-      <div class="sd-wrap">
-        <p style="font-family:Verdana,sans-serif;font-size:10px;color:#777;padding:6px 0 4px;text-align:center;">
-          Weekend Gross &nbsp;/&nbsp; Date &nbsp;/&nbsp; Rank &nbsp;/&nbsp; Theaters &nbsp;/&nbsp; Avg &nbsp;/&nbsp; % Change &nbsp;/&nbsp; Gross-to-Date
-        </p>
-        <table class="sd-table">
-          <thead>
-            <tr>
-              <th class="sd-corner-wknd"></th>
-              <th class="sd-head-cell sd-col-1">
-                <img class="sd-poster" src="https://image.tmdb.org/t/p/w342/eJGWx219ZcEMVQJhAgMiqo8tYY.jpg" alt="The Super Mario Galaxy Movie">
-                <a class="sd-movie-title-link" href="#">The Super Mario Galaxy Movie</a>
-              </th>
-              <th class="sd-head-cell sd-col-2">
-                <img class="sd-poster" src="https://image.tmdb.org/t/p/w342/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg" alt="The Super Mario Bros. Movie">
-                <a class="sd-movie-title-link" href="#">The Super Mario Bros. Movie</a>
-              </th>
-              <th class="sd-head-cell sd-col-3">
-                <img class="sd-poster" src="https://image.tmdb.org/t/p/w342/yFHHfHcUgGAxziP1C3lLt0q2T4s.jpg" alt="A Minecraft Movie">
-                <a class="sd-movie-title-link" href="#">A Minecraft Movie</a>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="sd-wknd-label">1</td>
-              <td class="sd-wknd-cell sd-col-1" data-val="131703340">
-                <span class="wg">$131,703,340</span>
-                <span class="wm">4-6-26 / <b>1</b> / 4,310 / $30,557</span>
-                <span class="wch">—</span>
-                <span class="wgt">$131,703,340</span>
-              </td>
-              <td class="sd-wknd-cell sd-col-2" data-val="146361245">
-                <span class="wg">$146,361,245</span>
-                <span class="wm">4-9-23 / <b>1</b> / 4,343 / $33,692</span>
-                <span class="wch">—</span>
-                <span class="wgt">$204,601,495</span>
-              </td>
-              <td class="sd-wknd-cell sd-col-3" data-val="131258000">
-                <span class="wg">$131,258,000</span>
-                <span class="wm">4-6-25 / <b>1</b> / 4,212 / $31,158</span>
-                <span class="wch">—</span>
-                <span class="wgt">$162,700,000</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="sd-wknd-label">2</td>
-              <td class="sd-wknd-cell sd-col-1" data-val="67000000">
-                <span class="wg">Est. ~$67M</span>
-                <span class="wm">4-13-26 / <b>1</b> / — / —</span>
-                <span class="wch">Est. −49%</span>
-                <span class="wgt">—</span>
-              </td>
-              <td class="sd-wknd-cell sd-col-2" data-val="87117540">
-                <span class="wg">$87,117,540</span>
-                <span class="wm">4-16-23 / <b>1</b> / 4,343 / $20,059</span>
-                <span class="wch">−40.5%</span>
-                <span class="wgt">$315,065,704</span>
-              </td>
-              <td class="sd-wknd-cell sd-col-3" data-val="78000000">
-                <span class="wg">$78,000,000</span>
-                <span class="wm">4-13-25 / <b>1</b> / 4,212 / $18,519</span>
-                <span class="wch">−51.8%</span>
-                <span class="wgt">$278,500,000</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="sd-wknd-label">3</td>
-              <td class="sd-wknd-cell sd-col-1" data-val="0">
-                <span class="wpend">Data pending</span>
-              </td>
-              <td class="sd-wknd-cell sd-col-2" data-val="51657860">
-                <span class="wg">$51,657,860</span>
-                <span class="wm">4-23-23 / <b>1</b> / 4,247 / $12,163</span>
-                <span class="wch">−40.7%</span>
-                <span class="wgt">$385,082,328</span>
-              </td>
-              <td class="sd-wknd-cell sd-col-3" data-val="44100000">
-                <span class="wg">$44,100,000</span>
-                <span class="wm">4-20-25 / <b>1</b> / 3,980 / $11,080</span>
-                <span class="wch">−43.5%</span>
-                <span class="wgt">$343,900,000</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="sd-wknd-label">4</td>
-              <td class="sd-wknd-cell sd-col-1" data-val="0">
-                <span class="wpend">Data pending</span>
-              </td>
-              <td class="sd-wknd-cell sd-col-2" data-val="35341279">
-                <span class="wg">$35,341,279</span>
-                <span class="wm">4-30-23 / <b>1</b> / 4,109 / $8,601</span>
-                <span class="wch">−31.6%</span>
-                <span class="wgt">$432,824,062</span>
-              </td>
-              <td class="sd-wknd-cell sd-col-3" data-val="27500000">
-                <span class="wg">$27,500,000</span>
-                <span class="wm">4-27-25 / <b>2</b> / 3,650 / $7,534</span>
-                <span class="wch">−37.6%</span>
-                <span class="wgt">$388,700,000</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="sd-wknd-label">5</td>
-              <td class="sd-wknd-cell sd-col-1" data-val="0">
-                <span class="wpend">Data pending</span>
-              </td>
-              <td class="sd-wknd-cell sd-col-2" data-val="22066095">
-                <span class="wg">$22,066,095</span>
-                <span class="wm">5-7-23 / <b>2</b> / 3,930 / $5,614</span>
-                <span class="wch">−37.6%</span>
-                <span class="wgt">$467,490,996</span>
-              </td>
-              <td class="sd-wknd-cell sd-col-3" data-val="19200000">
-                <span class="wg">$19,200,000</span>
-                <span class="wm">5-4-25 / <b>3</b> / 3,210 / $5,981</span>
-                <span class="wch">−30.2%</span>
-                <span class="wgt">$423,900,000</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <!-- MARIO — Summary -->
+      <div class="sd-panel active" id="panel-mario-summary">
+        <div class="sd-wrap">
+          <table class="sd-table">
+            <thead>
+              <tr>
+                <th class="sd-corner"></th>
+                <th class="sd-head-cell sd-col-1">
+                  <img class="sd-poster" src="https://image.tmdb.org/t/p/w342/eJGWx219ZcEMVQJhAgMiqo8tYY.jpg" alt="The Super Mario Galaxy Movie">
+                  <a class="sd-movie-title-link" href="#">The Super Mario Galaxy Movie</a>
+                  <span class="sd-movie-year">2026</span>
+                </th>
+                <th class="sd-head-cell sd-col-2">
+                  <img class="sd-poster" src="https://image.tmdb.org/t/p/w342/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg" alt="The Super Mario Bros. Movie">
+                  <a class="sd-movie-title-link" href="#">The Super Mario Bros. Movie</a>
+                  <span class="sd-movie-year">2023</span>
+                </th>
+                <th class="sd-head-cell sd-col-3">
+                  <img class="sd-poster" src="https://image.tmdb.org/t/p/w342/yFHHfHcUgGAxziP1C3lLt0q2T4s.jpg" alt="A Minecraft Movie">
+                  <a class="sd-movie-title-link" href="#">A Minecraft Movie</a>
+                  <span class="sd-movie-year">2025</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="sd-label">Genre</td>
+                <td class="sd-movie sd-col-1">Animation / Adventure</td>
+                <td class="sd-movie sd-col-2">Animation / Adventure</td>
+                <td class="sd-movie sd-col-3">Adventure / Comedy</td>
+              </tr>
+              <tr>
+                <td class="sd-label">Studio</td>
+                <td class="sd-movie sd-col-1"><a class="val-link" href="#">Universal / Illumination</a></td>
+                <td class="sd-movie sd-col-2"><a class="val-link" href="#">Universal / Illumination</a></td>
+                <td class="sd-movie sd-col-3"><a class="val-link" href="#">Warner Bros.</a></td>
+              </tr>
+              <tr>
+                <td class="sd-label">Release Date</td>
+                <td class="sd-movie sd-col-1">April 4, 2026</td>
+                <td class="sd-movie sd-col-2">April 5, 2023</td>
+                <td class="sd-movie sd-col-3">April 4, 2025</td>
+              </tr>
+              <tr>
+                <td class="sd-label">Opening Weekend</td>
+                <td class="sd-movie sd-col-1" data-val="131703340">$131,703,340</td>
+                <td class="sd-movie sd-col-2" data-val="146361245">$146,361,245</td>
+                <td class="sd-movie sd-col-3" data-val="131258000">$131,258,000</td>
+              </tr>
+              <tr>
+                <td class="sd-label">Domestic Gross</td>
+                <td class="sd-movie sd-col-1"><em>In release</em></td>
+                <td class="sd-movie sd-col-2" data-val="574934330">$574,934,330</td>
+                <td class="sd-movie sd-col-3" data-val="577100000">$577,100,000</td>
+              </tr>
+              <tr>
+                <td class="sd-label">Production Budget</td>
+                <td class="sd-movie sd-col-1">—</td>
+                <td class="sd-movie sd-col-2" data-val="100000000">$100 million</td>
+                <td class="sd-movie sd-col-3" data-val="150000000">$150 million</td>
+              </tr>
+              <tr>
+                <td class="sd-label">Running Time</td>
+                <td class="sd-movie sd-col-1">—</td>
+                <td class="sd-movie sd-col-2">1 hr. 32 min.</td>
+                <td class="sd-movie sd-col-3">1 hr. 41 min.</td>
+              </tr>
+              <tr>
+                <td class="sd-label">MPAA Rating</td>
+                <td class="sd-movie sd-col-1">PG</td>
+                <td class="sd-movie sd-col-2">PG</td>
+                <td class="sd-movie sd-col-3">PG</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+
+      <!-- MARIO — Weekend -->
+      <div class="sd-panel" id="panel-mario-weekend">
+        <div class="sd-wrap">
+          <p style="font-family:Verdana,sans-serif;font-size:10px;color:#777;padding:6px 0 4px;text-align:center;">
+            Weekend Gross &nbsp;/&nbsp; Date &nbsp;/&nbsp; Rank &nbsp;/&nbsp; Theaters &nbsp;/&nbsp; Avg &nbsp;/&nbsp; % Change &nbsp;/&nbsp; Gross-to-Date
+          </p>
+          <table class="sd-table">
+            <thead>
+              <tr>
+                <th class="sd-corner-wknd"></th>
+                <th class="sd-head-cell sd-col-1">
+                  <img class="sd-poster" src="https://image.tmdb.org/t/p/w342/eJGWx219ZcEMVQJhAgMiqo8tYY.jpg" alt="The Super Mario Galaxy Movie">
+                  <a class="sd-movie-title-link" href="#">The Super Mario Galaxy Movie</a>
+                  <span class="sd-movie-year">2026</span>
+                </th>
+                <th class="sd-head-cell sd-col-2">
+                  <img class="sd-poster" src="https://image.tmdb.org/t/p/w342/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg" alt="The Super Mario Bros. Movie">
+                  <a class="sd-movie-title-link" href="#">The Super Mario Bros. Movie</a>
+                  <span class="sd-movie-year">2023</span>
+                </th>
+                <th class="sd-head-cell sd-col-3">
+                  <img class="sd-poster" src="https://image.tmdb.org/t/p/w342/yFHHfHcUgGAxziP1C3lLt0q2T4s.jpg" alt="A Minecraft Movie">
+                  <a class="sd-movie-title-link" href="#">A Minecraft Movie</a>
+                  <span class="sd-movie-year">2025</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="sd-wknd-label">1</td>
+                <td class="sd-wknd-cell sd-col-1" data-val="131703340">
+                  <span class="wg">$131,703,340</span>
+                  <span class="wm">4-6-26 / <b>1</b> / 4,310 / $30,557</span>
+                  <span class="wch">—</span>
+                  <span class="wgt">$131,703,340</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-2" data-val="146361245">
+                  <span class="wg">$146,361,245</span>
+                  <span class="wm">4-9-23 / <b>1</b> / 4,343 / $33,692</span>
+                  <span class="wch">—</span>
+                  <span class="wgt">$204,601,495</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-3" data-val="131258000">
+                  <span class="wg">$131,258,000</span>
+                  <span class="wm">4-6-25 / <b>1</b> / 4,212 / $31,158</span>
+                  <span class="wch">—</span>
+                  <span class="wgt">$162,700,000</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="sd-wknd-label">2</td>
+                <td class="sd-wknd-cell sd-col-1" data-val="67000000">
+                  <span class="wg">Est. ~$67M</span>
+                  <span class="wm">4-13-26 / <b>1</b> / — / —</span>
+                  <span class="wch">Est. −49%</span>
+                  <span class="wgt">—</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-2" data-val="87117540">
+                  <span class="wg">$87,117,540</span>
+                  <span class="wm">4-16-23 / <b>1</b> / 4,343 / $20,059</span>
+                  <span class="wch">−40.5%</span>
+                  <span class="wgt">$315,065,704</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-3" data-val="78000000">
+                  <span class="wg">$78,000,000</span>
+                  <span class="wm">4-13-25 / <b>1</b> / 4,212 / $18,519</span>
+                  <span class="wch">−51.8%</span>
+                  <span class="wgt">$278,500,000</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="sd-wknd-label">3</td>
+                <td class="sd-wknd-cell sd-col-1"><span class="wpend">Data pending</span></td>
+                <td class="sd-wknd-cell sd-col-2" data-val="51657860">
+                  <span class="wg">$51,657,860</span>
+                  <span class="wm">4-23-23 / <b>1</b> / 4,247 / $12,163</span>
+                  <span class="wch">−40.7%</span>
+                  <span class="wgt">$385,082,328</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-3" data-val="44100000">
+                  <span class="wg">$44,100,000</span>
+                  <span class="wm">4-20-25 / <b>1</b> / 3,980 / $11,080</span>
+                  <span class="wch">−43.5%</span>
+                  <span class="wgt">$343,900,000</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="sd-wknd-label">4</td>
+                <td class="sd-wknd-cell sd-col-1"><span class="wpend">Data pending</span></td>
+                <td class="sd-wknd-cell sd-col-2" data-val="35341279">
+                  <span class="wg">$35,341,279</span>
+                  <span class="wm">4-30-23 / <b>1</b> / 4,109 / $8,601</span>
+                  <span class="wch">−31.6%</span>
+                  <span class="wgt">$432,824,062</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-3" data-val="27500000">
+                  <span class="wg">$27,500,000</span>
+                  <span class="wm">4-27-25 / <b>2</b> / 3,650 / $7,534</span>
+                  <span class="wch">−37.6%</span>
+                  <span class="wgt">$388,700,000</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="sd-wknd-label">5</td>
+                <td class="sd-wknd-cell sd-col-1"><span class="wpend">Data pending</span></td>
+                <td class="sd-wknd-cell sd-col-2" data-val="22066095">
+                  <span class="wg">$22,066,095</span>
+                  <span class="wm">5-7-23 / <b>2</b> / 3,930 / $5,614</span>
+                  <span class="wch">−37.6%</span>
+                  <span class="wgt">$467,490,996</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-3" data-val="19200000">
+                  <span class="wg">$19,200,000</span>
+                  <span class="wm">5-4-25 / <b>3</b> / 3,210 / $5,981</span>
+                  <span class="wch">−30.2%</span>
+                  <span class="wgt">$423,900,000</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div><!-- /showdown-mario -->
+
+
+    <!-- ════════════════════════════════════════════
+         SHOWDOWN 2: SUMMER GIANTS
+         ════════════════════════════════════════════ -->
+    <div class="sd-showdown" id="showdown-summer">
+
+      <div class="sd-tabs">
+        <a class="sd-tab active" href="#" onclick="switchTab(event,'summer','summary')">Summary Stats</a>
+        <a class="sd-tab" href="#" onclick="switchTab(event,'summer','weekend')">Weekend Box Office</a>
+      </div>
+
+      <!-- SUMMER — Summary -->
+      <div class="sd-panel active" id="panel-summer-summary">
+        <div class="sd-wrap">
+          <table class="sd-table" style="min-width:680px;">
+            <thead>
+              <tr>
+                <th class="sd-corner"></th>
+                <!-- TMDB IDs: Twister=664, Deep Impact=8656, The Mummy=564, Mummy Returns=1734, Spider-Man=557 -->
+                <th class="sd-head-cell sd-col-1">
+                  <div class="sd-poster-placeholder">POSTER</div>
+                  <a class="sd-movie-title-link" href="#">Twister</a>
+                  <span class="sd-movie-year">1996</span>
+                </th>
+                <th class="sd-head-cell sd-col-2">
+                  <div class="sd-poster-placeholder">POSTER</div>
+                  <a class="sd-movie-title-link" href="#">Deep Impact</a>
+                  <span class="sd-movie-year">1998</span>
+                </th>
+                <th class="sd-head-cell sd-col-3">
+                  <div class="sd-poster-placeholder">POSTER</div>
+                  <a class="sd-movie-title-link" href="#">The Mummy</a>
+                  <span class="sd-movie-year">1999</span>
+                </th>
+                <th class="sd-head-cell sd-col-4">
+                  <div class="sd-poster-placeholder">POSTER</div>
+                  <a class="sd-movie-title-link" href="#">The Mummy Returns</a>
+                  <span class="sd-movie-year">2001</span>
+                </th>
+                <th class="sd-head-cell sd-col-5">
+                  <div class="sd-poster-placeholder">POSTER</div>
+                  <a class="sd-movie-title-link" href="#">Spider-Man</a>
+                  <span class="sd-movie-year">2002</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="sd-label">Genre</td>
+                <td class="sd-movie sd-col-1">Action / Disaster</td>
+                <td class="sd-movie sd-col-2">Drama / Sci-Fi</td>
+                <td class="sd-movie sd-col-3">Action / Adventure</td>
+                <td class="sd-movie sd-col-4">Action / Adventure</td>
+                <td class="sd-movie sd-col-5">Action / Superhero</td>
+              </tr>
+              <tr>
+                <td class="sd-label">Studio</td>
+                <td class="sd-movie sd-col-1">Warner Bros. / Universal</td>
+                <td class="sd-movie sd-col-2">Paramount / DreamWorks</td>
+                <td class="sd-movie sd-col-3">Universal Pictures</td>
+                <td class="sd-movie sd-col-4">Universal Pictures</td>
+                <td class="sd-movie sd-col-5">Sony / Columbia</td>
+              </tr>
+              <tr>
+                <td class="sd-label">Release Date</td>
+                <td class="sd-movie sd-col-1">May 10, 1996</td>
+                <td class="sd-movie sd-col-2">May 8, 1998</td>
+                <td class="sd-movie sd-col-3">May 7, 1999</td>
+                <td class="sd-movie sd-col-4">May 4, 2001</td>
+                <td class="sd-movie sd-col-5">May 3, 2002</td>
+              </tr>
+              <tr>
+                <td class="sd-label">Opening Weekend</td>
+                <td class="sd-movie sd-col-1" data-val="41059405">$41,059,405</td>
+                <td class="sd-movie sd-col-2" data-val="41152394">$41,152,394</td>
+                <td class="sd-movie sd-col-3" data-val="43369635">$43,369,635</td>
+                <td class="sd-movie sd-col-4" data-val="68139035">$68,139,035</td>
+                <td class="sd-movie sd-col-5" data-val="114844116">$114,844,116</td>
+              </tr>
+              <tr>
+                <td class="sd-label">Domestic Gross</td>
+                <td class="sd-movie sd-col-1" data-val="241721524">$241,721,524</td>
+                <td class="sd-movie sd-col-2" data-val="140464664">$140,464,664</td>
+                <td class="sd-movie sd-col-3" data-val="155385488">$155,385,488</td>
+                <td class="sd-movie sd-col-4" data-val="202019785">$202,019,785</td>
+                <td class="sd-movie sd-col-5" data-val="403706375">$403,706,375</td>
+              </tr>
+              <tr>
+                <td class="sd-label">Production Budget</td>
+                <td class="sd-movie sd-col-1" data-val="92000000">$92 million</td>
+                <td class="sd-movie sd-col-2" data-val="80000000">$80 million</td>
+                <td class="sd-movie sd-col-3" data-val="80000000">$80 million</td>
+                <td class="sd-movie sd-col-4" data-val="98000000">$98 million</td>
+                <td class="sd-movie sd-col-5" data-val="139000000">$139 million</td>
+              </tr>
+              <tr>
+                <td class="sd-label">Running Time</td>
+                <td class="sd-movie sd-col-1">1 hr. 53 min.</td>
+                <td class="sd-movie sd-col-2">2 hr. 01 min.</td>
+                <td class="sd-movie sd-col-3">2 hr. 04 min.</td>
+                <td class="sd-movie sd-col-4">2 hr. 10 min.</td>
+                <td class="sd-movie sd-col-5">2 hr. 01 min.</td>
+              </tr>
+              <tr>
+                <td class="sd-label">MPAA Rating</td>
+                <td class="sd-movie sd-col-1">PG-13</td>
+                <td class="sd-movie sd-col-2">PG-13</td>
+                <td class="sd-movie sd-col-3">PG-13</td>
+                <td class="sd-movie sd-col-4">PG-13</td>
+                <td class="sd-movie sd-col-5">PG-13</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SUMMER — Weekend -->
+      <div class="sd-panel" id="panel-summer-weekend">
+        <div class="sd-wrap">
+          <p style="font-family:Verdana,sans-serif;font-size:10px;color:#777;padding:6px 0 4px;text-align:center;">
+            Weekend Gross &nbsp;/&nbsp; Date &nbsp;/&nbsp; Rank &nbsp;/&nbsp; Theaters &nbsp;/&nbsp; Avg &nbsp;/&nbsp; % Change &nbsp;/&nbsp; Gross-to-Date
+          </p>
+          <table class="sd-table" style="min-width:680px;">
+            <thead>
+              <tr>
+                <th class="sd-corner-wknd"></th>
+                <th class="sd-head-cell sd-col-1">
+                  <div class="sd-poster-placeholder">POSTER</div>
+                  <a class="sd-movie-title-link" href="#">Twister</a>
+                  <span class="sd-movie-year">1996</span>
+                </th>
+                <th class="sd-head-cell sd-col-2">
+                  <div class="sd-poster-placeholder">POSTER</div>
+                  <a class="sd-movie-title-link" href="#">Deep Impact</a>
+                  <span class="sd-movie-year">1998</span>
+                </th>
+                <th class="sd-head-cell sd-col-3">
+                  <div class="sd-poster-placeholder">POSTER</div>
+                  <a class="sd-movie-title-link" href="#">The Mummy</a>
+                  <span class="sd-movie-year">1999</span>
+                </th>
+                <th class="sd-head-cell sd-col-4">
+                  <div class="sd-poster-placeholder">POSTER</div>
+                  <a class="sd-movie-title-link" href="#">The Mummy Returns</a>
+                  <span class="sd-movie-year">2001</span>
+                </th>
+                <th class="sd-head-cell sd-col-5">
+                  <div class="sd-poster-placeholder">POSTER</div>
+                  <a class="sd-movie-title-link" href="#">Spider-Man</a>
+                  <span class="sd-movie-year">2002</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="sd-wknd-label">1</td>
+                <td class="sd-wknd-cell sd-col-1" data-val="41059405">
+                  <span class="wg">$41,059,405</span>
+                  <span class="wm">5-12-96 / <b>1</b> / 2,403 / $17,087</span>
+                  <span class="wch">—</span>
+                  <span class="wgt">$41,059,405</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-2" data-val="41152394">
+                  <span class="wg">$41,152,394</span>
+                  <span class="wm">5-10-98 / <b>1</b> / 3,004 / $13,700</span>
+                  <span class="wch">—</span>
+                  <span class="wgt">$41,152,394</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-3" data-val="43369635">
+                  <span class="wg">$43,369,635</span>
+                  <span class="wm">5-9-99 / <b>1</b> / 3,210 / $13,511</span>
+                  <span class="wch">—</span>
+                  <span class="wgt">$43,369,635</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-4" data-val="68139035">
+                  <span class="wg">$68,139,035</span>
+                  <span class="wm">5-6-01 / <b>1</b> / 3,401 / $20,035</span>
+                  <span class="wch">—</span>
+                  <span class="wgt">$68,139,035</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-5" data-val="114844116">
+                  <span class="wg">$114,844,116</span>
+                  <span class="wm">5-5-02 / <b>1</b> / 3,615 / $31,769</span>
+                  <span class="wch">—</span>
+                  <span class="wgt">$114,844,116</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="sd-wknd-label">2</td>
+                <td class="sd-wknd-cell sd-col-1" data-val="23627872">
+                  <span class="wg">$23,627,872</span>
+                  <span class="wm">5-19-96 / <b>2</b> / 2,765 / $8,546</span>
+                  <span class="wch">−42.5%</span>
+                  <span class="wgt">$92,831,618</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-2" data-val="21177961">
+                  <span class="wg">$21,177,961</span>
+                  <span class="wm">5-17-98 / <b>2</b> / 3,004 / $7,050</span>
+                  <span class="wch">−48.5%</span>
+                  <span class="wgt">$79,004,745</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-3" data-val="28880000">
+                  <span class="wg">$28,880,000</span>
+                  <span class="wm">5-16-99 / <b>1</b> / 3,210 / $8,996</span>
+                  <span class="wch">−33.4%</span>
+                  <span class="wgt">$87,978,427</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-4" data-val="33050000">
+                  <span class="wg">$33,050,000</span>
+                  <span class="wm">5-13-01 / <b>1</b> / 3,401 / $9,718</span>
+                  <span class="wch">−51.5%</span>
+                  <span class="wgt">$117,960,000</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-5" data-val="71410068">
+                  <span class="wg">$71,410,068</span>
+                  <span class="wm">5-12-02 / <b>1</b> / 3,615 / $19,754</span>
+                  <span class="wch">−37.8%</span>
+                  <span class="wgt">$225,372,949</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="sd-wknd-label">3</td>
+                <td class="sd-wknd-cell sd-col-1" data-val="18518000">
+                  <span class="wg">$18,518,000</span>
+                  <span class="wm">5-26-96 / <b>2</b> / 2,765 / $6,697</span>
+                  <span class="wch">−21.6%</span>
+                  <span class="wgt">$132,065,000</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-2" data-val="13700000">
+                  <span class="wg">$13,700,000</span>
+                  <span class="wm">5-24-98 / <b>3</b> / 2,850 / $4,807</span>
+                  <span class="wch">−35.3%</span>
+                  <span class="wgt">$104,040,000</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-3" data-val="17590000">
+                  <span class="wg">$17,590,000</span>
+                  <span class="wm">5-23-99 / <b>2</b> / 3,005 / $5,853</span>
+                  <span class="wch">−39.1%</span>
+                  <span class="wgt">$118,440,000</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-4" data-val="21270000">
+                  <span class="wg">$21,270,000</span>
+                  <span class="wm">5-20-01 / <b>2</b> / 3,282 / $6,480</span>
+                  <span class="wch">−35.7%</span>
+                  <span class="wgt">$151,760,000</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-5" data-val="45512462">
+                  <span class="wg">$45,512,462</span>
+                  <span class="wm">5-19-02 / <b>1</b> / 3,615 / $12,591</span>
+                  <span class="wch">−36.3%</span>
+                  <span class="wgt">$302,146,000</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="sd-wknd-label">4</td>
+                <td class="sd-wknd-cell sd-col-1" data-val="12505000">
+                  <span class="wg">$12,505,000</span>
+                  <span class="wm">6-2-96 / <b>2</b> / 2,765 / $4,522</span>
+                  <span class="wch">−32.5%</span>
+                  <span class="wgt">$162,000,000</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-2" data-val="8600000">
+                  <span class="wg">$8,600,000</span>
+                  <span class="wm">5-31-98 / <b>4</b> / 2,500 / $3,440</span>
+                  <span class="wch">−37.2%</span>
+                  <span class="wgt">$122,000,000</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-3" data-val="10400000">
+                  <span class="wg">$10,400,000</span>
+                  <span class="wm">5-30-99 / <b>3</b> / 2,650 / $3,924</span>
+                  <span class="wch">−40.9%</span>
+                  <span class="wgt">$138,000,000</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-4" data-val="13400000">
+                  <span class="wg">$13,400,000</span>
+                  <span class="wm">5-27-01 / <b>3</b> / 2,900 / $4,620</span>
+                  <span class="wch">−37.0%</span>
+                  <span class="wgt">$173,490,000</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-5" data-val="28509808">
+                  <span class="wg">$28,509,808</span>
+                  <span class="wm">5-26-02 / <b>2</b> / 3,515 / $8,112</span>
+                  <span class="wch">−37.4%</span>
+                  <span class="wgt">$346,564,000</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="sd-wknd-label">5</td>
+                <td class="sd-wknd-cell sd-col-1" data-val="8140000">
+                  <span class="wg">$8,140,000</span>
+                  <span class="wm">6-9-96 / <b>3</b> / 2,500 / $3,256</span>
+                  <span class="wch">−34.9%</span>
+                  <span class="wgt">$185,000,000</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-2" data-val="5900000">
+                  <span class="wg">$5,900,000</span>
+                  <span class="wm">6-7-98 / <b>5</b> / 2,100 / $2,810</span>
+                  <span class="wch">−31.4%</span>
+                  <span class="wgt">$133,500,000</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-3" data-val="6700000">
+                  <span class="wg">$6,700,000</span>
+                  <span class="wm">6-6-99 / <b>4</b> / 2,100 / $3,190</span>
+                  <span class="wch">−35.6%</span>
+                  <span class="wgt">$149,500,000</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-4" data-val="8900000">
+                  <span class="wg">$8,900,000</span>
+                  <span class="wm">6-3-01 / <b>4</b> / 2,600 / $3,423</span>
+                  <span class="wch">−33.6%</span>
+                  <span class="wgt">$188,700,000</span>
+                </td>
+                <td class="sd-wknd-cell sd-col-5" data-val="17798631">
+                  <span class="wg">$17,798,631</span>
+                  <span class="wm">6-2-02 / <b>2</b> / 3,400 / $5,235</span>
+                  <span class="wch">−37.6%</span>
+                  <span class="wgt">$374,795,000</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div><!-- /showdown-summer -->
 
   </main>
 
@@ -449,8 +822,14 @@
     <div class="widget">
       <div class="widget-header">SHOWDOWNS</div>
       <div class="widget-body">
-        <p><strong>Mario Showdown</strong><br>
-        <em>Galaxy vs. Bros. vs. Minecraft</em></p>
+        <p>
+          <strong><a href="showdowns.html">Mario Showdown</a></strong><br>
+          <em style="font-size:11px;">Galaxy vs. Bros. vs. Minecraft</em>
+        </p>
+        <p style="margin-top:8px;">
+          <strong><a href="showdowns.html#summer">Summer Giants</a></strong><br>
+          <em style="font-size:11px;">Twister · Deep Impact · The Mummy · Spider-Man</em>
+        </p>
       </div>
     </div>
     <div class="widget">
@@ -489,39 +868,55 @@
     if (e.key === 'Enter') doSearch();
   });
 
-  function switchTab(e, panel) {
+  const SHOWDOWN_TITLES = {
+    mario:  'MARIO SHOWDOWN',
+    summer: 'SUMMER GIANTS'
+  };
+
+  function switchShowdown(e, id) {
     e.preventDefault();
-    document.querySelectorAll('.sd-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.sd-selector-btn').forEach(b => b.classList.remove('active'));
     e.target.classList.add('active');
-    document.querySelectorAll('.sd-panel').forEach(p => p.classList.remove('active'));
-    document.getElementById('panel-' + panel).classList.add('active');
+    document.querySelectorAll('.sd-showdown').forEach(s => s.classList.remove('active'));
+    document.getElementById('showdown-' + id).classList.add('active');
+    document.getElementById('sd-title').textContent = SHOWDOWN_TITLES[id] || '';
+    applyBolding();
   }
 
-  // Per-metric bolding: bold only the highest data-val in each row
+  function switchTab(e, showdown, panel) {
+    e.preventDefault();
+    const sd = document.getElementById('showdown-' + showdown);
+    sd.querySelectorAll('.sd-tab').forEach(t => t.classList.remove('active'));
+    e.target.classList.add('active');
+    sd.querySelectorAll('.sd-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-' + showdown + '-' + panel).classList.add('active');
+    applyBolding();
+  }
+
+  // Bold the highest data-val in each row
   function applyBolding() {
-    document.querySelectorAll('.sd-table tbody tr').forEach(function(row) {
+    document.querySelectorAll('.sd-showdown.active .sd-table tbody tr').forEach(function(row) {
       var cells = row.querySelectorAll('[data-val]');
       if (!cells.length) return;
       var vals = Array.from(cells).map(function(c) { return parseFloat(c.dataset.val) || 0; });
       var max = Math.max.apply(null, vals);
       if (max <= 0) return;
+      cells.forEach(function(c) { c.classList.remove('best'); var wg = c.querySelector('.wg'); if (wg) wg.classList.remove('best'); });
       cells.forEach(function(c, i) {
         if (vals[i] === max) {
-          // Summary table: bold the cell itself
-          if (c.classList.contains('sd-movie')) {
-            c.classList.add('best');
-          }
-          // Weekend table: bold the .wg span inside the cell
-          if (c.classList.contains('sd-wknd-cell')) {
-            var wg = c.querySelector('.wg');
-            if (wg) wg.classList.add('best');
-          }
+          if (c.classList.contains('sd-movie')) c.classList.add('best');
+          if (c.classList.contains('sd-wknd-cell')) { var wg = c.querySelector('.wg'); if (wg) wg.classList.add('best'); }
         }
       });
     });
   }
 
-  applyBolding();
+  // Check URL hash on load to auto-switch showdown
+  if (window.location.hash === '#summer') {
+    document.querySelector('[onclick*="summer"]').click();
+  } else {
+    applyBolding();
+  }
 </script>
 
 </body>
