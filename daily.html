@@ -169,20 +169,21 @@
     .dc-rank {
       font-family: 'Times New Roman', Times, serif;
       font-weight: normal;
-      font-size: 13px;
+      font-size: 16px;
       color: #000;
       text-align: center;
-      width: 34px;
-      padding: 6px 4px;
+      width: 44px;
+      padding: 10px 4px;
       white-space: nowrap;
     }
 
     /* Title cell */
     .dc-title-cell {
-      padding: 5px 10px;
+      padding: 10px 12px;
       min-width: 160px;
       border-left: 1px solid #DDDDDD;
       text-align: center;
+      vertical-align: middle;
     }
     .dc-title-link {
       font-family: Verdana, Geneva, sans-serif;
@@ -201,30 +202,31 @@
       font-size: 10px;
       color: #000;
       display: block;
-      margin-top: 2px;
+      margin-top: 3px;
     }
     .dc-theaters {
       font-family: 'Times New Roman', Times, serif;
       font-weight: normal;
-      font-size: 12px;
+      font-size: 13px;
       color: #000;
       display: block;
-      margin-top: 1px;
+      margin-top: 6px;
     }
 
     /* Day data cell */
     .dc-day-cell {
-      padding: 5px 10px;
+      padding: 10px 10px;
       text-align: center;
       min-width: 120px;
-      line-height: 1.55;
+      line-height: 1.5;
       border-left: 1px solid #DDDDDD;
+      vertical-align: middle;
     }
     .dc-day-cell.na-cell {
       text-align: center;
       color: #bbb;
       font-family: Verdana, Geneva, sans-serif;
-      font-size: 12px;
+      font-size: 13px;
       min-width: 80px;
     }
 
@@ -238,13 +240,14 @@
 
     .dc-gross {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 13px;
+      font-size: 15px;
       color: #00007B;
       display: block;
+      margin-bottom: 5px;
     }
     .dc-change-avg {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 11px;
+      font-size: 12px;
       display: block;
     }
     .dc-change-pos { color: #00239C; }   /* Blue for increase */
@@ -252,12 +255,12 @@
     .dc-change-neu { color: #555; }
     .dc-avg {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 11px;
+      font-size: 12px;
       color: #000;
     }
     .dc-total-day {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 11px;
+      font-size: 12px;
       color: #75147C;
       display: block;
     }
@@ -388,13 +391,6 @@
       </a>
     </div>
 
-    <!-- Date navigation -->
-    <div class="daily-nav">
-      <a class="daily-nav-arrow" id="nav-prev" href="#">&lt;&lt; PREVIOUS</a>
-      <span class="daily-nav-label">Stay tuned for daily updates...</span>
-      <a class="daily-nav-arrow disabled" id="nav-next" href="#">NEXT &gt;&gt;</a>
-    </div>
-
     <!-- Related Box Office Links -->
     <div class="daily-related-links">
       <span class="rl-heading">RELATED BOX OFFICE LINKS</span>
@@ -406,6 +402,13 @@
         <a href="alltime.html">All Time Grosses</a><span class="rl-sep">|</span>
         <a href="forecast.html">The Forecast</a>
       </span>
+    </div>
+
+    <!-- Date navigation -->
+    <div class="daily-nav">
+      <a class="daily-nav-arrow" id="nav-prev" href="#">&lt;&lt; PREVIOUS</a>
+      <span class="daily-nav-label">Stay tuned for daily updates...</span>
+      <a class="daily-nav-arrow disabled" id="nav-next" href="#">NEXT &gt;&gt;</a>
     </div>
 
     <div class="daily-estimates-notice" id="estimates-notice" style="display:none;">
