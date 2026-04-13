@@ -9,15 +9,30 @@
 
     /* ── Daily page header ───────────────────────────────────────── */
     .daily-page-header {
-      padding: 8px 12px 0;
+      padding: 8px 12px 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
     .daily-page-title {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
       font-size: 22px;
       color: #00239C;
-      margin: 0 0 6px;
+      margin: 0;
     }
+    .daily-print-link {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+      color: #000;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+    .daily-print-link:hover { text-decoration: underline; }
+    .daily-print-link img { vertical-align: middle; }
 
     /* ── Date navigation bar ─────────────────────────────────────── */
     .daily-nav {
@@ -44,10 +59,7 @@
       cursor: default;
       pointer-events: none;
     }
-    .daily-nav-sep {
-      color: #999;
-      padding: 0 4px;
-    }
+    .daily-nav-sep { color: #999; padding: 0 4px; }
     .daily-nav-label {
       font-weight: bold;
       color: #000;
@@ -67,7 +79,7 @@
 
     /* ── Main chart table ────────────────────────────────────────── */
     .daily-chart-wrap {
-      padding: 0 12px 10px;
+      padding: 0 12px 6px;
       overflow-x: auto;
     }
     .daily-chart-table {
@@ -88,17 +100,33 @@
       text-align: center;
       border-left: 1px solid #3355BB;
       white-space: nowrap;
+      cursor: pointer;
+      user-select: none;
+    }
+    .daily-chart-table thead tr.day-header-row th:hover {
+      background: #1a3ab5;
+    }
+    .daily-chart-table thead tr.day-header-row th.col-selected {
+      text-decoration: underline;
     }
     .daily-chart-table thead tr.day-header-row th.dc-rank-head {
       background: #444;
       text-align: center;
       border-left: none;
-      width: 30px;
+      width: 34px;
+      cursor: default;
+    }
+    .daily-chart-table thead tr.day-header-row th.dc-rank-head:hover {
+      background: #444;
     }
     .daily-chart-table thead tr.day-header-row th.dc-title-head {
       background: #444;
       text-align: left;
       border-left: 1px solid #666;
+      cursor: default;
+    }
+    .daily-chart-table thead tr.day-header-row th.dc-title-head:hover {
+      background: #444;
     }
 
     /* Data rows */
@@ -114,12 +142,12 @@
 
     /* Rank cell */
     .dc-rank {
-      font-family: Verdana, Geneva, sans-serif;
-      font-weight: bold;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
       font-size: 13px;
       color: #000;
       text-align: center;
-      width: 30px;
+      width: 34px;
       padding: 6px 4px;
       white-space: nowrap;
     }
@@ -131,27 +159,28 @@
       border-left: 1px solid #DDDDDD;
     }
     .dc-title-link {
-      font-family: 'Times New Roman', Times, serif;
+      font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 14px;
+      font-size: 12px;
       color: #00239C;
       text-decoration: none;
       text-transform: uppercase;
+      display: block;
     }
-    .dc-title-link:hover { text-decoration: underline; color: #0000F5; }
+    .dc-title-link:hover { text-decoration: underline; }
     .dc-studio {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: normal;
       font-size: 10px;
-      color: #666;
+      color: #000;
       display: block;
-      margin-top: 1px;
+      margin-top: 2px;
     }
     .dc-theaters {
       font-family: 'Times New Roman', Times, serif;
       font-weight: normal;
       font-size: 12px;
-      color: #333;
+      color: #000;
       display: block;
       margin-top: 1px;
     }
@@ -161,7 +190,7 @@
       padding: 5px 10px;
       text-align: right;
       min-width: 120px;
-      line-height: 1.5;
+      line-height: 1.55;
       border-left: 1px solid #DDDDDD;
     }
     .dc-day-cell.na-cell {
@@ -171,6 +200,15 @@
       font-size: 12px;
       min-width: 80px;
     }
+
+    /* Selected column: all values bold */
+    .dc-day-cell.col-selected .dc-gross,
+    .dc-day-cell.col-selected .dc-change-avg,
+    .dc-day-cell.col-selected .dc-change-avg span,
+    .dc-day-cell.col-selected .dc-total-day {
+      font-weight: bold;
+    }
+
     .dc-gross {
       font-family: 'Times New Roman', Times, serif;
       font-size: 13px;
@@ -182,10 +220,14 @@
       font-size: 11px;
       display: block;
     }
-    .dc-change-pos { color: #008000; }
-    .dc-change-neg { color: #CC0000; }
+    .dc-change-pos { color: #00239C; }   /* Blue for increase */
+    .dc-change-neg { color: #CC0000; }   /* Red for decrease  */
     .dc-change-neu { color: #555; }
-    .dc-avg { color: #555; }
+    .dc-avg {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 11px;
+      color: #000;
+    }
     .dc-total-day {
       font-family: 'Times New Roman', Times, serif;
       font-size: 11px;
@@ -198,7 +240,7 @@
       font-family: Verdana, Geneva, sans-serif;
       font-size: 11px;
       color: #555;
-      margin: 4px 12px 12px;
+      margin: 4px 12px 10px;
     }
 
     /* ── KEY section ─────────────────────────────────────────────── */
@@ -211,29 +253,56 @@
       background: #DCDCDC;
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 12px;
-      padding: 3px 10px;
+      font-size: 13px;
+      padding: 4px 10px;
       border-bottom: 1px solid #AAAAAA;
       text-align: center;
     }
     .daily-key-table { border-collapse: collapse; }
     .daily-key-table td {
-      padding: 6px 16px;
+      padding: 8px 20px;
       vertical-align: top;
-      font-size: 12px;
       border-right: 1px solid #AAAAAA;
     }
     .daily-key-table td:last-child { border-right: none; }
-    .key-label {
+    .key-title {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 12px;
+      font-size: 13px;
       color: #000;
       display: block;
     }
-    .key-sub {
+    .key-studio {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 11px;
+      color: #000;
+      display: block;
+      margin-top: 2px;
+    }
+    .key-theaters {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      color: #000;
+      display: block;
+      margin-top: 6px;
+    }
+    .key-gross {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      color: #00007B;
+      display: block;
+    }
+    .key-change-avg {
       font-family: 'Times New Roman', Times, serif;
       font-size: 12px;
+      display: block;
+      margin-top: 6px;
+    }
+    .key-total {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 12px;
+      color: #75147C;
       display: block;
       margin-top: 2px;
     }
@@ -286,7 +355,10 @@
   <main class="main-content">
 
     <div class="daily-page-header">
-      <h1 class="daily-page-title">DAILY BOX OFFICE</h1>
+      <h1 class="daily-page-title">&gt; DAILY BOX OFFICE</h1>
+      <a href="javascript:window.print()" class="daily-print-link">
+        <img src="article_print.gif" alt="Print"> Print
+      </a>
     </div>
 
     <!-- Date navigation -->
@@ -307,8 +379,8 @@
       <table class="daily-chart-table" id="daily-chart-table">
         <thead>
           <tr class="day-header-row" id="day-header-row">
-            <th class="dc-rank-head">#</th>
-            <th class="dc-title-head">Title / Studio</th>
+            <th class="dc-rank-head">Rank*</th>
+            <th class="dc-title-head">Title<br><span style="font-size:10px;font-weight:normal;">(Click to view chart)</span></th>
           </tr>
         </thead>
         <tbody id="daily-chart-body">
@@ -317,7 +389,7 @@
       </table>
     </div>
 
-    <p class="daily-footnote">* Ranked by the most recent day shown. Figures in thousands.</p>
+    <p class="daily-footnote">* Ranked by selected day. Click on the day at the top of the chart to sort by that day.</p>
 
     <!-- KEY -->
     <div class="daily-key-wrap">
@@ -325,14 +397,14 @@
       <table class="daily-key-table">
         <tr>
           <td>
-            <span class="key-label">TITLE</span>
-            <span class="key-sub" style="color:#666;">Studio</span>
-            <span class="key-sub" style="color:#333;">Theaters</span>
+            <span class="key-title">TITLE</span>
+            <span class="key-studio">Distributor</span>
+            <span class="key-theaters">Theater Count</span>
           </td>
           <td>
-            <span class="key-sub" style="color:#00007B;">Daily Gross</span>
-            <span class="key-sub"><span class="dc-change-neg">% Change</span> / <span class="dc-avg">Avg</span></span>
-            <span class="key-sub" style="color:#75147C;">Total to Date / Day #</span>
+            <span class="key-gross">Daily Gross</span>
+            <span class="key-change-avg"><span style="color:#CC0000;">% Change</span> / <span style="color:#000;">Average</span></span>
+            <span class="key-total">Total Gross / Day #</span>
           </td>
         </tr>
       </table>
@@ -414,7 +486,7 @@
   }
   function fmtTheaters(n) {
     if (!n) return null;
-    return n.toLocaleString('en-US') + ' theaters';
+    return n.toLocaleString('en-US');
   }
 
   // ── Date helpers ────────────────────────────────────────────────
@@ -427,37 +499,22 @@
       String(d.getMonth() + 1).padStart(2, '0') + '-' +
       String(d.getDate()).padStart(2, '0');
   }
-  function todayIso() {
-    return dateToIso(new Date());
-  }
+  function todayIso() { return dateToIso(new Date()); }
 
-  // Day of week: 0=Sun, 1=Mon, ..., 6=Sat
-  function isWeekendDay(iso) {
-    const dow = isoToDateObj(iso).getDay();
-    return dow === 0 || dow === 5 || dow === 6; // Fri=5, Sat=6, Sun=0
-  }
-
-  // Return all dates in the same display group as the given date
-  // Weekend: Fri, Sat, Sun  |  Weekday: Mon, Tue, Wed, Thu
   function getGroupDates(iso) {
     const d = isoToDateObj(iso);
-    const dow = d.getDay(); // 0=Sun
-    let anchor;
-    let offsets;
-
+    const dow = d.getDay();
+    let anchor, offsets;
     if (dow === 0 || dow === 5 || dow === 6) {
-      // Weekend group: find Friday
       if (dow === 5)      anchor = new Date(d);
       else if (dow === 6) { anchor = new Date(d); anchor.setDate(d.getDate() - 1); }
-      else                { anchor = new Date(d); anchor.setDate(d.getDate() - 2); } // Sunday
-      offsets = [0, 1, 2]; // Fri, Sat, Sun
+      else                { anchor = new Date(d); anchor.setDate(d.getDate() - 2); }
+      offsets = [0, 1, 2];
     } else {
-      // Weekday group: find Monday
       anchor = new Date(d);
-      anchor.setDate(d.getDate() - (dow - 1)); // Monday
-      offsets = [0, 1, 2, 3]; // Mon, Tue, Wed, Thu
+      anchor.setDate(d.getDate() - (dow - 1));
+      offsets = [0, 1, 2, 3];
     }
-
     return offsets.map(i => {
       const dd = new Date(anchor);
       dd.setDate(anchor.getDate() + i);
@@ -465,72 +522,46 @@
     });
   }
 
-  // Return a date in the previous group
   function prevGroupDate(iso) {
     const d = isoToDateObj(iso);
     const dow = d.getDay();
     const isWeekend = (dow === 0 || dow === 5 || dow === 6);
     const groupDates = getGroupDates(iso);
     const firstDate = isoToDateObj(groupDates[0]);
-
-    if (isWeekend) {
-      // From Fri anchor, prev group = weekday group starting Mon (4 days before Fri)
-      const prev = new Date(firstDate);
-      prev.setDate(firstDate.getDate() - 4);
-      return dateToIso(prev); // This is the Monday
-    } else {
-      // From Mon anchor, prev group = weekend group starting Fri (3 days before Mon)
-      const prev = new Date(firstDate);
-      prev.setDate(firstDate.getDate() - 3);
-      return dateToIso(prev); // This is the Friday
-    }
+    const prev = new Date(firstDate);
+    prev.setDate(firstDate.getDate() - (isWeekend ? 4 : 3));
+    return dateToIso(prev);
   }
 
-  // Return a date in the next group
   function nextGroupDate(iso) {
     const groupDates = getGroupDates(iso);
     const firstDate = isoToDateObj(groupDates[0]);
     const d = isoToDateObj(iso);
     const dow = d.getDay();
     const isWeekend = (dow === 0 || dow === 5 || dow === 6);
-
-    if (isWeekend) {
-      // From Fri anchor, next group = weekday group starting Mon (3 days after Fri)
-      const next = new Date(firstDate);
-      next.setDate(firstDate.getDate() + 3);
-      return dateToIso(next); // This is the Monday
-    } else {
-      // From Mon anchor, next group = weekend group starting Fri (4 days after Mon)
-      const next = new Date(firstDate);
-      next.setDate(firstDate.getDate() + 4);
-      return dateToIso(next); // This is the Friday
-    }
+    const next = new Date(firstDate);
+    next.setDate(firstDate.getDate() + (isWeekend ? 3 : 4));
+    return dateToIso(next);
   }
 
-  // Format the group date range label
   function fmtGroupLabel(groupDates, loadedDates) {
     const available = groupDates.filter(d => loadedDates.includes(d));
     const dates = available.length ? available : groupDates;
-
     const MONTHS = ['January','February','March','April','May','June',
                     'July','August','September','October','November','December'];
     const DAYS_SHORT = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-
     const first = isoToDateObj(dates[0]);
     const last  = isoToDateObj(dates[dates.length - 1]);
     const month = MONTHS[first.getMonth()];
     const year  = first.getFullYear();
-
     if (dates.length === 1) {
       return DAYS_SHORT[first.getDay()] + ', ' + month + ' ' + first.getDate() + ', ' + year;
     }
-    // e.g. "Fri–Sun, April 3–5, 2026"
     const d1 = DAYS_SHORT[first.getDay()];
     const d2 = DAYS_SHORT[last.getDay()];
     return d1 + '–' + d2 + ', ' + month + ' ' + first.getDate() + '–' + last.getDate() + ', ' + year;
   }
 
-  // Format a column header day
   function fmtDayHeader(iso) {
     const d = isoToDateObj(iso);
     const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
@@ -539,73 +570,20 @@
     return dow + '<br>' + md;
   }
 
-  // ── Build the chart ─────────────────────────────────────────────
-  function buildChart(groupDates, dayDataMap, allIndexDates, currentDate) {
-    // groupDates: ordered array of ISO dates in the group (e.g. ['2026-04-06','2026-04-07','2026-04-08','2026-04-09'])
-    // dayDataMap: { 'YYYY-MM-DD': { date, is_estimates, chart:[] }, ... }
-    // allIndexDates: all available dates from index
-    // currentDate: the date from the URL (used as "primary")
+  // ── State ───────────────────────────────────────────────────────
+  let _loadedDates = [];
+  let _dayDataMap  = {};
+  let _allIndexDates = [];
+  let _selectedIso = null;
 
-    // Only show columns that have data
-    const loadedDates = groupDates.filter(d => dayDataMap[d]);
-    if (!loadedDates.length) {
-      showError('No data available for this period.');
-      return;
-    }
+  // ── Render the table for a given sort column ─────────────────────
+  function renderChart(sortIso) {
+    _selectedIso = sortIso;
 
-    // Pick the most recent loaded date as "primary" for ranking
-    const primaryDate = loadedDates[loadedDates.length - 1];
+    const loadedDates = _loadedDates;
+    const dayDataMap  = _dayDataMap;
 
-    // ── Update navigation ──
-    document.getElementById('nav-label').textContent = fmtGroupLabel(groupDates, loadedDates);
-
-    // PREVIOUS: always a link
-    const prevDate = prevGroupDate(groupDates[0]);
-    document.getElementById('nav-prev').href = 'daily.html?date=' + prevDate;
-
-    // NEXT: link only if there's a future group with data
-    const nextDate = nextGroupDate(groupDates[0]);
-    const nextGroupAllDates = getGroupDates(nextDate);
-    const hasNextData = nextGroupAllDates.some(d => allIndexDates.includes(d));
-    const navNext = document.getElementById('nav-next');
-    const nextIsInFuture = nextGroupAllDates.every(d => d > todayIso());
-    if (hasNextData && !nextIsInFuture) {
-      navNext.href = 'daily.html?date=' + nextDate;
-      navNext.classList.remove('disabled');
-    } else {
-      navNext.removeAttribute('href');
-      navNext.classList.add('disabled');
-    }
-
-    // Show estimates notice if any loaded day has estimates
-    const hasEstimates = loadedDates.some(d => dayDataMap[d].is_estimates);
-    if (hasEstimates) {
-      document.getElementById('estimates-notice').style.display = 'block';
-    }
-
-    // ── Build column headers ──
-    const headerRow = document.getElementById('day-header-row');
-    // Remove any previously added th elements beyond the first 2
-    while (headerRow.children.length > 2) headerRow.removeChild(headerRow.lastChild);
-    loadedDates.forEach(iso => {
-      const th = document.createElement('th');
-      th.innerHTML = fmtDayHeader(iso);
-      headerRow.appendChild(th);
-    });
-
-    // ── Collect all titles, preserving primary day ranking ──
-    const primaryChart = (dayDataMap[primaryDate] || {}).chart || [];
-    const sortedTitles = primaryChart.map(r => r.title);
-
-    // Add titles from other days not in primary
-    loadedDates.forEach(iso => {
-      if (iso === primaryDate) return;
-      (dayDataMap[iso].chart || []).forEach(r => {
-        if (!sortedTitles.includes(r.title)) sortedTitles.push(r.title);
-      });
-    });
-
-    // Build a lookup: title → { meta, days: { iso: rowData } }
+    // Build title map
     const titleMap = {};
     loadedDates.forEach(iso => {
       (dayDataMap[iso].chart || []).forEach(row => {
@@ -614,20 +592,40 @@
       });
     });
 
-    // ── Build tbody ──
+    // Sort titles by sortIso gross (descending)
+    const primaryChart = (dayDataMap[sortIso] || {}).chart || [];
+    const sortedTitles = primaryChart.map(r => r.title);
+    loadedDates.forEach(iso => {
+      if (iso === sortIso) return;
+      (dayDataMap[iso].chart || []).forEach(r => {
+        if (!sortedTitles.includes(r.title)) sortedTitles.push(r.title);
+      });
+    });
+
+    // Update header columns
+    const headerRow = document.getElementById('day-header-row');
+    while (headerRow.children.length > 2) headerRow.removeChild(headerRow.lastChild);
+    loadedDates.forEach(iso => {
+      const th = document.createElement('th');
+      th.innerHTML = fmtDayHeader(iso);
+      th.dataset.iso = iso;
+      if (iso === sortIso) th.classList.add('col-selected');
+      th.addEventListener('click', () => renderChart(iso));
+      headerRow.appendChild(th);
+    });
+
+    // Build tbody
     const tbody = document.getElementById('daily-chart-body');
     tbody.innerHTML = '';
 
     sortedTitles.forEach((title, idx) => {
       const entry = titleMap[title];
       if (!entry) return;
-      const primaryRow = entry.days[primaryDate];
-      const rank = primaryRow ? primaryRow.rank : (idx + 1);
+      const rank = idx + 1;
       const meta = entry.meta;
       const tmdbId = meta.tmdb_id || '';
       const studio = meta.distributor || '';
 
-      // Theater count: use first available day (weekend days have them, weekdays may not)
       let theaters = null;
       for (const iso of loadedDates) {
         if (entry.days[iso] && entry.days[iso].theaters) {
@@ -641,7 +639,7 @@
       // Rank cell
       const rankTd = document.createElement('td');
       rankTd.className = 'dc-rank';
-      rankTd.textContent = rank + '.';
+      rankTd.textContent = rank;
       tr.appendChild(rankTd);
 
       // Title cell
@@ -651,9 +649,9 @@
       if (tmdbId) {
         titleHtml += `<a class="dc-title-link" href="movie.html?id=${tmdbId}&title=${encodeURIComponent(title)}">${title}</a>`;
       } else {
-        titleHtml += `<span class="dc-title-link" style="cursor:default;">${title}</span>`;
+        titleHtml += `<a class="dc-title-link" href="#" onclick="return false;">${title}</a>`;
       }
-      if (studio) titleHtml += `<span class="dc-studio">${studio}</span>`;
+      if (studio)   titleHtml += `<span class="dc-studio">${studio}</span>`;
       if (theaters) titleHtml += `<span class="dc-theaters">${fmtTheaters(theaters)}</span>`;
       titleTd.innerHTML = titleHtml;
       tr.appendChild(titleTd);
@@ -661,7 +659,8 @@
       // Day columns
       loadedDates.forEach(iso => {
         const td = document.createElement('td');
-        td.className = 'dc-day-cell';
+        const isSelected = (iso === sortIso);
+        td.className = 'dc-day-cell' + (isSelected ? ' col-selected' : '');
         const dr = entry.days[iso];
 
         if (!dr) {
@@ -674,9 +673,9 @@
           let changeAvgHtml = '';
           const changeStr = fmtChange(dr.pct_change);
           const avgStr = dr.avg_per_theater ? fmtAvg(dr.avg_per_theater) : null;
-          if (changeStr || avgStr) {
+          if (changeStr !== null || avgStr) {
             let changePart = '';
-            if (changeStr) {
+            if (changeStr !== null) {
               const cls = dr.pct_change > 0 ? 'dc-change-pos' : (dr.pct_change < 0 ? 'dc-change-neg' : 'dc-change-neu');
               changePart = `<span class="${cls}">${changeStr}</span>`;
             }
@@ -689,7 +688,7 @@
           const dayNum = dr.days_in_release || null;
           if (totalStr || dayNum) {
             const totalPart = totalStr || '';
-            const dayPart = dayNum ? ` / Day ${dayNum}` : '';
+            const dayPart = dayNum ? ` / ${dayNum}` : '';
             totalDayHtml = `<span class="dc-total-day">${totalPart}${dayPart}</span>`;
           }
 
@@ -703,6 +702,44 @@
     });
   }
 
+  // ── Build chart (called once after data load) ────────────────────
+  function buildChart(groupDates, dayDataMap, allIndexDates, currentDate) {
+    const loadedDates = groupDates.filter(d => dayDataMap[d]);
+    if (!loadedDates.length) { showError('No data available for this period.'); return; }
+
+    // Store in module-level state
+    _loadedDates    = loadedDates;
+    _dayDataMap     = dayDataMap;
+    _allIndexDates  = allIndexDates;
+    _selectedIso    = loadedDates[loadedDates.length - 1]; // default: most recent day
+
+    // ── Navigation ──
+    document.getElementById('nav-label').textContent = fmtGroupLabel(groupDates, loadedDates);
+
+    const prevDate = prevGroupDate(groupDates[0]);
+    document.getElementById('nav-prev').href = 'daily.html?date=' + prevDate;
+
+    const nextDate = nextGroupDate(groupDates[0]);
+    const nextGroupAllDates = getGroupDates(nextDate);
+    const hasNextData = nextGroupAllDates.some(d => allIndexDates.includes(d));
+    const nextIsInFuture = nextGroupAllDates.every(d => d > todayIso());
+    const navNext = document.getElementById('nav-next');
+    if (hasNextData && !nextIsInFuture) {
+      navNext.href = 'daily.html?date=' + nextDate;
+      navNext.classList.remove('disabled');
+    } else {
+      navNext.removeAttribute('href');
+      navNext.classList.add('disabled');
+    }
+
+    // Estimates notice
+    const hasEstimates = loadedDates.some(d => dayDataMap[d].is_estimates);
+    if (hasEstimates) document.getElementById('estimates-notice').style.display = 'block';
+
+    // Render with the default sort
+    renderChart(_selectedIso);
+  }
+
   function showError(msg) {
     document.getElementById('nav-label').textContent = 'Data unavailable';
     document.getElementById('daily-chart-body').innerHTML =
@@ -712,45 +749,32 @@
   // ── Load data ───────────────────────────────────────────────────
   async function load() {
     try {
-      // 1. Load index
       const idxResp = await fetch('data/daily/index.json');
       if (!idxResp.ok) throw new Error('Index not found');
       const idx = await idxResp.json();
       const allIndexDates = idx.dates || [];
-
       if (!allIndexDates.length) throw new Error('No data in index');
 
-      // 2. Determine which date to show
       const params = new URLSearchParams(window.location.search);
-      let reqDate = params.get('date');
+      let reqDate = params.get('date') || allIndexDates[allIndexDates.length - 1];
 
-      if (!reqDate) {
-        // Default: most recent available date
-        reqDate = allIndexDates[allIndexDates.length - 1];
-      }
-
-      // 3. Determine the display group
       const groupDates = getGroupDates(reqDate);
 
-      // 4. Load data for each day in the group that's in the index
       const dayDataMap = {};
-      const fetches = groupDates
-        .filter(d => allIndexDates.includes(d))
-        .map(async (d) => {
-          const r = await fetch('data/daily/' + d + '.json');
-          if (r.ok) {
-            const data = await r.json();
-            dayDataMap[d] = data;
-          }
-        });
-      await Promise.all(fetches);
+      await Promise.all(
+        groupDates
+          .filter(d => allIndexDates.includes(d))
+          .map(async (d) => {
+            const r = await fetch('data/daily/' + d + '.json');
+            if (r.ok) dayDataMap[d] = await r.json();
+          })
+      );
 
       if (!Object.keys(dayDataMap).length) {
         throw new Error('No data for this period. Try navigating to another date.');
       }
 
       buildChart(groupDates, dayDataMap, allIndexDates, reqDate);
-
     } catch(e) {
       showError(e.message || 'Daily data not available.');
     }
