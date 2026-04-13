@@ -34,15 +34,38 @@
     .daily-print-link:hover { text-decoration: underline; }
     .daily-print-link img { vertical-align: middle; }
 
+    /* ── Related links bar ───────────────────────────────────────── */
+    .daily-related-links {
+      text-align: center;
+      padding: 6px 12px 8px;
+      font-family: Verdana, Geneva, sans-serif;
+    }
+    .daily-related-links .rl-heading {
+      font-weight: bold;
+      font-size: 13px;
+      color: #000;
+      display: block;
+      text-decoration: underline;
+      margin-bottom: 3px;
+    }
+    .daily-related-links .rl-row {
+      font-size: 12px;
+      display: block;
+    }
+    .daily-related-links a {
+      color: #00239C;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .daily-related-links a:hover { text-decoration: underline; }
+    .daily-related-links .rl-sep { color: #000; margin: 0 4px; }
+
     /* ── Date navigation bar ─────────────────────────────────────── */
     .daily-nav {
       display: flex;
       align-items: center;
-      background: #DCDCDC;
-      border-top: 1px solid #999;
-      border-bottom: 1px solid #999;
-      padding: 5px 10px;
-      margin: 0 0 6px;
+      padding: 3px 12px 2px;
+      margin: 0;
       font-family: Verdana, Geneva, sans-serif;
       font-size: 12px;
     }
@@ -50,7 +73,6 @@
       font-weight: bold;
       color: #00239C;
       text-decoration: none;
-      padding: 2px 8px;
       white-space: nowrap;
     }
     .daily-nav-arrow:hover { text-decoration: underline; }
@@ -59,13 +81,13 @@
       cursor: default;
       pointer-events: none;
     }
-    .daily-nav-sep { color: #999; padding: 0 4px; }
     .daily-nav-label {
-      font-weight: bold;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
       color: #000;
       flex: 1;
       text-align: center;
-      font-size: 12px;
+      font-size: 13px;
     }
 
     /* ── Estimates notice ────────────────────────────────────────── */
@@ -89,44 +111,47 @@
       min-width: 420px;
     }
 
-    /* Column headers */
+    /* Column headers — all DCDCDC, blue bold text */
     .daily-chart-table thead tr.day-header-row th {
-      background: #00239C;
-      color: #fff;
+      background: #DCDCDC;
+      color: #00239C;
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
       font-size: 12px;
       padding: 5px 10px;
       text-align: center;
-      border-left: 1px solid #3355BB;
+      border-left: 1px solid #AAAAAA;
+      border-bottom: 2px solid #AAAAAA;
       white-space: nowrap;
       cursor: pointer;
       user-select: none;
     }
     .daily-chart-table thead tr.day-header-row th:hover {
-      background: #1a3ab5;
+      background: #CACACA;
     }
     .daily-chart-table thead tr.day-header-row th.col-selected {
       text-decoration: underline;
     }
     .daily-chart-table thead tr.day-header-row th.dc-rank-head {
-      background: #444;
+      background: #DCDCDC;
+      color: #000;
       text-align: center;
       border-left: none;
-      width: 34px;
+      width: 44px;
       cursor: default;
     }
     .daily-chart-table thead tr.day-header-row th.dc-rank-head:hover {
-      background: #444;
+      background: #DCDCDC;
     }
     .daily-chart-table thead tr.day-header-row th.dc-title-head {
-      background: #444;
-      text-align: left;
-      border-left: 1px solid #666;
+      background: #DCDCDC;
+      color: #00239C;
+      text-align: center;
+      border-left: 1px solid #AAAAAA;
       cursor: default;
     }
     .daily-chart-table thead tr.day-header-row th.dc-title-head:hover {
-      background: #444;
+      background: #DCDCDC;
     }
 
     /* Data rows */
@@ -157,6 +182,7 @@
       padding: 5px 10px;
       min-width: 160px;
       border-left: 1px solid #DDDDDD;
+      text-align: center;
     }
     .dc-title-link {
       font-family: Verdana, Geneva, sans-serif;
@@ -166,6 +192,7 @@
       text-decoration: none;
       text-transform: uppercase;
       display: block;
+      text-align: center;
     }
     .dc-title-link:hover { text-decoration: underline; }
     .dc-studio {
@@ -188,7 +215,7 @@
     /* Day data cell */
     .dc-day-cell {
       padding: 5px 10px;
-      text-align: right;
+      text-align: center;
       min-width: 120px;
       line-height: 1.55;
       border-left: 1px solid #DDDDDD;
@@ -364,10 +391,21 @@
     <!-- Date navigation -->
     <div class="daily-nav">
       <a class="daily-nav-arrow" id="nav-prev" href="#">&lt;&lt; PREVIOUS</a>
-      <span class="daily-nav-sep">|</span>
-      <span class="daily-nav-label" id="nav-label">Loading...</span>
-      <span class="daily-nav-sep">|</span>
+      <span class="daily-nav-label">Stay tuned for daily updates...</span>
       <a class="daily-nav-arrow disabled" id="nav-next" href="#">NEXT &gt;&gt;</a>
+    </div>
+
+    <!-- Related Box Office Links -->
+    <div class="daily-related-links">
+      <span class="rl-heading">RELATED BOX OFFICE LINKS</span>
+      <span class="rl-row">
+        <a href="weekend.html">Weekend Grosses</a><span class="rl-sep">|</span>
+        <a href="yearly.html">2026 Grosses</a>
+      </span>
+      <span class="rl-row">
+        <a href="alltime.html">All Time Grosses</a><span class="rl-sep">|</span>
+        <a href="forecast.html">The Forecast</a>
+      </span>
     </div>
 
     <div class="daily-estimates-notice" id="estimates-notice" style="display:none;">
@@ -380,7 +418,7 @@
         <thead>
           <tr class="day-header-row" id="day-header-row">
             <th class="dc-rank-head">Rank*</th>
-            <th class="dc-title-head">Title<br><span style="font-size:10px;font-weight:normal;">(Click to view chart)</span></th>
+            <th class="dc-title-head">Title<br><span style="font-size:10px;font-weight:normal;color:#000;">(Click to view chart)</span></th>
           </tr>
         </thead>
         <tbody id="daily-chart-body">
@@ -714,8 +752,6 @@
     _selectedIso    = loadedDates[loadedDates.length - 1]; // default: most recent day
 
     // ── Navigation ──
-    document.getElementById('nav-label').textContent = fmtGroupLabel(groupDates, loadedDates);
-
     const prevDate = prevGroupDate(groupDates[0]);
     document.getElementById('nav-prev').href = 'daily.html?date=' + prevDate;
 
