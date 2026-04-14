@@ -17,8 +17,8 @@
     .wc-topnav {
       display: flex;
       align-items: stretch;
-      background: #7F170E;
-      border-bottom: 2px solid #3a0a06;
+      background: #FFFFFF;
+      border-bottom: 3px solid #7F170E;
     }
     .wc-topnav-logo {
       background: #F7CE55;
@@ -32,7 +32,7 @@
       text-decoration: none;
       white-space: nowrap;
       flex-shrink: 0;
-      border-right: 2px solid #3a0a06;
+      border-right: 1px solid #CCCCCC;
       line-height: 1.2;
       text-align: center;
     }
@@ -44,7 +44,7 @@
       display: flex;
       align-items: center;
       padding: 5px 8px;
-      border-right: 1px solid rgba(255,255,255,0.2);
+      border-right: 1px solid #DDDDDD;
       flex-shrink: 0;
       gap: 4px;
     }
@@ -75,7 +75,7 @@
       padding: 0 4px;
     }
     .wc-topnav-links a {
-      color: #fff;
+      color: #00239C;
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
       font-size: 11px;
@@ -86,19 +86,19 @@
       letter-spacing: 0.03em;
       display: block;
     }
-    .wc-topnav-links a:hover { background: rgba(255,255,255,0.12); text-decoration: none; color: #fff; }
+    .wc-topnav-links a:hover { background: rgba(0,35,156,0.07); text-decoration: none; color: #00239C; }
     .wc-topnav-links a.active { text-decoration: underline; }
-    .wc-topnav-sep { color: rgba(255,255,255,0.35); font-size: 13px; padding: 0 2px; }
+    .wc-topnav-sep { color: #AAAAAA; font-size: 13px; padding: 0 2px; }
 
     .wc-topnav-right {
       display: flex;
       align-items: center;
       padding: 0 12px;
       flex-shrink: 0;
-      border-left: 1px solid rgba(255,255,255,0.2);
+      border-left: 1px solid #DDDDDD;
     }
     .wc-print-link {
-      color: #fff;
+      color: #00239C;
       font-family: Verdana, Geneva, sans-serif;
       font-size: 11px;
       text-decoration: none;
@@ -107,13 +107,12 @@
       gap: 5px;
     }
     .wc-print-link img { vertical-align: middle; }
-    .wc-print-link:hover { text-decoration: underline; color: #fff; }
+    .wc-print-link:hover { text-decoration: underline; color: #00239C; }
 
     /* ── Page header (centered) ──────────────────────────────────── */
     .wc-page-header {
       padding: 14px 14px 10px;
       text-align: center;
-      border-bottom: 1px solid #CCCCCC;
     }
     .wc-site-label {
       font-family: Verdana, Geneva, sans-serif;
@@ -132,11 +131,11 @@
       letter-spacing: -0.5px;
     }
     .wc-date-range {
-      font-family: 'Times New Roman', Times, serif;
+      font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
       font-size: 22px;
       color: #990000;
-      margin: 6px 0 0;
+      margin: 2px 0 0;
     }
 
     /* ── Story block ─────────────────────────────────────────────── */
@@ -144,36 +143,34 @@
       display: flex;
       align-items: flex-start;
       gap: 14px;
-      padding: 12px 20px 10px;
-      border-bottom: 1px solid #CCCCCC;
-      max-width: 680px;
-      margin: 0 auto;
+      padding: 12px 16px;
+      max-width: 600px;
+      margin: 10px auto 4px;
+      border: 1px solid #CCCCCC;
     }
     .wc-story-photo {
-      width: 100px; height: 80px;
+      width: 110px;
       object-fit: cover; flex-shrink: 0;
-      border: 1px solid #CCC;
+      border: 2px solid #00239C;
     }
     .wc-story-photo-placeholder {
-      width: 100px; height: 80px;
+      width: 110px; height: 130px;
       background: #DDDDE8; flex-shrink: 0;
-      border: 1px solid #BBB;
-      display: flex; align-items: center; justify-content: center;
+      border: 2px solid #00239C;
     }
+    .wc-story-text { flex: 1; }
     .wc-story-headline {
-      font-family: 'Times New Roman', Times, serif;
-      font-weight: bold; font-size: 16px;
-      color: #00239C; margin: 0 0 5px;
-    }
-    .wc-story-teaser {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 14px; color: #000;
-      margin: 0 0 6px; line-height: 1.4;
-    }
-    .wc-story-link {
-      font-family: 'Times New Roman', Times, serif;
+      font-family: Verdana, Geneva, sans-serif;
       font-weight: bold; font-size: 15px;
+      color: #00239C; margin: 0 0 12px;
+      line-height: 1.3;
+    }
+    .wc-story-teaser { display: none; }
+    .wc-story-link {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold; font-size: 14px;
       color: #00239C; text-decoration: none;
+      display: block; line-height: 1.5;
     }
     .wc-story-link:hover { text-decoration: underline; }
 
@@ -182,7 +179,6 @@
       display: flex;
       align-items: center;
       padding: 6px 20px;
-      border-bottom: 1px solid #CCCCCC;
       font-family: Verdana, Geneva, sans-serif;
       font-size: 12px;
     }
@@ -211,44 +207,50 @@
     .wc-chart-wrap {
       padding: 10px 20px 14px;
       overflow-x: auto;
+      text-align: center;
     }
     .wc-table {
-      width: 100%;
+      width: auto;
+      margin: 0 auto;
       border-collapse: collapse;
-      border: 1px solid #A8A8A8;
+      border: 1px solid #FFFFFF;
       box-shadow: 3px 3px 0 #545454;
       font-size: 13px;
+      text-align: left;
     }
     .wc-table thead th {
       background: #DCDCDC;
-      font-family: Verdana, Geneva, sans-serif;
-      font-weight: bold;
-      font-size: 11px;
-      color: #00239C;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      font-size: 13px;
+      color: #000000;
       padding: 5px 8px;
       text-align: center;
-      border-right: 1px solid #A8A8A8;
-      border-bottom: 1px solid #A8A8A8;
+      border-right: 1px solid #FFFFFF;
+      border-bottom: 1px solid #FFFFFF;
       white-space: nowrap;
     }
     .wc-table thead th:last-child { border-right: none; }
     .wc-table thead th.th-title { text-align: center; }
+    .wc-table thead th.th-gross { font-weight: bold; }
     .wc-table tbody tr.wc-row td {
       font-family: 'Times New Roman', Times, serif;
       font-size: 14px; color: #000;
       padding: 4px 8px;
-      border-bottom: 1px solid #A8A8A8;
-      border-right: 1px solid #A8A8A8;
+      border-bottom: 1px solid #FFFFFF;
+      border-right: 1px solid #FFFFFF;
       vertical-align: middle;
+      white-space: nowrap;
     }
     .wc-table tbody tr.wc-row td:last-child { border-right: none; }
     .wc-table tbody tr.wc-row:nth-child(odd)  td { background: #FFFFFF; }
     .wc-table tbody tr.wc-row:nth-child(even) td { background: #EEEEFF; }
     .wc-table tbody tr.wc-row.wc-new td { background: #FFFFA6 !important; }
+    .wc-table tbody tr.wc-row td.td-gross { font-weight: bold; }
 
     .wc-tw, .wc-lw { text-align: center; width: 28px; font-weight: normal; color: #333; }
     .wc-lw-new { font-weight: bold; color: #333; }
-    .wc-title-cell { min-width: 180px; }
+    .wc-title-cell { white-space: normal; min-width: 160px; }
     .wc-title-top {
       font-family: 'Times New Roman', Times, serif;
       font-weight: bold; font-size: 14px;
@@ -323,12 +325,12 @@
   </div>
 
   <!-- Story block -->
-  <div class="wc-story-block" id="wc-story-block" style="display:none;">
+  <div class="wc-story-block" id="wc-story-block">
     <div class="wc-story-photo-placeholder" id="wc-story-photo-wrap"></div>
     <div class="wc-story-text">
-      <div class="wc-story-headline" id="wc-story-headline"></div>
+      <div class="wc-story-headline" id="wc-story-headline">Mario Galaxy wins second outing...</div>
       <p class="wc-story-teaser" id="wc-story-teaser"></p>
-      <a class="wc-story-link" id="wc-story-link" href="news.html">&gt;&gt;&gt; CLICK HERE TO READ THE FULL STORY</a>
+      <a class="wc-story-link" id="wc-story-link" href="news.html">click here to<br>Read the Full Report &gt; &gt; &gt;</a>
     </div>
   </div>
 
@@ -350,7 +352,7 @@
           <th class="wc-lw">LW</th>
           <th class="th-title">Title <span style="font-weight:normal;font-size:10px;color:#333;">(Click to view movie page)</span></th>
           <th class="wc-studio">Studio</th>
-          <th class="wc-num">Weekend Gross</th>
+          <th class="wc-num th-gross">Weekend Gross</th>
           <th class="wc-num">% Change</th>
           <th class="wc-theaters">Theaters&nbsp;/ Chg</th>
           <th class="wc-num">Average</th>
@@ -367,7 +369,6 @@
   <p class="wc-footnote" id="wc-estimates-note" style="display:none;">
     * Figures are estimates and will be updated when actuals are reported.
   </p>
-  <p class="wc-footnote">Data via The Numbers.</p>
 
 </div><!-- /wc-wrapper -->
 
@@ -406,8 +407,9 @@
   function fmtTheaters(count, change) {
     const c = count ? count.toLocaleString('en-US') : '—';
     if (change === null || change === undefined || change === 0) return c + ' / —';
-    const sign = change > 0 ? '+' : '';
-    return c + ' / ' + sign + change.toLocaleString('en-US');
+    const sign  = change > 0 ? '+' : '';
+    const color = change > 0 ? '#00239C' : '#CC0000';
+    return c + ' / <span style="color:' + color + '">' + sign + change.toLocaleString('en-US') + '</span>';
   }
   function fmtChange(pct, isNew) {
     if (isNew) return '<span class="wc-chg-new">—</span>';
@@ -489,20 +491,19 @@
       document.getElementById('wc-estimates-note').style.display = 'block';
     }
 
-    // Story block
+    // Story block — always visible; update content if data has a story
     if (data.story && (data.story.headline || data.story.teaser)) {
       const s = data.story;
-      document.getElementById('wc-story-block').style.display = 'flex';
-      document.getElementById('wc-story-headline').textContent = s.headline || '';
-      document.getElementById('wc-story-teaser').textContent   = s.teaser   || '';
-      if (s.link)  document.getElementById('wc-story-link').href = s.link;
+      if (s.headline) document.getElementById('wc-story-headline').textContent = s.headline;
+      if (s.link)     document.getElementById('wc-story-link').href = s.link;
       if (s.photo) {
         const img = document.createElement('img');
         img.src = s.photo; img.className = 'wc-story-photo';
         img.alt = s.headline || 'Weekend story';
         const wrap = document.getElementById('wc-story-photo-wrap');
         wrap.innerHTML = ''; wrap.appendChild(img);
-        wrap.style.background = 'none'; wrap.style.border = 'none';
+        wrap.classList.remove('wc-story-photo-placeholder');
+        wrap.classList.add('wc-story-photo');
       }
     }
 
@@ -529,7 +530,7 @@
         <td class="wc-lw">${lwDisp}</td>
         <td class="wc-title-cell"><a class="${titleCls}" href="${movieHref}">${m.title}</a></td>
         <td class="wc-studio">${m.distributor ? abbrevStudio(m.distributor) : '—'}</td>
-        <td class="wc-num">${fmtGross(m.weekend_gross)}</td>
+        <td class="wc-num td-gross">${fmtGross(m.weekend_gross)}</td>
         <td class="wc-num">${fmtChange(m.change_pct, isNew)}</td>
         <td class="wc-theaters">${fmtTheaters(m.theaters, m.theater_change)}</td>
         <td class="wc-num">${fmtAvg(m.avg_per_theater || (m.theaters > 0 ? Math.round(m.weekend_gross / m.theaters) : 0))}</td>
