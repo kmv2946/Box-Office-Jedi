@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Price of Admission — Box Office Jedi</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+
+    .article-wrap {
+      padding: 0;
+    }
+
+    /* FEATURE section bar */
+    .article-section-header {
+      padding: 4px 10px 2px;
+    }
+    .article-section-header a {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .article-section-header a:hover { text-decoration: underline; }
+    .article-section-bar {
+      height: 5px;
+      background: #7F170E;
+      margin-bottom: 10px;
+    }
+
+    /* Headline */
+    .article-headline {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 18pt;
+      color: #000;
+      line-height: 1.15;
+      margin: 0 10px 3px;
+    }
+
+    /* Subheadline */
+    .article-subheadline {
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+      font-size: 14pt;
+      color: #333;
+      margin: 0 10px 6px;
+    }
+
+    /* Byline */
+    .article-byline-name {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 13pt;
+      color: #000;
+      margin: 0 10px 1px;
+    }
+    .article-byline-date {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 10pt;
+      color: #000;
+      display: block;
+      margin: 0 10px 10px;
+    }
+
+    /* Body text */
+    .article-body {
+      padding: 0 10px;
+    }
+    .article-body p {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16pt;
+      line-height: 1.35;
+      color: #000;
+      margin-bottom: 10px;
+      text-align: justify;
+    }
+
+    /* Drop cap */
+    .article-body p.drop-cap::first-letter {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 4em;
+      line-height: 0.75;
+      float: left;
+      margin: 5px 3px 0 0;
+      color: #00239C;
+    }
+
+    /* Article image */
+    .article-img-wrap {
+      float: left;
+      margin: 0 14px 8px 0;
+      border: 1px solid #CCCCCC;
+      max-width: 340px;
+    }
+    .article-img-wrap img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .article-img-caption {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 10px;
+      color: #333;
+      text-align: center;
+      background: #EEEEEE;
+      padding: 3px 4px;
+      box-sizing: border-box;
+    }
+
+    /* Film links — first mention */
+    .article-body a.film-link {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 16pt;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .article-body a.film-link:hover { text-decoration: underline; }
+
+    /* Film subsequent mention */
+    .article-body .film {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+    }
+
+    /* External links in body */
+    .article-body a.ext-link {
+      color: #00239C;
+      text-decoration: underline;
+    }
+    .article-body a.ext-link:hover { color: #0000EE; }
+
+    /* Section break */
+    .section-break {
+      text-align: center;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16pt;
+      color: #AAAAAA;
+      letter-spacing: 6px;
+      margin: 16px 0 14px;
+    }
+
+    /* Video embed */
+    .video-wrap {
+      margin: 14px 0;
+      text-align: center;
+    }
+    .video-wrap iframe {
+      max-width: 100%;
+      border: none;
+    }
+
+    /* Clearfix */
+    .clearfix::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">CONTENTS</span>
+      <ul>
+        <li><a href="predictions.html">PREDICTIONS</a></li>
+        <li><a href="analysis.html">ANALYSIS</a></li>
+        <li class="active"><a href="features.html">FEATURES</a></li>
+        <li><a href="releases.html">RELEASE SCHEDULE</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li class="derby"><a href="derby.html">THE DERBY</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+
+  <main class="main-content">
+    <div class="article-wrap">
+
+      <div class="article-section-header">
+        <a href="features.html">FEATURE</a>
+      </div>
+      <div class="article-section-bar"></div>
+
+      <h1 class="article-headline">The Price of Admission</h1>
+      <p class="article-subheadline">A brief history of buying a ticket.</p>
+      <p class="article-byline-name">by Box Office Jedi</p>
+      <span class="article-byline-date">April 13, 2026</span>
+
+      <div class="article-body clearfix">
+
+        <div class="article-img-wrap">
+          <img src="assets/images/feature-price-of-admission.jpg" alt="Sandra Bullock at a computer, 1995">
+          <div class="article-img-caption">Sandra Bullock purchasing tickets to <em>The Net</em> online, 1995.</div>
+        </div>
+
+        <p class="drop-cap">Last week, Regal announced a new AI-powered moviegoing tool&mdash;a ChatGPT plugin that lets you ask conversational prompts about what&rsquo;s playing nearby, receive real-time showtimes, and get directed to Regal&rsquo;s website to complete your purchase. Regal&rsquo;s chief digital officer called it an effort to &ldquo;improve the moviegoer journey.&rdquo; The Boxoffice Company, which built the thing, described it as turning &ldquo;AI conversations into movie tickets.&rdquo;</p>
+
+        <p>It doesn&rsquo;t invite the same tricks as <a class="ext-link" href="https://x.com/mericamemed/status/2043970010511487203?s=12" target="_blank" rel="noopener">Wendy&rsquo;s AI drive-thru service</a>, where customers request 1,000,000 burgers, after which a real human immediately intercepts the order. 1,000,000 tickets for <span class="film">The Devil Wears Prada 2</span> doesn&rsquo;t really carry the same joy.</p>
+
+        <p>Almost as boring as turning an AI conversation into a movie ticket, we now take you through over three decades of &ldquo;improving the moviegoer journey.&rdquo;</p>
+
+        <div class="section-break">* * *</div>
+
+        <p>In the summer of 1995, Sandra Bullock sat down in front of a bulky desktop computer, in a black dress, surrounded by producers and studio people, and bought two movie tickets online. The tickets were for <a class="film-link" href="movie.html?title=The+Net">The Net</a>&mdash;her own film&mdash;at the Egyptian Theatre in Hollywood. Total: $17.70. The website was called MovieLink. It was the first time anyone had ever done this.</p>
+
+        <div class="video-wrap">
+          <iframe width="480" height="270" src="https://www.youtube.com/embed/ydHmPrI7bqY" title="Sandra Bullock buys the first online movie tickets, 1995" allowfullscreen></iframe>
+        </div>
+
+        <p>&ldquo;Click for showtimes and tickets to this movie,&rdquo; she said, reading the screen. Then: &ldquo;Okay, it&rsquo;s frozen.&rdquo; Then, after a few more attempts, it worked. The screen told her to enjoy the show.</p>
+
+        <p>&ldquo;You&rsquo;re the first one!&rdquo; someone said.</p>
+
+        <p>An Entertainment Tonight crew filmed the whole thing. The clip resurfaced on social media earlier this year, where it briefly went viral. The caption someone added read: &ldquo;We should simplify the internet again and just start over.&rdquo;</p>
+
+        <p>The stunt was designed to promote a movie about the dangers of the internet. The irony was apparently lost on everyone in the room, or maybe it wasn&rsquo;t and that was the point, or maybe in 1995 no one had quite developed the part of the brain that processes that kind of irony yet, because the internet was three weeks old. Either way, a woman who was genuinely moved to tears by the act of purchasing a movie ticket on a computer is now a thirty-year-old artifact of a specific window of human history that is gone and not coming back.</p>
+
+        <div class="section-break">* * *</div>
+
+        <p>The deeper history goes back further. In 1989, a man named Russ Leatherman got frustrated with calling movie theaters and getting a busy signal. His solution was Moviefone&mdash;an interactive telephone movie guide, accessible by dialing 777-FILM, staffed by his own voice reading listings he had recorded into a microphone. In its first few years, Moviefone&rsquo;s fulfillment system consisted of printing customer orders and faxing them to theaters, which were instructed to maintain an alphabetically organized folder at the box office window.</p>
+
+        <p>When <a class="film-link" href="movie.html?title=Beauty+and+the+Beast">Beauty and the Beast</a> opened in 1991 and the fax machine at the El Capitan in Hollywood couldn&rsquo;t keep up, they oversold the theater by three or four times.</p>
+
+        <p>Leatherman later said, with some pride: &ldquo;We introduced credit cards to movies. We were the first online movie guide. We introduced reserve seating to the movies. Truthfully, much of how you get to the movies today is because Moviefone laid that out for you.&rdquo;</p>
+
+        <p>He&rsquo;s right. Between 1989 and 1997, Moviefone received 150 million calls. In 1996, the first self-service ticket kiosk was installed at Sony Lincoln Square in New York. In 2000, Fandango launched&mdash;founded by several major theater chains who wanted, in the words of one CEO, to avoid &ldquo;positioning a third party between us and our ultimate customer.&rdquo; By 2001, <a class="film-link" href="movie.html?title=Harry+Potter+and+the+Sorcerer%27s+Stone">Harry Potter and the Sorcerer&rsquo;s Stone</a> had set a Fandango sales record before opening weekend. By 2002, online ticket sales were up 103% year over year. By 2006, you could buy a ticket on your phone and wave a barcode at a scanner. The progression, in retrospect, has a kind of logic to it&mdash;each step a practical answer to a genuine problem, each one a little less personal than the last but also a little more convenient, a little more yours to control.</p>
+
+        <p>Regal&rsquo;s press release describes the plugin as &ldquo;a logical extension&rdquo; of their existing platform, designed to make the moviegoer journey more efficient. The company says the tool will help make &ldquo;selecting showtimes, seats and tickets&rdquo; easier across its circuit. The problem today isn&rsquo;t selecting a showtime, a seat, or a ticket. It&rsquo;s feeling any incentive to want to go at all. Some see that as a problem for AI, too.</p>
+
+        <div class="section-break">* * *</div>
+
+        <p>The ticket stub is a small rectangle of cardstock, torn from a larger ticket by a person whose job it was to tear tickets, handed back to you as proof of admission and kept, by a certain kind of person, as proof that you were there. People collected them in shoeboxes and journals and the front pockets of jeans that went through the wash. The title. The date. The time. The theater. A complete record of everywhere you&rsquo;d been and everything you&rsquo;d seen, in the dark, with other people.</p>
+
+        <p>AMC named its loyalty program Stubs. This was either a tribute or an accident. The program has, as of 2026, no ticket stubs involved.</p>
+
+        <p>Here is an idea that costs almost nothing and would mean quite a lot: at the end of every year, AMC A-List members receive a small package in the mail. Inside, printed on something that feels like it was worth printing on, are all the movies they saw that year. The title. The date. The time. The theater. Not a PDF. Not a year-in-review email with a graphic that says &ldquo;You watched 47 movies!&rdquo; A physical object, designed with some care, that functions like a capsule&mdash;something you could find in a drawer ten years from now and know exactly where you were and what you were watching and who, possibly, was sitting next to you.</p>
+
+        <p>Or perhaps AMC doesn&rsquo;t want to remind you of how little you go to the movies, or how few of the ones you saw you actually remember.</p>
+
+        <div class="section-break">* * *</div>
+
+        <p>Sandra Bullock was buying two tickets to a movie she was already in. The Egyptian Theatre was probably a ten-minute drive. She could have called. She could have shown up. Instead she sat in front of a machine that kept freezing, read the instructions off the screen, and felt, when it finally worked, like something had happened.</p>
+
+        <p>&ldquo;I think I&rsquo;m gonna cry,&rdquo; she said, after the transaction went through. No one is crying over a ChatGPT plugin.</p>
+
+      </div><!-- /article-body -->
+    </div><!-- /article-wrap -->
+  </main>
+
+
+  <aside class="right-sidebar">
+
+    <div class="widget">
+      <div class="widget-header">FEATURES</div>
+      <div class="widget-body">
+        <p><a href="features.html"><strong>Features Index &gt;</strong></a></p>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-header">ANALYSIS</div>
+      <div class="widget-body">
+        <p>Weekend roundups and written forecasts. <a href="analysis.html"><strong>Read &gt;</strong></a></p>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-header">WEEKEND CHART</div>
+      <div class="widget-body">
+        <p><a href="weekend.html"><strong>All Weekends</strong></a><br>
+        <a href="weekend-chart.html">Latest Chart</a></p>
+      </div>
+    </div>
+
+  </aside>
+
+</div><!-- /page-wrapper -->
+
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">&ldquo;Serving your box office needs since 2026.&rdquo;</span>
+  <div style="margin-top:8px;">
+    <a href="https://www.netflix.com" target="_blank" rel="noopener">
+      <img src="assets/images/free-dvd-rentals.gif" alt="Free DVD Rentals" style="display:inline-block;height:auto;">
+    </a>
+  </div>
+</footer>
+
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+</script>
+
+</body>
+</html>
