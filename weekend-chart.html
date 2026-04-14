@@ -477,10 +477,11 @@
       document.title = label + ' Weekend — Box Office Jedi';
     }
 
-    // Prev / Next weekend navigation
-    if (allDates && allDates.length && toIso) {
+    // Prev / Next weekend navigation — use date_from (Friday) to match filenames
+    const navIso = data.date_from || data.date;
+    if (allDates && allDates.length && navIso) {
       const sortedDates = [...allDates].sort();
-      const currentIdx  = sortedDates.indexOf(toIso);
+      const currentIdx  = sortedDates.indexOf(navIso);
 
       const prevEl = document.getElementById('wc-nav-prev');
       const nextEl = document.getElementById('wc-nav-next');
