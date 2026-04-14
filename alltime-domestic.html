@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All-Time Domestic Grosses — Box Office Jedi</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+
+    /* ── Page header ─────────────────────────────────────────────── */
+    .at-page-header {
+      padding: 10px 14px 8px;
+      border-bottom: 3px solid #990000;
+    }
+    .at-page-title {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 24px;
+      color: #000;
+      margin: 0;
+      letter-spacing: 1px;
+    }
+    .at-page-title .arrow { color: #990000; margin-right: 6px; }
+
+    /* ── Chart section ───────────────────────────────────────────── */
+    .chart-section-header {
+      background: #990000;
+      color: #FFF;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      text-align: center;
+      padding: 7px 14px;
+      margin: 0;
+    }
+
+    /* ── Pagination nav ──────────────────────────────────────────── */
+    .at-pager {
+      text-align: center;
+      padding: 8px 14px 4px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .at-pager a {
+      color: #00239C;
+      text-decoration: none;
+    }
+    .at-pager a:hover { text-decoration: underline; }
+    .at-pager .sep { color: #666; margin: 0 6px; font-weight: normal; }
+    .at-pager .current { color: #000; }
+
+    /* ── Data as of ──────────────────────────────────────────────── */
+    .at-dateline {
+      text-align: center;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      color: #555;
+      padding: 2px 14px 8px;
+    }
+
+    /* ── Chart table ─────────────────────────────────────────────── */
+    .at-wrap { padding: 0 14px 20px; }
+
+    .at-chart {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    /* Column header row */
+    .at-chart thead tr th {
+      background: #DCDCDC;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      font-weight: bold;
+      color: #333;
+      padding: 5px 8px;
+      border-right: 1px solid #FFF;
+      border-bottom: 2px solid #999;
+    }
+    .at-chart thead tr th:last-child { border-right: none; }
+    .th-rank   { width: 42px; text-align: center; }
+    .th-title  { text-align: left; }
+    .th-gross  { width: 130px; text-align: right; }
+    .th-year   { width: 50px; text-align: right; padding-right: 12px !important; }
+
+    /* Data rows — alternating */
+    .at-chart tbody tr.at-row:nth-child(odd)  td { background: #EEF0FB; }
+    .at-chart tbody tr.at-row:nth-child(even) td { background: #FFFFFF; }
+
+    /* In-release highlight overrides */
+    .at-chart tbody tr.at-row.in-release td { background: #FFFDE0 !important; }
+
+    .at-chart tbody tr.at-row td {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      padding: 5px 8px;
+      border-bottom: 1px solid #E0E0E0;
+      vertical-align: middle;
+    }
+
+    /* Rank cell */
+    .at-chart td.td-rank {
+      text-align: center;
+      color: #444;
+      font-size: 13px;
+      width: 42px;
+    }
+
+    /* Title cell */
+    .at-chart td.td-title a {
+      color: #00007B;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .at-chart td.td-title a:hover {
+      text-decoration: underline;
+      color: #0000EE;
+    }
+
+    /* Gross cell */
+    .at-chart td.td-gross {
+      text-align: right;
+      font-weight: bold;
+      color: #000;
+      white-space: nowrap;
+      width: 130px;
+    }
+
+    /* Year cell */
+    .at-chart td.td-year {
+      text-align: right;
+      color: #444;
+      width: 50px;
+      padding-right: 12px;
+      font-size: 13px;
+    }
+
+    /* In-release indicator */
+    .in-release-badge {
+      display: inline-block;
+      font-size: 9px;
+      font-family: Verdana, sans-serif;
+      font-weight: bold;
+      color: #7A5C00;
+      background: #FFF2A0;
+      border: 1px solid #D4A800;
+      border-radius: 2px;
+      padding: 1px 4px;
+      margin-left: 6px;
+      vertical-align: middle;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    /* ── Back to all time link ───────────────────────────────────── */
+    .at-back {
+      padding: 6px 14px 0;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+    }
+    .at-back a {
+      color: #00239C;
+      text-decoration: none;
+    }
+    .at-back a:hover { text-decoration: underline; }
+
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li class="active"><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">CONTENTS</span>
+      <ul>
+        <li><a href="predictions.html">PREDICTIONS</a></li>
+        <li><a href="analysis.html">ANALYSIS</a></li>
+        <li><a href="features.html">FEATURES</a></li>
+        <li><a href="releases.html">RELEASE SCHEDULE</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li class="derby"><a href="derby.html">THE DERBY</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+
+  <main class="main-content">
+
+    <div class="at-page-header">
+      <h1 class="at-page-title"><span class="arrow">&gt;</span> ALL TIME BOX OFFICE</h1>
+    </div>
+
+    <div class="at-back">
+      <a href="alltime.html">&laquo; All-Time Index</a>
+    </div>
+
+    <div class="chart-section-header">DOMESTIC GROSSES</div>
+
+    <div class="at-pager" id="pager-top">
+      <span class="current" id="page-label-1">#1&ndash;100</span>
+      <span class="sep">&ndash;</span>
+      <a href="#" id="page-link-2" onclick="showPage(2); return false;">#101&ndash;200</a>
+    </div>
+
+    <div class="at-dateline">Data as of: April 14, 2026</div>
+
+    <div class="at-wrap">
+      <table class="at-chart" id="at-chart">
+        <thead>
+          <tr>
+            <th class="th-rank">Rank</th>
+            <th class="th-title">Title <span style="font-weight:normal;font-size:10px;color:#666;">(click to view)</span></th>
+            <th class="th-gross">Lifetime Gross</th>
+            <th class="th-year">Year</th>
+          </tr>
+        </thead>
+        <tbody id="chart-body">
+        </tbody>
+      </table>
+    </div>
+
+    <div class="at-pager" id="pager-bottom" style="padding-bottom:10px;">
+      <span class="current" id="page-label-b1">#1&ndash;100</span>
+      <span class="sep">&ndash;</span>
+      <a href="#" id="page-link-b2" onclick="showPage(2); return false;">#101&ndash;200</a>
+    </div>
+
+  </main>
+
+
+  <aside class="right-sidebar">
+
+    <div class="widget">
+      <div class="widget-header">ALL-TIME CHARTS</div>
+      <div class="widget-body">
+        <p><a href="alltime.html"><strong>&laquo; All-Time Index</strong></a></p>
+        <p style="margin-top:6px;"><strong>Grosses</strong></p>
+        <p><a href="alltime-domestic.html" style="color:#990000;font-weight:bold;">Domestic &rsaquo;</a></p>
+        <p><a href="#">Adjusted for Inflation &rsaquo;</a></p>
+        <p><a href="#">Worldwide &rsaquo;</a></p>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-header">BOX OFFICE</div>
+      <div class="widget-body">
+        <p><a href="weekend.html"><strong>Weekend Chart &gt;</strong></a></p>
+        <p><a href="yearly.html"><strong>Yearly Chart &gt;</strong></a></p>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-header">SHOWDOWNS</div>
+      <div class="widget-body">
+        <p>Compare movies head-to-head. <a href="showdowns.html"><strong>Click here &gt;</strong></a></p>
+      </div>
+    </div>
+
+  </aside>
+
+</div><!-- /page-wrapper -->
+
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">&ldquo;Serving your box office needs since 2026.&rdquo;</span>
+  <div style="margin-top:8px;">
+    <a href="https://www.netflix.com" target="_blank" rel="noopener">
+      <img src="assets/images/free-dvd-rentals.gif" alt="Free DVD Rentals" style="display:inline-block;height:auto;">
+    </a>
+  </div>
+</footer>
+
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+
+  // ── Chart data ────────────────────────────────────────────────────
+  const CHART = [
+    {r:1,   t:"Star Wars: Episode VII - The Force Awakens",                g:936662225, y:2015},
+    {r:2,   t:"Avengers: Endgame",                                          g:858373000, y:2019},
+    {r:3,   t:"Spider-Man: No Way Home",                                    g:814866759, y:2021},
+    {r:4,   t:"Avatar",                                                     g:785221649, y:2009},
+    {r:5,   t:"Top Gun: Maverick",                                          g:718732821, y:2022},
+    {r:6,   t:"Black Panther",                                              g:700426566, y:2018},
+    {r:7,   t:"Avatar: The Way of Water",                                   g:688459501, y:2022},
+    {r:8,   t:"Avengers: Infinity War",                                     g:678815482, y:2018},
+    {r:9,   t:"Titanic",                                                    g:674354882, y:1997},
+    {r:10,  t:"Jurassic World",                                             g:653406625, y:2015},
+    {r:11,  t:"Inside Out 2",                                               g:652980194, y:2024},
+    {r:12,  t:"Deadpool &amp; Wolverine",                                   g:636745858, y:2024},
+    {r:13,  t:"Barbie",                                                     g:636238421, y:2023},
+    {r:14,  t:"The Avengers",                                               g:623357910, y:2012},
+    {r:15,  t:"Star Wars: Episode VIII - The Last Jedi",                    g:620181382, y:2017},
+    {r:16,  t:"Incredibles 2",                                              g:608581744, y:2018},
+    {r:17,  t:"The Super Mario Bros. Movie",                                g:574934330, y:2023},
+    {r:18,  t:"The Lion King",                                              g:543638043, y:2019},
+    {r:19,  t:"The Dark Knight",                                            g:534987076, y:2008},
+    {r:20,  t:"Rogue One: A Star Wars Story",                               g:533539991, y:2016},
+    {r:21,  t:"Star Wars: Episode IX - The Rise of Skywalker",              g:515202542, y:2019},
+    {r:22,  t:"Beauty and the Beast",                                       g:504481165, y:2017},
+    {r:23,  t:"Star Wars: Episode I - The Phantom Menace",                  g:487576624, y:1999},
+    {r:24,  t:"Finding Dory",                                               g:486295561, y:2016},
+    {r:25,  t:"Frozen II",                                                  g:477373578, y:2019},
+    {r:26,  t:"Wicked",                                                     g:474983975, y:2024},
+    {r:27,  t:"Star Wars: Episode IV - A New Hope",                         g:460998507, y:1977},
+    {r:28,  t:"Moana 2",                                                    g:460405297, y:2024},
+    {r:29,  t:"Avengers: Age of Ultron",                                    g:459005868, y:2015},
+    {r:30,  t:"Black Panther: Wakanda Forever",                             g:453829060, y:2022},
+    {r:31,  t:"The Dark Knight Rises",                                      g:448149584, y:2012},
+    {r:32,  t:"Shrek 2",                                                    g:444978202, y:2004},
+    {r:33,  t:"E.T. the Extra-Terrestrial",                                 g:439454989, y:1982},
+    {r:34,  t:"Toy Story 4",                                                g:434038008, y:2019},
+    {r:35,  t:"Zootopia 2",                                                 g:428130160, y:2025},
+    {r:36,  t:"Captain Marvel",                                             g:426829839, y:2019},
+    {r:37,  t:"The Lion King",                                              g:424979720, y:1994},
+    {r:38,  t:"The Hunger Games: Catching Fire",                            g:424668047, y:2013},
+    {r:39,  t:"A Minecraft Movie",                                          g:424087780, y:2025},
+    {r:40,  t:"Lilo &amp; Stitch",                                          g:423778855, y:2025},
+    {r:41,  t:"Pirates of the Caribbean: Dead Man's Chest",                 g:423315812, y:2006},
+    {r:42,  t:"Jurassic World: Fallen Kingdom",                             g:417719760, y:2018},
+    {r:43,  t:"Toy Story 3",                                                g:415004880, y:2010},
+    {r:44,  t:"Star Wars: Episode III - Revenge of the Sith",               g:414378291, y:2005},
+    {r:45,  t:"Wonder Woman",                                               g:412845172, y:2017},
+    {r:46,  t:"Doctor Strange in the Multiverse of Madness",                g:411331607, y:2022},
+    {r:47,  t:"Iron Man 3",                                                 g:409013994, y:2013},
+    {r:48,  t:"Spider-Man",                                                 g:408524875, y:2002},
+    {r:49,  t:"Captain America: Civil War",                                 g:408084349, y:2016},
+    {r:50,  t:"The Hunger Games",                                           g:408010692, y:2012},
+    {r:51,  t:"Jurassic Park",                                              g:407185075, y:1993},
+    {r:52,  t:"Jumanji: Welcome to the Jungle",                             g:404540171, y:2017},
+    {r:53,  t:"Avatar: Fire and Ash",                                       g:404331134, y:2025},
+    {r:54,  t:"Transformers: Revenge of the Fallen",                        g:402111870, y:2009},
+    {r:55,  t:"Frozen",                                                     g:400953009, y:2013},
+    {r:56,  t:"Spider-Man: Far from Home",                                  g:391283774, y:2019},
+    {r:57,  t:"Guardians of the Galaxy Vol. 2",                             g:389813101, y:2017},
+    {r:58,  t:"The Lord of the Rings: The Return of the King",              g:386975644, y:2003},
+    {r:59,  t:"Harry Potter and the Deathly Hallows: Part 2",               g:381884297, y:2011},
+    {r:60,  t:"Spider-Man: Across the Spider-Verse",                        g:381593754, y:2023},
+    {r:61,  t:"Finding Nemo",                                               g:380843261, y:2003},
+    {r:62,  t:"Jurassic World: Dominion",                                   g:376851080, y:2022},
+    {r:63,  t:"Spider-Man 2",                                               g:375087840, y:2004},
+    {r:64,  t:"The Passion of the Christ",                                  g:370782930, y:2004},
+    {r:65,  t:"Minions: The Rise of Gru",                                   g:370549695, y:2022},
+    {r:66,  t:"The Batman",                                                 g:369801546, y:2022},
+    {r:67,  t:"The Secret Life of Pets",                                    g:368623860, y:2016},
+    {r:68,  t:"Despicable Me 2",                                            g:368065385, y:2013},
+    {r:69,  t:"The Jungle Book",                                            g:364001123, y:2016},
+    {r:70,  t:"Deadpool",                                                   g:363070709, y:2016},
+    {r:71,  t:"Despicable Me 4",                                            g:361004205, y:2024},
+    {r:72,  t:"Guardians of the Galaxy Vol. 3",                             g:358995815, y:2023},
+    {r:73,  t:"Inside Out",                                                 g:356461711, y:2015},
+    {r:74,  t:"Aladdin",                                                    g:355559216, y:2019},
+    {r:75,  t:"Superman",                                                   g:354223803, y:2025},
+    {r:76,  t:"Furious 7",                                                  g:353007020, y:2015},
+    {r:77,  t:"Transformers: Dark of the Moon",                             g:352390543, y:2011},
+    {r:78,  t:"American Sniper",                                            g:350159020, y:2014},
+    {r:79,  t:"The Lord of the Rings: The Two Towers",                      g:350104956, y:2002},
+    {r:80,  t:"Thor: Love and Thunder",                                     g:343256830, y:2022},
+    {r:81,  t:"Wicked: For Good",                                           g:342915090, y:2025},
+    {r:82,  t:"Zootopia",                                                   g:341268248, y:2016},
+    {r:83,  t:"Jurassic World: Rebirth",                                    g:339640400, y:2025},
+    {r:84,  t:"Spider-Man 3",                                               g:338032318, y:2007},
+    {r:85,  t:"The Hunger Games: Mockingjay - Part 1",                      g:337135885, y:2014},
+    {r:86,  t:"Minions",                                                    g:336045770, y:2015},
+    {r:87,  t:"Joker",                                                      g:335477657, y:2019},
+    {r:88,  t:"Aquaman",                                                    g:335104314, y:2018},
+    {r:89,  t:"Spider-Man: Homecoming",                                     g:334952829, y:2017},
+    {r:90,  t:"Alice in Wonderland",                                        g:334191110, y:2010},
+    {r:91,  t:"Guardians of the Galaxy",                                    g:333718600, y:2014},
+    {r:92,  t:"Forrest Gump",                                               g:330455270, y:1994},
+    {r:93,  t:"Batman v Superman: Dawn of Justice",                         g:330360194, y:2016},
+    {r:94,  t:"Oppenheimer",                                                g:330078895, y:2023},
+    {r:95,  t:"It",                                                         g:328874981, y:2017},
+    {r:96,  t:"The Lord of the Rings: The Fellowship of the Ring",          g:325873309, y:2001},
+    {r:97,  t:"Suicide Squad",                                              g:325100054, y:2016},
+    {r:98,  t:"Deadpool 2",                                                 g:324591735, y:2018},
+    {r:99,  t:"Shrek the Third",                                            g:322719944, y:2007},
+    {r:100, t:"Jumanji: The Next Level",                                    g:320314960, y:2019},
+    {r:101, t:"Harry Potter and the Sorcerer's Stone",                      g:319765078, y:2001},
+    {r:102, t:"Transformers",                                               g:319246193, y:2007},
+    {r:103, t:"Iron Man",                                                   g:319034126, y:2008},
+    {r:104, t:"Indiana Jones and the Kingdom of the Crystal Skull",         g:317101119, y:2008},
+    {r:105, t:"Star Wars: Episode VI - Return of the Jedi",                 g:316566101, y:1983},
+    {r:106, t:"Thor: Ragnarok",                                             g:315058289, y:2017},
+    {r:107, t:"Iron Man 2",                                                 g:312433331, y:2010},
+    {r:108, t:"Star Wars: Episode II - Attack of the Clones",               g:310676740, y:2002},
+    {r:109, t:"Pirates of the Caribbean: At World's End",                   g:309420425, y:2007},
+    {r:110, t:"The Super Mario Galaxy Movie",                               g:307200780, y:2026, inRelease:true},
+    {r:111, t:"Independence Day",                                           g:306169268, y:1996},
+    {r:112, t:"Pirates of the Caribbean: The Curse of the Black Pearl",     g:305413918, y:2003},
+    {r:113, t:"Skyfall",                                                    g:304360277, y:2012},
+    {r:114, t:"The Hobbit: An Unexpected Journey",                          g:303030651, y:2012},
+    {r:115, t:"Harry Potter and the Half-Blood Prince",                     g:302334374, y:2009},
+    {r:116, t:"The Twilight Saga: Eclipse",                                 g:300840764, y:2010},
+    {r:117, t:"The Twilight Saga: New Moon",                                g:298410482, y:2009},
+    {r:118, t:"The Little Mermaid",                                         g:298172056, y:2023},
+    {r:119, t:"Harry Potter and the Deathly Hallows: Part 1",               g:296374621, y:2010},
+    {r:120, t:"Beetlejuice Beetlejuice",                                    g:294100435, y:2024},
+    {r:121, t:"The Sixth Sense",                                            g:293506292, y:1999},
+    {r:122, t:"The Twilight Saga: Breaking Dawn - Part 2",                  g:293144686, y:2012},
+    {r:123, t:"Up",                                                         g:293004164, y:2009},
+    {r:124, t:"Star Wars: Episode V - The Empire Strikes Back",             g:292753960, y:1980},
+    {r:125, t:"Inception",                                                  g:292587330, y:2010},
+    {r:126, t:"Harry Potter and the Order of the Phoenix",                  g:292382727, y:2007},
+    {r:127, t:"The Chronicles of Narnia: The Lion, the Witch and the Wardrobe", g:291710957, y:2005},
+    {r:128, t:"Harry Potter and the Goblet of Fire",                        g:291239805, y:2005},
+    {r:129, t:"Man of Steel",                                               g:291045518, y:2013},
+    {r:130, t:"Monsters, Inc.",                                             g:290642256, y:2001},
+    {r:131, t:"Home Alone",                                                 g:285761243, y:1990},
+    {r:132, t:"Dune: Part Two",                                             g:282144358, y:2024},
+    {r:133, t:"The Twilight Saga: Breaking Dawn - Part 1",                  g:281797623, y:2011},
+    {r:134, t:"The Hunger Games: Mockingjay - Part 2",                      g:281723902, y:2015},
+    {r:135, t:"The Matrix Reloaded",                                        g:281576461, y:2003},
+    {r:136, t:"Jaws",                                                       g:280083300, y:1975},
+    {r:137, t:"Sinners",                                                    g:279989632, y:2025},
+    {r:138, t:"Meet the Fockers",                                           g:279261160, y:2004},
+    {r:139, t:"The Hangover",                                               g:277339746, y:2009},
+    {r:140, t:"The Fantastic Four: First Steps",                            g:274286610, y:2025},
+    {r:141, t:"Gravity",                                                    g:274092705, y:2013},
+    {r:142, t:"The Grinch",                                                 g:272504456, y:2018},
+    {r:143, t:"Sing",                                                       g:270578425, y:2016},
+    {r:144, t:"Shrek",                                                      g:268698241, y:2001},
+    {r:145, t:"Monsters University",                                        g:268492764, y:2013},
+    {r:146, t:"Twisters",                                                   g:267762265, y:2024},
+    {r:147, t:"How the Grinch Stole Christmas",                             g:264965545, y:2000},
+    {r:148, t:"Despicable Me 3",                                            g:264624300, y:2017},
+    {r:149, t:"Harry Potter and the Chamber of Secrets",                    g:263094348, y:2002},
+    {r:150, t:"How to Train Your Dragon",                                   g:262958100, y:2025},
+    {r:151, t:"The Amazing Spider-Man",                                     g:262782352, y:2012},
+    {r:152, t:"The Incredibles",                                            g:261441092, y:2004},
+    {r:153, t:"Captain America: The Winter Soldier",                        g:259766572, y:2014},
+    {r:154, t:"The Hobbit: The Desolation of Smaug",                        g:258387334, y:2013},
+    {r:155, t:"The Lego Movie",                                             g:257966122, y:2014},
+    {r:156, t:"Star Trek",                                                  g:257730019, y:2009},
+    {r:157, t:"I Am Legend",                                                g:256393010, y:2007},
+    {r:158, t:"Project Hail Mary",                                          g:256218578, y:2026, inRelease:true},
+    {r:159, t:"The Blind Side",                                             g:255982860, y:2009},
+    {r:160, t:"The Hobbit: The Battle of the Five Armies",                  g:255138261, y:2014},
+    {r:161, t:"Mufasa: The Lion King",                                      g:254567693, y:2024},
+    {r:162, t:"The Hangover Part II",                                       g:254464305, y:2011},
+    {r:163, t:"Despicable Me",                                              g:251683815, y:2010},
+    {r:164, t:"Batman",                                                     g:251409241, y:1989},
+    {r:165, t:"Night at the Museum",                                        g:250863268, y:2006},
+    {r:166, t:"Men in Black",                                               g:250690539, y:1997},
+    {r:167, t:"Harry Potter and the Prisoner of Azkaban",                   g:250657586, y:2016},
+    {r:168, t:"Moana",                                                      g:248757044, y:2016},
+    {r:169, t:"Raiders of the Lost Ark",                                    g:248159971, y:1981},
+    {r:170, t:"Toy Story 2",                                                g:245852179, y:1999},
+    {r:171, t:"Transformers: Age of Extinction",                            g:245439076, y:2014},
+    {r:172, t:"Cars",                                                       g:244082982, y:2006},
+    {r:173, t:"Ghostbusters",                                               g:243640120, y:1984},
+    {r:174, t:"Bruce Almighty",                                             g:242829261, y:2003},
+    {r:175, t:"Twister",                                                    g:241830615, y:1996},
+    {r:176, t:"My Big Fat Greek Wedding",                                   g:241438208, y:2002},
+    {r:177, t:"Maleficent",                                                 g:241410378, y:2014},
+    {r:178, t:"Pirates of the Caribbean: On Stranger Tides",                g:241071802, y:2011},
+    {r:179, t:"Shrek Forever After",                                        g:238736787, y:2010},
+    {r:180, t:"Fast &amp; Furious 6",                                       g:238679850, y:2013},
+    {r:181, t:"Brave",                                                      g:237283207, y:2012},
+    {r:182, t:"Sonic the Hedgehog 3",                                       g:236115100, y:2024},
+    {r:183, t:"Oz the Great and Powerful",                                  g:234911825, y:2013},
+    {r:184, t:"Beverly Hills Cop",                                          g:234760478, y:1984},
+    {r:185, t:"X-Men: The Last Stand",                                      g:234362462, y:2006},
+    {r:186, t:"War of the Worlds",                                          g:234280354, y:2005},
+    {r:187, t:"Fantastic Beasts and Where to Find Them",                    g:234037575, y:2016},
+    {r:188, t:"X-Men: Days of Future Past",                                 g:233921534, y:2014},
+    {r:189, t:"Cast Away",                                                  g:233632142, y:2000},
+    {r:190, t:"The Exorcist",                                               g:233005644, y:1973},
+    {r:191, t:"Doctor Strange",                                             g:232641920, y:2016},
+    {r:192, t:"Toy Story",                                                  g:229947062, y:1995},
+    {r:193, t:"The Lost World: Jurassic Park",                              g:229086679, y:1997},
+    {r:194, t:"Justice League",                                             g:229024295, y:2017},
+    {r:195, t:"Star Trek Into Darkness",                                    g:228778661, y:2013},
+    {r:196, t:"The Martian",                                                g:228433663, y:2015},
+    {r:197, t:"Signs",                                                      g:227966634, y:2002},
+    {r:198, t:"Hancock",                                                    g:227946274, y:2008},
+    {r:199, t:"The Bourne Ultimatum",                                       g:227471070, y:2007},
+    {r:200, t:"Logan",                                                      g:226277068, y:2017},
+  ];
+
+  // ── Format gross ──────────────────────────────────────────────────
+  function fmtGross(n) {
+    return '$' + n.toLocaleString('en-US');
+  }
+
+  // ── Current page state ────────────────────────────────────────────
+  let currentPage = 1;
+
+  function showPage(page) {
+    currentPage = page;
+    const start = (page - 1) * 100;
+    const slice = CHART.slice(start, start + 100);
+
+    const rows = slice.map((m, i) => {
+      const cls = m.inRelease ? 'at-row in-release' : 'at-row';
+      const badge = m.inRelease ? '<span class="in-release-badge">In Release</span>' : '';
+      return `<tr class="${cls}">
+        <td class="td-rank">${m.r}</td>
+        <td class="td-title"><a href="#">${m.t}</a>${badge}</td>
+        <td class="td-gross">${fmtGross(m.g)}</td>
+        <td class="td-year">${m.y}</td>
+      </tr>`;
+    }).join('');
+
+    document.getElementById('chart-body').innerHTML = rows;
+
+    // Update pager links — top and bottom
+    updatePager('page-label-1', 'page-link-2', page);
+    updatePager('page-label-b1', 'page-link-b2', page);
+
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  function updatePager(labelId, linkId, page) {
+    const label = document.getElementById(labelId);
+    const link  = document.getElementById(linkId);
+
+    if (page === 1) {
+      label.textContent = '#1\u2013100';
+      label.className = 'current';
+      link.textContent = '#101\u2013200';
+      link.onclick = function(){ showPage(2); return false; };
+    } else {
+      label.textContent = '#1\u2013100';
+      label.className = '';
+      label.innerHTML = '<a href="#" onclick="showPage(1); return false;">#1\u2013100</a>';
+      link.textContent = '#101\u2013200';
+      link.className = 'current';
+      link.removeAttribute('href');
+      link.onclick = null;
+      // Swap them
+      const parent = label.parentNode;
+      // Rebuild pager cleanly
+      parent.innerHTML =
+        '<a href="#" onclick="showPage(1); return false;">#1\u2013100</a>' +
+        '<span class="sep">\u2013</span>' +
+        '<span class="current">#101\u2013200</span>';
+    }
+  }
+
+  // Initial render
+  showPage(1);
+</script>
+
+</body>
+</html>
