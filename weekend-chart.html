@@ -7,9 +7,111 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <style>
 
-    /* ── Individual weekend chart header ─────────────────────────── */
+    /* ── Full-width wrapper (no sidebars) ────────────────────────── */
+    .wc-wrapper {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    /* ── Top navigation bar ──────────────────────────────────────── */
+    .wc-topnav {
+      display: flex;
+      align-items: stretch;
+      background: #7F170E;
+      border-bottom: 2px solid #3a0a06;
+    }
+    .wc-topnav-logo {
+      background: #F7CE55;
+      color: #000;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      padding: 0 12px;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      border-right: 2px solid #3a0a06;
+      line-height: 1.2;
+      text-align: center;
+    }
+    .wc-topnav-logo:hover { background: #e8c040; text-decoration: none; color: #000; }
+    .wc-topnav-logo .logo-top { display: block; font-size: 9px; letter-spacing: 0.04em; }
+    .wc-topnav-logo .logo-bot { display: block; font-size: 13px; color: #7F170E; letter-spacing: 0.04em; }
+
+    .wc-topnav-search {
+      display: flex;
+      align-items: center;
+      padding: 5px 8px;
+      border-right: 1px solid rgba(255,255,255,0.2);
+      flex-shrink: 0;
+      gap: 4px;
+    }
+    .wc-topnav-search input[type="text"] {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 10px;
+      padding: 2px 5px;
+      border: 1px solid #999;
+      width: 110px;
+    }
+    .wc-topnav-search button {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 10px;
+      padding: 2px 6px;
+      background: #555;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .wc-topnav-search button:hover { background: #333; }
+
+    .wc-topnav-links {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 0 4px;
+    }
+    .wc-topnav-links a {
+      color: #fff;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 11px;
+      text-decoration: none;
+      padding: 8px 9px;
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      display: block;
+    }
+    .wc-topnav-links a:hover { background: rgba(255,255,255,0.12); text-decoration: none; color: #fff; }
+    .wc-topnav-links a.active { text-decoration: underline; }
+    .wc-topnav-sep { color: rgba(255,255,255,0.35); font-size: 13px; padding: 0 2px; }
+
+    .wc-topnav-right {
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      flex-shrink: 0;
+      border-left: 1px solid rgba(255,255,255,0.2);
+    }
+    .wc-print-link {
+      color: #fff;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .wc-print-link img { vertical-align: middle; }
+    .wc-print-link:hover { text-decoration: underline; color: #fff; }
+
+    /* ── Page header (centered) ──────────────────────────────────── */
     .wc-page-header {
-      padding: 10px 14px 8px;
+      padding: 14px 14px 10px;
       text-align: center;
       border-bottom: 1px solid #CCCCCC;
     }
@@ -23,7 +125,7 @@
     .wc-page-title {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 28px;
+      font-size: 30px;
       color: #000;
       margin: 0;
       text-decoration: underline;
@@ -32,7 +134,7 @@
     .wc-date-range {
       font-family: 'Times New Roman', Times, serif;
       font-weight: bold;
-      font-size: 20px;
+      font-size: 22px;
       color: #990000;
       margin: 6px 0 0;
     }
@@ -41,298 +143,233 @@
     .wc-story-block {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
-      padding: 12px 14px 10px;
+      gap: 14px;
+      padding: 12px 20px 10px;
       border-bottom: 1px solid #CCCCCC;
+      max-width: 680px;
+      margin: 0 auto;
     }
     .wc-story-photo {
-      width: 100px;
-      height: 80px;
-      object-fit: cover;
-      flex-shrink: 0;
+      width: 100px; height: 80px;
+      object-fit: cover; flex-shrink: 0;
       border: 1px solid #CCC;
     }
     .wc-story-photo-placeholder {
-      width: 100px;
-      height: 80px;
-      background: #DDDDE8;
-      flex-shrink: 0;
+      width: 100px; height: 80px;
+      background: #DDDDE8; flex-shrink: 0;
       border: 1px solid #BBB;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
     }
-    .wc-story-text {}
     .wc-story-headline {
       font-family: 'Times New Roman', Times, serif;
-      font-weight: bold;
-      font-size: 15px;
-      color: #00239C;
-      margin: 0 0 4px;
+      font-weight: bold; font-size: 16px;
+      color: #00239C; margin: 0 0 5px;
     }
     .wc-story-teaser {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 14px;
-      color: #000;
-      margin: 0 0 6px;
-      line-height: 1.4;
+      font-size: 14px; color: #000;
+      margin: 0 0 6px; line-height: 1.4;
     }
     .wc-story-link {
       font-family: 'Times New Roman', Times, serif;
-      font-weight: bold;
-      font-size: 15px;
-      color: #00239C;
-      text-decoration: none;
+      font-weight: bold; font-size: 15px;
+      color: #00239C; text-decoration: none;
     }
     .wc-story-link:hover { text-decoration: underline; }
 
+    /* ── Weekend navigation (prev / index / next) ────────────────── */
+    .wc-weekend-nav {
+      display: flex;
+      align-items: center;
+      padding: 6px 20px;
+      border-bottom: 1px solid #CCCCCC;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+    }
+    .wc-nav-prev, .wc-nav-next {
+      font-weight: bold;
+      color: #00239C;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .wc-nav-prev:hover, .wc-nav-next:hover { text-decoration: underline; }
+    .wc-nav-prev.disabled, .wc-nav-next.disabled {
+      color: #999; pointer-events: none; cursor: default;
+    }
+    .wc-nav-center {
+      flex: 1;
+      text-align: center;
+    }
+    .wc-nav-center a {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold; font-size: 12px;
+      color: #00239C; text-decoration: none;
+    }
+    .wc-nav-center a:hover { text-decoration: underline; }
+
     /* ── Chart table ─────────────────────────────────────────────── */
     .wc-chart-wrap {
-      padding: 8px 14px 14px;
+      padding: 10px 20px 14px;
       overflow-x: auto;
     }
     .wc-table {
       width: 100%;
       border-collapse: collapse;
-      border: 1px solid #AAAAAA;
+      border: 1px solid #A8A8A8;
+      box-shadow: 3px 3px 0 #545454;
       font-size: 13px;
     }
-
-    /* Header */
     .wc-table thead th {
-      background: #CCCCDD;
-      font-family: 'Times New Roman', Times, serif;
+      background: #DCDCDC;
+      font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 13px;
-      color: #000;
+      font-size: 11px;
+      color: #00239C;
       padding: 5px 8px;
       text-align: center;
-      border-right: 1px solid #BBBBCC;
-      border-bottom: 2px solid #888899;
+      border-right: 1px solid #A8A8A8;
+      border-bottom: 1px solid #A8A8A8;
       white-space: nowrap;
     }
     .wc-table thead th:last-child { border-right: none; }
     .wc-table thead th.th-title { text-align: center; }
-
-    /* Rows */
     .wc-table tbody tr.wc-row td {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 14px;
-      color: #000;
+      font-size: 14px; color: #000;
       padding: 4px 8px;
-      border-bottom: 1px solid #CCCCDD;
-      border-right: 1px solid #DDDDEE;
+      border-bottom: 1px solid #A8A8A8;
+      border-right: 1px solid #A8A8A8;
       vertical-align: middle;
     }
     .wc-table tbody tr.wc-row td:last-child { border-right: none; }
-
-    /* Alternating row colors: odd = white, even = light blue */
     .wc-table tbody tr.wc-row:nth-child(odd)  td { background: #FFFFFF; }
     .wc-table tbody tr.wc-row:nth-child(even) td { background: #EEEEFF; }
-
-    /* New film highlight overrides row color */
     .wc-table tbody tr.wc-row.wc-new td { background: #FFFFA6 !important; }
 
-    /* Rank columns */
-    .wc-tw, .wc-lw {
-      text-align: center;
-      width: 28px;
-      font-weight: normal;
-      color: #333;
-    }
-    .wc-lw-new {
-      font-weight: bold;
-      color: #333;
-    }
-
-    /* Title cell — top 10: Times Bold Blue; 11+: Times Regular Black */
-    .wc-title-cell { min-width: 160px; }
+    .wc-tw, .wc-lw { text-align: center; width: 28px; font-weight: normal; color: #333; }
+    .wc-lw-new { font-weight: bold; color: #333; }
+    .wc-title-cell { min-width: 180px; }
     .wc-title-top {
       font-family: 'Times New Roman', Times, serif;
-      font-weight: bold;
-      font-size: 14px;
-      color: #00239C;
-      text-decoration: none;
+      font-weight: bold; font-size: 14px;
+      color: #00239C; text-decoration: none;
     }
     .wc-title-top:hover { text-decoration: underline; color: #0000F5 !important; }
     .wc-title-lower {
       font-family: 'Times New Roman', Times, serif;
-      font-weight: normal;
-      font-size: 14px;
-      color: #000;
-      text-decoration: none;
+      font-weight: normal; font-size: 14px;
+      color: #000; text-decoration: none;
     }
     .wc-title-lower:hover { text-decoration: underline; color: #0000F5 !important; }
-
-    /* Studio */
     .wc-studio { text-align: center; white-space: nowrap; }
-
-    /* Number columns */
     .wc-num { text-align: right; white-space: nowrap; }
-
-    /* Theater count/change: "3,183 / -230" format */
     .wc-theaters { text-align: right; white-space: nowrap; }
-
-    /* % Change colors */
     .wc-chg-up   { color: #006600; }
     .wc-chg-down { color: #CC0000; }
     .wc-chg-new  { color: #555; }
 
-    /* Footnote */
+    /* ── Footnotes ───────────────────────────────────────────────── */
     .wc-footnote {
       font-family: Verdana, Geneva, sans-serif;
-      font-size: 11px;
-      color: #777;
-      margin: 4px 14px 12px;
+      font-size: 11px; color: #777;
+      margin: 4px 20px;
     }
-
-    /* Back nav */
-    .wc-back-nav {
-      padding: 6px 14px 0;
-      font-family: Verdana, Geneva, sans-serif;
-      font-size: 11px;
-    }
-    .wc-back-nav a {
-      color: #00239C;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .wc-back-nav a:hover { text-decoration: underline; }
 
   </style>
 </head>
 <body>
 
-<div class="page-wrapper">
+<div class="wc-wrapper">
 
-  <nav class="sidebar">
-    <a href="index.html" class="sidebar-logo">
+  <!-- Top navigation bar -->
+  <div class="wc-topnav">
+    <a href="index.html" class="wc-topnav-logo">
       <span class="logo-top">BOX OFFICE</span>
-      <span class="logo-bottom">JEDI</span>
+      <span class="logo-bot">JEDI</span>
     </a>
-    <div class="sidebar-search">
-      <input type="text" placeholder="Search..." id="sidebar-search-input">
+    <div class="wc-topnav-search">
+      <input type="text" placeholder="Search..." id="topnav-search-input">
       <button type="button" onclick="doSearch()">Go</button>
     </div>
-    <div class="sidebar-nav">
-      <span class="nav-banner">BOX OFFICE</span>
-      <ul>
-        <li><a href="daily.html">DAILY</a></li>
-        <li class="active"><a href="weekend.html">WEEKEND</a></li>
-        <li><a href="yearly.html">YEARLY</a></li>
-        <li><a href="alltime.html">ALL TIME</a></li>
-      </ul>
-      <span class="nav-banner">FEATURES &amp; MORE</span>
-      <ul>
-        <li><a href="forecast.html">THE FORECAST</a></li>
-        <li><a href="news.html">MOVIE NEWS</a></li>
-        <li><a href="releases.html">RELEASE DATES</a></li>
-        <li><a href="showdowns.html">SHOWDOWNS</a></li>
-        <li class="derby"><a href="derby.html">DERBY GAME</a></li>
-      </ul>
+    <div class="wc-topnav-links">
+      <a href="daily.html">DAILY</a>
+      <span class="wc-topnav-sep">|</span>
+      <a href="weekend.html" class="active">WEEKEND</a>
+      <span class="wc-topnav-sep">|</span>
+      <a href="yearly.html">YEARLY</a>
+      <span class="wc-topnav-sep">|</span>
+      <a href="alltime.html">ALL TIME</a>
+      <span class="wc-topnav-sep">|</span>
+      <a href="showdowns.html">SHOWDOWNS</a>
+      <span class="wc-topnav-sep">|</span>
+      <a href="forecast.html">THE FORECAST</a>
+      <span class="wc-topnav-sep">|</span>
+      <a href="news.html">MOVIE NEWS</a>
+      <span class="wc-topnav-sep">|</span>
+      <a href="derby.html">DERBY GAME</a>
     </div>
-    <a href="index.html" class="sidebar-home">HOME</a>
-  </nav>
-
-
-  <main class="main-content">
-
-    <!-- Back to index -->
-    <div class="wc-back-nav">
-      <a href="weekend.html">&lt;&lt; All Weekends</a>
+    <div class="wc-topnav-right">
+      <a href="javascript:window.print()" class="wc-print-link">
+        <img src="article_print.gif" alt="Print"> Print
+      </a>
     </div>
+  </div>
 
-    <!-- Page header -->
-    <div class="wc-page-header">
-      <p class="wc-site-label">BOX OFFICE JEDI</p>
-      <h1 class="wc-page-title">WEEKEND BOX OFFICE</h1>
-      <div class="wc-date-range" id="wc-date-range">Loading...</div>
+  <!-- Page header -->
+  <div class="wc-page-header">
+    <p class="wc-site-label">BOX OFFICE JEDI</p>
+    <h1 class="wc-page-title">WEEKEND BOX OFFICE</h1>
+    <div class="wc-date-range" id="wc-date-range">Loading...</div>
+  </div>
+
+  <!-- Story block -->
+  <div class="wc-story-block" id="wc-story-block" style="display:none;">
+    <div class="wc-story-photo-placeholder" id="wc-story-photo-wrap"></div>
+    <div class="wc-story-text">
+      <div class="wc-story-headline" id="wc-story-headline"></div>
+      <p class="wc-story-teaser" id="wc-story-teaser"></p>
+      <a class="wc-story-link" id="wc-story-link" href="news.html">&gt;&gt;&gt; CLICK HERE TO READ THE FULL STORY</a>
     </div>
+  </div>
 
-    <!-- Story block -->
-    <div class="wc-story-block" id="wc-story-block" style="display:none;">
-      <div class="wc-story-photo-placeholder" id="wc-story-photo-wrap">
-        <!-- photo injected if available -->
-      </div>
-      <div class="wc-story-text">
-        <div class="wc-story-headline" id="wc-story-headline"></div>
-        <p class="wc-story-teaser" id="wc-story-teaser"></p>
-        <a class="wc-story-link" id="wc-story-link" href="news.html">&gt;&gt;&gt; CLICK HERE TO READ THE FULL STORY</a>
-      </div>
+  <!-- Weekend navigation -->
+  <div class="wc-weekend-nav">
+    <a class="wc-nav-prev disabled" id="wc-nav-prev" href="#">&lt;&lt; Last Weekend</a>
+    <div class="wc-nav-center">
+      <a href="weekend.html">View Weekend Index</a>
     </div>
+    <a class="wc-nav-next disabled" id="wc-nav-next" href="#">Next Weekend &gt;&gt;</a>
+  </div>
 
-    <!-- Chart -->
-    <div class="wc-chart-wrap">
-      <table class="wc-table" id="wc-table">
-        <thead>
-          <tr>
-            <th class="wc-tw">TW</th>
-            <th class="wc-lw">LW</th>
-            <th class="th-title">Title <span style="font-weight:normal;font-size:11px;">(Click to view movie page)</span></th>
-            <th class="wc-studio">Studio</th>
-            <th class="wc-num">Weekend Gross</th>
-            <th class="wc-num">% Change</th>
-            <th class="wc-theaters">Theaters / Chg</th>
-            <th class="wc-num">Average</th>
-            <th class="wc-num">Total Gross</th>
-            <th class="wc-num">Week&nbsp;#</th>
-          </tr>
-        </thead>
-        <tbody id="wc-body">
-          <tr><td colspan="10" style="padding:24px;text-align:center;color:#666;font-family:Verdana,sans-serif;font-size:12px;">Loading data...</td></tr>
-        </tbody>
-      </table>
-    </div>
+  <!-- Chart -->
+  <div class="wc-chart-wrap">
+    <table class="wc-table" id="wc-table">
+      <thead>
+        <tr>
+          <th class="wc-tw">TW</th>
+          <th class="wc-lw">LW</th>
+          <th class="th-title">Title <span style="font-weight:normal;font-size:10px;color:#333;">(Click to view movie page)</span></th>
+          <th class="wc-studio">Studio</th>
+          <th class="wc-num">Weekend Gross</th>
+          <th class="wc-num">% Change</th>
+          <th class="wc-theaters">Theaters&nbsp;/ Chg</th>
+          <th class="wc-num">Average</th>
+          <th class="wc-num">Total Gross</th>
+          <th class="wc-num">Week&nbsp;#</th>
+        </tr>
+      </thead>
+      <tbody id="wc-body">
+        <tr><td colspan="10" style="padding:24px;text-align:center;color:#666;font-family:Verdana,sans-serif;font-size:12px;">Loading data...</td></tr>
+      </tbody>
+    </table>
+  </div>
 
-    <p class="wc-footnote" id="wc-estimates-note" style="display:none;">
-      * Figures are estimates and will be updated when actuals are reported.
-    </p>
-    <p class="wc-footnote">Data via The Numbers.</p>
+  <p class="wc-footnote" id="wc-estimates-note" style="display:none;">
+    * Figures are estimates and will be updated when actuals are reported.
+  </p>
+  <p class="wc-footnote">Data via The Numbers.</p>
 
-  </main>
-
-
-  <aside class="right-sidebar">
-
-    <div class="widget">
-      <div class="widget-header">WEEKEND CHARTS</div>
-      <div class="widget-body">
-        <p>
-          <a href="weekend.html"><strong>All Weekends</strong></a><br>
-          <a href="daily.html">Daily Chart</a><br>
-          <a href="yearly.html">Yearly Chart</a>
-        </p>
-      </div>
-    </div>
-
-    <div class="widget">
-      <div class="widget-header">TOP 10 THEATER COUNTS</div>
-      <div class="widget-body" style="padding:0;">
-        <table style="width:100%;border-collapse:collapse;font-size:12px;font-family:'Times New Roman',Times,serif;">
-          <tbody id="theater-widget-body">
-            <tr><td colspan="2" style="padding:8px;color:#999;font-family:Verdana,sans-serif;font-size:11px;">Loading...</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="widget">
-      <div class="widget-header">THE FORECAST</div>
-      <div class="widget-body">
-        <p>Read this weekend&#8217;s predictions. <a href="forecast.html"><strong>Click here &gt;</strong></a></p>
-      </div>
-    </div>
-
-    <div class="widget">
-      <div class="widget-header" style="background:#7F170E;">DERBY GAME</div>
-      <div class="widget-body" style="background:#e8f4fd;">
-        <p>Predict the weekend box office. <a href="derby.html"><strong>Play now &gt;</strong></a></p>
-      </div>
-    </div>
-
-  </aside>
-
-</div><!-- /page-wrapper -->
+</div><!-- /wc-wrapper -->
 
 
 <footer class="site-footer">
@@ -350,10 +387,10 @@
   document.getElementById('footer-year').textContent = new Date().getFullYear();
 
   function doSearch() {
-    const q = document.getElementById('sidebar-search-input').value.trim();
+    const q = document.getElementById('topnav-search-input').value.trim();
     if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
   }
-  document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
+  document.getElementById('topnav-search-input').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') doSearch();
   });
 
@@ -380,10 +417,15 @@
     return `<span class="${cls}">${sign}${pct.toFixed(0)}%</span>`;
   }
 
-  // ── Date range label ────────────────────────────────────────────
+  // ── Date helpers ────────────────────────────────────────────────
   function isoToLocal(iso) {
     const [y, m, d] = iso.split('-').map(Number);
     return new Date(y, m - 1, d);
+  }
+  function dateToIso(d) {
+    return d.getFullYear() + '-' +
+      String(d.getMonth() + 1).padStart(2, '0') + '-' +
+      String(d.getDate()).padStart(2, '0');
   }
   const MONTHS = ['January','February','March','April','May','June',
                   'July','August','September','October','November','December'];
@@ -392,44 +434,75 @@
     const d2 = isoToLocal(toIso);
     const y  = d2.getFullYear();
     if (d1.getMonth() === d2.getMonth()) {
-      return MONTHS[d1.getMonth()] + ' ' + d1.getDate() + ' - ' + d2.getDate() + ', ' + y;
+      return MONTHS[d1.getMonth()] + ' ' + d1.getDate() + '–' + d2.getDate() + ', ' + y;
     }
-    return MONTHS[d1.getMonth()] + ' ' + d1.getDate() + ' - ' +
+    return MONTHS[d1.getMonth()] + ' ' + d1.getDate() + ' – ' +
            MONTHS[d2.getMonth()] + ' ' + d2.getDate() + ', ' + y;
+  }
+  // Compute Fri of the previous/next weekend from a given Sunday date
+  function prevWeekendDate(isoSunday) {
+    const d = isoToLocal(isoSunday);
+    d.setDate(d.getDate() - 7);
+    // Move to Friday of that week
+    while (d.getDay() !== 5) d.setDate(d.getDate() - 1);
+    return dateToIso(d);
+  }
+  function nextWeekendDate(isoSunday) {
+    const d = isoToLocal(isoSunday);
+    d.setDate(d.getDate() + 7);
+    while (d.getDay() !== 5) d.setDate(d.getDate() + 1);
+    return dateToIso(d);
   }
 
   // ── Build chart ─────────────────────────────────────────────────
-  function buildChart(data) {
-    // Date range
+  function buildChart(data, allDates) {
     const fromIso = data.date_from || data.date;
     const toIso   = data.date_to   || data.date;
+
     if (fromIso) {
-      document.getElementById('wc-date-range').textContent = dateRangeLabel(fromIso, toIso);
-      document.title = dateRangeLabel(fromIso, toIso) + ' — Box Office Jedi';
+      const label = dateRangeLabel(fromIso, toIso);
+      document.getElementById('wc-date-range').textContent = label;
+      document.title = label + ' Weekend — Box Office Jedi';
     }
 
-    // Estimates notice
+    // Prev / Next weekend navigation
+    if (allDates && allDates.length && toIso) {
+      const sortedDates = [...allDates].sort();
+      const currentIdx  = sortedDates.indexOf(toIso);
+
+      const prevEl = document.getElementById('wc-nav-prev');
+      const nextEl = document.getElementById('wc-nav-next');
+
+      if (currentIdx > 0) {
+        const prevDate = sortedDates[currentIdx - 1];
+        prevEl.href = 'weekend-chart.html?date=' + prevDate;
+        prevEl.classList.remove('disabled');
+      }
+      if (currentIdx < sortedDates.length - 1) {
+        const nextDate = sortedDates[currentIdx + 1];
+        nextEl.href = 'weekend-chart.html?date=' + nextDate;
+        nextEl.classList.remove('disabled');
+      }
+    }
+
     if (data.is_estimates) {
       document.getElementById('wc-estimates-note').style.display = 'block';
     }
 
-    // Story block (if weekend.json carries a story object)
+    // Story block
     if (data.story && (data.story.headline || data.story.teaser)) {
       const s = data.story;
       document.getElementById('wc-story-block').style.display = 'flex';
       document.getElementById('wc-story-headline').textContent = s.headline || '';
       document.getElementById('wc-story-teaser').textContent   = s.teaser   || '';
-      if (s.link) document.getElementById('wc-story-link').href = s.link;
+      if (s.link)  document.getElementById('wc-story-link').href = s.link;
       if (s.photo) {
         const img = document.createElement('img');
-        img.src = s.photo;
-        img.className = 'wc-story-photo';
+        img.src = s.photo; img.className = 'wc-story-photo';
         img.alt = s.headline || 'Weekend story';
         const wrap = document.getElementById('wc-story-photo-wrap');
-        wrap.innerHTML = '';
-        wrap.appendChild(img);
-        wrap.style.background = 'none';
-        wrap.style.border = 'none';
+        wrap.innerHTML = ''; wrap.appendChild(img);
+        wrap.style.background = 'none'; wrap.style.border = 'none';
       }
     }
 
@@ -439,10 +512,10 @@
     tbody.innerHTML = '';
 
     chart.forEach((m, i) => {
-      const rank  = m.rank || (i + 1);
-      const isTop = rank <= 10;
-      const isNew = m.is_new || false;
-      const lwDisplay = isNew
+      const rank   = m.rank || (i + 1);
+      const isTop  = rank <= 10;
+      const isNew  = m.is_new || false;
+      const lwDisp = isNew
         ? '<span class="wc-lw-new">N</span>'
         : (m.last_rank ? m.last_rank : '—');
 
@@ -451,10 +524,9 @@
 
       const tr = document.createElement('tr');
       tr.className = 'wc-row' + (isNew ? ' wc-new' : '');
-
       tr.innerHTML = `
         <td class="wc-tw">${rank}</td>
-        <td class="wc-lw">${lwDisplay}</td>
+        <td class="wc-lw">${lwDisp}</td>
         <td class="wc-title-cell"><a class="${titleCls}" href="${movieHref}">${m.title}</a></td>
         <td class="wc-studio">${m.distributor ? abbrevStudio(m.distributor) : '—'}</td>
         <td class="wc-num">${fmtGross(m.weekend_gross)}</td>
@@ -466,17 +538,6 @@
       `;
       tbody.appendChild(tr);
     });
-
-    // Theater count sidebar widget
-    const twRows = chart.slice(0, 10).map((m, i) => {
-      const bg = (i % 2 === 0) ? '#FFFFFF' : '#EEEEFF';
-      const name = m.title.length > 18 ? m.title.slice(0, 17) + '…' : m.title;
-      return `<tr style="background:${bg};">
-        <td style="padding:3px 8px;border-bottom:1px solid #EEE;">${name}</td>
-        <td style="padding:3px 8px;text-align:right;border-bottom:1px solid #EEE;white-space:nowrap;">${m.theaters ? m.theaters.toLocaleString('en-US') : '—'}</td>
-      </tr>`;
-    }).join('');
-    document.getElementById('theater-widget-body').innerHTML = twRows;
   }
 
   // ── Studio abbreviator ──────────────────────────────────────────
@@ -486,48 +547,51 @@
       'Universal Pictures': 'Uni.', 'Universal': 'Uni.',
       'Sony Pictures': 'Sony', 'Columbia Pictures': 'Sony',
       'Walt Disney Pictures': 'BV', 'Disney': 'BV', 'Buena Vista': 'BV',
+      'Walt Disney Studios Motion Pictures': 'BV',
       'Paramount Pictures': 'Par.', 'Paramount': 'Par.',
       '20th Century Fox': 'Fox', '20th Century Studios': 'Fox',
       'DreamWorks': 'DW', 'DreamWorks Animation': 'DW',
       'Lionsgate': 'LGF', 'Lionsgate Films': 'LGF',
-      'MGM': 'MGM', 'Miramax': 'Mira.',
-      'New Line Cinema': 'NL',
-      'Summit Entertainment': 'Sum.',
-      'Focus Features': 'Foc.',
-      'A24': 'A24',
-      'Netflix': 'Net.',
-      'Amazon': 'Amaz.',
-      'Apple': 'Apple'
+      'Amazon MGM Studios': 'Amaz.', 'MGM': 'MGM',
+      'Miramax': 'Mira.', 'New Line Cinema': 'NL',
+      'Summit Entertainment': 'Sum.', 'Focus Features': 'Foc.',
+      'A24': 'A24', 'Neon': 'Neon',
+      'Netflix': 'Net.', 'Amazon': 'Amaz.', 'Apple': 'Apple'
     };
-    return map[s] || s.slice(0, 5) + '.';
+    return map[s] || (s.length > 6 ? s.slice(0, 5) + '.' : s);
   }
 
   // ── Load data ───────────────────────────────────────────────────
   async function load() {
-    const params   = new URLSearchParams(window.location.search);
-    const reqDate  = params.get('date');
+    const params  = new URLSearchParams(window.location.search);
+    const reqDate = params.get('date');
 
     try {
-      let data = null;
+      // Try to load the weekend index for prev/next navigation
+      let allDates = [];
+      try {
+        const idxR = await fetch('data/weekends/index.json');
+        if (idxR.ok) {
+          const idx = await idxR.json();
+          allDates = idx.dates || [];
+        }
+      } catch(e) { /* no index, nav stays disabled */ }
 
+      let data = null;
       if (reqDate) {
-        // Try the per-date file first (data/weekends/YYYY-MM-DD.json)
         try {
           const r = await fetch(`data/weekends/${reqDate}.json`);
-          if (r.ok) { data = await r.json(); }
+          if (r.ok) data = await r.json();
         } catch(e) { /* fall through */ }
       }
-
       if (!data) {
-        // Fallback: current weekend
         const r = await fetch('data/weekend.json');
         if (!r.ok) throw new Error('No data');
         data = await r.json();
       }
+      if (!data.chart || !data.chart.length) throw new Error('Empty chart');
 
-      if (!data.chart || !data.chart.length) throw new Error('Empty');
-
-      buildChart(data);
+      buildChart(data, allDates);
 
     } catch(e) {
       document.getElementById('wc-date-range').textContent = 'Data unavailable';
