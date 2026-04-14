@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekend Roundup: 'Mario' Repeats, 'Hail Mary' Enters Rare Company — Box Office Jedi</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+
+    .article-wrap {
+      padding: 0;
+    }
+
+    /* WEEKEND ROUNDUP section bar */
+    .article-section-header {
+      padding: 4px 10px 2px;
+    }
+    .article-section-header a {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .article-section-header a:hover { text-decoration: underline; }
+    .article-section-bar {
+      height: 5px;
+      background: #7F170E;
+      margin-bottom: 10px;
+    }
+
+    /* Headline */
+    .article-headline {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 18pt;
+      color: #000;
+      line-height: 1.15;
+      margin: 0 10px 3px;
+    }
+
+    /* Byline */
+    .article-byline-name {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 13pt;
+      color: #000;
+      margin: 0 10px 1px;
+    }
+    .article-byline-date {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 10pt;
+      color: #000;
+      display: block;
+      margin: 0 10px 10px;
+    }
+
+    /* Body text */
+    .article-body {
+      padding: 0 10px;
+    }
+    .article-body p {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16pt;
+      line-height: 1.35;
+      color: #000;
+      margin-bottom: 10px;
+      text-align: justify;
+    }
+
+    /* Drop cap */
+    .article-body p.drop-cap::first-letter {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 4em;
+      line-height: 0.75;
+      float: left;
+      margin: 5px 3px 0 0;
+      color: #00239C;
+    }
+
+    /* Article image */
+    .article-img {
+      float: left;
+      margin: 0 12px 8px 0;
+      border: 1px solid #CCCCCC;
+    }
+    .article-img-placeholder {
+      width: 300px;
+      height: 170px;
+      background: #CCCCCC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      color: #666;
+      text-align: center;
+    }
+    .article-img-caption {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 10px;
+      color: #333;
+      text-align: center;
+      background: #EEEEEE;
+      padding: 3px 4px;
+      box-sizing: border-box;
+    }
+
+    /* Film links — first mention: Times Bold Blue */
+    .article-body a.film-link {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 16pt;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .article-body a.film-link:hover { text-decoration: underline; }
+
+    /* Subsequent film mention: Times Bold Black */
+    .article-body .film {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+    }
+
+    /* Showdown callout link */
+    .article-body p.roundup-link {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11pt;
+      font-weight: bold;
+      color: #00239C;
+      text-align: left;
+      margin: 2px 0 14px 0;
+      padding: 6px 10px 6px 12px;
+      border-left: 4px solid #7F170E;
+      background: #F4F4FE;
+    }
+    .article-body p.roundup-link a {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 11pt;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .article-body p.roundup-link a:hover { text-decoration: underline; }
+
+    /* Clearfix */
+    .clearfix::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">FEATURES &amp; MORE</span>
+      <ul>
+        <li class="active"><a href="news.html">MOVIE NEWS</a></li>
+        <li><a href="forecast.html">THE FORECAST</a></li>
+        <li><a href="releases.html">RELEASE DATES</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li class="derby"><a href="derby.html">DERBY GAME</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+
+  <main class="main-content">
+    <div class="article-wrap">
+
+      <!-- Section header -->
+      <div class="article-section-header">
+        <a href="news.html">WEEKEND ROUNDUP</a>
+      </div>
+      <div class="article-section-bar"></div>
+
+      <h1 class="article-headline">&#8216;Mario&#8217; Repeats, &#8216;Hail Mary&#8217; Enters Rare Company</h1>
+      <p class="article-byline-name">By Box Office Jedi</p>
+      <span class="article-byline-date">April 13, 2026</span>
+
+      <div class="article-body">
+
+        <div class="clearfix">
+          <figure class="article-img">
+            <img src="assets/images/roundup-apr-13-2026.jpg" alt="The Super Mario Galaxy Movie" style="width:300px;display:block;">
+            <figcaption class="article-img-caption"><strong>The Super Mario Galaxy Movie</strong></figcaption>
+          </figure>
+
+          <p class="drop-cap"><a href="#" class="film-link">Super Mario Galaxy Movie</a> repeated at number one with $68.1 million, a 47% drop from its opening weekend. We had it at $67.3 million in our forecast. Under a million off. We&#8217;ll take it.</p>
+
+          <p>After 12 days, <span class="film">Galaxy</span> stands at $308 million domestic and is now the year&#8217;s highest-grossing film, having just overtaken <a href="#" class="film-link">Project Hail Mary</a>. Where does it land? Somewhere between the first <span class="film">Mario</span> and <span class="film">Minecraft</span>, or so the trajectory suggests.</p>
+
+        </div>
+
+        <p>See how they&#8217;re tracking side-by-side:</p>
+
+        <p class="roundup-link">&#x25B6; <a href="showdown-mario.html">Mario Franchise Showdown &gt;&gt;</a></p>
+
+        <p><span class="film">Project Hail Mary</span> dropped just 23% in its fourth weekend, adding $24.5 million for a domestic total of $256.6 million. It immediately brings a lot of comps to mind. That&#8217;s not to say there are many &#8212; it&#8217;s just such a specific space to be, and you don&#8217;t forget numbers like that easily.</p>
+
+        <p>Most recently, <a href="#" class="film-link">Sinners</a> had an almost identical fourth weekend, taking in $23 million on the way to a $275+ million domestic finish. It&#8217;s also close to <a href="#" class="film-link">Gravity</a>&#8217;s fourth weekend (like <span class="film">Sinners</span>, it finished around $275 million), as well as the fourth weekend of Lord and Miller&#8217;s prior film, <a href="#" class="film-link">The Lego Movie</a>, which did $21 million on a 33% drop, finishing at $257 million. <a href="#" class="film-link">Oppenheimer</a> made $18.8 million in its fourth weekend, a 35% drop, putting it at roughly $265 million domestic at that point &#8212; about $10 million ahead of where <span class="film">Hail Mary</span> sits now. But <span class="film">Hail Mary</span> is holding tighter, so we&#8217;re predicting it&#8217;ll finish higher. <span class="film">Oppenheimer</span> did benefit from a small Oscar-season re-expansion in early 2024, but who&#8217;s to say <span class="film">Hail Mary</span> doesn&#8217;t get the same? A $330+ million domestic finish looks right, which would put it just above <span class="film">Oppenheimer</span>&#8217;s final $330 million.</p>
+
+        <p class="roundup-link">&#x25B6; <a href="showdowns.html">Post-Pandemic Blockbuster &#8220;Originals&#8221; Showdown &mdash; Oppenheimer, Sinners, PHM &gt;&gt;</a></p>
+
+        <p><a href="#" class="film-link">The Drama</a> dropped just 21% in its second weekend, from $14.3 million to $8.6 million, bringing its domestic total to $30.8 million after 10 days. For context: <a href="#" class="film-link">Materialists</a>, the last A24 &#8220;romance&#8221; of this scale, dropped 49% in its second weekend. <span class="film">The Drama</span> is playing more like <a href="#" class="film-link">Challengers</a> than like <span class="film">Materialists</span>, and <span class="film">Challengers</span> opened to $15 million, essentially the same place. <span class="film">Materialists</span> finished with around $35 million domestic total. <span class="film">The Drama</span> should match that by the end of this week. From there, it&#8217;s a question of how <a href="#" class="film-link">Long Legs</a> it has. It&#8217;s on track for $55 million domestic, which would make it one of the highest-grossing A24 wide releases ever.</p>
+
+        <p class="roundup-link">&#x25B6; <a href="showdowns.html">A24 Wide Release Showdown &mdash; Everything Everywhere, Marty Supreme, The Drama, Civil War, Uncut Gems &gt;&gt;</a></p>
+
+        <p><a href="#" class="film-link">Hoppers</a> added $4.1 million in its sixth weekend, crossing $157 million domestic. That puts it past <a href="#" class="film-link">Elemental</a>&#8217;s $154.4 million domestic total, though <span class="film">Elemental</span>, in one of the great overperformances in recent Pixar history, went on to $496 million globally. <span class="film">Hoppers</span> is not doing that. Its worldwide total currently sits around $354 million. The film ran out of steam faster than expected &#8212; <span class="film">Mario Galaxy</span> arrived a weekend too soon &#8212; but it has already secured the title of highest-grossing domestic original animated release since Pixar&#8217;s <a href="#" class="film-link">Coco</a> in 2017.</p>
+
+        <p>And in what is becoming predictably unpredictable, a handful of movies snuck into the top ten that no one knew was on the guest list. This happens almost every weekend now. A concert movie that has one showtime charging $200 per ticket. The penultimate episode of a reality show no one has heard of except for a very niche but rabid audience. Something that has 20 words in the title. This week&#8217;s additions were <a href="#" class="film-link">Faces of Death</a>, <a href="#" class="film-link">Exit 8</a>, and <a href="#" class="film-link">BTS World Tour &#8216;Arirang&#8217; in Goyang: Live Viewing</a>.</p>
+
+        <p><span class="film">Exit 8</span> was on our forecast. Neon acquired the North American rights last August after the film had already grossed $27 million in Japan, where it was the highest-grossing live-action film of 2025. It&#8217;s adapted from a 2023 indie walking simulator by Kotake Create, in which a man loops endlessly through a Tokyo subway corridor, trying to spot anomalies and reach the exit. It premiered at TIFF and screened at Midnight Madness. It cost under $4 million to make. It has a 95% on Rotten Tomatoes, which technically makes it the highest-rated video game adaptation of all time. Neon sent a guy in a Walking Man costume to wander New York City subway stations the Tuesday before release. People who approached him and said a passphrase got a prize (we hear it was a $50 Uber gift card). It took $1.4 million from 495 theaters, which is a strong per-screen average, and it&#8217;s a natural conversation partner for A24&#8217;s upcoming <a href="#" class="film-link">Backrooms</a>, another liminal horror with a micro-budget premise.</p>
+
+      </div><!-- /article-body -->
+    </div><!-- /article-wrap -->
+  </main>
+
+
+  <aside class="right-sidebar">
+    <div class="widget">
+      <div class="widget-header" style="background:#7F170E;">WEEKEND CHART</div>
+      <div class="widget-body">
+        <p style="font-family:Verdana,sans-serif;font-size:11px;padding:6px 8px;margin:0;">
+          <a href="weekend-chart.html" style="color:#00239C;font-weight:bold;text-decoration:none;">View April 10–12 results &rarr;</a>
+        </p>
+      </div>
+    </div>
+    <div class="widget" style="margin-top:12px;">
+      <div class="widget-header" style="background:#7F170E;">THE FORECAST</div>
+      <div class="widget-body">
+        <p style="font-family:Verdana,sans-serif;font-size:11px;padding:6px 8px;margin:0;">
+          <a href="forecast-apr-11-2026.html" style="color:#00239C;font-weight:bold;text-decoration:none;">Holy Mario: Last week&#8217;s predictions &rarr;</a>
+        </p>
+      </div>
+    </div>
+  </aside>
+
+</div><!-- /page-wrapper -->
+
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">&#8220;Serving your box office needs since 2026.&#8221;</span>
+</footer>
+
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+</script>
+
+</body>
+</html>
