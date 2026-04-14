@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analysis — Box Office Jedi</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+
+    /* ── Page title ──────────────────────────────────────────── */
+    .idx-page-header {
+      padding: 16px 14px 10px;
+      text-align: center;
+      border-bottom: 2px solid #990000;
+    }
+    .idx-page-title {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 26px;
+      letter-spacing: 3px;
+      color: #000;
+      margin: 0;
+    }
+
+    /* ── Pagination nav ──────────────────────────────────────── */
+    .idx-pager {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 14px 4px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+    }
+    .idx-pager a {
+      color: #00239C;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .idx-pager a:hover { text-decoration: underline; }
+    .idx-pager .pager-placeholder { color: #CCCCCC; }
+
+    /* ── Index table ─────────────────────────────────────────── */
+    .idx-table-wrap {
+      padding: 0 14px 16px;
+    }
+    .idx-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .idx-table thead th {
+      background: #DCDCDC;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      font-size: 13px;
+      color: #000;
+      padding: 5px 10px;
+      border-bottom: 1px solid #FFFFFF;
+      border-right: 1px solid #FFFFFF;
+      text-align: left;
+    }
+    .idx-table thead th:last-child { border-right: none; }
+    .idx-table thead th.th-date { width: 72px; text-align: right; }
+    .idx-table thead th.th-article { }
+    .th-hint {
+      font-size: 11px;
+      color: #666;
+    }
+
+    /* Data rows */
+    .idx-table tbody tr.idx-row td {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      padding: 6px 10px;
+      border-bottom: 1px solid #DDDDDD;
+      vertical-align: middle;
+    }
+    .idx-table tbody tr.idx-row:nth-child(odd)  td { background: #EEF0FB; }
+    .idx-table tbody tr.idx-row:nth-child(even) td { background: #FFFFFF; }
+
+    .idx-table td.td-date {
+      text-align: right;
+      width: 72px;
+      color: #333;
+      white-space: nowrap;
+      font-size: 13px;
+    }
+    .idx-table td.td-article a {
+      color: #00007B;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .idx-table td.td-article a:hover { text-decoration: underline; color: #0000EE; }
+
+    /* Type badge */
+    .art-type {
+      display: inline-block;
+      font-size: 10px;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      color: #FFFFFF;
+      background: #7F170E;
+      padding: 1px 5px;
+      border-radius: 2px;
+      margin-left: 7px;
+      vertical-align: middle;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .art-type.type-forecast { background: #00239C; }
+    .art-type.type-roundup  { background: #7F170E; }
+    .art-type.type-seasonal { background: #2E7D32; }
+    .art-type.type-spotlight { background: #6A1B9A; }
+    .art-type.type-rewind   { background: #4E4E4E; }
+
+    /* Empty state */
+    .idx-empty {
+      text-align: center;
+      padding: 40px 20px;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+      color: #888;
+    }
+
+    /* ── Recent articles sidebar widget ──────────────────────── */
+    .recent-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .recent-list li {
+      padding: 4px 0;
+      border-bottom: 1px solid #EEEEEE;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .recent-list li:last-child { border-bottom: none; }
+    .recent-date {
+      display: block;
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 1px;
+    }
+    .recent-list a {
+      color: #00007B;
+      text-decoration: none;
+    }
+    .recent-list a:hover { text-decoration: underline; }
+
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">CONTENTS</span>
+      <ul>
+        <li><a href="predictions.html">PREDICTIONS</a></li>
+        <li class="active"><a href="analysis.html">ANALYSIS</a></li>
+        <li><a href="features.html">FEATURES</a></li>
+        <li><a href="releases.html">RELEASE SCHEDULE</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li class="derby"><a href="derby.html">THE DERBY</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+
+  <main class="main-content">
+
+    <div class="idx-page-header">
+      <h1 class="idx-page-title">ANALYSIS INDEX</h1>
+    </div>
+
+    <div class="idx-pager" id="idx-pager" style="display:none;">
+      <span id="pager-older" class="pager-placeholder">&lt;&lt; Older</span>
+      <span id="pager-newer" class="pager-placeholder">Newer &gt;&gt;</span>
+    </div>
+
+    <div class="idx-table-wrap">
+      <table class="idx-table" id="idx-table">
+        <thead>
+          <tr>
+            <th class="th-date">Date</th>
+            <th class="th-article">Article <span class="th-hint">(click to read)</span></th>
+          </tr>
+        </thead>
+        <tbody id="idx-body">
+          <tr><td colspan="2" class="idx-empty">Loading&hellip;</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+
+  <aside class="right-sidebar">
+
+    <div class="widget">
+      <div class="widget-header">RECENT ARTICLES</div>
+      <div class="widget-body">
+        <ul class="recent-list" id="recent-list">
+          <li style="color:#aaa; font-family:Verdana,sans-serif; font-size:11px;">Loading&hellip;</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-header">FEATURES</div>
+      <div class="widget-body">
+        <p><a href="features.html"><strong>Features Index &gt;</strong></a></p>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-header">PREDICTIONS</div>
+      <div class="widget-body">
+        <p>This weekend&rsquo;s picks. <a href="predictions.html"><strong>Read &gt;</strong></a></p>
+      </div>
+    </div>
+
+  </aside>
+
+</div><!-- /page-wrapper -->
+
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">&ldquo;Serving your box office needs since 2026.&rdquo;</span>
+  <div style="margin-top:8px;">
+    <a href="https://www.netflix.com" target="_blank" rel="noopener">
+      <img src="assets/images/free-dvd-rentals.gif" alt="Free DVD Rentals" style="display:inline-block;height:auto;">
+    </a>
+  </div>
+</footer>
+
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+
+  // ── Date formatting ───────────────────────────────────────────
+  function shortDate(iso) {
+    // "2026-04-13" → "4/13/26"
+    const [y, m, d] = iso.split('-').map(Number);
+    return m + '/' + d + '/' + String(y).slice(2);
+  }
+
+  function longDate(iso) {
+    const months = ['January','February','March','April','May','June',
+                    'July','August','September','October','November','December'];
+    const [y, m, d] = iso.split('-').map(Number);
+    return months[m-1] + ' ' + d + ', ' + y;
+  }
+
+  // ── Type labels ───────────────────────────────────────────────
+  const TYPE_LABELS = {
+    roundup:  'Roundup',
+    forecast: 'Forecast',
+    seasonal: 'Seasonal',
+    spotlight:'Spotlight',
+    rewind:   'Rewind',
+  };
+
+  function typeBadge(type) {
+    if (!type) return '';
+    const label = TYPE_LABELS[type] || type;
+    return `<span class="art-type type-${type}">${label}</span>`;
+  }
+
+  // ── Load and render ───────────────────────────────────────────
+  async function load() {
+    try {
+      const r = await fetch('data/analysis.json');
+      if (!r.ok) throw new Error();
+      const data = await r.json();
+
+      const articles = (data.articles || []).slice().sort((a, b) =>
+        b.date > a.date ? 1 : -1
+      );
+
+      // Main table
+      const tbody = document.getElementById('idx-body');
+      if (!articles.length) {
+        tbody.innerHTML = '<tr><td colspan="2" class="idx-empty">No articles yet. Check back soon.</td></tr>';
+      } else {
+        tbody.innerHTML = articles.map(a => `
+          <tr class="idx-row">
+            <td class="td-date">${shortDate(a.date)}</td>
+            <td class="td-article">
+              <a href="${a.url}">${a.title}</a>${typeBadge(a.type)}
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      // Recent articles sidebar (latest 6)
+      const recent = articles.slice(0, 6);
+      const recentList = document.getElementById('recent-list');
+      if (!recent.length) {
+        recentList.innerHTML = '<li style="color:#aaa;font-family:Verdana,sans-serif;font-size:11px;">No articles yet.</li>';
+      } else {
+        recentList.innerHTML = recent.map(a => `
+          <li>
+            <span class="recent-date">${longDate(a.date)}</span>
+            <a href="${a.url}">${a.title}</a>
+          </li>
+        `).join('');
+      }
+
+    } catch(e) {
+      document.getElementById('idx-body').innerHTML =
+        '<tr><td colspan="2" class="idx-empty">Could not load articles.</td></tr>';
+    }
+  }
+
+  load();
+</script>
+
+</body>
+</html>
