@@ -37,8 +37,8 @@
       text-align: center;
     }
     .wc-topnav-logo:hover { background: #e8c040; text-decoration: none; color: #000; }
-    .wc-topnav-logo .logo-top { display: block; font-size: 9px; letter-spacing: 0.04em; }
-    .wc-topnav-logo .logo-bot { display: block; font-size: 13px; color: #7F170E; letter-spacing: 0.04em; }
+    .wc-topnav-logo .logo-top { display: block; font-size: 11px; color: #000000; letter-spacing: 0.04em; }
+    .wc-topnav-logo .logo-bot { display: block; font-size: 11px; color: #7F170E; letter-spacing: 0.04em; }
 
     .wc-topnav-search {
       display: flex;
@@ -198,7 +198,7 @@
     }
     .wc-nav-prev:hover, .wc-nav-next:hover { text-decoration: underline; }
     .wc-nav-prev.disabled, .wc-nav-next.disabled {
-      color: #999; pointer-events: none; cursor: default;
+      color: #AABBDD; pointer-events: none; cursor: default;
     }
     .wc-nav-center {
       flex: 1;
@@ -344,11 +344,11 @@
 
   <!-- Weekend navigation -->
   <div class="wc-weekend-nav">
-    <a class="wc-nav-prev disabled" id="wc-nav-prev" href="#">&lt;&lt; Last Weekend</a>
+    <a class="wc-nav-prev" id="wc-nav-prev" href="#">&lt;&lt; Last Weekend</a>
     <div class="wc-nav-center">
       <a href="weekend.html">View Weekend Index</a>
     </div>
-    <a class="wc-nav-next disabled" id="wc-nav-next" href="#">Next Weekend &gt;&gt;</a>
+    <a class="wc-nav-next" id="wc-nav-next" href="#">Next Weekend &gt;&gt;</a>
   </div>
 
   <!-- Chart -->
@@ -523,6 +523,9 @@
     tbody.innerHTML = '';
 
     chart.forEach((m, i) => {
+      // Skip summary/reporting rows
+      if (m.title && m.title.startsWith('Reporting:')) return;
+
       const rank   = m.rank || (i + 1);
       const isTop  = rank <= 10;
       const isNew  = m.is_new || false;
