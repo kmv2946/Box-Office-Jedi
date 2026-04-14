@@ -1,20 +1,34 @@
 # Box Office Jedi — Automated Data Pipeline
 # ============================================
-# This GitHub Action runs every day at 9am ET (14:00 UTC) and:
-#   1. Scrapes The Numbers for daily + weekend + yearly box office data
-#   2. Syncs TMDB for movie details and now-playing list
-#   3. Commits the updated JSON files to the repo
-#   4. Netlify automatically deploys the new data to the live site
+# Two separate schedules:
 #
-# You can also trigger this manually from GitHub → Actions → "Update Box Office Data" → Run workflow
+#   DAILY CHART  — every day at 2:00 PM ET (19:00 UTC)
+#     Scrapes yesterday's daily box office numbers.
+#     The Numbers typically posts daily data around midday.
+#
+#   WEEKEND CHART — Sundays and Mondays at 5:00 PM ET (22:00 UTC)
+#     Sunday  → Estimates are posted mid-afternoon. Saved as is_estimates: true.
+#     Monday  → Actuals are confirmed mid-afternoon. Saved as is_estimates: false.
+#     NEVER overwrites a file that already has confirmed actuals (is_estimates: false).
+#     NEVER overwrites weekend.json with data older than what's already there.
+#
+# Manual trigger:
+#   GitHub → Actions → "Update Box Office Data" → Run workflow → choose mode
 
 name: Update Box Office Data
 
 on:
   schedule:
-    # 9:00 AM Eastern Time (14:00 UTC) — daily
-    - cron: "0 14 * * *"
-  workflow_dispatch:  # Allow manual trigger from GitHub UI
+    # 2:00 PM ET (19:00 UTC) every day — daily chart only
+    - cron: "0 19 * * *"
+    # 5:00 PM ET (22:00 UTC) Sunday + Monday — weekend chart (estimates then actuals)
+    - cron: "0 22 * * 0,1"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "What to update: daily, weekend, or all"
+        required: false
+        default: "all"
 
 jobs:
   update-data:
@@ -35,15 +49,27 @@ jobs:
         run: |
           pip install requests beautifulsoup4 lxml
 
-      - name: Run The Numbers scraper
-        run: python3 scripts/scrape_the_numbers.py
-        # If scraping fails (site down, blocked, etc.), the step is skipped
-        # and the existing data files remain unchanged
+      - name: Determine scraper mode
+        id: mode
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "mode=${{ github.event.inputs.mode || 'all' }}" >> $GITHUB_OUTPUT
+          elif echo "${{ github.event.schedule }}" | grep -q "0 22"; then
+            # 5 PM ET schedule (Sun/Mon) → weekend chart
+            echo "mode=weekend" >> $GITHUB_OUTPUT
+          else
+            # 2 PM ET schedule → daily chart
+            echo "mode=daily" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run scraper (${{ steps.mode.outputs.mode }} mode)
+        run: python3 scripts/scrape_the_numbers.py --mode ${{ steps.mode.outputs.mode }}
         continue-on-error: true
 
-      - name: Run TMDB sync (weekly — only on Mondays)
-        # TMDB data changes slowly; syncing weekly is fine and saves API calls
-        if: github.event_name == 'workflow_dispatch' || startsWith(github.event.schedule, '0 14 * * 1')
+      - name: Run TMDB sync (Mondays only)
+        if: |
+          github.event_name == 'workflow_dispatch' ||
+          (github.event_name == 'schedule' && github.event.schedule == '0 22 * * 0,1')
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: python3 scripts/tmdb_api.py
@@ -54,9 +80,8 @@ jobs:
           git config user.name "Box Office Jedi Bot"
           git config user.email "bot@boxofficejedi.com"
           git add data/
-          # Only commit and push if there are actual changes
           if ! git diff --staged --quiet; then
-            git commit -m "📊 Auto-update box office data $(date +'%Y-%m-%d')"
+            git commit -m "📊 Auto-update box office data $(date +'%Y-%m-%d') [${{ steps.mode.outputs.mode }}]"
             git pull --rebase origin main
             git push
           else

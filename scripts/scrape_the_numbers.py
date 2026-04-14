@@ -4,15 +4,31 @@ Box Office Jedi — The Numbers Scraper
 Scrapes daily and weekend box office data from The Numbers (the-numbers.com)
 and outputs clean JSON files for the website to consume.
 
-Run manually:   python3 scrape_the_numbers.py
-Run via GitHub Actions: automated daily at 9am ET (see .github/workflows/update-data.yml)
+Run manually:
+  python3 scrape_the_numbers.py                  # update everything
+  python3 scrape_the_numbers.py --mode daily     # only daily chart
+  python3 scrape_the_numbers.py --mode weekend   # only weekend chart
+
+Run via GitHub Actions: see .github/workflows/update-data.yml
+  - Daily chart  : every day at 2 PM ET (19:00 UTC)
+  - Weekend chart: Sundays and Mondays at 5 PM ET (22:00 UTC)
 
 Output files:
-  data/daily.json    — today's daily chart
-  data/weekend.json  — most recent weekend chart
-  data/yearly.json   — year-to-date chart
+  data/daily.json              — most recent daily chart
+  data/weekend.json            — most recent weekend chart (homepage Top 5)
+  data/weekends/YYYY-MM-DD.json — per-weekend chart file
+  data/weekends.json           — master index (drives weekend.html)
+  data/yearly.json             — year-to-date chart
+
+Weekend data protection rules:
+  - NEVER save weekend.json with data older than what's already there.
+  - NEVER overwrite a weekends/YYYY-MM-DD.json that already has confirmed actuals
+    (is_estimates: false). Estimates may still be refreshed until actuals land.
+  - is_estimates is set True when running on Sunday (estimates day),
+    False on Monday or later (actuals confirmed).
 """
 
+import argparse
 import requests
 from bs4 import BeautifulSoup
 import json
@@ -79,6 +95,16 @@ def save_json(filename: str, data: dict | list):
     print(f"  ✓ Saved {path}")
 
 
+def load_json(filename: str) -> dict | None:
+    """Load a JSON file from the data/ directory. Returns None if missing or invalid."""
+    path = os.path.join(DATA_DIR, filename)
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return None
+
+
 def update_weekends_index(date_from: str, date_to: str, week_number: int,
                           chart: list[dict], is_estimates: bool = False):
     """
@@ -135,7 +161,7 @@ def update_weekends_index(date_from: str, date_to: str, week_number: int,
 def scrape_daily(date: datetime = None) -> list[dict]:
     """
     Scrape The Numbers daily box office chart for a given date.
-    Defaults to yesterday (since today's data posts overnight).
+    Defaults to yesterday (since today's data posts overnight/midday).
     """
     if date is None:
         date = datetime.now() - timedelta(days=1)
@@ -149,11 +175,8 @@ def scrape_daily(date: datetime = None) -> list[dict]:
         print("  Failed to fetch daily chart.")
         return []
 
-    # The Numbers uses a <table id="box_office_daily"> or similar
-    # We look for the main data table with box office rows
     table = soup.find("table", id=lambda x: x and "box_office" in x.lower())
     if not table:
-        # Fallback: find any table with rank/gross columns
         tables = soup.find_all("table")
         table = tables[1] if len(tables) > 1 else None
 
@@ -169,19 +192,12 @@ def scrape_daily(date: datetime = None) -> list[dict]:
         if len(cells) < 4:
             continue
         try:
-            # The Numbers daily columns (no distributor column):
-            # 0: Rank | 1: Title | 2: Daily Gross | 3: Theaters
-            # 4: Avg | 5: Total Gross | 6: Days in Release
-
             def safe_int(s):
                 try:
                     return int(s.replace(",", "").replace("#", "").strip() or 0)
                 except (ValueError, AttributeError):
                     return 0
 
-            # % change lives between gross and theaters on some pages
-            # Try to detect by checking if cell[3] looks like a theater count (no $)
-            raw3 = cells[3].get_text(strip=True) if len(cells) > 3 else ""
             has_pct_col = "%" in (cells[3].get_text(strip=True) if len(cells) > 3 else "")
 
             if has_pct_col:
@@ -232,17 +248,16 @@ def scrape_weekend(date: datetime = None) -> list[dict]:
     """
     Scrape The Numbers weekend box office chart.
     Date should be the Friday of the target weekend.
-    Defaults to most recent completed weekend.
+    Defaults to most recent weekend with available data.
     """
     if date is None:
-        # Find the most recently COMPLETED weekend's Friday
         today = datetime.now()
         days_since_friday = (today.weekday() - 4) % 7
         date = today - timedelta(days=days_since_friday)
-        # Go back one more week if:
-        #   - It's Friday or Saturday (current weekend just started, data not posted yet)
-        #   - It's Monday morning (previous weekend data may not be posted yet)
-        if today.weekday() in (4, 5) or today.weekday() < 1:
+        # Go back one more week if it's Friday or Saturday
+        # (current weekend just started, data not posted yet)
+        # NOTE: Monday is intentionally NOT excluded here — actuals post Monday afternoon
+        if today.weekday() in (4, 5):
             date -= timedelta(days=7)
 
     date_str = date.strftime("%Y/%m/%d")
@@ -271,12 +286,7 @@ def scrape_weekend(date: datetime = None) -> list[dict]:
         if len(cells) < 4:
             continue
         try:
-            # The Numbers weekend columns (no distributor column):
-            # 0: Rank | 1: Title | 2: Weekend Gross | 3: Theaters
-            # 4: % Change | 5: Avg | 6: Total Gross | 7: Week #
-
             change_text = cells[4].get_text(strip=True) if len(cells) > 4 else ""
-            # New releases show "-" or blank, not "NEW"
             is_new = change_text in ("", "-", "n/a") or change_text.upper() == "NEW"
             try:
                 change_pct = None if is_new else float(change_text.replace("%", "").replace("+", ""))
@@ -371,7 +381,6 @@ def enrich_weekend(current: list[dict], previous_path: str, yearly: list[dict]) 
       - total_gross      : from year-to-date chart
       - is_new           : True if not in previous weekend's chart
     """
-    # Load previous weekend for LW comparisons
     prev_by_title = {}
     try:
         with open(previous_path, "r", encoding="utf-8") as f:
@@ -379,9 +388,8 @@ def enrich_weekend(current: list[dict], previous_path: str, yearly: list[dict]) 
         for m in prev_data.get("chart", []):
             prev_by_title[m["title"].lower()] = m
     except (FileNotFoundError, json.JSONDecodeError):
-        pass  # No previous data yet — first run
+        pass
 
-    # Build total gross lookup from yearly chart
     yearly_by_title = {}
     for m in yearly:
         yearly_by_title[m["title"].lower()] = m.get("total_gross", 0)
@@ -391,12 +399,10 @@ def enrich_weekend(current: list[dict], previous_path: str, yearly: list[dict]) 
         key = m["title"].lower()
         prev = prev_by_title.get(key)
 
-        # Average per theater
         theaters = m.get("theaters") or 0
         gross    = m.get("weekend_gross") or 0
         avg = round(gross / theaters) if theaters > 0 else 0
 
-        # LW comparisons
         if prev:
             last_rank      = prev.get("rank")
             prev_gross     = prev.get("weekend_gross") or 0
@@ -410,7 +416,6 @@ def enrich_weekend(current: list[dict], previous_path: str, yearly: list[dict]) 
             theater_change = None
             is_new         = True
 
-        # Total gross from yearly chart (most accurate running total)
         total_gross = yearly_by_title.get(key) or m.get("total_gross") or 0
 
         enriched.append({
@@ -426,67 +431,155 @@ def enrich_weekend(current: list[dict], previous_path: str, yearly: list[dict]) 
     return enriched
 
 
+# ── Weekend protection check ──────────────────────────────────────────────────
+
+def should_update_weekend(friday_str: str, is_estimates: bool) -> tuple[bool, str]:
+    """
+    Returns (should_update, reason).
+
+    Protection rules:
+      1. If weekend.json already has data for a LATER weekend, don't overwrite it.
+         This prevents the scraper from going backwards in time.
+      2. If weekends/{friday}.json already exists with is_estimates=False (confirmed
+         actuals), don't overwrite it. Actuals are final.
+      3. If is_estimates=True (Sunday run) and a file already has estimates, we CAN
+         refresh — estimates may improve throughout Sunday afternoon.
+    """
+    # Rule 1: Don't overwrite weekend.json with older data
+    existing_weekend = load_json("weekend.json")
+    if existing_weekend:
+        existing_date = existing_weekend.get("date_from", "")
+        if existing_date and existing_date > friday_str:
+            return False, (
+                f"weekend.json already has more recent data ({existing_date}) "
+                f"than what was scraped ({friday_str}). Skipping to avoid going backwards."
+            )
+
+    # Rule 2: Don't overwrite confirmed actuals.
+    # Default is_estimates to False when the field is missing — this protects
+    # manually-entered data files that were created before the field existed.
+    existing_per_date = load_json(f"weekends/{friday_str}.json")
+    if existing_per_date and not existing_per_date.get("is_estimates", False):
+        return False, (
+            f"weekends/{friday_str}.json already has confirmed actuals "
+            f"(is_estimates=false). Not overwriting with scraped data."
+        )
+
+    # Rule 3: Estimates can always be refreshed (is_estimates=True means Sunday run)
+    if existing_per_date and existing_per_date.get("is_estimates", False) and not is_estimates:
+        # Upgrading from estimates → actuals is always allowed
+        return True, f"Upgrading weekends/{friday_str}.json from estimates to actuals."
+
+    return True, "OK to update."
+
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
+    parser = argparse.ArgumentParser(description="Box Office Jedi scraper")
+    parser.add_argument(
+        "--mode",
+        choices=["daily", "weekend", "all"],
+        default="all",
+        help="What to update: daily chart, weekend chart, or all (default: all)",
+    )
+    args = parser.parse_args()
+
     now = datetime.now()
-    print(f"Box Office Jedi Scraper — {now.strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"Box Office Jedi Scraper — {now.strftime('%Y-%m-%d %H:%M:%S')} — mode: {args.mode}")
     print("=" * 60)
 
-    # Daily chart (yesterday's data)
-    daily = scrape_daily()
-    save_json("daily.json", {
-        "updated": now.isoformat(),
-        "date": (now - timedelta(days=1)).strftime("%Y-%m-%d"),
-        "chart": daily
-    })
+    # ── Daily chart ────────────────────────────────────────────────
+    if args.mode in ("daily", "all"):
+        daily = scrape_daily()
+        if daily:
+            save_json("daily.json", {
+                "updated": now.isoformat(),
+                "date": (now - timedelta(days=1)).strftime("%Y-%m-%d"),
+                "chart": daily
+            })
+        else:
+            print("  No daily data — skipping save.")
 
-    # Yearly chart first — needed to enrich weekend with total grosses
-    yearly = scrape_yearly()
-    save_json("yearly.json", {
-        "updated": now.isoformat(),
-        "year": now.year,
-        "chart": yearly
-    })
+    # ── Weekend chart ───────────────────────────────────────────────
+    if args.mode in ("weekend", "all"):
 
-    # Determine date range for the most recently completed weekend
-    today = now.date()
-    days_since_friday = (today.weekday() - 4) % 7
-    friday = today - timedelta(days=days_since_friday)
-    if today.weekday() in (4, 5) or today.weekday() < 1:
-        friday -= timedelta(days=7)
-    sunday   = friday + timedelta(days=2)
-    week_num = int(sunday.strftime("%U"))
+        # Determine the most recent Friday with available data
+        today = now.date()
+        days_since_friday = (today.weekday() - 4) % 7
+        friday = today - timedelta(days=days_since_friday)
+        # Go back one extra week if it's Friday or Saturday —
+        # current weekend just started and data isn't posted yet.
+        # Monday is NOT excluded: actuals post on Monday afternoon.
+        if today.weekday() in (4, 5):
+            friday -= timedelta(days=7)
+        sunday   = friday + timedelta(days=2)
+        week_num = int(sunday.strftime("%U"))
+        friday_str = str(friday)
 
-    # Weekend chart — enrich with calculated fields before saving
-    prev_path = os.path.join(DATA_DIR, "weekend.json")
-    weekend_raw = scrape_weekend(date=datetime(friday.year, friday.month, friday.day))
-    weekend_enriched = enrich_weekend(weekend_raw, prev_path, yearly)
+        # is_estimates: True on Sunday (estimates day), False Mon+ (actuals confirmed)
+        # weekday(): 0=Mon, 1=Tue, ..., 6=Sun
+        is_estimates = (today.weekday() == 6)
 
-    weekend_payload = {
-        "updated":     now.isoformat(),
-        "date_from":   str(friday),
-        "date_to":     str(sunday),
-        "week_number": week_num,
-        "chart":       weekend_enriched
-    }
+        print(f"\n[Weekend] Target: {friday_str} → {sunday}")
+        print(f"          is_estimates: {is_estimates} "
+              f"({'Sunday estimates run' if is_estimates else 'Monday+ actuals run'})")
 
-    # Save current weekend (for homepage / fallback)
-    save_json("weekend.json", weekend_payload)
+        # Protection check before scraping
+        ok, reason = should_update_weekend(friday_str, is_estimates)
+        if not ok:
+            print(f"\n[Weekend] SKIPPED — {reason}")
+        else:
+            print(f"\n[Weekend] Proceeding — {reason}")
 
-    # Save per-date file so individual chart pages can load historical data
-    save_json(f"weekends/{friday}.json", weekend_payload)
+            # Yearly chart needed to enrich weekend with running totals
+            yearly = scrape_yearly()
+            if yearly:
+                save_json("yearly.json", {
+                    "updated": now.isoformat(),
+                    "year": now.year,
+                    "chart": yearly
+                })
 
-    # Update the master index (drives weekend.html year view)
-    update_weekends_index(str(friday), str(sunday), week_num, weekend_enriched)
+            # Previous weekend file for LW comparisons
+            prev_friday = friday - timedelta(days=7)
+            prev_path = os.path.join(DATA_DIR, f"weekends/{prev_friday}.json")
+            # Fall back to current weekend.json if prev file doesn't exist
+            if not os.path.exists(prev_path):
+                prev_path = os.path.join(DATA_DIR, "weekend.json")
+
+            weekend_raw = scrape_weekend(
+                date=datetime(friday.year, friday.month, friday.day)
+            )
+
+            if not weekend_raw:
+                print("  No weekend data scraped — skipping save.")
+            else:
+                weekend_enriched = enrich_weekend(weekend_raw, prev_path, yearly if yearly else [])
+
+                weekend_payload = {
+                    "updated":      now.isoformat(),
+                    "date_from":    friday_str,
+                    "date_to":      str(sunday),
+                    "week_number":  week_num,
+                    "is_estimates": is_estimates,
+                    "chart":        weekend_enriched,
+                }
+
+                # Save current weekend (homepage Top 5 + fallback)
+                save_json("weekend.json", weekend_payload)
+
+                # Save per-date file (individual chart pages + nav)
+                save_json(f"weekends/{friday_str}.json", weekend_payload)
+
+                # Update master index (drives weekend.html year view)
+                update_weekends_index(
+                    friday_str, str(sunday), week_num,
+                    weekend_enriched, is_estimates=is_estimates
+                )
 
     print("\n" + "=" * 60)
-    print("Done! JSON files written to data/")
-    print("  data/daily.json")
-    print("  data/weekend.json")
-    print(f"  data/weekends/{friday}.json")
-    print("  data/weekends.json (index updated)")
-    print("  data/yearly.json")
+    print("Done!")
 
 
 if __name__ == "__main__":
