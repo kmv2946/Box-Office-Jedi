@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Predictions — Box Office Jedi</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+
+    /* ── Page header ─────────────────────────────────────────── */
+    .pred-page-header {
+      padding: 14px 14px 4px;
+      text-align: center;
+      border-bottom: 2px solid #990000;
+      margin-bottom: 0;
+    }
+    .pred-page-title {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 28px;
+      color: #000;
+      margin: 0 0 6px;
+      letter-spacing: 2px;
+      text-decoration: underline;
+    }
+    .pred-disclaimer {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 12px;
+      color: #444;
+      max-width: 520px;
+      margin: 0 auto 8px;
+      line-height: 1.5;
+    }
+    .pred-updated {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 13px;
+      color: #000;
+      margin: 0 0 10px;
+    }
+
+    /* ── Color key ───────────────────────────────────────────── */
+    .pred-key {
+      padding: 10px 14px 8px;
+      text-align: center;
+      border-bottom: 1px solid #DDDDDD;
+      margin-bottom: 0;
+    }
+    .pred-key-row {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+    .pred-key-row .k-pred   { color: #00239C; font-weight: bold; }
+    .pred-key-row .k-actual { color: #990000; font-weight: bold; }
+    .pred-key-row .k-acc    { color: #660099; font-weight: bold; }
+    .pred-key-sub {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 11px;
+      color: #666;
+      margin-bottom: 4px;
+    }
+    .pred-key-millions {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 12px;
+      color: #444;
+      font-style: italic;
+    }
+
+    /* ── Weekend section ─────────────────────────────────────── */
+    .pred-section {
+      padding: 12px 14px 4px;
+    }
+    .pred-section + .pred-section {
+      border-top: 2px solid #CCCCCC;
+    }
+    .pred-weekend-label {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 16px;
+      color: #000;
+      text-align: center;
+      margin: 0 0 8px;
+    }
+    .pred-weekend-label a {
+      color: #00239C;
+      text-decoration: none;
+    }
+    .pred-weekend-label a:hover { text-decoration: underline; }
+
+    /* ── Predictions table ───────────────────────────────────── */
+    .pred-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 10px;
+    }
+    .pred-table thead tr {
+      border-bottom: 1px solid #AAAAAA;
+    }
+    .pred-table thead th {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 11px;
+      font-weight: normal;
+      padding: 3px 8px 4px;
+      text-align: center;
+      color: #666;
+    }
+    .pred-table thead th.th-pred   { color: #00239C; }
+    .pred-table thead th.th-actual { color: #990000; }
+    .pred-table thead th.th-acc    { color: #660099; }
+    .pred-table thead th.th-title  { text-align: left; }
+
+    /* Data rows */
+    .pred-table tbody tr.pred-row td {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      padding: 5px 8px 2px;
+      vertical-align: top;
+      border-bottom: 1px solid #EEEEEE;
+    }
+    .pred-table tbody tr.pred-row:nth-child(odd)  td { background: #F8F8FF; }
+    .pred-table tbody tr.pred-row:nth-child(even) td { background: #FFFFFF; }
+
+    /* Rank cell */
+    .pred-table td.td-rank {
+      width: 24px;
+      text-align: right;
+      padding-right: 6px;
+      color: #555;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    /* Title cell */
+    .pred-table td.td-title {
+      font-weight: bold;
+    }
+    .pred-title-theaters {
+      font-weight: normal;
+      font-size: 11px;
+      color: #666;
+      display: block;
+      margin-top: 1px;
+    }
+
+    /* Number cells (pred / actual / accuracy) */
+    .pred-table td.td-num {
+      text-align: right;
+      white-space: nowrap;
+      width: 74px;
+    }
+    .num-main {
+      display: block;
+      font-weight: bold;
+      font-size: 15px;
+    }
+    .num-main.v-pred   { color: #00239C; }
+    .num-main.v-actual { color: #990000; }
+    .num-main.v-acc    { color: #660099; }
+    .num-main.v-dash   { color: #BBBBBB; font-weight: normal; }
+    .num-sub {
+      display: block;
+      font-size: 10px;
+      color: #888;
+      margin-top: 1px;
+    }
+
+    /* Empty state */
+    .pred-empty {
+      text-align: center;
+      padding: 40px 20px;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+      color: #888;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">CONTENTS</span>
+      <ul>
+        <li class="active"><a href="predictions.html">PREDICTIONS</a></li>
+        <li><a href="analysis.html">ANALYSIS</a></li>
+        <li><a href="features.html">FEATURES</a></li>
+        <li><a href="releases.html">RELEASE SCHEDULE</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li class="derby"><a href="derby.html">THE DERBY</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+
+  <main class="main-content">
+
+    <div class="pred-page-header">
+      <h1 class="pred-page-title">PREDICTIONS</h1>
+      <p class="pred-disclaimer">Predictions are posted Friday morning. They are solely the opinion of Box Office Jedi and do not incorporate any insider information or tracking reports &mdash; only stats and data available on this site.</p>
+      <p class="pred-updated" id="pred-updated">Loading&hellip;</p>
+    </div>
+
+    <div class="pred-key">
+      <div class="pred-key-row">
+        <span class="k-pred">Blue&nbsp;=&nbsp;Predicted Weekend Gross</span>
+        &nbsp;&nbsp;&nbsp;
+        <span class="k-actual">Red&nbsp;=&nbsp;Actual Weekend Gross</span>
+      </div>
+      <div class="pred-key-sub">Total Gross&nbsp;/&nbsp;Week&nbsp;#</div>
+      <div class="pred-key-row"><span class="k-acc">Purple&nbsp;=&nbsp;% Weekend Accuracy</span></div>
+      <div class="pred-key-millions">(Predictions and actuals in $ millions)</div>
+    </div>
+
+    <div id="pred-content">
+      <p class="pred-empty">Loading predictions&hellip;</p>
+    </div>
+
+  </main>
+
+
+  <aside class="right-sidebar">
+
+    <div class="widget">
+      <div class="widget-header">WEEKEND CHARTS</div>
+      <div class="widget-body">
+        <p>
+          <a href="weekend.html"><strong>All Weekends</strong></a><br>
+          <a href="weekend-chart.html">Latest Chart</a><br>
+          <a href="daily.html">Daily Chart</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-header">ANALYSIS</div>
+      <div class="widget-body">
+        <p>Read the written forecast and weekend roundups. <a href="analysis.html"><strong>Click here &gt;</strong></a></p>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-header" style="background:#7F170E;">THE DERBY</div>
+      <div class="widget-body" style="background:#e8f4fd;">
+        <p>Make your own predictions and compete. <a href="derby.html"><strong>Play now &gt;</strong></a></p>
+      </div>
+    </div>
+
+  </aside>
+
+</div><!-- /page-wrapper -->
+
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">&ldquo;Serving your box office needs since 2026.&rdquo;</span>
+  <div style="margin-top:8px;">
+    <a href="https://www.netflix.com" target="_blank" rel="noopener">
+      <img src="assets/images/free-dvd-rentals.gif" alt="Free DVD Rentals" style="display:inline-block;height:auto;">
+    </a>
+  </div>
+</footer>
+
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+
+  // ── Formatting helpers ────────────────────────────────────────
+  const MONTHS = ['January','February','March','April','May','June',
+                  'July','August','September','October','November','December'];
+
+  function fmtDateLabel(from, to) {
+    const [fy,fm,fd] = from.split('-').map(Number);
+    const [ty,tm,td] = to.split('-').map(Number);
+    const d1 = new Date(fy, fm-1, fd);
+    const d2 = new Date(ty, tm-1, td);
+    if (d1.getMonth() === d2.getMonth()) {
+      return MONTHS[d1.getMonth()] + ' ' + d1.getDate() + '\u2013' + d2.getDate();
+    }
+    return MONTHS[d1.getMonth()] + ' ' + d1.getDate() + '\u2013' +
+           MONTHS[d2.getMonth()].slice(0,3) + '. ' + d2.getDate();
+  }
+
+  function fmtUpdated(iso) {
+    const d = new Date(iso);
+    return 'Last update: ' + MONTHS[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+  }
+
+  function fmtM(n) {
+    if (n === null || n === undefined) return null;
+    return n.toFixed(1);
+  }
+
+  function fmtThousands(n) {
+    return n.toLocaleString('en-US');
+  }
+
+  function calcAccuracy(predicted, actual) {
+    if (actual === null || actual === undefined || actual === 0) return null;
+    const acc = (1 - Math.abs(predicted - actual) / actual) * 100;
+    return Math.max(0, acc);
+  }
+
+  // ── Build a single weekend section ───────────────────────────
+  function buildSection(w) {
+    const label = fmtDateLabel(w.date_from, w.date_to);
+    const chartLink = `weekend-chart.html?date=${w.date_from}`;
+    const hasAny    = w.predictions && w.predictions.length > 0;
+    const hasActual = hasAny && w.predictions.some(p => p.actual_m !== null);
+
+    const section = document.createElement('div');
+    section.className = 'pred-section';
+
+    // Weekend date heading (links to the actual chart)
+    section.innerHTML = `<h2 class="pred-weekend-label"><a href="${chartLink}">${label}</a></h2>`;
+
+    if (!hasAny) {
+      section.innerHTML += '<p class="pred-empty">No predictions posted yet.</p>';
+      return section;
+    }
+
+    // Table
+    const table = document.createElement('table');
+    table.className = 'pred-table';
+
+    // Header row
+    const headRow = document.createElement('tr');
+    headRow.innerHTML = `
+      <th></th>
+      <th class="th-title">Film</th>
+      <th class="th-pred">Predicted</th>
+      ${hasActual ? '<th class="th-actual">Actual</th><th class="th-acc">Accuracy</th>' : ''}
+    `;
+    const thead = document.createElement('thead');
+    thead.appendChild(headRow);
+    table.appendChild(thead);
+
+    // Body rows
+    const tbody = document.createElement('tbody');
+
+    w.predictions.forEach(p => {
+      const predM      = fmtM(p.predicted_m);
+      const actualM    = p.actual_m !== null ? fmtM(p.actual_m) : null;
+      const accuracy   = calcAccuracy(p.predicted_m, p.actual_m);
+
+      // Predicted total: if actuals available, back-calculate; else just the prediction itself
+      let predTotalM = null;
+      if (p.actual_total_m !== null && p.actual_m !== null) {
+        predTotalM = fmtM(p.actual_total_m - p.actual_m + p.predicted_m);
+      } else {
+        predTotalM = predM; // new film — predicted total = predicted gross
+      }
+      const actualTotalM = p.actual_total_m !== null ? fmtM(p.actual_total_m) : null;
+
+      const theatersHtml = (p.is_new && p.theaters)
+        ? `<span class="pred-title-theaters">(${fmtThousands(p.theaters)} theaters)</span>`
+        : '';
+
+      const predCell = `
+        <td class="td-num">
+          <span class="num-main v-pred">${predM}</span>
+          <span class="num-sub">${predTotalM} / ${p.weeks}</span>
+        </td>`;
+
+      let actualCell = '';
+      let accCell    = '';
+      if (hasActual) {
+        if (actualM !== null) {
+          actualCell = `
+            <td class="td-num">
+              <span class="num-main v-actual">${actualM}</span>
+              <span class="num-sub">${actualTotalM} / ${p.weeks}</span>
+            </td>`;
+          accCell = `
+            <td class="td-num">
+              <span class="num-main v-acc">${accuracy.toFixed(2)}%</span>
+            </td>`;
+        } else {
+          // Film was predicted but didn't chart
+          actualCell = `<td class="td-num"><span class="num-main v-dash">—</span></td>`;
+          accCell    = `<td class="td-num"><span class="num-main v-dash">—</span></td>`;
+        }
+      }
+
+      const tr = document.createElement('tr');
+      tr.className = 'pred-row';
+      tr.innerHTML = `
+        <td class="td-rank">${p.pred_rank}.</td>
+        <td class="td-title">${p.title}${theatersHtml}</td>
+        ${predCell}
+        ${actualCell}
+        ${accCell}
+      `;
+      tbody.appendChild(tr);
+    });
+
+    table.appendChild(tbody);
+    section.appendChild(table);
+    return section;
+  }
+
+  // ── Load and render ───────────────────────────────────────────
+  async function load() {
+    try {
+      const r = await fetch('data/predictions.json');
+      if (!r.ok) throw new Error('not found');
+      const data = await r.json();
+
+      // Updated line
+      if (data.updated) {
+        document.getElementById('pred-updated').textContent = fmtUpdated(data.updated);
+      } else {
+        document.getElementById('pred-updated').textContent = '';
+      }
+
+      const container = document.getElementById('pred-content');
+      container.innerHTML = '';
+
+      const weekends = data.weekends || [];
+      if (!weekends.length) {
+        container.innerHTML = '<p class="pred-empty">No predictions posted yet. Check back Friday morning.</p>';
+        return;
+      }
+
+      // Sort most recent first
+      weekends.sort((a, b) => b.date_from > a.date_from ? 1 : -1);
+
+      weekends.forEach(w => container.appendChild(buildSection(w)));
+
+    } catch(e) {
+      document.getElementById('pred-updated').textContent = '';
+      document.getElementById('pred-content').innerHTML =
+        '<p class="pred-empty">Predictions not yet available. Check back Friday morning.</p>';
+    }
+  }
+
+  load();
+</script>
+
+</body>
+</html>
