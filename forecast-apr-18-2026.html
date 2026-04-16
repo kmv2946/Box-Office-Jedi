@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forecast: Lee Cronin Battles Mario, Again &mdash; Box Office Jedi</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+
+    .article-wrap {
+      padding: 0;
+    }
+
+    /* FORECAST section bar at top */
+    .article-section-header {
+      padding: 4px 10px 2px;
+    }
+    .article-section-header a {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .article-section-header a:hover { text-decoration: underline; }
+    .article-section-bar {
+      height: 5px;
+      background: #7F170E;
+      margin-bottom: 10px;
+    }
+
+    /* Headline — Verdana Bold 18pt */
+    .article-headline {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 18pt;
+      color: #000;
+      line-height: 1.15;
+      margin: 0 10px 3px;
+    }
+
+    /* Byline */
+    .article-byline-name {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 13pt;
+      color: #000;
+      margin: 0 10px 1px;
+    }
+    .article-byline-date {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 10pt;
+      color: #000;
+      display: block;
+      margin: 0 10px 10px;
+    }
+
+    /* Body text — Times Regular 16pt, justified, tight leading */
+    .article-body {
+      padding: 0 10px;
+    }
+    .article-body p {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16pt;
+      line-height: 1.35;
+      color: #000;
+      margin-bottom: 10px;
+      text-align: justify;
+    }
+
+    /* Drop cap */
+    .article-body p.drop-cap::first-letter {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 4em;
+      line-height: 0.75;
+      float: left;
+      margin: 5px 3px 0 0;
+      color: #00239C;
+    }
+
+    /* Placeholder image */
+    .article-img {
+      float: left;
+      margin: 0 12px 8px 0;
+      border: 1px solid #CCCCCC;
+    }
+    .article-img-placeholder {
+      width: 200px;
+      height: 150px;
+      background: #CCCCCC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      color: #666;
+      text-align: center;
+    }
+    .article-img-caption {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 10px;
+      color: #333;
+      text-align: center;
+      background: #EEEEEE;
+      padding: 3px 4px;
+      width: 200px;
+      box-sizing: border-box;
+    }
+
+    /* First mention of a film: Times Bold Blue link */
+    .article-body a.film-link {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 16pt;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .article-body a.film-link:hover { text-decoration: underline; }
+
+    /* Subsequent mention: Times Bold Black */
+    .article-body .film {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+    }
+
+    /* Italic */
+    .article-body em {
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+    }
+
+    /* Clearfix after image */
+    .clearfix::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Forecast table */
+    .forecast-table-wrap {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+    }
+    .forecast-table {
+      border-collapse: collapse;
+      width: auto;
+    }
+    .forecast-table tbody td {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16pt;
+      color: #000;
+      padding: 3px 16px 3px 6px;
+      border-bottom: 1px solid #EEEEEE;
+    }
+    .forecast-table tbody tr:nth-child(odd)  td { background: #F4F4FE; }
+    .forecast-table tbody tr:nth-child(even) td { background: #FFFFFF; }
+    .forecast-table tbody td.fc-rank { color: #555; width: 24px; text-align: right; padding-right: 10px; }
+    .forecast-table tbody td.fc-title { font-weight: bold; white-space: nowrap; }
+    .forecast-table tbody td.fc-gross { text-align: right; color: #00007B; white-space: nowrap; padding-right: 4px; }
+    .forecast-table tbody td.fc-rank-pending { color: #999; font-style: italic; text-align: right; padding-right: 10px; }
+    .forecast-table tbody td.fc-title-pending { font-weight: bold; color: #555; white-space: nowrap; }
+    .forecast-table tbody td.fc-gross-pending { text-align: right; color: #999; white-space: nowrap; padding-right: 4px; font-style: italic; }
+
+    /* Pending note below table */
+    .forecast-table-note {
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+      font-size: 11pt;
+      color: #555;
+      text-align: center;
+      margin-top: 8px;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">CONTENTS</span>
+      <ul>
+        <li><a href="predictions.html">PREDICTIONS</a></li>
+        <li class="active"><a href="analysis.html">ANALYSIS</a></li>
+        <li><a href="features.html">FEATURES</a></li>
+        <li><a href="releases.html">RELEASE SCHEDULE</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li class="derby"><a href="derby.html">THE DERBY</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+
+  <main class="main-content">
+    <div class="article-wrap">
+
+      <!-- Section header -->
+      <div class="article-section-header">
+        <a href="forecast.html">FORECAST</a>
+      </div>
+      <div class="article-section-bar"></div>
+
+      <h1 class="article-headline">FORECAST: Lee Cronin Battles Mario, Again</h1>
+      <p class="article-byline-name">by Box Office Jedi staff</p>
+      <span class="article-byline-date">Thursday, April 16, 2026</span>
+
+      <div class="article-body">
+
+        <div class="clearfix">
+          <figure class="article-img">
+            <img src="assets/images/forecast-apr-18-2026.jpg" alt="Lee Cronin's The Mummy" style="width:200px;display:block;">
+            <figcaption class="article-img-caption"><strong>Lee Cronin&#8217;s The Mummy</strong></figcaption>
+          </figure>
+
+          <p class="drop-cap">Nothing too crazy happening this weekend. The holdovers continue to thrive, and a new horror film from Warner Bros shoots its shot. But as usual at this time of year, nothing exciting happens, so as to get out of the way for the start of the summer, that first weekend of May, where this year, <em>The Devil Wears Prada 2</em> opens.</p>
+        </div>
+
+        <p>There is a funny coincidence, the kind that makes you question the ways the movie release schedule works, and&hellip; is it like nature, where it just knows what to do, without us studios guiding it and without us moviegoers&#8217; watering can of cash? Yes, humans plant the seeds and tend to the gardens and harvest their crop but the vegetation itself is an ecosystem of its own, untethered from people. This weekend is proof of such arrangement, where that crop you planted years ago that died has somehow, magically sprung up again this Spring:</p>
+
+        <p>Lee Cronin&#8217;s <a href="#" class="film-link">The Mummy</a> opens on Friday, going up against <a href="#" class="film-link">The Super Mario Galaxy Movie</a>, which is heading strong into its third weekend of release. What happened the last time Lee Cronin had a movie open? It was in April 2023, with <em>Evil Dead Rise</em>. It opened strong for a horror film at #2. What was number 1? <em>The Super Mario Brothers Movie</em>, in its third weekend of release.</p>
+
+        <p>Do these rival studios have more of a sense of humor than we know? Is there some deep strategy to this? Or is it just nature?</p>
+
+        <p>LC seems to have done it again, with audiences sharing their reactions from early screenings. It sounds like a puker.</p>
+
+        <p>As much as audiences love to almost puke, it won&#8217;t reach as high as <em>Evil Dead Rise</em> ($24 million opening weekend). There&#8217;s something about the combination of <em>The Mummy</em> IP, the impending release of the Brendan Fraser&ndash;Universal reboot, the plot that seems to have very little to do with a mummy, and Lee Cronin&#8217;s name, that just isn&#8217;t meshing into a breakout hit. Throwing Lee Cronin&#8217;s name is doing two things at once&mdash;it gives it a sense of importance, like we should know who LC is and we should care, but it also confuses the whole thing. Who is LC? It&#8217;s one of those cases where people might remember the trailer, and even liked the trailer, but they can&#8217;t trace the trailer to the title. While it won&#8217;t do <em>Evil Dead</em> numbers, neither will it land as low as 2025&#8217;s <em>Wolf Man</em> reboot ($10.9 million).</p>
+
+        <p>This weekend should confirm whether <a href="#" class="film-link">Project Hail Mary</a> will finish above or below <em>Oppenheimer</em>, and it&#8217;s looking to be above. We expect another small drop.</p>
+
+        <p>We also look to <a href="#" class="film-link">The Drama</a>. How high will it climb on the list of highest grossing A24 movies? This weekend will be telling. Has the drama worn off, or is word still spreading?</p>
+
+        <p>Our official predictions are below:</p>
+
+        <div class="forecast-table-wrap">
+          <table class="forecast-table">
+            <tbody>
+              <tr>
+                <td class="fc-rank">1</td>
+                <td class="fc-title">Super Mario Galaxy</td>
+                <td class="fc-gross">$36.9M</td>
+              </tr>
+              <tr>
+                <td class="fc-rank">2</td>
+                <td class="fc-title">Project Hail Mary</td>
+                <td class="fc-gross">$17.0M</td>
+              </tr>
+              <tr>
+                <td class="fc-rank">3</td>
+                <td class="fc-title">Lee Cronin&#8217;s The Mummy</td>
+                <td class="fc-gross">$17.0M</td>
+              </tr>
+              <tr>
+                <td class="fc-rank">4</td>
+                <td class="fc-title">Normal</td>
+                <td class="fc-gross">$6.5M</td>
+              </tr>
+              <tr>
+                <td class="fc-rank">5</td>
+                <td class="fc-title">The Drama</td>
+                <td class="fc-gross">$5.2M</td>
+              </tr>
+              <tr>
+                <td class="fc-rank">6</td>
+                <td class="fc-title">You, Me &amp; Tuscany</td>
+                <td class="fc-gross">$4.5M</td>
+              </tr>
+              <tr>
+                <td class="fc-rank">7</td>
+                <td class="fc-title">Hoppers</td>
+                <td class="fc-gross">$3.4M</td>
+              </tr>
+              <tr>
+                <td class="fc-rank-pending">&mdash;</td>
+                <td class="fc-title-pending">Bhooth Bangla*</td>
+                <td class="fc-gross-pending">&nbsp;</td>
+              </tr>
+              <tr>
+                <td class="fc-rank-pending">&mdash;</td>
+                <td class="fc-title-pending">Lorne*</td>
+                <td class="fc-gross-pending">&nbsp;</td>
+              </tr>
+              <tr>
+                <td class="fc-rank-pending">&mdash;</td>
+                <td class="fc-title-pending">Mother Mary*</td>
+                <td class="fc-gross-pending">&nbsp;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="forecast-table-note">* Awaiting official theater count from studios for final forecast.</p>
+
+      </div><!-- /article-body -->
+    </div><!-- /article-wrap -->
+  </main>
+
+
+  <aside class="right-sidebar">
+    <div class="widget">
+      <div class="widget-header" style="background:#7F170E;">DERBY GAME</div>
+      <div class="widget-body" style="background:#e8f4fd;">
+        <p>Make your own predictions. <a href="derby.html"><strong>Play now &gt;</strong></a></p>
+      </div>
+    </div>
+    <div class="widget">
+      <div class="widget-header">WEEKEND CHART</div>
+      <div class="widget-body">
+        <p>See the latest numbers. <a href="weekend-chart.html"><strong>View chart &gt;</strong></a></p>
+      </div>
+    </div>
+    <div class="widget">
+      <div class="widget-header">MOVIE NEWS</div>
+      <div class="widget-body">
+        <p>Weekend roundups &amp; analysis. <a href="news.html"><strong>Read &gt;</strong></a></p>
+      </div>
+    </div>
+  </aside>
+
+</div><!-- /page-wrapper -->
+
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">"Serving your box office needs since 2026."</span>
+  <div style="margin-top:8px;">
+    <img src="assets/images/flag_sm_anim.gif" alt="American flag" style="display:inline-block;height:auto;">
+  </div>
+</footer>
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+</script>
+
+</body>
+</html>

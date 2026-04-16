@@ -69,7 +69,7 @@
 
     /* ── Weekend section ─────────────────────────────────────── */
     .pred-section {
-      padding: 12px 14px 4px;
+      padding: 18px 14px 10px;
     }
     .pred-section + .pred-section {
       border-top: 2px solid #CCCCCC;
@@ -77,10 +77,11 @@
     .pred-weekend-label {
       font-family: 'Times New Roman', Times, serif;
       font-weight: bold;
-      font-size: 16px;
+      font-size: 18px;
       color: #000;
       text-align: center;
-      margin: 0 0 8px;
+      margin: 0 0 12px;
+      letter-spacing: 0.5px;
     }
     .pred-weekend-label a {
       color: #00239C;
@@ -88,71 +89,82 @@
     }
     .pred-weekend-label a:hover { text-decoration: underline; }
 
-    /* ── Predictions table ───────────────────────────────────── */
+    /* ── Predictions table (forecast-style) ──────────────────── */
+    .pred-table-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
     .pred-table {
-      width: 100%;
       border-collapse: collapse;
-      margin-bottom: 10px;
+      width: auto;
+      margin: 0 auto;
     }
-    .pred-table thead tr {
-      border-bottom: 1px solid #AAAAAA;
-    }
+
+    /* Header row — subtle column labels, no divider line */
     .pred-table thead th {
       font-family: 'Times New Roman', Times, serif;
       font-size: 11px;
       font-weight: normal;
-      padding: 3px 8px 4px;
+      padding: 4px 14px 6px;
       text-align: center;
       color: #666;
+      background: transparent;
+      border: none;
     }
     .pred-table thead th.th-pred   { color: #00239C; }
     .pred-table thead th.th-actual { color: #990000; }
     .pred-table thead th.th-acc    { color: #660099; }
-    .pred-table thead th.th-title  { text-align: left; }
+    .pred-table thead th.th-title  { text-align: left; padding-left: 6px; }
 
-    /* Data rows */
+    /* Data rows — forecast aesthetic */
     .pred-table tbody tr.pred-row td {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 14px;
-      padding: 5px 8px 2px;
-      vertical-align: top;
-      border-bottom: 1px solid #EEEEEE;
+      font-size: 15pt;
+      padding: 6px 18px 6px 6px;
+      vertical-align: middle;
+      border: none;
+      color: #000;
     }
-    .pred-table tbody tr.pred-row:nth-child(odd)  td { background: #F8F8FF; }
+    .pred-table tbody tr.pred-row:nth-child(odd)  td { background: #F4F4FE; }
     .pred-table tbody tr.pred-row:nth-child(even) td { background: #FFFFFF; }
 
     /* Rank cell */
     .pred-table td.td-rank {
-      width: 24px;
+      width: 34px;
       text-align: right;
-      padding-right: 6px;
-      color: #555;
-      font-size: 13px;
+      padding-right: 10px;
+      color: #777;
       white-space: nowrap;
+      font-size: 15pt;
     }
 
     /* Title cell */
     .pred-table td.td-title {
       font-weight: bold;
+      white-space: nowrap;
+      padding-right: 30px;
     }
     .pred-title-theaters {
       font-weight: normal;
-      font-size: 11px;
+      font-size: 10pt;
       color: #666;
       display: block;
       margin-top: 1px;
+      font-style: italic;
     }
 
     /* Number cells (pred / actual / accuracy) */
     .pred-table td.td-num {
       text-align: right;
       white-space: nowrap;
-      width: 74px;
+      min-width: 90px;
     }
     .num-main {
       display: block;
       font-weight: bold;
-      font-size: 15px;
+      font-size: 15pt;
+      line-height: 1.15;
     }
     .num-main.v-pred   { color: #00239C; }
     .num-main.v-actual { color: #990000; }
@@ -160,9 +172,10 @@
     .num-main.v-dash   { color: #BBBBBB; font-weight: normal; }
     .num-sub {
       display: block;
-      font-size: 10px;
+      font-size: 9pt;
       color: #888;
       margin-top: 1px;
+      font-weight: normal;
     }
 
     /* Empty state */
