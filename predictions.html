@@ -11,17 +11,16 @@
     .pred-page-header {
       padding: 14px 14px 4px;
       text-align: center;
-      border-bottom: 2px solid #990000;
+      border-bottom: none;
       margin-bottom: 0;
     }
     .pred-page-title {
-      font-family: 'Times New Roman', Times, serif;
+      font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
       font-size: 28px;
       color: #000;
       margin: 0 0 6px;
-      letter-spacing: 2px;
-      text-decoration: underline;
+      letter-spacing: -0.5px;
     }
     .pred-disclaimer {
       font-family: 'Times New Roman', Times, serif;
@@ -43,7 +42,7 @@
     .pred-key {
       padding: 10px 14px 8px;
       text-align: center;
-      border-bottom: 1px solid #DDDDDD;
+      border-bottom: none;
       margin-bottom: 0;
     }
     .pred-key-row {
@@ -72,7 +71,7 @@
       padding: 18px 14px 10px;
     }
     .pred-section + .pred-section {
-      border-top: 2px solid #CCCCCC;
+      border-top: none;
     }
     .pred-weekend-label {
       font-family: 'Times New Roman', Times, serif;
@@ -395,10 +394,17 @@
         ? `<span class="pred-title-theaters">(${fmtThousands(p.theaters)} theaters)</span>`
         : '';
 
+      // Only show the predicted-total / week # sub-line once we have actuals
+      // for this weekend. Before actuals come in, week numbers and rolling
+      // totals are unknown for new releases, so we hide the sub entirely.
+      const predSub = hasActual
+        ? `<span class="num-sub">${predTotalM} / ${p.weeks}</span>`
+        : '';
+
       const predCell = `
         <td class="td-num">
           <span class="num-main v-pred">${predM}</span>
-          <span class="num-sub">${predTotalM} / ${p.weeks}</span>
+          ${predSub}
         </td>`;
 
       let actualCell = '';
