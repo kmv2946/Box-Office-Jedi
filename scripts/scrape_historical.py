@@ -10,12 +10,14 @@ Run once from the repo root:
   python3 scripts/scrape_historical.py
 
 Optional arguments:
-  --start YYYY-MM-DD   First Friday to scrape  (default: 2007-01-05)
+  --start YYYY-MM-DD   First Friday to scrape  (default: 1995-01-06)
   --end   YYYY-MM-DD   Last Friday to scrape   (default: most recent completed weekend)
   --skip-existing      Skip dates that already have a data/weekends/YYYY-MM-DD.json file
 
 The script is polite — it waits 2 seconds between requests and backs off on 429s.
-Expect it to take ~40 minutes to scrape the full range (2007–present, ~1000 weekends).
+A full 1995→present run (~1,600 weekends) takes several hours. Older weekends
+(especially pre-2000) may return empty or partial charts; the script skips
+those and continues.
 """
 
 import requests
@@ -225,8 +227,8 @@ def rebuild_index():
 
 def main():
     parser = argparse.ArgumentParser(description="Historical weekend backfill scraper")
-    parser.add_argument("--start", default="2007-01-05",
-                        help="Start date (Friday) YYYY-MM-DD, default 2007-01-05")
+    parser.add_argument("--start", default="1995-01-06",
+                        help="Start date (Friday) YYYY-MM-DD, default 1995-01-06")
     parser.add_argument("--end",   default=None,
                         help="End date (Friday) YYYY-MM-DD, default = most recent completed")
     parser.add_argument("--skip-existing", action="store_true",

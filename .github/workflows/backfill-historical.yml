@@ -1,6 +1,6 @@
 # Box Office Jedi — Historical Weekend Backfill
 # ===============================================
-# ONE-TIME workflow. Scrapes every weekend from 2007 to the present
+# ONE-TIME workflow. Scrapes every weekend from 1995 to the present
 # and populates:
 #   data/weekends/YYYY-MM-DD.json   — full chart for each past weekend
 #   data/weekends.json              — master index for the weekend index page
@@ -8,11 +8,14 @@
 # How to run:
 #   GitHub → Actions → "Historical Weekend Backfill" → Run workflow
 #
-# Takes ~40 minutes. Only needs to be run once.
-# After that, the daily scraper (update-data.yml) keeps things current.
+# Full 1995→present run takes several hours (~30 years × ~52 Fridays × 2s/request).
+# Only needs to be run once. After that, the daily scraper (update-data.yml)
+# keeps things current.
 #
 # Safe to re-run — the --skip-existing flag means already-scraped
-# weekends are not re-fetched (only new ones are added).
+# weekends are not re-fetched (only new ones are added). Note that older
+# weekends (especially pre-2000) may return empty or partial charts from
+# The Numbers; the scraper handles that gracefully and moves on.
 
 name: Historical Weekend Backfill
 
@@ -20,9 +23,9 @@ on:
   workflow_dispatch:
     inputs:
       start_date:
-        description: "Start date (YYYY-MM-DD, must be a Friday). Default: 2007-01-05"
+        description: "Start date (YYYY-MM-DD, must be a Friday). Default: 1995-01-06"
         required: false
-        default: "2007-01-05"
+        default: "1995-01-06"
       end_date:
         description: "End date (YYYY-MM-DD, must be a Friday). Leave blank for most recent weekend."
         required: false
