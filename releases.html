@@ -56,7 +56,6 @@
       font-size: 13px;
       display: flex;
       justify-content: space-between;
-      border-bottom: 1px solid #ccc;
       background: #f4f4f4;
     }
     .rs-prevnext a {
@@ -70,16 +69,17 @@
     .rs-prevnext span { color: #999; font-size: 11px; }
 
     /* ── Month section header ────────────────────────────────────────── */
-    /* Verdana Regular, white on red, centered. */
+    /* Verdana Regular, white on red, centered, large with tight padding. */
     .rs-month-header {
       background: #7F170E;
       color: #FFFFFF;
       font-family: Verdana, Geneva, sans-serif;
       font-weight: normal;
-      font-size: 15px;
-      letter-spacing: 0.05em;
+      font-size: 32px;
+      line-height: 1.05;
+      letter-spacing: 0.02em;
       text-transform: uppercase;
-      padding: 6px 10px;
+      padding: 4px 10px 6px;
       margin: 14px 14px 0;
       text-align: center;
     }
@@ -143,12 +143,12 @@
     .rs-table colgroup col.rs-col-distributor{ width: 32%; }
     .rs-table colgroup col.rs-col-release    { width: 18%; }
 
-    /* Column headers: uppercase, gray bg, centered, Times Bold */
+    /* Column headers: uppercase, gray bg, centered, Verdana Bold */
     .rs-table thead th {
       background: #A8A8A8;
-      font-family: 'Times New Roman', Times, serif;
+      font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 12px;
+      font-size: 11px;
       color: #FFFFFF;
       text-transform: uppercase;
       letter-spacing: 0.06em;
@@ -229,6 +229,7 @@
       font-size: 11px;
       color: #777;
       padding: 8px 14px 14px;
+      text-align: center;
     }
 
   </style>
