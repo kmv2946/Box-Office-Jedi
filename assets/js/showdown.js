@@ -3,8 +3,16 @@
  * On any showdown page, this script finds the #panel-weekend table,
  * reads each column's movie title, and fetches per-movie weekend data
  * from data/movie_weekends/<normalized-key>.json. It then fills the
- * Weekend-1..Weekend-5 rows with actual grosses, replacing the
- * "Data pending" placeholders.
+ * Weekend-1..Weekend-5 rows with the rich 5-line cell format:
+ *
+ *   Line 1 (.wg)  — weekend gross (bold)
+ *   Line 2 (.wm)  — "M-D-YY / <b>N</b>" (Sunday of weekend / weekend #)
+ *   Line 3 (.wth) — "theaters / $avg"
+ *   Line 4 (.wch) — % change vs last weekend ("—" for week 1)
+ *   Line 5 (.wgt) — cumulative total gross
+ *
+ * The cell also gets data-val=<gross> so the existing applyBolding()
+ * helper will highlight the winning film per row.
  *
  * Title matching is case- and punctuation-insensitive, so the archive's
  * "Everything Everywhere All At Once" still matches a showdown's
@@ -22,9 +30,39 @@
     return '$' + n.toLocaleString('en-US');
   }
 
+  // "1996-05-10" (Friday) -> "5-12-96" (Sunday of that weekend)
+  function fmtSunDate(isoFri) {
+    if (!isoFri) return '\u2014';
+    var parts = isoFri.split('-').map(function (x) { return parseInt(x, 10); });
+    if (parts.length !== 3 || !parts[0]) return '\u2014';
+    // Build in UTC so the +2 days shift doesn't dance around a local DST boundary.
+    var dt = new Date(Date.UTC(parts[0], parts[1] - 1, parts[2] + 2));
+    var mm = dt.getUTCMonth() + 1;
+    var dd = dt.getUTCDate();
+    var yy = String(dt.getUTCFullYear()).slice(-2);
+    return mm + '-' + dd + '-' + yy;
+  }
+
+  function fmtTheatersAvg(theaters, gross) {
+    if (!theaters || !gross) return '\u2014';
+    var avg = Math.floor(gross / theaters);
+    return theaters.toLocaleString('en-US') + ' / $' + avg.toLocaleString('en-US');
+  }
+
+  // Change vs previous weekend. Returns an HTML string so we can apply a
+  // sign-aware modifier class (positive = green, negative = red, none = dash).
+  function fmtChange(curr, prev) {
+    if (prev === null || prev === undefined || prev === 0 || !curr) return '\u2014';
+    var p = (curr - prev) / prev * 100;
+    if (!isFinite(p)) return '\u2014';
+    // Use the typographic minus (U+2212) to match the hand-filled cells.
+    var sign = p >= 0 ? '+' : '\u2212';
+    return sign + Math.abs(p).toFixed(1) + '%';
+  }
+
   async function fetchMovie(key) {
     try {
-      const r = await fetch('data/movie_weekends/' + key + '.json', { cache: 'no-store' });
+      var r = await fetch('data/movie_weekends/' + key + '.json', { cache: 'no-store' });
       if (!r.ok) return null;
       return await r.json();
     } catch (e) {
@@ -32,58 +70,80 @@
     }
   }
 
+  function renderCell(cell, movie, n) {
+    if (!movie) {
+      cell.innerHTML = '<span class="wpend">\u2014</span>';
+      return;
+    }
+    var w = null;
+    var prev = null;
+    for (var i = 0; i < movie.weekends.length; i++) {
+      if (movie.weekends[i].n === n)     w    = movie.weekends[i];
+      if (movie.weekends[i].n === n - 1) prev = movie.weekends[i];
+    }
+    if (!w) {
+      cell.innerHTML = '<span class="wpend">\u2014</span>';
+      cell.removeAttribute('data-val');
+      return;
+    }
+    var prevGross = prev ? prev.gross : null;
+    if (w.gross) cell.setAttribute('data-val', String(w.gross));
+    cell.innerHTML = (
+      '<span class="wg">'  + fmtMoney(w.gross) + '</span>' +
+      '<span class="wm">'  + fmtSunDate(w.date) + ' / <b>' + n + '</b></span>' +
+      '<span class="wth">' + fmtTheatersAvg(w.theaters, w.gross) + '</span>' +
+      '<span class="wch">' + fmtChange(w.gross, prevGross) + '</span>' +
+      '<span class="wgt">' + fmtMoney(w.total_gross) + '</span>'
+    );
+  }
+
   function fillColumn(panel, colIdx, movie) {
-    // For each weekend row in the tbody, find the cell for this column
-    // and drop in the gross (or em-dash).
-    const rows = panel.querySelectorAll('tbody tr');
-    rows.forEach((tr) => {
-      const label = tr.querySelector('.sd-wknd-label');
+    var rows = panel.querySelectorAll('tbody tr');
+    rows.forEach(function (tr) {
+      var label = tr.querySelector('.sd-wknd-label');
       if (!label) return;
-      const n = parseInt(label.textContent.trim(), 10);
+      var n = parseInt(label.textContent.trim(), 10);
       if (!n) return;
-      const cell = tr.querySelector('.sd-wknd-cell.sd-col-' + colIdx);
+      var cell = tr.querySelector('.sd-wknd-cell.sd-col-' + colIdx);
       if (!cell) return;
-      if (!movie) {
-        cell.innerHTML = '<span class="wpend">\u2014</span>';
-        return;
-      }
-      const w = movie.weekends.find((x) => x.n === n);
-      if (!w || !w.gross) {
-        cell.innerHTML = '<span>\u2014</span>';
-      } else {
-        cell.setAttribute('data-val', String(w.gross));
-        cell.textContent = fmtMoney(w.gross);
-      }
+      // Only auto-fill cells still showing the "Data pending" placeholder.
+      // Any cell with hand-filled content is left alone so the author can
+      // override archive data (e.g. pre-2000 films where The Numbers'
+      // weekend aggregation differs from traditional Fri–Sun reporting).
+      if (!cell.querySelector('.wpend')) return;
+      renderCell(cell, movie, n);
     });
   }
 
   async function init() {
-    const panel = document.getElementById('panel-weekend');
+    var panel = document.getElementById('panel-weekend');
     if (!panel) return;
 
-    // Gather each column's title in order (sd-col-1, sd-col-2, ...)
-    const heads = panel.querySelectorAll('thead .sd-head-cell');
+    var heads = panel.querySelectorAll('thead .sd-head-cell');
     if (!heads.length) return;
 
-    const work = [];
-    heads.forEach((th) => {
-      // Column index comes from the sd-col-N class on the <th>
-      let colIdx = null;
-      th.classList.forEach((c) => {
-        const m = /^sd-col-(\d+)$/.exec(c);
+    var work = [];
+    heads.forEach(function (th) {
+      var colIdx = null;
+      th.classList.forEach(function (c) {
+        var m = /^sd-col-(\d+)$/.exec(c);
         if (m) colIdx = parseInt(m[1], 10);
       });
       if (!colIdx) return;
-      const link = th.querySelector('.sd-movie-title-link');
-      const title = link ? link.textContent.trim() : '';
+      var link = th.querySelector('.sd-movie-title-link');
+      var title = link ? link.textContent.trim() : '';
       if (!title) return;
       work.push({ colIdx: colIdx, title: title, key: normTitle(title) });
     });
 
-    // Fetch all needed movies in parallel
-    const results = await Promise.all(work.map((w) => fetchMovie(w.key)));
+    var results = await Promise.all(work.map(function (w) { return fetchMovie(w.key); }));
+    work.forEach(function (w, i) { fillColumn(panel, w.colIdx, results[i]); });
 
-    work.forEach((w, i) => fillColumn(panel, w.colIdx, results[i]));
+    // Re-run the page's bolding helper so the leader per row becomes bold
+    // once our data has populated the data-val attributes.
+    if (typeof window.applyBolding === 'function') {
+      try { window.applyBolding(); } catch (e) { /* ignore */ }
+    }
   }
 
   if (document.readyState === 'loading') {

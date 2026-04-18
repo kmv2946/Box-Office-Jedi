@@ -3,13 +3,177 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Release Dates — Box Office Jedi</title>
+  <title>Release Schedule &mdash; Box Office Jedi</title>
   <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+
+    /* ── Page header (red bar) ───────────────────────────────────────── */
+    .rs-section-bar { height: 5px; background: #7F170E; margin-bottom: 0; }
+    .rs-page-title {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #00239C;
+      padding: 6px 10px 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Top jump nav ────────────────────────────────────────────────── */
+    .rs-jump {
+      padding: 10px 14px 8px;
+      text-align: center;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+    }
+    .rs-jump label {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 11px;
+      color: #555;
+      margin-right: 4px;
+    }
+    .rs-jump select {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      padding: 1px 2px;
+      margin-right: 12px;
+    }
+    .rs-jump a {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 11px;
+      color: #00239C;
+      margin-right: 6px;
+      text-decoration: none;
+    }
+    .rs-jump a:hover { text-decoration: underline; }
+
+    /* ── Prev / next month strip ─────────────────────────────────────── */
+    .rs-prevnext {
+      padding: 4px 14px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      background: #f4f4f4;
+    }
+    .rs-prevnext a {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 11px;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .rs-prevnext a:hover { text-decoration: underline; }
+    .rs-prevnext span { color: #999; font-size: 11px; }
+
+    /* ── Month section header ────────────────────────────────────────── */
+    .rs-month-header {
+      background: #7F170E;
+      color: #ffffff;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      margin: 12px 14px 0;
+    }
+    .rs-undetermined {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 12px;
+      font-style: italic;
+      color: #444;
+      padding: 6px 14px 4px;
+      margin: 0 14px;
+      border-bottom: 1px solid #ddd;
+    }
+    .rs-undetermined .rs-undet-label {
+      font-weight: bold;
+      font-style: normal;
+      color: #000;
+    }
+
+    /* ── Friday block (date heading + table) ─────────────────────────── */
+    .rs-week { margin: 0 14px 16px; border-left: 1px solid #ccc; border-right: 1px solid #ccc; }
+    .rs-week-head {
+      background: #DCDCDC;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      color: #000;
+      padding: 4px 8px;
+      border-top: 1px solid #999;
+      border-bottom: 1px solid #999;
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+    .rs-week-head .rs-day { color: #00239C; }
+
+    .rs-table { width: 100%; border-collapse: collapse; }
+    .rs-table th {
+      background: #f0f0f0;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 11px;
+      color: #444;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 4px 8px;
+      text-align: left;
+      border-bottom: 1px solid #ccc;
+    }
+    .rs-table th.rs-th-release { width: 96px; text-align: right; }
+    .rs-table td {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      color: #000;
+      padding: 4px 8px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    .rs-table td.rs-td-release {
+      text-align: right;
+      white-space: nowrap;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+      color: #555;
+    }
+    .rs-table tbody tr:nth-child(odd)  td { background: #FAFAFA; }
+    .rs-table tbody tr:nth-child(even) td { background: #FFFFFF; }
+    .rs-table td.rs-td-title a {
+      color: #00239C;
+      text-decoration: none;
+    }
+    .rs-table td.rs-td-title a:hover { text-decoration: underline; }
+    .rs-table tr.rs-wide td.rs-td-title { font-weight: bold; }
+    .rs-table tr.rs-wide td.rs-td-title a { font-weight: bold; }
+
+    .rs-empty {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      font-style: italic;
+      color: #777;
+      padding: 8px 14px 4px;
+    }
+
+    .rs-disclaimer {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      color: #777;
+      padding: 8px 14px 14px;
+    }
+
+  </style>
 </head>
 <body>
 
 <div class="page-wrapper">
 
+  <!-- Sidebar (matches site) -->
   <nav class="sidebar">
     <a href="index.html" class="sidebar-logo">
       <span class="logo-top">BOX OFFICE</span>
@@ -40,69 +204,42 @@
     <a href="index.html" class="sidebar-home">HOME</a>
   </nav>
 
+
+  <!-- Main -->
   <main class="main-content">
-    <div class="page-header">
-      <h1>Release Dates</h1>
-      <div class="page-subtitle">Upcoming wide releases — <span id="current-year">2026</span></div>
+
+    <div class="rs-page-title">&gt; RELEASE SCHEDULE</div>
+    <div class="rs-section-bar"></div>
+
+    <!-- Top jump nav -->
+    <div class="rs-jump" id="rs-jump">
+      <label for="rs-jump-2026">Jump to:</label>
+      <select id="rs-jump-2026"></select>
+      <select id="rs-jump-2027"></select>
+      <a href="releases.html?m=2028-plus">2028 &amp; Beyond</a>
     </div>
 
-    <div style="padding:10px 12px;">
-      <!--
-        HOW TO UPDATE RELEASE DATES
-        ============================
-        Add new rows to the table below. Format: Date | Title | Studio | Notes.
-        Keep sorted chronologically. Remove films after they open (or leave them
-        and they'll naturally scroll past).
-      -->
-      <table class="chart-table">
-        <thead>
-          <tr>
-            <th>Opening Date</th>
-            <th>Title</th>
-            <th>Studio</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody id="releases-body">
-          <!-- Placeholder rows — replace with real data -->
-          <tr>
-            <td><strong>Apr 11, 2026</strong></td>
-            <td class="title"><a href="#">[Title TBD]</a></td>
-            <td>[Studio]</td>
-            <td>Wide release</td>
-          </tr>
-          <tr>
-            <td><strong>Apr 18, 2026</strong></td>
-            <td class="title"><a href="#">[Title TBD]</a></td>
-            <td>[Studio]</td>
-            <td>Wide release</td>
-          </tr>
-          <tr>
-            <td><strong>Apr 25, 2026</strong></td>
-            <td class="title"><a href="#">[Title TBD]</a></td>
-            <td>[Studio]</td>
-            <td>Wide release</td>
-          </tr>
-          <tr>
-            <td><strong>May 1, 2026</strong></td>
-            <td class="title"><a href="#">[Title TBD]</a></td>
-            <td>[Studio]</td>
-            <td>Wide release</td>
-          </tr>
-          <tr>
-            <td><strong>May 22, 2026</strong></td>
-            <td class="title"><a href="#">[Title TBD]</a></td>
-            <td>[Studio]</td>
-            <td>Memorial Day weekend</td>
-          </tr>
-        </tbody>
-      </table>
-      <p style="font-size:11px;color:#777;margin-top:8px;font-family:Verdana,sans-serif;">
-        Wide releases only. Subject to change. Dates from studio announcements.
-      </p>
+    <!-- Prev / next month -->
+    <div class="rs-prevnext" id="rs-prevnext">
+      <span id="rs-prev"></span>
+      <span id="rs-next"></span>
     </div>
+
+    <!-- Month content (rendered by JS) -->
+    <div id="rs-month-content">
+      <p class="rs-empty">Loading release schedule&hellip;</p>
+    </div>
+
+    <p class="rs-disclaimer">
+      Wide releases are listed in <strong>bold</strong>. Limited and platform releases in regular type.
+      Theater counts shown when known; otherwise marked &ldquo;Wide&rdquo;, &ldquo;Limited&rdquo;, or &ldquo;TBD&rdquo;.
+      All dates subject to change.
+    </p>
+
   </main>
 
+
+  <!-- Right sidebar -->
   <aside class="right-sidebar">
     <div class="widget">
       <div class="widget-header">THE FORECAST</div>
@@ -116,20 +253,33 @@
         <p>Predict the weekend. <a href="derby.html"><strong>Play now &gt;</strong></a></p>
       </div>
     </div>
+    <div class="widget">
+      <div class="widget-header">WEEKEND CHARTS</div>
+      <div class="widget-body">
+        <p>
+          <a href="weekend.html"><strong>All Weekends</strong></a><br>
+          <a href="weekend-chart.html">Latest Chart</a><br>
+          <a href="daily.html">Daily Chart</a>
+        </p>
+      </div>
+    </div>
   </aside>
 
-</div>
+</div><!-- /page-wrapper -->
+
 
 <footer class="site-footer">
   Box Office Jedi &copy; <span id="footer-year">2026</span>
   <span class="footer-tagline">"Serving your box office needs since 2026."</span>
-  <div class="footer-flag">
+  <div style="margin-top:8px;">
     <img src="assets/images/flag_sm_anim.gif" alt="American flag" style="display:inline-block;height:auto;">
   </div>
 </footer>
+
+
 <script>
+  // ── Footer + sidebar search ─────────────────────────────────────────────
   document.getElementById('footer-year').textContent = new Date().getFullYear();
-  document.getElementById('current-year').textContent = new Date().getFullYear();
   function doSearch() {
     const q = document.getElementById('sidebar-search-input').value.trim();
     if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
@@ -137,6 +287,168 @@
   document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') doSearch();
   });
+
+  // ── Date helpers (parse YYYY-MM-DD as local) ────────────────────────────
+  const MONTHS = ['January','February','March','April','May','June',
+                  'July','August','September','October','November','December'];
+  function parseISO(iso) {
+    const [y, m, d] = iso.split('-').map(Number);
+    return new Date(y, m - 1, d);
+  }
+  function fmtFridayLabel(iso) {
+    const d = parseISO(iso);
+    return 'Friday ' + (d.getMonth() + 1) + '/' + d.getDate();
+  }
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    }[c]));
+  }
+
+  // ── Build a row + table ─────────────────────────────────────────────────
+  function buildReleaseRow(r) {
+    const wide = r.is_wide ? ' class="rs-wide"' : '';
+    const release = r.release || (r.theaters ? r.theaters.toLocaleString('en-US') : 'TBD');
+    return (
+      '<tr' + wide + '>' +
+        '<td class="rs-td-title"><a href="movie.html?title=' + encodeURIComponent(r.title) + '">' +
+          escapeHtml(r.title) + '</a></td>' +
+        '<td class="rs-td-distributor">' + escapeHtml(r.distributor || '') + '</td>' +
+        '<td class="rs-td-release">' + escapeHtml(release) + '</td>' +
+      '</tr>'
+    );
+  }
+  function buildWeekTable(week) {
+    const rows = (week.releases || []).map(buildReleaseRow).join('');
+    if (!rows) {
+      return '<div class="rs-week"><div class="rs-week-head"><span class="rs-day">' +
+             fmtFridayLabel(week.date) + '</span></div>' +
+             '<p class="rs-empty">No theatrical releases scheduled.</p></div>';
+    }
+    return (
+      '<div class="rs-week">' +
+        '<div class="rs-week-head"><span class="rs-day">' + fmtFridayLabel(week.date) + '</span></div>' +
+        '<table class="rs-table">' +
+          '<thead><tr>' +
+            '<th>New in Theaters</th>' +
+            '<th>Distributor</th>' +
+            '<th class="rs-th-release">Release</th>' +
+          '</tr></thead>' +
+          '<tbody>' + rows + '</tbody>' +
+        '</table>' +
+      '</div>'
+    );
+  }
+
+  // ── Build the full month view ───────────────────────────────────────────
+  function renderMonth(month) {
+    const out = [];
+    out.push('<div class="rs-month-header">' + escapeHtml(month.name).toUpperCase() + '</div>');
+    if (month.undetermined && month.undetermined.length) {
+      out.push('<div class="rs-undetermined"><span class="rs-undet-label">Undetermined Releases This Month:</span> ' +
+               month.undetermined.map(escapeHtml).join(', ') + '</div>');
+    }
+    if (month.weeks && month.weeks.length) {
+      month.weeks.forEach(w => out.push(buildWeekTable(w)));
+    }
+    if (month.undated && month.undated.length) {
+      // For "2028 & Beyond" style buckets — rows without specific Fridays
+      const rows = month.undated.map(r => {
+        const wide = r.is_wide ? ' class="rs-wide"' : '';
+        return (
+          '<tr' + wide + '>' +
+            '<td class="rs-td-title"><a href="movie.html?title=' + encodeURIComponent(r.title) + '">' +
+              escapeHtml(r.title) + '</a></td>' +
+            '<td class="rs-td-distributor">' + escapeHtml(r.distributor || '') + '</td>' +
+            '<td class="rs-td-release">' + escapeHtml(r.date || r.release || 'TBD') + '</td>' +
+          '</tr>'
+        );
+      }).join('');
+      out.push('<div class="rs-week"><div class="rs-week-head">Forthcoming</div>' +
+        '<table class="rs-table"><thead><tr><th>Title</th><th>Distributor</th>' +
+        '<th class="rs-th-release">Date / Release</th></tr></thead><tbody>' +
+        rows + '</tbody></table></div>');
+    }
+    if (!month.weeks?.length && !month.undated?.length) {
+      out.push('<p class="rs-empty">No releases listed yet.</p>');
+    }
+    return out.join('');
+  }
+
+  // ── Build the month-jump dropdowns + prev/next ──────────────────────────
+  function buildJump(months, currentKey) {
+    const sel26 = document.getElementById('rs-jump-2026');
+    const sel27 = document.getElementById('rs-jump-2027');
+
+    function fillSelect(sel, year) {
+      sel.innerHTML = '<option value="">' + year + ' \u2014 select month</option>' +
+        Object.keys(months)
+          .filter(k => k.startsWith(year + '-') && k !== '2028-plus')
+          .map(k => '<option value="' + k + '"' +
+                    (k === currentKey ? ' selected' : '') + '>' +
+                    months[k].name + '</option>')
+          .join('');
+      sel.addEventListener('change', () => {
+        if (sel.value) window.location.href = 'releases.html?m=' + sel.value;
+      });
+    }
+    fillSelect(sel26, '2026');
+    fillSelect(sel27, '2027');
+
+    // Prev / next
+    const keys = Object.keys(months);
+    const idx = keys.indexOf(currentKey);
+    const prev = idx > 0 ? keys[idx - 1] : null;
+    const next = idx >= 0 && idx < keys.length - 1 ? keys[idx + 1] : null;
+    document.getElementById('rs-prev').innerHTML = prev
+      ? '<a href="releases.html?m=' + prev + '">&lt; ' + months[prev].name + '</a>'
+      : '<span>&nbsp;</span>';
+    document.getElementById('rs-next').innerHTML = next
+      ? '<a href="releases.html?m=' + next + '">' + months[next].name + ' &gt;</a>'
+      : '<span>&nbsp;</span>';
+  }
+
+  // ── Pick the right starting month ───────────────────────────────────────
+  function pickMonth(months) {
+    const param = new URLSearchParams(location.search).get('m');
+    if (param && months[param]) return param;
+    // Default: current month if present, else first
+    const now = new Date();
+    const cur = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
+    if (months[cur]) return cur;
+    return Object.keys(months)[0];
+  }
+
+  // ── Load + render ───────────────────────────────────────────────────────
+  async function load() {
+    let data;
+    try {
+      const r = await fetch('data/releases.json', { cache: 'no-store' });
+      if (!r.ok) throw new Error('not found');
+      data = await r.json();
+    } catch (e) {
+      document.getElementById('rs-month-content').innerHTML =
+        '<p class="rs-empty">Release schedule data not yet available.</p>';
+      return;
+    }
+
+    const months = data.months || {};
+    const currentKey = pickMonth(months);
+    const month = months[currentKey];
+    if (!month) {
+      document.getElementById('rs-month-content').innerHTML =
+        '<p class="rs-empty">No data for this month.</p>';
+      return;
+    }
+
+    document.getElementById('rs-month-content').innerHTML = renderMonth(month);
+    buildJump(months, currentKey);
+
+    // Reflect current month in <title>
+    document.title = month.name + ' Release Schedule \u2014 Box Office Jedi';
+  }
+
+  load();
 </script>
 
 </body>
