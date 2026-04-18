@@ -1,0 +1,32 @@
+{
+ "key": "titanictown",
+ "title": "Titanic Town",
+ "opening_date": "2000-09-01",
+ "opening_gross": 42983,
+ "weekends": [
+  {
+   "n": 1,
+   "date": "2000-09-01",
+   "gross": 42983,
+   "rank": 70,
+   "theaters": 16,
+   "total_gross": 0
+  },
+  {
+   "n": 2,
+   "date": "2000-09-08",
+   "gross": 11714,
+   "rank": 89,
+   "theaters": 16,
+   "total_gross": 0
+  },
+  {
+   "n": 3,
+   "date": "2000-09-15",
+   "gross": 642,
+   "rank": 133,
+   "theaters": 1,
+   "total_gross": 0
+  }
+ ]
+}

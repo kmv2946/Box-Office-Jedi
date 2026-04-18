@@ -1,0 +1,560 @@
+{
+ "key": "wolves",
+ "title": "Wolves",
+ "opening_date": "1999-04-23",
+ "opening_gross": 19048,
+ "weekends": [
+  {
+   "n": 1,
+   "date": "1999-04-23",
+   "gross": 19048,
+   "rank": 73,
+   "theaters": 5,
+   "total_gross": 0
+  },
+  {
+   "n": 2,
+   "date": "1999-04-30",
+   "gross": 17835,
+   "rank": 78,
+   "theaters": 5,
+   "total_gross": 0
+  },
+  {
+   "n": 3,
+   "date": "1999-05-07",
+   "gross": 13988,
+   "rank": 76,
+   "theaters": 5,
+   "total_gross": 0
+  },
+  {
+   "n": 4,
+   "date": "1999-05-14",
+   "gross": 15853,
+   "rank": 78,
+   "theaters": 5,
+   "total_gross": 0
+  },
+  {
+   "n": 5,
+   "date": "1999-05-28",
+   "gross": 31918,
+   "rank": 65,
+   "theaters": 5,
+   "total_gross": 0
+  },
+  {
+   "n": 6,
+   "date": "1999-06-04",
+   "gross": 14344,
+   "rank": 71,
+   "theaters": 5,
+   "total_gross": 0
+  },
+  {
+   "n": 7,
+   "date": "1999-06-11",
+   "gross": 19973,
+   "rank": 67,
+   "theaters": 7,
+   "total_gross": 0
+  },
+  {
+   "n": 8,
+   "date": "1999-06-18",
+   "gross": 48513,
+   "rank": 51,
+   "theaters": 8,
+   "total_gross": 0
+  },
+  {
+   "n": 9,
+   "date": "1999-07-02",
+   "gross": 49259,
+   "rank": 51,
+   "theaters": 9,
+   "total_gross": 0
+  },
+  {
+   "n": 10,
+   "date": "1999-07-09",
+   "gross": 27266,
+   "rank": 59,
+   "theaters": 9,
+   "total_gross": 0
+  },
+  {
+   "n": 11,
+   "date": "1999-07-16",
+   "gross": 68548,
+   "rank": 45,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 12,
+   "date": "1999-07-23",
+   "gross": 52601,
+   "rank": 51,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 13,
+   "date": "1999-07-30",
+   "gross": 54701,
+   "rank": 50,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 14,
+   "date": "1999-08-06",
+   "gross": 51661,
+   "rank": 52,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 15,
+   "date": "1999-08-13",
+   "gross": 58523,
+   "rank": 51,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 16,
+   "date": "1999-08-20",
+   "gross": 57033,
+   "rank": 54,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 17,
+   "date": "1999-08-27",
+   "gross": 38979,
+   "rank": 62,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 18,
+   "date": "1999-09-03",
+   "gross": 40678,
+   "rank": 64,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 19,
+   "date": "1999-09-10",
+   "gross": 29270,
+   "rank": 67,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 20,
+   "date": "1999-09-17",
+   "gross": 37889,
+   "rank": 62,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 21,
+   "date": "1999-09-24",
+   "gross": 27474,
+   "rank": 69,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 22,
+   "date": "1999-10-01",
+   "gross": 22404,
+   "rank": 70,
+   "theaters": 12,
+   "total_gross": 0
+  },
+  {
+   "n": 23,
+   "date": "1999-10-15",
+   "gross": 39443,
+   "rank": 55,
+   "theaters": 14,
+   "total_gross": 0
+  },
+  {
+   "n": 24,
+   "date": "1999-10-22",
+   "gross": 50549,
+   "rank": 54,
+   "theaters": 16,
+   "total_gross": 0
+  },
+  {
+   "n": 25,
+   "date": "1999-10-29",
+   "gross": 44054,
+   "rank": 51,
+   "theaters": 16,
+   "total_gross": 0
+  },
+  {
+   "n": 26,
+   "date": "1999-11-05",
+   "gross": 38012,
+   "rank": 54,
+   "theaters": 15,
+   "total_gross": 0
+  },
+  {
+   "n": 27,
+   "date": "1999-11-12",
+   "gross": 40913,
+   "rank": 61,
+   "theaters": 15,
+   "total_gross": 0
+  },
+  {
+   "n": 28,
+   "date": "1999-11-19",
+   "gross": 27803,
+   "rank": 64,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 29,
+   "date": "1999-11-26",
+   "gross": 40093,
+   "rank": 63,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 30,
+   "date": "1999-12-03",
+   "gross": 30732,
+   "rank": 63,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 31,
+   "date": "1999-12-10",
+   "gross": 22601,
+   "rank": 65,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 32,
+   "date": "1999-12-17",
+   "gross": 18282,
+   "rank": 66,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 33,
+   "date": "1999-12-31",
+   "gross": 20508,
+   "rank": 69,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 34,
+   "date": "2000-01-07",
+   "gross": 20172,
+   "rank": 71,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 35,
+   "date": "2000-01-14",
+   "gross": 19441,
+   "rank": 71,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 36,
+   "date": "2000-01-21",
+   "gross": 23876,
+   "rank": 64,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 37,
+   "date": "2000-01-28",
+   "gross": 13041,
+   "rank": 76,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 38,
+   "date": "2000-02-04",
+   "gross": 24016,
+   "rank": 72,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 39,
+   "date": "2000-02-11",
+   "gross": 23511,
+   "rank": 72,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 40,
+   "date": "2000-02-18",
+   "gross": 23422,
+   "rank": 74,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 41,
+   "date": "2000-02-25",
+   "gross": 21483,
+   "rank": 73,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 42,
+   "date": "2000-03-03",
+   "gross": 33057,
+   "rank": 68,
+   "theaters": 12,
+   "total_gross": 0
+  },
+  {
+   "n": 43,
+   "date": "2000-03-10",
+   "gross": 39399,
+   "rank": 60,
+   "theaters": 14,
+   "total_gross": 0
+  },
+  {
+   "n": 44,
+   "date": "2000-03-17",
+   "gross": 32284,
+   "rank": 67,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 45,
+   "date": "2000-03-24",
+   "gross": 30176,
+   "rank": 67,
+   "theaters": 12,
+   "total_gross": 0
+  },
+  {
+   "n": 46,
+   "date": "2000-03-31",
+   "gross": 27682,
+   "rank": 65,
+   "theaters": 12,
+   "total_gross": 0
+  },
+  {
+   "n": 47,
+   "date": "2000-04-07",
+   "gross": 29495,
+   "rank": 63,
+   "theaters": 12,
+   "total_gross": 0
+  },
+  {
+   "n": 48,
+   "date": "2000-04-14",
+   "gross": 34630,
+   "rank": 54,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 49,
+   "date": "2000-04-21",
+   "gross": 42115,
+   "rank": 56,
+   "theaters": 12,
+   "total_gross": 0
+  },
+  {
+   "n": 50,
+   "date": "2000-04-28",
+   "gross": 42231,
+   "rank": 59,
+   "theaters": 12,
+   "total_gross": 0
+  },
+  {
+   "n": 51,
+   "date": "2000-05-05",
+   "gross": 17888,
+   "rank": 71,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 52,
+   "date": "2000-05-12",
+   "gross": 18691,
+   "rank": 72,
+   "theaters": 12,
+   "total_gross": 0
+  },
+  {
+   "n": 53,
+   "date": "2000-06-02",
+   "gross": 25981,
+   "rank": 62,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 54,
+   "date": "2000-06-09",
+   "gross": 23525,
+   "rank": 69,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 55,
+   "date": "2000-06-16",
+   "gross": 32881,
+   "rank": 64,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 56,
+   "date": "2000-06-30",
+   "gross": 29677,
+   "rank": 63,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 57,
+   "date": "2000-07-07",
+   "gross": 32234,
+   "rank": 62,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 58,
+   "date": "2000-07-14",
+   "gross": 28391,
+   "rank": 64,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 59,
+   "date": "2000-07-21",
+   "gross": 23836,
+   "rank": 67,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 60,
+   "date": "2000-07-28",
+   "gross": 24597,
+   "rank": 68,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 61,
+   "date": "2000-08-04",
+   "gross": 24658,
+   "rank": 74,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 62,
+   "date": "2000-08-11",
+   "gross": 21915,
+   "rank": 78,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 63,
+   "date": "2000-08-18",
+   "gross": 21392,
+   "rank": 72,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 64,
+   "date": "2000-08-25",
+   "gross": 21869,
+   "rank": 72,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 65,
+   "date": "2000-09-01",
+   "gross": 20152,
+   "rank": 83,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 66,
+   "date": "2000-09-08",
+   "gross": 25274,
+   "rank": 67,
+   "theaters": 12,
+   "total_gross": 0
+  },
+  {
+   "n": 67,
+   "date": "2000-09-15",
+   "gross": 23175,
+   "rank": 75,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 68,
+   "date": "2000-09-22",
+   "gross": 32266,
+   "rank": 69,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 69,
+   "date": "2000-09-29",
+   "gross": 21915,
+   "rank": 76,
+   "theaters": 10,
+   "total_gross": 0
+  }
+ ]
+}

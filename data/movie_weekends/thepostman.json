@@ -1,0 +1,568 @@
+{
+ "key": "thepostman",
+ "title": "The Postman",
+ "opening_date": "1995-06-16",
+ "opening_gross": 95310,
+ "weekends": [
+  {
+   "n": 1,
+   "date": "1995-06-16",
+   "gross": 95310,
+   "rank": 33,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 2,
+   "date": "1995-06-23",
+   "gross": 302836,
+   "rank": 16,
+   "theaters": 34,
+   "total_gross": 0
+  },
+  {
+   "n": 3,
+   "date": "1995-06-30",
+   "gross": 489742,
+   "rank": 16,
+   "theaters": 80,
+   "total_gross": 0
+  },
+  {
+   "n": 4,
+   "date": "1995-07-07",
+   "gross": 502769,
+   "rank": 17,
+   "theaters": 95,
+   "total_gross": 0
+  },
+  {
+   "n": 5,
+   "date": "1995-07-14",
+   "gross": 525902,
+   "rank": 17,
+   "theaters": 98,
+   "total_gross": 0
+  },
+  {
+   "n": 6,
+   "date": "1995-07-21",
+   "gross": 475521,
+   "rank": 21,
+   "theaters": 96,
+   "total_gross": 0
+  },
+  {
+   "n": 7,
+   "date": "1995-07-28",
+   "gross": 418647,
+   "rank": 19,
+   "theaters": 91,
+   "total_gross": 0
+  },
+  {
+   "n": 8,
+   "date": "1995-08-04",
+   "gross": 380239,
+   "rank": 24,
+   "theaters": 86,
+   "total_gross": 0
+  },
+  {
+   "n": 9,
+   "date": "1995-08-11",
+   "gross": 333915,
+   "rank": 25,
+   "theaters": 90,
+   "total_gross": 0
+  },
+  {
+   "n": 10,
+   "date": "1995-08-18",
+   "gross": 289604,
+   "rank": 30,
+   "theaters": 87,
+   "total_gross": 0
+  },
+  {
+   "n": 11,
+   "date": "1995-08-25",
+   "gross": 260109,
+   "rank": 33,
+   "theaters": 81,
+   "total_gross": 0
+  },
+  {
+   "n": 12,
+   "date": "1995-09-01",
+   "gross": 454206,
+   "rank": 31,
+   "theaters": 121,
+   "total_gross": 0
+  },
+  {
+   "n": 13,
+   "date": "1995-09-08",
+   "gross": 243271,
+   "rank": 30,
+   "theaters": 112,
+   "total_gross": 0
+  },
+  {
+   "n": 14,
+   "date": "1995-09-15",
+   "gross": 257799,
+   "rank": 29,
+   "theaters": 146,
+   "total_gross": 0
+  },
+  {
+   "n": 15,
+   "date": "1995-09-22",
+   "gross": 265766,
+   "rank": 28,
+   "theaters": 184,
+   "total_gross": 0
+  },
+  {
+   "n": 16,
+   "date": "1995-09-29",
+   "gross": 201362,
+   "rank": 33,
+   "theaters": 162,
+   "total_gross": 0
+  },
+  {
+   "n": 17,
+   "date": "1995-10-06",
+   "gross": 137532,
+   "rank": 33,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 18,
+   "date": "1995-10-13",
+   "gross": 113427,
+   "rank": 34,
+   "theaters": 88,
+   "total_gross": 0
+  },
+  {
+   "n": 19,
+   "date": "1995-10-20",
+   "gross": 109431,
+   "rank": 37,
+   "theaters": 66,
+   "total_gross": 0
+  },
+  {
+   "n": 20,
+   "date": "1995-10-27",
+   "gross": 77826,
+   "rank": 44,
+   "theaters": 67,
+   "total_gross": 0
+  },
+  {
+   "n": 21,
+   "date": "1995-11-03",
+   "gross": 65161,
+   "rank": 50,
+   "theaters": 48,
+   "total_gross": 0
+  },
+  {
+   "n": 22,
+   "date": "1995-11-10",
+   "gross": 70591,
+   "rank": 45,
+   "theaters": 47,
+   "total_gross": 0
+  },
+  {
+   "n": 23,
+   "date": "1995-11-17",
+   "gross": 56848,
+   "rank": 45,
+   "theaters": 38,
+   "total_gross": 0
+  },
+  {
+   "n": 24,
+   "date": "1995-11-24",
+   "gross": 81306,
+   "rank": 36,
+   "theaters": 31,
+   "total_gross": 0
+  },
+  {
+   "n": 25,
+   "date": "1995-12-01",
+   "gross": 36845,
+   "rank": 45,
+   "theaters": 22,
+   "total_gross": 0
+  },
+  {
+   "n": 26,
+   "date": "1995-12-08",
+   "gross": 30881,
+   "rank": 41,
+   "theaters": 28,
+   "total_gross": 0
+  },
+  {
+   "n": 27,
+   "date": "1995-12-15",
+   "gross": 19763,
+   "rank": 48,
+   "theaters": 20,
+   "total_gross": 0
+  },
+  {
+   "n": 28,
+   "date": "1995-12-29",
+   "gross": 19473,
+   "rank": 56,
+   "theaters": 23,
+   "total_gross": 0
+  },
+  {
+   "n": 29,
+   "date": "1996-01-05",
+   "gross": 313097,
+   "rank": 23,
+   "theaters": 250,
+   "total_gross": 0
+  },
+  {
+   "n": 30,
+   "date": "1996-01-12",
+   "gross": 415883,
+   "rank": 27,
+   "theaters": 250,
+   "total_gross": 0
+  },
+  {
+   "n": 31,
+   "date": "1996-01-19",
+   "gross": 188050,
+   "rank": 32,
+   "theaters": 110,
+   "total_gross": 0
+  },
+  {
+   "n": 32,
+   "date": "1996-01-26",
+   "gross": 169182,
+   "rank": 34,
+   "theaters": 103,
+   "total_gross": 0
+  },
+  {
+   "n": 33,
+   "date": "1996-02-02",
+   "gross": 125590,
+   "rank": 39,
+   "theaters": 96,
+   "total_gross": 0
+  },
+  {
+   "n": 34,
+   "date": "1996-02-09",
+   "gross": 94791,
+   "rank": 43,
+   "theaters": 72,
+   "total_gross": 0
+  },
+  {
+   "n": 35,
+   "date": "1996-02-16",
+   "gross": 607606,
+   "rank": 24,
+   "theaters": 147,
+   "total_gross": 0
+  },
+  {
+   "n": 36,
+   "date": "1996-02-23",
+   "gross": 675101,
+   "rank": 19,
+   "theaters": 260,
+   "total_gross": 0
+  },
+  {
+   "n": 37,
+   "date": "1996-03-01",
+   "gross": 759804,
+   "rank": 19,
+   "theaters": 311,
+   "total_gross": 0
+  },
+  {
+   "n": 38,
+   "date": "1996-03-08",
+   "gross": 706986,
+   "rank": 17,
+   "theaters": 300,
+   "total_gross": 0
+  },
+  {
+   "n": 39,
+   "date": "1996-03-15",
+   "gross": 729550,
+   "rank": 16,
+   "theaters": 347,
+   "total_gross": 0
+  },
+  {
+   "n": 40,
+   "date": "1996-03-22",
+   "gross": 804591,
+   "rank": 18,
+   "theaters": 430,
+   "total_gross": 0
+  },
+  {
+   "n": 41,
+   "date": "1996-03-29",
+   "gross": 446325,
+   "rank": 23,
+   "theaters": 313,
+   "total_gross": 0
+  },
+  {
+   "n": 42,
+   "date": "1996-04-05",
+   "gross": 352125,
+   "rank": 25,
+   "theaters": 234,
+   "total_gross": 0
+  },
+  {
+   "n": 43,
+   "date": "1996-04-12",
+   "gross": 180238,
+   "rank": 31,
+   "theaters": 0,
+   "total_gross": 0
+  },
+  {
+   "n": 44,
+   "date": "1996-04-19",
+   "gross": 125357,
+   "rank": 33,
+   "theaters": 95,
+   "total_gross": 0
+  },
+  {
+   "n": 45,
+   "date": "1996-04-26",
+   "gross": 73564,
+   "rank": 37,
+   "theaters": 62,
+   "total_gross": 0
+  },
+  {
+   "n": 46,
+   "date": "1996-05-03",
+   "gross": 60473,
+   "rank": 44,
+   "theaters": 46,
+   "total_gross": 0
+  },
+  {
+   "n": 47,
+   "date": "1996-05-10",
+   "gross": 56363,
+   "rank": 47,
+   "theaters": 43,
+   "total_gross": 0
+  },
+  {
+   "n": 48,
+   "date": "1996-05-17",
+   "gross": 43266,
+   "rank": 53,
+   "theaters": 34,
+   "total_gross": 0
+  },
+  {
+   "n": 49,
+   "date": "1996-05-24",
+   "gross": 387612,
+   "rank": 20,
+   "theaters": 356,
+   "total_gross": 0
+  },
+  {
+   "n": 50,
+   "date": "1996-05-31",
+   "gross": 188166,
+   "rank": 26,
+   "theaters": 216,
+   "total_gross": 0
+  },
+  {
+   "n": 51,
+   "date": "1996-06-07",
+   "gross": 113824,
+   "rank": 31,
+   "theaters": 133,
+   "total_gross": 0
+  },
+  {
+   "n": 52,
+   "date": "1996-06-14",
+   "gross": 60657,
+   "rank": 39,
+   "theaters": 73,
+   "total_gross": 0
+  },
+  {
+   "n": 53,
+   "date": "1996-06-21",
+   "gross": 57474,
+   "rank": 37,
+   "theaters": 52,
+   "total_gross": 0
+  },
+  {
+   "n": 54,
+   "date": "1996-06-28",
+   "gross": 51912,
+   "rank": 42,
+   "theaters": 53,
+   "total_gross": 0
+  },
+  {
+   "n": 55,
+   "date": "1996-07-05",
+   "gross": 47454,
+   "rank": 43,
+   "theaters": 27,
+   "total_gross": 0
+  },
+  {
+   "n": 56,
+   "date": "1996-07-12",
+   "gross": 28972,
+   "rank": 42,
+   "theaters": 30,
+   "total_gross": 0
+  },
+  {
+   "n": 57,
+   "date": "1996-09-13",
+   "gross": 170197,
+   "rank": 36,
+   "theaters": 205,
+   "total_gross": 0
+  },
+  {
+   "n": 58,
+   "date": "1996-09-20",
+   "gross": 176478,
+   "rank": 31,
+   "theaters": 194,
+   "total_gross": 0
+  },
+  {
+   "n": 59,
+   "date": "1996-09-27",
+   "gross": 122291,
+   "rank": 36,
+   "theaters": 142,
+   "total_gross": 0
+  },
+  {
+   "n": 60,
+   "date": "1996-10-04",
+   "gross": 88891,
+   "rank": 39,
+   "theaters": 104,
+   "total_gross": 0
+  },
+  {
+   "n": 61,
+   "date": "1996-10-11",
+   "gross": 52596,
+   "rank": 48,
+   "theaters": 75,
+   "total_gross": 0
+  },
+  {
+   "n": 62,
+   "date": "1997-12-26",
+   "gross": 5260324,
+   "rank": 9,
+   "theaters": 2207,
+   "total_gross": 0
+  },
+  {
+   "n": 63,
+   "date": "1998-01-02",
+   "gross": 3533942,
+   "rank": 12,
+   "theaters": 2107,
+   "total_gross": 0
+  },
+  {
+   "n": 64,
+   "date": "1998-01-09",
+   "gross": 1127922,
+   "rank": 18,
+   "theaters": 1722,
+   "total_gross": 0
+  },
+  {
+   "n": 65,
+   "date": "1998-01-16",
+   "gross": 431458,
+   "rank": 27,
+   "theaters": 741,
+   "total_gross": 0
+  },
+  {
+   "n": 66,
+   "date": "1998-01-23",
+   "gross": 43411,
+   "rank": 51,
+   "theaters": 191,
+   "total_gross": 0
+  },
+  {
+   "n": 67,
+   "date": "1998-01-30",
+   "gross": 16158,
+   "rank": 65,
+   "theaters": 95,
+   "total_gross": 0
+  },
+  {
+   "n": 68,
+   "date": "1998-02-13",
+   "gross": 114685,
+   "rank": 43,
+   "theaters": 246,
+   "total_gross": 0
+  },
+  {
+   "n": 69,
+   "date": "2002-12-20",
+   "gross": 2581,
+   "rank": 76,
+   "theaters": 1,
+   "total_gross": 0
+  },
+  {
+   "n": 70,
+   "date": "2002-12-27",
+   "gross": 203,
+   "rank": 95,
+   "theaters": 1,
+   "total_gross": 0
+  }
+ ]
+}

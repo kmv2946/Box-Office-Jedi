@@ -70,11 +70,15 @@ jobs:
           echo "Running: python3 scripts/scrape_historical.py $ARGS"
           python3 scripts/scrape_historical.py $ARGS
 
+      - name: Aggregate per-movie weekend history
+        # Rebuilds data/movie_weekends/*.json so showdown pages stay current.
+        run: python3 scripts/aggregate_movie_weekends.py
+
       - name: Commit and push historical data
         run: |
           git config user.name "Box Office Jedi Bot"
           git config user.email "bot@boxofficejedi.com"
-          git add data/weekends/ data/weekends.json
+          git add data/weekends/ data/weekends.json data/movie_weekends/
           if ! git diff --staged --quiet; then
             COUNT=$(git diff --staged --name-only | wc -l)
             git commit -m "📅 Historical backfill — $COUNT weekend files added"

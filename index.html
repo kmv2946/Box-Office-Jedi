@@ -65,9 +65,9 @@
       <div class="tagline"><a href="derby.html">Predict 'Super Mario Galaxy' opening weekend in the Box Office Derby...</a></div>
     </header>
 
-    <!-- Quick Links bar -->
+    <!-- Quick Links bar (populated dynamically from data files) -->
     <div class="quick-links">
-      <span class="ql-label">Quick Links:</span><a href="daily.html">Daily Box Office <span class="ql-paren">(Sun.)</span></a><span class="sep">|</span><a href="weekend.html">Weekend Box Office <span class="ql-paren">(Apr. 3&ndash;5)</span></a><span class="sep">|</span><a href="movie.html?title=Super%20Mario%20Galaxy%20Movie">#1 Movie: &#8216;Super Mario Galaxy Movie&#8217;</a>
+      <span class="ql-label">Quick Links:</span><a href="daily.html" id="ql-daily-link">Daily Box Office <span class="ql-paren" id="ql-daily-paren">(&mdash;)</span></a><span class="sep">|</span><a href="weekend.html" id="ql-weekend-link">Weekend Box Office <span class="ql-paren" id="ql-weekend-paren">(&mdash;)</span></a><span class="sep">|</span><a href="movie.html?title=Super%20Mario%20Galaxy%20Movie" id="ql-top-movie">#1 Movie: &#8216;Super Mario Galaxy Movie&#8217;</a>
     </div>
 
     <!-- Homepage content: two-column layout -->
@@ -93,20 +93,12 @@
           </div>
         </div>
 
-        <!-- LATEST UPDATES -->
+        <!-- LATEST UPDATES (populated dynamically) -->
         <div class="home-section">
           <div class="cell-header">LATEST UPDATES</div>
           <div class="home-section-body">
-            <div class="updates-date-label" id="updates-date-label">Monday, Apr. 6</div>
-            <ul class="updates-list" id="updates-list">
-              <li><a href="weekend.html">WEEKEND: 3-day Actuals</a></li>
-              <li><a href="derby.html">DERBY: Results; Project Hail Mary Game</a></li>
-              <li><a href="yearly.html">YEARLY: 2026 Domestic Grosses</a></li>
-              <li><a href="daily.html">DAILY: Sunday, 4/5</a></li>
-              <li><a href="daily.html">DAILY: Saturday, 4/4</a></li>
-              <li><a href="alltime.html">ALL TIME: Top Domestic Grosses</a></li>
-              <li><a href="showdowns.html">SHOWDOWN: Featured Comparison</a></li>
-            </ul>
+            <div class="updates-date-label" id="updates-date-label">&mdash;</div>
+            <ul class="updates-list" id="updates-list"></ul>
             <a href="news.html" class="more-updates-link">&gt; MORE UPDATES</a>
           </div>
         </div>
@@ -355,6 +347,205 @@
     } catch(e) { /* keep placeholder */ }
   }
 
+  // ── Quick Links & Latest Updates (data-driven) ───────────────────────────
+  // Both sections are populated from the data files, so they auto-update as
+  // soon as a new day/weekend/feature/analysis/prediction/milestone is committed.
+
+  const MAX_UPDATES = 20;
+
+  // Parse "YYYY-MM-DD" safely as local date (avoid UTC shift)
+  function parseISODate(iso) {
+    const [y, m, d] = (iso || '').split('-').map(Number);
+    return new Date(y, (m || 1) - 1, d || 1);
+  }
+  const DOW_SHORT = ['Sun.','Mon.','Tues.','Weds.','Thurs.','Fri.','Sat.'];
+  const DOW_LONG  = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const MON_SHORT = ['Jan.','Feb.','Mar.','Apr.','May','June','July','Aug.','Sept.','Oct.','Nov.','Dec.'];
+
+  function weekdayShort(iso) { return DOW_SHORT[parseISODate(iso).getDay()]; }
+  function weekdayLong(iso)  { return DOW_LONG[parseISODate(iso).getDay()]; }
+  function fmtMDay(iso) {
+    const d = parseISODate(iso);
+    return (d.getMonth() + 1) + '/' + d.getDate();
+  }
+  function fmtMonthDay(iso) {
+    const d = parseISODate(iso);
+    return MON_SHORT[d.getMonth()] + ' ' + d.getDate();
+  }
+  function fmtWeekendRange(fromIso, toIso) {
+    // "Apr. 10–12" when same month; "Apr. 30–May 2" otherwise.
+    const f = parseISODate(fromIso);
+    const t = parseISODate(toIso);
+    if (f.getMonth() === t.getMonth()) {
+      return MON_SHORT[f.getMonth()] + ' ' + f.getDate() + '\u2013' + t.getDate();
+    }
+    return MON_SHORT[f.getMonth()] + ' ' + f.getDate() + '\u2013' +
+           MON_SHORT[t.getMonth()] + ' ' + t.getDate();
+  }
+  function fmtShortRange(fromIso, toIso) {
+    // "4/10-12" style for the updates list
+    const f = parseISODate(fromIso);
+    const t = parseISODate(toIso);
+    const from = (f.getMonth() + 1) + '/' + f.getDate();
+    if (f.getMonth() === t.getMonth()) {
+      return from + '\u2013' + t.getDate();
+    }
+    return from + '\u2013' + (t.getMonth() + 1) + '/' + t.getDate();
+  }
+
+  // Fetch helper that returns null instead of throwing when a file is missing
+  async function fetchJSON(url) {
+    try {
+      const r = await fetch(url, { cache: 'no-store' });
+      if (!r.ok) return null;
+      return await r.json();
+    } catch(e) { return null; }
+  }
+
+  async function loadQuickLinks() {
+    // Latest daily → "(Thurs.)" + link to that date
+    const idx = await fetchJSON('data/daily/index.json');
+    if (idx && idx.dates && idx.dates.length) {
+      const latest = idx.dates[idx.dates.length - 1];
+      const paren = document.getElementById('ql-daily-paren');
+      if (paren) paren.textContent = '(' + weekdayShort(latest) + ')';
+      const link = document.getElementById('ql-daily-link');
+      if (link) link.href = 'daily.html?date=' + latest;
+    }
+
+    // Latest weekend → "(Apr. 10–12)" + link; top film → "#1 Movie: '…'"
+    const wknds = await fetchJSON('data/weekends.json');
+    if (wknds && wknds.weekends) {
+      const real = wknds.weekends.filter(w => w.date_from && w.date_from !== 'index');
+      // sort descending by date_from, take newest
+      real.sort((a, b) => (b.date_from > a.date_from ? 1 : -1));
+      const latest = real[0];
+      if (latest) {
+        const paren = document.getElementById('ql-weekend-paren');
+        if (paren) paren.textContent = '(' + fmtWeekendRange(latest.date_from, latest.date_to) + ')';
+        const link = document.getElementById('ql-weekend-link');
+        if (link) link.href = 'weekend-chart.html?date=' + latest.date_from;
+        if (latest.top_film) {
+          const topA = document.getElementById('ql-top-movie');
+          if (topA) {
+            topA.innerHTML = '#1 Movie: &#8216;' + latest.top_film.replace(/^The /, '') + '&#8217;';
+            topA.href = 'movie.html?title=' + encodeURIComponent(latest.top_film);
+          }
+        }
+      }
+    }
+  }
+
+  async function loadLatestUpdates() {
+    const items = [];
+
+    // ── Daily ───────────────────────────────────────────────────────────
+    const idx = await fetchJSON('data/daily/index.json');
+    if (idx && idx.dates) {
+      idx.dates.forEach(d => {
+        items.push({
+          date: d,
+          sort: d + 'T23',           // daily chart posts late in the day
+          label: 'DAILY: ' + weekdayLong(d) + ', ' + fmtMDay(d),
+          url: 'daily.html?date=' + d,
+        });
+      });
+    }
+
+    // ── Weekend ─────────────────────────────────────────────────────────
+    const wknds = await fetchJSON('data/weekends.json');
+    if (wknds && wknds.weekends) {
+      wknds.weekends
+        .filter(w => w.date_from && w.date_from !== 'index')
+        .forEach(w => {
+          items.push({
+            date: w.date_to || w.date_from,
+            sort: (w.date_to || w.date_from) + 'T22',  // weekend finalizes Sunday evening
+            label: 'WEEKEND: ' + fmtShortRange(w.date_from, w.date_to || w.date_from),
+            url: 'weekend-chart.html?date=' + w.date_from,
+          });
+        });
+    }
+
+    // ── Features ────────────────────────────────────────────────────────
+    const feats = await fetchJSON('data/features.json');
+    if (feats && feats.articles) {
+      feats.articles.forEach(a => {
+        items.push({
+          date: a.date,
+          sort: a.date + 'T12',
+          label: 'FEATURE: ' + a.title,
+          url: a.url,
+        });
+      });
+    }
+
+    // ── Analysis: forecasts & roundups ──────────────────────────────────
+    const ana = await fetchJSON('data/analysis.json');
+    if (ana && ana.articles) {
+      ana.articles.forEach(a => {
+        const kind = (a.type || 'analysis').toUpperCase();
+        // Forecasts drop early, roundups later in the day — tiebreak so they
+        // interleave with daily entries in a sensible order.
+        const timeTag = kind === 'FORECAST' ? 'T09' : 'T18';
+        items.push({
+          date: a.date,
+          sort: a.date + timeTag,
+          label: kind + ': ' + a.title,
+          url: a.url,
+        });
+      });
+    }
+
+    // ── Predictions ─────────────────────────────────────────────────────
+    const preds = await fetchJSON('data/predictions.json');
+    if (preds && preds.weekends) {
+      preds.weekends.forEach(w => {
+        items.push({
+          date: w.date_from,
+          sort: w.date_from + 'T08',   // predictions post Friday morning
+          label: 'PREDICTIONS: ' + fmtShortRange(w.date_from, w.date_to || w.date_from),
+          url: 'predictions.html',
+        });
+      });
+    }
+
+    // ── Milestones (ALL TIME / ad-hoc) ──────────────────────────────────
+    const miles = await fetchJSON('data/milestones.json');
+    if (miles && miles.milestones) {
+      miles.milestones.forEach(m => {
+        items.push({
+          date: m.date,
+          sort: m.date + 'T14',
+          label: 'ALL TIME: ' + m.label,
+          url: m.url || 'alltime.html',
+        });
+      });
+    }
+
+    // Sort newest-first and cap
+    items.sort((a, b) => a.sort < b.sort ? 1 : -1);
+    const shown = items.slice(0, MAX_UPDATES);
+
+    // Header date label = latest update's date
+    if (shown.length) {
+      const d = parseISODate(shown[0].date);
+      const label = DOW_LONG[d.getDay()] + ', ' + MON_SHORT[d.getMonth()] + ' ' + d.getDate();
+      const el = document.getElementById('updates-date-label');
+      if (el) el.textContent = label;
+    }
+
+    // Render list
+    const ul = document.getElementById('updates-list');
+    if (ul) {
+      ul.innerHTML = shown.map(it => {
+        const safeLabel = it.label
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        return '<li><a href="' + it.url + '">' + safeLabel + '</a></li>';
+      }).join('');
+    }
+  }
+
   // ── Homepage Poll ────────────────────────────────────────────────────────
   // Vote totals are stored in data/polls.json. A user's own vote is
   // remembered in localStorage (no accounts needed) so they see results
@@ -456,6 +647,8 @@
 
   loadHomepageData();
   loadHomepagePoll();
+  loadQuickLinks();
+  loadLatestUpdates();
 </script>
 
 </body>

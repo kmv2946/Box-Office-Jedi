@@ -1,0 +1,552 @@
+{
+ "key": "metropolis",
+ "title": "Metropolis",
+ "opening_date": "2002-07-12",
+ "opening_gross": 19386,
+ "weekends": [
+  {
+   "n": 1,
+   "date": "2002-07-12",
+   "gross": 19386,
+   "rank": 63,
+   "theaters": 1,
+   "total_gross": 0
+  },
+  {
+   "n": 2,
+   "date": "2002-07-19",
+   "gross": 16776,
+   "rank": 62,
+   "theaters": 2,
+   "total_gross": 0
+  },
+  {
+   "n": 3,
+   "date": "2002-07-26",
+   "gross": 18088,
+   "rank": 65,
+   "theaters": 2,
+   "total_gross": 0
+  },
+  {
+   "n": 4,
+   "date": "2002-08-02",
+   "gross": 13914,
+   "rank": 73,
+   "theaters": 2,
+   "total_gross": 0
+  },
+  {
+   "n": 5,
+   "date": "2002-08-09",
+   "gross": 12931,
+   "rank": 75,
+   "theaters": 2,
+   "total_gross": 0
+  },
+  {
+   "n": 6,
+   "date": "2002-08-16",
+   "gross": 23633,
+   "rank": 66,
+   "theaters": 7,
+   "total_gross": 0
+  },
+  {
+   "n": 7,
+   "date": "2002-08-23",
+   "gross": 46370,
+   "rank": 53,
+   "theaters": 6,
+   "total_gross": 0
+  },
+  {
+   "n": 8,
+   "date": "2002-08-30",
+   "gross": 19358,
+   "rank": 64,
+   "theaters": 8,
+   "total_gross": 0
+  },
+  {
+   "n": 9,
+   "date": "2002-09-06",
+   "gross": 11911,
+   "rank": 73,
+   "theaters": 7,
+   "total_gross": 0
+  },
+  {
+   "n": 10,
+   "date": "2002-09-13",
+   "gross": 23118,
+   "rank": 65,
+   "theaters": 6,
+   "total_gross": 0
+  },
+  {
+   "n": 11,
+   "date": "2002-09-20",
+   "gross": 11328,
+   "rank": 91,
+   "theaters": 4,
+   "total_gross": 0
+  },
+  {
+   "n": 12,
+   "date": "2002-09-27",
+   "gross": 3187,
+   "rank": 119,
+   "theaters": 3,
+   "total_gross": 0
+  },
+  {
+   "n": 13,
+   "date": "2002-10-04",
+   "gross": 9894,
+   "rank": 86,
+   "theaters": 2,
+   "total_gross": 0
+  },
+  {
+   "n": 14,
+   "date": "2002-10-11",
+   "gross": 2272,
+   "rank": 100,
+   "theaters": 3,
+   "total_gross": 0
+  },
+  {
+   "n": 15,
+   "date": "2002-10-18",
+   "gross": 17291,
+   "rank": 71,
+   "theaters": 7,
+   "total_gross": 0
+  },
+  {
+   "n": 16,
+   "date": "2002-10-25",
+   "gross": 13554,
+   "rank": 74,
+   "theaters": 6,
+   "total_gross": 0
+  },
+  {
+   "n": 17,
+   "date": "2002-11-01",
+   "gross": 7932,
+   "rank": 76,
+   "theaters": 6,
+   "total_gross": 0
+  },
+  {
+   "n": 18,
+   "date": "2002-11-08",
+   "gross": 6904,
+   "rank": 82,
+   "theaters": 2,
+   "total_gross": 0
+  },
+  {
+   "n": 19,
+   "date": "2002-11-15",
+   "gross": 13439,
+   "rank": 68,
+   "theaters": 8,
+   "total_gross": 0
+  },
+  {
+   "n": 20,
+   "date": "2002-11-22",
+   "gross": 2159,
+   "rank": 104,
+   "theaters": 3,
+   "total_gross": 0
+  },
+  {
+   "n": 21,
+   "date": "2002-11-29",
+   "gross": 8868,
+   "rank": 79,
+   "theaters": 2,
+   "total_gross": 0
+  },
+  {
+   "n": 22,
+   "date": "2002-12-06",
+   "gross": 6144,
+   "rank": 75,
+   "theaters": 4,
+   "total_gross": 0
+  },
+  {
+   "n": 23,
+   "date": "2002-12-13",
+   "gross": 5183,
+   "rank": 75,
+   "theaters": 5,
+   "total_gross": 0
+  },
+  {
+   "n": 24,
+   "date": "2002-12-27",
+   "gross": 5540,
+   "rank": 73,
+   "theaters": 5,
+   "total_gross": 0
+  },
+  {
+   "n": 25,
+   "date": "2003-01-03",
+   "gross": 4683,
+   "rank": 77,
+   "theaters": 5,
+   "total_gross": 0
+  },
+  {
+   "n": 26,
+   "date": "2003-01-17",
+   "gross": 4385,
+   "rank": 95,
+   "theaters": 3,
+   "total_gross": 0
+  },
+  {
+   "n": 27,
+   "date": "2003-01-24",
+   "gross": 3917,
+   "rank": 93,
+   "theaters": 4,
+   "total_gross": 0
+  },
+  {
+   "n": 28,
+   "date": "2003-01-31",
+   "gross": 2264,
+   "rank": 102,
+   "theaters": 2,
+   "total_gross": 0
+  },
+  {
+   "n": 29,
+   "date": "2003-02-07",
+   "gross": 1698,
+   "rank": 104,
+   "theaters": 3,
+   "total_gross": 0
+  },
+  {
+   "n": 30,
+   "date": "2003-02-14",
+   "gross": 1103,
+   "rank": 109,
+   "theaters": 1,
+   "total_gross": 0
+  },
+  {
+   "n": 31,
+   "date": "2003-02-21",
+   "gross": 1351,
+   "rank": 115,
+   "theaters": 2,
+   "total_gross": 0
+  },
+  {
+   "n": 32,
+   "date": "2003-02-28",
+   "gross": 4331,
+   "rank": 97,
+   "theaters": 3,
+   "total_gross": 0
+  },
+  {
+   "n": 33,
+   "date": "2003-05-30",
+   "gross": 1238,
+   "rank": 94,
+   "theaters": 1,
+   "total_gross": 0
+  },
+  {
+   "n": 34,
+   "date": "2003-08-08",
+   "gross": 1070,
+   "rank": 129,
+   "theaters": 1,
+   "total_gross": 0
+  },
+  {
+   "n": 35,
+   "date": "2007-07-20",
+   "gross": 7372,
+   "rank": 65,
+   "theaters": 1,
+   "total_gross": 0
+  },
+  {
+   "n": 36,
+   "date": "2007-08-24",
+   "gross": 6039,
+   "rank": 82,
+   "theaters": 1,
+   "total_gross": 0
+  },
+  {
+   "n": 37,
+   "date": "2007-09-07",
+   "gross": 1294,
+   "rank": 118,
+   "theaters": 1,
+   "total_gross": 0
+  },
+  {
+   "n": 38,
+   "date": "2010-05-07",
+   "gross": 19978,
+   "rank": 56,
+   "theaters": 2,
+   "total_gross": 0
+  },
+  {
+   "n": 39,
+   "date": "2010-05-14",
+   "gross": 30797,
+   "rank": 45,
+   "theaters": 4,
+   "total_gross": 0
+  },
+  {
+   "n": 40,
+   "date": "2010-05-21",
+   "gross": 23028,
+   "rank": 47,
+   "theaters": 4,
+   "total_gross": 0
+  },
+  {
+   "n": 41,
+   "date": "2010-06-04",
+   "gross": 35024,
+   "rank": 49,
+   "theaters": 6,
+   "total_gross": 0
+  },
+  {
+   "n": 42,
+   "date": "2010-06-11",
+   "gross": 23160,
+   "rank": 54,
+   "theaters": 8,
+   "total_gross": 0
+  },
+  {
+   "n": 43,
+   "date": "2010-06-18",
+   "gross": 12707,
+   "rank": 67,
+   "theaters": 6,
+   "total_gross": 0
+  },
+  {
+   "n": 44,
+   "date": "2010-06-25",
+   "gross": 2899,
+   "rank": 87,
+   "theaters": 0,
+   "total_gross": 0
+  },
+  {
+   "n": 45,
+   "date": "2010-07-09",
+   "gross": 8716,
+   "rank": 66,
+   "theaters": 4,
+   "total_gross": 0
+  },
+  {
+   "n": 46,
+   "date": "2010-07-16",
+   "gross": 1985,
+   "rank": 86,
+   "theaters": 2,
+   "total_gross": 0
+  },
+  {
+   "n": 47,
+   "date": "2010-07-23",
+   "gross": 6463,
+   "rank": 71,
+   "theaters": 4,
+   "total_gross": 0
+  },
+  {
+   "n": 48,
+   "date": "2010-07-30",
+   "gross": 1248,
+   "rank": 98,
+   "theaters": 1,
+   "total_gross": 0
+  },
+  {
+   "n": 49,
+   "date": "2010-08-06",
+   "gross": 6992,
+   "rank": 74,
+   "theaters": 5,
+   "total_gross": 0
+  },
+  {
+   "n": 50,
+   "date": "2010-08-13",
+   "gross": 16765,
+   "rank": 61,
+   "theaters": 6,
+   "total_gross": 0
+  },
+  {
+   "n": 51,
+   "date": "2010-08-20",
+   "gross": 1204,
+   "rank": 94,
+   "theaters": 1,
+   "total_gross": 0
+  },
+  {
+   "n": 52,
+   "date": "2010-08-27",
+   "gross": 250,
+   "rank": 107,
+   "theaters": 1,
+   "total_gross": 0
+  },
+  {
+   "n": 53,
+   "date": "2010-09-03",
+   "gross": 3256,
+   "rank": 87,
+   "theaters": 3,
+   "total_gross": 0
+  },
+  {
+   "n": 54,
+   "date": "2010-09-10",
+   "gross": 1748,
+   "rank": 108,
+   "theaters": 2,
+   "total_gross": 0
+  },
+  {
+   "n": 55,
+   "date": "2010-09-17",
+   "gross": 2450,
+   "rank": 107,
+   "theaters": 3,
+   "total_gross": 0
+  },
+  {
+   "n": 56,
+   "date": "2010-09-24",
+   "gross": 5913,
+   "rank": 90,
+   "theaters": 4,
+   "total_gross": 0
+  },
+  {
+   "n": 57,
+   "date": "2010-10-01",
+   "gross": 3957,
+   "rank": 95,
+   "theaters": 6,
+   "total_gross": 0
+  },
+  {
+   "n": 58,
+   "date": "2010-10-08",
+   "gross": 1977,
+   "rank": 107,
+   "theaters": 2,
+   "total_gross": 0
+  },
+  {
+   "n": 59,
+   "date": "2010-10-15",
+   "gross": 268,
+   "rank": 132,
+   "theaters": 2,
+   "total_gross": 0
+  },
+  {
+   "n": 60,
+   "date": "2010-10-22",
+   "gross": 17159,
+   "rank": 63,
+   "theaters": 3,
+   "total_gross": 0
+  },
+  {
+   "n": 61,
+   "date": "2010-10-29",
+   "gross": 622,
+   "rank": 106,
+   "theaters": 1,
+   "total_gross": 0
+  },
+  {
+   "n": 62,
+   "date": "2010-11-12",
+   "gross": 4908,
+   "rank": 83,
+   "theaters": 3,
+   "total_gross": 0
+  },
+  {
+   "n": 63,
+   "date": "2010-12-17",
+   "gross": 135,
+   "rank": 104,
+   "theaters": 1,
+   "total_gross": 0
+  },
+  {
+   "n": 64,
+   "date": "2011-10-14",
+   "gross": 1696,
+   "rank": 113,
+   "theaters": 8,
+   "total_gross": 0
+  },
+  {
+   "n": 65,
+   "date": "2011-10-21",
+   "gross": 2131,
+   "rank": 111,
+   "theaters": 8,
+   "total_gross": 0
+  },
+  {
+   "n": 66,
+   "date": "2011-10-28",
+   "gross": 2707,
+   "rank": 96,
+   "theaters": 8,
+   "total_gross": 0
+  },
+  {
+   "n": 67,
+   "date": "2011-11-04",
+   "gross": 1936,
+   "rank": 98,
+   "theaters": 9,
+   "total_gross": 0
+  },
+  {
+   "n": 68,
+   "date": "2011-11-11",
+   "gross": 3009,
+   "rank": 87,
+   "theaters": 9,
+   "total_gross": 0
+  }
+ ]
+}

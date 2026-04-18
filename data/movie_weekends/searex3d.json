@@ -1,0 +1,624 @@
+{
+ "key": "searex3d",
+ "title": "Sea Rex 3D",
+ "opening_date": "2011-02-18",
+ "opening_gross": 16874,
+ "weekends": [
+  {
+   "n": 1,
+   "date": "2011-02-18",
+   "gross": 16874,
+   "rank": 55,
+   "theaters": 12,
+   "total_gross": 0
+  },
+  {
+   "n": 2,
+   "date": "2011-02-25",
+   "gross": 95141,
+   "rank": 43,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 3,
+   "date": "2011-03-04",
+   "gross": 70973,
+   "rank": 42,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 4,
+   "date": "2011-03-11",
+   "gross": 97541,
+   "rank": 38,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 5,
+   "date": "2011-03-18",
+   "gross": 71791,
+   "rank": 41,
+   "theaters": 14,
+   "total_gross": 0
+  },
+  {
+   "n": 6,
+   "date": "2011-03-25",
+   "gross": 80885,
+   "rank": 38,
+   "theaters": 14,
+   "total_gross": 0
+  },
+  {
+   "n": 7,
+   "date": "2011-04-01",
+   "gross": 83116,
+   "rank": 37,
+   "theaters": 14,
+   "total_gross": 0
+  },
+  {
+   "n": 8,
+   "date": "2011-04-08",
+   "gross": 57576,
+   "rank": 43,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 9,
+   "date": "2011-04-15",
+   "gross": 47150,
+   "rank": 45,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 10,
+   "date": "2011-04-22",
+   "gross": 54171,
+   "rank": 48,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 11,
+   "date": "2011-04-29",
+   "gross": 90257,
+   "rank": 39,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 12,
+   "date": "2011-05-06",
+   "gross": 64730,
+   "rank": 46,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 13,
+   "date": "2011-05-13",
+   "gross": 52786,
+   "rank": 52,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 14,
+   "date": "2011-05-20",
+   "gross": 41563,
+   "rank": 49,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 15,
+   "date": "2011-05-27",
+   "gross": 39115,
+   "rank": 51,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 16,
+   "date": "2011-06-03",
+   "gross": 65366,
+   "rank": 38,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 17,
+   "date": "2011-06-10",
+   "gross": 42816,
+   "rank": 43,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 18,
+   "date": "2011-06-17",
+   "gross": 52406,
+   "rank": 39,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 19,
+   "date": "2011-06-24",
+   "gross": 59321,
+   "rank": 39,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 20,
+   "date": "2011-07-01",
+   "gross": 51137,
+   "rank": 38,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 21,
+   "date": "2011-07-08",
+   "gross": 64280,
+   "rank": 38,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 22,
+   "date": "2011-07-15",
+   "gross": 51637,
+   "rank": 43,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 23,
+   "date": "2011-07-22",
+   "gross": 49136,
+   "rank": 46,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 24,
+   "date": "2011-07-29",
+   "gross": 41980,
+   "rank": 48,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 25,
+   "date": "2011-08-05",
+   "gross": 44018,
+   "rank": 50,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 26,
+   "date": "2011-08-12",
+   "gross": 33940,
+   "rank": 56,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 27,
+   "date": "2011-08-19",
+   "gross": 35956,
+   "rank": 56,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 28,
+   "date": "2011-08-26",
+   "gross": 43549,
+   "rank": 49,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 29,
+   "date": "2011-09-02",
+   "gross": 33422,
+   "rank": 62,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 30,
+   "date": "2011-09-09",
+   "gross": 23212,
+   "rank": 65,
+   "theaters": 12,
+   "total_gross": 0
+  },
+  {
+   "n": 31,
+   "date": "2011-09-16",
+   "gross": 19231,
+   "rank": 61,
+   "theaters": 12,
+   "total_gross": 0
+  },
+  {
+   "n": 32,
+   "date": "2011-09-23",
+   "gross": 24121,
+   "rank": 63,
+   "theaters": 12,
+   "total_gross": 0
+  },
+  {
+   "n": 33,
+   "date": "2011-09-30",
+   "gross": 19212,
+   "rank": 64,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 34,
+   "date": "2011-10-07",
+   "gross": 9132,
+   "rank": 76,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 35,
+   "date": "2011-10-14",
+   "gross": 7232,
+   "rank": 85,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 36,
+   "date": "2011-10-21",
+   "gross": 8777,
+   "rank": 83,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 37,
+   "date": "2011-10-28",
+   "gross": 11186,
+   "rank": 78,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 38,
+   "date": "2011-11-04",
+   "gross": 11924,
+   "rank": 71,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 39,
+   "date": "2011-11-11",
+   "gross": 8212,
+   "rank": 69,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 40,
+   "date": "2011-11-18",
+   "gross": 7678,
+   "rank": 67,
+   "theaters": 9,
+   "total_gross": 0
+  },
+  {
+   "n": 41,
+   "date": "2011-11-25",
+   "gross": 12609,
+   "rank": 60,
+   "theaters": 9,
+   "total_gross": 0
+  },
+  {
+   "n": 42,
+   "date": "2011-12-02",
+   "gross": 6341,
+   "rank": 68,
+   "theaters": 9,
+   "total_gross": 0
+  },
+  {
+   "n": 43,
+   "date": "2011-12-09",
+   "gross": 4233,
+   "rank": 74,
+   "theaters": 9,
+   "total_gross": 0
+  },
+  {
+   "n": 44,
+   "date": "2011-12-16",
+   "gross": 9800,
+   "rank": 56,
+   "theaters": 9,
+   "total_gross": 0
+  },
+  {
+   "n": 45,
+   "date": "2011-12-23",
+   "gross": 9872,
+   "rank": 50,
+   "theaters": 9,
+   "total_gross": 0
+  },
+  {
+   "n": 46,
+   "date": "2011-12-30",
+   "gross": 10723,
+   "rank": 57,
+   "theaters": 9,
+   "total_gross": 0
+  },
+  {
+   "n": 47,
+   "date": "2012-01-06",
+   "gross": 19121,
+   "rank": 53,
+   "theaters": 9,
+   "total_gross": 0
+  },
+  {
+   "n": 48,
+   "date": "2012-01-13",
+   "gross": 29645,
+   "rank": 50,
+   "theaters": 9,
+   "total_gross": 0
+  },
+  {
+   "n": 49,
+   "date": "2012-01-20",
+   "gross": 49738,
+   "rank": 47,
+   "theaters": 8,
+   "total_gross": 0
+  },
+  {
+   "n": 50,
+   "date": "2012-01-27",
+   "gross": 39352,
+   "rank": 48,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 51,
+   "date": "2012-02-03",
+   "gross": 28452,
+   "rank": 48,
+   "theaters": 11,
+   "total_gross": 0
+  },
+  {
+   "n": 52,
+   "date": "2012-02-10",
+   "gross": 18969,
+   "rank": 59,
+   "theaters": 14,
+   "total_gross": 0
+  },
+  {
+   "n": 53,
+   "date": "2012-02-17",
+   "gross": 8992,
+   "rank": 71,
+   "theaters": 12,
+   "total_gross": 0
+  },
+  {
+   "n": 54,
+   "date": "2012-02-24",
+   "gross": 25875,
+   "rank": 64,
+   "theaters": 12,
+   "total_gross": 0
+  },
+  {
+   "n": 55,
+   "date": "2012-03-02",
+   "gross": 48293,
+   "rank": 51,
+   "theaters": 12,
+   "total_gross": 0
+  },
+  {
+   "n": 56,
+   "date": "2012-03-09",
+   "gross": 48301,
+   "rank": 51,
+   "theaters": 12,
+   "total_gross": 0
+  },
+  {
+   "n": 57,
+   "date": "2012-03-16",
+   "gross": 48249,
+   "rank": 51,
+   "theaters": 12,
+   "total_gross": 0
+  },
+  {
+   "n": 58,
+   "date": "2012-03-23",
+   "gross": 58932,
+   "rank": 49,
+   "theaters": 12,
+   "total_gross": 0
+  },
+  {
+   "n": 59,
+   "date": "2012-03-30",
+   "gross": 38931,
+   "rank": 53,
+   "theaters": 12,
+   "total_gross": 0
+  },
+  {
+   "n": 60,
+   "date": "2012-04-06",
+   "gross": 26518,
+   "rank": 55,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 61,
+   "date": "2012-04-13",
+   "gross": 27231,
+   "rank": 54,
+   "theaters": 13,
+   "total_gross": 0
+  },
+  {
+   "n": 62,
+   "date": "2012-04-27",
+   "gross": 23879,
+   "rank": 62,
+   "theaters": 12,
+   "total_gross": 0
+  },
+  {
+   "n": 63,
+   "date": "2012-05-11",
+   "gross": 26232,
+   "rank": 56,
+   "theaters": 12,
+   "total_gross": 0
+  },
+  {
+   "n": 64,
+   "date": "2012-05-18",
+   "gross": 16922,
+   "rank": 56,
+   "theaters": 12,
+   "total_gross": 0
+  },
+  {
+   "n": 65,
+   "date": "2012-05-25",
+   "gross": 22226,
+   "rank": 47,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 66,
+   "date": "2012-06-01",
+   "gross": 20611,
+   "rank": 54,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 67,
+   "date": "2012-06-08",
+   "gross": 19107,
+   "rank": 54,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 68,
+   "date": "2012-06-15",
+   "gross": 22699,
+   "rank": 49,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 69,
+   "date": "2012-06-22",
+   "gross": 19200,
+   "rank": 52,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 70,
+   "date": "2012-06-29",
+   "gross": 10974,
+   "rank": 55,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 71,
+   "date": "2012-07-06",
+   "gross": 19227,
+   "rank": 47,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 72,
+   "date": "2012-07-20",
+   "gross": 15939,
+   "rank": 53,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 73,
+   "date": "2012-08-03",
+   "gross": 11246,
+   "rank": 58,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 74,
+   "date": "2012-08-10",
+   "gross": 39281,
+   "rank": 49,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 75,
+   "date": "2012-08-17",
+   "gross": 25242,
+   "rank": 55,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 76,
+   "date": "2012-08-31",
+   "gross": 16293,
+   "rank": 64,
+   "theaters": 10,
+   "total_gross": 0
+  },
+  {
+   "n": 77,
+   "date": "2012-09-07",
+   "gross": 14267,
+   "rank": 70,
+   "theaters": 10,
+   "total_gross": 0
+  }
+ ]
+}

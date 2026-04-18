@@ -75,6 +75,11 @@ jobs:
         run: python3 scripts/tmdb_api.py
         continue-on-error: true
 
+      - name: Refresh per-movie weekend history
+        # Rebuilds data/movie_weekends/*.json so showdown pages stay current.
+        run: python3 scripts/aggregate_movie_weekends.py
+        continue-on-error: true
+
       - name: Commit and push updated data files
         run: |
           git config user.name "Box Office Jedi Bot"

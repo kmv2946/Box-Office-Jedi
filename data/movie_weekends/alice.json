@@ -1,0 +1,40 @@
+{
+ "key": "alice",
+ "title": "Alice",
+ "opening_date": "2020-05-15",
+ "opening_gross": 5000,
+ "weekends": [
+  {
+   "n": 1,
+   "date": "2020-05-15",
+   "gross": 5000,
+   "rank": 0,
+   "theaters": 58,
+   "total_gross": 0
+  },
+  {
+   "n": 2,
+   "date": "2022-03-18",
+   "gross": 173614,
+   "rank": 0,
+   "theaters": 169,
+   "total_gross": 0
+  },
+  {
+   "n": 3,
+   "date": "2022-03-25",
+   "gross": 68132,
+   "rank": 0,
+   "theaters": 116,
+   "total_gross": 0
+  },
+  {
+   "n": 4,
+   "date": "2022-04-01",
+   "gross": 19239,
+   "rank": 0,
+   "theaters": 38,
+   "total_gross": 0
+  }
+ ]
+}
