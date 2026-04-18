@@ -422,20 +422,36 @@
           "date": "2026-05-01",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "The Devil Wears Prada 2",
+              "genre": "Comedy Drama",
+              "distributor": "Walt Disney Studios",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
+              "title": "Hokum",
+              "genre": "Horror",
+              "distributor": "Neon",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
+            },
+            {
+              "title": "Animal Farm",
+              "genre": "Family Adventure / Animation",
+              "distributor": "Angel Studios",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
+            },
+            {
+              "title": "Animal Friends",
+              "genre": "Action / Adventure / Comedy",
+              "distributor": "Sony Pictures Releasing",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
             }
           ]
         },
@@ -443,20 +459,28 @@
           "date": "2026-05-08",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "Billie Eilish: Hit Me Hard and Soft — The Tour Live 3D",
+              "genre": "Documentary / Music",
+              "distributor": "Paramount Pictures",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
+              "title": "The Sheep Detectives",
+              "genre": "Action / Comedy / Mystery",
+              "distributor": "Amazon MGM Studios",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
+            },
+            {
+              "title": "Couples Weekend",
+              "genre": "Comedy Drama",
+              "distributor": "",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             }
           ]
         },
@@ -464,20 +488,44 @@
           "date": "2026-05-15",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "Mortal Kombat II",
+              "genre": "Action / Adventure / Fantasy / Sci-Fi",
+              "distributor": "Warner Bros.",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
+              "title": "Obsession",
+              "genre": "Horror / Thriller",
+              "distributor": "Focus Features",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
+            },
+            {
+              "title": "Is God Is",
+              "genre": "Drama / Mystery",
+              "distributor": "Amazon MGM Studios",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
+            },
+            {
+              "title": "In the Grey",
+              "genre": "Action / Drama / Thriller",
+              "distributor": "Black Bear",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
+            },
+            {
+              "title": "Magic House",
+              "genre": "Drama / Romance",
+              "distributor": "Greenwich Entertainment",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             }
           ]
         },
@@ -485,20 +533,36 @@
           "date": "2026-05-22",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "Star Wars: The Mandalorian and Grogu",
+              "genre": "Action / Adventure / Sci-Fi",
+              "distributor": "Walt Disney Studios",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
+              "title": "I Love Boosters",
+              "genre": "Adventure / Sci-Fi / Comedy",
+              "distributor": "Neon",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
+            },
+            {
+              "title": "Tuner",
+              "genre": "Crime / Drama / Music",
+              "distributor": "Black Bear",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
+            },
+            {
+              "title": "Passenger",
+              "genre": "Horror",
+              "distributor": "Paramount Pictures",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
             }
           ]
         },
@@ -506,20 +570,44 @@
           "date": "2026-05-29",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "Backrooms",
+              "genre": "Horror / Sci-Fi",
+              "distributor": "A24",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
+              "title": "The Breadwinner",
+              "genre": "Comedy / Family",
+              "distributor": "Sony Pictures Releasing",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
+            },
+            {
+              "title": "The Furious",
+              "genre": "Action / Crime / Thriller",
+              "distributor": "Lionsgate",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
+            },
+            {
+              "title": "Pressure",
+              "genre": "Drama / History / Thriller / War",
+              "distributor": "Focus Features",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
+            },
+            {
+              "title": "The Currents",
+              "genre": "Drama",
+              "distributor": "Kino Lorber",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
             }
           ]
         }
@@ -533,20 +621,28 @@
           "date": "2026-06-05",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "Scary Movie",
+              "genre": "Comedy / Horror",
+              "distributor": "Paramount Pictures",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
+              "title": "Power Ballad",
+              "genre": "Comedy / Drama / Musical",
+              "distributor": "",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
+            },
+            {
+              "title": "Carolina Caroline",
+              "genre": "Crime / Romance / Thriller",
+              "distributor": "Magnolia Pictures",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
             }
           ]
         },
@@ -554,20 +650,20 @@
           "date": "2026-06-12",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "Disclosure Day",
+              "genre": "Drama / Sci-Fi / Thriller",
+              "distributor": "Universal Pictures",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
+              "title": "Stop! That! Train!",
+              "genre": "Action / Comedy",
+              "distributor": "",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             }
           ]
         },
@@ -575,20 +671,44 @@
           "date": "2026-06-19",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "Toy Story 5",
+              "genre": "Animation / Adventure",
+              "distributor": "Walt Disney Studios",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
+              "title": "The Death of Robin Hood",
+              "genre": "Adventure / Drama",
+              "distributor": "A24",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
+            },
+            {
+              "title": "Leviticus",
+              "genre": "Horror / Romance",
+              "distributor": "Neon",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
+            },
+            {
+              "title": "Girls Like Girls",
+              "genre": "Drama",
+              "distributor": "Focus Features",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
+            },
+            {
+              "title": "Rose of Nevada",
+              "genre": "Drama / Fantasy / Horror",
+              "distributor": "1-2 Special",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
             }
           ]
         },
@@ -596,20 +716,36 @@
           "date": "2026-06-26",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "Supergirl",
+              "genre": "Action / Adventure / Sci-Fi",
+              "distributor": "Warner Bros.",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
+              "title": "Jackass 5",
+              "genre": "Action / Comedy / Documentary",
+              "distributor": "Paramount Pictures",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
+            },
+            {
+              "title": "The Invite",
+              "genre": "Comedy / Drama",
+              "distributor": "A24",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
+            },
+            {
+              "title": "Drunken Noodles",
+              "genre": "Drama / Romance",
+              "distributor": "Strand Releasing",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
             }
           ]
         }
@@ -623,20 +759,29 @@
           "date": "2026-07-03",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "Minions & Monsters",
+              "genre": "Adventure / Comedy / Animation",
+              "distributor": "Universal Pictures",
               "release": "Wide",
               "is_wide": true,
               "theaters": null,
-              "genre": "Genre"
+              "note": "(on Weds.)"
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
+              "title": "Thrash",
+              "genre": "Horror / Thriller",
+              "distributor": "Sony Pictures Releasing",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
+            },
+            {
+              "title": "Young Washington",
+              "genre": "Action / Biography / History / War",
+              "distributor": "Angel Studios",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
             }
           ]
         },
@@ -644,20 +789,12 @@
           "date": "2026-07-10",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "Moana",
+              "genre": "Action / Adventure / Family / Musical",
+              "distributor": "Walt Disney Studios",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
-            },
-            {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
-              "release": "Limited",
-              "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             }
           ]
         },
@@ -665,20 +802,20 @@
           "date": "2026-07-17",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "The Odyssey",
+              "genre": "Action / Adventure / History",
+              "distributor": "Universal Pictures",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
+              "title": "Cut Off",
+              "genre": "Comedy / Drama",
+              "distributor": "Warner Bros.",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             }
           ]
         },
@@ -686,20 +823,12 @@
           "date": "2026-07-24",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
-              "release": "Wide",
-              "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
-            },
-            {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
+              "title": "Evil Dead Burn",
+              "genre": "Fantasy / Horror",
+              "distributor": "Warner Bros.",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             }
           ]
         },
@@ -707,20 +836,12 @@
           "date": "2026-07-31",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "Spider-Man: Brand New Day",
+              "genre": "Action / Adventure / Fantasy / Sci-Fi",
+              "distributor": "Sony Pictures Releasing",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
-            },
-            {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
-              "release": "Limited",
-              "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             }
           ]
         }
@@ -734,20 +855,44 @@
           "date": "2026-08-07",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "One Night Only",
+              "genre": "Romance / Comedy",
+              "distributor": "Universal Pictures",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
+              "title": "Ice Cream Man",
+              "genre": "Horror",
+              "distributor": "Iconic Events Releasing",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
+            },
+            {
+              "title": "Super Troopers 3",
+              "genre": "Comedy / Crime / Mystery",
+              "distributor": "Searchlight Pictures",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
+            },
+            {
+              "title": "Teenage Sex and Death at Camp Miasma",
+              "genre": "Comedy / Horror",
+              "distributor": "MUBI",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
+            },
+            {
+              "title": "CatVideoFest 2026",
+              "genre": "Family",
+              "distributor": "Oscilloscope",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
             }
           ]
         },
@@ -755,20 +900,36 @@
           "date": "2026-08-14",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "The End of Oak Street",
+              "genre": "Action / Adventure / Sci-Fi / Mystery",
+              "distributor": "Warner Bros.",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
+              "title": "PAW Patrol: The Dino Movie",
+              "genre": "Action / Adventure / Animation",
+              "distributor": "Paramount Pictures",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
+            },
+            {
+              "title": "Six: The Musical Live!",
+              "genre": "Musical",
+              "distributor": "Focus Features",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
+            },
+            {
+              "title": "The Rivals of Amziah King",
+              "genre": "Crime / Drama / Thriller",
+              "distributor": "Black Bear",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
             }
           ]
         },
@@ -776,20 +937,28 @@
           "date": "2026-08-21",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "Insidious: Out of the Further",
+              "genre": "Horror / Mystery / Thriller",
+              "distributor": "Sony Pictures Releasing",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
-              "release": "Limited",
-              "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "title": "Mutiny",
+              "genre": "Action / Thriller",
+              "distributor": "Lionsgate",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
+            },
+            {
+              "title": "Spa Weekend",
+              "genre": "Comedy",
+              "distributor": "Black Bear",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
             }
           ]
         },
@@ -797,20 +966,28 @@
           "date": "2026-08-28",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
-              "release": "Wide",
-              "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
-            },
-            {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
+              "title": "The Dog Stars",
+              "genre": "Action / Adventure / Thriller",
+              "distributor": "Walt Disney Studios",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
+            },
+            {
+              "title": "Idiots",
+              "genre": "Comedy / Crime",
+              "distributor": "IFC Films",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
+            },
+            {
+              "title": "Finding Emily",
+              "genre": "Comedy / Romance",
+              "distributor": "Focus Features",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
             }
           ]
         }
@@ -824,20 +1001,12 @@
           "date": "2026-09-04",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "By Any Means",
+              "genre": "Crime / Thriller",
+              "distributor": "Paramount Pictures",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
-            },
-            {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
-              "release": "Limited",
-              "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             }
           ]
         },
@@ -845,20 +1014,21 @@
           "date": "2026-09-11",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "Practical Magic 2",
+              "genre": "Comedy / Romance / Fantasy",
+              "distributor": "Warner Bros.",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
+              "title": "Tom and Jerry: Forbidden Compass",
+              "genre": "Adventure / Animation / Family",
+              "distributor": "Viva Pictures",
               "release": "Limited",
               "is_wide": false,
               "theaters": null,
-              "genre": "Genre"
+              "note": "(on Weds.)"
             }
           ]
         },
@@ -866,20 +1036,20 @@
           "date": "2026-09-18",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "Resident Evil",
+              "genre": "Horror / Sci-Fi",
+              "distributor": "Columbia Pictures",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
+              "title": "Shaun the Sheep: The Beast of Mossy Bottom",
+              "genre": "Animation / Comedy",
+              "distributor": "GKIDS",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             }
           ]
         },
@@ -887,20 +1057,20 @@
           "date": "2026-09-25",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "Forgotten Island",
+              "genre": "Action / Adventure / Animation / Musical",
+              "distributor": "DreamWorks",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
+              "title": "Avengers: Endgame (2026 Re-Release)",
+              "genre": "Action / Adventure / IMAX",
+              "distributor": "Walt Disney Studios",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             }
           ]
         }
@@ -914,20 +1084,20 @@
           "date": "2026-10-02",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "Digger",
+              "genre": "Comedy / Drama",
+              "distributor": "Warner Bros.",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
-              "release": "Limited",
-              "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "title": "Verity",
+              "genre": "Crime / Drama / Romance / Thriller",
+              "distributor": "Amazon MGM Studios",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
             }
           ]
         },
@@ -935,20 +1105,20 @@
           "date": "2026-10-09",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "Other Mommy",
+              "genre": "Horror",
+              "distributor": "Universal Pictures",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
-              "release": "Limited",
-              "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "title": "The Legend of Aang: The Last Airbender",
+              "genre": "Action / Adventure / Family / Animation",
+              "distributor": "Paramount Pictures",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
             }
           ]
         },
@@ -956,20 +1126,36 @@
           "date": "2026-10-16",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "Street Fighter",
+              "genre": "Action",
+              "distributor": "Paramount Pictures",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
+              "title": "Sense and Sensibility",
+              "genre": "Drama / Romance",
+              "distributor": "Focus Features",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
+            },
+            {
+              "title": "Whalefall",
+              "genre": "Adventure / Drama",
+              "distributor": "20th Century Studios",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
+            },
+            {
+              "title": "Poetic License",
+              "genre": "Comedy",
+              "distributor": "Row K Entertainment",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
             }
           ]
         },
@@ -977,43 +1163,42 @@
           "date": "2026-10-23",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "Untitled Jordan Peele Project",
+              "genre": "Horror / Mystery / Thriller",
+              "distributor": "Universal Pictures",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
+              "title": "Clayface",
+              "genre": "Action / Adventure / Horror / Sci-Fi",
+              "distributor": "Warner Bros.",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
+            },
+            {
+              "title": "Wife and Dog",
+              "genre": "Thriller",
+              "distributor": "Black Bear",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
+            },
+            {
+              "title": "Klara and the Sun",
+              "genre": "Drama / Sci-Fi",
+              "distributor": "Sony Pictures Releasing",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             }
           ]
         },
         {
           "date": "2026-10-30",
-          "releases": [
-            {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
-              "release": "Wide",
-              "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
-            },
-            {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
-              "release": "Limited",
-              "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
-            }
-          ]
+          "releases": []
         }
       ]
     },
@@ -1025,20 +1210,28 @@
           "date": "2026-11-06",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "The Cat in the Hat",
+              "genre": "Adventure / Animation / Family",
+              "distributor": "Warner Bros.",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
+              "title": "Godzilla Minus Zero",
+              "genre": "Action / Adventure / Sci-Fi",
+              "distributor": "GKIDS",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
+            },
+            {
+              "title": "Wild Horse Nine",
+              "genre": "Comedy / Crime / Drama",
+              "distributor": "Searchlight Pictures",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             }
           ]
         },
@@ -1046,20 +1239,28 @@
           "date": "2026-11-13",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "The Great Beyond",
+              "genre": "Drama / Fantasy / Mystery / Sci-Fi",
+              "distributor": "Warner Bros.",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
+              "title": "Ebenezer: A Christmas Carol",
+              "genre": "Drama / Fantasy",
+              "distributor": "Paramount Pictures",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
+            },
+            {
+              "title": "I Play Rocky",
+              "genre": "Biography / Drama",
+              "distributor": "Amazon MGM Studios",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
             }
           ]
         },
@@ -1067,43 +1268,36 @@
           "date": "2026-11-20",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "The Hunger Games: Sunrise on the Reaping",
+              "genre": "Action / Adventure / Sci-Fi",
+              "distributor": "Lionsgate",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
-            },
-            {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
-              "release": "Limited",
-              "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             }
           ]
         },
         {
-          "date": "2026-11-27",
+          "date": "2026-11-25",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "Focker-In-Law",
+              "genre": "Comedy",
+              "distributor": "Paramount Pictures",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
-              "release": "Limited",
-              "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "title": "Hexed",
+              "genre": "Adventure / Animation / Comedy / Fantasy",
+              "distributor": "Walt Disney Studios",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
             }
-          ]
+          ],
+          "weekday": "Weds."
         }
       ]
     },
@@ -1115,62 +1309,37 @@
           "date": "2026-12-04",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "Violent Night 2",
+              "genre": "Action / Comedy",
+              "distributor": "Universal Pictures",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
-            },
-            {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
-              "release": "Limited",
-              "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             }
           ]
         },
         {
           "date": "2026-12-11",
-          "releases": [
-            {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
-              "release": "Wide",
-              "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
-            },
-            {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
-              "release": "Limited",
-              "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
-            }
-          ]
+          "releases": []
         },
         {
           "date": "2026-12-18",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "Avengers: Doomsday",
+              "genre": "Action / Adventure / Sci-Fi",
+              "distributor": "Walt Disney Studios",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
-              "release": "Limited",
-              "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "title": "Dune: Part Three",
+              "genre": "Sci-Fi / Adventure",
+              "distributor": "Warner Bros.",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
             }
           ]
         },
@@ -1178,20 +1347,45 @@
           "date": "2026-12-25",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "Jumanji: Open World",
+              "genre": "Action / Adventure / Comedy / Fantasy",
+              "distributor": "Sony Pictures Releasing",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
+            },
+            {
+              "title": "The Angry Birds Movie 3",
+              "genre": "Action / Adventure / Family / Animation",
+              "distributor": "Paramount Pictures",
               "release": "Wide",
               "is_wide": true,
               "theaters": null,
-              "genre": "Genre"
+              "note": "(on Weds.)"
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
+              "title": "Werwulf",
+              "genre": "Horror",
+              "distributor": "Focus Features",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
+            },
+            {
+              "title": "Mr. Irrelevant",
+              "genre": "Biography / Drama / Sport",
+              "distributor": "Paramount Pictures",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
+            },
+            {
+              "title": "A Place in Hell",
+              "genre": "Drama / Thriller",
+              "distributor": "Neon",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": null
             }
           ]
         }

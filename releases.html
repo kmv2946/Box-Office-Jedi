@@ -56,7 +56,6 @@
       font-size: 13px;
       display: flex;
       justify-content: space-between;
-      border-top: 1px solid #ccc;
       border-bottom: 1px solid #ccc;
       background: #f4f4f4;
     }
@@ -102,16 +101,17 @@
     }
 
     /* ── Friday block (date heading + table) ─────────────────────────── */
-    .rs-week { margin: 0 14px 18px; border: 1px solid #999; border-top: none; }
+    .rs-week {
+      margin: 0 14px 18px;
+      background: #ffffff;
+    }
 
     /* Friday header: "Friday" small on top, day number large+bold below.
        Verdana Bold 000000, centered. */
     .rs-week-head {
       background: #FFFFFF;
-      padding: 6px 0 6px;
+      padding: 10px 0 8px;
       text-align: center;
-      border-top: 1px solid #999;
-      border-bottom: 1px solid #999;
     }
     .rs-week-head-fri {
       font-family: Verdana, Geneva, sans-serif;
@@ -130,24 +130,30 @@
       line-height: 1.1;
     }
 
-    /* Release table */
-    .rs-table { width: 100%; border-collapse: collapse; }
+    /* Release table — thin white gaps between columns via border-spacing.
+       The table's wrapper (.rs-week) has a white background so the gaps
+       render as crisp vertical lines. */
+    .rs-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 2px 0;
+      background: #ffffff;
+    }
     .rs-table colgroup col.rs-col-title      { width: 50%; }
     .rs-table colgroup col.rs-col-distributor{ width: 32%; }
     .rs-table colgroup col.rs-col-release    { width: 18%; }
 
-    /* Column headers: uppercase, gray bg, centered, Verdana Bold */
+    /* Column headers: uppercase, gray bg, centered, Times Bold */
     .rs-table thead th {
       background: #A8A8A8;
-      font-family: Verdana, Geneva, sans-serif;
+      font-family: 'Times New Roman', Times, serif;
       font-weight: bold;
-      font-size: 11px;
+      font-size: 12px;
       color: #FFFFFF;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      padding: 4px 8px;
+      padding: 5px 8px;
       text-align: center;
-      border-bottom: 1px solid #888;
     }
 
     /* Alternating row colors per spec: F4F4FE (odd) / FFFFFF (even) */
@@ -175,6 +181,14 @@
     .rs-table td.rs-td-title a:hover { text-decoration: underline; }
     /* Wide releases: title bold (still blue link). */
     .rs-table tr.rs-wide td.rs-td-title a { font-weight: bold; }
+
+    /* Parenthetical suffixes like "(on Weds.)" — plain black, not linked */
+    .rs-td-note {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      color: #000000;
+    }
+    .rs-table tr.rs-wide .rs-td-note { font-weight: normal; }
 
     /* Genre line below title: Times Regular 000000, small, left-aligned */
     .rs-td-genre {
@@ -351,12 +365,13 @@
     }[c]));
   }
 
-  // "Friday" on top, large bold day number below.
-  function buildFridayHead(iso) {
+  // "<weekday>" on top, large bold day number below. Defaults to "Friday".
+  function buildWeekHead(iso, weekday) {
     const d = parseISO(iso);
+    const label = weekday || 'Friday';
     return (
       '<div class="rs-week-head">' +
-        '<span class="rs-week-head-fri">Friday</span>' +
+        '<span class="rs-week-head-fri">' + escapeHtml(label) + '</span>' +
         '<span class="rs-week-head-day">' + d.getDate() + '</span>' +
       '</div>'
     );
@@ -369,12 +384,15 @@
     const genreHtml = r.genre
       ? '<span class="rs-td-genre">' + escapeHtml(r.genre) + '</span>'
       : '';
+    const noteHtml = r.note
+      ? ' <span class="rs-td-note">' + escapeHtml(r.note) + '</span>'
+      : '';
     return (
       '<tr' + wide + '>' +
         '<td class="rs-td-title">' +
           '<a href="movie.html?title=' + encodeURIComponent(r.title) + '">' +
             escapeHtml(r.title) +
-          '</a>' + genreHtml +
+          '</a>' + noteHtml + genreHtml +
         '</td>' +
         '<td class="rs-td-distributor">' + escapeHtml(r.distributor || '') + '</td>' +
         '<td class="rs-td-release">' + escapeHtml(release) + '</td>' +
@@ -384,12 +402,12 @@
   function buildWeekTable(week) {
     const rows = (week.releases || []).map(buildReleaseRow).join('');
     if (!rows) {
-      return '<div class="rs-week">' + buildFridayHead(week.date) +
+      return '<div class="rs-week">' + buildWeekHead(week.date, week.weekday) +
              '<p class="rs-empty">No theatrical releases scheduled.</p></div>';
     }
     return (
       '<div class="rs-week">' +
-        buildFridayHead(week.date) +
+        buildWeekHead(week.date, week.weekday) +
         '<table class="rs-table">' +
           '<colgroup>' +
             '<col class="rs-col-title">' +
