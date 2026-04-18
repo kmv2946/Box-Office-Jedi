@@ -71,17 +71,20 @@
     .rs-prevnext span { color: #999; font-size: 11px; }
 
     /* ── Month section header ────────────────────────────────────────── */
+    /* Verdana Regular, white on red, centered. */
     .rs-month-header {
       background: #7F170E;
-      color: #ffffff;
+      color: #FFFFFF;
       font-family: Verdana, Geneva, sans-serif;
-      font-weight: bold;
-      font-size: 14px;
+      font-weight: normal;
+      font-size: 15px;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      padding: 5px 10px;
-      margin: 12px 14px 0;
+      padding: 6px 10px;
+      margin: 14px 14px 0;
+      text-align: center;
     }
+
     .rs-undetermined {
       font-family: 'Times New Roman', Times, serif;
       font-size: 12px;
@@ -90,6 +93,7 @@
       padding: 6px 14px 4px;
       margin: 0 14px;
       border-bottom: 1px solid #ddd;
+      text-align: center;
     }
     .rs-undetermined .rs-undet-label {
       font-weight: bold;
@@ -98,59 +102,104 @@
     }
 
     /* ── Friday block (date heading + table) ─────────────────────────── */
-    .rs-week { margin: 0 14px 16px; border-left: 1px solid #ccc; border-right: 1px solid #ccc; }
+    .rs-week { margin: 0 14px 18px; border: 1px solid #999; border-top: none; }
+
+    /* Friday header: "Friday" small on top, day number large+bold below.
+       Verdana Bold 000000, centered. */
     .rs-week-head {
-      background: #DCDCDC;
+      background: #FFFFFF;
+      padding: 6px 0 6px;
+      text-align: center;
+      border-top: 1px solid #999;
+      border-bottom: 1px solid #999;
+    }
+    .rs-week-head-fri {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
       font-size: 12px;
-      color: #000;
-      padding: 4px 8px;
-      border-top: 1px solid #999;
-      border-bottom: 1px solid #999;
-      text-align: center;
+      color: #000000;
+      display: block;
       letter-spacing: 0.04em;
     }
-    .rs-week-head .rs-day { color: #00239C; }
+    .rs-week-head-day {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 22px;
+      color: #000000;
+      display: block;
+      line-height: 1.1;
+    }
 
+    /* Release table */
     .rs-table { width: 100%; border-collapse: collapse; }
-    .rs-table th {
-      background: #f0f0f0;
+    .rs-table colgroup col.rs-col-title      { width: 50%; }
+    .rs-table colgroup col.rs-col-distributor{ width: 32%; }
+    .rs-table colgroup col.rs-col-release    { width: 18%; }
+
+    /* Column headers: uppercase, gray bg, centered, Verdana Bold */
+    .rs-table thead th {
+      background: #A8A8A8;
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
       font-size: 11px;
-      color: #444;
+      color: #FFFFFF;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.06em;
       padding: 4px 8px;
-      text-align: left;
-      border-bottom: 1px solid #ccc;
+      text-align: center;
+      border-bottom: 1px solid #888;
     }
-    .rs-table th.rs-th-release { width: 96px; text-align: right; }
+
+    /* Alternating row colors per spec: F4F4FE (odd) / FFFFFF (even) */
+    .rs-table tbody tr:nth-child(odd)  td { background: #F4F4FE; }
+    .rs-table tbody tr:nth-child(even) td { background: #FFFFFF; }
+
     .rs-table td {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 13px;
-      color: #000;
-      padding: 4px 8px;
-      border-bottom: 1px solid #eee;
-      vertical-align: top;
+      font-size: 15px;
+      color: #000000;
+      padding: 8px 10px;
+      vertical-align: middle;
     }
-    .rs-table td.rs-td-release {
-      text-align: right;
-      white-space: nowrap;
-      font-family: Verdana, Geneva, sans-serif;
-      font-size: 12px;
-      color: #555;
+
+    /* Title column — left aligned. Title link is blue (#00007B). */
+    .rs-table td.rs-td-title {
+      text-align: left;
+      padding-right: 14px;
     }
-    .rs-table tbody tr:nth-child(odd)  td { background: #FAFAFA; }
-    .rs-table tbody tr:nth-child(even) td { background: #FFFFFF; }
     .rs-table td.rs-td-title a {
-      color: #00239C;
+      color: #00007B;
       text-decoration: none;
+      font-weight: normal;
     }
     .rs-table td.rs-td-title a:hover { text-decoration: underline; }
-    .rs-table tr.rs-wide td.rs-td-title { font-weight: bold; }
+    /* Wide releases: title bold (still blue link). */
     .rs-table tr.rs-wide td.rs-td-title a { font-weight: bold; }
+
+    /* Genre line below title: Times Regular 000000, small, left-aligned */
+    .rs-td-genre {
+      display: block;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      font-size: 13px;
+      color: #000000;
+      margin-top: 1px;
+    }
+
+    /* Distributor column — centered, Times. Wide = bold, Limited = regular. */
+    .rs-table td.rs-td-distributor {
+      text-align: center;
+      color: #000000;
+    }
+    .rs-table tr.rs-wide td.rs-td-distributor { font-weight: bold; }
+
+    /* Release column — centered, Times. Wide = bold, Limited = regular. */
+    .rs-table td.rs-td-release {
+      text-align: center;
+      color: #000000;
+      white-space: nowrap;
+    }
+    .rs-table tr.rs-wide td.rs-td-release { font-weight: bold; }
 
     .rs-empty {
       font-family: 'Times New Roman', Times, serif;
@@ -158,6 +207,7 @@
       font-style: italic;
       color: #777;
       padding: 8px 14px 4px;
+      text-align: center;
     }
 
     .rs-disclaimer {
@@ -295,24 +345,37 @@
     const [y, m, d] = iso.split('-').map(Number);
     return new Date(y, m - 1, d);
   }
-  function fmtFridayLabel(iso) {
-    const d = parseISO(iso);
-    return 'Friday ' + (d.getMonth() + 1) + '/' + d.getDate();
-  }
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, c => ({
       '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
     }[c]));
   }
 
+  // "Friday" on top, large bold day number below.
+  function buildFridayHead(iso) {
+    const d = parseISO(iso);
+    return (
+      '<div class="rs-week-head">' +
+        '<span class="rs-week-head-fri">Friday</span>' +
+        '<span class="rs-week-head-day">' + d.getDate() + '</span>' +
+      '</div>'
+    );
+  }
+
   // ── Build a row + table ─────────────────────────────────────────────────
   function buildReleaseRow(r) {
     const wide = r.is_wide ? ' class="rs-wide"' : '';
     const release = r.release || (r.theaters ? r.theaters.toLocaleString('en-US') : 'TBD');
+    const genreHtml = r.genre
+      ? '<span class="rs-td-genre">' + escapeHtml(r.genre) + '</span>'
+      : '';
     return (
       '<tr' + wide + '>' +
-        '<td class="rs-td-title"><a href="movie.html?title=' + encodeURIComponent(r.title) + '">' +
-          escapeHtml(r.title) + '</a></td>' +
+        '<td class="rs-td-title">' +
+          '<a href="movie.html?title=' + encodeURIComponent(r.title) + '">' +
+            escapeHtml(r.title) +
+          '</a>' + genreHtml +
+        '</td>' +
         '<td class="rs-td-distributor">' + escapeHtml(r.distributor || '') + '</td>' +
         '<td class="rs-td-release">' + escapeHtml(release) + '</td>' +
       '</tr>'
@@ -321,18 +384,22 @@
   function buildWeekTable(week) {
     const rows = (week.releases || []).map(buildReleaseRow).join('');
     if (!rows) {
-      return '<div class="rs-week"><div class="rs-week-head"><span class="rs-day">' +
-             fmtFridayLabel(week.date) + '</span></div>' +
+      return '<div class="rs-week">' + buildFridayHead(week.date) +
              '<p class="rs-empty">No theatrical releases scheduled.</p></div>';
     }
     return (
       '<div class="rs-week">' +
-        '<div class="rs-week-head"><span class="rs-day">' + fmtFridayLabel(week.date) + '</span></div>' +
+        buildFridayHead(week.date) +
         '<table class="rs-table">' +
+          '<colgroup>' +
+            '<col class="rs-col-title">' +
+            '<col class="rs-col-distributor">' +
+            '<col class="rs-col-release">' +
+          '</colgroup>' +
           '<thead><tr>' +
             '<th>New in Theaters</th>' +
             '<th>Distributor</th>' +
-            '<th class="rs-th-release">Release</th>' +
+            '<th>Release</th>' +
           '</tr></thead>' +
           '<tbody>' + rows + '</tbody>' +
         '</table>' +
@@ -355,19 +422,37 @@
       // For "2028 & Beyond" style buckets — rows without specific Fridays
       const rows = month.undated.map(r => {
         const wide = r.is_wide ? ' class="rs-wide"' : '';
+        const genreHtml = r.genre
+          ? '<span class="rs-td-genre">' + escapeHtml(r.genre) + '</span>'
+          : '';
         return (
           '<tr' + wide + '>' +
-            '<td class="rs-td-title"><a href="movie.html?title=' + encodeURIComponent(r.title) + '">' +
-              escapeHtml(r.title) + '</a></td>' +
+            '<td class="rs-td-title">' +
+              '<a href="movie.html?title=' + encodeURIComponent(r.title) + '">' +
+                escapeHtml(r.title) +
+              '</a>' + genreHtml +
+            '</td>' +
             '<td class="rs-td-distributor">' + escapeHtml(r.distributor || '') + '</td>' +
             '<td class="rs-td-release">' + escapeHtml(r.date || r.release || 'TBD') + '</td>' +
           '</tr>'
         );
       }).join('');
-      out.push('<div class="rs-week"><div class="rs-week-head">Forthcoming</div>' +
-        '<table class="rs-table"><thead><tr><th>Title</th><th>Distributor</th>' +
-        '<th class="rs-th-release">Date / Release</th></tr></thead><tbody>' +
-        rows + '</tbody></table></div>');
+      out.push(
+        '<div class="rs-week">' +
+          '<div class="rs-week-head">' +
+            '<span class="rs-week-head-fri">Forthcoming</span>' +
+          '</div>' +
+          '<table class="rs-table">' +
+            '<colgroup>' +
+              '<col class="rs-col-title">' +
+              '<col class="rs-col-distributor">' +
+              '<col class="rs-col-release">' +
+            '</colgroup>' +
+            '<thead><tr><th>Title</th><th>Distributor</th><th>Date / Release</th></tr></thead>' +
+            '<tbody>' + rows + '</tbody>' +
+          '</table>' +
+        '</div>'
+      );
     }
     if (!month.weeks?.length && !month.undated?.length) {
       out.push('<p class="rs-empty">No releases listed yet.</p>');

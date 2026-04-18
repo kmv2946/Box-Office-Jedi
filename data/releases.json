@@ -13,14 +13,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -32,14 +34,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -51,14 +55,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -70,14 +76,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -89,14 +97,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         }
@@ -114,14 +124,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -133,14 +145,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -152,14 +166,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -171,14 +187,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         }
@@ -196,14 +214,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -215,14 +235,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -234,14 +256,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -253,14 +277,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         }
@@ -278,14 +304,16 @@
               "distributor": "Universal Pictures",
               "release": "4,284",
               "is_wide": true,
-              "theaters": 4284
+              "theaters": 4284,
+              "genre": "Family Adventure / Animation"
             },
             {
               "title": "The Drama",
               "distributor": "A24",
               "release": "3,087",
               "is_wide": true,
-              "theaters": 3087
+              "theaters": 3087,
+              "genre": "Drama"
             }
           ]
         },
@@ -297,42 +325,48 @@
               "distributor": "Universal Pictures",
               "release": "3,151",
               "is_wide": true,
-              "theaters": 3151
+              "theaters": 3151,
+              "genre": "Romantic Comedy"
             },
             {
               "title": "Exit 8",
               "distributor": "Neon",
               "release": "495",
               "is_wide": false,
-              "theaters": 495
+              "theaters": 495,
+              "genre": "Horror"
             },
             {
               "title": "Faces of Death",
               "distributor": "IFC Films",
               "release": "1,600",
               "is_wide": true,
-              "theaters": 1600
+              "theaters": 1600,
+              "genre": "Horror"
             },
             {
               "title": "Hamlet",
               "distributor": "Vertical Entertainment",
               "release": "325",
               "is_wide": false,
-              "theaters": 325
+              "theaters": 325,
+              "genre": "Drama"
             },
             {
               "title": "ChaO",
               "distributor": "GKIDS",
               "release": "270",
               "is_wide": false,
-              "theaters": 270
+              "theaters": 270,
+              "genre": "Animation"
             },
             {
               "title": "The Christophers",
               "distributor": "Neon",
               "release": "4 (NYC/LA)",
               "is_wide": false,
-              "theaters": 4
+              "theaters": 4,
+              "genre": "Drama"
             }
           ]
         },
@@ -344,14 +378,16 @@
               "distributor": "Universal Pictures",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Horror"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -363,14 +399,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         }
@@ -388,14 +426,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -407,14 +447,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -426,14 +468,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -445,14 +489,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -464,14 +510,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         }
@@ -489,14 +537,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -508,14 +558,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -527,14 +579,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -546,14 +600,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         }
@@ -571,14 +627,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -590,14 +648,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -609,14 +669,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -628,14 +690,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -647,14 +711,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         }
@@ -672,14 +738,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -691,14 +759,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -710,14 +780,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -729,14 +801,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         }
@@ -754,14 +828,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -773,14 +849,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -792,14 +870,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -811,14 +891,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         }
@@ -836,14 +918,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -855,14 +939,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -874,14 +960,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -893,14 +981,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -912,14 +1002,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         }
@@ -937,14 +1029,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -956,14 +1050,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -975,14 +1071,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -994,14 +1092,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         }
@@ -1019,14 +1119,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -1038,14 +1140,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -1057,14 +1161,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         },
@@ -1076,14 +1182,16 @@
               "distributor": "[Studio]",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             },
             {
               "title": "[Limited Title]",
               "distributor": "[Studio]",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": null,
+              "genre": "Genre"
             }
           ]
         }
@@ -1383,7 +1491,8 @@
           "distributor": "[Studio]",
           "release": "TBD",
           "is_wide": true,
-          "date": "2028"
+          "date": "2028",
+          "genre": "Genre"
         }
       ]
     }
