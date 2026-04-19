@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All-Time Chart &mdash; Box Office Jedi</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+
+    /* ── Page title & section bar (match alltime-domestic) ──────────── */
+    .at-page-header { padding: 10px 14px 8px; border-bottom: 3px solid #990000; }
+    .at-page-title {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 28px;
+      color: #000;
+      margin: 0;
+      letter-spacing: -0.5px;
+    }
+    .at-page-title span.arrow { color: #990000; margin-right: 6px; font-family: 'Times New Roman', Times, serif; }
+    .at-page-title a { color: #000; text-decoration: none; }
+    .at-page-title a:hover { color: #00239C; }
+
+    .at-back { padding: 6px 14px; font-family: Verdana, Geneva, sans-serif; font-size: 11px; }
+    .at-back a { color: #00239C; font-weight: bold; text-decoration: none; }
+    .at-back a:hover { text-decoration: underline; }
+
+    .chart-section-header {
+      background: #990000;
+      color: #FFFFFF;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 16px;
+      letter-spacing: 0.05em;
+      text-align: center;
+      padding: 7px 10px;
+      margin: 10px 0 4px;
+      text-transform: uppercase;
+    }
+    .chart-subtitle {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      color: #555;
+      text-align: center;
+      margin: 0 0 10px;
+      font-style: italic;
+    }
+
+    .at-dateline {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      color: #777;
+      padding: 0 14px 6px;
+    }
+
+    .at-wrap { padding: 0 14px 24px; }
+
+    /* Chart table */
+    .at-chart {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Times New Roman', Times, serif;
+    }
+    .at-chart thead th {
+      background: #F4F4FE;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 10px;
+      color: #444;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 6px 6px;
+      border-bottom: 2px solid #7F170E;
+      text-align: right;
+      vertical-align: bottom;
+      white-space: nowrap;
+    }
+    .at-chart thead th.th-left  { text-align: left; padding-left: 10px; }
+    .at-chart thead th.th-center{ text-align: center; }
+
+    .at-chart tbody tr:nth-child(odd)  td { background: #F5F5F5; }
+    .at-chart tbody tr:nth-child(even) td { background: #FFFFFF; }
+    .at-chart td {
+      font-size: 13px;
+      color: #000;
+      padding: 5px 6px;
+      border-bottom: 1px solid #E8E8E8;
+      text-align: right;
+      white-space: nowrap;
+    }
+    .at-chart td.td-rank  { text-align: center; color: #555; width: 50px; }
+    .at-chart td.td-title {
+      text-align: left;
+      padding-left: 10px;
+      white-space: normal;
+    }
+    .at-chart td.td-title a {
+      font-family: 'Times New Roman', Times, serif;
+      color: #00007B;
+      text-decoration: none;
+    }
+    .at-chart td.td-title a:hover { text-decoration: underline; }
+
+    .at-empty {
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+      color: #777;
+      padding: 20px;
+      text-align: center;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li class="active"><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">CONTENTS</span>
+      <ul>
+        <li><a href="predictions.html">PREDICTIONS</a></li>
+        <li><a href="analysis.html">ANALYSIS</a></li>
+        <li><a href="features.html">FEATURES</a></li>
+        <li><a href="releases.html">RELEASE SCHEDULE</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li class="derby"><a href="derby.html">THE DERBY</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+  <main class="main-content">
+
+    <div id="page-tools"></div>
+    <div class="infl-banner">Showing grosses adjusted for inflation (relative to today&rsquo;s ticket prices).</div>
+
+    <div class="at-page-header">
+      <h1 class="at-page-title"><span class="arrow">&gt;</span> <a href="alltime.html">ALL TIME BOX OFFICE</a></h1>
+    </div>
+
+    <div class="at-back"><a href="alltime.html">&laquo; All-Time Index</a></div>
+
+    <div class="chart-section-header" id="chart-header">CHART</div>
+    <div class="chart-subtitle"  id="chart-subtitle"></div>
+    <div class="at-dateline"     id="chart-dateline"></div>
+
+    <div class="at-wrap">
+      <table class="at-chart" id="at-chart">
+        <thead id="chart-head"></thead>
+        <tbody id="chart-body">
+          <tr><td colspan="10" class="at-empty">Loading&hellip;</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+  <aside class="right-sidebar">
+    <div class="widget">
+      <div class="widget-header">ALL-TIME CHARTS</div>
+      <div class="widget-body">
+        <p><a href="alltime.html"><strong>&laquo; All-Time Index</strong></a></p>
+        <p style="margin-top:8px;"><strong>Also:</strong></p>
+        <p><a href="alltime-domestic.html">Domestic &rsaquo;</a></p>
+        <p><a href="alltime-chart.html?chart=top-lifetime-grosses-worldwide">Worldwide &rsaquo;</a></p>
+      </div>
+    </div>
+    <div class="widget">
+      <div class="widget-header">BOX OFFICE</div>
+      <div class="widget-body">
+        <p><a href="weekend.html"><strong>Weekend Chart &gt;</strong></a></p>
+        <p><a href="yearly.html"><strong>Yearly Chart &gt;</strong></a></p>
+      </div>
+    </div>
+  </aside>
+
+</div>
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">"Serving your box office needs since 2026."</span>
+  <div style="margin-top:8px;">
+    <img src="assets/images/flag_sm_anim.gif" alt="American flag" style="display:inline-block;height:auto;">
+  </div>
+</footer>
+
+<script src="assets/js/inflation.js"></script>
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') doSearch();
+  });
+
+  // ── Helpers ────────────────────────────────────────────────────────────
+  function escapeHtml(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g,
+      c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+  // Try to parse a cell's numeric value (for sorting + inflation adjustment).
+  // Understands "$1,234,567", "41.6%", "+169.6%", "4,662", "5", etc.
+  function parseNum(s) {
+    if (s == null) return null;
+    const m = String(s).replace(/,/g, '').match(/-?\d+(\.\d+)?/);
+    return m ? parseFloat(m[0]) : null;
+  }
+  function parseYear(s) {
+    if (!s) return null;
+    // YYYY somewhere in the string (prefer a trailing 4-digit year on date cells)
+    const m = String(s).match(/(19|20)\d{2}/);
+    return m ? parseInt(m[0], 10) : null;
+  }
+
+  // Detect column types to align cells nicely (right for numbers, left for titles)
+  function colClass(col) {
+    const c = (col || '').toLowerCase();
+    if (/^rank$/.test(c))               return 'td-rank';
+    if (/title|release/.test(c) && !/rank|date/.test(c)) return 'td-title';
+    return '';
+  }
+
+  // ── Rendering ──────────────────────────────────────────────────────────
+  let CHART = null;           // {columns, rows}
+  let YEAR_COL = -1;          // index of the best "year" column, if any
+  let GROSS_COL = -1;         // index of the "adjustable" gross column
+
+  function detectYearColumn(columns, rows) {
+    // Prefer a column literally named "Year"
+    for (let i = 0; i < columns.length; i++) {
+      if (/^\s*year\s*$/i.test(columns[i])) return i;
+    }
+    // Next best: a column named Date or Wide Date — we parse the year from it
+    for (let i = 0; i < columns.length; i++) {
+      if (/date/i.test(columns[i])) return i;
+    }
+    return -1;
+  }
+
+  function detectGrossColumn(columns) {
+    // First dollar-typed column, preferring the "primary" value for this chart.
+    const priority = [
+      /^lifetime gross$/i, /^worldwide/i, /^opening$/i, /^gross$/i,
+      /^total gross$/i, /^worldwide lifetime gross$/i, /^average$/i,
+      /^2nd weekend$/i, /^gross-to-date$/i, /^domestic lifetime gross$/i,
+    ];
+    for (const re of priority) {
+      const i = columns.findIndex(c => re.test(c));
+      if (i >= 0) return i;
+    }
+    // Fallback: any column that looks like money
+    return -1;
+  }
+
+  function renderChart(chart, asAdjusted) {
+    const head = document.getElementById('chart-head');
+    const body = document.getElementById('chart-body');
+    // Header
+    head.innerHTML = '<tr>' + chart.columns.map((c, i) => {
+      const cls = colClass(c);
+      const thCls = cls === 'td-rank' ? 'th-center' : cls === 'td-title' ? 'th-left' : '';
+      return '<th' + (thCls ? ' class="' + thCls + '"' : '') + '>' + escapeHtml(c) + '</th>';
+    }).join('') + '</tr>';
+    // Rows
+    body.innerHTML = chart.rows.map((row, rowIdx) => {
+      const cells = row.map((cell, i) => {
+        const cls = colClass(chart.columns[i]);
+        if (cls === 'td-title') {
+          return '<td class="td-title"><a href="movie.html?title=' +
+                 encodeURIComponent(cell) + '">' + escapeHtml(cell) + '</a></td>';
+        }
+        return '<td' + (cls ? ' class="' + cls + '"' : '') + '>' + escapeHtml(cell) + '</td>';
+      }).join('');
+      return '<tr>' + cells + '</tr>';
+    }).join('');
+  }
+
+  async function load() {
+    const params = new URLSearchParams(location.search);
+    const slug = params.get('chart');
+    if (!slug) {
+      document.getElementById('chart-body').innerHTML =
+        '<tr><td colspan="10" class="at-empty">No chart specified. <a href="alltime.html">Browse the index</a>.</td></tr>';
+      return;
+    }
+    let data;
+    try {
+      const r = await fetch('data/charts/' + slug + '.json', {cache:'no-store'});
+      if (!r.ok) throw new Error('not found');
+      data = await r.json();
+    } catch(e) {
+      document.getElementById('chart-body').innerHTML =
+        '<tr><td colspan="10" class="at-empty">Chart not found. <a href="alltime.html">Browse the index</a>.</td></tr>';
+      return;
+    }
+
+    CHART = data;
+    document.title = data.label + ' — Box Office Jedi';
+    document.getElementById('chart-header').textContent = data.label.toUpperCase();
+    if (data.category && data.category !== data.label) {
+      document.getElementById('chart-subtitle').textContent = data.category;
+    }
+    if (data.updated) {
+      document.getElementById('chart-dateline').textContent = 'Data as of: ' + data.updated;
+    }
+
+    YEAR_COL  = detectYearColumn(data.columns, data.rows);
+    GROSS_COL = detectGrossColumn(data.columns);
+
+    renderChart(data, false);
+
+    // ── Inflation toggle (skip if we can't find a sensible gross or year column) ──
+    if (window.InflationTool && GROSS_COL >= 0 && YEAR_COL >= 0) {
+      InflationTool.mount({
+        container: document.getElementById('page-tools'),
+        getMovies: () => data.rows.slice(),
+        adjust: (row) => ({
+          year:  parseYear(row[YEAR_COL]),
+          gross: parseNum(row[GROSS_COL]),
+        }),
+        applyAdjusted: (row, newGross) => {
+          const copy = row.slice();
+          copy[GROSS_COL] = '$' + Math.round(newGross).toLocaleString('en-US');
+          return copy;
+        },
+        renderMovies: (rows, isAdjusted) => {
+          const suffix = isAdjusted ? ' — ADJUSTED FOR INFLATION' : '';
+          document.getElementById('chart-header').textContent = data.label.toUpperCase() + suffix;
+          // Renumber rank column if present
+          const rankIdx = data.columns.findIndex(c => /^\s*rank\s*$/i.test(c));
+          if (rankIdx >= 0) {
+            rows = rows.map((r, i) => { const c = r.slice(); c[rankIdx] = String(i + 1); return c; });
+          }
+          renderChart({columns: data.columns, rows}, isAdjusted);
+        },
+      });
+    }
+  }
+
+  load();
+</script>
+
+</body>
+</html>
