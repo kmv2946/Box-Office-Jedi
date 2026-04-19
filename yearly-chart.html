@@ -25,42 +25,6 @@
       margin: 4px 0 14px;
       letter-spacing: 0.03em;
     }
-    .yc-tabs {
-      display: flex;
-      border-bottom: 2px solid #7F170E;
-      margin: 0 14px;
-      padding-left: 50px;
-      align-items: center;
-    }
-    .yc-tabs-label {
-      font-family: Verdana, Geneva, sans-serif;
-      font-size: 11px;
-      color: #444;
-      margin-right: 10px;
-    }
-    .yc-tab {
-      font-family: Verdana, Geneva, sans-serif;
-      font-weight: bold;
-      font-size: 11px;
-      padding: 5px 12px;
-      background: #EEEEEE;
-      color: #333;
-      border: 1px solid #CCCCCC;
-      border-bottom: none;
-      margin-right: 2px;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      cursor: pointer;
-    }
-    .yc-tab.active {
-      background: #FFFFFF;
-      color: #00239C;
-      border-bottom: 2px solid #FFFFFF;
-      margin-bottom: -2px;
-    }
-    .yc-tab:hover { background: #DCDCDC; color: #000; }
-
     .yc-wrap { padding: 10px 14px 20px; }
     .yc-table { width: 100%; border-collapse: collapse; font-family: 'Times New Roman', Times, serif; }
     .yc-table thead th {
@@ -170,12 +134,6 @@
 
     <h1 class="yc-title" id="yc-title">YEAR CHART</h1>
 
-    <div class="yc-tabs">
-      <span class="yc-tabs-label">View:</span>
-      <a class="yc-tab active" href="#" data-view="worldwide">Worldwide Grosses</a>
-      <a class="yc-tab"        href="#" data-view="domestic">Domestic Grosses</a>
-    </div>
-
     <div class="yc-wrap">
       <table class="yc-table">
         <thead id="yc-head"></thead>
@@ -236,39 +194,29 @@
   // Which year are we showing?
   const params = new URLSearchParams(location.search);
   const year = parseInt(params.get('year') || new Date().getFullYear(), 10);
-  document.getElementById('yc-title').textContent = year + ' WORLDWIDE GROSSES';
+  document.getElementById('yc-title').textContent = year + ' DOMESTIC GROSSES';
   document.getElementById('yc-breadcrumb').textContent = year;
   document.title = year + ' Yearly Chart — Box Office Jedi';
 
-  let currentView = 'worldwide';
-
-  function renderHeader(view) {
-    if (view === 'worldwide') {
-      document.getElementById('yc-head').innerHTML = (
-        '<tr>' +
-          '<th class="yc-th-rank">Rank</th>' +
-          '<th class="yc-th-left">Title (click to view)</th>' +
-          '<th>Studio*</th>' +
-          '<th>Worldwide</th>' +
-          '<th>Domestic / %</th>' +
-          '<th>Overseas / %</th>' +
-        '</tr>'
-      );
-    } else {
-      document.getElementById('yc-head').innerHTML = (
-        '<tr>' +
-          '<th class="yc-th-rank">Rank</th>' +
-          '<th class="yc-th-left">Title (click to view)</th>' +
-          '<th>Studio</th>' +
-          '<th>Domestic Gross</th>' +
-          '<th>Theaters</th>' +
-          '<th>Open</th>' +
-        '</tr>'
-      );
-    }
+  function fmtInt(n) {
+    if (!n) return '—';
+    return '$' + n.toLocaleString('en-US');
   }
 
-  function renderRows(view, rows) {
+  function renderHeader() {
+    document.getElementById('yc-head').innerHTML = (
+      '<tr>' +
+        '<th class="yc-th-rank">Rank</th>' +
+        '<th class="yc-th-left">Title (click to view)</th>' +
+        '<th class="yc-th-left">Distributor</th>' +
+        '<th>Domestic Gross</th>' +
+        '<th>Theaters</th>' +
+        '<th>Opening Weekend</th>' +
+      '</tr>'
+    );
+  }
+
+  function renderRows(rows) {
     if (!rows.length) {
       document.getElementById('yc-body').innerHTML =
         '<tr><td colspan="6" class="yc-empty">No data yet for ' + year + '. Come back soon!</td></tr>';
@@ -277,93 +225,55 @@
     const html = rows.map((r, i) => {
       const rank = r.rank || (i + 1);
       const title = r.title || '—';
-      if (view === 'worldwide') {
-        const dom = r.total_gross_domestic || r.total_gross || null;
-        const over = r.total_gross_overseas || (r.worldwide && dom ? r.worldwide - dom : null);
-        const ww   = r.worldwide || null;
-        const domPct = ww && dom ? dom / ww : null;
-        const ovrPct = ww && over ? over / ww : null;
-        return '<tr>' +
-          '<td class="yc-td-rank">' + rank + '</td>' +
-          '<td class="yc-td-title"><a href="movie.html?title=' + encodeURIComponent(title) + '">' + title + '</a></td>' +
-          '<td>' + (r.distributor || r.studio || '—') + '</td>' +
-          '<td>' + fmtShort(ww) + '</td>' +
-          '<td>' + fmtShort(dom) + ' / ' + fmtPct(domPct) + '</td>' +
-          '<td>' + fmtShort(over) + ' / ' + fmtPct(ovrPct) + '</td>' +
-        '</tr>';
-      } else {
-        return '<tr>' +
-          '<td class="yc-td-rank">' + rank + '</td>' +
-          '<td class="yc-td-title"><a href="movie.html?title=' + encodeURIComponent(title) + '">' + title + '</a></td>' +
-          '<td>' + (r.distributor || r.studio || '—') + '</td>' +
-          '<td>' + fmtShort(r.total_gross) + '</td>' +
-          '<td>' + (r.theaters ? r.theaters.toLocaleString('en-US') : '—') + '</td>' +
-          '<td>' + fmtShort(r.opening_weekend) + '</td>' +
-        '</tr>';
-      }
+      return '<tr>' +
+        '<td class="yc-td-rank">' + rank + '</td>' +
+        '<td class="yc-td-title"><a href="movie.html?title=' + encodeURIComponent(title) + '">' + title + '</a></td>' +
+        '<td class="yc-td-title">' + (r.distributor || r.studio || '—') + '</td>' +
+        '<td>' + fmtInt(r.total_gross) + '</td>' +
+        '<td>' + (r.theaters ? r.theaters.toLocaleString('en-US') : '—') + '</td>' +
+        '<td>' + fmtInt(r.opening_weekend) + '</td>' +
+      '</tr>';
     }).join('');
     document.getElementById('yc-body').innerHTML = html;
   }
 
   async function load() {
     let rows = [];
-    // Year-specific file would be data/years/YYYY.json (future-proof pattern).
-    // Falls back to data/yearly.json for the current year if no archive file exists yet.
     const tryUrls = ['data/years/' + year + '.json'];
+    // Fall back to data/yearly.json for the current year if the archive
+    // file exists but is empty.
     if (year === new Date().getFullYear()) tryUrls.push('data/yearly.json');
     for (const u of tryUrls) {
       try {
         const r = await fetch(u, {cache:'no-store'});
         if (!r.ok) continue;
         const d = await r.json();
-        rows = d.chart || d.movies || [];
+        const candidate = d.chart || d.movies || [];
+        if (candidate.length) { rows = candidate; }
         document.getElementById('yc-note').textContent =
           d.updated ? 'Last updated: ' + new Date(d.updated).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}) : '';
-        break;
+        if (rows.length) break;
       } catch(e) { /* keep trying */ }
     }
-    renderHeader(currentView);
-    renderRows(currentView, rows);
-
-    // Cache the rows so tab switches are instant
+    renderHeader();
+    renderRows(rows);
     window.__ycRows = rows;
   }
 
-  document.querySelectorAll('.yc-tab').forEach(tab => {
-    tab.addEventListener('click', function(e) {
-      e.preventDefault();
-      document.querySelectorAll('.yc-tab').forEach(t => t.classList.remove('active'));
-      this.classList.add('active');
-      currentView = this.dataset.view;
-      document.getElementById('yc-title').textContent = year + ' ' + (currentView === 'worldwide' ? 'WORLDWIDE' : 'DOMESTIC') + ' GROSSES';
-      renderHeader(currentView);
-      renderRows(currentView, window.__ycRows || []);
-    });
-  });
-
   load().then(() => {
-    if (!window.InflationTool) return;
-    // Wire inflation toggle. All rows in a yearly chart share the page year.
+    if (!window.InflationTool || !(window.__ycRows || []).length) return;
+    // All rows in a year's chart share the page year for inflation purposes.
     InflationTool.mount({
       container: document.getElementById('page-tools'),
       defaultYear: year,
       getMovies: () => window.__ycRows || [],
-      adjust: (m) => ({
-        year:  m.year || year,
-        gross: (currentView === 'worldwide') ? (m.worldwide || m.total_gross) : (m.total_gross || m.domestic),
-      }),
-      applyAdjusted: (m, g, r) => {
-        const copy = Object.assign({}, m, { rank: r });
-        if (currentView === 'worldwide') copy.worldwide = g;
-        else copy.total_gross = g;
-        return copy;
-      },
+      adjust: (m) => ({ year: m.year || year, gross: m.total_gross }),
+      applyAdjusted: (m, g, r) => Object.assign({}, m, { rank: r, total_gross: g }),
       renderMovies: (rows, isAdjusted) => {
         window.__ycRows = rows;
-        const suffix = isAdjusted ? ' (ADJ.)' : '';
         document.getElementById('yc-title').textContent =
-          year + ' ' + (currentView === 'worldwide' ? 'WORLDWIDE' : 'DOMESTIC') + ' GROSSES' + suffix;
-        renderRows(currentView, rows);
+          year + ' DOMESTIC GROSSES' + (isAdjusted ? ' (ADJ.)' : '');
+        renderRows(rows);
       },
     });
   });
