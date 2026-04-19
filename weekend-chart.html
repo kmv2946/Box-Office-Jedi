@@ -342,6 +342,9 @@
   <!-- Nav + Chart region (shared width so prev/next align with table edges) -->
   <div class="wc-chart-region">
 
+  <div id="page-tools"></div>
+  <div class="infl-banner">Showing weekend grosses adjusted for inflation (relative to today&rsquo;s ticket prices).</div>
+
   <!-- Weekend navigation -->
   <div class="wc-weekend-nav">
     <a class="wc-nav-prev" id="wc-nav-prev" href="#">&lt;&lt; Last Weekend</a>
@@ -608,6 +611,36 @@
 
       buildChart(data, allDates);
 
+      // ── Inflation toggle: use the year of the weekend ──────────────
+      window.__wcData = data;
+      window.__wcAllDates = allDates;
+      const weekendYear = (data.date_from || '').slice(0, 4);
+      if (window.InflationTool && weekendYear) {
+        InflationTool.mount({
+          container: document.getElementById('page-tools'),
+          defaultYear: +weekendYear,
+          getMovies: () => (window.__wcData.chart || []).slice(),
+          adjust: (m) => ({
+            year:  +weekendYear,
+            gross: m.weekend_gross || 0,
+          }),
+          applyAdjusted: (m, g, r) => Object.assign({}, m, {
+            rank: r,
+            weekend_gross: g,
+            // proportionally scale total_gross so it stays internally consistent
+            total_gross: m.weekend_gross
+              ? Math.round((m.total_gross || 0) * (g / m.weekend_gross))
+              : (m.total_gross || 0),
+            // avg_per_theater recomputed from adjusted gross
+            avg_per_theater: m.theaters ? Math.floor(g / m.theaters) : m.avg_per_theater,
+          }),
+          renderMovies: (rows) => {
+            const modifiedData = Object.assign({}, window.__wcData, { chart: rows });
+            buildChart(modifiedData, window.__wcAllDates);
+          },
+        });
+      }
+
     } catch(e) {
       document.getElementById('wc-date-range').textContent = 'Data unavailable';
       document.getElementById('wc-body').innerHTML =
@@ -619,6 +652,8 @@
 
   load();
 </script>
+
+<script src="assets/js/inflation.js"></script>
 
 </body>
 </html>

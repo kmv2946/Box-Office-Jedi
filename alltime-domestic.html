@@ -205,6 +205,9 @@
 
   <main class="main-content">
 
+    <div id="page-tools"></div>
+    <div class="infl-banner">Showing grosses adjusted for inflation (relative to today&rsquo;s ticket prices). Rankings reflect adjusted values.</div>
+
     <div class="at-page-header">
       <h1 class="at-page-title"><span class="arrow">&gt;</span> ALL TIME BOX OFFICE</h1>
     </div>
@@ -213,7 +216,7 @@
       <a href="alltime.html">&laquo; All-Time Index</a>
     </div>
 
-    <div class="chart-section-header">DOMESTIC GROSSES</div>
+    <div class="chart-section-header" id="chart-section-header">DOMESTIC GROSSES</div>
 
     <div class="at-pager" id="pager-top">
       <span class="current" id="page-label-1">#1&ndash;100</span>
@@ -291,6 +294,7 @@
 </footer>
 
 
+<script src="assets/js/inflation.js"></script>
 <script>
   document.getElementById('footer-year').textContent = new Date().getFullYear();
 
@@ -568,6 +572,26 @@
 
   // Initial render
   showPage(1);
+
+  // ── Inflation Adjust toggle ────────────────────────────────────────
+  // CHART is the array of all movies. When adjusted, we swap CHART out
+  // for an adjusted/re-ranked copy and re-render the current page.
+  let ORIGINAL = CHART.slice();
+  InflationTool.mount({
+    container: document.getElementById('page-tools'),
+    getMovies: () => ORIGINAL,
+    adjust: (m) => ({ year: m.y, gross: m.g }),
+    applyAdjusted: (m, g, r) => Object.assign({}, m, { g: g, r: r }),
+    renderMovies: (movies, isAdjusted) => {
+      CHART = movies;
+      // Update section header so the adjusted state is obvious
+      const hdr = document.getElementById('chart-section-header');
+      if (hdr) hdr.textContent = isAdjusted
+        ? 'DOMESTIC GROSSES — ADJUSTED FOR INFLATION'
+        : 'DOMESTIC GROSSES';
+      showPage(currentPage);
+    },
+  });
 </script>
 
 </body>

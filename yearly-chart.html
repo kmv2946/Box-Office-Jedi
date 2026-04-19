@@ -162,6 +162,9 @@
 
   <main class="main-content">
 
+    <div id="page-tools"></div>
+    <div class="infl-banner">Showing grosses adjusted for inflation (relative to today&rsquo;s ticket prices).</div>
+
     <div class="yc-page-title">&gt; <a href="yearly.html" style="color:#00239C;">YEARLY BOX OFFICE</a> &gt; <span id="yc-breadcrumb">YEAR</span></div>
     <div class="yc-section-bar"></div>
 
@@ -338,8 +341,34 @@
     });
   });
 
-  load();
+  load().then(() => {
+    if (!window.InflationTool) return;
+    // Wire inflation toggle. All rows in a yearly chart share the page year.
+    InflationTool.mount({
+      container: document.getElementById('page-tools'),
+      defaultYear: year,
+      getMovies: () => window.__ycRows || [],
+      adjust: (m) => ({
+        year:  m.year || year,
+        gross: (currentView === 'worldwide') ? (m.worldwide || m.total_gross) : (m.total_gross || m.domestic),
+      }),
+      applyAdjusted: (m, g, r) => {
+        const copy = Object.assign({}, m, { rank: r });
+        if (currentView === 'worldwide') copy.worldwide = g;
+        else copy.total_gross = g;
+        return copy;
+      },
+      renderMovies: (rows, isAdjusted) => {
+        window.__ycRows = rows;
+        const suffix = isAdjusted ? ' (ADJ.)' : '';
+        document.getElementById('yc-title').textContent =
+          year + ' ' + (currentView === 'worldwide' ? 'WORLDWIDE' : 'DOMESTIC') + ' GROSSES' + suffix;
+        renderRows(currentView, rows);
+      },
+    });
+  });
 </script>
+<script src="assets/js/inflation.js"></script>
 
 </body>
 </html>
