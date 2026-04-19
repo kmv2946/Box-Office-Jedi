@@ -75,11 +75,11 @@
       color: #FFFFFF;
       font-family: Verdana, Geneva, sans-serif;
       font-weight: normal;
-      font-size: 32px;
+      font-size: 26px;
       line-height: 1.05;
       letter-spacing: 0.02em;
       text-transform: uppercase;
-      padding: 4px 10px 6px;
+      padding: 5px 10px 6px;
       margin: 14px 14px 0;
       text-align: center;
     }
@@ -168,12 +168,16 @@
       vertical-align: middle;
     }
 
-    /* Title column — left aligned. Title link is blue (#00007B). */
+    /* Title column — left aligned. Title link is blue (#00007B) in Times.
+       The explicit font-family here overrides the site-wide `a { Verdana }`
+       rule in styles.css. */
     .rs-table td.rs-td-title {
       text-align: left;
       padding-right: 14px;
     }
     .rs-table td.rs-td-title a {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
       color: #00007B;
       text-decoration: none;
       font-weight: normal;
@@ -284,15 +288,21 @@
       <a href="releases.html?m=2028-plus">2028 &amp; Beyond</a>
     </div>
 
-    <!-- Prev / next month -->
-    <div class="rs-prevnext" id="rs-prevnext">
-      <span id="rs-prev"></span>
-      <span id="rs-next"></span>
+    <!-- Prev / next month (top) -->
+    <div class="rs-prevnext" id="rs-prevnext-top">
+      <span class="rs-prev"></span>
+      <span class="rs-next"></span>
     </div>
 
     <!-- Month content (rendered by JS) -->
     <div id="rs-month-content">
       <p class="rs-empty">Loading release schedule&hellip;</p>
+    </div>
+
+    <!-- Prev / next month (bottom) -->
+    <div class="rs-prevnext" id="rs-prevnext-bottom">
+      <span class="rs-prev"></span>
+      <span class="rs-next"></span>
     </div>
 
     <p class="rs-disclaimer">
@@ -499,17 +509,19 @@
     fillSelect(sel26, '2026');
     fillSelect(sel27, '2027');
 
-    // Prev / next
+    // Prev / next — populate both top and bottom strips
     const keys = Object.keys(months);
     const idx = keys.indexOf(currentKey);
     const prev = idx > 0 ? keys[idx - 1] : null;
     const next = idx >= 0 && idx < keys.length - 1 ? keys[idx + 1] : null;
-    document.getElementById('rs-prev').innerHTML = prev
+    const prevHtml = prev
       ? '<a href="releases.html?m=' + prev + '">&lt; ' + months[prev].name + '</a>'
-      : '<span>&nbsp;</span>';
-    document.getElementById('rs-next').innerHTML = next
+      : '&nbsp;';
+    const nextHtml = next
       ? '<a href="releases.html?m=' + next + '">' + months[next].name + ' &gt;</a>'
-      : '<span>&nbsp;</span>';
+      : '&nbsp;';
+    document.querySelectorAll('.rs-prevnext .rs-prev').forEach(el => { el.innerHTML = prevHtml; });
+    document.querySelectorAll('.rs-prevnext .rs-next').forEach(el => { el.innerHTML = nextHtml; });
   }
 
   // ── Pick the right starting month ───────────────────────────────────────

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yearly Chart &mdash; Box Office Jedi</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .yc-page-title {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #00239C;
+      padding: 6px 10px 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .yc-section-bar { height: 5px; background: #7F170E; margin-bottom: 12px; }
+    .yc-title {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 22px;
+      color: #7F170E;
+      text-align: center;
+      margin: 4px 0 14px;
+      letter-spacing: 0.03em;
+    }
+    .yc-tabs {
+      display: flex;
+      border-bottom: 2px solid #7F170E;
+      margin: 0 14px;
+      padding-left: 50px;
+      align-items: center;
+    }
+    .yc-tabs-label {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      color: #444;
+      margin-right: 10px;
+    }
+    .yc-tab {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 11px;
+      padding: 5px 12px;
+      background: #EEEEEE;
+      color: #333;
+      border: 1px solid #CCCCCC;
+      border-bottom: none;
+      margin-right: 2px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+    }
+    .yc-tab.active {
+      background: #FFFFFF;
+      color: #00239C;
+      border-bottom: 2px solid #FFFFFF;
+      margin-bottom: -2px;
+    }
+    .yc-tab:hover { background: #DCDCDC; color: #000; }
+
+    .yc-wrap { padding: 10px 14px 20px; }
+    .yc-table { width: 100%; border-collapse: collapse; font-family: 'Times New Roman', Times, serif; }
+    .yc-table thead th {
+      background: #F4F4FE;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 10px;
+      color: #444;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 5px 6px;
+      border-bottom: 2px solid #7F170E;
+      text-align: right;
+      white-space: nowrap;
+    }
+    .yc-table thead th.yc-th-left { text-align: left; padding-left: 10px; }
+    .yc-table thead th.yc-th-rank  { text-align: center; width: 40px; }
+
+    .yc-table tbody tr:nth-child(odd)  td { background: #F4F4FE; }
+    .yc-table tbody tr:nth-child(even) td { background: #FFFFFF; }
+    .yc-table td {
+      font-size: 13px;
+      color: #000;
+      padding: 4px 6px;
+      text-align: right;
+      white-space: nowrap;
+    }
+    .yc-table td.yc-td-rank  { text-align: center; width: 40px; color: #444; }
+    .yc-table td.yc-td-title {
+      text-align: left;
+      padding-left: 10px;
+      width: 44%;
+    }
+    .yc-table td.yc-td-title a {
+      font-family: 'Times New Roman', Times, serif;
+      color: #00007B;
+      text-decoration: none;
+    }
+    .yc-table td.yc-td-title a:hover { text-decoration: underline; }
+
+    .yc-empty {
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+      color: #777;
+      padding: 20px;
+      text-align: center;
+    }
+    .yc-note {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      color: #777;
+      margin-top: 10px;
+    }
+    .yc-back {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 11px;
+      color: #00239C;
+      text-decoration: none;
+      padding: 4px 14px 0;
+      display: inline-block;
+    }
+    .yc-back:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li class="active"><a href="yearly.html">YEARLY</a></li>
+        <li><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">CONTENTS</span>
+      <ul>
+        <li><a href="predictions.html">PREDICTIONS</a></li>
+        <li><a href="analysis.html">ANALYSIS</a></li>
+        <li><a href="features.html">FEATURES</a></li>
+        <li><a href="releases.html">RELEASE SCHEDULE</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li class="derby"><a href="derby.html">THE DERBY</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+  <main class="main-content">
+
+    <div class="yc-page-title">&gt; <a href="yearly.html" style="color:#00239C;">YEARLY BOX OFFICE</a> &gt; <span id="yc-breadcrumb">YEAR</span></div>
+    <div class="yc-section-bar"></div>
+
+    <h1 class="yc-title" id="yc-title">YEAR CHART</h1>
+
+    <div class="yc-tabs">
+      <span class="yc-tabs-label">View:</span>
+      <a class="yc-tab active" href="#" data-view="worldwide">Worldwide Grosses</a>
+      <a class="yc-tab"        href="#" data-view="domestic">Domestic Grosses</a>
+    </div>
+
+    <div class="yc-wrap">
+      <table class="yc-table">
+        <thead id="yc-head"></thead>
+        <tbody id="yc-body"><tr><td colspan="6" class="yc-empty">Loading&hellip;</td></tr></tbody>
+      </table>
+      <p class="yc-note" id="yc-note"></p>
+      <p><a class="yc-back" href="yearly.html">&lt; Back to Yearly Index</a></p>
+    </div>
+
+  </main>
+
+  <aside class="right-sidebar">
+    <div class="widget">
+      <div class="widget-header">YEARLY INDEX</div>
+      <div class="widget-body">
+        <p>Browse all years. <a href="yearly.html"><strong>Click here &gt;</strong></a></p>
+      </div>
+    </div>
+    <div class="widget">
+      <div class="widget-header">ALL TIME</div>
+      <div class="widget-body">
+        <p>See the all-time rankings. <a href="alltime.html"><strong>Click here &gt;</strong></a></p>
+      </div>
+    </div>
+  </aside>
+
+</div>
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">"Serving your box office needs since 2026."</span>
+  <div style="margin-top:8px;">
+    <img src="assets/images/flag_sm_anim.gif" alt="American flag" style="display:inline-block;height:auto;">
+  </div>
+</footer>
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') doSearch();
+  });
+
+  function fmtShort(n) {
+    if (!n) return '—';
+    if (n >= 1e9) return '$' + (n / 1e9).toFixed(1) + 'B';
+    if (n >= 1e7) return '$' + (n / 1e6).toFixed(1) + 'M';
+    return '$' + n.toLocaleString('en-US');
+  }
+  function fmtPct(p) {
+    if (p === null || p === undefined) return '—';
+    return (p * 100).toFixed(1) + '%';
+  }
+
+  // Which year are we showing?
+  const params = new URLSearchParams(location.search);
+  const year = parseInt(params.get('year') || new Date().getFullYear(), 10);
+  document.getElementById('yc-title').textContent = year + ' WORLDWIDE GROSSES';
+  document.getElementById('yc-breadcrumb').textContent = year;
+  document.title = year + ' Yearly Chart — Box Office Jedi';
+
+  let currentView = 'worldwide';
+
+  function renderHeader(view) {
+    if (view === 'worldwide') {
+      document.getElementById('yc-head').innerHTML = (
+        '<tr>' +
+          '<th class="yc-th-rank">Rank</th>' +
+          '<th class="yc-th-left">Title (click to view)</th>' +
+          '<th>Studio*</th>' +
+          '<th>Worldwide</th>' +
+          '<th>Domestic / %</th>' +
+          '<th>Overseas / %</th>' +
+        '</tr>'
+      );
+    } else {
+      document.getElementById('yc-head').innerHTML = (
+        '<tr>' +
+          '<th class="yc-th-rank">Rank</th>' +
+          '<th class="yc-th-left">Title (click to view)</th>' +
+          '<th>Studio</th>' +
+          '<th>Domestic Gross</th>' +
+          '<th>Theaters</th>' +
+          '<th>Open</th>' +
+        '</tr>'
+      );
+    }
+  }
+
+  function renderRows(view, rows) {
+    if (!rows.length) {
+      document.getElementById('yc-body').innerHTML =
+        '<tr><td colspan="6" class="yc-empty">No data yet for ' + year + '. Come back soon!</td></tr>';
+      return;
+    }
+    const html = rows.map((r, i) => {
+      const rank = r.rank || (i + 1);
+      const title = r.title || '—';
+      if (view === 'worldwide') {
+        const dom = r.total_gross_domestic || r.total_gross || null;
+        const over = r.total_gross_overseas || (r.worldwide && dom ? r.worldwide - dom : null);
+        const ww   = r.worldwide || null;
+        const domPct = ww && dom ? dom / ww : null;
+        const ovrPct = ww && over ? over / ww : null;
+        return '<tr>' +
+          '<td class="yc-td-rank">' + rank + '</td>' +
+          '<td class="yc-td-title"><a href="movie.html?title=' + encodeURIComponent(title) + '">' + title + '</a></td>' +
+          '<td>' + (r.distributor || r.studio || '—') + '</td>' +
+          '<td>' + fmtShort(ww) + '</td>' +
+          '<td>' + fmtShort(dom) + ' / ' + fmtPct(domPct) + '</td>' +
+          '<td>' + fmtShort(over) + ' / ' + fmtPct(ovrPct) + '</td>' +
+        '</tr>';
+      } else {
+        return '<tr>' +
+          '<td class="yc-td-rank">' + rank + '</td>' +
+          '<td class="yc-td-title"><a href="movie.html?title=' + encodeURIComponent(title) + '">' + title + '</a></td>' +
+          '<td>' + (r.distributor || r.studio || '—') + '</td>' +
+          '<td>' + fmtShort(r.total_gross) + '</td>' +
+          '<td>' + (r.theaters ? r.theaters.toLocaleString('en-US') : '—') + '</td>' +
+          '<td>' + fmtShort(r.opening_weekend) + '</td>' +
+        '</tr>';
+      }
+    }).join('');
+    document.getElementById('yc-body').innerHTML = html;
+  }
+
+  async function load() {
+    let rows = [];
+    // Year-specific file would be data/years/YYYY.json (future-proof pattern).
+    // Falls back to data/yearly.json for the current year if no archive file exists yet.
+    const tryUrls = ['data/years/' + year + '.json'];
+    if (year === new Date().getFullYear()) tryUrls.push('data/yearly.json');
+    for (const u of tryUrls) {
+      try {
+        const r = await fetch(u, {cache:'no-store'});
+        if (!r.ok) continue;
+        const d = await r.json();
+        rows = d.chart || d.movies || [];
+        document.getElementById('yc-note').textContent =
+          d.updated ? 'Last updated: ' + new Date(d.updated).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}) : '';
+        break;
+      } catch(e) { /* keep trying */ }
+    }
+    renderHeader(currentView);
+    renderRows(currentView, rows);
+
+    // Cache the rows so tab switches are instant
+    window.__ycRows = rows;
+  }
+
+  document.querySelectorAll('.yc-tab').forEach(tab => {
+    tab.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelectorAll('.yc-tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      currentView = this.dataset.view;
+      document.getElementById('yc-title').textContent = year + ' ' + (currentView === 'worldwide' ? 'WORLDWIDE' : 'DOMESTIC') + ' GROSSES';
+      renderHeader(currentView);
+      renderRows(currentView, window.__ycRows || []);
+    });
+  });
+
+  load();
+</script>
+
+</body>
+</html>

@@ -3,8 +3,162 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yearly Chart — Box Office Jedi</title>
+  <title>Yearly Box Office &mdash; Box Office Jedi</title>
   <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+
+    /* Page header */
+    .yr-page-title {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #00239C;
+      padding: 6px 10px 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .yr-section-bar { height: 5px; background: #7F170E; margin-bottom: 12px; }
+    .yr-title {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+      color: #7F170E;
+      text-align: center;
+      margin: 4px 0 2px;
+    }
+    .yr-subtitle {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      color: #444;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    /* Tabs — mirror the showdown tab pattern for visual consistency */
+    .yr-tabs {
+      display: flex;
+      border-bottom: 2px solid #7F170E;
+      margin: 0 14px;
+      padding-left: 50px;
+      align-items: center;
+    }
+    .yr-tabs-label {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 11px;
+      color: #444;
+      margin-right: 10px;
+    }
+    .yr-tab {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 11px;
+      padding: 5px 12px;
+      cursor: pointer;
+      background: #EEEEEE;
+      color: #333;
+      border: 1px solid #CCCCCC;
+      border-bottom: none;
+      margin-right: 2px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .yr-tab:hover { background: #DCDCDC; color: #000; }
+    .yr-tab.active {
+      background: #FFFFFF;
+      color: #00239C;
+      border-bottom: 2px solid #FFFFFF;
+      margin-bottom: -2px;
+      position: relative;
+    }
+
+    /* Panels */
+    .yr-panel { display: none; padding: 10px 14px 20px; }
+    .yr-panel.active { display: block; }
+
+    /* Shared table styles */
+    .yr-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Times New Roman', Times, serif;
+    }
+    .yr-table thead th {
+      background: #F4F4FE;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 10px;
+      color: #444;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 6px;
+      text-align: right;
+      border-bottom: 2px solid #7F170E;
+      vertical-align: bottom;
+      white-space: nowrap;
+    }
+    .yr-table thead th.yr-th-left { text-align: left; padding-left: 10px; }
+    .yr-table thead th.yr-th-year { text-align: center; }
+
+    .yr-table tbody tr:nth-child(odd)  td { background: #F4F4FE; }
+    .yr-table tbody tr:nth-child(even) td { background: #FFFFFF; }
+    .yr-table tbody tr.yr-current td    { background: #FFFEE0; }  /* highlight current year */
+
+    .yr-table td {
+      font-size: 13px;
+      color: #000;
+      padding: 4px 6px;
+      text-align: right;
+      white-space: nowrap;
+      border-right: 1px solid #E8E8E8;
+    }
+    .yr-table td.yr-td-year {
+      text-align: center;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 13px;
+      color: #000;
+      width: 56px;
+    }
+    .yr-table td.yr-td-year a {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 13px;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .yr-table td.yr-td-year a:hover { text-decoration: underline; }
+    .yr-table td.yr-td-title {
+      text-align: left;
+      padding-left: 10px;
+    }
+    .yr-table td.yr-td-title a {
+      font-family: 'Times New Roman', Times, serif;
+      color: #00007B;
+      text-decoration: none;
+    }
+    .yr-table td.yr-td-title a:hover { text-decoration: underline; }
+
+    .yr-pos { color: #006600; }
+    .yr-neg { color: #990000; }
+
+    .yr-note {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      color: #777;
+      margin-top: 8px;
+      padding: 0 4px;
+    }
+
+    .yr-empty {
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+      color: #777;
+      padding: 20px;
+      text-align: center;
+    }
+
+  </style>
 </head>
 <body>
 
@@ -41,29 +195,88 @@
   </nav>
 
   <main class="main-content">
-    <div class="page-header">
-      <h1>Yearly Box Office — <span id="year-label">2026</span></h1>
-      <div class="page-subtitle">Year-to-date domestic grosses</div>
+
+    <div class="yr-page-title">&gt; YEARLY BOX OFFICE</div>
+    <div class="yr-section-bar"></div>
+
+    <h1 class="yr-title">YEARLY BOX OFFICE</h1>
+    <p class="yr-subtitle">(Click on year to view full chart.)</p>
+
+    <div class="yr-tabs">
+      <span class="yr-tabs-label">View:</span>
+      <a class="yr-tab active" href="#" data-tab="domestic">Domestic</a>
+      <a class="yr-tab"        href="#" data-tab="ytd">YTD Comparison</a>
+      <a class="yr-tab"        href="#" data-tab="opening">Opening Weekends</a>
+      <a class="yr-tab"        href="#" data-tab="worldwide">Worldwide</a>
     </div>
 
-    <div style="padding:10px 12px;">
-      <table class="chart-table">
+    <!-- DOMESTIC -->
+    <div class="yr-panel active" id="panel-domestic">
+      <table class="yr-table">
         <thead>
           <tr>
-            <th>#</th>
-            <th>Title</th>
-            <th>Distributor</th>
-            <th class="num">Total Gross</th>
+            <th class="yr-th-year">Year</th>
+            <th>Total<br>Gross**</th>
+            <th>Change</th>
+            <th>Tickets<br>Sold*</th>
+            <th>% Change</th>
+            <th>Total<br>Screens</th>
+            <th>Total<br>Price</th>
+            <th>Avg.</th>
+            <th># of<br>Pictures</th>
+            <th class="yr-th-left">#1 Picture</th>
           </tr>
         </thead>
-        <tbody id="yearly-body">
-          <tr><td colspan="4" style="text-align:center;padding:20px;color:#666;">Loading data...</td></tr>
-        </tbody>
+        <tbody id="yr-domestic-body"><tr><td colspan="10" class="yr-empty">Loading&hellip;</td></tr></tbody>
       </table>
-      <p style="font-size:11px;color:#777;margin-top:8px;font-family:Verdana,sans-serif;">
-        Data via The Numbers. <span id="yearly-updated"></span>
+      <p class="yr-note">* Calculated by dividing Total Gross by that year&rsquo;s average ticket price.<br>
+        ** Totals include the domestic theatrical gross for all features released in the calendar year.</p>
+    </div>
+
+    <!-- YTD COMPARISON -->
+    <div class="yr-panel" id="panel-ytd">
+      <table class="yr-table" id="yr-ytd-table">
+        <thead id="yr-ytd-head"></thead>
+        <tbody id="yr-ytd-body"><tr><td colspan="8" class="yr-empty">Loading&hellip;</td></tr></tbody>
+      </table>
+      <p class="yr-note">* Gross in Millions. Data as of <span id="yr-ytd-asof">Jan. 1</span>
+        through the most recent closed day of the reference year.<br>
+        Compare year-over-year, year-to-month, year-to-quarter, or year-to-date.
       </p>
     </div>
+
+    <!-- OPENING WEEKENDS -->
+    <div class="yr-panel" id="panel-opening">
+      <table class="yr-table">
+        <thead>
+          <tr>
+            <th class="yr-th-year">Year</th>
+            <th class="yr-th-left">#1 Movie</th>
+            <th>Opening</th>
+            <th>% of Total</th>
+            <th>Theaters</th>
+            <th>Average</th>
+            <th>Total Gross</th>
+          </tr>
+        </thead>
+        <tbody id="yr-opening-body"><tr><td colspan="7" class="yr-empty">Loading&hellip;</td></tr></tbody>
+      </table>
+    </div>
+
+    <!-- WORLDWIDE -->
+    <div class="yr-panel" id="panel-worldwide">
+      <table class="yr-table">
+        <thead>
+          <tr>
+            <th class="yr-th-year">Year</th>
+            <th class="yr-th-left">#1 Movie</th>
+            <th>Worldwide Gross</th>
+          </tr>
+        </thead>
+        <tbody id="yr-worldwide-body"><tr><td colspan="3" class="yr-empty">Loading&hellip;</td></tr></tbody>
+      </table>
+    </div>
+
   </main>
 
   <aside class="right-sidebar">
@@ -74,19 +287,25 @@
       </div>
     </div>
     <div class="widget">
+      <div class="widget-header">WEEKEND</div>
+      <div class="widget-body">
+        <p>See this weekend&rsquo;s chart. <a href="weekend-chart.html"><strong>Latest Chart &gt;</strong></a></p>
+      </div>
+    </div>
+    <div class="widget">
       <div class="widget-header" style="background:#7F170E;">DERBY GAME</div>
       <div class="widget-body" style="background:#e8f4fd;">
-        <p>Predict the weekend box office. <a href="derby.html"><strong>Play now &gt;</strong></a></p>
+        <p>Predict the weekend. <a href="derby.html"><strong>Play now &gt;</strong></a></p>
       </div>
     </div>
   </aside>
 
-</div>
+</div><!-- /page-wrapper -->
 
 <footer class="site-footer">
   Box Office Jedi &copy; <span id="footer-year">2026</span>
   <span class="footer-tagline">"Serving your box office needs since 2026."</span>
-  <div class="footer-flag">
+  <div style="margin-top:8px;">
     <img src="assets/images/flag_sm_anim.gif" alt="American flag" style="display:inline-block;height:auto;">
   </div>
 </footer>
@@ -97,33 +316,135 @@
     const q = document.getElementById('sidebar-search-input').value.trim();
     if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
   }
-  document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
+  document.getElementById('sidebar-search-input').addEventListener('keydown', e => {
     if (e.key === 'Enter') doSearch();
   });
-  function fmtM(n) { return n ? '$' + (n/1000000).toFixed(1)+'M' : '—'; }
 
-  async function load() {
-    try {
-      const r = await fetch('data/yearly.json');
-      if (!r.ok) throw new Error();
-      const d = await r.json();
-      if (d.year) document.getElementById('year-label').textContent = d.year;
-      if (d.updated) document.getElementById('yearly-updated').textContent =
-        'Last updated: ' + new Date(d.updated).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
-      if (!d.chart || !d.chart.length) throw new Error();
+  // ── Tab switching ─────────────────────────────────────────────────────
+  document.querySelectorAll('.yr-tab').forEach(tab => {
+    tab.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelectorAll('.yr-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.yr-panel').forEach(p => p.classList.remove('active'));
+      this.classList.add('active');
+      document.getElementById('panel-' + this.dataset.tab).classList.add('active');
+    });
+  });
 
-      const rows = d.chart.map(m => `<tr>
-        <td class="rank">${m.rank}</td>
-        <td class="title"><a href="movie.html?id=${m.tmdb_id||''}&title=${encodeURIComponent(m.title)}">${m.title}</a></td>
-        <td>${m.distributor||'—'}</td>
-        <td class="num">${fmtM(m.total_gross)}</td>
-      </tr>`).join('');
-      document.getElementById('yearly-body').innerHTML = rows;
-    } catch(e) {
-      document.getElementById('yearly-body').innerHTML =
-        '<tr><td colspan="4" style="text-align:center;padding:20px;color:#666;font-family:Verdana,sans-serif;">Yearly data not yet available.</td></tr>';
-    }
+  // ── Formatting helpers ────────────────────────────────────────────────
+  function fmtDollars(n) {
+    if (n === null || n === undefined) return '—';
+    // Choose shape based on size; big totals get full commas, opens get full commas
+    return '$' + n.toLocaleString('en-US');
   }
+  function fmtShort(n) {
+    if (n === null || n === undefined) return '—';
+    // "$10.4B" / "$423.0M" / "$89,269,066"
+    if (n >= 1e9) return '$' + (n / 1e9).toFixed(1) + 'B';
+    if (n >= 1e7) return '$' + (n / 1e6).toFixed(1) + 'M';
+    return '$' + n.toLocaleString('en-US');
+  }
+  function fmtInt(n) {
+    if (n === null || n === undefined) return '—';
+    return n.toLocaleString('en-US');
+  }
+  function fmtPct(p) {
+    if (p === null || p === undefined) return '—';
+    const pct = (p * 100).toFixed(1);
+    const cls = p > 0 ? 'yr-pos' : p < 0 ? 'yr-neg' : '';
+    const sign = p > 0 ? '+' : '';
+    return '<span class="' + cls + '">' + sign + pct + '%</span>';
+  }
+
+  // ── Load data + render ────────────────────────────────────────────────
+  async function load() {
+    let data;
+    try {
+      const r = await fetch('data/yearly_index.json', {cache:'no-store'});
+      if (!r.ok) throw new Error('no data');
+      data = await r.json();
+    } catch(e) {
+      ['yr-domestic-body','yr-ytd-body','yr-opening-body','yr-worldwide-body']
+        .forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.innerHTML = '<tr><td colspan="10" class="yr-empty">Data not yet available.</td></tr>';
+        });
+      return;
+    }
+
+    const years = (data.years || []).slice().sort((a,b) => b.year - a.year);
+    const currentYear = new Date().getFullYear();
+
+    // — Domestic —
+    const dom = years.map(y => {
+      const mark = y.year === currentYear ? ' class="yr-current"' : '';
+      return '<tr' + mark + '>' +
+        '<td class="yr-td-year"><a href="yearly-chart.html?year=' + y.year + '">' + y.year + '</a></td>' +
+        '<td>' + fmtShort(y.total_gross) + '</td>' +
+        '<td>' + fmtPct(y.change_pct) + '</td>' +
+        '<td>' + (y.tickets_sold ? fmtInt(Math.round(y.tickets_sold / 1e6)) + 'M' : '—') + '</td>' +
+        '<td>' + fmtPct(y.tickets_change_pct) + '</td>' +
+        '<td>' + (y.total_screens ? fmtInt(y.total_screens) : '—') + '</td>' +
+        '<td>' + (y.avg_ticket_price ? '$' + y.avg_ticket_price.toFixed(2) : '—') + '</td>' +
+        '<td>' + (y.num_pictures ? fmtInt(y.num_pictures) : '—') + '</td>' +
+        '<td>' + '—' + '</td>' +
+        '<td class="yr-td-title">' + (y.top_title ? '<a href="movie.html?title=' + encodeURIComponent(y.top_title) + '">' + y.top_title + '</a>' : '—') + '</td>' +
+        '</tr>';
+    }).join('');
+    document.getElementById('yr-domestic-body').innerHTML = dom;
+
+    // — YTD Comparison —
+    // Build header: Year | YTD Gross* | then one "% change" column per of the 5 most recent years
+    const refYears = years.slice(0, 5).map(y => y.year);
+    document.getElementById('yr-ytd-head').innerHTML =
+      '<tr><th class="yr-th-year">Year</th>' +
+      '<th>YTD<br>Gross*</th>' +
+      refYears.map(y => '<th>' + y + '<br>% change</th>').join('') +
+      '</tr>';
+    const ytd = years.slice(0, 8).map(y => {
+      const row = ['<td class="yr-td-year"><a href="yearly-chart.html?year=' + y.year + '">' + y.year + '</a></td>'];
+      row.push('<td>' + fmtShort(y.total_gross) + '</td>');
+      refYears.forEach(ry => {
+        if (ry === y.year) { row.push('<td>&nbsp;</td>'); return; }
+        const ref = years.find(z => z.year === ry);
+        if (!ref || !ref.total_gross) { row.push('<td>—</td>'); return; }
+        const pct = (y.total_gross - ref.total_gross) / ref.total_gross;
+        row.push('<td>' + fmtPct(pct) + '</td>');
+      });
+      return '<tr>' + row.join('') + '</tr>';
+    }).join('');
+    document.getElementById('yr-ytd-body').innerHTML = ytd;
+    const asof = new Date(data.updated || Date.now());
+    document.getElementById('yr-ytd-asof').textContent =
+      'Jan. 1 through ' + asof.toLocaleDateString('en-US',{month:'short', day:'numeric'});
+
+    // — Opening Weekends —
+    const op = years.map(y => {
+      const pct = (y.top_opening && y.top_gross) ? y.top_opening / y.top_gross : null;
+      const avg = (y.top_opening && y.top_theaters) ? Math.floor(y.top_opening / y.top_theaters) : null;
+      return '<tr>' +
+        '<td class="yr-td-year"><a href="yearly-chart.html?year=' + y.year + '">' + y.year + '</a></td>' +
+        '<td class="yr-td-title">' + (y.top_title ? '<a href="movie.html?title=' + encodeURIComponent(y.top_title) + '">' + y.top_title + '</a>' : '—') + '</td>' +
+        '<td>' + fmtDollars(y.top_opening) + '</td>' +
+        '<td>' + (pct !== null ? (pct * 100).toFixed(1) + '%' : '—') + '</td>' +
+        '<td>' + (y.top_theaters ? fmtInt(y.top_theaters) : '—') + '</td>' +
+        '<td>' + (avg ? '$' + fmtInt(avg) : '—') + '</td>' +
+        '<td>' + fmtDollars(y.top_gross) + '</td>' +
+        '</tr>';
+    }).join('');
+    document.getElementById('yr-opening-body').innerHTML = op;
+
+    // — Worldwide —
+    const ww = years.map(y => {
+      return '<tr>' +
+        '<td class="yr-td-year"><a href="yearly-chart.html?year=' + y.year + '">' + y.year + '</a></td>' +
+        '<td class="yr-td-title">' + (y.top_title ? '<a href="movie.html?title=' + encodeURIComponent(y.top_title) + '">' + y.top_title + '</a>' : '—') + '</td>' +
+        '<td>' + fmtShort(y.top_worldwide) + '</td>' +
+        '</tr>';
+    }).join('');
+    document.getElementById('yr-worldwide-body').innerHTML = ww;
+  }
+
   load();
 </script>
 
