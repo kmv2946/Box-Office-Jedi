@@ -45,6 +45,24 @@
       margin: 0 0 10px;
       font-style: italic;
     }
+    .chart-description {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      color: #000;
+      line-height: 1.4;
+      margin: 8px 28px 10px;
+      padding: 8px 12px;
+      background: #F4F4FE;
+      border-left: 3px solid #7F170E;
+    }
+    .chart-notes {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 12px;
+      font-style: italic;
+      color: #555;
+      margin: 0 28px 10px;
+      padding: 0 12px;
+    }
 
     .at-dateline {
       font-family: Verdana, Geneva, sans-serif;
@@ -158,6 +176,8 @@
 
     <div class="chart-section-header" id="chart-header">CHART</div>
     <div class="chart-subtitle"  id="chart-subtitle"></div>
+    <p   class="chart-description" id="chart-description" style="display:none;"></p>
+    <p   class="chart-notes"       id="chart-notes"       style="display:none;"></p>
     <div class="at-dateline"     id="chart-dateline"></div>
 
     <div class="at-wrap">
@@ -320,6 +340,16 @@
     }
     if (data.updated) {
       document.getElementById('chart-dateline').textContent = 'Data as of: ' + data.updated;
+    }
+    if (data.description) {
+      const d = document.getElementById('chart-description');
+      d.textContent = data.description;
+      d.style.display = '';
+    }
+    if (data.notes) {
+      const n = document.getElementById('chart-notes');
+      n.textContent = data.notes;
+      n.style.display = '';
     }
 
     YEAR_COL  = detectYearColumn(data.columns, data.rows);
