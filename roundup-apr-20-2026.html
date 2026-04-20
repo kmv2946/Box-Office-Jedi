@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekend Roundup: &#8216;Mario&#8217; Holds, &#8216;Hail Mary&#8217; Enters Rare Territory, &#8216;Lee&#8217; Crones &mdash; Box Office Jedi</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+
+    .article-wrap { padding: 0; }
+
+    /* WEEKEND ROUNDUP section bar */
+    .article-section-header { padding: 4px 10px 2px; }
+    .article-section-header a {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .article-section-header a:hover { text-decoration: underline; }
+    .article-section-bar {
+      height: 5px;
+      background: #7F170E;
+      margin-bottom: 10px;
+    }
+
+    /* Headline */
+    .article-headline {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 18pt;
+      color: #000;
+      line-height: 1.15;
+      margin: 0 10px 3px;
+    }
+
+    /* Byline */
+    .article-byline-name {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 13pt;
+      color: #000;
+      margin: 0 10px 1px;
+    }
+    .article-byline-date {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 10pt;
+      color: #000;
+      display: block;
+      margin: 0 10px 10px;
+    }
+
+    /* Body text */
+    .article-body { padding: 0 10px; }
+    .article-body p {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16pt;
+      line-height: 1.35;
+      color: #000;
+      margin-bottom: 10px;
+      text-align: justify;
+    }
+
+    /* Drop cap */
+    .article-body p.drop-cap::first-letter {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 4em;
+      line-height: 0.75;
+      float: left;
+      margin: 5px 3px 0 0;
+      color: #00239C;
+    }
+
+    /* Article image */
+    .article-img {
+      float: left;
+      margin: 0 12px 8px 0;
+      border: 1px solid #CCCCCC;
+    }
+    .article-img-placeholder {
+      width: 300px;
+      height: 170px;
+      background: #CCCCCC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      color: #666;
+      text-align: center;
+    }
+    .article-img-caption {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 10px;
+      color: #333;
+      text-align: center;
+      background: #EEEEEE;
+      padding: 3px 4px;
+      box-sizing: border-box;
+    }
+
+    /* Film links */
+    .article-body a.film-link {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 16pt;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .article-body a.film-link:hover { text-decoration: underline; }
+    .article-body .film {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+    }
+
+    /* Showdown callout link */
+    .article-body p.roundup-link {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11pt;
+      font-weight: bold;
+      color: #00239C;
+      text-align: left;
+      margin: 2px 0 14px 0;
+      padding: 6px 10px 6px 12px;
+      border-left: 4px solid #7F170E;
+      background: #F4F4FE;
+    }
+    .article-body p.roundup-link a {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 11pt;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .article-body p.roundup-link a:hover { text-decoration: underline; }
+
+    /* ── Chart + Table blocks ────────────────────────────── */
+    .article-chart-wrap {
+      margin: 14px 0 10px;
+      padding: 12px;
+      background: #FFFFFF;
+      border: 1px solid #A8A8A8;
+      box-shadow: 3px 3px 0 #545454;
+    }
+    .article-chart-title {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 13px;
+      color: #7F170E;
+      text-align: center;
+      margin-bottom: 2px;
+      letter-spacing: 0.02em;
+    }
+    .article-chart-sub {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 12px;
+      color: #333;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    svg.bo-chart, svg.bo-table { display: block; width: 100%; height: auto; }
+
+    .bo-axis-label {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px; font-weight: bold; fill: #000;
+    }
+    .bo-tick-label {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 10px; fill: #333;
+    }
+    .bo-grid { stroke: #E4E4E4; stroke-width: 1; }
+    .bo-grid-major { stroke: #C8C8C8; stroke-width: 1; }
+    .bo-axis { stroke: #000; stroke-width: 1.5; }
+    .bo-line { fill: none; stroke-width: 2.2; }
+    .bo-dot  { stroke: #FFFFFF; stroke-width: 1.2; }
+
+    .bo-legend {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3px 18px;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+    }
+    .bo-legend-item { display: flex; align-items: center; gap: 8px; }
+    .bo-swatch {
+      display: inline-block; width: 22px; height: 4px;
+      border-radius: 1px; flex-shrink: 0;
+    }
+    .bo-legend-name { color: #000; font-weight: bold; }
+    .bo-legend-note {
+      color: #555; font-weight: normal;
+      font-family: 'Times New Roman', Times, serif; font-size: 12px;
+    }
+
+    /* Clearfix */
+    .clearfix::after { content: ""; display: table; clear: both; }
+
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">CONTENTS</span>
+      <ul>
+        <li><a href="predictions.html">PREDICTIONS</a></li>
+        <li class="active"><a href="analysis.html">ANALYSIS</a></li>
+        <li><a href="features.html">FEATURES</a></li>
+        <li><a href="releases.html">RELEASE SCHEDULE</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li class="derby"><a href="derby.html">THE DERBY</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+
+  <main class="main-content">
+    <div class="article-wrap">
+
+      <!-- Section header -->
+      <div class="article-section-header">
+        <a href="news.html">WEEKEND ROUNDUP</a>
+      </div>
+      <div class="article-section-bar"></div>
+
+      <h1 class="article-headline">&#8216;Mario&#8217; Holds, &#8216;Hail Mary&#8217; Enters Rare Territory, &#8216;Lee&#8217; Crones</h1>
+      <p class="article-byline-name">By Box Office Jedi</p>
+      <span class="article-byline-date">April 20, 2026</span>
+
+      <div class="article-body">
+
+        <!-- Lead with Mario, image floats left (image is a placeholder pending upload) -->
+        <div class="clearfix">
+          <figure class="article-img">
+            <img src="assets/images/roundup-apr-20-2026.jpg" alt="Project Hail Mary" style="width:300px;display:block;">
+            <figcaption class="article-img-caption"><strong>Project Hail Mary</strong></figcaption>
+          </figure>
+
+          <p class="drop-cap">We came in close on <a href="#" class="film-link">The Super Mario Galaxy Movie</a> again &#8212; over by about $1 million on our forecast. The trajectory still points to a final in the neighborhood of what <a href="#" class="film-link">Minecraft</a> managed last year, and roughly $100 million shy of the first <span class="film">Mario</span>. Not bad for a second movie in a billion-dollar franchise, but not exactly a victory lap either.</p>
+        </div>
+
+        <p class="roundup-link">&#x25B6; <a href="showdown-mario.html">Mario Franchise Showdown &gt;&gt;</a></p>
+
+        <p>There&#8217;s not much more to dig into on <span class="film">Mario</span> itself, but here&#8217;s a fun use for the new toggle we just rolled out that lets you adjust any chart on the site for ticket-price inflation: <span class="film">Mario Galaxy</span>&#8217;s current total is roughly in line with <a href="#" class="film-link">Dr. Dolittle</a> (1998), once you bring <span class="film">Dolittle</span> up to 2026&#8217;s average ticket price. Everything used to be a hit. Or nothing is now a hit. Depends on how you squint.</p>
+
+        <p>The most interesting thing that happened this weekend &#8212; and it doesn&#8217;t happen often &#8212; is that <a href="#" class="film-link">Project Hail Mary</a> joined the top ten highest-grossing fifth weekends in domestic box office history. With $20.5 million in its fifth frame, it slots in tied with <a href="#" class="film-link">The Avengers</a>, and just a hair behind <a href="#" class="film-link">Barbie</a>.</p>
+
+        <p>A quick asterisk: we&#8217;re excluding <a href="#" class="film-link">Paranormal Activity</a> and two Clint Eastwood films &#8212; <a href="#" class="film-link">American Sniper</a> and <a href="#" class="film-link">Gran Torino</a> &#8212; even though most charts will show them ranking here. Their first weekends were in limited release, and counting those as the first few weekends skews the comparison. We want wide-release versus wide-release.</p>
+
+        <p>If you&#8217;re still hovering above $20 million on your fifth weekend, you&#8217;ve done one of two things. You either opened so enormously that it took five full weeks to come down to that level &#8212; think <a href="#" class="film-link">Star Wars: The Force Awakens</a>, <a href="#" class="film-link">Black Panther</a>, <span class="film">The Avengers</span> &#8212; or you&#8217;re simply so well-liked that you&#8217;ve been camped there the whole time. That second group is much smaller. It&#8217;s essentially <a href="#" class="film-link">Titanic</a> and <a href="#" class="film-link">The Sixth Sense</a>, two of the leggiest blockbusters in modern history. The latter feat is, in our opinion, vastly more impressive. Posting $20 million on your fifth weekend is easy if you opened to $200 million. Posting it when you opened to $26.7 million is something else entirely.</p>
+
+        <!-- ========================== CHART ========================== -->
+        <div class="article-chart-wrap">
+          <div class="article-chart-title">FIRST FIVE WEEKENDS &#8212; HOW THESE TEN FILMS PLAYED</div>
+          <div class="article-chart-sub">Weekend gross in $ millions (domestic). Weekends 1&ndash;5 of release.</div>
+
+          <svg class="bo-chart" viewBox="0 0 900 560" role="img" aria-label="Line chart of first five weekend grosses for ten films">
+            <!-- Plot: x 80–860 (width 780), y 50–470 (height 420). Y range 0–260M. y = 470 - val*1.61538 -->
+
+            <!-- Minor gridlines -->
+            <line class="bo-grid" x1="80" y1="437.69" x2="860" y2="437.69"/>
+            <line class="bo-grid" x1="80" y1="405.38" x2="860" y2="405.38"/>
+            <line class="bo-grid" x1="80" y1="373.08" x2="860" y2="373.08"/>
+            <line class="bo-grid" x1="80" y1="340.77" x2="860" y2="340.77"/>
+            <line class="bo-grid" x1="80" y1="276.15" x2="860" y2="276.15"/>
+            <line class="bo-grid" x1="80" y1="243.85" x2="860" y2="243.85"/>
+            <line class="bo-grid" x1="80" y1="211.54" x2="860" y2="211.54"/>
+            <line class="bo-grid" x1="80" y1="179.23" x2="860" y2="179.23"/>
+            <line class="bo-grid" x1="80" y1="114.62" x2="860" y2="114.62"/>
+            <line class="bo-grid" x1="80" y1="82.31" x2="860" y2="82.31"/>
+
+            <!-- Major gridlines at 0,50,100,150,200,250 -->
+            <line class="bo-grid-major" x1="80" y1="470"    x2="860" y2="470"/>
+            <line class="bo-grid-major" x1="80" y1="389.23" x2="860" y2="389.23"/>
+            <line class="bo-grid-major" x1="80" y1="308.46" x2="860" y2="308.46"/>
+            <line class="bo-grid-major" x1="80" y1="227.69" x2="860" y2="227.69"/>
+            <line class="bo-grid-major" x1="80" y1="146.92" x2="860" y2="146.92"/>
+            <line class="bo-grid-major" x1="80" y1="66.15"  x2="860" y2="66.15"/>
+
+            <!-- Vertical gridlines -->
+            <line class="bo-grid-major" x1="80"  y1="50" x2="80"  y2="470"/>
+            <line class="bo-grid-major" x1="275" y1="50" x2="275" y2="470"/>
+            <line class="bo-grid-major" x1="470" y1="50" x2="470" y2="470"/>
+            <line class="bo-grid-major" x1="665" y1="50" x2="665" y2="470"/>
+            <line class="bo-grid-major" x1="860" y1="50" x2="860" y2="470"/>
+
+            <!-- Axes -->
+            <line class="bo-axis" x1="80" y1="50"  x2="80"  y2="470"/>
+            <line class="bo-axis" x1="80" y1="470" x2="860" y2="470"/>
+
+            <!-- Y tick labels -->
+            <text class="bo-tick-label" x="72" y="473"    text-anchor="end">$0</text>
+            <text class="bo-tick-label" x="72" y="392.23" text-anchor="end">$50M</text>
+            <text class="bo-tick-label" x="72" y="311.46" text-anchor="end">$100M</text>
+            <text class="bo-tick-label" x="72" y="230.69" text-anchor="end">$150M</text>
+            <text class="bo-tick-label" x="72" y="149.92" text-anchor="end">$200M</text>
+            <text class="bo-tick-label" x="72" y="69.15"  text-anchor="end">$250M</text>
+
+            <!-- X tick labels -->
+            <text class="bo-tick-label" x="80"  y="490" text-anchor="middle">Weekend 1</text>
+            <text class="bo-tick-label" x="275" y="490" text-anchor="middle">Weekend 2</text>
+            <text class="bo-tick-label" x="470" y="490" text-anchor="middle">Weekend 3</text>
+            <text class="bo-tick-label" x="665" y="490" text-anchor="middle">Weekend 4</text>
+            <text class="bo-tick-label" x="860" y="490" text-anchor="middle">Weekend 5</text>
+
+            <!-- Axis titles -->
+            <text class="bo-axis-label" x="470" y="515" text-anchor="middle">Weekend in Release</text>
+            <text class="bo-axis-label" x="22"  y="260" text-anchor="middle" transform="rotate(-90 22 260)">Weekend Gross</text>
+
+            <!-- ===== Data series (x: 80, 275, 470, 665, 860) ===== -->
+
+            <!-- Avatar (2009) — #1E88E5 -->
+            <polyline class="bo-line" stroke="#1E88E5"
+              points="80,345.62 275,347.88 470,359.35 665,388.75 860,400.86"/>
+            <circle class="bo-dot" cx="80"  cy="345.62" r="4" fill="#1E88E5"/>
+            <circle class="bo-dot" cx="275" cy="347.88" r="4" fill="#1E88E5"/>
+            <circle class="bo-dot" cx="470" cy="359.35" r="4" fill="#1E88E5"/>
+            <circle class="bo-dot" cx="665" cy="388.75" r="4" fill="#1E88E5"/>
+            <circle class="bo-dot" cx="860" cy="400.86" r="4" fill="#1E88E5"/>
+
+            <!-- Avatar: The Way of Water (2022) — #00ACC1 -->
+            <polyline class="bo-line" stroke="#00ACC1"
+              points="80,253.38 275,367.75 470,361.13 665,395.96 860,416.99"/>
+            <circle class="bo-dot" cx="80"  cy="253.38" r="4" fill="#00ACC1"/>
+            <circle class="bo-dot" cx="275" cy="367.75" r="4" fill="#00ACC1"/>
+            <circle class="bo-dot" cx="470" cy="361.13" r="4" fill="#00ACC1"/>
+            <circle class="bo-dot" cx="665" cy="395.96" r="4" fill="#00ACC1"/>
+            <circle class="bo-dot" cx="860" cy="416.99" r="4" fill="#00ACC1"/>
+
+            <!-- Titanic (1997) — #7F170E -->
+            <polyline class="bo-line" stroke="#7F170E"
+              points="80,423.80 275,418.65 470,416.17 665,423.64 860,421.54"/>
+            <circle class="bo-dot" cx="80"  cy="423.80" r="4" fill="#7F170E"/>
+            <circle class="bo-dot" cx="275" cy="418.65" r="4" fill="#7F170E"/>
+            <circle class="bo-dot" cx="470" cy="416.17" r="4" fill="#7F170E"/>
+            <circle class="bo-dot" cx="665" cy="423.64" r="4" fill="#7F170E"/>
+            <circle class="bo-dot" cx="860" cy="421.54" r="4" fill="#7F170E"/>
+
+            <!-- Top Gun: Maverick (2022) — #FB8C00 -->
+            <polyline class="bo-line" stroke="#FB8C00"
+              points="80,265.31 275,324.62 470,386.16 665,397.73 860,422.19"/>
+            <circle class="bo-dot" cx="80"  cy="265.31" r="4" fill="#FB8C00"/>
+            <circle class="bo-dot" cx="275" cy="324.62" r="4" fill="#FB8C00"/>
+            <circle class="bo-dot" cx="470" cy="386.16" r="4" fill="#FB8C00"/>
+            <circle class="bo-dot" cx="665" cy="397.73" r="4" fill="#FB8C00"/>
+            <circle class="bo-dot" cx="860" cy="422.19" r="4" fill="#FB8C00"/>
+
+            <!-- Black Panther (2018) — #6A1B9A -->
+            <polyline class="bo-line" stroke="#6A1B9A"
+              points="80,143.69 275,289.58 470,362.90 665,404.10 860,426.89"/>
+            <circle class="bo-dot" cx="80"  cy="143.69" r="4" fill="#6A1B9A"/>
+            <circle class="bo-dot" cx="275" cy="289.58" r="4" fill="#6A1B9A"/>
+            <circle class="bo-dot" cx="470" cy="362.90" r="4" fill="#6A1B9A"/>
+            <circle class="bo-dot" cx="665" cy="404.10" r="4" fill="#6A1B9A"/>
+            <circle class="bo-dot" cx="860" cy="426.89" r="4" fill="#6A1B9A"/>
+
+            <!-- Star Wars: TFA (2015) — #C9A227 -->
+            <polyline class="bo-line" stroke="#C9A227"
+              points="80,69.38 275,228.95 470,324.31 665,401.52 860,427.54"/>
+            <circle class="bo-dot" cx="80"  cy="69.38"  r="4" fill="#C9A227"/>
+            <circle class="bo-dot" cx="275" cy="228.95" r="4" fill="#C9A227"/>
+            <circle class="bo-dot" cx="470" cy="324.31" r="4" fill="#C9A227"/>
+            <circle class="bo-dot" cx="665" cy="401.52" r="4" fill="#C9A227"/>
+            <circle class="bo-dot" cx="860" cy="427.54" r="4" fill="#C9A227"/>
+
+            <!-- The Sixth Sense (1999) — #546E7A -->
+            <polyline class="bo-line" stroke="#546E7A"
+              points="80,426.89 275,428.54 470,431.23 665,437.51 860,433.00"/>
+            <circle class="bo-dot" cx="80"  cy="426.89" r="4" fill="#546E7A"/>
+            <circle class="bo-dot" cx="275" cy="428.54" r="4" fill="#546E7A"/>
+            <circle class="bo-dot" cx="470" cy="431.23" r="4" fill="#546E7A"/>
+            <circle class="bo-dot" cx="665" cy="437.51" r="4" fill="#546E7A"/>
+            <circle class="bo-dot" cx="860" cy="433.00" r="4" fill="#546E7A"/>
+
+            <!-- Barbie (2023) — #EC407A -->
+            <polyline class="bo-line" stroke="#EC407A"
+              points="80,208.31 275,319.77 470,384.38 665,415.40 860,436.08"/>
+            <circle class="bo-dot" cx="80"  cy="208.31" r="4" fill="#EC407A"/>
+            <circle class="bo-dot" cx="275" cy="319.77" r="4" fill="#EC407A"/>
+            <circle class="bo-dot" cx="470" cy="384.38" r="4" fill="#EC407A"/>
+            <circle class="bo-dot" cx="665" cy="415.40" r="4" fill="#EC407A"/>
+            <circle class="bo-dot" cx="860" cy="436.08" r="4" fill="#EC407A"/>
+
+            <!-- The Avengers (2012) — #D32F2F -->
+            <polyline class="bo-line" stroke="#D32F2F"
+              points="80,134.85 275,303.46 470,380.18 665,410.72 860,436.88"/>
+            <circle class="bo-dot" cx="80"  cy="134.85" r="4" fill="#D32F2F"/>
+            <circle class="bo-dot" cx="275" cy="303.46" r="4" fill="#D32F2F"/>
+            <circle class="bo-dot" cx="470" cy="380.18" r="4" fill="#D32F2F"/>
+            <circle class="bo-dot" cx="665" cy="410.72" r="4" fill="#D32F2F"/>
+            <circle class="bo-dot" cx="860" cy="436.88" r="4" fill="#D32F2F"/>
+
+            <!-- Project Hail Mary (2026) — #2E7D32 -->
+            <polyline class="bo-line" stroke="#2E7D32"
+              points="80,339.96 275,382.60 470,418.79 665,431.07 860,436.88"/>
+            <circle class="bo-dot" cx="80"  cy="339.96" r="4" fill="#2E7D32"/>
+            <circle class="bo-dot" cx="275" cy="382.60" r="4" fill="#2E7D32"/>
+            <circle class="bo-dot" cx="470" cy="418.79" r="4" fill="#2E7D32"/>
+            <circle class="bo-dot" cx="665" cy="431.07" r="4" fill="#2E7D32"/>
+            <circle class="bo-dot" cx="860" cy="436.88" r="4" fill="#2E7D32"/>
+          </svg>
+
+          <div class="bo-legend">
+            <div class="bo-legend-item"><span class="bo-swatch" style="background:#1E88E5"></span><span class="bo-legend-name">Avatar</span> <span class="bo-legend-note">(2009)</span></div>
+            <div class="bo-legend-item"><span class="bo-swatch" style="background:#00ACC1"></span><span class="bo-legend-name">Avatar: The Way of Water</span> <span class="bo-legend-note">(2022)</span></div>
+            <div class="bo-legend-item"><span class="bo-swatch" style="background:#7F170E"></span><span class="bo-legend-name">Titanic</span> <span class="bo-legend-note">(1997)</span></div>
+            <div class="bo-legend-item"><span class="bo-swatch" style="background:#FB8C00"></span><span class="bo-legend-name">Top Gun: Maverick</span> <span class="bo-legend-note">(2022)</span></div>
+            <div class="bo-legend-item"><span class="bo-swatch" style="background:#6A1B9A"></span><span class="bo-legend-name">Black Panther</span> <span class="bo-legend-note">(2018)</span></div>
+            <div class="bo-legend-item"><span class="bo-swatch" style="background:#C9A227"></span><span class="bo-legend-name">Star Wars: The Force Awakens</span> <span class="bo-legend-note">(2015)</span></div>
+            <div class="bo-legend-item"><span class="bo-swatch" style="background:#546E7A"></span><span class="bo-legend-name">The Sixth Sense</span> <span class="bo-legend-note">(1999)</span></div>
+            <div class="bo-legend-item"><span class="bo-swatch" style="background:#EC407A"></span><span class="bo-legend-name">Barbie</span> <span class="bo-legend-note">(2023)</span></div>
+            <div class="bo-legend-item"><span class="bo-swatch" style="background:#D32F2F"></span><span class="bo-legend-name">The Avengers</span> <span class="bo-legend-note">(2012)</span></div>
+            <div class="bo-legend-item"><span class="bo-swatch" style="background:#2E7D32"></span><span class="bo-legend-name">Project Hail Mary</span> <span class="bo-legend-note">(2026)</span></div>
+          </div>
+        </div>
+
+        <p>The chart above tells the story. <span class="film">Project Hail Mary</span> splits the difference between the two phenomena. It opened reasonably &#8212; higher than <span class="film">The Sixth Sense</span>, nowhere near <span class="film">The Avengers</span> &#8212; and then dropped so slowly that it&#8217;s now hanging around on the same weekend shelf as films that opened two or three times bigger. Worth noting: <span class="film">Titanic</span> and the two <span class="film">Avatars</span> are still the only three films ever to gross more than $30 million on a fifth weekend. Nothing from the superhero era has come close. Maybe next week we&#8217;ll check in on sixth weekends.</p>
+
+        <!-- ========================== DATA TABLE ========================== -->
+        <div class="article-chart-wrap">
+          <div class="article-chart-title">WEEKEND-BY-WEEKEND BREAKDOWN</div>
+          <div class="article-chart-sub">Domestic gross, $ millions. Fifth weekend in <strong>bold</strong>.</div>
+
+          <!-- Table SVG.
+               Columns: Film (0–360), W1 (360–468), W2 (468–576), W3 (576–684), W4 (684–792), W5 (792–900)
+               Rows:    Header (0–28), data rows (28 + i*24), 10 rows. Total height: 28 + 10*24 = 268. -->
+          <svg class="bo-table" viewBox="0 0 900 272" role="img" aria-label="Weekend-by-weekend gross table for ten films">
+
+            <!-- Wknd 5 column tint (full column) -->
+            <rect x="792" y="0" width="108" height="272" fill="#FFF7CC"/>
+
+            <!-- Header row background -->
+            <rect x="0" y="0" width="900" height="28" fill="#DCDCDC"/>
+
+            <!-- Row stripe backgrounds (avoid overwriting W5 tint) -->
+            <rect x="0" y="28"  width="792" height="24" fill="#FFFFFF"/>
+            <rect x="0" y="52"  width="792" height="24" fill="#F4F4FE"/>
+            <rect x="0" y="76"  width="792" height="24" fill="#FFFFFF"/>
+            <rect x="0" y="100" width="792" height="24" fill="#F4F4FE"/>
+            <rect x="0" y="124" width="792" height="24" fill="#FFFFFF"/>
+            <rect x="0" y="148" width="792" height="24" fill="#F4F4FE"/>
+            <rect x="0" y="172" width="792" height="24" fill="#FFFFFF"/>
+            <rect x="0" y="196" width="792" height="24" fill="#F4F4FE"/>
+            <rect x="0" y="220" width="792" height="24" fill="#FFFFFF"/>
+            <rect x="0" y="244" width="792" height="24" fill="#F4F4FE"/>
+
+            <!-- Horizontal rules -->
+            <line x1="0" y1="28"  x2="900" y2="28"  stroke="#7F170E" stroke-width="1.5"/>
+            <line x1="0" y1="268" x2="900" y2="268" stroke="#A8A8A8" stroke-width="1"/>
+
+            <!-- Vertical rules (column dividers) -->
+            <line x1="360" y1="0" x2="360" y2="268" stroke="#C8C8C8" stroke-width="1"/>
+            <line x1="468" y1="0" x2="468" y2="268" stroke="#C8C8C8" stroke-width="1"/>
+            <line x1="576" y1="0" x2="576" y2="268" stroke="#C8C8C8" stroke-width="1"/>
+            <line x1="684" y1="0" x2="684" y2="268" stroke="#C8C8C8" stroke-width="1"/>
+            <line x1="792" y1="0" x2="792" y2="268" stroke="#7F170E" stroke-width="1.2"/>
+            <line x1="0"   y1="0" x2="0"   y2="268" stroke="#A8A8A8" stroke-width="1"/>
+            <line x1="900" y1="0" x2="900" y2="268" stroke="#A8A8A8" stroke-width="1"/>
+
+            <!-- ===== Header row ===== -->
+            <g font-family="Verdana, Geneva, sans-serif" font-size="11" font-weight="bold" fill="#000">
+              <text x="12"  y="18" text-anchor="start">FILM</text>
+              <text x="414" y="18" text-anchor="middle">WKND 1</text>
+              <text x="522" y="18" text-anchor="middle">WKND 2</text>
+              <text x="630" y="18" text-anchor="middle">WKND 3</text>
+              <text x="738" y="18" text-anchor="middle">WKND 4</text>
+              <text x="846" y="18" text-anchor="middle" fill="#7F170E">WKND 5</text>
+            </g>
+
+            <!-- ===== Data rows =====
+                 Row y = 28 + i*24. Color tag: rect x=8 y=row+7 w=10 h=10. Text baseline y=row+17.
+                 Film name: Times Bold 12, x=24. Number cells: Times 12, centered in column. -->
+
+            <!-- Row 1: Avatar — y 28 -->
+            <rect x="8"  y="35" width="10" height="10" fill="#1E88E5" stroke="#555"/>
+            <g font-family="'Times New Roman', Times, serif" font-size="12">
+              <text x="24"  y="45" font-weight="bold">Avatar</text>
+              <text x="414" y="45" text-anchor="middle">$77.0</text>
+              <text x="522" y="45" text-anchor="middle">$75.6</text>
+              <text x="630" y="45" text-anchor="middle">$68.5</text>
+              <text x="738" y="45" text-anchor="middle">$50.3</text>
+              <text x="846" y="45" text-anchor="middle" font-weight="bold">$42.8</text>
+            </g>
+
+            <!-- Row 2: Avatar: The Way of Water — y 52 -->
+            <rect x="8"  y="59" width="10" height="10" fill="#00ACC1" stroke="#555"/>
+            <g font-family="'Times New Roman', Times, serif" font-size="12">
+              <text x="24"  y="69" font-weight="bold">Avatar: The Way of Water</text>
+              <text x="414" y="69" text-anchor="middle">$134.1</text>
+              <text x="522" y="69" text-anchor="middle">$63.3</text>
+              <text x="630" y="69" text-anchor="middle">$67.4</text>
+              <text x="738" y="69" text-anchor="middle">$45.8</text>
+              <text x="846" y="69" text-anchor="middle" font-weight="bold">$32.8</text>
+            </g>
+
+            <!-- Row 3: Titanic — y 76 -->
+            <rect x="8"  y="83" width="10" height="10" fill="#7F170E" stroke="#555"/>
+            <g font-family="'Times New Roman', Times, serif" font-size="12">
+              <text x="24"  y="93" font-weight="bold">Titanic</text>
+              <text x="414" y="93" text-anchor="middle">$28.6</text>
+              <text x="522" y="93" text-anchor="middle">$35.5</text>
+              <text x="630" y="93" text-anchor="middle">$33.3</text>
+              <text x="738" y="93" text-anchor="middle">$28.7</text>
+              <text x="846" y="93" text-anchor="middle" font-weight="bold">$30.0</text>
+            </g>
+
+            <!-- Row 4: Top Gun: Maverick — y 100 -->
+            <rect x="8"  y="107" width="10" height="10" fill="#FB8C00" stroke="#555"/>
+            <g font-family="'Times New Roman', Times, serif" font-size="12">
+              <text x="24"  y="117" font-weight="bold">Top Gun: Maverick</text>
+              <text x="414" y="117" text-anchor="middle">$126.7</text>
+              <text x="522" y="117" text-anchor="middle">$90.0</text>
+              <text x="630" y="117" text-anchor="middle">$51.9</text>
+              <text x="738" y="117" text-anchor="middle">$44.7</text>
+              <text x="846" y="117" text-anchor="middle" font-weight="bold">$29.6</text>
+            </g>
+
+            <!-- Row 5: Black Panther — y 124 -->
+            <rect x="8"  y="131" width="10" height="10" fill="#6A1B9A" stroke="#555"/>
+            <g font-family="'Times New Roman', Times, serif" font-size="12">
+              <text x="24"  y="141" font-weight="bold">Black Panther</text>
+              <text x="414" y="141" text-anchor="middle">$202.0</text>
+              <text x="522" y="141" text-anchor="middle">$111.7</text>
+              <text x="630" y="141" text-anchor="middle">$66.3</text>
+              <text x="738" y="141" text-anchor="middle">$40.8</text>
+              <text x="846" y="141" text-anchor="middle" font-weight="bold">$26.7</text>
+            </g>
+
+            <!-- Row 6: Star Wars: The Force Awakens — y 148 -->
+            <rect x="8"  y="155" width="10" height="10" fill="#C9A227" stroke="#555"/>
+            <g font-family="'Times New Roman', Times, serif" font-size="12">
+              <text x="24"  y="165" font-weight="bold">Star Wars: The Force Awakens</text>
+              <text x="414" y="165" text-anchor="middle">$248.0</text>
+              <text x="522" y="165" text-anchor="middle">$149.2</text>
+              <text x="630" y="165" text-anchor="middle">$90.2</text>
+              <text x="738" y="165" text-anchor="middle">$42.4</text>
+              <text x="846" y="165" text-anchor="middle" font-weight="bold">$26.3</text>
+            </g>
+
+            <!-- Row 7: The Sixth Sense — y 172 -->
+            <rect x="8"  y="179" width="10" height="10" fill="#546E7A" stroke="#555"/>
+            <g font-family="'Times New Roman', Times, serif" font-size="12">
+              <text x="24"  y="189" font-weight="bold">The Sixth Sense</text>
+              <text x="414" y="189" text-anchor="middle">$26.7</text>
+              <text x="522" y="189" text-anchor="middle">$25.8</text>
+              <text x="630" y="189" text-anchor="middle">$24.0</text>
+              <text x="738" y="189" text-anchor="middle">$20.1</text>
+              <text x="846" y="189" text-anchor="middle" font-weight="bold">$22.9</text>
+            </g>
+
+            <!-- Row 8: Barbie — y 196 -->
+            <rect x="8"  y="203" width="10" height="10" fill="#EC407A" stroke="#555"/>
+            <g font-family="'Times New Roman', Times, serif" font-size="12">
+              <text x="24"  y="213" font-weight="bold">Barbie</text>
+              <text x="414" y="213" text-anchor="middle">$162.0</text>
+              <text x="522" y="213" text-anchor="middle">$93.0</text>
+              <text x="630" y="213" text-anchor="middle">$53.0</text>
+              <text x="738" y="213" text-anchor="middle">$33.8</text>
+              <text x="846" y="213" text-anchor="middle" font-weight="bold">$21.0</text>
+            </g>
+
+            <!-- Row 9: The Avengers — y 220 -->
+            <rect x="8"  y="227" width="10" height="10" fill="#D32F2F" stroke="#555"/>
+            <g font-family="'Times New Roman', Times, serif" font-size="12">
+              <text x="24"  y="237" font-weight="bold">The Avengers</text>
+              <text x="414" y="237" text-anchor="middle">$207.4</text>
+              <text x="522" y="237" text-anchor="middle">$103.1</text>
+              <text x="630" y="237" text-anchor="middle">$55.6</text>
+              <text x="738" y="237" text-anchor="middle">$36.7</text>
+              <text x="846" y="237" text-anchor="middle" font-weight="bold">$20.5</text>
+            </g>
+
+            <!-- Row 10: Project Hail Mary — y 244 -->
+            <rect x="8"  y="251" width="10" height="10" fill="#2E7D32" stroke="#555"/>
+            <g font-family="'Times New Roman', Times, serif" font-size="12">
+              <text x="24"  y="261" font-weight="bold">Project Hail Mary</text>
+              <text x="414" y="261" text-anchor="middle">$80.5</text>
+              <text x="522" y="261" text-anchor="middle">$54.1</text>
+              <text x="630" y="261" text-anchor="middle">$31.7</text>
+              <text x="738" y="261" text-anchor="middle">$24.1</text>
+              <text x="846" y="261" text-anchor="middle" font-weight="bold">$20.5</text>
+            </g>
+          </svg>
+        </div>
+
+        <p>And finally: Lee Cronin made $13.5 million this weekend. Every dollar went straight to him.</p>
+
+      </div><!-- /article-body -->
+    </div><!-- /article-wrap -->
+  </main>
+
+
+  <aside class="right-sidebar">
+    <div class="widget">
+      <div class="widget-header" style="background:#7F170E;">WEEKEND CHART</div>
+      <div class="widget-body">
+        <p style="font-family:Verdana,sans-serif;font-size:11px;padding:6px 8px;margin:0;">
+          <a href="weekend-chart.html" style="color:#00239C;font-weight:bold;text-decoration:none;">View April 17&ndash;19 results &rarr;</a>
+        </p>
+      </div>
+    </div>
+    <div class="widget" style="margin-top:12px;">
+      <div class="widget-header" style="background:#7F170E;">THE FORECAST</div>
+      <div class="widget-body">
+        <p style="font-family:Verdana,sans-serif;font-size:11px;padding:6px 8px;margin:0;">
+          <a href="forecast-apr-18-2026.html" style="color:#00239C;font-weight:bold;text-decoration:none;">Last week&#8217;s predictions &rarr;</a>
+        </p>
+      </div>
+    </div>
+  </aside>
+
+</div><!-- /page-wrapper -->
+
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">&#8220;Serving your box office needs since 2026.&#8221;</span>
+</footer>
+
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+</script>
+
+</body>
+</html>
