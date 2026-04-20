@@ -1,14 +1,2007 @@
 {
-  "year": 2013,
-  "updated": null,
-  "note": "Fill this chart with domestic releases from this year (not late-year holdovers from the previous year).",
-  "schema": {
-    "rank": "ordinal rank by domestic total gross",
-    "title": "movie title",
-    "distributor": "studio/distributor name",
-    "total_gross": "domestic lifetime gross (integer dollars)",
-    "theaters": "peak theater count (integer)",
-    "opening_weekend": "opening weekend gross (integer dollars)"
+ "year": 2013,
+ "updated": "2026-04-20",
+ "source": "The Numbers / BOM (via user-provided PDF)",
+ "chart": [
+  {
+   "rank": 1,
+   "title": "The Hunger Games: Catching Fire",
+   "distributor": "Lionsgate",
+   "total_gross": 424668047,
+   "max_theaters": 4163,
+   "opening_weekend": 158074286,
+   "opening_theaters": 4163,
+   "open_date": "Nov 2"
   },
-  "chart": []
+  {
+   "rank": 2,
+   "title": "Iron Man 3",
+   "distributor": "Walt Disney Studios Motion Pictures",
+   "total_gross": 409013994,
+   "max_theaters": 4253,
+   "opening_weekend": 174144585,
+   "opening_theaters": 4253,
+   "open_date": "May 3"
+  },
+  {
+   "rank": 3,
+   "title": "Frozen",
+   "distributor": "Walt Disney Studios Motion Pictures",
+   "total_gross": 400738009,
+   "max_theaters": 3742,
+   "opening_weekend": 243390,
+   "opening_theaters": 1,
+   "open_date": "Nov 2"
+  },
+  {
+   "rank": 4,
+   "title": "Despicable Me 2",
+   "distributor": "Universal Pictures",
+   "total_gross": 368065385,
+   "max_theaters": 4003,
+   "opening_weekend": 83517315,
+   "opening_theaters": 3997,
+   "open_date": "Jul 3"
+  },
+  {
+   "rank": 5,
+   "title": "Man of Steel",
+   "distributor": "Warner Bros.",
+   "total_gross": 291045518,
+   "max_theaters": 4207,
+   "opening_weekend": 116619362,
+   "opening_theaters": 4207,
+   "open_date": "Jun 14"
+  },
+  {
+   "rank": 6,
+   "title": "Gravity",
+   "distributor": "Warner Bros.",
+   "total_gross": 274092705,
+   "max_theaters": 3820,
+   "opening_weekend": 55785112,
+   "opening_theaters": 3575,
+   "open_date": "Oct 4"
+  },
+  {
+   "rank": 7,
+   "title": "Monsters University",
+   "distributor": "Walt Disney Studios Motion Pictures",
+   "total_gross": 268492764,
+   "max_theaters": 4004,
+   "opening_weekend": 82429469,
+   "opening_theaters": 4004,
+   "open_date": "Jun 21"
+  },
+  {
+   "rank": 8,
+   "title": "The Hobbit: The Desolation of Smaug",
+   "distributor": "Warner Bros.",
+   "total_gross": 258366855,
+   "max_theaters": 3928,
+   "opening_weekend": 73645197,
+   "opening_theaters": 3903,
+   "open_date": "Dec 13"
+  },
+  {
+   "rank": 9,
+   "title": "Fast & Furious 6",
+   "distributor": "Universal Pictures",
+   "total_gross": 238679850,
+   "max_theaters": 3771,
+   "opening_weekend": 97375245,
+   "opening_theaters": 3658,
+   "open_date": "May 24"
+  },
+  {
+   "rank": 10,
+   "title": "Oz the Great and Powerful",
+   "distributor": "Walt Disney Studios Motion Pictures",
+   "total_gross": 234911825,
+   "max_theaters": 3912,
+   "opening_weekend": 79110453,
+   "opening_theaters": 3912,
+   "open_date": "Mar 8"
+  },
+  {
+   "rank": 11,
+   "title": "Star Trek Into Darkness",
+   "distributor": "Paramount Pictures",
+   "total_gross": 228778661,
+   "max_theaters": 3907,
+   "opening_weekend": 70165559,
+   "opening_theaters": 3868,
+   "open_date": "May 16"
+  },
+  {
+   "rank": 12,
+   "title": "Thor: The Dark World",
+   "distributor": "Walt Disney Studios Motion Pictures",
+   "total_gross": 206362140,
+   "max_theaters": 3841,
+   "opening_weekend": 85737841,
+   "opening_theaters": 3841,
+   "open_date": "Nov 8"
+  },
+  {
+   "rank": 13,
+   "title": "World War Z",
+   "distributor": "Paramount Pictures",
+   "total_gross": 202359711,
+   "max_theaters": 3607,
+   "opening_weekend": 66411834,
+   "opening_theaters": 3607,
+   "open_date": "Jun 21"
+  },
+  {
+   "rank": 14,
+   "title": "The Croods",
+   "distributor": "Twentieth Century Fox",
+   "total_gross": 187168425,
+   "max_theaters": 4065,
+   "opening_weekend": 43639736,
+   "opening_theaters": 4046,
+   "open_date": "Mar 2"
+  },
+  {
+   "rank": 15,
+   "title": "The Heat",
+   "distributor": "Twentieth Century Fox",
+   "total_gross": 159582188,
+   "max_theaters": 3184,
+   "opening_weekend": 39115043,
+   "opening_theaters": 3181,
+   "open_date": "Jun 28"
+  },
+  {
+   "rank": 16,
+   "title": "We're the Millers",
+   "distributor": "Warner Bros.",
+   "total_gross": 150394119,
+   "max_theaters": 3445,
+   "opening_weekend": 26419396,
+   "opening_theaters": 3260,
+   "open_date": "Aug 7"
+  },
+  {
+   "rank": 17,
+   "title": "American Hustle",
+   "distributor": "Sony Pictures Releasing",
+   "total_gross": 150117807,
+   "max_theaters": 2629,
+   "opening_weekend": 740455,
+   "opening_theaters": 6,
+   "open_date": "Dec 13"
+  },
+  {
+   "rank": 18,
+   "title": "The Great Gatsby",
+   "distributor": "Warner Bros.",
+   "total_gross": 144840419,
+   "max_theaters": 3550,
+   "opening_weekend": 50085185,
+   "opening_theaters": 3535,
+   "open_date": "May 10"
+  },
+  {
+   "rank": 19,
+   "title": "The Conjuring",
+   "distributor": "Warner Bros.",
+   "total_gross": 137400141,
+   "max_theaters": 3115,
+   "opening_weekend": 41855326,
+   "opening_theaters": 2903,
+   "open_date": "Jul 19"
+  },
+  {
+   "rank": 20,
+   "title": "Identity Thief",
+   "distributor": "Universal Pictures",
+   "total_gross": 134506920,
+   "max_theaters": 3230,
+   "opening_weekend": 34551025,
+   "opening_theaters": 3141,
+   "open_date": "Feb 8"
+  },
+  {
+   "rank": 21,
+   "title": "Grown Ups 2",
+   "distributor": "Sony Pictures Releasing",
+   "total_gross": 133668525,
+   "max_theaters": 3491,
+   "opening_weekend": 41508572,
+   "opening_theaters": 3491,
+   "open_date": "Jul 12"
+  },
+  {
+   "rank": 22,
+   "title": "The Wolverine",
+   "distributor": "Twentieth Century Fox",
+   "total_gross": 132556852,
+   "max_theaters": 3924,
+   "opening_weekend": 53113752,
+   "opening_theaters": 3924,
+   "open_date": "Jul 26"
+  },
+  {
+   "rank": 23,
+   "title": "Anchorman 2: The Legend Continues",
+   "distributor": "Paramount Pictures",
+   "total_gross": 125168368,
+   "max_theaters": 3507,
+   "opening_weekend": 26232425,
+   "opening_theaters": 3507,
+   "open_date": "Dec 18"
+  },
+  {
+   "rank": 24,
+   "title": "Lone Survivor",
+   "distributor": "Universal Pictures",
+   "total_gross": 125095601,
+   "max_theaters": 3285,
+   "opening_weekend": 90872,
+   "opening_theaters": 2,
+   "open_date": "Dec 25"
+  },
+  {
+   "rank": 25,
+   "title": "G.I. Joe: Retaliation",
+   "distributor": "Paramount Pictures",
+   "total_gross": 122523060,
+   "max_theaters": 3734,
+   "opening_weekend": 40501814,
+   "opening_theaters": 3719,
+   "open_date": "Mar 28"
+  },
+  {
+   "rank": 26,
+   "title": "Cloudy with a Chance of Meatballs 2",
+   "distributor": "Sony Pictures Releasing",
+   "total_gross": 119793567,
+   "max_theaters": 4001,
+   "opening_weekend": 34017930,
+   "opening_theaters": 4001,
+   "open_date": "Sep 27"
+  },
+  {
+   "rank": 27,
+   "title": "Now You See Me",
+   "distributor": "Lionsgate",
+   "total_gross": 117723989,
+   "max_theaters": 3082,
+   "opening_weekend": 29350389,
+   "opening_theaters": 2925,
+   "open_date": "May 31"
+  },
+  {
+   "rank": 28,
+   "title": "The Wolf of Wall Street",
+   "distributor": "Paramount Pictures",
+   "total_gross": 116900694,
+   "max_theaters": 2557,
+   "opening_weekend": 18361578,
+   "opening_theaters": 2537,
+   "open_date": "Dec 25"
+  },
+  {
+   "rank": 29,
+   "title": "The Butler",
+   "distributor": "The Weinstein Company",
+   "total_gross": 116632095,
+   "max_theaters": 3330,
+   "opening_weekend": 24637312,
+   "opening_theaters": 2933,
+   "open_date": "Aug 16"
+  },
+  {
+   "rank": 30,
+   "title": "The Hangover Part III",
+   "distributor": "Warner Bros.",
+   "total_gross": 112200072,
+   "max_theaters": 3565,
+   "opening_weekend": 41671198,
+   "opening_theaters": 3555,
+   "open_date": "May 23"
+  },
+  {
+   "rank": 31,
+   "title": "Epic",
+   "distributor": "Twentieth Century Fox",
+   "total_gross": 107518682,
+   "max_theaters": 3894,
+   "opening_weekend": 33531068,
+   "opening_theaters": 3882,
+   "open_date": "May 24"
+  },
+  {
+   "rank": 32,
+   "title": "Captain Phillips",
+   "distributor": "Sony Pictures Releasing",
+   "total_gross": 107100855,
+   "max_theaters": 3143,
+   "opening_weekend": 25718314,
+   "opening_theaters": 3020,
+   "open_date": "Oct 1"
+  },
+  {
+   "rank": 33,
+   "title": "Jackass Presents: Bad Grandpa",
+   "distributor": "Paramount Pictures",
+   "total_gross": 102003019,
+   "max_theaters": 3345,
+   "opening_weekend": 32055177,
+   "opening_theaters": 3336,
+   "open_date": "Oct 25"
+  },
+  {
+   "rank": 34,
+   "title": "Pacific Rim",
+   "distributor": "Warner Bros.",
+   "total_gross": 101802906,
+   "max_theaters": 3285,
+   "opening_weekend": 37285325,
+   "opening_theaters": 3275,
+   "open_date": "Jul 12"
+  },
+  {
+   "rank": 35,
+   "title": "This Is the End",
+   "distributor": "Sony Pictures Releasing",
+   "total_gross": 101470202,
+   "max_theaters": 3055,
+   "opening_weekend": 20719162,
+   "opening_theaters": 3055,
+   "open_date": "Jun 12"
+  },
+  {
+   "rank": 36,
+   "title": "Olympus Has Fallen",
+   "distributor": "FilmDistrict",
+   "total_gross": 98925640,
+   "max_theaters": 3106,
+   "opening_weekend": 30373794,
+   "opening_theaters": 3098,
+   "open_date": "Mar 2"
+  },
+  {
+   "rank": 37,
+   "title": "42",
+   "distributor": "Warner Bros.",
+   "total_gross": 95020213,
+   "max_theaters": 3405,
+   "opening_weekend": 27487144,
+   "opening_theaters": 3003,
+   "open_date": "Apr 12"
+  },
+  {
+   "rank": 38,
+   "title": "Elysium",
+   "distributor": "TriStar Pictures",
+   "total_gross": 93050117,
+   "max_theaters": 3284,
+   "opening_weekend": 29807393,
+   "opening_theaters": 3284,
+   "open_date": "Aug 9"
+  },
+  {
+   "rank": 39,
+   "title": "Planes",
+   "distributor": "Walt Disney Studios Motion Pictures",
+   "total_gross": 90288712,
+   "max_theaters": 3716,
+   "opening_weekend": 22232291,
+   "opening_theaters": 3702,
+   "open_date": "Aug 9"
+  },
+  {
+   "rank": 40,
+   "title": "The Lone Ranger",
+   "distributor": "Walt Disney Studios Motion Pictures",
+   "total_gross": 89302115,
+   "max_theaters": 3904,
+   "opening_weekend": 29210849,
+   "opening_theaters": 3904,
+   "open_date": "Jul 3"
+  },
+  {
+   "rank": 41,
+   "title": "Oblivion",
+   "distributor": "Universal Pictures",
+   "total_gross": 89107235,
+   "max_theaters": 3792,
+   "opening_weekend": 37054485,
+   "opening_theaters": 3783,
+   "open_date": "Apr 19"
+  },
+  {
+   "rank": 42,
+   "title": "Insidious: Chapter 2",
+   "distributor": "FilmDistrict",
+   "total_gross": 83586447,
+   "max_theaters": 3155,
+   "opening_weekend": 40272103,
+   "opening_theaters": 3049,
+   "open_date": "Sep 13"
+  },
+  {
+   "rank": 43,
+   "title": "Saving Mr. Banks",
+   "distributor": "Walt Disney Studios Motion Pictures",
+   "total_gross": 83301580,
+   "max_theaters": 2671,
+   "opening_weekend": 413373,
+   "opening_theaters": 15,
+   "open_date": "Dec 13"
+  },
+  {
+   "rank": 44,
+   "title": "Turbo",
+   "distributor": "Twentieth Century Fox",
+   "total_gross": 83028128,
+   "max_theaters": 3809,
+   "opening_weekend": 21312625,
+   "opening_theaters": 3806,
+   "open_date": "Jul 17"
+  },
+  {
+   "rank": 45,
+   "title": "2 Guns",
+   "distributor": "Universal Pictures",
+   "total_gross": 75612460,
+   "max_theaters": 3028,
+   "opening_weekend": 27059130,
+   "opening_theaters": 3025,
+   "open_date": "Aug 2"
+  },
+  {
+   "rank": 46,
+   "title": "White House Down",
+   "distributor": "Sony Pictures Releasing",
+   "total_gross": 73103784,
+   "max_theaters": 3222,
+   "opening_weekend": 24852258,
+   "opening_theaters": 3222,
+   "open_date": "Jun 28"
+  },
+  {
+   "rank": 47,
+   "title": "Mama",
+   "distributor": "Universal Pictures",
+   "total_gross": 71628180,
+   "max_theaters": 2781,
+   "opening_weekend": 28402310,
+   "opening_theaters": 2647,
+   "open_date": "Jan 18"
+  },
+  {
+   "rank": 48,
+   "title": "Safe Haven",
+   "distributor": "Relativity Media",
+   "total_gross": 71349120,
+   "max_theaters": 3223,
+   "opening_weekend": 21401594,
+   "opening_theaters": 3223,
+   "open_date": "Feb 14"
+  },
+  {
+   "rank": 49,
+   "title": "The Smurfs 2",
+   "distributor": "Sony Pictures Releasing",
+   "total_gross": 71017784,
+   "max_theaters": 3867,
+   "opening_weekend": 17548389,
+   "opening_theaters": 3866,
+   "open_date": "Jul 31"
+  },
+  {
+   "rank": 50,
+   "title": "The Best Man Holiday",
+   "distributor": "Universal Pictures",
+   "total_gross": 70525195,
+   "max_theaters": 2041,
+   "opening_weekend": 30107555,
+   "opening_theaters": 2024,
+   "open_date": "Nov 15"
+  },
+  {
+   "rank": 51,
+   "title": "Percy Jackson: Sea of Monsters",
+   "distributor": "Twentieth Century Fox",
+   "total_gross": 68559554,
+   "max_theaters": 3080,
+   "opening_weekend": 14401054,
+   "opening_theaters": 3031,
+   "open_date": "Aug 7"
+  },
+  {
+   "rank": 52,
+   "title": "A Good Day to Die Hard",
+   "distributor": "Twentieth Century Fox",
+   "total_gross": 67349198,
+   "max_theaters": 3555,
+   "opening_weekend": 24834845,
+   "opening_theaters": 3553,
+   "open_date": "Feb 14"
+  },
+  {
+   "rank": 53,
+   "title": "Warm Bodies",
+   "distributor": "Lionsgate",
+   "total_gross": 66380662,
+   "max_theaters": 3009,
+   "opening_weekend": 20353967,
+   "opening_theaters": 3009,
+   "open_date": "Feb 1"
+  },
+  {
+   "rank": 54,
+   "title": "Jack the Giant Slayer",
+   "distributor": "Warner Bros.",
+   "total_gross": 65187603,
+   "max_theaters": 3525,
+   "opening_weekend": 27202226,
+   "opening_theaters": 3525,
+   "open_date": "Mar 1"
+  },
+  {
+   "rank": 55,
+   "title": "The Purge",
+   "distributor": "Universal Pictures",
+   "total_gross": 64473115,
+   "max_theaters": 2591,
+   "opening_weekend": 34058360,
+   "opening_theaters": 2536,
+   "open_date": "Jun 7"
+  },
+  {
+   "rank": 56,
+   "title": "Last Vegas",
+   "distributor": "CBS Films",
+   "total_gross": 63914167,
+   "max_theaters": 3237,
+   "opening_weekend": 16334566,
+   "opening_theaters": 3065,
+   "open_date": "Nov 1"
+  },
+  {
+   "rank": 57,
+   "title": "Ender's Game",
+   "distributor": "Lionsgate",
+   "total_gross": 61737191,
+   "max_theaters": 3407,
+   "opening_weekend": 27017351,
+   "opening_theaters": 3407,
+   "open_date": "Nov 1"
+  },
+  {
+   "rank": 58,
+   "title": "Prisoners",
+   "distributor": "Warner Bros.",
+   "total_gross": 61002302,
+   "max_theaters": 3290,
+   "opening_weekend": 20817053,
+   "opening_theaters": 3260,
+   "open_date": "Sep 20"
+  },
+  {
+   "rank": 59,
+   "title": "After Earth",
+   "distributor": "Sony Pictures Releasing",
+   "total_gross": 60522097,
+   "max_theaters": 3401,
+   "opening_weekend": 27520040,
+   "opening_theaters": 3401,
+   "open_date": "May 31"
+  },
+  {
+   "rank": 60,
+   "title": "The Secret Life of Walter Mitty",
+   "distributor": "Twentieth Century Fox",
+   "total_gross": 58236838,
+   "max_theaters": 2922,
+   "opening_weekend": 12765508,
+   "opening_theaters": 2909,
+   "open_date": "Dec 25"
+  },
+  {
+   "rank": 61,
+   "title": "Escape from Planet Earth",
+   "distributor": "The Weinstein Company",
+   "total_gross": 57012977,
+   "max_theaters": 3353,
+   "opening_weekend": 15891055,
+   "opening_theaters": 3288,
+   "open_date": "Feb 15"
+  },
+  {
+   "rank": 62,
+   "title": "12 Years a Slave",
+   "distributor": "Fox Searchlight Pictures",
+   "total_gross": 56671993,
+   "max_theaters": 1474,
+   "opening_weekend": 923715,
+   "opening_theaters": 19,
+   "open_date": "Oct 18"
+  },
+  {
+   "rank": 63,
+   "title": "Free Birds",
+   "distributor": "Relativity Media",
+   "total_gross": 55750480,
+   "max_theaters": 3736,
+   "opening_weekend": 15805237,
+   "opening_theaters": 3736,
+   "open_date": "Nov 1"
+  },
+  {
+   "rank": 64,
+   "title": "Hansel & Gretel: Witch Hunters",
+   "distributor": "Paramount Pictures",
+   "total_gross": 55703475,
+   "max_theaters": 3375,
+   "opening_weekend": 19690956,
+   "opening_theaters": 3372,
+   "open_date": "Jan 25"
+  },
+  {
+   "rank": 65,
+   "title": "Evil Dead",
+   "distributor": "TriStar Pictures",
+   "total_gross": 54239856,
+   "max_theaters": 3025,
+   "opening_weekend": 25775847,
+   "opening_theaters": 3025,
+   "open_date": "Apr 5"
+  },
+  {
+   "rank": 66,
+   "title": "RED 2",
+   "distributor": "Lionsgate",
+   "total_gross": 53262560,
+   "max_theaters": 3016,
+   "opening_weekend": 18048422,
+   "opening_theaters": 3016,
+   "open_date": "Jul 19"
+  },
+  {
+   "rank": 67,
+   "title": "A Madea Christmas",
+   "distributor": "Lionsgate",
+   "total_gross": 52543354,
+   "max_theaters": 2194,
+   "opening_weekend": 16007634,
+   "opening_theaters": 2194,
+   "open_date": "Dec 13"
+  },
+  {
+   "rank": 68,
+   "title": "Temptation: Confessions of a Marriage Counselor",
+   "distributor": "Lionsgate",
+   "total_gross": 51975354,
+   "max_theaters": 2047,
+   "opening_weekend": 21641679,
+   "opening_theaters": 2047,
+   "open_date": "Mar 29"
+  },
+  {
+   "rank": 69,
+   "title": "The Call",
+   "distributor": "TriStar Pictures",
+   "total_gross": 51872378,
+   "max_theaters": 2507,
+   "opening_weekend": 17118745,
+   "opening_theaters": 2507,
+   "open_date": "Mar 15"
+  },
+  {
+   "rank": 70,
+   "title": "Pain & Gain",
+   "distributor": "Paramount Pictures",
+   "total_gross": 49875291,
+   "max_theaters": 3303,
+   "opening_weekend": 20244505,
+   "opening_theaters": 3277,
+   "open_date": "Apr 26"
+  },
+  {
+   "rank": 71,
+   "title": "Gangster Squad",
+   "distributor": "Warner Bros.",
+   "total_gross": 46000903,
+   "max_theaters": 3103,
+   "opening_weekend": 17070347,
+   "opening_theaters": 3103,
+   "open_date": "Jan 1"
+  },
+  {
+   "rank": 72,
+   "title": "Jurassic Park 2013 Re-release",
+   "distributor": "Universal Pictures",
+   "total_gross": 45385935,
+   "max_theaters": 2778,
+   "opening_weekend": 18620145,
+   "opening_theaters": 2771,
+   "open_date": "Apr 5"
+  },
+  {
+   "rank": 73,
+   "title": "The Internship",
+   "distributor": "Twentieth Century Fox",
+   "total_gross": 44672764,
+   "max_theaters": 3399,
+   "opening_weekend": 17325307,
+   "opening_theaters": 3366,
+   "open_date": "Jun 7"
+  },
+  {
+   "rank": 74,
+   "title": "Instructions Not Included",
+   "distributor": "Lionsgate",
+   "total_gross": 44467206,
+   "max_theaters": 978,
+   "opening_weekend": 7846426,
+   "opening_theaters": 348,
+   "open_date": "Aug 30"
+  },
+  {
+   "rank": 75,
+   "title": "Snitch",
+   "distributor": "Lionsgate",
+   "total_gross": 42930462,
+   "max_theaters": 2511,
+   "opening_weekend": 13167607,
+   "opening_theaters": 2511,
+   "open_date": "Feb 2"
+  },
+  {
+   "rank": 76,
+   "title": "Riddick",
+   "distributor": "Universal Pictures",
+   "total_gross": 42025135,
+   "max_theaters": 3117,
+   "opening_weekend": 19030375,
+   "opening_theaters": 3107,
+   "open_date": "Sep 6"
+  },
+  {
+   "rank": 77,
+   "title": "A Haunted House",
+   "distributor": "Open Road Films (II)",
+   "total_gross": 40041683,
+   "max_theaters": 2160,
+   "opening_weekend": 18101682,
+   "opening_theaters": 2160,
+   "open_date": "Jan 1"
+  },
+  {
+   "rank": 78,
+   "title": "47 Ronin",
+   "distributor": "Universal Pictures",
+   "total_gross": 38362475,
+   "max_theaters": 2690,
+   "opening_weekend": 9910310,
+   "opening_theaters": 2689,
+   "open_date": "Dec 25"
+  },
+  {
+   "rank": 79,
+   "title": "August: Osage County",
+   "distributor": "The Weinstein Company",
+   "total_gross": 37738810,
+   "max_theaters": 2411,
+   "opening_weekend": 179302,
+   "opening_theaters": 5,
+   "open_date": "Dec 27"
+  },
+  {
+   "rank": 80,
+   "title": "Philomena",
+   "distributor": "The Weinstein Company",
+   "total_gross": 37709979,
+   "max_theaters": 1225,
+   "opening_weekend": 128435,
+   "opening_theaters": 4,
+   "open_date": "Nov 2"
+  },
+  {
+   "rank": 81,
+   "title": "The Family",
+   "distributor": "Relativity Media",
+   "total_gross": 36918811,
+   "max_theaters": 3091,
+   "opening_weekend": 14034764,
+   "opening_theaters": 3091,
+   "open_date": "Sep 13"
+  },
+  {
+   "rank": 82,
+   "title": "Walking with Dinosaurs 3D",
+   "distributor": "Twentieth Century Fox",
+   "total_gross": 36076121,
+   "max_theaters": 3243,
+   "opening_weekend": 7091938,
+   "opening_theaters": 3231,
+   "open_date": "Dec 20"
+  },
+  {
+   "rank": 83,
+   "title": "Carrie",
+   "distributor": "Screen Gems",
+   "total_gross": 35266619,
+   "max_theaters": 3157,
+   "opening_weekend": 16101552,
+   "opening_theaters": 3157,
+   "open_date": "Oct 18"
+  },
+  {
+   "rank": 84,
+   "title": "Texas Chainsaw",
+   "distributor": "Lionsgate",
+   "total_gross": 34341945,
+   "max_theaters": 2659,
+   "opening_weekend": 21744470,
+   "opening_theaters": 2654,
+   "open_date": "Jan 4"
+  },
+  {
+   "rank": 85,
+   "title": "R.I.P.D.",
+   "distributor": "Universal Pictures",
+   "total_gross": 33618855,
+   "max_theaters": 2852,
+   "opening_weekend": 12691415,
+   "opening_theaters": 2852,
+   "open_date": "Jul 19"
+  },
+  {
+   "rank": 86,
+   "title": "Blue Jasmine",
+   "distributor": "Sony Pictures Classics",
+   "total_gross": 33405481,
+   "max_theaters": 1283,
+   "opening_weekend": 612064,
+   "opening_theaters": 6,
+   "open_date": "Jul 26"
+  },
+  {
+   "rank": 87,
+   "title": "Kevin Hart: Let Me Explain",
+   "distributor": "Lionsgate",
+   "total_gross": 32244051,
+   "max_theaters": 892,
+   "opening_weekend": 10030463,
+   "opening_theaters": 876,
+   "open_date": "Jul 3"
+  },
+  {
+   "rank": 88,
+   "title": "Side Effects",
+   "distributor": "Open Road Films (II)",
+   "total_gross": 32172757,
+   "max_theaters": 2605,
+   "opening_weekend": 9303145,
+   "opening_theaters": 2605,
+   "open_date": "Feb 8"
+  },
+  {
+   "rank": 89,
+   "title": "Scary Movie 5",
+   "distributor": "Dimension Films",
+   "total_gross": 32015787,
+   "max_theaters": 3402,
+   "opening_weekend": 14157367,
+   "opening_theaters": 3402,
+   "open_date": "Apr 12"
+  },
+  {
+   "rank": 90,
+   "title": "The Mortal Instruments: City of Bones",
+   "distributor": "Screen Gems",
+   "total_gross": 31165421,
+   "max_theaters": 3118,
+   "opening_weekend": 9336957,
+   "opening_theaters": 3118,
+   "open_date": "Aug 21"
+  },
+  {
+   "rank": 91,
+   "title": "Delivery Man",
+   "distributor": "Walt Disney Studios Motion Pictures",
+   "total_gross": 30664106,
+   "max_theaters": 3036,
+   "opening_weekend": 7944977,
+   "opening_theaters": 3036,
+   "open_date": "Nov 2"
+  },
+  {
+   "rank": 92,
+   "title": "Grudge Match",
+   "distributor": "Warner Bros.",
+   "total_gross": 29807260,
+   "max_theaters": 2856,
+   "opening_weekend": 7021993,
+   "opening_theaters": 2838,
+   "open_date": "Dec 25"
+  },
+  {
+   "rank": 93,
+   "title": "One Direction: This Is Us",
+   "distributor": "TriStar Pictures",
+   "total_gross": 28873374,
+   "max_theaters": 2735,
+   "opening_weekend": 15815497,
+   "opening_theaters": 2735,
+   "open_date": "Aug 30"
+  },
+  {
+   "rank": 94,
+   "title": "Kick-Ass 2",
+   "distributor": "Universal Pictures",
+   "total_gross": 28795985,
+   "max_theaters": 2945,
+   "opening_weekend": 13332955,
+   "opening_theaters": 2940,
+   "open_date": "Aug 16"
+  },
+  {
+   "rank": 95,
+   "title": "Dallas Buyers Club",
+   "distributor": "Focus Features",
+   "total_gross": 27298285,
+   "max_theaters": 1110,
+   "opening_weekend": 260865,
+   "opening_theaters": 9,
+   "open_date": "Nov 1"
+  },
+  {
+   "rank": 96,
+   "title": "Rush",
+   "distributor": "Universal Pictures",
+   "total_gross": 26947624,
+   "max_theaters": 2308,
+   "opening_weekend": 187289,
+   "opening_theaters": 5,
+   "open_date": "Sep 20"
+  },
+  {
+   "rank": 97,
+   "title": "The Host",
+   "distributor": "Open Road Films (II)",
+   "total_gross": 26627201,
+   "max_theaters": 3202,
+   "opening_weekend": 10600112,
+   "opening_theaters": 3202,
+   "open_date": "Mar 29"
+  },
+  {
+   "rank": 98,
+   "title": "The World's End",
+   "distributor": "Focus Features",
+   "total_gross": 26004851,
+   "max_theaters": 1553,
+   "opening_weekend": 8811790,
+   "opening_theaters": 1551,
+   "open_date": "Aug 23"
+  },
+  {
+   "rank": 99,
+   "title": "21 & Over",
+   "distributor": "Relativity Media",
+   "total_gross": 25682380,
+   "max_theaters": 2771,
+   "opening_weekend": 8754168,
+   "opening_theaters": 2771,
+   "open_date": "Mar 1"
+  },
+  {
+   "rank": 100,
+   "title": "Her",
+   "distributor": "Warner Bros.",
+   "total_gross": 25568251,
+   "max_theaters": 1729,
+   "opening_weekend": 260382,
+   "opening_theaters": 6,
+   "open_date": "Dec 18"
+  },
+  {
+   "rank": 101,
+   "title": "Escape Plan",
+   "distributor": "Lionsgate",
+   "total_gross": 25135965,
+   "max_theaters": 2883,
+   "opening_weekend": 9885732,
+   "opening_theaters": 2883,
+   "open_date": "Oct 18"
+  },
+  {
+   "rank": 102,
+   "title": "Don Jon",
+   "distributor": "Relativity Media",
+   "total_gross": 24477704,
+   "max_theaters": 2422,
+   "opening_weekend": 8677009,
+   "opening_theaters": 2422,
+   "open_date": "Sep 27"
+  },
+  {
+   "rank": 103,
+   "title": "The Incredible Burt Wonderstone",
+   "distributor": "Warner Bros.",
+   "total_gross": 22537881,
+   "max_theaters": 3160,
+   "opening_weekend": 10177257,
+   "opening_theaters": 3160,
+   "open_date": "Mar 15"
+  },
+  {
+   "rank": 104,
+   "title": "The Big Wedding",
+   "distributor": "Lionsgate",
+   "total_gross": 21819348,
+   "max_theaters": 2633,
+   "opening_weekend": 7591663,
+   "opening_theaters": 2633,
+   "open_date": "Apr 26"
+  },
+  {
+   "rank": 105,
+   "title": "Mud",
+   "distributor": "Roadside Attractions",
+   "total_gross": 21590086,
+   "max_theaters": 960,
+   "opening_weekend": 2215891,
+   "opening_theaters": 363,
+   "open_date": "Apr 26"
+  },
+  {
+   "rank": 106,
+   "title": "Baggage Claim",
+   "distributor": "Fox Searchlight Pictures",
+   "total_gross": 21569509,
+   "max_theaters": 2230,
+   "opening_weekend": 9031102,
+   "opening_theaters": 2027,
+   "open_date": "Sep 27"
+  },
+  {
+   "rank": 107,
+   "title": "The Way Way Back",
+   "distributor": "Fox Searchlight Pictures",
+   "total_gross": 21506546,
+   "max_theaters": 1001,
+   "opening_weekend": 552788,
+   "opening_theaters": 19,
+   "open_date": "Jul 5"
+  },
+  {
+   "rank": 108,
+   "title": "The Book Thief",
+   "distributor": "Twentieth Century Fox",
+   "total_gross": 21488481,
+   "max_theaters": 1316,
+   "opening_weekend": 105005,
+   "opening_theaters": 4,
+   "open_date": "Nov 8"
+  },
+  {
+   "rank": 109,
+   "title": "The Place Beyond the Pines",
+   "distributor": "Focus Features",
+   "total_gross": 21403519,
+   "max_theaters": 1584,
+   "opening_weekend": 279457,
+   "opening_theaters": 4,
+   "open_date": "Mar 29"
+  },
+  {
+   "rank": 110,
+   "title": "Homefront",
+   "distributor": "Open Road Films (II)",
+   "total_gross": 20158898,
+   "max_theaters": 2570,
+   "opening_weekend": 6915241,
+   "opening_theaters": 2570,
+   "open_date": "Nov 27"
+  },
+  {
+   "rank": 111,
+   "title": "Broken City",
+   "distributor": "Twentieth Century Fox",
+   "total_gross": 19701164,
+   "max_theaters": 2622,
+   "opening_weekend": 8268908,
+   "opening_theaters": 2620,
+   "open_date": "Jan 18"
+  },
+  {
+   "rank": 112,
+   "title": "Beautiful Creatures",
+   "distributor": "Warner Bros.",
+   "total_gross": 19452138,
+   "max_theaters": 2950,
+   "opening_weekend": 7582595,
+   "opening_theaters": 2950,
+   "open_date": "Feb 14"
+  },
+  {
+   "rank": 113,
+   "title": "Runner Runner",
+   "distributor": "Twentieth Century Fox",
+   "total_gross": 19316646,
+   "max_theaters": 3026,
+   "opening_weekend": 7706712,
+   "opening_theaters": 3026,
+   "open_date": "Oct 4"
+  },
+  {
+   "rank": 114,
+   "title": "You're Next",
+   "distributor": "Lionsgate",
+   "total_gross": 18494006,
+   "max_theaters": 2437,
+   "opening_weekend": 7020196,
+   "opening_theaters": 2437,
+   "open_date": "Aug 23"
+  },
+  {
+   "rank": 115,
+   "title": "Quartet",
+   "distributor": "The Weinstein Company",
+   "total_gross": 18390117,
+   "max_theaters": 725,
+   "opening_weekend": 47122,
+   "opening_theaters": 2,
+   "open_date": "Jan 1"
+  },
+  {
+   "rank": 116,
+   "title": "Admission",
+   "distributor": "Focus Features",
+   "total_gross": 18007317,
+   "max_theaters": 2161,
+   "opening_weekend": 6154984,
+   "opening_theaters": 2160,
+   "open_date": "Mar 2"
+  },
+  {
+   "rank": 117,
+   "title": "Nebraska",
+   "distributor": "Paramount Pictures",
+   "total_gross": 17654912,
+   "max_theaters": 968,
+   "opening_weekend": 140401,
+   "opening_theaters": 4,
+   "open_date": "Nov 15"
+  },
+  {
+   "rank": 118,
+   "title": "Parker",
+   "distributor": "FilmDistrict",
+   "total_gross": 17616641,
+   "max_theaters": 2238,
+   "opening_weekend": 7008222,
+   "opening_theaters": 2224,
+   "open_date": "Jan 25"
+  },
+  {
+   "rank": 119,
+   "title": "Enough Said",
+   "distributor": "Fox Searchlight Pictures",
+   "total_gross": 17550872,
+   "max_theaters": 835,
+   "opening_weekend": 232800,
+   "opening_theaters": 4,
+   "open_date": "Sep 18"
+  },
+  {
+   "rank": 120,
+   "title": "Dark Skies",
+   "distributor": "Dimension Films",
+   "total_gross": 17418667,
+   "max_theaters": 2313,
+   "opening_weekend": 8189166,
+   "opening_theaters": 2313,
+   "open_date": "Feb 2"
+  },
+  {
+   "rank": 121,
+   "title": "The Counselor",
+   "distributor": "Twentieth Century Fox",
+   "total_gross": 16973715,
+   "max_theaters": 3044,
+   "opening_weekend": 7842930,
+   "opening_theaters": 3044,
+   "open_date": "Oct 25"
+  },
+  {
+   "rank": 122,
+   "title": "Jobs",
+   "distributor": "Open Road Films (II)",
+   "total_gross": 16131410,
+   "max_theaters": 2381,
+   "opening_weekend": 6713900,
+   "opening_theaters": 2381,
+   "open_date": "Aug 16"
+  },
+  {
+   "rank": 123,
+   "title": "Fruitvale Station",
+   "distributor": "The Weinstein Company",
+   "total_gross": 16101339,
+   "max_theaters": 1086,
+   "opening_weekend": 386291,
+   "opening_theaters": 7,
+   "open_date": "Jul 12"
+  },
+  {
+   "rank": 124,
+   "title": "About Time",
+   "distributor": "Universal Pictures",
+   "total_gross": 15322921,
+   "max_theaters": 1280,
+   "opening_weekend": 1076250,
+   "opening_theaters": 175,
+   "open_date": "Nov 1"
+  },
+  {
+   "rank": 125,
+   "title": "The Last Exorcism Part I",
+   "distributor": "CBS Films",
+   "total_gross": 15179302,
+   "max_theaters": 2700,
+   "opening_weekend": 7728354,
+   "opening_theaters": 2700,
+   "open_date": "Mar 1"
+  },
+  {
+   "rank": 126,
+   "title": "Spring Breakers",
+   "distributor": "A24",
+   "total_gross": 14124284,
+   "max_theaters": 1379,
+   "opening_weekend": 263002,
+   "opening_theaters": 3,
+   "open_date": "Mar 15"
+  },
+  {
+   "rank": 127,
+   "title": "Inside Llewyn Davis",
+   "distributor": "CBS Films",
+   "total_gross": 13235319,
+   "max_theaters": 729,
+   "opening_weekend": 405411,
+   "opening_theaters": 4,
+   "open_date": "Dec 6"
+  },
+  {
+   "rank": 128,
+   "title": "The Last Stand",
+   "distributor": "Lionsgate",
+   "total_gross": 12050299,
+   "max_theaters": 2913,
+   "opening_weekend": 6281433,
+   "opening_theaters": 2913,
+   "open_date": "Jan 18"
+  },
+  {
+   "rank": 129,
+   "title": "Out of the Furnace",
+   "distributor": "Relativity Media",
+   "total_gross": 11330849,
+   "max_theaters": 2101,
+   "opening_weekend": 5220288,
+   "opening_theaters": 2101,
+   "open_date": "Dec 4"
+  },
+  {
+   "rank": 130,
+   "title": "Dead Man Down",
+   "distributor": "FilmDistrict",
+   "total_gross": 10895295,
+   "max_theaters": 2188,
+   "opening_weekend": 5345250,
+   "opening_theaters": 2188,
+   "open_date": "Mar 8"
+  },
+  {
+   "rank": 131,
+   "title": "Getaway",
+   "distributor": "Warner Bros.",
+   "total_gross": 10501938,
+   "max_theaters": 2135,
+   "opening_weekend": 4503892,
+   "opening_theaters": 2130,
+   "open_date": "Aug 30"
+  },
+  {
+   "rank": 132,
+   "title": "Bullet to the Head",
+   "distributor": "Warner Bros.",
+   "total_gross": 9489829,
+   "max_theaters": 2404,
+   "opening_weekend": 4548201,
+   "opening_theaters": 2404,
+   "open_date": "Feb 1"
+  },
+  {
+   "rank": 133,
+   "title": "Peeples",
+   "distributor": "Lionsgate",
+   "total_gross": 9177065,
+   "max_theaters": 2041,
+   "opening_weekend": 4611534,
+   "opening_theaters": 2041,
+   "open_date": "May 10"
+  },
+  {
+   "rank": 134,
+   "title": "Battle of the Year",
+   "distributor": "Screen Gems",
+   "total_gross": 8888355,
+   "max_theaters": 2008,
+   "opening_weekend": 4603177,
+   "opening_theaters": 2008,
+   "open_date": "Sep 20"
+  },
+  {
+   "rank": 135,
+   "title": "Movie 43",
+   "distributor": "Relativity Media",
+   "total_gross": 8840453,
+   "max_theaters": 2023,
+   "opening_weekend": 4805878,
+   "opening_theaters": 2023,
+   "open_date": "Jan 25"
+  },
+  {
+   "rank": 136,
+   "title": "Mandela: Long Walk to Freedom",
+   "distributor": "The Weinstein Company",
+   "total_gross": 8323085,
+   "max_theaters": 1010,
+   "opening_weekend": 84283,
+   "opening_theaters": 4,
+   "open_date": "Nov 29"
+  },
+  {
+   "rank": 137,
+   "title": "Before Midnight",
+   "distributor": "Sony Pictures Classics",
+   "total_gross": 8114627,
+   "max_theaters": 897,
+   "opening_weekend": 246914,
+   "opening_theaters": 5,
+   "open_date": "May 24"
+  },
+  {
+   "rank": 138,
+   "title": "Dhoom 3",
+   "distributor": "Yash Raj Films",
+   "total_gross": 8031955,
+   "max_theaters": 239,
+   "opening_weekend": 3423508,
+   "opening_theaters": 239,
+   "open_date": "Dec 20"
+  },
+  {
+   "rank": 139,
+   "title": "Jerusalem",
+   "distributor": "National Geographic Entertainment",
+   "total_gross": 8020721,
+   "max_theaters": 3,
+   "opening_weekend": null,
+   "opening_theaters": null,
+   "open_date": "Sep 13"
+  },
+  {
+   "rank": 140,
+   "title": "Machete Kills",
+   "distributor": "Open Road Films (II)",
+   "total_gross": 8008161,
+   "max_theaters": 2538,
+   "opening_weekend": 3837183,
+   "opening_theaters": 2538,
+   "open_date": "Oct 1"
+  },
+  {
+   "rank": 141,
+   "title": "Journey to the South Pacific",
+   "distributor": "IMAX",
+   "total_gross": 7653913,
+   "max_theaters": 19,
+   "opening_weekend": 8137,
+   "opening_theaters": 1,
+   "open_date": "Nov 27"
+  },
+  {
+   "rank": 142,
+   "title": "Paranoia",
+   "distributor": "Relativity Media",
+   "total_gross": 7388654,
+   "max_theaters": 2459,
+   "opening_weekend": 3528376,
+   "opening_theaters": 2459,
+   "open_date": "Aug 16"
+  },
+  {
+   "rank": 143,
+   "title": "Black Nativity",
+   "distributor": "Fox Searchlight Pictures",
+   "total_gross": 7018189,
+   "max_theaters": 1525,
+   "opening_weekend": 3669530,
+   "opening_theaters": 1516,
+   "open_date": "Nov 27"
+  },
+  {
+   "rank": 144,
+   "title": "The Spectacular Now",
+   "distributor": "A24",
+   "total_gross": 6854611,
+   "max_theaters": 770,
+   "opening_weekend": 197415,
+   "opening_theaters": 4,
+   "open_date": "Aug 2"
+  },
+  {
+   "rank": 145,
+   "title": "The Grandmaster",
+   "distributor": "The Weinstein Company",
+   "total_gross": 6594959,
+   "max_theaters": 804,
+   "opening_weekend": 132617,
+   "opening_theaters": 7,
+   "open_date": "Aug 23"
+  },
+  {
+   "rank": 146,
+   "title": "All Is Lost",
+   "distributor": "Roadside Attractions",
+   "total_gross": 6263670,
+   "max_theaters": 483,
+   "opening_weekend": 93583,
+   "opening_theaters": 6,
+   "open_date": "Oct 18"
+  },
+  {
+   "rank": 147,
+   "title": "Justin Bieber's Believe",
+   "distributor": "Open Road Films (II)",
+   "total_gross": 6206566,
+   "max_theaters": 1037,
+   "opening_weekend": 2007567,
+   "opening_theaters": 1037,
+   "open_date": "Dec 25"
+  },
+  {
+   "rank": 148,
+   "title": "The Bling Ring",
+   "distributor": "A24",
+   "total_gross": 5845732,
+   "max_theaters": 650,
+   "opening_weekend": 214395,
+   "opening_theaters": 5,
+   "open_date": "Jun 14"
+  },
+  {
+   "rank": 149,
+   "title": "Pulling Strings",
+   "distributor": "Lionsgate",
+   "total_gross": 5842961,
+   "max_theaters": 438,
+   "opening_weekend": 2467168,
+   "opening_theaters": 387,
+   "open_date": "Oct 4"
+  },
+  {
+   "rank": 150,
+   "title": "Closed Circuit",
+   "distributor": "Focus Features",
+   "total_gross": 5750401,
+   "max_theaters": 870,
+   "opening_weekend": 2464931,
+   "opening_theaters": 870,
+   "open_date": "Aug 28"
+  },
+  {
+   "rank": 151,
+   "title": "The Wizard of Oz 2013 3D/IMAX Release",
+   "distributor": "Warner Bros.",
+   "total_gross": 5633202,
+   "max_theaters": 318,
+   "opening_weekend": 3093998,
+   "opening_theaters": 318,
+   "open_date": "Sep 20"
+  },
+  {
+   "rank": 152,
+   "title": "Chennai Express",
+   "distributor": "UTV Motion Pictures",
+   "total_gross": 5307960,
+   "max_theaters": 196,
+   "opening_weekend": 2220497,
+   "opening_theaters": 196,
+   "open_date": "Aug 8"
+  },
+  {
+   "rank": 153,
+   "title": "The Company You Keep",
+   "distributor": "Sony Pictures Classics",
+   "total_gross": 5133027,
+   "max_theaters": 807,
+   "opening_weekend": 131718,
+   "opening_theaters": 5,
+   "open_date": "Apr 5"
+  },
+  {
+   "rank": 154,
+   "title": "20 Feet from Stardom",
+   "distributor": "RADiUS-TWC",
+   "total_gross": 4946445,
+   "max_theaters": 147,
+   "opening_weekend": 54596,
+   "opening_theaters": 3,
+   "open_date": "Jun 14"
+  },
+  {
+   "rank": 155,
+   "title": "Much Ado About Nothing",
+   "distributor": "Roadside Attractions",
+   "total_gross": 4328849,
+   "max_theaters": 222,
+   "opening_weekend": 171942,
+   "opening_theaters": 5,
+   "open_date": "Jun 7"
+  },
+  {
+   "rank": 156,
+   "title": "Frances Ha",
+   "distributor": "IFC Films",
+   "total_gross": 4069826,
+   "max_theaters": 233,
+   "opening_weekend": 137398,
+   "opening_theaters": 4,
+   "open_date": "May 17"
+  },
+  {
+   "rank": 157,
+   "title": "Yeh Jawaani Hai Deewani",
+   "distributor": "Eros Worldwide",
+   "total_gross": 3827466,
+   "max_theaters": 161,
+   "opening_weekend": 1568677,
+   "opening_theaters": 161,
+   "open_date": "May 31"
+  },
+  {
+   "rank": 158,
+   "title": "The To-Do List",
+   "distributor": "CBS Films",
+   "total_gross": 3491669,
+   "max_theaters": 591,
+   "opening_weekend": 1579402,
+   "opening_theaters": 591,
+   "open_date": "Jul 26"
+  },
+  {
+   "rank": 159,
+   "title": "Metallica Through the Never",
+   "distributor": "Picturehouse",
+   "total_gross": 3419967,
+   "max_theaters": 589,
+   "opening_weekend": 1576561,
+   "opening_theaters": 305,
+   "open_date": "Sep 27"
+  },
+  {
+   "rank": 160,
+   "title": "Emperor",
+   "distributor": "Roadside Attractions",
+   "total_gross": 3346265,
+   "max_theaters": 311,
+   "opening_weekend": 1014099,
+   "opening_theaters": 260,
+   "open_date": "Mar 8"
+  },
+  {
+   "rank": 161,
+   "title": "Stand Up Guys",
+   "distributor": "Lionsgate",
+   "total_gross": 3310031,
+   "max_theaters": 670,
+   "opening_weekend": 1486390,
+   "opening_theaters": 659,
+   "open_date": "Feb 1"
+  },
+  {
+   "rank": 162,
+   "title": "The Fifth Estate",
+   "distributor": "Walt Disney Studios Motion Pictures",
+   "total_gross": 3255008,
+   "max_theaters": 1769,
+   "opening_weekend": 1673351,
+   "opening_theaters": 1769,
+   "open_date": "Oct 18"
+  },
+  {
+   "rank": 163,
+   "title": "Top Gun 2013 3D Release",
+   "distributor": "Paramount Pictures",
+   "total_gross": 3018873,
+   "max_theaters": 300,
+   "opening_weekend": 1965737,
+   "opening_theaters": 300,
+   "open_date": "Feb 8"
+  },
+  {
+   "rank": 164,
+   "title": "In a World...",
+   "distributor": "Roadside Attractions",
+   "total_gross": 2963902,
+   "max_theaters": 144,
+   "opening_weekend": 70541,
+   "opening_theaters": 3,
+   "open_date": "Aug 9"
+  },
+  {
+   "rank": 165,
+   "title": "Home Run",
+   "distributor": "The Samuel Goldwyn Company",
+   "total_gross": 2861020,
+   "max_theaters": 381,
+   "opening_weekend": 1623000,
+   "opening_theaters": 381,
+   "open_date": "Apr 19"
+  },
+  {
+   "rank": 166,
+   "title": "The Great Beauty",
+   "distributor": "Janus Films",
+   "total_gross": 2852400,
+   "max_theaters": 7,
+   "opening_weekend": 23442,
+   "opening_theaters": 1,
+   "open_date": "Nov 15"
+  },
+  {
+   "rank": 167,
+   "title": "Filly Brown",
+   "distributor": "Lionsgate",
+   "total_gross": 2850357,
+   "max_theaters": 259,
+   "opening_weekend": 1478323,
+   "opening_theaters": 188,
+   "open_date": "Apr 19"
+  },
+  {
+   "rank": 168,
+   "title": "Goliyon Ki Raasleela Ram Leela",
+   "distributor": "Eros Worldwide",
+   "total_gross": 2738863,
+   "max_theaters": 204,
+   "opening_weekend": 1449174,
+   "opening_theaters": 204,
+   "open_date": "Nov 15"
+  },
+  {
+   "rank": 169,
+   "title": "Grace Unplugged",
+   "distributor": "Roadside Attractions",
+   "total_gross": 2507201,
+   "max_theaters": 511,
+   "opening_weekend": 998145,
+   "opening_theaters": 511,
+   "open_date": "Oct 4"
+  },
+  {
+   "rank": 170,
+   "title": "The Sapphires",
+   "distributor": "The Weinstein Company",
+   "total_gross": 2450867,
+   "max_theaters": 126,
+   "opening_weekend": 38372,
+   "opening_theaters": 4,
+   "open_date": "Mar 2"
+  },
+  {
+   "rank": 171,
+   "title": "The Gatekeepers",
+   "distributor": "Sony Pictures Classics",
+   "total_gross": 2415727,
+   "max_theaters": 131,
+   "opening_weekend": 61552,
+   "opening_theaters": 3,
+   "open_date": "Feb 1"
+  },
+  {
+   "rank": 172,
+   "title": "I'm in Love with a Church Girl",
+   "distributor": "High Top Releasing",
+   "total_gross": 2387730,
+   "max_theaters": 458,
+   "opening_weekend": 971826,
+   "opening_theaters": 457,
+   "open_date": "Oct 18"
+  },
+  {
+   "rank": 173,
+   "title": "No",
+   "distributor": "Sony Pictures Classics",
+   "total_gross": 2343664,
+   "max_theaters": 9,
+   "opening_weekend": 71742,
+   "opening_theaters": 4,
+   "open_date": "Feb 15"
+  },
+  {
+   "rank": 174,
+   "title": "Trance",
+   "distributor": "Fox Searchlight Pictures",
+   "total_gross": 2328743,
+   "max_theaters": 443,
+   "opening_weekend": 131145,
+   "opening_theaters": 4,
+   "open_date": "Apr 5"
+  },
+  {
+   "rank": 175,
+   "title": "The East",
+   "distributor": "Fox Searchlight Pictures",
+   "total_gross": 2301839,
+   "max_theaters": 195,
+   "opening_weekend": 77031,
+   "opening_theaters": 4,
+   "open_date": "May 31"
+  },
+  {
+   "rank": 176,
+   "title": "Renoir",
+   "distributor": "The Samuel Goldwyn Company",
+   "total_gross": 2293798,
+   "max_theaters": 86,
+   "opening_weekend": 65194,
+   "opening_theaters": 6,
+   "open_date": "Mar 29"
+  },
+  {
+   "rank": 177,
+   "title": "The Christmas Candle",
+   "distributor": "EchoLight Studios",
+   "total_gross": 2258620,
+   "max_theaters": 392,
+   "opening_weekend": 68655,
+   "opening_theaters": 5,
+   "open_date": "Nov 15"
+  },
+  {
+   "rank": 178,
+   "title": "Blue Is the Warmest Colour",
+   "distributor": "IFC Films",
+   "total_gross": 2199787,
+   "max_theaters": 142,
+   "opening_weekend": 100316,
+   "opening_theaters": 4,
+   "open_date": "Oct 25"
+  },
+  {
+   "rank": 179,
+   "title": "Oldboy",
+   "distributor": "FilmDistrict",
+   "total_gross": 2193658,
+   "max_theaters": 583,
+   "opening_weekend": 885382,
+   "opening_theaters": 583,
+   "open_date": "Nov 27"
+  },
+  {
+   "rank": 180,
+   "title": "Krrish 3",
+   "distributor": "Eros Worldwide",
+   "total_gross": 2191534,
+   "max_theaters": 208,
+   "opening_weekend": 1049560,
+   "opening_theaters": 208,
+   "open_date": "Nov 1"
+  },
+  {
+   "rank": 181,
+   "title": "Austenland",
+   "distributor": "Sony Pictures Classics",
+   "total_gross": 2159041,
+   "max_theaters": 274,
+   "opening_weekend": 40662,
+   "opening_theaters": 4,
+   "open_date": "Aug 16"
+  },
+  {
+   "rank": 182,
+   "title": "The Saratov Approach",
+   "distributor": "Purdie Distribution",
+   "total_gross": 2146999,
+   "max_theaters": 84,
+   "opening_weekend": 137226,
+   "opening_theaters": 23,
+   "open_date": "Oct 9"
+  },
+  {
+   "rank": 183,
+   "title": "The Oscar Nominated Short Films 2013: Live Action",
+   "distributor": "Shorts International",
+   "total_gross": 2142342,
+   "max_theaters": 266,
+   "opening_weekend": 371605,
+   "opening_theaters": 105,
+   "open_date": "Feb 1"
+  },
+  {
+   "rank": 184,
+   "title": "Blackfish",
+   "distributor": "Magnolia Pictures",
+   "total_gross": 2073582,
+   "max_theaters": 9,
+   "opening_weekend": 75962,
+   "opening_theaters": 5,
+   "open_date": "Jul 19"
+  },
+  {
+   "rank": 185,
+   "title": "The Iceman",
+   "distributor": "Millennium Entertainment",
+   "total_gross": 1969193,
+   "max_theaters": 258,
+   "opening_weekend": 87946,
+   "opening_theaters": 4,
+   "open_date": "May 3"
+  },
+  {
+   "rank": 186,
+   "title": "Fill the Void",
+   "distributor": "Sony Pictures Classics",
+   "total_gross": 1775316,
+   "max_theaters": 64,
+   "opening_weekend": 59164,
+   "opening_theaters": 3,
+   "open_date": "May 24"
+  },
+  {
+   "rank": 187,
+   "title": "Girl Rising",
+   "distributor": "GathrFilms",
+   "total_gross": 1727259,
+   "max_theaters": 170,
+   "opening_weekend": 81640,
+   "opening_theaters": 34,
+   "open_date": "Mar 7"
+  },
+  {
+   "rank": 188,
+   "title": "The Attack",
+   "distributor": "Cohen Media Group",
+   "total_gross": 1720325,
+   "max_theaters": 5,
+   "opening_weekend": 27379,
+   "opening_theaters": 3,
+   "open_date": "Jun 21"
+  },
+  {
+   "rank": 189,
+   "title": "Stoker",
+   "distributor": "Fox Searchlight Pictures",
+   "total_gross": 1714221,
+   "max_theaters": 275,
+   "opening_weekend": 160547,
+   "opening_theaters": 7,
+   "open_date": "Mar 1"
+  },
+  {
+   "rank": 190,
+   "title": "Unfinished Song",
+   "distributor": "The Weinstein Company",
+   "total_gross": 1702668,
+   "max_theaters": 91,
+   "opening_weekend": 25728,
+   "opening_theaters": 2,
+   "open_date": "Jun 21"
+  },
+  {
+   "rank": 191,
+   "title": "Bhaag Milkha Bhaag",
+   "distributor": "Reliance Big Pictures",
+   "total_gross": 1636731,
+   "max_theaters": 140,
+   "opening_weekend": 647112,
+   "opening_theaters": 140,
+   "open_date": "Jul 12"
+  },
+  {
+   "rank": 192,
+   "title": "Love Is All You Need",
+   "distributor": "Sony Pictures Classics",
+   "total_gross": 1631709,
+   "max_theaters": 101,
+   "opening_weekend": 36746,
+   "opening_theaters": 4,
+   "open_date": "May 3"
+  },
+  {
+   "rank": 193,
+   "title": "Stories We Tell",
+   "distributor": "Roadside Attractions",
+   "total_gross": 1600145,
+   "max_theaters": 70,
+   "opening_weekend": 27053,
+   "opening_theaters": 2,
+   "open_date": "May 10"
+  },
+  {
+   "rank": 194,
+   "title": "Race 2",
+   "distributor": "UTV Motion Pictures",
+   "total_gross": 1579940,
+   "max_theaters": 153,
+   "opening_weekend": 884757,
+   "opening_theaters": 153,
+   "open_date": "Jan 25"
+  },
+  {
+   "rank": 195,
+   "title": "Bless Me, Ultima",
+   "distributor": "Arenas Entertainment",
+   "total_gross": 1561962,
+   "max_theaters": 263,
+   "opening_weekend": 470109,
+   "opening_theaters": 263,
+   "open_date": "Feb 2"
+  },
+  {
+   "rank": 196,
+   "title": "Kon-Tiki",
+   "distributor": "The Weinstein Company",
+   "total_gross": 1517410,
+   "max_theaters": 75,
+   "opening_weekend": 22168,
+   "opening_theaters": 2,
+   "open_date": "Apr 26"
+  },
+  {
+   "rank": 197,
+   "title": "Disconnect",
+   "distributor": "LD Entertainment",
+   "total_gross": 1436900,
+   "max_theaters": 180,
+   "opening_weekend": 124000,
+   "opening_theaters": 15,
+   "open_date": "Apr 12"
+  },
+  {
+   "rank": 198,
+   "title": "Girl Most Likely",
+   "distributor": "Roadside Attractions",
+   "total_gross": 1378591,
+   "max_theaters": 351,
+   "opening_weekend": 694447,
+   "opening_theaters": 351,
+   "open_date": "Jul 19"
+  },
+  {
+   "rank": 199,
+   "title": "I'm So Excited!",
+   "distributor": "Sony Pictures Classics",
+   "total_gross": 1368119,
+   "max_theaters": 9,
+   "opening_weekend": 97328,
+   "opening_theaters": 5,
+   "open_date": "Jun 28"
+  },
+  {
+   "rank": 200,
+   "title": "Wadjda",
+   "distributor": "Sony Pictures Classics",
+   "total_gross": 1347747,
+   "max_theaters": 87,
+   "opening_weekend": 41253,
+   "opening_theaters": 3,
+   "open_date": "Sep 13"
+  }
+ ]
 }

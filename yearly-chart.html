@@ -6,64 +6,107 @@
   <title>Yearly Chart &mdash; Box Office Jedi</title>
   <link rel="stylesheet" href="assets/css/styles.css">
   <style>
+
+    /* Breadcrumb / crest. "YEARLY BOX OFFICE" is clickable back to index. */
     .yc-page-title {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 14px;
+      font-size: 20px;
       color: #00239C;
-      padding: 6px 10px 4px;
+      padding: 6px 14px 4px;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.02em;
     }
-    .yc-section-bar { height: 5px; background: #7F170E; margin-bottom: 12px; }
+    .yc-page-title a { color: #00239C; text-decoration: none; }
+    .yc-page-title a:hover { text-decoration: underline; }
+    .yc-page-title .arrow { color: #7F170E; margin-right: 4px; }
+    .yc-section-bar { height: 3px; background: #7F170E; margin-bottom: 16px; }
+
+    /* Big red year title */
     .yc-title {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 22px;
+      font-size: 26px;
       color: #7F170E;
       text-align: center;
-      margin: 4px 0 14px;
+      margin: 6px 0 16px;
       letter-spacing: 0.03em;
     }
-    .yc-wrap { padding: 10px 14px 20px; }
-    .yc-table { width: 100%; border-collapse: collapse; font-family: 'Times New Roman', Times, serif; }
-    .yc-table thead th {
-      background: #F4F4FE;
+
+    /* Prev/next year strip */
+    .yc-prevnext {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 14px 12px;
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 10px;
-      color: #444;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 5px 6px;
-      border-bottom: 2px solid #7F170E;
-      text-align: right;
-      white-space: nowrap;
+      font-size: 12px;
     }
-    .yc-table thead th.yc-th-left { text-align: left; padding-left: 10px; }
-    .yc-table thead th.yc-th-rank  { text-align: center; width: 40px; }
+    .yc-prevnext a    { color: #00239C; text-decoration: none; }
+    .yc-prevnext a:hover { text-decoration: underline; }
+    .yc-prevnext span { color: #999; }
+
+    /* Table */
+    .yc-wrap  { padding: 0 14px 20px; }
+    .yc-table { width: 100%; border-collapse: collapse; }
+
+    .yc-table thead th {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 15px;
+      color: #000;
+      padding: 6px 8px;
+      background: #FFFFFF;
+      border-bottom: 1px solid #999;
+      vertical-align: bottom;
+      text-align: center;
+    }
+    .yc-table thead th.yc-th-left { text-align: left; }
 
     .yc-table tbody tr:nth-child(odd)  td { background: #F4F4FE; }
     .yc-table tbody tr:nth-child(even) td { background: #FFFFFF; }
     .yc-table td {
-      font-size: 13px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
       color: #000;
-      padding: 4px 6px;
+      padding: 5px 8px;
       text-align: right;
       white-space: nowrap;
     }
-    .yc-table td.yc-td-rank  { text-align: center; width: 40px; color: #444; }
+    .yc-table td.yc-td-rank {
+      width: 44px;
+      text-align: center;
+      font-family: 'Times New Roman', Times, serif;
+      color: #000;
+    }
     .yc-table td.yc-td-title {
       text-align: left;
-      padding-left: 10px;
-      width: 44%;
+      white-space: normal;       /* let long titles wrap */
     }
     .yc-table td.yc-td-title a {
       font-family: 'Times New Roman', Times, serif;
       color: #00007B;
+      font-weight: bold;
       text-decoration: none;
     }
     .yc-table td.yc-td-title a:hover { text-decoration: underline; }
+
+    .yc-table td.yc-td-studio {
+      font-family: 'Times New Roman', Times, serif;
+      color: #000;
+      text-align: left;
+      white-space: normal;
+    }
+    .yc-table td.yc-td-gross   { font-weight: bold; }
+    .yc-table td.yc-td-th      { color: #000; }
+    .yc-table td.yc-td-open    { color: #00239C; }    /* matches BOM's blue date */
+    .yc-table td.yc-td-opendate{ color: #00239C; }
+
+    /* Subtle visual separation between the paired columns (Gross|Max Th and Open|Open Th) */
+    .yc-table td.yc-td-gross   { border-right: 1px solid #E0E0E0; }
+    .yc-table td.yc-td-open    { border-right: 1px solid #E0E0E0; }
+    .yc-table thead th.yc-th-gross { border-right: 1px solid #E0E0E0; }
+    .yc-table thead th.yc-th-open  { border-right: 1px solid #E0E0E0; }
 
     .yc-empty {
       font-family: 'Times New Roman', Times, serif;
@@ -129,15 +172,37 @@
     <div id="page-tools"></div>
     <div class="infl-banner">Showing grosses adjusted for inflation (relative to today&rsquo;s ticket prices).</div>
 
-    <div class="yc-page-title">&gt; <a href="yearly.html" style="color:#00239C;">YEARLY BOX OFFICE</a> &gt; <span id="yc-breadcrumb">YEAR</span></div>
+    <!-- Crumb: clicking "YEARLY BOX OFFICE" goes back to the yearly index -->
+    <div class="yc-page-title">
+      <span class="arrow">&gt;</span>
+      <a href="yearly.html">YEARLY BOX OFFICE</a>
+    </div>
     <div class="yc-section-bar"></div>
 
-    <h1 class="yc-title" id="yc-title">YEAR CHART</h1>
+    <h1 class="yc-title" id="yc-title">YEAR</h1>
+
+    <!-- Prev / next year -->
+    <div class="yc-prevnext" id="yc-prevnext">
+      <span class="yc-prev"></span>
+      <span class="yc-next"></span>
+    </div>
 
     <div class="yc-wrap">
       <table class="yc-table">
-        <thead id="yc-head"></thead>
-        <tbody id="yc-body"><tr><td colspan="6" class="yc-empty">Loading&hellip;</td></tr></tbody>
+        <thead>
+          <tr>
+            <th rowspan="2" class="yc-th-rank">Rank</th>
+            <th rowspan="2" class="yc-th-left">Movie Title <span style="font-weight:normal;color:#666;font-size:12px;">(click to view)</span></th>
+            <th rowspan="2" class="yc-th-left">Studio</th>
+            <th colspan="2" class="yc-th-gross">Total Gross / Theaters</th>
+            <th colspan="2" class="yc-th-open">Opening / Theaters</th>
+            <th rowspan="2">Open</th>
+          </tr>
+          <tr><!-- (second header row is implied by rowspan; nothing needed) --></tr>
+        </thead>
+        <tbody id="yc-body">
+          <tr><td colspan="8" class="yc-empty">Loading&hellip;</td></tr>
+        </tbody>
       </table>
       <p class="yc-note" id="yc-note"></p>
       <p><a class="yc-back" href="yearly.html">&lt; Back to Yearly Index</a></p>
@@ -170,6 +235,7 @@
   </div>
 </footer>
 
+<script src="assets/js/inflation.js"></script>
 <script>
   document.getElementById('footer-year').textContent = new Date().getFullYear();
   function doSearch() {
@@ -180,68 +246,110 @@
     if (e.key === 'Enter') doSearch();
   });
 
-  function fmtShort(n) {
-    if (!n) return '—';
-    if (n >= 1e9) return '$' + (n / 1e9).toFixed(1) + 'B';
-    if (n >= 1e7) return '$' + (n / 1e6).toFixed(1) + 'M';
+  function escapeHtml(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g,
+      c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+  function fmtDollars(n) {
+    if (n === null || n === undefined || n === 0) return '—';
     return '$' + n.toLocaleString('en-US');
   }
-  function fmtPct(p) {
-    if (p === null || p === undefined) return '—';
-    return (p * 100).toFixed(1) + '%';
+  function fmtInt(n) {
+    if (!n) return '—';
+    return n.toLocaleString('en-US');
+  }
+  // Normalize date strings like "Jul 7", "Mar 31", "Dec 22".
+  // If the cell already reads that way we just echo; otherwise blank.
+  function fmtOpenDate(s) {
+    if (!s) return '—';
+    return s;
   }
 
-  // Which year are we showing?
+  // Abbreviate the long studio names so the Studio column stays compact,
+  // matching the BOM reference ("BV", "WB", "Fox", etc.).
+  const STUDIO_MAP = {
+    'Walt Disney Studios Motion Pictures': 'BV',
+    'Walt Disney Pictures': 'BV', 'Buena Vista': 'BV', 'Disney': 'BV',
+    'Warner Bros.': 'WB', 'Warner Bros': 'WB', 'Warner Bros. Pictures': 'WB',
+    'Twentieth Century Fox': 'Fox', '20th Century Fox': 'Fox', '20th Century Studios': 'Fox',
+    'Universal Pictures': 'Uni.', 'Universal': 'Uni.',
+    'Sony Pictures Releasing': 'Sony', 'Sony Pictures': 'Sony', 'Columbia Pictures': 'Sony',
+    'Paramount Pictures': 'Par.', 'Paramount': 'Par.', 'Paramount Pictures International': 'Par.',
+    'DreamWorks': 'DW', 'DreamWorks Animation': 'DW',
+    'Lionsgate': 'LGF', 'Lionsgate Films': 'LGF',
+    'Amazon MGM Studios': 'Amaz.', 'Amazon': 'Amaz.', 'MGM': 'MGM',
+    'New Line Cinema': 'NL', 'New Line': 'NL',
+    'Summit Entertainment': 'Sum.',
+    'Focus Features': 'Foc.',
+    'Miramax': 'Mira.', 'Miramax Films': 'Mira.',
+    'Searchlight Pictures': 'SgPic', 'Fox Searchlight': 'FoxS',
+    'A24': 'A24', 'Neon': 'Neon', 'IFC Films': 'IFC',
+    'Magnolia Pictures': 'Mag.',
+    'Sony Pictures Classics': 'SonC',
+    'Roadside Attractions': 'RA',
+    'Vertical Entertainment': 'Vert.',
+    'GKIDS': 'GKIDS', 'Bleecker Street': 'Blee.',
+    'STX Entertainment': 'STX', 'STXfilms': 'STX',
+    'Open Road Films': 'OR', 'Open Road': 'OR',
+    'Relativity Media': 'Rel.',
+    'The Weinstein Company': 'Wein.',
+    'Weinstein Dimension': 'W/Dim.', 'Dimension Films': 'Dim.',
+    'First Look Pictures': 'First', 'First Look': 'First',
+    'Kino Lorber': 'Kino',
+    'Angel Studios': 'Angel',
+    'Black Bear': 'BBr.',
+  };
+  function shortStudio(s) {
+    if (!s) return '—';
+    if (STUDIO_MAP[s]) return STUDIO_MAP[s];
+    // Auto-trim if very long
+    return s.length > 22 ? s.slice(0, 20) + '…' : s;
+  }
+
+  // ── Page state ────────────────────────────────────────────────────────
   const params = new URLSearchParams(location.search);
   const year = parseInt(params.get('year') || new Date().getFullYear(), 10);
   document.getElementById('yc-title').textContent = year + ' DOMESTIC GROSSES';
-  document.getElementById('yc-breadcrumb').textContent = year;
   document.title = year + ' Yearly Chart — Box Office Jedi';
 
-  function fmtInt(n) {
-    if (!n) return '—';
-    return '$' + n.toLocaleString('en-US');
+  // Prev/Next year links — simple year ± 1; client can still click through to
+  // a year that may not exist (page will say "No data yet" in that case).
+  (function setPrevNext() {
+    const prevEl = document.querySelector('.yc-prev');
+    const nextEl = document.querySelector('.yc-next');
+    prevEl.innerHTML = '<a href="yearly-chart.html?year=' + (year - 1) + '">&lt; Previous Year</a>';
+    nextEl.innerHTML = '<a href="yearly-chart.html?year=' + (year + 1) + '">Next Year &gt;</a>';
+  })();
+
+  // Row builder
+  function buildRow(r) {
+    return '<tr>' +
+      '<td class="yc-td-rank">' + r.rank + '</td>' +
+      '<td class="yc-td-title"><a href="movie.html?title=' +
+          encodeURIComponent(r.title || '') + '">' +
+          escapeHtml(r.title || '—') + '</a></td>' +
+      '<td class="yc-td-studio">' + escapeHtml(shortStudio(r.distributor)) + '</td>' +
+      '<td class="yc-td-gross">' + fmtDollars(r.total_gross) + '</td>' +
+      '<td class="yc-td-th">'    + fmtInt(r.max_theaters) + '</td>' +
+      '<td class="yc-td-open">'  + fmtDollars(r.opening_weekend) + '</td>' +
+      '<td class="yc-td-th">'    + fmtInt(r.opening_theaters) + '</td>' +
+      '<td class="yc-td-opendate">' + escapeHtml(fmtOpenDate(r.open_date)) + '</td>' +
+    '</tr>';
   }
 
-  function renderHeader() {
-    document.getElementById('yc-head').innerHTML = (
-      '<tr>' +
-        '<th class="yc-th-rank">Rank</th>' +
-        '<th class="yc-th-left">Title (click to view)</th>' +
-        '<th class="yc-th-left">Distributor</th>' +
-        '<th>Domestic Gross</th>' +
-        '<th>Theaters</th>' +
-        '<th>Opening Weekend</th>' +
-      '</tr>'
-    );
-  }
-
-  function renderRows(rows) {
-    if (!rows.length) {
-      document.getElementById('yc-body').innerHTML =
-        '<tr><td colspan="6" class="yc-empty">No data yet for ' + year + '. Come back soon!</td></tr>';
+  function render(rows) {
+    const body = document.getElementById('yc-body');
+    if (!rows || !rows.length) {
+      body.innerHTML = '<tr><td colspan="8" class="yc-empty">No data yet for ' + year + '.</td></tr>';
       return;
     }
-    const html = rows.map((r, i) => {
-      const rank = r.rank || (i + 1);
-      const title = r.title || '—';
-      return '<tr>' +
-        '<td class="yc-td-rank">' + rank + '</td>' +
-        '<td class="yc-td-title"><a href="movie.html?title=' + encodeURIComponent(title) + '">' + title + '</a></td>' +
-        '<td class="yc-td-title">' + (r.distributor || r.studio || '—') + '</td>' +
-        '<td>' + fmtInt(r.total_gross) + '</td>' +
-        '<td>' + (r.theaters ? r.theaters.toLocaleString('en-US') : '—') + '</td>' +
-        '<td>' + fmtInt(r.opening_weekend) + '</td>' +
-      '</tr>';
-    }).join('');
-    document.getElementById('yc-body').innerHTML = html;
+    body.innerHTML = rows.map(buildRow).join('');
   }
 
   async function load() {
     let rows = [];
     const tryUrls = ['data/years/' + year + '.json'];
-    // Fall back to data/yearly.json for the current year if the archive
-    // file exists but is empty.
+    // Fall back to data/yearly.json for the current year if the archive is empty
     if (year === new Date().getFullYear()) tryUrls.push('data/yearly.json');
     for (const u of tryUrls) {
       try {
@@ -249,20 +357,19 @@
         if (!r.ok) continue;
         const d = await r.json();
         const candidate = d.chart || d.movies || [];
-        if (candidate.length) { rows = candidate; }
+        if (candidate.length) rows = candidate;
         document.getElementById('yc-note').textContent =
           d.updated ? 'Last updated: ' + new Date(d.updated).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}) : '';
         if (rows.length) break;
       } catch(e) { /* keep trying */ }
     }
-    renderHeader();
-    renderRows(rows);
+    render(rows);
     window.__ycRows = rows;
   }
 
   load().then(() => {
     if (!window.InflationTool || !(window.__ycRows || []).length) return;
-    // All rows in a year's chart share the page year for inflation purposes.
+    // Inflation adjust: all rows share the page year for the "from" side.
     InflationTool.mount({
       container: document.getElementById('page-tools'),
       defaultYear: year,
@@ -273,12 +380,11 @@
         window.__ycRows = rows;
         document.getElementById('yc-title').textContent =
           year + ' DOMESTIC GROSSES' + (isAdjusted ? ' (ADJ.)' : '');
-        renderRows(rows);
+        render(rows);
       },
     });
   });
 </script>
-<script src="assets/js/inflation.js"></script>
 
 </body>
 </html>
