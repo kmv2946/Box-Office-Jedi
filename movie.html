@@ -17,221 +17,370 @@
       text-transform: uppercase;
       letter-spacing: 0.02em;
     }
-    .mv-crumb .arrow { color: #7F170E; margin-right: 6px; }
+    .mv-crumb .arrow { color: #75140C; margin-right: 6px; }
     .mv-crumb a { color: #00239C; text-decoration: none; }
     .mv-crumb a:hover { text-decoration: underline; }
-    .mv-section-bar { height: 3px; background: #7F170E; margin-bottom: 14px; }
+    .mv-section-bar { height: 3px; background: #75140C; margin-bottom: 14px; }
 
-    /* ── Title + key facts row ───────────────────────────────── */
+    /* ── Title ───────────────────────────────────────────────── */
+    .mv-title {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 28px;
+      color: #000;
+      text-decoration: underline;
+      text-transform: uppercase;
+      text-align: center;
+      margin: 6px 14px 16px;
+      line-height: 1.15;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── Top row: info table + poster ────────────────────────── */
     .mv-top {
       display: flex;
-      gap: 20px;
+      gap: 18px;
+      padding: 0 14px 8px;
       align-items: flex-start;
-      padding: 4px 14px 10px;
     }
-    .mv-title-wrap { flex: 1; text-align: center; }
-    .mv-title {
+    .mv-info-wrap { flex: 1; min-width: 0; }
+    .mv-info-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #75140C;
       font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
+    }
+    .mv-info-table td {
+      border: 1px solid #75140C;
+      padding: 8px 12px;
+      vertical-align: middle;
+    }
+    .mv-info-table td.mv-info-dtg {
+      text-align: center;
+      padding: 10px 14px;
+    }
+    .mv-info-label { font-weight: normal; color: #000; }
+    .mv-info-value { font-weight: bold; color: #000; }
+    .mv-info-value a {
+      color: #00239C;
       font-weight: bold;
-      font-size: 34px;
-      color: #7F170E;
-      margin: 2px 0 10px;
-      line-height: 1.1;
+      text-decoration: none;
     }
-    .mv-facts {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 14px;
-      color: #000;
-      line-height: 1.55;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .mv-facts .mv-fact-label {
-      font-weight: bold;
-      color: #000;
-    }
-    .mv-facts a { color: #00239C; text-decoration: none; }
-    .mv-facts a:hover { text-decoration: underline; }
+    .mv-info-value a:hover { text-decoration: underline; }
 
+    /* Poster */
     .mv-poster {
-      width: 150px;
+      width: 180px;
       flex-shrink: 0;
     }
     .mv-poster img {
-      width: 150px;
+      width: 180px;
       border: 1px solid #999;
-      background: #eee;
       display: block;
     }
-    .mv-poster .mv-poster-empty {
-      width: 150px; height: 220px;
-      background: #eee; border: 1px solid #999;
-      display: flex; align-items: center; justify-content: center;
-      font-family: Verdana, sans-serif; font-size: 11px; color: #888;
-      text-align: center; padding: 8px;
-    }
-
-    /* ── Sub-tabs (Summary / Daily / Weekly / Weekend Chart / Reviews) ── */
-    .mv-tabs {
+    .mv-poster-empty {
+      width: 180px;
+      height: 265px;
+      background: #eee;
+      border: 1px solid #999;
       display: flex;
-      gap: 2px;
-      padding: 0 14px;
-      margin-top: 2px;
-      border-bottom: 2px solid #7F170E;
-    }
-    .mv-tabs-label {
-      font-family: Verdana, Geneva, sans-serif;
+      align-items: center;
+      justify-content: center;
+      font-family: Verdana, sans-serif;
       font-size: 11px;
-      color: #444;
-      padding: 6px 8px 4px 0;
-    }
-    .mv-tab {
-      font-family: Verdana, Geneva, sans-serif;
-      font-weight: bold;
-      font-size: 11px;
-      padding: 5px 14px;
-      background: #EEEEEE;
-      color: #333;
-      border: 1px solid #CCCCCC;
-      border-bottom: none;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-    .mv-tab.active {
-      background: #FFFFFF;
-      color: #00239C;
-      border-bottom: 2px solid #FFFFFF;
-      margin-bottom: -2px;
-    }
-    .mv-tab:hover { background: #DCDCDC; color: #000; }
-    .mv-tab.disabled { color: #999; cursor: not-allowed; background: #F4F4F4; }
-
-    /* ── Two-column layout ───────────────────────────────────── */
-    .mv-body { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 18px; padding: 14px; }
-    @media (max-width: 820px) { .mv-body { grid-template-columns: 1fr; } }
-
-    /* Shared panel */
-    .mv-panel {
-      margin-bottom: 14px;
-      border: 1px solid #DCDCDC;
-      background: #fff;
-    }
-    .mv-panel-hd {
-      background: #7F170E;
-      color: #fff;
-      font-family: Verdana, Geneva, sans-serif;
-      font-weight: bold;
-      font-size: 11px;
-      letter-spacing: 0.05em;
-      padding: 4px 10px;
-      text-transform: uppercase;
-    }
-    .mv-panel-body { padding: 8px 12px 10px; }
-
-    /* Stat table — left column */
-    .mv-stat-row {
-      display: flex;
-      justify-content: space-between;
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 14px;
-      padding: 3px 0;
-      border-bottom: 1px dotted #DCDCDC;
-    }
-    .mv-stat-row:last-child { border-bottom: none; }
-    .mv-stat-row .mv-stat-label { color: #000; }
-    .mv-stat-row .mv-stat-value { color: #000; font-weight: bold; white-space: nowrap; text-align: right; }
-    .mv-stat-row .mv-stat-pct   { color: #555; font-weight: normal; font-style: italic; margin-left: 6px; }
-
-    .mv-stat-subhead {
-      font-family: Verdana, Geneva, sans-serif;
-      font-weight: bold;
-      font-size: 11px;
-      text-transform: uppercase;
-      color: #7F170E;
-      letter-spacing: 0.04em;
-      padding: 6px 0 2px;
-    }
-    .mv-stat-subhead:first-child { padding-top: 0; }
-
-    /* Cast / Crew list */
-    .mv-creditblock {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 14px;
-      line-height: 1.5;
-      color: #000;
-    }
-    .mv-creditblock .mv-credit-role {
-      display: inline-block;
-      width: 120px;
-      color: #555;
-      font-style: italic;
-    }
-    .mv-creditblock a { color: #00239C; text-decoration: none; }
-    .mv-creditblock a:hover { text-decoration: underline; }
-
-    /* Weekend grosses mini-table */
-    .mv-wk-table { width: 100%; border-collapse: collapse; font-family: 'Times New Roman', Times, serif; }
-    .mv-wk-table thead th {
-      background: #F4F4FE;
-      font-family: Verdana, Geneva, sans-serif;
-      font-weight: bold;
-      font-size: 10px;
-      color: #444;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 4px 6px;
-      text-align: right;
-      border-bottom: 1px solid #999;
-    }
-    .mv-wk-table thead th.mv-wk-th-left { text-align: left; }
-    .mv-wk-table tbody tr:nth-child(odd)  td { background: #F4F4FE; }
-    .mv-wk-table tbody tr:nth-child(even) td { background: #FFFFFF; }
-    .mv-wk-table td {
-      font-size: 13px;
-      padding: 3px 6px;
-      text-align: right;
-      color: #000;
-      white-space: nowrap;
-    }
-    .mv-wk-table td.mv-wk-n     { text-align: center; width: 36px; color: #555; }
-    .mv-wk-table td.mv-wk-date  { text-align: left; font-family: Verdana, sans-serif; font-size: 12px; color: #00239C; }
-
-    /* Rankings */
-    .mv-rank-grid {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 2px 12px;
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 13px;
-    }
-    .mv-rank-grid .mv-rank-label { color: #000; border-bottom: 1px dotted #DCDCDC; padding: 3px 0; }
-    .mv-rank-grid .mv-rank-value {
-      color: #000;
-      font-weight: bold;
-      border-bottom: 1px dotted #DCDCDC;
-      padding: 3px 0;
-      text-align: right;
-      white-space: nowrap;
+      color: #888;
+      text-align: center;
+      padding: 8px;
     }
 
-    .mv-overview {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 14px;
-      line-height: 1.55;
-      color: #000;
-      padding: 0 14px;
-    }
+    /* ── Tagline + overview (optional) ───────────────────────── */
     .mv-tagline {
       font-family: 'Times New Roman', Times, serif;
       font-style: italic;
       color: #555;
       font-size: 14px;
-      margin: 0 auto 12px;
+      margin: 4px 14px 0;
       text-align: center;
-      max-width: 560px;
     }
 
+    /* ── Tabs ────────────────────────────────────────────────── */
+    .mv-tabs {
+      display: flex;
+      gap: 2px;
+      padding: 0 14px;
+      margin: 18px 0 0;
+      align-items: flex-end;
+      border-bottom: 2px solid #75140C;
+    }
+    .mv-tabs-label {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      color: #000;
+      padding: 6px 10px 8px 0;
+    }
+    .mv-tab {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      padding: 6px 18px;
+      background: #F4F4FE;
+      color: #00239C;
+      border: 1px solid #75140C;
+      border-bottom: none;
+      text-decoration: none;
+      cursor: pointer;
+      margin-bottom: -2px;
+      display: inline-block;
+    }
+    .mv-tab:hover { background: #DCDCDC; color: #000; }
+    .mv-tab.active {
+      background: #FFFFFF;
+      color: #000;
+      border-bottom: 2px solid #FFFFFF;
+    }
+
+    /* ── Views ───────────────────────────────────────────────── */
+    .mv-view { display: none; padding: 0 14px; }
+    .mv-view.active { display: block; }
+
+    /* Shared panel (red header strip) */
+    .mv-panel {
+      border: 1px solid #75140C;
+      background: #fff;
+      margin: 14px 0;
+    }
+    .mv-panel-hd {
+      background: #75140C;
+      color: #fff;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      letter-spacing: 0.04em;
+    }
+    .mv-panel-body { padding: 10px 14px; }
+
+    /* Summary KV tables */
+    .mv-kv {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
+    }
+    .mv-kv td {
+      padding: 4px 2px;
+      vertical-align: baseline;
+    }
+    .mv-kv td.mv-kv-label {
+      color: #000;
+      font-weight: normal;
+    }
+    .mv-kv td.mv-kv-value {
+      color: #000;
+      font-weight: bold;
+      white-space: nowrap;
+      text-align: right;
+    }
+    .mv-kv td.mv-kv-value .mv-kv-pct {
+      color: #555;
+      font-weight: normal;
+      font-style: italic;
+      margin-left: 10px;
+      font-size: 13px;
+    }
+    .mv-kv tr.mv-kv-divider td {
+      border-top: 2px solid #75140C;
+      padding-top: 8px;
+    }
+    .mv-kv-note {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      color: #555;
+      font-style: italic;
+      margin-top: 4px;
+    }
+
+    /* Summary two-column layout */
+    .mv-summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 820px) {
+      .mv-summary-grid { grid-template-columns: 1fr; gap: 0; }
+    }
+
+    /* Related Articles / Charts lists */
+    .mv-list { list-style: none; margin: 0; padding: 0; }
+    .mv-list li {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
+      padding: 5px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .mv-list li:nth-child(odd)  { background: #F4F4FE; }
+    .mv-list li:nth-child(even) { background: #FFFFFF; }
+    .mv-list a {
+      color: #00239C;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .mv-list a:hover { text-decoration: underline; }
+    .mv-list-kind {
+      font-family: Verdana, sans-serif;
+      font-size: 10px;
+      color: #75140C;
+      text-transform: uppercase;
+      margin-right: 8px;
+      letter-spacing: 0.04em;
+      font-weight: bold;
+    }
+    .mv-list-main { flex: 1; min-width: 0; }
+    .mv-list-rank {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      white-space: nowrap;
+      color: #000;
+    }
+
+    /* ── Daily Breakdown Calendar ───────────────────────────── */
+    .mv-cal-month-title {
+      font-family: Verdana, sans-serif;
+      font-weight: bold;
+      font-size: 16px;
+      color: #000;
+      text-align: center;
+      padding: 14px 0 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .mv-cal-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #A8A8A8;
+      table-layout: fixed;
+    }
+    .mv-cal-table th {
+      background: #DCDCDC;
+      color: #000;
+      font-family: Verdana, sans-serif;
+      font-weight: bold;
+      font-size: 11px;
+      padding: 4px 2px;
+      border: 1px solid #A8A8A8;
+      text-align: center;
+    }
+    .mv-cal-table td {
+      border: 1px solid #A8A8A8;
+      vertical-align: top;
+      padding: 4px 6px 6px;
+      width: 14.285%;
+      height: 110px;
+      background: #fff;
+    }
+    .mv-cal-table td.mv-cal-empty { background: #FAFAFA; }
+    .mv-cal-day-hd {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 4px;
+    }
+    .mv-cal-day-num {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #000;
+    }
+    .mv-cal-day-rank {
+      font-family: Verdana, sans-serif;
+      font-weight: bold;
+      font-size: 10px;
+      color: #00239C;
+    }
+    .mv-cal-day-rank.mv-cal-day-rank-hidden { visibility: hidden; }
+    .mv-cal-cell-body {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 11px;
+      line-height: 1.45;
+      color: #000;
+      margin-top: 4px;
+    }
+    .mv-cal-gross {
+      font-size: 12.5px;
+      color: #00007B;
+      display: block;
+      font-weight: bold;
+    }
+    .mv-cal-change-pos { color: #00239C; }
+    .mv-cal-change-neg { color: #CC0000; }
+    .mv-cal-change-neu { color: #555; }
+    .mv-cal-total {
+      color: #75147C;
+      display: block;
+    }
+    .mv-cal-theaters {
+      color: #000;
+      display: block;
+    }
+
+    /* ── Weekend Breakdown Table ────────────────────────────── */
+    .mv-wk-year {
+      font-family: Verdana, sans-serif;
+      font-weight: bold;
+      font-size: 20px;
+      color: #000;
+      text-align: center;
+      padding: 14px 0 8px;
+    }
+    .mv-wk-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      border: 1px solid #A8A8A8;
+    }
+    .mv-wk-table thead th {
+      background: #DCDCDC;
+      color: #000;
+      font-family: Verdana, sans-serif;
+      font-weight: bold;
+      font-size: 11px;
+      padding: 6px 6px;
+      text-align: center;
+      border: 1px solid #A8A8A8;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+    .mv-wk-table tbody tr:nth-child(odd) td  { background: #F4F4FE; }
+    .mv-wk-table tbody tr:nth-child(even) td { background: #FFFFFF; }
+    .mv-wk-table tbody td {
+      padding: 5px 8px;
+      text-align: right;
+      border: 1px solid #D8D8D8;
+      white-space: nowrap;
+    }
+    .mv-wk-table td.wk-date,
+    .mv-wk-table td.wk-rank,
+    .mv-wk-table td.wk-weekn {
+      text-align: left;
+    }
+    .mv-wk-table td.wk-date a {
+      color: #00239C;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .mv-wk-table td.wk-date a:hover { text-decoration: underline; }
+    .mv-wk-table td.wk-neg { color: #CC0000; }
+    .mv-wk-table td.wk-pos { color: #00239C; }
+    .mv-wk-table td.wk-dash { color: #999; }
+
+    /* Empty / loading state */
     .mv-empty {
       font-family: 'Times New Roman', Times, serif;
       font-style: italic;
@@ -282,34 +431,36 @@
     <div class="mv-crumb"><span class="arrow">&gt;</span> MOVIES</div>
     <div class="mv-section-bar"></div>
 
-    <!-- Title + poster + key facts -->
+    <!-- Title -->
+    <h1 class="mv-title" id="mv-title">Loading&hellip;</h1>
+    <div class="mv-tagline" id="mv-tagline" style="display:none;"></div>
+
+    <!-- Info table + poster -->
     <div class="mv-top">
-      <div class="mv-title-wrap">
-        <h1 class="mv-title" id="mv-title">Loading&hellip;</h1>
-        <div class="mv-tagline" id="mv-tagline" style="display:none;"></div>
-        <div class="mv-facts" id="mv-facts"></div>
+      <div class="mv-info-wrap">
+        <table class="mv-info-table">
+          <tbody id="mv-info-body">
+            <tr><td class="mv-info-dtg"><em style="color:#888;">Loading&hellip;</em></td></tr>
+          </tbody>
+        </table>
       </div>
       <div class="mv-poster" id="mv-poster">
         <div class="mv-poster-empty">No poster</div>
       </div>
     </div>
 
-    <!-- Sub-nav: View tabs -->
+    <!-- Tabs -->
     <div class="mv-tabs">
       <span class="mv-tabs-label">View:</span>
-      <a class="mv-tab active"  href="#" data-tab="summary">Summary</a>
-      <a class="mv-tab disabled" href="#"  data-tab="daily">Daily</a>
-      <a class="mv-tab disabled" href="#"  data-tab="weekly">Weekly</a>
-      <a class="mv-tab disabled" href="#"  data-tab="weekend">Weekend Chart</a>
-      <a class="mv-tab disabled" href="#"  data-tab="reviews">Reviews</a>
+      <a class="mv-tab active" href="#summary" data-tab="summary">Summary</a>
+      <a class="mv-tab"        href="#daily"   data-tab="daily">Daily Breakdown</a>
+      <a class="mv-tab"        href="#weekend" data-tab="weekend">Weekend Breakdown</a>
     </div>
 
-    <!-- Body: two columns -->
-    <div class="mv-body">
+    <!-- ── Summary View ─────────────────────────────────────── -->
+    <section class="mv-view active" id="view-summary">
+      <div class="mv-summary-grid">
 
-      <!-- LEFT COLUMN -->
-      <div>
-        <!-- Total Lifetime Grosses -->
         <div class="mv-panel">
           <div class="mv-panel-hd">Total Lifetime Grosses</div>
           <div class="mv-panel-body" id="mv-lifetime">
@@ -317,7 +468,6 @@
           </div>
         </div>
 
-        <!-- Domestic Summary -->
         <div class="mv-panel">
           <div class="mv-panel-hd">Domestic Summary</div>
           <div class="mv-panel-body" id="mv-domestic">
@@ -325,43 +475,36 @@
           </div>
         </div>
 
-        <!-- Rankings (placeholder, populated from cross-references later) -->
         <div class="mv-panel">
-          <div class="mv-panel-hd">Rankings</div>
-          <div class="mv-panel-body" id="mv-rankings">
-            <p class="mv-empty">Ranking lookups will land here once we cross-reference the all-time charts.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- RIGHT COLUMN -->
-      <div>
-        <!-- Cast & Crew -->
-        <div class="mv-panel">
-          <div class="mv-panel-hd">Cast &amp; Crew</div>
-          <div class="mv-panel-body" id="mv-credits">
-            <p class="mv-empty">Loading&hellip;</p>
+          <div class="mv-panel-hd">Related Articles</div>
+          <div class="mv-panel-body" id="mv-articles">
+            <p class="mv-empty">&mdash;</p>
           </div>
         </div>
 
-        <!-- Weekend Grosses -->
         <div class="mv-panel">
-          <div class="mv-panel-hd">Weekend Grosses</div>
-          <div class="mv-panel-body" id="mv-weekends">
-            <p class="mv-empty">Loading&hellip;</p>
+          <div class="mv-panel-hd">Charts</div>
+          <div class="mv-panel-body" id="mv-charts">
+            <p class="mv-empty">&mdash;</p>
           </div>
         </div>
-      </div>
 
-    </div>
-
-    <!-- Overview -->
-    <div class="mv-panel" style="margin:0 14px 20px;">
-      <div class="mv-panel-hd">Overview</div>
-      <div class="mv-panel-body">
-        <p class="mv-overview" id="mv-overview" style="padding:0;"></p>
       </div>
-    </div>
+    </section>
+
+    <!-- ── Daily Breakdown View ─────────────────────────────── -->
+    <section class="mv-view" id="view-daily">
+      <div id="mv-daily-body">
+        <p class="mv-empty">Loading daily data&hellip;</p>
+      </div>
+    </section>
+
+    <!-- ── Weekend Breakdown View ───────────────────────────── -->
+    <section class="mv-view" id="view-weekend">
+      <div id="mv-weekend-body">
+        <p class="mv-empty">Loading weekend data&hellip;</p>
+      </div>
+    </section>
 
   </main>
 
@@ -375,7 +518,7 @@
       </div>
     </div>
     <div class="widget">
-      <div class="widget-header" style="background:#7F170E;">DERBY GAME</div>
+      <div class="widget-header" style="background:#75140C;">DERBY GAME</div>
       <div class="widget-body" style="background:#e8f4fd;">
         <p>Predict the weekend. <a href="derby.html"><strong>Play now &gt;</strong></a></p>
       </div>
@@ -394,6 +537,7 @@
 
 <script>
   document.getElementById('footer-year').textContent = new Date().getFullYear();
+
   function doSearch() {
     const q = document.getElementById('sidebar-search-input').value.trim();
     if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
@@ -402,6 +546,7 @@
     if (e.key === 'Enter') doSearch();
   });
 
+  // ── Formatting helpers ──────────────────────────────────────
   function escapeHtml(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g,
       c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -410,31 +555,60 @@
     if (n === null || n === undefined || n === 0) return '—';
     return '$' + n.toLocaleString('en-US');
   }
+  function fmtDollarsCompact(n) {
+    if (n === null || n === undefined || n === 0) return '—';
+    if (n >= 1e9) return '$' + (n / 1e9).toFixed(2) + 'B';
+    if (n >= 1e6) return '$' + (n / 1e6).toFixed(2) + 'M';
+    if (n >= 1e3) return '$' + (n / 1e3).toFixed(1) + 'K';
+    return '$' + n;
+  }
   function fmtInt(n) {
+    if (n === null || n === undefined) return '—';
+    return Math.round(n).toLocaleString('en-US');
+  }
+  function fmtMillionsBudget(n) {
     if (!n) return '—';
-    return n.toLocaleString('en-US');
+    if (n >= 1e6) return '$' + (n / 1e6).toFixed(n % 1e6 === 0 ? 0 : 1) + ' million';
+    return fmtDollars(n);
   }
   function fmtRuntime(m) {
     if (!m) return '—';
-    return Math.floor(m/60) + ' hrs. ' + (m%60) + ' min.';
+    const h = Math.floor(m / 60);
+    const r = m % 60;
+    return h + ' hr' + (h === 1 ? '' : 's') + '. ' + r + ' min.';
   }
   function fmtRelease(iso) {
     if (!iso) return '—';
     const [y, mo, d] = iso.split('-').map(Number);
-    const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const MONTHS = ['January','February','March','April','May','June',
+                    'July','August','September','October','November','December'];
     return MONTHS[mo-1] + ' ' + d + ', ' + y;
   }
-  // normalized slug used by the weekend archive
+  function shortDateRange(isoFri) {
+    if (!isoFri) return '—';
+    const [y, mo, d] = isoFri.split('-').map(Number);
+    const fri = new Date(Date.UTC(y, mo-1, d));
+    const sun = new Date(fri); sun.setUTCDate(fri.getUTCDate() + 2);
+    const MO = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const m1 = MO[fri.getUTCMonth()];
+    const m2 = MO[sun.getUTCMonth()];
+    const d1 = fri.getUTCDate();
+    const d2 = sun.getUTCDate();
+    if (m1 === m2) return m1 + ' ' + d1 + '–' + d2;
+    return m1 + ' ' + d1 + '–' + m2 + ' ' + d2;
+  }
   function normKey(t) {
     return (t || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
   }
-  function shortDate(iso) {
-    if (!iso) return '—';
-    const [y, mo, d] = iso.split('-').map(Number);
-    const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    return MONTHS[mo-1] + ' ' + d + ', ' + y;
+  function fmtChange(n) {
+    if (n === null || n === undefined || !isFinite(n)) return '—';
+    const sign = n >= 0 ? '+' : '';
+    return sign + n.toFixed(1) + '%';
   }
-
+  function isoDowIndex(iso) {
+    const [y, mo, d] = iso.split('-').map(Number);
+    return new Date(Date.UTC(y, mo-1, d)).getUTCDay();
+  }
   async function fetchJSON(url) {
     try {
       const r = await fetch(url, {cache:'no-store'});
@@ -443,61 +617,81 @@
     } catch (e) { return null; }
   }
 
-  // ── Main loader ────────────────────────────────────────────
+  // ── Tabs ────────────────────────────────────────────────────
+  function activateTab(name) {
+    document.querySelectorAll('.mv-tab').forEach(t => {
+      t.classList.toggle('active', t.dataset.tab === name);
+    });
+    document.querySelectorAll('.mv-view').forEach(v => {
+      v.classList.toggle('active', v.id === 'view-' + name);
+    });
+  }
+  document.querySelectorAll('.mv-tab').forEach(t => {
+    t.addEventListener('click', (e) => {
+      e.preventDefault();
+      activateTab(t.dataset.tab);
+      history.replaceState(null, '', '#' + t.dataset.tab);
+    });
+  });
+  (function initTab() {
+    const hash = (location.hash || '').replace('#','');
+    if (['summary','daily','weekend'].includes(hash)) activateTab(hash);
+  })();
+
+  // ── Global state ────────────────────────────────────────────
+  const STATE = {
+    id: null,
+    title: '',
+    meta: null,
+    weekendData: null,   // data/movie_weekends/<key>.json
+    dailyRows: null      // [{date, daily_gross, ...}]
+  };
+
+  // ── Main loader ─────────────────────────────────────────────
   async function loadMovie() {
     const params = new URLSearchParams(location.search);
-    const id    = params.get('id');
-    const title = params.get('title') || '';
-    const titleDecoded = decodeURIComponent(title);
+    STATE.id    = params.get('id');
+    const titleParam = params.get('title') || '';
+    STATE.title = decodeURIComponent(titleParam);
 
-    // Provisional title in case metadata is missing
-    document.title = (titleDecoded || 'Movie') + ' — Box Office Jedi';
-    document.getElementById('mv-title').textContent = titleDecoded || 'Movie';
+    document.title = (STATE.title || 'Movie') + ' — Box Office Jedi';
+    document.getElementById('mv-title').textContent = (STATE.title || 'Movie').toUpperCase();
 
-    // 1) Try TMDB data (data/movies/<tmdb_id>.json) if we have an id
-    let meta = null;
-    if (id) meta = await fetchJSON('data/movies/' + id + '.json');
+    // Fetch TMDB meta + weekend archive in parallel
+    const metaPromise = STATE.id
+      ? fetchJSON('data/movies/' + STATE.id + '.json') : Promise.resolve(null);
+    let meta = await metaPromise;
+    STATE.meta = meta;
 
-    // 2) Try the weekend archive by normalized slug
-    const key = normKey(titleDecoded || (meta && meta.title));
-    const weekendData = key ? await fetchJSON('data/movie_weekends/' + key + '.json') : null;
+    const key = normKey(STATE.title || (meta && meta.title));
+    const weekendData = key
+      ? await fetchJSON('data/movie_weekends/' + key + '.json') : null;
+    STATE.weekendData = weekendData;
 
-    // Neither source? show a minimal empty state
+    // Bail-out empty state
     if (!meta && !weekendData) {
-      document.getElementById('mv-title').textContent = titleDecoded || 'Movie';
-      document.getElementById('mv-facts').innerHTML =
-        '<em>We don\u2019t have detailed data for this title yet.</em>';
-      ['mv-lifetime','mv-domestic','mv-credits','mv-weekends','mv-rankings']
-        .forEach(id => document.getElementById(id).innerHTML =
-          '<p class="mv-empty">&mdash;</p>');
+      document.getElementById('mv-info-body').innerHTML =
+        '<tr><td class="mv-info-dtg"><em>We don\'t have detailed data for this title yet.</em></td></tr>';
+      ['mv-lifetime','mv-domestic','mv-articles','mv-charts'].forEach(id =>
+        document.getElementById(id).innerHTML = '<p class="mv-empty">&mdash;</p>');
+      document.getElementById('mv-daily-body').innerHTML =
+        '<p class="mv-empty">No daily breakdown available.</p>';
+      document.getElementById('mv-weekend-body').innerHTML =
+        '<p class="mv-empty">No weekend breakdown available.</p>';
       return;
     }
 
-    // Prefer the TMDB title when available
-    const displayTitle = (meta && meta.title) || (weekendData && weekendData.title) || titleDecoded;
+    // Display title
+    const displayTitle = (meta && meta.title) || (weekendData && weekendData.title) || STATE.title;
     document.title = displayTitle + ' — Box Office Jedi';
-    document.getElementById('mv-title').textContent = displayTitle;
+    document.getElementById('mv-title').textContent = displayTitle.toUpperCase();
 
-    // Tagline + overview
+    // Tagline
     if (meta && meta.tagline) {
       const tl = document.getElementById('mv-tagline');
       tl.textContent = '"' + meta.tagline + '"';
       tl.style.display = '';
     }
-    document.getElementById('mv-overview').textContent =
-      (meta && meta.overview) || '';
-
-    // Key facts line
-    const lifetimeTotal = (weekendData && weekendData.weekends && weekendData.weekends.length)
-      ? Math.max(...weekendData.weekends.map(w => w.total_gross || 0)) : null;
-    const factBits = [];
-    if (lifetimeTotal) factBits.push('<span class="mv-fact-label">Domestic Total Gross:</span> ' + fmtDollars(lifetimeTotal));
-    else if (meta && meta.revenue) factBits.push('<span class="mv-fact-label">Worldwide Gross:</span> ' + fmtDollars(meta.revenue));
-    if (meta && meta.release_date) factBits.push('<span class="mv-fact-label">Release Date:</span> ' + fmtRelease(meta.release_date));
-    if (meta && meta.genres && meta.genres.length) factBits.push('<span class="mv-fact-label">Genre:</span> ' + meta.genres.slice(0,3).join(' / '));
-    if (meta && meta.runtime) factBits.push('<span class="mv-fact-label">Runtime:</span> ' + fmtRuntime(meta.runtime));
-    if (meta && meta.budget) factBits.push('<span class="mv-fact-label">Production Budget:</span> ' + fmtDollars(meta.budget));
-    document.getElementById('mv-facts').innerHTML = factBits.join('<br>');
 
     // Poster
     if (meta && meta.poster_url) {
@@ -505,110 +699,532 @@
         '<img src="' + meta.poster_url + '" alt="' + escapeHtml(displayTitle) + ' poster">';
     }
 
-    // ── LEFT: Total Lifetime Grosses ─────────────────────────
-    {
-      const domestic = lifetimeTotal;
-      const worldwide = (meta && meta.revenue) || null;
-      const foreign = (worldwide && domestic) ? (worldwide - domestic) : null;
-      const pct = (w, part) => (w && part) ? ((part / w) * 100).toFixed(1) + '%' : '—';
-      const html = (worldwide || domestic) ? `
-        <div class="mv-stat-row">
-          <span class="mv-stat-label">Domestic</span>
-          <span class="mv-stat-value">${fmtDollars(domestic)}<span class="mv-stat-pct">${pct(worldwide, domestic)}</span></span>
+    // Domestic total (largest total_gross in the weekend archive, else revenue)
+    const weekends = (weekendData && weekendData.weekends) || [];
+    let domesticTotal = weekends.length
+      ? Math.max(...weekends.map(w => w.total_gross || 0)) : 0;
+    // Fallback: sum of weekend grosses if total_gross is missing (the archive sometimes has 0)
+    if (!domesticTotal && weekends.length) {
+      domesticTotal = weekends.reduce((s, w) => s + (w.gross || 0), 0);
+    }
+    const worldwide = (meta && meta.revenue) || null;
+    const foreign = (worldwide && domesticTotal && worldwide > domesticTotal)
+      ? worldwide - domesticTotal : null;
+
+    // ── Info table ────────────────────────────────────────────
+    renderInfoTable({ meta, weekendData, domesticTotal });
+
+    // ── Summary: Total Lifetime Grosses ──────────────────────
+    renderLifetime({ domesticTotal, worldwide, foreign });
+
+    // ── Summary: Domestic Summary ────────────────────────────
+    renderDomesticSummary({ weekends, domesticTotal });
+
+    // ── Summary: Related Articles (placeholder) ──────────────
+    renderRelatedArticles();
+
+    // ── Summary: Charts (placeholder) ────────────────────────
+    renderCharts();
+
+    // ── Weekend Breakdown ────────────────────────────────────
+    renderWeekendBreakdown({ weekends });
+
+    // ── Daily Breakdown (async, can be slow) ─────────────────
+    renderDailyBreakdown({ meta, weekendData });
+  }
+
+  // ── Info Table ──────────────────────────────────────────────
+  function renderInfoTable({ meta, weekendData, domesticTotal }) {
+    // Release date link → the weekend page for that movie's opening weekend
+    const openingFriday = weekendData && weekendData.weekends && weekendData.weekends[0]
+      ? weekendData.weekends[0].date : null;
+    const releaseDateIso = (meta && meta.release_date) || null;
+    const releaseDateDisplay = fmtRelease(releaseDateIso);
+    let releaseDateHtml;
+    if (openingFriday) {
+      releaseDateHtml = '<a href="weekend.html?date=' + openingFriday + '">' + escapeHtml(releaseDateDisplay) + '</a>';
+    } else {
+      releaseDateHtml = escapeHtml(releaseDateDisplay);
+    }
+
+    const genre = (meta && meta.genres && meta.genres.length)
+      ? meta.genres.slice(0, 3).join(' / ') : '—';
+    const runtime = meta ? fmtRuntime(meta.runtime) : '—';
+    const mpaa = (meta && meta.mpaa) ? meta.mpaa : '—';
+    const budget = (meta && meta.budget) ? fmtMillionsBudget(meta.budget) : '—';
+
+    let distributor = '—';
+    if (weekendData && weekendData.weekends && weekendData.weekends[0] && weekendData.weekends[0].distributor) {
+      distributor = weekendData.weekends[0].distributor;
+    } else if (meta && meta.distributor) {
+      distributor = meta.distributor;
+    }
+
+    const dtgLabel = domesticTotal
+      ? 'Domestic Total Gross:' : 'Domestic Total Gross:';
+    const dtgValue = domesticTotal ? fmtDollars(domesticTotal) : '—';
+
+    document.getElementById('mv-info-body').innerHTML = `
+      <tr>
+        <td colspan="2" class="mv-info-dtg">
+          <span class="mv-info-label">${dtgLabel}</span>
+          <span class="mv-info-value">&nbsp;${dtgValue}</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="mv-info-label">Distributor:</span> <span class="mv-info-value">${escapeHtml(distributor)}</span></td>
+        <td><span class="mv-info-label">Release Date:</span> <span class="mv-info-value">${releaseDateHtml}</span></td>
+      </tr>
+      <tr>
+        <td><span class="mv-info-label">Genre:</span> <span class="mv-info-value">${escapeHtml(genre)}</span></td>
+        <td><span class="mv-info-label">Running Time:</span> <span class="mv-info-value">${escapeHtml(runtime)}</span></td>
+      </tr>
+      <tr>
+        <td><span class="mv-info-label">MPAA Rating:</span> <span class="mv-info-value">${escapeHtml(mpaa)}</span></td>
+        <td><span class="mv-info-label">Production Budget:</span> <span class="mv-info-value">${escapeHtml(budget)}</span></td>
+      </tr>`;
+  }
+
+  // ── Summary: Lifetime ───────────────────────────────────────
+  function renderLifetime({ domesticTotal, worldwide, foreign }) {
+    const base = worldwide || (domesticTotal && foreign ? domesticTotal + foreign : domesticTotal);
+    if (!base) {
+      document.getElementById('mv-lifetime').innerHTML =
+        '<p class="mv-empty">No box office totals available.</p>';
+      return;
+    }
+    const pct = (n) => (base && n) ? ((n / base) * 100).toFixed(1) + '%' : '—';
+
+    // If we don't have foreign, show Domestic + note; if no worldwide, just show domestic.
+    let html = '<table class="mv-kv"><tbody>';
+    html += `
+      <tr>
+        <td class="mv-kv-label">Domestic</td>
+        <td class="mv-kv-value">${fmtDollars(domesticTotal)}<span class="mv-kv-pct">${pct(domesticTotal)}</span></td>
+      </tr>`;
+    if (foreign || (worldwide && domesticTotal && worldwide > domesticTotal)) {
+      const f = foreign || (worldwide - domesticTotal);
+      html += `
+      <tr>
+        <td class="mv-kv-label">+ Foreign</td>
+        <td class="mv-kv-value">${fmtDollars(f)}<span class="mv-kv-pct">${pct(f)}</span></td>
+      </tr>`;
+    }
+    html += `
+      <tr class="mv-kv-divider">
+        <td class="mv-kv-label"><strong>Worldwide</strong></td>
+        <td class="mv-kv-value">${fmtDollars(worldwide || domesticTotal)}</td>
+      </tr>
+    </tbody></table>`;
+    if (!worldwide) {
+      html += '<p class="mv-kv-note">Foreign totals not yet reported.</p>';
+    }
+    document.getElementById('mv-lifetime').innerHTML = html;
+  }
+
+  // ── Summary: Domestic Summary ───────────────────────────────
+  function renderDomesticSummary({ weekends, domesticTotal }) {
+    if (!weekends || !weekends.length) {
+      document.getElementById('mv-domestic').innerHTML =
+        '<p class="mv-empty">No weekend archive data for this title yet.</p>';
+      return;
+    }
+    const first = weekends[0];
+    const widest = Math.max(...weekends.map(w => w.theaters || 0));
+    const openTheaters = first.theaters || null;
+    const openAvg = (first.gross && openTheaters) ? first.gross / openTheaters : null;
+    const openPct = (domesticTotal && first.gross)
+      ? ((first.gross / domesticTotal) * 100).toFixed(1) + '%' : null;
+
+    let openingLine = fmtDollars(first.gross);
+    const parts = [];
+    if (openTheaters) parts.push(fmtInt(openTheaters) + ' theaters');
+    if (openAvg) parts.push('$' + fmtInt(openAvg) + ' average');
+    if (parts.length) openingLine += ' <span class="mv-kv-pct">(' + parts.join(', ') + ')</span>';
+
+    let html = '<table class="mv-kv"><tbody>';
+    html += `
+      <tr>
+        <td class="mv-kv-label">Opening Weekend</td>
+        <td class="mv-kv-value">${openingLine}</td>
+      </tr>`;
+    if (openPct) {
+      html += `
+      <tr>
+        <td class="mv-kv-label">&nbsp;&nbsp;% of Domestic Total</td>
+        <td class="mv-kv-value">${openPct}</td>
+      </tr>`;
+    }
+    html += `
+      <tr>
+        <td class="mv-kv-label">Widest Release</td>
+        <td class="mv-kv-value">${fmtInt(widest)} theaters</td>
+      </tr>
+      <tr>
+        <td class="mv-kv-label">Weekends Charted</td>
+        <td class="mv-kv-value">${weekends.length}</td>
+      </tr>
+    </tbody></table>`;
+    document.getElementById('mv-domestic').innerHTML = html;
+  }
+
+  // ── Summary: Related Articles ───────────────────────────────
+  // Cross-reference index expected at data/movie_articles.json:
+  //   { "<tmdb_id>": [{title, href, kind}], "<slug>": [...] }
+  async function renderRelatedArticles() {
+    const container = document.getElementById('mv-articles');
+    const idx = await fetchJSON('data/movie_articles.json');
+    const lookups = [];
+    if (STATE.id) lookups.push(String(STATE.id));
+    if (STATE.title) lookups.push(normKey(STATE.title));
+    if (STATE.meta && STATE.meta.title) lookups.push(normKey(STATE.meta.title));
+
+    let found = [];
+    if (idx) {
+      for (const k of lookups) {
+        if (idx[k] && Array.isArray(idx[k])) {
+          found = found.concat(idx[k]);
+        }
+      }
+    }
+    // Dedupe by href
+    const seen = new Set();
+    found = found.filter(a => {
+      if (!a || !a.href) return false;
+      if (seen.has(a.href)) return false;
+      seen.add(a.href); return true;
+    });
+
+    if (!found.length) {
+      container.innerHTML =
+        '<p class="mv-empty">No Box Office Jedi articles for this title yet.</p>';
+      return;
+    }
+    container.innerHTML =
+      '<ul class="mv-list">' + found.map(a =>
+        '<li><span class="mv-list-main">' +
+          (a.kind ? '<span class="mv-list-kind">' + escapeHtml(a.kind) + '</span>' : '') +
+          '<a href="' + escapeHtml(a.href) + '">' + escapeHtml(a.title || a.href) + '</a>' +
+        '</span></li>').join('') +
+      '</ul>';
+  }
+
+  // ── Summary: Charts ─────────────────────────────────────────
+  // Expected at data/movie_charts.json:
+  //   { "<tmdb_id>": [{chart, href, rank}], "<slug>": [...] }
+  async function renderCharts() {
+    const container = document.getElementById('mv-charts');
+    const idx = await fetchJSON('data/movie_charts.json');
+    const lookups = [];
+    if (STATE.id) lookups.push(String(STATE.id));
+    if (STATE.title) lookups.push(normKey(STATE.title));
+    if (STATE.meta && STATE.meta.title) lookups.push(normKey(STATE.meta.title));
+
+    let found = [];
+    if (idx) {
+      for (const k of lookups) {
+        if (idx[k] && Array.isArray(idx[k])) found = found.concat(idx[k]);
+      }
+    }
+    const seen = new Set();
+    found = found.filter(c => {
+      if (!c) return false;
+      const key = c.href + '|' + (c.chart || '');
+      if (seen.has(key)) return false;
+      seen.add(key); return true;
+    });
+
+    if (!found.length) {
+      container.innerHTML =
+        '<p class="mv-empty">Not currently ranked on any Box Office Jedi charts.</p>';
+      return;
+    }
+    container.innerHTML =
+      '<ul class="mv-list">' + found.map(c =>
+        '<li>' +
+          '<span class="mv-list-main">' +
+            (c.href ? '<a href="' + escapeHtml(c.href) + '">' + escapeHtml(c.chart || 'Chart') + '</a>'
+                    : escapeHtml(c.chart || 'Chart')) +
+          '</span>' +
+          '<span class="mv-list-rank">' + (c.rank ? '#' + c.rank : '—') + '</span>' +
+        '</li>').join('') +
+      '</ul>';
+  }
+
+  // ── Weekend Breakdown ───────────────────────────────────────
+  function renderWeekendBreakdown({ weekends }) {
+    const container = document.getElementById('mv-weekend-body');
+    if (!weekends || !weekends.length) {
+      container.innerHTML = '<p class="mv-empty">No weekend breakdown available yet.</p>';
+      return;
+    }
+
+    // Group by year, compute deltas
+    const byYear = {};
+    let runningTotal = 0;
+    weekends.forEach((w, i) => {
+      const y = (w.date || '').slice(0, 4) || 'Unknown';
+      if (!byYear[y]) byYear[y] = [];
+      const prev = weekends[i - 1] || null;
+      const pct = prev && prev.gross ? ((w.gross - prev.gross) / prev.gross) * 100 : null;
+      const theaterChange = prev && prev.theaters ? (w.theaters - prev.theaters) : null;
+      const avg = (w.gross && w.theaters) ? w.gross / w.theaters : null;
+      runningTotal = (w.total_gross && w.total_gross > runningTotal) ? w.total_gross : runningTotal + (w.gross || 0);
+      byYear[y].push({
+        ...w,
+        pct_change: pct,
+        theater_change: theaterChange,
+        avg_per_theater: avg,
+        running_total: runningTotal
+      });
+    });
+
+    const years = Object.keys(byYear).sort();
+    let html = '';
+    years.forEach(year => {
+      const rows = byYear[year];
+      html += `<div class="mv-wk-year">${year}</div>`;
+      html += `
+        <table class="mv-wk-table">
+          <thead>
+            <tr>
+              <th style="text-align:left;">Date<br><span style="font-weight:normal;font-size:10px;">(click to view chart)</span></th>
+              <th>Rank</th>
+              <th>Weekend<br>Gross</th>
+              <th>%<br>Change</th>
+              <th>Theater<br>Count</th>
+              <th>Change /<br>Avg.</th>
+              <th>Gross-to-<br>Date</th>
+              <th>Week<br>#</th>
+            </tr>
+          </thead>
+          <tbody>`;
+      rows.forEach(r => {
+        const pctClass = (r.pct_change == null) ? '' : (r.pct_change < 0 ? 'wk-neg' : 'wk-pos');
+        const pctTxt = (r.pct_change == null) ? '—' : fmtChange(r.pct_change);
+        const tcClass = (r.theater_change == null) ? '' : (r.theater_change < 0 ? 'wk-neg' : 'wk-pos');
+        const tcTxt = (r.theater_change == null) ? '—' :
+                        (r.theater_change > 0 ? '+' : '') + r.theater_change.toLocaleString('en-US');
+        const avgTxt = r.avg_per_theater ? '$' + fmtInt(r.avg_per_theater) : '—';
+        const dateLabel = shortDateRange(r.date);
+        const dateHref = 'weekend.html?date=' + r.date;
+        html += `
+            <tr>
+              <td class="wk-date"><a href="${dateHref}">${dateLabel}</a></td>
+              <td class="wk-rank">${r.rank ? r.rank : '—'}</td>
+              <td>${fmtDollars(r.gross)}</td>
+              <td class="${pctClass}">${pctTxt}</td>
+              <td>${fmtInt(r.theaters)}</td>
+              <td><span class="${tcClass}">${tcTxt}</span> / ${avgTxt}</td>
+              <td>${fmtDollars(r.running_total)}</td>
+              <td class="wk-weekn">${r.n || '—'}</td>
+            </tr>`;
+      });
+      html += `</tbody></table>`;
+    });
+    container.innerHTML = html;
+  }
+
+  // ── Daily Breakdown (calendar) ──────────────────────────────
+  async function renderDailyBreakdown({ meta, weekendData }) {
+    const container = document.getElementById('mv-daily-body');
+    container.innerHTML = '<p class="mv-empty">Loading daily data&hellip;</p>';
+
+    const idx = await fetchJSON('data/daily/index.json');
+    const allDates = (idx && idx.dates) || [];
+
+    const releaseIso = (meta && meta.release_date) || null;
+    const firstWeekendIso = (weekendData && weekendData.weekends && weekendData.weekends[0])
+      ? weekendData.weekends[0].date : null;
+
+    // Lower bound: earlier of release date and first weekend Friday
+    let startIso = null;
+    if (releaseIso && firstWeekendIso) {
+      startIso = releaseIso < firstWeekendIso ? releaseIso : firstWeekendIso;
+    } else {
+      startIso = releaseIso || firstWeekendIso || null;
+    }
+
+    // Upper bound: ~30 days after the last weekend we have on record
+    //   (if any). Prevents fetching 2026 daily files for a 2002 movie.
+    let endIso = null;
+    const weekends = (weekendData && weekendData.weekends) || [];
+    if (weekends.length) {
+      const lastWkIso = weekends[weekends.length - 1].date;
+      if (lastWkIso) {
+        const [y, mo, d] = lastWkIso.split('-').map(Number);
+        const end = new Date(Date.UTC(y, mo-1, d));
+        end.setUTCDate(end.getUTCDate() + 30);
+        endIso = end.getUTCFullYear() + '-' +
+          String(end.getUTCMonth()+1).padStart(2,'0') + '-' +
+          String(end.getUTCDate()).padStart(2,'0');
+      }
+    }
+
+    const candidateDates = allDates.filter(d =>
+      (!startIso || d >= startIso) && (!endIso || d <= endIso)
+    );
+
+    if (!candidateDates.length) {
+      container.innerHTML =
+        '<p class="mv-empty">No daily breakdown available for this title yet. ' +
+        'We only have per-day data starting <strong>April 5, 2026</strong>.</p>';
+      return;
+    }
+
+    // Fetch all candidate daily files (they're small). Limit parallelism to 8.
+    const results = [];
+    for (let i = 0; i < candidateDates.length; i += 8) {
+      const batch = candidateDates.slice(i, i + 8);
+      const rows = await Promise.all(batch.map(async d => {
+        const data = await fetchJSON('data/daily/' + d + '.json');
+        if (!data) return null;
+        const wanted = (data.chart || []).find(r =>
+          (STATE.id && r.tmdb_id && String(r.tmdb_id) === String(STATE.id)) ||
+          (r.title && STATE.title && r.title.toLowerCase() === STATE.title.toLowerCase()) ||
+          (r.title && STATE.meta && STATE.meta.title && r.title.toLowerCase() === STATE.meta.title.toLowerCase())
+        );
+        if (!wanted) return null;
+        return {
+          date: d,
+          is_estimates: !!data.is_estimates,
+          ...wanted
+        };
+      }));
+      results.push(...rows.filter(Boolean));
+    }
+
+    if (!results.length) {
+      container.innerHTML =
+        '<p class="mv-empty">No daily breakdown data for this title. ' +
+        'Daily charts only go back to <strong>April 5, 2026</strong> in our archive.</p>';
+      return;
+    }
+
+    STATE.dailyRows = results;
+
+    // Use daily data to refine the Info Table and Lifetime panel:
+    //  • Pull distributor if meta was missing it
+    //  • If daily total_gross > what we had, update domestic total
+    const maxDailyTotal = Math.max(...results.map(r => r.total_gross || 0));
+    const distributorFromDaily = (results.slice().reverse().find(r => r.distributor) || {}).distributor;
+
+    // Determine best domestic total: max of (weekend-based, daily-based)
+    let priorDomestic = weekends.length
+      ? Math.max(...weekends.map(w => w.total_gross || 0)) : 0;
+    if (!priorDomestic && weekends.length) {
+      priorDomestic = weekends.reduce((s, w) => s + (w.gross || 0), 0);
+    }
+    const bestDomestic = Math.max(priorDomestic || 0, maxDailyTotal || 0);
+
+    // Patch distributor into meta for the re-render
+    if (distributorFromDaily && STATE.meta && !STATE.meta.distributor) {
+      STATE.meta.distributor = distributorFromDaily;
+    } else if (distributorFromDaily && !STATE.meta) {
+      STATE.meta = { distributor: distributorFromDaily };
+    }
+
+    // Re-render info table + lifetime panel with better numbers
+    const worldwide = (STATE.meta && STATE.meta.revenue) || null;
+    const foreign = (worldwide && bestDomestic && worldwide > bestDomestic)
+      ? worldwide - bestDomestic : null;
+    renderInfoTable({ meta: STATE.meta, weekendData: STATE.weekendData, domesticTotal: bestDomestic });
+    renderLifetime({ domesticTotal: bestDomestic, worldwide, foreign });
+    renderDomesticSummary({ weekends, domesticTotal: bestDomestic });
+
+    // Group by YYYY-MM
+    const byMonth = {};
+    results.forEach(r => {
+      const key = r.date.slice(0, 7);
+      if (!byMonth[key]) byMonth[key] = {};
+      byMonth[key][r.date] = r;
+    });
+
+    const months = Object.keys(byMonth).sort();
+    const MONTHS_FULL = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE',
+                         'JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
+    const DOW_LABELS = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+
+    let html = '';
+    const estimatesPresent = results.some(r => r.is_estimates);
+    if (estimatesPresent) {
+      html += '<p style="font-family:Verdana,sans-serif;font-size:11px;color:#555;font-style:italic;margin:8px 0 0;">' +
+              '* Figures marked with an asterisk are estimates and will be updated when actuals are reported.</p>';
+    }
+
+    months.forEach(monthKey => {
+      const [y, mo] = monthKey.split('-').map(Number);
+      const daysInMonth = new Date(y, mo, 0).getDate();
+      const firstDow = new Date(Date.UTC(y, mo-1, 1)).getUTCDay();
+
+      html += `<div class="mv-cal-month-title">${MONTHS_FULL[mo-1]} ${y}</div>`;
+      html += `<table class="mv-cal-table"><thead><tr>`;
+      DOW_LABELS.forEach(l => { html += `<th>${l}</th>`; });
+      html += `</tr></thead><tbody>`;
+
+      let day = 1;
+      let cellCount = 0;
+      // Build rows of 7 cells
+      const totalCells = Math.ceil((firstDow + daysInMonth) / 7) * 7;
+      for (let c = 0; c < totalCells; c++) {
+        if (c % 7 === 0) html += '<tr>';
+        if (c < firstDow || day > daysInMonth) {
+          html += '<td class="mv-cal-empty">&nbsp;</td>';
+        } else {
+          const iso = y + '-' + String(mo).padStart(2,'0') + '-' + String(day).padStart(2,'0');
+          const r = byMonth[monthKey][iso];
+          html += renderCalCell(iso, day, r);
+          day++;
+        }
+        if (c % 7 === 6) html += '</tr>';
+      }
+      html += `</tbody></table>`;
+    });
+
+    container.innerHTML = html;
+  }
+
+  function renderCalCell(iso, day, r) {
+    if (!r) {
+      return `<td>
+        <div class="mv-cal-day-hd">
+          <span class="mv-cal-day-num">${day}</span>
+          <span class="mv-cal-day-rank mv-cal-day-rank-hidden">—</span>
         </div>
-        <div class="mv-stat-row">
-          <span class="mv-stat-label">Foreign</span>
-          <span class="mv-stat-value">${fmtDollars(foreign)}<span class="mv-stat-pct">${pct(worldwide, foreign)}</span></span>
-        </div>
-        <div class="mv-stat-row">
-          <span class="mv-stat-label">Worldwide</span>
-          <span class="mv-stat-value">${fmtDollars(worldwide)}</span>
-        </div>` : '<p class="mv-empty">—</p>';
-      document.getElementById('mv-lifetime').innerHTML = html;
+      </td>`;
     }
+    const estMark = r.is_estimates ? '*' : '';
+    const rankTxt = r.rank ? String(r.rank) : '';
+    const changeStr = (r.pct_change !== null && r.pct_change !== undefined)
+      ? fmtChange(r.pct_change) : null;
+    const changeCls = (r.pct_change > 0) ? 'mv-cal-change-pos'
+                    : (r.pct_change < 0 ? 'mv-cal-change-neg' : 'mv-cal-change-neu');
+    const avgStr = r.avg_per_theater ? '$' + fmtInt(r.avg_per_theater) : null;
 
-    // ── LEFT: Domestic Summary ───────────────────────────────
-    {
-      if (weekendData && weekendData.weekends && weekendData.weekends.length) {
-        const first = weekendData.weekends[0];
-        const weekends = weekendData.weekends;
-        const widest = Math.max(...weekends.map(w => w.theaters || 0));
-        const domTotal = Math.max(...weekends.map(w => w.total_gross || 0));
-        const openPct = (first.gross && domTotal) ? ((first.gross / domTotal) * 100).toFixed(1) + '%' : '—';
-        const openDate = first.date || null;
-        const lastDate = (weekends[weekends.length - 1] || {}).date || null;
-        const inReleaseWeeks = weekends.length;
-        const avg = (first.gross && first.theaters) ? Math.floor(first.gross / first.theaters) : null;
-
-        document.getElementById('mv-domestic').innerHTML = `
-          <div class="mv-stat-subhead">Opening Weekend</div>
-          <div class="mv-stat-row"><span class="mv-stat-label">Gross</span>         <span class="mv-stat-value">${fmtDollars(first.gross)}</span></div>
-          <div class="mv-stat-row"><span class="mv-stat-label">Rank</span>          <span class="mv-stat-value">${first.rank ? '#' + first.rank : '—'}</span></div>
-          <div class="mv-stat-row"><span class="mv-stat-label">Theaters</span>      <span class="mv-stat-value">${fmtInt(first.theaters)}</span></div>
-          <div class="mv-stat-row"><span class="mv-stat-label">Per theater</span>   <span class="mv-stat-value">${avg ? '$' + fmtInt(avg) : '—'}</span></div>
-          <div class="mv-stat-row"><span class="mv-stat-label">% of Total</span>    <span class="mv-stat-value">${openPct}</span></div>
-
-          <div class="mv-stat-subhead">Release</div>
-          <div class="mv-stat-row"><span class="mv-stat-label">Widest Release</span><span class="mv-stat-value">${fmtInt(widest)} theaters</span></div>
-          <div class="mv-stat-row"><span class="mv-stat-label">First Weekend</span> <span class="mv-stat-value">${shortDate(openDate)}</span></div>
-          <div class="mv-stat-row"><span class="mv-stat-label">Last Weekend</span>  <span class="mv-stat-value">${shortDate(lastDate)}</span></div>
-          <div class="mv-stat-row"><span class="mv-stat-label">Weekends Charted</span><span class="mv-stat-value">${inReleaseWeeks}</span></div>
-        `;
-      } else {
-        document.getElementById('mv-domestic').innerHTML =
-          '<p class="mv-empty">No weekend archive data for this title yet.</p>';
-      }
+    let html = `<td>
+      <div class="mv-cal-day-hd">
+        <span class="mv-cal-day-num">${day}</span>
+        <span class="mv-cal-day-rank">${rankTxt ? rankTxt : ''}</span>
+      </div>
+      <div class="mv-cal-cell-body">`;
+    if (r.daily_gross) {
+      html += `<span class="mv-cal-gross">${fmtDollars(r.daily_gross)}${estMark}</span>`;
     }
-
-    // ── RIGHT: Cast & Crew ───────────────────────────────────
-    {
-      const parts = [];
-      if (meta && meta.director)  parts.push('<div><span class="mv-credit-role">Director</span>' + escapeHtml(meta.director) + '</div>');
-      if (meta && meta.cast && meta.cast.length) {
-        const castHtml = meta.cast.slice(0, 10).map(c =>
-          '<div><span class="mv-credit-role">' + escapeHtml(c.character || 'Cast') + '</span>' + escapeHtml(c.name) + '</div>'
-        ).join('');
-        parts.push(castHtml);
-      }
-      if (meta && meta.genres && meta.genres.length) {
-        parts.push('<div><span class="mv-credit-role">Genre</span>' + meta.genres.join(' / ') + '</div>');
-      }
-      const html = parts.length
-        ? '<div class="mv-creditblock">' + parts.join('') + '</div>'
-        : '<p class="mv-empty">Cast &amp; crew data not yet available.</p>';
-      document.getElementById('mv-credits').innerHTML = html;
+    if (changeStr !== null || avgStr) {
+      html += `<span>` +
+        (changeStr !== null ? `<span class="${changeCls}">${changeStr}</span>` : '') +
+        (avgStr ? (changeStr !== null ? ' / ' : '') + avgStr : '') +
+        `</span>`;
     }
-
-    // ── RIGHT: Weekend Grosses table ─────────────────────────
-    {
-      if (weekendData && weekendData.weekends && weekendData.weekends.length) {
-        const rows = weekendData.weekends.slice(0, 20).map(w => `
-          <tr>
-            <td class="mv-wk-n">${w.n}</td>
-            <td class="mv-wk-date">${shortDate(w.date)}</td>
-            <td>${fmtDollars(w.gross)}</td>
-            <td>${w.rank ? '#' + w.rank : '—'}</td>
-          </tr>`).join('');
-        document.getElementById('mv-weekends').innerHTML = `
-          <table class="mv-wk-table">
-            <thead>
-              <tr>
-                <th>Wk</th>
-                <th class="mv-wk-th-left">Date</th>
-                <th>Weekend Gross</th>
-                <th>Rank</th>
-              </tr>
-            </thead>
-            <tbody>${rows}</tbody>
-          </table>`;
-      } else {
-        document.getElementById('mv-weekends').innerHTML =
-          '<p class="mv-empty">No weekend breakdown yet.</p>';
-      }
+    if (r.theaters) {
+      html += `<span class="mv-cal-theaters">${fmtInt(r.theaters)} thtrs.</span>`;
     }
-
-    // Rankings placeholder — will cross-reference all-time charts
-    // once a movie-to-chart lookup helper is added.
+    if (r.total_gross) {
+      const dayPart = r.days_in_release ? ' / ' + r.days_in_release : '';
+      html += `<span class="mv-cal-total">${fmtDollarsCompact(r.total_gross)}${dayPart}</span>`;
+    }
+    html += `</div></td>`;
+    return html;
   }
 
   loadMovie();
