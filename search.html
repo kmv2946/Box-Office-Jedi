@@ -6,128 +6,157 @@
   <title>Search &mdash; Box Office Jedi</title>
   <link rel="stylesheet" href="assets/css/styles.css">
   <style>
+
     .sr-crumb {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
       font-size: 14px;
-      color: #000;
+      color: #00239C;
       padding: 6px 10px 4px;
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
-    .sr-crumb .arrow { color: #7F170E; margin-right: 4px; }
-    .sr-section-bar { height: 3px; background: #7F170E; margin-bottom: 12px; }
+    .sr-crumb .arrow { color: #00239C; margin-right: 4px; }
+    .sr-section-bar { height: 3px; background: #7F170E; margin-bottom: 20px; }
 
-    .sr-header { padding: 10px 14px 4px; }
-    .sr-title {
-      font-family: Verdana, Geneva, sans-serif;
-      font-weight: bold;
-      font-size: 24px;
-      color: #000;
-      margin: 0 0 4px;
-    }
-    .sr-subtitle {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 13px;
-      color: #555;
-      margin: 0 0 10px;
-    }
-
+    /* ── Search form block (centered, prominent) ────────────────────── */
     .sr-box {
-      margin: 8px 14px 14px;
-      padding: 10px 12px;
-      background: #F4F4FE;
-      border: 1px solid #DCDCDC;
+      max-width: 640px;
+      margin: 24px auto 10px;
+      padding: 0 20px;
+      text-align: center;
     }
-    .sr-box label {
-      font-family: Verdana, Geneva, sans-serif;
-      font-weight: bold;
-      font-size: 12px;
-      color: #000;
-      margin-right: 8px;
-    }
-    .sr-box input[type="text"] {
+    .sr-box h1 {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 15px;
-      padding: 4px 8px;
-      border: 1px solid #999;
-      width: 320px;
+      font-weight: normal;
+      font-size: 28px;
+      color: #000;
+      margin: 0 0 14px;
     }
-    .sr-box button {
-      font-family: Verdana, Geneva, sans-serif;
-      font-weight: bold;
-      font-size: 12px;
-      color: #fff;
-      background: #7F170E;
-      border: 1px solid #5a0f08;
-      padding: 5px 14px;
-      margin-left: 4px;
+    .sr-input-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+    .sr-input {
+      flex: 1;
+      max-width: 460px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16px;
+      padding: 4px 6px;
+      border: 1px solid #888;
+      background: #fff;
+    }
+    .sr-go {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      padding: 3px 14px;
+      background: #F4F4F4;
+      border: 1px solid #999;
       cursor: pointer;
     }
-    .sr-box button:hover { background: #9a1d12; }
-    .sr-meta {
+    .sr-go:hover { background: #E8E8E8; }
+
+    .sr-engine {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 36px;
+    }
+    .sr-engine label {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 12px;
-      color: #555;
-      margin-left: 10px;
-      font-style: italic;
+      font-size: 22px;
+      color: #000;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .sr-engine input[type="radio"] {
+      width: 16px;
+      height: 16px;
+      accent-color: #3B82F6;   /* roughly Google-blue */
+    }
+    .sr-engine img.google-mark {
+      height: 34px;
+      width: auto;
+      vertical-align: middle;
     }
 
-    /* Results */
-    .sr-results { padding: 0 14px 24px; }
-    .sr-group-header {
-      background: #990000;
-      color: #fff;
-      font-family: Verdana, Geneva, sans-serif;
-      font-weight: bold;
-      font-size: 12px;
-      letter-spacing: 1px;
-      padding: 5px 10px;
-      margin: 12px 0 0;
-      text-transform: uppercase;
+    /* ── Results ────────────────────────────────────────────────────── */
+    .sr-results-wrap {
+      max-width: 760px;
+      margin: 40px auto 10px;
+      padding: 0 20px;
     }
+    .sr-results-title {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      font-size: 34px;
+      color: #000;
+      text-align: center;
+      margin: 0 0 18px;
+    }
+
     .sr-table {
       width: 100%;
       border-collapse: collapse;
+      border: 1px solid #B0B0B0;
     }
     .sr-table tbody tr:nth-child(odd)  td { background: #F4F4FE; }
     .sr-table tbody tr:nth-child(even) td { background: #FFFFFF; }
     .sr-table td {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 14px;
+      font-size: 15px;
       color: #000;
-      padding: 6px 10px;
-      border-bottom: 1px solid #EEE;
+      padding: 8px 12px;
+      border-bottom: 1px solid #E8E8E8;
     }
-    .sr-table td.sr-year { width: 80px; text-align: right; color: #555; font-size: 12px; font-family: Verdana, Geneva, sans-serif; }
     .sr-table td.sr-title a {
       font-family: 'Times New Roman', Times, serif;
       color: #00007B;
-      text-decoration: none;
       font-weight: bold;
+      text-decoration: none;
     }
     .sr-table td.sr-title a:hover { text-decoration: underline; }
-    .sr-title-hit { background: #FFFEE0; font-weight: bold; }
-    .sr-empty {
+    /* Archive-only entries (no tmdb page yet) — blue bold, but not links */
+    .sr-table td.sr-title.archive {
+      color: #00007B;
+      font-weight: bold;
+    }
+    .sr-table td.sr-year {
+      width: 90px;
+      text-align: right;
+      color: #000;
+      font-weight: bold;
+    }
+
+    .sr-meta {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      color: #555;
+      text-align: center;
+      margin: 8px 0 16px;
+      font-style: italic;
+    }
+    .sr-empty, .sr-prompt, .sr-loading {
       font-family: 'Times New Roman', Times, serif;
       font-style: italic;
       color: #555;
       padding: 20px;
       text-align: center;
     }
-    .sr-loading {
-      font-family: Verdana, Geneva, sans-serif;
-      font-size: 12px;
-      color: #777;
-      padding: 20px;
-      text-align: center;
+
+    @media (max-width: 640px) {
+      .sr-box h1 { font-size: 22px; }
+      .sr-results-title { font-size: 26px; }
+      .sr-engine label { font-size: 18px; }
+      .sr-engine img.google-mark { height: 26px; }
     }
-    .sr-footer-note {
-      font-family: Verdana, Geneva, sans-serif;
-      font-size: 11px;
-      color: #888;
-      padding: 10px 14px 20px;
-    }
+
   </style>
 </head>
 <body>
@@ -169,27 +198,29 @@
     <div class="sr-crumb"><span class="arrow">&gt;</span> SEARCH</div>
     <div class="sr-section-bar"></div>
 
-    <div class="sr-header">
-      <h1 class="sr-title">Search</h1>
-      <p class="sr-subtitle">Find any movie that&rsquo;s appeared in a weekend chart.</p>
-    </div>
-
     <form class="sr-box" id="sr-form" onsubmit="return false;">
-      <label for="sr-q">Search:</label>
-      <input type="text" id="sr-q" placeholder="e.g. mario, oppenheimer, star wars" autocomplete="off">
-      <button type="submit">Go</button>
-      <span class="sr-meta" id="sr-meta"></span>
+      <h1>Search for a Movie Title:</h1>
+
+      <div class="sr-input-row">
+        <input class="sr-input" type="text" id="sr-q" autocomplete="off" spellcheck="false">
+        <button class="sr-go" type="submit">Search</button>
+      </div>
+
+      <div class="sr-engine">
+        <label>
+          <input type="radio" name="engine" value="boj" checked>
+          <span>Box Office Jedi</span>
+        </label>
+        <label>
+          <input type="radio" name="engine" value="google">
+          <img class="google-mark" src="assets/images/google-vintage.webp" alt="Google">
+        </label>
+      </div>
     </form>
 
-    <div class="sr-results" id="sr-results">
-      <p class="sr-loading" id="sr-loading">Type a search term above to find movies.</p>
+    <div class="sr-results-wrap" id="sr-results-wrap">
+      <!-- results appear here after a query is run -->
     </div>
-
-    <p class="sr-footer-note">
-      Titles with <strong>full movie pages</strong> (linked below) come from our TMDB-enriched catalog &mdash;
-      that set is still growing. Other titles are archive entries: we know they charted, but a full movie page
-      hasn&rsquo;t been built for them yet.
-    </p>
 
   </main>
 
@@ -200,6 +231,12 @@
         <p><a href="weekend.html"><strong>Weekend</strong></a></p>
         <p><a href="yearly.html"><strong>Yearly</strong></a></p>
         <p><a href="alltime.html"><strong>All Time</strong></a></p>
+      </div>
+    </div>
+    <div class="widget">
+      <div class="widget-header" style="background:#7F170E;">DERBY GAME</div>
+      <div class="widget-body" style="background:#e8f4fd;">
+        <p>Predict the weekend. <a href="derby.html"><strong>Play now &gt;</strong></a></p>
       </div>
     </div>
   </aside>
@@ -224,9 +261,13 @@
     if (e.key === 'Enter') doSearch();
   });
 
+  function escapeHtml(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g,
+      c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
   // ── Search logic ───────────────────────────────────────────────────────
   let INDEX = null;
-
   async function loadIndex() {
     if (INDEX) return INDEX;
     const r = await fetch('data/search-index.json', { cache: 'force-cache' });
@@ -235,96 +276,98 @@
     return INDEX;
   }
 
-  function escapeHtml(s) {
-    return String(s == null ? '' : s).replace(/[&<>"']/g,
-      c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  }
+  async function runSiteSearch(q) {
+    const wrap = document.getElementById('sr-results-wrap');
+    if (!q) { wrap.innerHTML = ''; return; }
 
-  function highlight(title, q) {
-    const t = escapeHtml(title);
-    if (!q) return t;
-    const re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'ig');
-    return t.replace(re, '<span class="sr-title-hit">$1</span>');
-  }
+    wrap.innerHTML = '<h2 class="sr-results-title">Results</h2>' +
+                     '<p class="sr-loading">Searching&hellip;</p>';
 
-  async function run(q) {
-    const results = document.getElementById('sr-results');
-    const meta    = document.getElementById('sr-meta');
-    if (!q) {
-      results.innerHTML = '<p class="sr-loading">Type a search term above to find movies.</p>';
-      meta.textContent = '';
-      return;
-    }
-    results.innerHTML = '<p class="sr-loading">Searching&hellip;</p>';
     let data;
-    try {
-      data = await loadIndex();
-    } catch (e) {
-      results.innerHTML = '<p class="sr-empty">Search index not available yet.</p>';
+    try { data = await loadIndex(); }
+    catch (e) {
+      wrap.innerHTML = '<h2 class="sr-results-title">Results</h2>' +
+                       '<p class="sr-empty">Search index not available yet.</p>';
       return;
     }
+
     const needle = q.toLowerCase();
-    const tmdbHits    = [];
-    const archiveHits = [];
+    const hits = [];
     for (const row of data.rows) {
-      const [title, year, tmdbId, hasTmdb] = row;
-      if (!title) continue;
-      if (title.toLowerCase().indexOf(needle) === -1) continue;
-      (hasTmdb ? tmdbHits : archiveHits).push(row);
-      if (tmdbHits.length + archiveHits.length >= 300) break;   // cap for safety
+      const [title] = row;
+      if (title && title.toLowerCase().indexOf(needle) !== -1) hits.push(row);
+      if (hits.length >= 200) break;
     }
-    const total = tmdbHits.length + archiveHits.length;
-    meta.textContent = total + ' match' + (total === 1 ? '' : 'es') +
-                       (total >= 300 ? ' (showing the first 300)' : '');
 
-    if (!total) {
-      results.innerHTML = '<p class="sr-empty">No movies match &ldquo;' + escapeHtml(q) + '&rdquo;.</p>';
+    if (!hits.length) {
+      wrap.innerHTML = '<h2 class="sr-results-title">Results</h2>' +
+                       '<p class="sr-empty">No movies match &ldquo;' + escapeHtml(q) + '&rdquo;.</p>';
       return;
     }
 
-    function rowsHtml(list, withLink) {
-      return list.map(r => {
-        const [title, year, tmdbId] = r;
-        const yr = year ? year : '';
-        const label = highlight(title, q);
-        if (withLink) {
-          const href = 'movie.html?' +
-            (tmdbId ? 'id=' + encodeURIComponent(tmdbId) + '&' : '') +
-            'title=' + encodeURIComponent(title);
-          return '<tr><td class="sr-title"><a href="' + href + '">' + label + '</a></td>' +
-                 '<td class="sr-year">' + yr + '</td></tr>';
-        }
-        return '<tr><td class="sr-title">' + label + '</td>' +
-               '<td class="sr-year">' + yr + '</td></tr>';
-      }).join('');
-    }
+    // Sort: title-starts-with-query first, then contains. Within each, alpha.
+    hits.sort((a, b) => {
+      const A = a[0].toLowerCase(), B = b[0].toLowerCase();
+      const aStarts = A.startsWith(needle), bStarts = B.startsWith(needle);
+      if (aStarts !== bStarts) return aStarts ? -1 : 1;
+      return A < B ? -1 : A > B ? 1 : 0;
+    });
 
-    let html = '';
-    if (tmdbHits.length) {
-      html += '<div class="sr-group-header">Movies with Pages (' + tmdbHits.length + ')</div>';
-      html += '<table class="sr-table"><tbody>' + rowsHtml(tmdbHits, true) + '</tbody></table>';
-    }
-    if (archiveHits.length) {
-      html += '<div class="sr-group-header">Archive-only Matches (' + archiveHits.length + ')</div>';
-      html += '<table class="sr-table"><tbody>' + rowsHtml(archiveHits, false) + '</tbody></table>';
-    }
-    results.innerHTML = html;
+    const rowsHtml = hits.map(r => {
+      const [title, year, tmdbId, hasTmdb] = r;
+      const yr = year || '';
+      if (hasTmdb) {
+        const href = 'movie.html?' +
+          (tmdbId ? 'id=' + encodeURIComponent(tmdbId) + '&' : '') +
+          'title=' + encodeURIComponent(title);
+        return '<tr>' +
+          '<td class="sr-title"><a href="' + href + '">' + escapeHtml(title) + '</a></td>' +
+          '<td class="sr-year">' + yr + '</td></tr>';
+      }
+      return '<tr>' +
+        '<td class="sr-title archive">' + escapeHtml(title) + '</td>' +
+        '<td class="sr-year">' + yr + '</td></tr>';
+    }).join('');
+
+    const metaLine = hits.length + ' match' + (hits.length === 1 ? '' : 'es') +
+                     (hits.length >= 200 ? ' (showing the first 200)' : '');
+
+    wrap.innerHTML = '<h2 class="sr-results-title">Results</h2>' +
+                     '<table class="sr-table"><tbody>' + rowsHtml + '</tbody></table>' +
+                     '<p class="sr-meta">' + metaLine + '</p>';
   }
 
-  // Wire up the form
+  // Hand off to Google, scoped to a "Box Office Jedi"-ish context so results
+  // are relevant. Opens in a new tab so the visitor keeps the site open.
+  function goToGoogle(q) {
+    const url = 'https://www.google.com/search?q=' + encodeURIComponent(q);
+    window.open(url, '_blank', 'noopener');
+  }
+
+  function currentEngine() {
+    const sel = document.querySelector('input[name="engine"]:checked');
+    return sel ? sel.value : 'boj';
+  }
+
   document.getElementById('sr-form').addEventListener('submit', (e) => {
     e.preventDefault();
     const q = document.getElementById('sr-q').value.trim();
-    if (q) {
-      history.replaceState(null, '', 'search.html?q=' + encodeURIComponent(q));
-      run(q);
+    if (!q) return;
+    if (currentEngine() === 'google') {
+      goToGoogle(q);
+      return;
     }
+    // In-site search: keep URL in sync so it's shareable / bookmarkable
+    history.replaceState(null, '', 'search.html?q=' + encodeURIComponent(q));
+    runSiteSearch(q);
   });
 
-  // If URL has ?q=, pre-fill and run
+  // If arriving with ?q=... pre-fill and run immediately
   const initial = new URLSearchParams(location.search).get('q') || '';
-  if (initial) document.getElementById('sr-q').value = initial;
-  run(initial);
+  if (initial) {
+    document.getElementById('sr-q').value = initial;
+    runSiteSearch(initial);
+  }
 </script>
 
 </body>
