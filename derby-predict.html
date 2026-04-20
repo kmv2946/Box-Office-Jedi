@@ -188,26 +188,6 @@
     </div>
     <div class="derby-section-bar"></div>
 
-    <!-- Hidden form that Netlify uses to register the field set at build time.
-         Real submissions go through the visible form below. -->
-    <form name="derby-game" netlify netlify-honeypot="bot-field" hidden>
-      <input type="text"  name="weekend">
-      <input type="text"  name="player_name">
-      <input type="email" name="player_email">
-      <input type="text"  name="player_location">
-      <textarea name="player_comments"></textarea>
-      <input type="text"  name="pick_1_title"><input type="text" name="pick_1_gross">
-      <input type="text"  name="pick_2_title"><input type="text" name="pick_2_gross">
-      <input type="text"  name="pick_3_title"><input type="text" name="pick_3_gross">
-      <input type="text"  name="pick_4_title"><input type="text" name="pick_4_gross">
-      <input type="text"  name="pick_5_title"><input type="text" name="pick_5_gross">
-      <input type="text"  name="pick_6_title"><input type="text" name="pick_6_gross">
-      <input type="text"  name="pick_7_title"><input type="text" name="pick_7_gross">
-      <input type="text"  name="pick_8_title"><input type="text" name="pick_8_gross">
-      <input type="text"  name="pick_9_title"><input type="text" name="pick_9_gross">
-      <input type="text"  name="pick_10_title"><input type="text" name="pick_10_gross">
-    </form>
-
     <div class="derby-header">
       <h1>BOX OFFICE DERBY</h1>
       <div class="derby-weekend-label" id="derby-weekend-label">Loading weekend dates&hellip;</div>
@@ -226,12 +206,9 @@
       <form
         name="derby-game"
         method="POST"
-        data-netlify="true"
-        data-netlify-honeypot="bot-field"
+        action="/api/derby/submit"
         id="derby-form"
-        action="/derby-thanks.html"
       >
-        <input type="hidden" name="form-name" value="derby-game">
         <input type="hidden" name="weekend"   id="weekend-hidden">
         <p style="display:none"><input name="bot-field"></p>
 
@@ -344,7 +321,25 @@
     if (!current) return;
 
     document.getElementById('derby-weekend-label').textContent = current.label_long || current.label;
-    document.getElementById('weekend-hidden').value = current.label;
+    document.getElementById('weekend-hidden').value = current.weekend;
+
+    // If this browser already submitted, bounce back to derby.html.
+    try {
+      if (localStorage.getItem('derby_submitted_' + current.weekend)) {
+        window.location.replace('derby.html');
+        return;
+      }
+    } catch(e) {}
+    // Secondary: ask the backend whether this IP has submitted.
+    fetch('/api/derby/check?weekend=' + encodeURIComponent(current.weekend))
+      .then(r => r.ok ? r.json() : null)
+      .then(d => {
+        if (d && d.submitted) {
+          try { localStorage.setItem('derby_submitted_' + current.weekend, '1'); } catch(e) {}
+          window.location.replace('derby.html');
+        }
+      })
+      .catch(() => {});
 
     // If submissions are closed, hide the form and show a notice
     if (current.status === 'closed' || current.status === 'actuals_posted') {
@@ -371,19 +366,51 @@
     tbody.innerHTML = rowsHtml;
   }
 
-  document.getElementById('derby-form').addEventListener('submit', function(e) {
+  document.getElementById('derby-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
     // Client-side: ensure no duplicate movie selections
     const selects = this.querySelectorAll('select[name^="pick_"]');
     const chosen = [];
     for (const sel of selects) {
       if (!sel.value) continue;
       if (chosen.includes(sel.value)) {
-        e.preventDefault();
         alert('You\u2019ve selected \u201c' + sel.value + '\u201d more than once. Each movie can only appear once.');
         sel.focus();
         return;
       }
       chosen.push(sel.value);
+    }
+
+    const btn = this.querySelector('button[type="submit"]');
+    const oldLabel = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Submitting\u2026';
+
+    const fd = new FormData(this);
+    const weekend = fd.get('weekend') || '';
+    try {
+      const resp = await fetch('/api/derby/submit', { method: 'POST', body: fd });
+      const data = await resp.json().catch(() => ({}));
+
+      if (resp.ok && data.ok) {
+        // Remember that this browser has submitted (survives tabs/reloads)
+        try { localStorage.setItem('derby_submitted_' + weekend, String(Date.now())); } catch(e) {}
+        window.location.href = 'derby.html?just=' + encodeURIComponent(weekend);
+        return;
+      }
+      if (data.duplicate) {
+        alert('Looks like you\u2019ve already submitted picks for this weekend. Taking you back to the Derby page.');
+        try { localStorage.setItem('derby_submitted_' + weekend, String(Date.now())); } catch(e) {}
+        window.location.href = 'derby.html';
+        return;
+      }
+      alert('Submission failed: ' + (data.error || 'server error'));
+    } catch (err) {
+      alert('Submission failed: ' + err.message);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = oldLabel;
     }
   });
 

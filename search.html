@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search &mdash; Box Office Jedi</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .sr-crumb {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #000;
+      padding: 6px 10px 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .sr-crumb .arrow { color: #7F170E; margin-right: 4px; }
+    .sr-section-bar { height: 3px; background: #7F170E; margin-bottom: 12px; }
+
+    .sr-header { padding: 10px 14px 4px; }
+    .sr-title {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+      color: #000;
+      margin: 0 0 4px;
+    }
+    .sr-subtitle {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      color: #555;
+      margin: 0 0 10px;
+    }
+
+    .sr-box {
+      margin: 8px 14px 14px;
+      padding: 10px 12px;
+      background: #F4F4FE;
+      border: 1px solid #DCDCDC;
+    }
+    .sr-box label {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      color: #000;
+      margin-right: 8px;
+    }
+    .sr-box input[type="text"] {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
+      padding: 4px 8px;
+      border: 1px solid #999;
+      width: 320px;
+    }
+    .sr-box button {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      color: #fff;
+      background: #7F170E;
+      border: 1px solid #5a0f08;
+      padding: 5px 14px;
+      margin-left: 4px;
+      cursor: pointer;
+    }
+    .sr-box button:hover { background: #9a1d12; }
+    .sr-meta {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 12px;
+      color: #555;
+      margin-left: 10px;
+      font-style: italic;
+    }
+
+    /* Results */
+    .sr-results { padding: 0 14px 24px; }
+    .sr-group-header {
+      background: #990000;
+      color: #fff;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      letter-spacing: 1px;
+      padding: 5px 10px;
+      margin: 12px 0 0;
+      text-transform: uppercase;
+    }
+    .sr-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .sr-table tbody tr:nth-child(odd)  td { background: #F4F4FE; }
+    .sr-table tbody tr:nth-child(even) td { background: #FFFFFF; }
+    .sr-table td {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      color: #000;
+      padding: 6px 10px;
+      border-bottom: 1px solid #EEE;
+    }
+    .sr-table td.sr-year { width: 80px; text-align: right; color: #555; font-size: 12px; font-family: Verdana, Geneva, sans-serif; }
+    .sr-table td.sr-title a {
+      font-family: 'Times New Roman', Times, serif;
+      color: #00007B;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .sr-table td.sr-title a:hover { text-decoration: underline; }
+    .sr-title-hit { background: #FFFEE0; font-weight: bold; }
+    .sr-empty {
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+      color: #555;
+      padding: 20px;
+      text-align: center;
+    }
+    .sr-loading {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+      color: #777;
+      padding: 20px;
+      text-align: center;
+    }
+    .sr-footer-note {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      color: #888;
+      padding: 10px 14px 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">CONTENTS</span>
+      <ul>
+        <li><a href="predictions.html">PREDICTIONS</a></li>
+        <li><a href="analysis.html">ANALYSIS</a></li>
+        <li><a href="features.html">FEATURES</a></li>
+        <li><a href="releases.html">RELEASE SCHEDULE</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li class="derby"><a href="derby.html">THE DERBY</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+  <main class="main-content">
+
+    <div class="sr-crumb"><span class="arrow">&gt;</span> SEARCH</div>
+    <div class="sr-section-bar"></div>
+
+    <div class="sr-header">
+      <h1 class="sr-title">Search</h1>
+      <p class="sr-subtitle">Find any movie that&rsquo;s appeared in a weekend chart.</p>
+    </div>
+
+    <form class="sr-box" id="sr-form" onsubmit="return false;">
+      <label for="sr-q">Search:</label>
+      <input type="text" id="sr-q" placeholder="e.g. mario, oppenheimer, star wars" autocomplete="off">
+      <button type="submit">Go</button>
+      <span class="sr-meta" id="sr-meta"></span>
+    </form>
+
+    <div class="sr-results" id="sr-results">
+      <p class="sr-loading" id="sr-loading">Type a search term above to find movies.</p>
+    </div>
+
+    <p class="sr-footer-note">
+      Titles with <strong>full movie pages</strong> (linked below) come from our TMDB-enriched catalog &mdash;
+      that set is still growing. Other titles are archive entries: we know they charted, but a full movie page
+      hasn&rsquo;t been built for them yet.
+    </p>
+
+  </main>
+
+  <aside class="right-sidebar">
+    <div class="widget">
+      <div class="widget-header">CHARTS</div>
+      <div class="widget-body">
+        <p><a href="weekend.html"><strong>Weekend</strong></a></p>
+        <p><a href="yearly.html"><strong>Yearly</strong></a></p>
+        <p><a href="alltime.html"><strong>All Time</strong></a></p>
+      </div>
+    </div>
+  </aside>
+
+</div>
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">"Serving your box office needs since 2026."</span>
+  <div style="margin-top:8px;">
+    <img src="assets/images/flag_sm_anim.gif" alt="American flag" style="display:inline-block;height:auto;">
+  </div>
+</footer>
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+
+  // ── Search logic ───────────────────────────────────────────────────────
+  let INDEX = null;
+
+  async function loadIndex() {
+    if (INDEX) return INDEX;
+    const r = await fetch('data/search-index.json', { cache: 'force-cache' });
+    if (!r.ok) throw new Error('search index not available');
+    INDEX = await r.json();
+    return INDEX;
+  }
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g,
+      c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  function highlight(title, q) {
+    const t = escapeHtml(title);
+    if (!q) return t;
+    const re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'ig');
+    return t.replace(re, '<span class="sr-title-hit">$1</span>');
+  }
+
+  async function run(q) {
+    const results = document.getElementById('sr-results');
+    const meta    = document.getElementById('sr-meta');
+    if (!q) {
+      results.innerHTML = '<p class="sr-loading">Type a search term above to find movies.</p>';
+      meta.textContent = '';
+      return;
+    }
+    results.innerHTML = '<p class="sr-loading">Searching&hellip;</p>';
+    let data;
+    try {
+      data = await loadIndex();
+    } catch (e) {
+      results.innerHTML = '<p class="sr-empty">Search index not available yet.</p>';
+      return;
+    }
+    const needle = q.toLowerCase();
+    const tmdbHits    = [];
+    const archiveHits = [];
+    for (const row of data.rows) {
+      const [title, year, tmdbId, hasTmdb] = row;
+      if (!title) continue;
+      if (title.toLowerCase().indexOf(needle) === -1) continue;
+      (hasTmdb ? tmdbHits : archiveHits).push(row);
+      if (tmdbHits.length + archiveHits.length >= 300) break;   // cap for safety
+    }
+    const total = tmdbHits.length + archiveHits.length;
+    meta.textContent = total + ' match' + (total === 1 ? '' : 'es') +
+                       (total >= 300 ? ' (showing the first 300)' : '');
+
+    if (!total) {
+      results.innerHTML = '<p class="sr-empty">No movies match &ldquo;' + escapeHtml(q) + '&rdquo;.</p>';
+      return;
+    }
+
+    function rowsHtml(list, withLink) {
+      return list.map(r => {
+        const [title, year, tmdbId] = r;
+        const yr = year ? year : '';
+        const label = highlight(title, q);
+        if (withLink) {
+          const href = 'movie.html?' +
+            (tmdbId ? 'id=' + encodeURIComponent(tmdbId) + '&' : '') +
+            'title=' + encodeURIComponent(title);
+          return '<tr><td class="sr-title"><a href="' + href + '">' + label + '</a></td>' +
+                 '<td class="sr-year">' + yr + '</td></tr>';
+        }
+        return '<tr><td class="sr-title">' + label + '</td>' +
+               '<td class="sr-year">' + yr + '</td></tr>';
+      }).join('');
+    }
+
+    let html = '';
+    if (tmdbHits.length) {
+      html += '<div class="sr-group-header">Movies with Pages (' + tmdbHits.length + ')</div>';
+      html += '<table class="sr-table"><tbody>' + rowsHtml(tmdbHits, true) + '</tbody></table>';
+    }
+    if (archiveHits.length) {
+      html += '<div class="sr-group-header">Archive-only Matches (' + archiveHits.length + ')</div>';
+      html += '<table class="sr-table"><tbody>' + rowsHtml(archiveHits, false) + '</tbody></table>';
+    }
+    results.innerHTML = html;
+  }
+
+  // Wire up the form
+  document.getElementById('sr-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const q = document.getElementById('sr-q').value.trim();
+    if (q) {
+      history.replaceState(null, '', 'search.html?q=' + encodeURIComponent(q));
+      run(q);
+    }
+  });
+
+  // If URL has ?q=, pre-fill and run
+  const initial = new URLSearchParams(location.search).get('q') || '';
+  if (initial) document.getElementById('sr-q').value = initial;
+  run(initial);
+</script>
+
+</body>
+</html>

@@ -152,6 +152,19 @@
       font-size: 13px;
     }
 
+    /* "You already submitted" banner */
+    .db-already {
+      background: #FFF6E0;
+      border: 1px solid #EFD7A0;
+      color: #7F170E;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+      padding: 6px 10px;
+      margin: 6px auto 12px;
+      max-width: 440px;
+      text-align: center;
+    }
+
   </style>
 </head>
 <body>
@@ -198,7 +211,13 @@
       <h1 class="db-title">BOX OFFICE <span class="red">DERBY</span></h1>
       <p class="db-tagline">Put your predicting prowess to the test.</p>
 
-      <p class="db-deadline">Predictions are due by Thursday at midnight, Eastern Time.</p>
+      <!-- Shown when visitor has submitted this weekend (from localStorage + API check) -->
+      <div class="db-already" id="db-already" style="display:none;">
+        <strong>Your predictions are already counted for this week.</strong>
+        <span id="db-just-msg" style="display:none;"> Thanks for playing!</span>
+      </div>
+
+      <p class="db-deadline" id="db-deadline-line">Predictions are due by Thursday at midnight, Eastern Time.</p>
       <a href="derby-predict.html" class="db-predict-link" id="db-predict-link">Predict &mdash;</a>
 
       <hr class="db-hr">
@@ -288,30 +307,71 @@
     // "Predict April 24–26"
     document.getElementById('db-predict-link').textContent = 'Predict ' + current.label;
 
-    // Set the header for the averages block ("April 24-26: Below are the average predictions for this week.")
+    // Set the header for the averages block
     document.getElementById('db-weekend-label').textContent = current.label;
 
-    // If averages file is attached, render the average-predictions chart
-    if (current.averages_url) {
+    // ── "Already counted" / "Just submitted" banner ────────────────
+    const justParam = new URLSearchParams(location.search).get('just');
+    let alreadySubmitted = false;
+    try {
+      if (localStorage.getItem('derby_submitted_' + current.weekend)) alreadySubmitted = true;
+    } catch (e) {}
+    if (justParam && justParam === current.weekend) {
+      alreadySubmitted = true;
+      try { localStorage.setItem('derby_submitted_' + current.weekend, '1'); } catch (e) {}
+      const m = document.getElementById('db-just-msg');
+      if (m) m.style.display = '';
+    }
+    // Secondary IP-based check on the server
+    if (!alreadySubmitted) {
       try {
-        const r = await fetch(current.averages_url, {cache:'no-store'});
-        if (r.ok) {
-          const d = await r.json();
-          const rows = (d.averages || []).map(a => `
-            <tr>
-              <td class="db-rank">${a.rank}</td>
-              <td class="db-title-cell">${escapeHtml(a.title)}</td>
-              <td class="db-pred">$${a.avg_pred.toFixed(1)}</td>
-            </tr>`).join('');
-          if (rows) document.getElementById('db-avg-body').innerHTML = rows;
-          const foot = document.getElementById('db-avg-foot');
-          if (foot && d.submissions) {
-            foot.style.display = '';
-            foot.textContent = 'Chart for weekend ending ' + fmtShortDate(current.date_to) +
-              '. Average prediction of ' + d.submissions.toLocaleString('en-US') + ' valid entries.';
+        const c = await fetch('/api/derby/check?weekend=' + encodeURIComponent(current.weekend));
+        if (c.ok) {
+          const cd = await c.json();
+          if (cd && cd.submitted) {
+            alreadySubmitted = true;
+            try { localStorage.setItem('derby_submitted_' + current.weekend, '1'); } catch (e) {}
           }
         }
-      } catch(e) { /* leave placeholder */ }
+      } catch (e) { /* network problem — ignore */ }
+    }
+    if (alreadySubmitted) {
+      document.getElementById('db-already').style.display = '';
+      const link = document.getElementById('db-predict-link');
+      if (link) {
+        link.textContent = 'See this week\u2019s predictions';
+        link.href = '#db-avg-wrap';
+      }
+    }
+
+    // ── Averages: try the live API first, fall back to a static file ──
+    // (Static file is there for times when the DB is empty or you want to
+    //  override; the API is the canonical source when submissions exist.)
+    let avgData = null;
+    try {
+      const r = await fetch('/api/derby/averages?weekend=' + encodeURIComponent(current.weekend));
+      if (r.ok) avgData = await r.json();
+    } catch (e) { /* swallow */ }
+    if ((!avgData || !(avgData.averages || []).length) && current.averages_url) {
+      try {
+        const r = await fetch(current.averages_url, {cache:'no-store'});
+        if (r.ok) avgData = await r.json();
+      } catch (e) {}
+    }
+    if (avgData && (avgData.averages || []).length) {
+      const rows = avgData.averages.map(a => `
+        <tr>
+          <td class="db-rank">${a.rank}</td>
+          <td class="db-title-cell">${escapeHtml(a.title)}</td>
+          <td class="db-pred">$${Number(a.avg_pred).toFixed(1)}</td>
+        </tr>`).join('');
+      document.getElementById('db-avg-body').innerHTML = rows;
+      const foot = document.getElementById('db-avg-foot');
+      if (foot && avgData.submissions) {
+        foot.style.display = '';
+        foot.textContent = 'Chart for weekend ending ' + fmtShortDate(current.date_to) +
+          '. Average prediction of ' + avgData.submissions.toLocaleString('en-US') + ' valid entries.';
+      }
     }
   }
 

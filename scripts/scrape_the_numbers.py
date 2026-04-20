@@ -493,11 +493,55 @@ def main():
     if args.mode in ("daily", "all"):
         daily = scrape_daily()
         if daily:
+            day_iso = (now - timedelta(days=1)).strftime("%Y-%m-%d")
+
+            # 1) Legacy "latest" flat file (kept for backward compatibility)
             save_json("daily.json", {
                 "updated": now.isoformat(),
-                "date": (now - timedelta(days=1)).strftime("%Y-%m-%d"),
-                "chart": daily
+                "date":    day_iso,
+                "chart":   daily,
             })
+
+            # 2) Per-day archive file — this is what daily.html actually reads.
+            #    Normalize to the same shape the hand-filled files use.
+            archive_chart = []
+            for row in daily:
+                archive_chart.append({
+                    "rank":            row.get("rank"),
+                    "title":           row.get("title"),
+                    "tmdb_id":         None,
+                    "distributor":     row.get("distributor", ""),
+                    "theaters":        row.get("theaters"),
+                    "daily_gross":     row.get("daily_gross"),
+                    "pct_change":      row.get("pct_change"),
+                    "avg_per_theater": row.get("avg_per_theater"),
+                    "total_gross":     row.get("total_gross"),
+                    "days_in_release": row.get("days_in_release"),
+                    "is_new":          False,
+                })
+            archive_path = os.path.join("daily", day_iso + ".json")
+            save_json(archive_path, {
+                "date":         day_iso,
+                "is_estimates": False,
+                "chart":        archive_chart,
+            })
+
+            # 3) Keep data/daily/index.json in sync so the daily page's
+            #    prev/next navigation sees the new date.
+            idx_path = os.path.join(DATA_DIR, "daily", "index.json")
+            try:
+                with open(idx_path, "r", encoding="utf-8") as f:
+                    idx = json.load(f)
+            except Exception:
+                idx = {"updated": "", "dates": []}
+            dates = set(idx.get("dates", []))
+            dates.add(day_iso)
+            idx["dates"] = sorted(dates)
+            idx["updated"] = day_iso
+            os.makedirs(os.path.dirname(idx_path), exist_ok=True)
+            with open(idx_path, "w", encoding="utf-8") as f:
+                json.dump(idx, f, indent=2)
+            print(f"  → wrote daily/{day_iso}.json and updated daily/index.json")
         else:
             print("  No daily data — skipping save.")
 

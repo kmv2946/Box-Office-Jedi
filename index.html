@@ -62,7 +62,7 @@
         <img src="assets/images/boj-logo.svg" alt="Box Office Jedi" style="max-width:396px;height:auto;margin:0 auto;">
       </div>
       <div class="updated-line">Updated <span id="last-updated">4/6/2026 2:06 P.M. Eastern Time</span></div>
-      <div class="tagline"><a href="derby.html">Predict 'Super Mario Galaxy' opening weekend in the Box Office Derby...</a></div>
+      <div class="tagline"><a href="derby.html">Predict '<span id="tagline-headliner">Michael</span>' opening weekend in the Box Office Derby...</a></div>
     </header>
 
     <!-- Quick Links bar (populated dynamically from data files) -->
@@ -334,17 +334,19 @@
       } // end if (wd)
     } catch(e) { /* data not available yet */ }
 
-    // Tagline movie title — use top now-playing film if available
+    // Tagline headliner — read from the current derby game entry.
+    // Falls back to the top now-playing title if games.json isn't present.
     try {
-      const npr = await fetch('data/now_playing.json');
-      if (npr.ok) {
-        const npd = await npr.json();
-        if (npd.movies && npd.movies[0]) {
-          document.getElementById('tagline-movie').textContent =
-            "'" + npd.movies[0].title + "'";
+      const gr = await fetch('data/derby/games.json', { cache: 'no-store' });
+      if (gr.ok) {
+        const gd = await gr.json();
+        const cur = (gd.games || []).find(g => g.weekend === gd.current_weekend);
+        if (cur && cur.headliner) {
+          const el = document.getElementById('tagline-headliner');
+          if (el) el.textContent = cur.headliner;
         }
       }
-    } catch(e) { /* keep placeholder */ }
+    } catch(e) { /* keep hardcoded default */ }
   }
 
   // ── Quick Links & Latest Updates (data-driven) ───────────────────────────
