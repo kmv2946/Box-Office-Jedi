@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Derby Champions &mdash; Box Office Jedi</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .lb-crumb {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #000;
+      padding: 6px 10px 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .lb-crumb a { color: #00239C; text-decoration: none; }
+    .lb-crumb a:hover { text-decoration: underline; }
+    .lb-crumb .arrow { color: #7F170E; margin-right: 4px; }
+    .lb-section-bar { height: 3px; background: #7F170E; margin-bottom: 14px; }
+
+    .lb-page-header { padding: 10px 14px 4px; text-align: center; }
+    .lb-page-title {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 28px;
+      color: #000;
+      margin: 0 0 6px;
+      letter-spacing: -0.5px;
+    }
+    .lb-disclaimer {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 12px;
+      color: #444;
+      max-width: 520px;
+      margin: 0 auto 8px;
+      line-height: 1.5;
+    }
+
+    .lb-section { padding: 18px 14px 10px; }
+    .lb-weekend-label {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 18px;
+      color: #000;
+      text-align: center;
+      margin: 0 0 12px;
+    }
+    .lb-weekend-label a { color: #00239C; text-decoration: none; }
+    .lb-weekend-label a:hover { text-decoration: underline; }
+
+    .lb-table-wrap { display: flex; justify-content: center; margin-bottom: 8px; }
+    .lb-table { border-collapse: collapse; width: auto; }
+    .lb-table thead th {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 11px;
+      font-weight: normal;
+      padding: 4px 14px 6px;
+      text-align: center;
+      color: #666;
+      border: none;
+    }
+    .lb-table thead th.th-left { text-align: left; padding-left: 6px; }
+    .lb-table tbody tr.lb-row td {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15pt;
+      padding: 6px 18px 6px 6px;
+      color: #000;
+      border: none;
+    }
+    .lb-table tbody tr.lb-row:nth-child(odd)  td { background: #F4F4FE; }
+    .lb-table tbody tr.lb-row:nth-child(even) td { background: #FFFFFF; }
+    .lb-table td.td-rank {
+      width: 34px; text-align: right; padding-right: 10px;
+      color: #777; white-space: nowrap;
+    }
+    .lb-table td.td-rank.td-champ { color: #7F170E; font-weight: bold; }
+    .lb-table td.td-name {
+      font-weight: bold;
+      min-width: 160px;
+    }
+    .lb-table td.td-location {
+      font-size: 10pt; color: #666; padding-left: 0;
+    }
+    .lb-table td.td-score {
+      text-align: right; white-space: nowrap; min-width: 90px;
+      font-weight: bold; color: #660099;
+    }
+
+    .lb-empty {
+      text-align: center;
+      padding: 40px 20px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      color: #444;
+      font-style: italic;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+    .lb-empty a { color: #00239C; font-weight: bold; text-decoration: none; }
+    .lb-empty a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">CONTENTS</span>
+      <ul>
+        <li><a href="predictions.html">PREDICTIONS</a></li>
+        <li><a href="analysis.html">ANALYSIS</a></li>
+        <li><a href="features.html">FEATURES</a></li>
+        <li><a href="releases.html">RELEASE SCHEDULE</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li class="derby active"><a href="derby.html">THE DERBY</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+  <main class="main-content">
+
+    <div class="lb-crumb">
+      <span class="arrow">&gt;</span>
+      <a href="derby.html">THE DERBY</a> &gt; DERBY CHAMPS
+    </div>
+    <div class="lb-section-bar"></div>
+
+    <div class="lb-page-header">
+      <h1 class="lb-page-title">DERBY CHAMPS</h1>
+      <p class="lb-disclaimer">
+        Top 10 guessers per weekend, ranked by a weekend accuracy score (higher is better).
+        Scores are computed once actuals land Monday afternoon.
+      </p>
+    </div>
+
+    <div id="lb-content">
+      <p class="lb-empty">Loading&hellip;</p>
+    </div>
+
+  </main>
+
+  <aside class="right-sidebar">
+    <div class="widget">
+      <div class="widget-header" style="background:#7F170E;">DERBY GAME</div>
+      <div class="widget-body" style="background:#e8f4fd;">
+        <p><a href="derby.html"><strong>Derby Home</strong></a></p>
+        <p><a href="derby-predict.html"><strong>Play the Game &gt;</strong></a></p>
+        <p><a href="derby-leaderboard.html">Past Games</a></p>
+        <p><a href="#">Official Rules</a></p>
+      </div>
+    </div>
+    <div class="widget">
+      <div class="widget-header">PREDICTIONS</div>
+      <div class="widget-body">
+        <p>Read our weekly predictions. <a href="predictions.html"><strong>Click here &gt;</strong></a></p>
+      </div>
+    </div>
+  </aside>
+
+</div>
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">"Serving your box office needs since 2026."</span>
+  <div style="margin-top:8px;">
+    <img src="assets/images/flag_sm_anim.gif" alt="American flag" style="display:inline-block;height:auto;">
+  </div>
+</footer>
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') doSearch();
+  });
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g,
+      c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+  function fmtDate(iso) {
+    if (!iso) return '';
+    const [y,m,d] = iso.split('-').map(Number);
+    const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    return MONTHS[m-1] + ' ' + d + ', ' + y;
+  }
+
+  async function load() {
+    let games;
+    try {
+      const r = await fetch('data/derby/games.json', {cache:'no-store'});
+      if (!r.ok) throw new Error();
+      games = await r.json();
+    } catch(e) {
+      document.getElementById('lb-content').innerHTML =
+        '<p class="lb-empty">Derby game data is not yet available.</p>';
+      return;
+    }
+
+    const all = (games.games || []).slice().sort((a,b) => b.weekend > a.weekend ? 1 : -1);
+
+    // Fetch each game's leaderboard (if posted)
+    const results = await Promise.all(all.map(async (g) => {
+      if (!g.leaderboard_url) return {game: g, board: null};
+      try {
+        const r = await fetch(g.leaderboard_url, {cache:'no-store'});
+        if (!r.ok) return {game: g, board: null};
+        return {game: g, board: await r.json()};
+      } catch(e) { return {game: g, board: null}; }
+    }));
+
+    const withBoards = results.filter(r => r.board && (r.board.leaderboard || []).length);
+    if (!withBoards.length) {
+      document.getElementById('lb-content').innerHTML =
+        '<p class="lb-empty">' +
+          'No Derby champions yet &mdash; this is our first weekend running the game!<br><br>' +
+          '<a href="derby-predict.html">Play the game for this weekend</a> ' +
+          'and check back Monday afternoon for the first leaderboard.' +
+        '</p>';
+      return;
+    }
+
+    const html = withBoards.map(({game, board}) => {
+      const deadlineHuman = fmtDate(game.weekend) + '&ndash;' + fmtDate(game.date_to).split(',')[0].split(' ').slice(-1)[0];
+      const label = game.label_long || game.label;
+      const rows = board.leaderboard.slice(0, 10).map((p, i) => {
+        const rank = p.rank || (i + 1);
+        const rankCls = rank === 1 ? 'td-rank td-champ' : 'td-rank';
+        const loc = p.location ? ' <span style="font-weight:normal;color:#666;font-size:10pt;">&ndash; ' + escapeHtml(p.location) + '</span>' : '';
+        return '<tr class="lb-row">' +
+          '<td class="' + rankCls + '">' + rank + '.</td>' +
+          '<td class="td-name">' + escapeHtml(p.player_name) + loc + '</td>' +
+          '<td class="td-score">' +
+            (p.score !== undefined ? p.score.toFixed(2) + '%' : '&mdash;') +
+          '</td>' +
+        '</tr>';
+      }).join('');
+      return (
+        '<section class="lb-section">' +
+          '<h2 class="lb-weekend-label">' + escapeHtml(label) + '</h2>' +
+          '<div class="lb-table-wrap">' +
+            '<table class="lb-table">' +
+              '<thead><tr>' +
+                '<th></th>' +
+                '<th class="th-left">Player</th>' +
+                '<th>Accuracy</th>' +
+              '</tr></thead>' +
+              '<tbody>' + rows + '</tbody>' +
+            '</table>' +
+          '</div>' +
+        '</section>'
+      );
+    }).join('');
+    document.getElementById('lb-content').innerHTML = html;
+  }
+
+  load();
+</script>
+
+</body>
+</html>

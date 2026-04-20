@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thanks for playing! &mdash; Box Office Jedi</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .thanks-panel {
+      max-width: 560px;
+      margin: 40px auto;
+      padding: 28px 32px;
+      border: 1px solid #DCDCDC;
+      background: #FFFEE0;
+      text-align: center;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
+      color: #000;
+      line-height: 1.55;
+    }
+    .thanks-panel h1 {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 22px;
+      color: #7F170E;
+      margin: 0 0 14px;
+    }
+    .thanks-panel .link-row { margin-top: 20px; }
+    .thanks-panel a {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 13px;
+      color: #00239C;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    .thanks-panel a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">CONTENTS</span>
+      <ul>
+        <li><a href="predictions.html">PREDICTIONS</a></li>
+        <li><a href="analysis.html">ANALYSIS</a></li>
+        <li><a href="features.html">FEATURES</a></li>
+        <li><a href="releases.html">RELEASE SCHEDULE</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li class="derby active"><a href="derby.html">THE DERBY</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+  <main class="main-content">
+
+    <div class="thanks-panel">
+      <h1>Thanks for playing the Derby!</h1>
+      <p>
+        Your picks have been submitted. Once the deadline closes Thursday at midnight, we&rsquo;ll post the
+        average predictions on the main Derby page. Once weekend actuals land Monday afternoon, the
+        leaderboard will go up with the top 10 guessers.
+      </p>
+      <p>Good luck!</p>
+      <div class="link-row">
+        <a href="derby.html">&laquo; Back to Derby</a>
+        <a href="derby-leaderboard.html">See Past Champions</a>
+        <a href="index.html">Home</a>
+      </div>
+    </div>
+
+  </main>
+
+</div>
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">"Serving your box office needs since 2026."</span>
+</footer>
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

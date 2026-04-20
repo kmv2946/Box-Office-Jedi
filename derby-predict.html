@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Your Picks &mdash; Box Office Jedi</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .derby-crumb {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #000;
+      padding: 6px 10px 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .derby-crumb a { color: #00239C; text-decoration: none; }
+    .derby-crumb a:hover { text-decoration: underline; }
+    .derby-crumb .arrow { color: #7F170E; margin-right: 4px; }
+    .derby-section-bar { height: 3px; background: #7F170E; margin-bottom: 12px; }
+
+    .derby-header {
+      text-align: center;
+      padding: 8px 10px 12px;
+      border-bottom: 2px solid #000;
+    }
+    .derby-header h1 {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 22px;
+      color: #000;
+      margin: 0 0 4px;
+    }
+    .derby-weekend-label {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 15px;
+      color: #7F170E;
+    }
+
+    .derby-body { padding: 10px 14px; }
+    .derby-instructions {
+      background: #888;
+      color: #fff;
+      padding: 8px 12px;
+      margin-bottom: 14px;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .derby-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 18px;
+    }
+    .derby-table thead tr { background: #7F170E; color: #fff; }
+    .derby-table thead th {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 11px;
+      padding: 5px 8px;
+      text-align: left;
+    }
+    .derby-table tbody tr:nth-child(odd)  td { background: #F4F4FE; }
+    .derby-table tbody tr:nth-child(even) td { background: #FFFFFF; }
+    .derby-table td {
+      padding: 4px 6px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+    }
+    .derby-table td.derby-rank {
+      width: 28px;
+      text-align: right;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      color: #444;
+    }
+    .derby-table select, .derby-table input[type="text"] {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      padding: 3px 4px;
+      border: 1px solid #999;
+      background: #fff;
+    }
+    .derby-table select { width: 100%; max-width: 340px; }
+    .derby-table input[type="text"] { width: 80px; text-align: right; }
+
+    .derby-fields { margin: 14px 0; }
+    .derby-fields label {
+      display: block;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      color: #000;
+      margin: 10px 0 2px;
+    }
+    .derby-fields .sublabel {
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+      font-weight: normal;
+      color: #555;
+    }
+    .derby-fields input, .derby-fields textarea {
+      width: 100%;
+      max-width: 440px;
+      padding: 4px 6px;
+      border: 1px solid #999;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+    }
+    .derby-fields textarea { min-height: 72px; max-width: 560px; }
+
+    .derby-disclaimer {
+      background: #F4F4FE;
+      padding: 8px 12px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 12px;
+      color: #444;
+      font-style: italic;
+      margin-top: 12px;
+    }
+    .derby-submit {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #fff;
+      background: #7F170E;
+      border: 1px solid #5a0f08;
+      padding: 8px 22px;
+      margin-top: 14px;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+    }
+    .derby-submit:hover { background: #9a1d12; }
+
+    .derby-closed {
+      padding: 18px 14px;
+      border: 1px solid #DCDCDC;
+      background: #FFFEE0;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      color: #000;
+      margin: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">CONTENTS</span>
+      <ul>
+        <li><a href="predictions.html">PREDICTIONS</a></li>
+        <li><a href="analysis.html">ANALYSIS</a></li>
+        <li><a href="features.html">FEATURES</a></li>
+        <li><a href="releases.html">RELEASE SCHEDULE</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li class="derby active"><a href="derby.html">THE DERBY</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+  <main class="main-content">
+
+    <div class="derby-crumb">
+      <span class="arrow">&gt;</span>
+      <a href="derby.html">THE DERBY</a> &gt; PLAY THE GAME
+    </div>
+    <div class="derby-section-bar"></div>
+
+    <!-- Hidden form that Netlify uses to register the field set at build time.
+         Real submissions go through the visible form below. -->
+    <form name="derby-game" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text"  name="weekend">
+      <input type="text"  name="player_name">
+      <input type="email" name="player_email">
+      <input type="text"  name="player_location">
+      <textarea name="player_comments"></textarea>
+      <input type="text"  name="pick_1_title"><input type="text" name="pick_1_gross">
+      <input type="text"  name="pick_2_title"><input type="text" name="pick_2_gross">
+      <input type="text"  name="pick_3_title"><input type="text" name="pick_3_gross">
+      <input type="text"  name="pick_4_title"><input type="text" name="pick_4_gross">
+      <input type="text"  name="pick_5_title"><input type="text" name="pick_5_gross">
+      <input type="text"  name="pick_6_title"><input type="text" name="pick_6_gross">
+      <input type="text"  name="pick_7_title"><input type="text" name="pick_7_gross">
+      <input type="text"  name="pick_8_title"><input type="text" name="pick_8_gross">
+      <input type="text"  name="pick_9_title"><input type="text" name="pick_9_gross">
+      <input type="text"  name="pick_10_title"><input type="text" name="pick_10_gross">
+    </form>
+
+    <div class="derby-header">
+      <h1>BOX OFFICE DERBY</h1>
+      <div class="derby-weekend-label" id="derby-weekend-label">Loading weekend dates&hellip;</div>
+    </div>
+
+    <!-- Shown when submissions are closed for the current weekend -->
+    <div class="derby-closed" id="derby-closed" style="display:none;">
+      <strong>Submissions for this weekend are closed.</strong><br>
+      Results will be posted once actuals are in (usually Monday).<br>
+      Check the <a href="derby-leaderboard.html">leaderboard</a> or
+      <a href="derby.html">the main Derby page</a> for averages and champions.
+    </div>
+
+    <div class="derby-body" id="derby-body">
+
+      <form
+        name="derby-game"
+        method="POST"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        id="derby-form"
+        action="/derby-thanks.html"
+      >
+        <input type="hidden" name="form-name" value="derby-game">
+        <input type="hidden" name="weekend"   id="weekend-hidden">
+        <p style="display:none"><input name="bot-field"></p>
+
+        <div class="derby-instructions">
+          Enter your predicted weekend gross in millions to one decimal point, e.g., <strong>24.7</strong>.
+          Select each movie only once. Make only one entry per weekend.
+          Incomplete or invalid entries will be disqualified.
+        </div>
+
+        <table class="derby-table">
+          <thead>
+            <tr>
+              <th style="width:28px;">#</th>
+              <th>Movie</th>
+              <th style="width:130px;">Weekend Gross (millions)</th>
+            </tr>
+          </thead>
+          <tbody id="derby-rows"></tbody>
+        </table>
+
+        <div class="derby-fields">
+          <label for="player-name">
+            Your Name <span class="sublabel">(as you want it to appear on the leaderboard)</span>
+          </label>
+          <input type="text" id="player-name" name="player_name" required maxlength="80">
+
+          <label for="player-email">
+            Your E-mail Address <span class="sublabel">(not shown publicly; used only for tiebreakers)</span>
+          </label>
+          <input type="email" id="player-email" name="player_email" required maxlength="120">
+
+          <label for="player-location">
+            Your Location <span class="sublabel">(City, State or Country)</span>
+          </label>
+          <input type="text" id="player-location" name="player_location" maxlength="100">
+
+          <label for="player-comments">
+            Comments <span class="sublabel">(optional &mdash; any interesting thoughts about your predictions)</span>
+          </label>
+          <textarea id="player-comments" name="player_comments" maxlength="1000"></textarea>
+        </div>
+
+        <div class="derby-disclaimer">
+          This form does not verify that you&rsquo;ve completed it accurately, so make sure you select
+          each movie only once and submit only one entry per weekend.
+          Incomplete or invalid entries will be disqualified.
+        </div>
+
+        <button type="submit" class="derby-submit">SUBMIT MY PICKS</button>
+      </form>
+
+    </div>
+
+  </main>
+
+  <aside class="right-sidebar">
+    <div class="widget">
+      <div class="widget-header" style="background:#7F170E;">DERBY GAME</div>
+      <div class="widget-body" style="background:#e8f4fd;">
+        <p><a href="derby.html"><strong>Derby Home</strong></a></p>
+        <p><a href="derby-predict.html"><strong>Play the Game &gt;</strong></a></p>
+        <p><a href="derby-leaderboard.html">Past Games</a></p>
+        <p><a href="#">Official Rules</a></p>
+      </div>
+    </div>
+    <div class="widget">
+      <div class="widget-header">THE FORECAST</div>
+      <div class="widget-body">
+        <p>Read predictions before you pick. <a href="forecast.html"><strong>Read &gt;</strong></a></p>
+      </div>
+    </div>
+  </aside>
+
+</div>
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">"Serving your box office needs since 2026."</span>
+  <div style="margin-top:8px;">
+    <img src="assets/images/flag_sm_anim.gif" alt="American flag" style="display:inline-block;height:auto;">
+  </div>
+</footer>
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') doSearch();
+  });
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  async function loadGame() {
+    let games;
+    try {
+      const r = await fetch('data/derby/games.json', {cache:'no-store'});
+      if (!r.ok) throw new Error();
+      games = await r.json();
+    } catch(e) {
+      document.getElementById('derby-body').innerHTML =
+        '<p class="derby-closed">Derby game data is not yet available.</p>';
+      return;
+    }
+    const current = (games.games || []).find(g => g.weekend === games.current_weekend);
+    if (!current) return;
+
+    document.getElementById('derby-weekend-label').textContent = current.label_long || current.label;
+    document.getElementById('weekend-hidden').value = current.label;
+
+    // If submissions are closed, hide the form and show a notice
+    if (current.status === 'closed' || current.status === 'actuals_posted') {
+      document.getElementById('derby-body').style.display = 'none';
+      document.getElementById('derby-closed').style.display = '';
+      return;
+    }
+
+    // Build the 10 rows, each with a dropdown of allowed titles (already alphabetized)
+    const titles = current.allowed_titles || [];
+    const optionsHtml = '<option value="">\u2014 Select Movie \u2014</option>' +
+      titles.map(t => '<option value="' + escapeHtml(t) + '">' + escapeHtml(t) + '</option>').join('');
+
+    const tbody = document.getElementById('derby-rows');
+    let rowsHtml = '';
+    for (let i = 1; i <= 10; i++) {
+      rowsHtml += '<tr>' +
+        '<td class="derby-rank">' + i + '.</td>' +
+        '<td><select name="pick_' + i + '_title" required>' + optionsHtml + '</select></td>' +
+        '<td><input type="text" name="pick_' + i + '_gross" placeholder="e.g. 24.7" ' +
+          'pattern="^\\d{1,3}(\\.\\d)?$" title="Millions to one decimal, e.g. 24.7" required></td>' +
+        '</tr>';
+    }
+    tbody.innerHTML = rowsHtml;
+  }
+
+  document.getElementById('derby-form').addEventListener('submit', function(e) {
+    // Client-side: ensure no duplicate movie selections
+    const selects = this.querySelectorAll('select[name^="pick_"]');
+    const chosen = [];
+    for (const sel of selects) {
+      if (!sel.value) continue;
+      if (chosen.includes(sel.value)) {
+        e.preventDefault();
+        alert('You\u2019ve selected \u201c' + sel.value + '\u201d more than once. Each movie can only appear once.');
+        sel.focus();
+        return;
+      }
+      chosen.push(sel.value);
+    }
+  });
+
+  loadGame();
+</script>
+
+</body>
+</html>
