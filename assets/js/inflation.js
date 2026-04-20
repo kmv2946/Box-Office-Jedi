@@ -153,6 +153,12 @@
       inflationLink.style.pointerEvents = '';
 
       let adjusted = false;
+      // Snapshot the original movie list the first time we adjust.
+      // Pages typically replace their own state via renderMovies(), so by
+      // toggle-off time, opts.getMovies() would return adjusted data.
+      // We keep our own copy here to always revert to the true originals.
+      let originalSnapshot = null;
+
       const adjustedLabel = 'View original grosses&nbsp;...&gt;&gt;&gt;';
       const originalLabel = 'Adjust this page for inflation&nbsp;...&gt;&gt;&gt;';
 
@@ -160,26 +166,35 @@
         e.preventDefault();
         adjusted = !adjusted;
         if (adjusted) {
+          // Snapshot-on-first-adjust. Use a shallow copy so later mutations
+          // of the page's array don't silently mutate our backup.
+          if (originalSnapshot === null) {
+            const cur = opts.getMovies();
+            originalSnapshot = (cur || []).slice();
+          }
           container.classList.add('is-adjusted');
           labelEl.innerHTML = adjustedLabel;
-          API.applyTo(opts, /*adjust=*/true);
+          API.applyTo(opts, /*adjust=*/true, originalSnapshot);
         } else {
           container.classList.remove('is-adjusted');
           labelEl.innerHTML = originalLabel;
-          API.applyTo(opts, /*adjust=*/false);
+          API.applyTo(opts, /*adjust=*/false, originalSnapshot);
         }
       });
     },
 
-    /** Core transform: reads the original movies, produces a (sorted,
-     *  rank-renumbered) adjusted copy, and hands it to the page's renderer. */
-    applyTo(opts, adjust) {
-      const movies = opts.getMovies();
-      if (!movies || !movies.length) return;
+    /** Core transform: takes the original movies (either the snapshot
+     *  or, if not yet adjusted, whatever getMovies returns) and produces
+     *  a re-ranked copy for the page's renderer. */
+    applyTo(opts, adjust, originalSnapshot) {
+      const source = (originalSnapshot && originalSnapshot.length)
+        ? originalSnapshot
+        : opts.getMovies();
+      if (!source || !source.length) return;
 
       if (!adjust) {
-        // Revert: hand back the original array (caller re-ranks if needed)
-        opts.renderMovies(movies, false);
+        // Revert: hand back the untouched originals
+        opts.renderMovies(source.slice(), false);
         return;
       }
 
@@ -190,8 +205,8 @@
       }));
       const applyAdjusted = opts.applyAdjusted || ((m, g, r) => Object.assign({}, m, { g: g, r: r }));
 
-      // Compute adjusted gross per movie
-      const adj = movies.map(m => {
+      // Compute adjusted gross per movie using the ORIGINAL grosses
+      const adj = source.map(m => {
         const {year, gross} = adjustReader(m);
         const newGross = adjustGross(gross || 0, year || target, target);
         return { m, year, origGross: gross, adjGross: newGross };

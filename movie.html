@@ -3,108 +3,243 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Movie — Box Office Jedi</title>
+  <title>Movie &mdash; Box Office Jedi</title>
   <link rel="stylesheet" href="assets/css/styles.css">
   <style>
-    .movie-detail-wrap {
-      padding: 12px 14px;
-    }
-    .movie-top {
-      display: flex;
-      gap: 14px;
-      margin-bottom: 14px;
-    }
-    .movie-poster {
-      width: 120px;
-      flex-shrink: 0;
-    }
-    .movie-poster img {
-      width: 120px;
-      border: 1px solid #ccc;
-      background: #e0e0e0;
-    }
-    .movie-info h2 {
-      font-family: 'Times New Roman', Times, serif;
+
+    /* ── Breadcrumb + red bar ────────────────────────────────── */
+    .mv-crumb {
+      font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
       font-size: 20px;
-      margin-bottom: 4px;
+      color: #00239C;
+      padding: 6px 14px 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
     }
-    .movie-info .movie-meta {
-      font-family: Verdana, Geneva, sans-serif;
-      font-size: 12px;
-      color: #444;
-      margin-bottom: 8px;
-    }
-    .movie-info .movie-tagline {
-      font-style: italic;
-      font-size: 13px;
-      color: #555;
-      margin-bottom: 8px;
-    }
-    .movie-info .movie-overview {
-      font-size: 13px;
-      line-height: 1.6;
-    }
-    .movie-stats-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 16px;
-    }
-    .movie-stats-table td {
-      padding: 5px 10px;
-      border-bottom: 1px solid #e0e0e0;
-      font-size: 13px;
-    }
-    .movie-stats-table td:nth-child(odd) {
-      background: #F0F0F0;
-      font-family: Verdana, Geneva, sans-serif;
-      font-weight: bold;
-      font-size: 12px;
-      width: 140px;
-    }
-    .movie-stats-table tr:nth-child(even) td {
-      background: #F9F9F9;
-    }
-    .movie-stats-table tr:nth-child(even) td:nth-child(odd) {
-      background: #EBEBEB;
-    }
-    .section-subhead {
-      font-family: Verdana, Geneva, sans-serif;
-      font-weight: bold;
-      font-size: 13px;
-      border-bottom: 1px solid #000;
-      padding-bottom: 2px;
-      margin: 14px 0 8px;
-    }
-    .cast-grid {
+    .mv-crumb .arrow { color: #7F170E; margin-right: 6px; }
+    .mv-crumb a { color: #00239C; text-decoration: none; }
+    .mv-crumb a:hover { text-decoration: underline; }
+    .mv-section-bar { height: 3px; background: #7F170E; margin-bottom: 14px; }
+
+    /* ── Title + key facts row ───────────────────────────────── */
+    .mv-top {
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 14px;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 4px 14px 10px;
     }
-    .cast-member {
-      text-align: center;
-      width: 70px;
+    .mv-title-wrap { flex: 1; text-align: center; }
+    .mv-title {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 34px;
+      color: #7F170E;
+      margin: 2px 0 10px;
+      line-height: 1.1;
     }
-    .cast-member img {
-      width: 60px;
-      height: 80px;
-      object-fit: cover;
-      border: 1px solid #ccc;
-      background: #ddd;
+    .mv-facts {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      color: #000;
+      line-height: 1.55;
+      max-width: 600px;
       margin: 0 auto;
     }
-    .cast-member .cast-name {
-      font-size: 11px;
-      font-family: Verdana, sans-serif;
+    .mv-facts .mv-fact-label {
       font-weight: bold;
-      margin-top: 3px;
-      word-break: break-word;
+      color: #000;
     }
-    .cast-member .cast-char {
+    .mv-facts a { color: #00239C; text-decoration: none; }
+    .mv-facts a:hover { text-decoration: underline; }
+
+    .mv-poster {
+      width: 150px;
+      flex-shrink: 0;
+    }
+    .mv-poster img {
+      width: 150px;
+      border: 1px solid #999;
+      background: #eee;
+      display: block;
+    }
+    .mv-poster .mv-poster-empty {
+      width: 150px; height: 220px;
+      background: #eee; border: 1px solid #999;
+      display: flex; align-items: center; justify-content: center;
+      font-family: Verdana, sans-serif; font-size: 11px; color: #888;
+      text-align: center; padding: 8px;
+    }
+
+    /* ── Sub-tabs (Summary / Daily / Weekly / Weekend Chart / Reviews) ── */
+    .mv-tabs {
+      display: flex;
+      gap: 2px;
+      padding: 0 14px;
+      margin-top: 2px;
+      border-bottom: 2px solid #7F170E;
+    }
+    .mv-tabs-label {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      color: #444;
+      padding: 6px 8px 4px 0;
+    }
+    .mv-tab {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 11px;
+      padding: 5px 14px;
+      background: #EEEEEE;
+      color: #333;
+      border: 1px solid #CCCCCC;
+      border-bottom: none;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .mv-tab.active {
+      background: #FFFFFF;
+      color: #00239C;
+      border-bottom: 2px solid #FFFFFF;
+      margin-bottom: -2px;
+    }
+    .mv-tab:hover { background: #DCDCDC; color: #000; }
+    .mv-tab.disabled { color: #999; cursor: not-allowed; background: #F4F4F4; }
+
+    /* ── Two-column layout ───────────────────────────────────── */
+    .mv-body { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 18px; padding: 14px; }
+    @media (max-width: 820px) { .mv-body { grid-template-columns: 1fr; } }
+
+    /* Shared panel */
+    .mv-panel {
+      margin-bottom: 14px;
+      border: 1px solid #DCDCDC;
+      background: #fff;
+    }
+    .mv-panel-hd {
+      background: #7F170E;
+      color: #fff;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      text-transform: uppercase;
+    }
+    .mv-panel-body { padding: 8px 12px 10px; }
+
+    /* Stat table — left column */
+    .mv-stat-row {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      padding: 3px 0;
+      border-bottom: 1px dotted #DCDCDC;
+    }
+    .mv-stat-row:last-child { border-bottom: none; }
+    .mv-stat-row .mv-stat-label { color: #000; }
+    .mv-stat-row .mv-stat-value { color: #000; font-weight: bold; white-space: nowrap; text-align: right; }
+    .mv-stat-row .mv-stat-pct   { color: #555; font-weight: normal; font-style: italic; margin-left: 6px; }
+
+    .mv-stat-subhead {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 11px;
+      text-transform: uppercase;
+      color: #7F170E;
+      letter-spacing: 0.04em;
+      padding: 6px 0 2px;
+    }
+    .mv-stat-subhead:first-child { padding-top: 0; }
+
+    /* Cast / Crew list */
+    .mv-creditblock {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #000;
+    }
+    .mv-creditblock .mv-credit-role {
+      display: inline-block;
+      width: 120px;
+      color: #555;
+      font-style: italic;
+    }
+    .mv-creditblock a { color: #00239C; text-decoration: none; }
+    .mv-creditblock a:hover { text-decoration: underline; }
+
+    /* Weekend grosses mini-table */
+    .mv-wk-table { width: 100%; border-collapse: collapse; font-family: 'Times New Roman', Times, serif; }
+    .mv-wk-table thead th {
+      background: #F4F4FE;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
       font-size: 10px;
-      color: #666;
+      color: #444;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 6px;
+      text-align: right;
+      border-bottom: 1px solid #999;
     }
+    .mv-wk-table thead th.mv-wk-th-left { text-align: left; }
+    .mv-wk-table tbody tr:nth-child(odd)  td { background: #F4F4FE; }
+    .mv-wk-table tbody tr:nth-child(even) td { background: #FFFFFF; }
+    .mv-wk-table td {
+      font-size: 13px;
+      padding: 3px 6px;
+      text-align: right;
+      color: #000;
+      white-space: nowrap;
+    }
+    .mv-wk-table td.mv-wk-n     { text-align: center; width: 36px; color: #555; }
+    .mv-wk-table td.mv-wk-date  { text-align: left; font-family: Verdana, sans-serif; font-size: 12px; color: #00239C; }
+
+    /* Rankings */
+    .mv-rank-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2px 12px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+    }
+    .mv-rank-grid .mv-rank-label { color: #000; border-bottom: 1px dotted #DCDCDC; padding: 3px 0; }
+    .mv-rank-grid .mv-rank-value {
+      color: #000;
+      font-weight: bold;
+      border-bottom: 1px dotted #DCDCDC;
+      padding: 3px 0;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .mv-overview {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      line-height: 1.55;
+      color: #000;
+      padding: 0 14px;
+    }
+    .mv-tagline {
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+      color: #555;
+      font-size: 14px;
+      margin: 0 auto 12px;
+      text-align: center;
+      max-width: 560px;
+    }
+
+    .mv-empty {
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+      color: #777;
+      padding: 20px;
+      text-align: center;
+    }
+
   </style>
 </head>
 <body>
@@ -142,21 +277,101 @@
   </nav>
 
   <main class="main-content">
-    <div class="page-header">
-      <h1 id="movie-page-title">Loading...</h1>
-      <div class="page-subtitle" id="movie-page-meta"></div>
+
+    <!-- Breadcrumb -->
+    <div class="mv-crumb"><span class="arrow">&gt;</span> MOVIES</div>
+    <div class="mv-section-bar"></div>
+
+    <!-- Title + poster + key facts -->
+    <div class="mv-top">
+      <div class="mv-title-wrap">
+        <h1 class="mv-title" id="mv-title">Loading&hellip;</h1>
+        <div class="mv-tagline" id="mv-tagline" style="display:none;"></div>
+        <div class="mv-facts" id="mv-facts"></div>
+      </div>
+      <div class="mv-poster" id="mv-poster">
+        <div class="mv-poster-empty">No poster</div>
+      </div>
     </div>
 
-    <div class="movie-detail-wrap" id="movie-detail">
-      <p style="color:#666;font-family:Verdana,sans-serif;font-size:13px;">Loading movie data...</p>
+    <!-- Sub-nav: View tabs -->
+    <div class="mv-tabs">
+      <span class="mv-tabs-label">View:</span>
+      <a class="mv-tab active"  href="#" data-tab="summary">Summary</a>
+      <a class="mv-tab disabled" href="#"  data-tab="daily">Daily</a>
+      <a class="mv-tab disabled" href="#"  data-tab="weekly">Weekly</a>
+      <a class="mv-tab disabled" href="#"  data-tab="weekend">Weekend Chart</a>
+      <a class="mv-tab disabled" href="#"  data-tab="reviews">Reviews</a>
     </div>
+
+    <!-- Body: two columns -->
+    <div class="mv-body">
+
+      <!-- LEFT COLUMN -->
+      <div>
+        <!-- Total Lifetime Grosses -->
+        <div class="mv-panel">
+          <div class="mv-panel-hd">Total Lifetime Grosses</div>
+          <div class="mv-panel-body" id="mv-lifetime">
+            <p class="mv-empty">Loading&hellip;</p>
+          </div>
+        </div>
+
+        <!-- Domestic Summary -->
+        <div class="mv-panel">
+          <div class="mv-panel-hd">Domestic Summary</div>
+          <div class="mv-panel-body" id="mv-domestic">
+            <p class="mv-empty">Loading&hellip;</p>
+          </div>
+        </div>
+
+        <!-- Rankings (placeholder, populated from cross-references later) -->
+        <div class="mv-panel">
+          <div class="mv-panel-hd">Rankings</div>
+          <div class="mv-panel-body" id="mv-rankings">
+            <p class="mv-empty">Ranking lookups will land here once we cross-reference the all-time charts.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div>
+        <!-- Cast & Crew -->
+        <div class="mv-panel">
+          <div class="mv-panel-hd">Cast &amp; Crew</div>
+          <div class="mv-panel-body" id="mv-credits">
+            <p class="mv-empty">Loading&hellip;</p>
+          </div>
+        </div>
+
+        <!-- Weekend Grosses -->
+        <div class="mv-panel">
+          <div class="mv-panel-hd">Weekend Grosses</div>
+          <div class="mv-panel-body" id="mv-weekends">
+            <p class="mv-empty">Loading&hellip;</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Overview -->
+    <div class="mv-panel" style="margin:0 14px 20px;">
+      <div class="mv-panel-hd">Overview</div>
+      <div class="mv-panel-body">
+        <p class="mv-overview" id="mv-overview" style="padding:0;"></p>
+      </div>
+    </div>
+
   </main>
 
   <aside class="right-sidebar">
     <div class="widget">
-      <div class="widget-header">SHOWDOWNS</div>
+      <div class="widget-header">CHARTS</div>
       <div class="widget-body">
-        <p>Compare this film to others. <a href="showdowns.html"><strong>View &gt;</strong></a></p>
+        <p><a href="weekend.html"><strong>Weekend</strong></a></p>
+        <p><a href="yearly.html"><strong>Yearly</strong></a></p>
+        <p><a href="alltime.html"><strong>All Time</strong></a></p>
       </div>
     </div>
     <div class="widget">
@@ -172,7 +387,7 @@
 <footer class="site-footer">
   Box Office Jedi &copy; <span id="footer-year">2026</span>
   <span class="footer-tagline">"Serving your box office needs since 2026."</span>
-  <div class="footer-flag">
+  <div style="margin-top:8px;">
     <img src="assets/images/flag_sm_anim.gif" alt="American flag" style="display:inline-block;height:auto;">
   </div>
 </footer>
@@ -187,102 +402,213 @@
     if (e.key === 'Enter') doSearch();
   });
 
-  function fmtB(n) {
-    if (!n || n === 0) return '—';
-    if (n >= 1000000000) return '$' + (n/1000000000).toFixed(2) + 'B';
-    return '$' + (n/1000000).toFixed(1) + 'M';
+  function escapeHtml(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g,
+      c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
-  function fmtM(n) { return n && n > 0 ? '$' + (n/1000000).toFixed(1) + 'M' : '—'; }
+  function fmtDollars(n) {
+    if (n === null || n === undefined || n === 0) return '—';
+    return '$' + n.toLocaleString('en-US');
+  }
+  function fmtInt(n) {
+    if (!n) return '—';
+    return n.toLocaleString('en-US');
+  }
+  function fmtRuntime(m) {
+    if (!m) return '—';
+    return Math.floor(m/60) + ' hrs. ' + (m%60) + ' min.';
+  }
+  function fmtRelease(iso) {
+    if (!iso) return '—';
+    const [y, mo, d] = iso.split('-').map(Number);
+    const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    return MONTHS[mo-1] + ' ' + d + ', ' + y;
+  }
+  // normalized slug used by the weekend archive
+  function normKey(t) {
+    return (t || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+  }
+  function shortDate(iso) {
+    if (!iso) return '—';
+    const [y, mo, d] = iso.split('-').map(Number);
+    const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return MONTHS[mo-1] + ' ' + d + ', ' + y;
+  }
 
+  async function fetchJSON(url) {
+    try {
+      const r = await fetch(url, {cache:'no-store'});
+      if (!r.ok) return null;
+      return await r.json();
+    } catch (e) { return null; }
+  }
+
+  // ── Main loader ────────────────────────────────────────────
   async function loadMovie() {
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
-    const titleFallback = params.get('title') || 'Movie Details';
+    const params = new URLSearchParams(location.search);
+    const id    = params.get('id');
+    const title = params.get('title') || '';
+    const titleDecoded = decodeURIComponent(title);
 
-    document.title = decodeURIComponent(titleFallback) + ' — Box Office Jedi';
-    document.getElementById('movie-page-title').textContent = decodeURIComponent(titleFallback);
+    // Provisional title in case metadata is missing
+    document.title = (titleDecoded || 'Movie') + ' — Box Office Jedi';
+    document.getElementById('mv-title').textContent = titleDecoded || 'Movie';
 
-    if (!id) {
-      document.getElementById('movie-detail').innerHTML =
-        '<p style="color:#666;font-family:Verdana,sans-serif;">No movie specified.</p>';
+    // 1) Try TMDB data (data/movies/<tmdb_id>.json) if we have an id
+    let meta = null;
+    if (id) meta = await fetchJSON('data/movies/' + id + '.json');
+
+    // 2) Try the weekend archive by normalized slug
+    const key = normKey(titleDecoded || (meta && meta.title));
+    const weekendData = key ? await fetchJSON('data/movie_weekends/' + key + '.json') : null;
+
+    // Neither source? show a minimal empty state
+    if (!meta && !weekendData) {
+      document.getElementById('mv-title').textContent = titleDecoded || 'Movie';
+      document.getElementById('mv-facts').innerHTML =
+        '<em>We don\u2019t have detailed data for this title yet.</em>';
+      ['mv-lifetime','mv-domestic','mv-credits','mv-weekends','mv-rankings']
+        .forEach(id => document.getElementById(id).innerHTML =
+          '<p class="mv-empty">&mdash;</p>');
       return;
     }
 
-    try {
-      const r = await fetch(`data/movies/${id}.json`);
-      if (!r.ok) throw new Error();
-      const m = await r.json();
+    // Prefer the TMDB title when available
+    const displayTitle = (meta && meta.title) || (weekendData && weekendData.title) || titleDecoded;
+    document.title = displayTitle + ' — Box Office Jedi';
+    document.getElementById('mv-title').textContent = displayTitle;
 
-      document.title = m.title + ' — Box Office Jedi';
-      document.getElementById('movie-page-title').textContent = m.title;
-
-      const year = m.release_date ? m.release_date.slice(0,4) : '';
-      const genres = m.genres ? m.genres.join(', ') : '';
-      const runtime = m.runtime ? Math.floor(m.runtime/60) + 'h ' + (m.runtime%60) + 'm' : '—';
-      document.getElementById('movie-page-meta').textContent =
-        [year, genres, runtime].filter(Boolean).join(' · ');
-
-      const legs = m.budget && m.revenue && m.budget > 0
-        ? (m.revenue / m.budget).toFixed(1) + 'x budget' : '';
-
-      const posterHtml = m.poster_url
-        ? `<img src="${m.poster_url}" alt="${m.title} poster">`
-        : `<div style="width:120px;height:180px;background:#ddd;display:flex;align-items:center;justify-content:center;font-size:11px;color:#999;">No poster</div>`;
-
-      const castHtml = m.cast && m.cast.length
-        ? m.cast.map(c => `
-          <div class="cast-member">
-            ${c.profile ? `<img src="${c.profile}" alt="${c.name}">` : '<div style="width:60px;height:80px;background:#ddd;"></div>'}
-            <div class="cast-name">${c.name}</div>
-            <div class="cast-char">${c.character}</div>
-          </div>`).join('')
-        : '<p style="color:#999;font-size:12px;">Cast data not available.</p>';
-
-      const imdbLink = m.imdb_id
-        ? `<a href="https://www.imdb.com/title/${m.imdb_id}/" target="_blank" rel="noopener">View on IMDb &gt;</a>`
-        : '';
-
-      document.getElementById('movie-detail').innerHTML = `
-        <div class="movie-top">
-          <div class="movie-poster">${posterHtml}</div>
-          <div class="movie-info">
-            <h2>${m.title}</h2>
-            <div class="movie-meta">${[year, m.director ? 'Dir. ' + m.director : '', genres].filter(Boolean).join(' · ')}</div>
-            ${m.tagline ? `<div class="movie-tagline">"${m.tagline}"</div>` : ''}
-            <p class="movie-overview">${m.overview || ''}</p>
-            ${imdbLink ? `<p style="margin-top:8px;font-size:12px;">${imdbLink}</p>` : ''}
-          </div>
-        </div>
-
-        <div class="section-subhead">Box Office</div>
-        <table class="movie-stats-table">
-          <tr><td>Budget</td><td>${fmtM(m.budget)}</td><td>Worldwide Gross</td><td>${fmtB(m.revenue)}</td></tr>
-          <tr><td>Runtime</td><td>${runtime}</td><td>Release Date</td><td>${m.release_date || '—'}</td></tr>
-          ${legs ? `<tr><td>Revenue / Budget</td><td>${legs}</td><td></td><td></td></tr>` : ''}
-        </table>
-
-        <div class="section-subhead">Cast</div>
-        <div class="cast-grid">${castHtml}</div>
-
-        ${m.trailer_key ? `
-        <div class="section-subhead">Trailer</div>
-        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:480px;">
-          <iframe
-            style="position:absolute;top:0;left:0;width:100%;height:100%;"
-            src="https://www.youtube.com/embed/${m.trailer_key}"
-            frameborder="0"
-            allowfullscreen
-            title="${m.title} trailer">
-          </iframe>
-        </div>` : ''}
-      `;
-    } catch(e) {
-      document.getElementById('movie-detail').innerHTML =
-        `<p style="color:#666;font-family:Verdana,sans-serif;padding:16px;">
-          Movie detail data not yet available for this title.
-          Run the TMDB sync script to populate movie pages.
-        </p>`;
+    // Tagline + overview
+    if (meta && meta.tagline) {
+      const tl = document.getElementById('mv-tagline');
+      tl.textContent = '"' + meta.tagline + '"';
+      tl.style.display = '';
     }
+    document.getElementById('mv-overview').textContent =
+      (meta && meta.overview) || '';
+
+    // Key facts line
+    const lifetimeTotal = (weekendData && weekendData.weekends && weekendData.weekends.length)
+      ? Math.max(...weekendData.weekends.map(w => w.total_gross || 0)) : null;
+    const factBits = [];
+    if (lifetimeTotal) factBits.push('<span class="mv-fact-label">Domestic Total Gross:</span> ' + fmtDollars(lifetimeTotal));
+    else if (meta && meta.revenue) factBits.push('<span class="mv-fact-label">Worldwide Gross:</span> ' + fmtDollars(meta.revenue));
+    if (meta && meta.release_date) factBits.push('<span class="mv-fact-label">Release Date:</span> ' + fmtRelease(meta.release_date));
+    if (meta && meta.genres && meta.genres.length) factBits.push('<span class="mv-fact-label">Genre:</span> ' + meta.genres.slice(0,3).join(' / '));
+    if (meta && meta.runtime) factBits.push('<span class="mv-fact-label">Runtime:</span> ' + fmtRuntime(meta.runtime));
+    if (meta && meta.budget) factBits.push('<span class="mv-fact-label">Production Budget:</span> ' + fmtDollars(meta.budget));
+    document.getElementById('mv-facts').innerHTML = factBits.join('<br>');
+
+    // Poster
+    if (meta && meta.poster_url) {
+      document.getElementById('mv-poster').innerHTML =
+        '<img src="' + meta.poster_url + '" alt="' + escapeHtml(displayTitle) + ' poster">';
+    }
+
+    // ── LEFT: Total Lifetime Grosses ─────────────────────────
+    {
+      const domestic = lifetimeTotal;
+      const worldwide = (meta && meta.revenue) || null;
+      const foreign = (worldwide && domestic) ? (worldwide - domestic) : null;
+      const pct = (w, part) => (w && part) ? ((part / w) * 100).toFixed(1) + '%' : '—';
+      const html = (worldwide || domestic) ? `
+        <div class="mv-stat-row">
+          <span class="mv-stat-label">Domestic</span>
+          <span class="mv-stat-value">${fmtDollars(domestic)}<span class="mv-stat-pct">${pct(worldwide, domestic)}</span></span>
+        </div>
+        <div class="mv-stat-row">
+          <span class="mv-stat-label">Foreign</span>
+          <span class="mv-stat-value">${fmtDollars(foreign)}<span class="mv-stat-pct">${pct(worldwide, foreign)}</span></span>
+        </div>
+        <div class="mv-stat-row">
+          <span class="mv-stat-label">Worldwide</span>
+          <span class="mv-stat-value">${fmtDollars(worldwide)}</span>
+        </div>` : '<p class="mv-empty">—</p>';
+      document.getElementById('mv-lifetime').innerHTML = html;
+    }
+
+    // ── LEFT: Domestic Summary ───────────────────────────────
+    {
+      if (weekendData && weekendData.weekends && weekendData.weekends.length) {
+        const first = weekendData.weekends[0];
+        const weekends = weekendData.weekends;
+        const widest = Math.max(...weekends.map(w => w.theaters || 0));
+        const domTotal = Math.max(...weekends.map(w => w.total_gross || 0));
+        const openPct = (first.gross && domTotal) ? ((first.gross / domTotal) * 100).toFixed(1) + '%' : '—';
+        const openDate = first.date || null;
+        const lastDate = (weekends[weekends.length - 1] || {}).date || null;
+        const inReleaseWeeks = weekends.length;
+        const avg = (first.gross && first.theaters) ? Math.floor(first.gross / first.theaters) : null;
+
+        document.getElementById('mv-domestic').innerHTML = `
+          <div class="mv-stat-subhead">Opening Weekend</div>
+          <div class="mv-stat-row"><span class="mv-stat-label">Gross</span>         <span class="mv-stat-value">${fmtDollars(first.gross)}</span></div>
+          <div class="mv-stat-row"><span class="mv-stat-label">Rank</span>          <span class="mv-stat-value">${first.rank ? '#' + first.rank : '—'}</span></div>
+          <div class="mv-stat-row"><span class="mv-stat-label">Theaters</span>      <span class="mv-stat-value">${fmtInt(first.theaters)}</span></div>
+          <div class="mv-stat-row"><span class="mv-stat-label">Per theater</span>   <span class="mv-stat-value">${avg ? '$' + fmtInt(avg) : '—'}</span></div>
+          <div class="mv-stat-row"><span class="mv-stat-label">% of Total</span>    <span class="mv-stat-value">${openPct}</span></div>
+
+          <div class="mv-stat-subhead">Release</div>
+          <div class="mv-stat-row"><span class="mv-stat-label">Widest Release</span><span class="mv-stat-value">${fmtInt(widest)} theaters</span></div>
+          <div class="mv-stat-row"><span class="mv-stat-label">First Weekend</span> <span class="mv-stat-value">${shortDate(openDate)}</span></div>
+          <div class="mv-stat-row"><span class="mv-stat-label">Last Weekend</span>  <span class="mv-stat-value">${shortDate(lastDate)}</span></div>
+          <div class="mv-stat-row"><span class="mv-stat-label">Weekends Charted</span><span class="mv-stat-value">${inReleaseWeeks}</span></div>
+        `;
+      } else {
+        document.getElementById('mv-domestic').innerHTML =
+          '<p class="mv-empty">No weekend archive data for this title yet.</p>';
+      }
+    }
+
+    // ── RIGHT: Cast & Crew ───────────────────────────────────
+    {
+      const parts = [];
+      if (meta && meta.director)  parts.push('<div><span class="mv-credit-role">Director</span>' + escapeHtml(meta.director) + '</div>');
+      if (meta && meta.cast && meta.cast.length) {
+        const castHtml = meta.cast.slice(0, 10).map(c =>
+          '<div><span class="mv-credit-role">' + escapeHtml(c.character || 'Cast') + '</span>' + escapeHtml(c.name) + '</div>'
+        ).join('');
+        parts.push(castHtml);
+      }
+      if (meta && meta.genres && meta.genres.length) {
+        parts.push('<div><span class="mv-credit-role">Genre</span>' + meta.genres.join(' / ') + '</div>');
+      }
+      const html = parts.length
+        ? '<div class="mv-creditblock">' + parts.join('') + '</div>'
+        : '<p class="mv-empty">Cast &amp; crew data not yet available.</p>';
+      document.getElementById('mv-credits').innerHTML = html;
+    }
+
+    // ── RIGHT: Weekend Grosses table ─────────────────────────
+    {
+      if (weekendData && weekendData.weekends && weekendData.weekends.length) {
+        const rows = weekendData.weekends.slice(0, 20).map(w => `
+          <tr>
+            <td class="mv-wk-n">${w.n}</td>
+            <td class="mv-wk-date">${shortDate(w.date)}</td>
+            <td>${fmtDollars(w.gross)}</td>
+            <td>${w.rank ? '#' + w.rank : '—'}</td>
+          </tr>`).join('');
+        document.getElementById('mv-weekends').innerHTML = `
+          <table class="mv-wk-table">
+            <thead>
+              <tr>
+                <th>Wk</th>
+                <th class="mv-wk-th-left">Date</th>
+                <th>Weekend Gross</th>
+                <th>Rank</th>
+              </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>`;
+      } else {
+        document.getElementById('mv-weekends').innerHTML =
+          '<p class="mv-empty">No weekend breakdown yet.</p>';
+      }
+    }
+
+    // Rankings placeholder — will cross-reference all-time charts
+    // once a movie-to-chart lookup helper is added.
   }
 
   loadMovie();
