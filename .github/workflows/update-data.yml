@@ -104,6 +104,13 @@ jobs:
         run: python3 scripts/aggregate_movie_weekends.py
         continue-on-error: true
 
+      - name: Rebuild distributor index
+        # Aggregates Studio info from every daily/weekend/yearly file into
+        # data/distributors.json. The daily page falls back to this when an
+        # individual scraped row is missing the Distributor column.
+        run: python3 scripts/build_distributor_index.py
+        continue-on-error: true
+
       - name: Commit and push updated data files
         run: |
           git config user.name "Box Office Jedi Bot"

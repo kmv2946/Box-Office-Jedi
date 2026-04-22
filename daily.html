@@ -615,10 +615,17 @@
   }
 
   // ── State ───────────────────────────────────────────────────────
-  let _loadedDates = [];
-  let _dayDataMap  = {};
+  let _loadedDates = [];        // dates actually displayed as columns
+  let _dayDataMap  = {};        // includes _shadowPrevIso for off-screen pct compare
   let _allIndexDates = [];
   let _selectedIso = null;
+  let _shadowPrevIso = null;    // one day BEFORE the displayed window
+  let _distributorIndex = {};   // normalized_title → distributor (loaded once)
+
+  // Same normalization as scripts/build_distributor_index.py — must stay in sync.
+  function normTitle(s) {
+    return (s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  }
 
   // ── Render the table for a given sort column ─────────────────────
   function renderChart(sortIso) {
@@ -675,9 +682,27 @@
     // Helper: previous loaded date (chronologically) for pct_change derivation.
     // loadedDates is in display order; sort a copy ascending so we always know
     // the actual calendar order regardless of how the page renders columns.
+    // For the FIRST visible day, fall back to _shadowPrevIso (the day before
+    // the displayed window) so the leftmost column still gets a % change.
     const chronoDates = [...loadedDates].sort();
     const prevIsoOf = {};
-    chronoDates.forEach((iso, i) => { prevIsoOf[iso] = i > 0 ? chronoDates[i - 1] : null; });
+    chronoDates.forEach((iso, i) => {
+      prevIsoOf[iso] = i > 0 ? chronoDates[i - 1] : (_shadowPrevIso || null);
+    });
+
+    // Make sure renderChart can read the shadow day's chart for prior-day rows
+    // when computing pct_change, even though it's not in the title map above.
+    if (_shadowPrevIso && _dayDataMap[_shadowPrevIso]) {
+      const shadowChart = (_dayDataMap[_shadowPrevIso].chart || []).filter(isRealMovie);
+      shadowChart.forEach(row => {
+        if (titleMap[row.title]) {
+          // Only attach if not already present (don't overwrite a real loaded day)
+          if (!titleMap[row.title].days[_shadowPrevIso]) {
+            titleMap[row.title].days[_shadowPrevIso] = row;
+          }
+        }
+      });
+    }
 
     sortedTitles.forEach((title, idx) => {
       const entry = titleMap[title];
@@ -686,14 +711,19 @@
       const meta = entry.meta;
       const tmdbId = meta.tmdb_id || '';
 
-      // Distributor: inherit from any day that has it, since recent backfills
-      // may have left the field blank on individual rows.
+      // Distributor lookup chain:
+      //   1. The row's own distributor field
+      //   2. Any other day in the loaded week with a distributor
+      //   3. Cross-week index built from every historical file (data/distributors.json)
       let studio = meta.distributor || '';
       if (!studio) {
         for (const iso of loadedDates) {
           const d = entry.days[iso];
           if (d && d.distributor) { studio = d.distributor; break; }
         }
+      }
+      if (!studio) {
+        studio = _distributorIndex[normTitle(title)] || '';
       }
 
       let theaters = null;
@@ -840,31 +870,50 @@
   // ── Load data ───────────────────────────────────────────────────
   async function load() {
     try {
-      const idxResp = await fetch('data/daily/index.json');
+      // Fire the index + distributor map fetches in parallel — distributor
+      // index is optional (graceful degrade if missing).
+      const [idxResp, distResp] = await Promise.all([
+        fetch('data/daily/index.json'),
+        fetch('data/distributors.json').catch(() => null),
+      ]);
       if (!idxResp.ok) throw new Error('Index not found');
       const idx = await idxResp.json();
       const allIndexDates = idx.dates || [];
       if (!allIndexDates.length) throw new Error('No data in index');
+
+      if (distResp && distResp.ok) {
+        try {
+          const distData = await distResp.json();
+          _distributorIndex = distData.by_title || {};
+        } catch (_) { /* tolerate parse errors */ }
+      }
 
       const params = new URLSearchParams(window.location.search);
       let reqDate = params.get('date') || allIndexDates[allIndexDates.length - 1];
 
       const groupDates = getGroupDates(reqDate);
 
-      const dayDataMap = {};
-      await Promise.all(
-        groupDates
-          .filter(d => allIndexDates.includes(d))
-          .map(async (d) => {
-            const r = await fetch('data/daily/' + d + '.json');
-            if (r.ok) dayDataMap[d] = await r.json();
-          })
-      );
+      // Find the day immediately BEFORE the visible window so the first column
+      // can still compute a "% drop from yesterday" against off-screen data.
+      // We look in the index because it might predate the current group.
+      const firstGroupDate = groupDates[0];
+      const priorIndex = allIndexDates.filter(d => d < firstGroupDate);
+      const shadowPrevIso = priorIndex.length ? priorIndex[priorIndex.length - 1] : null;
 
-      if (!Object.keys(dayDataMap).length) {
+      const datesToFetch = groupDates.filter(d => allIndexDates.includes(d));
+      if (shadowPrevIso) datesToFetch.push(shadowPrevIso);
+
+      const dayDataMap = {};
+      await Promise.all(datesToFetch.map(async (d) => {
+        const r = await fetch('data/daily/' + d + '.json');
+        if (r.ok) dayDataMap[d] = await r.json();
+      }));
+
+      if (!groupDates.some(d => dayDataMap[d])) {
         throw new Error('No data for this period. Try navigating to another date.');
       }
 
+      _shadowPrevIso = shadowPrevIso;
       buildChart(groupDates, dayDataMap, allIndexDates, reqDate);
     } catch(e) {
       showError(e.message || 'Daily data not available.');
