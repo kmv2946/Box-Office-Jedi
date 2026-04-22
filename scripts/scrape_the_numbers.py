@@ -5,9 +5,14 @@ Scrapes daily and weekend box office data from The Numbers (the-numbers.com)
 and outputs clean JSON files for the website to consume.
 
 Run manually:
-  python3 scrape_the_numbers.py                  # update everything
-  python3 scrape_the_numbers.py --mode daily     # only daily chart
-  python3 scrape_the_numbers.py --mode weekend   # only weekend chart
+  python3 scrape_the_numbers.py                              # update everything
+  python3 scrape_the_numbers.py --mode daily                 # only daily chart
+  python3 scrape_the_numbers.py --mode weekend               # only weekend chart
+  python3 scrape_the_numbers.py --mode daily --date 2026-04-17
+                                                            # scrape a specific day
+                                                            # (useful for backfilling)
+  python3 scrape_the_numbers.py --mode daily --date 2026-04-17 --end-date 2026-04-18
+                                                            # scrape an inclusive range
 
 Run via GitHub Actions: see .github/workflows/update-data.yml
   - Daily chart  : every day at 2 PM ET (19:00 UTC)
@@ -158,6 +163,109 @@ def update_weekends_index(date_from: str, date_to: str, week_number: int,
 
 # ── Daily Chart ───────────────────────────────────────────────────────────────
 
+def _norm_header(s: str) -> str:
+    """Lowercase + strip everything non-alphanumeric. 'Per Theater' → 'pertheater'."""
+    return "".join(ch for ch in s.lower() if ch.isalnum())
+
+
+def _build_column_map(table) -> dict:
+    """
+    Walk the table's header row and return a {canonical_name: column_index} map.
+
+    The Numbers has changed its daily table layout over time. Historically it was:
+      Rank | Title | Gross | %Chg | Theaters | Avg | Total | Days
+    More recently it's been seen as:
+      TD | YD | Release | Daily | %±YD | %±LW | Theaters | Avg | ToDate | Days | Distributor
+
+    Rather than hard-code positions, we read the <th>/<td> header row and map each
+    header to a canonical key we care about.
+    """
+    # Prefer <thead>, else use the first row of the table
+    header_cells = []
+    thead = table.find("thead")
+    if thead:
+        hdr_row = thead.find("tr")
+        if hdr_row:
+            header_cells = hdr_row.find_all(["th", "td"])
+    if not header_cells:
+        first_row = table.find("tr")
+        if first_row:
+            header_cells = first_row.find_all(["th", "td"])
+
+    # Pattern → canonical key. Order matters; earlier patterns win.
+    canonical = {}
+    for i, cell in enumerate(header_cells):
+        raw = cell.get_text(" ", strip=True)
+        n = _norm_header(raw)
+        if not n:
+            continue
+
+        # Skip if already mapped — we want the first occurrence
+        def put(key):
+            canonical.setdefault(key, i)
+
+        raw_low = raw.lower()
+
+        # Any header containing '%' or the word 'change' is a percent-change column.
+        # (Must run BEFORE the yd/lw mappings because "% YD" and "% LW" would
+        # otherwise be misrouted to yd_rank.)
+        if "%" in raw or "change" in n or "chg" in n or n.startswith("pct"):
+            put("pct_change")
+            continue
+
+        # Rank (today's rank)
+        if n in ("rank", "td") or n.startswith("rank"):
+            put("rank")
+        # Yesterday / last-period rank
+        elif n in ("yd", "yesterday", "lw", "lastweek", "lastrank", "ydyesterday"):
+            put("yd_rank")
+        # Title / release / movie
+        elif n in ("release", "movie", "title") or n.startswith("movie") or n.startswith("release"):
+            put("title")
+        # Daily / weekend / gross (dollar amount for this period)
+        elif n in ("daily", "dailygross", "gross", "weekend", "weekendgross"):
+            put("gross")
+        # Distributor / studio
+        elif n in ("distributor", "studio"):
+            put("distributor")
+        # Theaters / locations
+        elif n in ("theatres", "theaters", "locations", "location", "loc", "theatrestotal"):
+            put("theaters")
+        # Average per theater
+        elif n in ("avg", "average", "pertheater", "perlocation", "perloc",
+                   "pertheatre", "dollarsperlocation", "dollarspertheater"):
+            put("avg")
+        # Cumulative / to-date total
+        elif n in ("total", "totalgross", "todate", "cumulative", "cumulativegross",
+                   "running", "runningtotal", "grosstotaltodate", "totaltodate"):
+            put("total")
+        # Days / weeks in release
+        elif n in ("days", "daysinrelease", "daysinrel", "weeks", "weeksinrelease"):
+            put("days")
+
+    return canonical
+
+
+def _safe_int(s) -> int:
+    try:
+        return int(str(s).replace(",", "").replace("#", "").replace("+", "").strip() or 0)
+    except (ValueError, AttributeError):
+        return 0
+
+
+def _safe_pct(s) -> float | None:
+    """Parse a percent-change cell. Returns None if blank or not a number."""
+    if not s:
+        return None
+    t = s.strip()
+    if t in ("", "-", "--", "n/a", "N/A") or t.upper() == "NEW":
+        return None
+    try:
+        return float(t.replace("%", "").replace("+", "").replace(",", ""))
+    except ValueError:
+        return None
+
+
 def scrape_daily(date: datetime = None) -> list[dict]:
     """
     Scrape The Numbers daily box office chart for a given date.
@@ -184,59 +292,77 @@ def scrape_daily(date: datetime = None) -> list[dict]:
         print("  Could not find data table.")
         return []
 
-    rows = table.find_all("tr")[1:]  # Skip header row
+    col = _build_column_map(table)
+    print(f"  Header map: {col}")
+
+    # Safety check — if we somehow didn't find title + gross columns, bail with
+    # a clear message rather than writing garbage JSON.
+    if "title" not in col or "gross" not in col:
+        print("  ⚠ Could not find Title or Gross columns in header. "
+              "The Numbers' layout may have changed again — aborting daily scrape.")
+        return []
+
+    # Iterate body rows. A 'row' is only a data row if it has enough <td>s.
+    rows = table.find_all("tr")
     results = []
+
+    def get_cell(cells, key, default=""):
+        i = col.get(key)
+        if i is None or i >= len(cells):
+            return default
+        return cells[i].get_text(" ", strip=True)
 
     for row in rows:
         cells = row.find_all("td")
-        if len(cells) < 4:
+        # Header/footer rows usually have <th> only or too few cells
+        if len(cells) < 3:
             continue
         try:
-            def safe_int(s):
-                try:
-                    return int(s.replace(",", "").replace("#", "").strip() or 0)
-                except (ValueError, AttributeError):
-                    return 0
+            title_idx = col["title"]
+            if title_idx >= len(cells):
+                continue
+            title_cell = cells[title_idx]
+            title = title_cell.get_text(" ", strip=True)
+            if not title:
+                continue
 
-            has_pct_col = "%" in (cells[3].get_text(strip=True) if len(cells) > 3 else "")
+            # The Numbers appends a summary row at the bottom of daily tables that
+            # looks like "Reporting: 29" in the title column. Filter it out.
+            if title.lower().startswith("reporting"):
+                continue
 
-            if has_pct_col:
-                # Layout: Rank | Title | Gross | %Chg | Theaters | Avg | Total | Days
-                pct_text = cells[3].get_text(strip=True)
-                try:
-                    pct_change = float(pct_text.replace("%", "").replace("+", ""))
-                except ValueError:
-                    pct_change = None
-                entry = {
-                    "rank":            safe_int(cells[0].get_text(strip=True)),
-                    "title":           cells[1].get_text(strip=True),
-                    "movie_url":       cells[1].find("a")["href"] if cells[1].find("a") else "",
-                    "distributor":     "",
-                    "daily_gross":     parse_money(cells[2].get_text(strip=True)),
-                    "pct_change":      pct_change,
-                    "theaters":        safe_int(cells[4].get_text(strip=True)) if len(cells) > 4 else 0,
-                    "avg_per_theater": parse_money(cells[5].get_text(strip=True)) if len(cells) > 5 else 0,
-                    "total_gross":     parse_money(cells[6].get_text(strip=True)) if len(cells) > 6 else 0,
-                    "days_in_release": safe_int(cells[7].get_text(strip=True)) if len(cells) > 7 else 0,
-                }
-            else:
-                # Layout: Rank | Title | Gross | Theaters | Avg | Total | Days
-                entry = {
-                    "rank":            safe_int(cells[0].get_text(strip=True)),
-                    "title":           cells[1].get_text(strip=True),
-                    "movie_url":       cells[1].find("a")["href"] if cells[1].find("a") else "",
-                    "distributor":     "",
-                    "daily_gross":     parse_money(cells[2].get_text(strip=True)),
-                    "pct_change":      None,
-                    "theaters":        safe_int(cells[3].get_text(strip=True)),
-                    "avg_per_theater": parse_money(cells[4].get_text(strip=True)) if len(cells) > 4 else 0,
-                    "total_gross":     parse_money(cells[5].get_text(strip=True)) if len(cells) > 5 else 0,
-                    "days_in_release": safe_int(cells[6].get_text(strip=True)) if len(cells) > 6 else 0,
-                }
-            if entry["title"] and entry["daily_gross"] > 0:
-                results.append(entry)
-        except (ValueError, TypeError, KeyError):
+            link = title_cell.find("a")
+            movie_url = link["href"] if link and link.has_attr("href") else ""
+
+            daily_gross = parse_money(get_cell(cells, "gross"))
+            if daily_gross <= 0:
+                # Rows with no dollar figure are usually header/footer artifacts
+                continue
+
+            entry = {
+                "rank":            _safe_int(get_cell(cells, "rank")),
+                "title":           title,
+                "movie_url":       movie_url,
+                "distributor":     get_cell(cells, "distributor"),
+                "daily_gross":     daily_gross,
+                "pct_change":      _safe_pct(get_cell(cells, "pct_change")),
+                "theaters":        _safe_int(get_cell(cells, "theaters")),
+                "avg_per_theater": parse_money(get_cell(cells, "avg")),
+                "total_gross":     parse_money(get_cell(cells, "total")),
+                "days_in_release": _safe_int(get_cell(cells, "days")),
+            }
+            results.append(entry)
+        except (ValueError, TypeError, KeyError) as e:
+            print(f"  Skipped row due to {type(e).__name__}: {e}")
             continue
+
+    # If ranks are blank for most rows (The Numbers only shows rank for top
+    # few), fill them in from position.
+    ranked = [e for e in results if e["rank"] > 0]
+    if len(ranked) < len(results) / 2 and results:
+        for i, e in enumerate(results, start=1):
+            if e["rank"] <= 0:
+                e["rank"] = i
 
     print(f"  Found {len(results)} entries.")
     return results
@@ -278,44 +404,70 @@ def scrape_weekend(date: datetime = None) -> list[dict]:
         print("  Could not find data table.")
         return []
 
-    rows = table.find_all("tr")[1:]
+    col = _build_column_map(table)
+    print(f"  Header map: {col}")
+
+    if "title" not in col or "gross" not in col:
+        print("  ⚠ Could not find Title or Gross columns in header. "
+              "The Numbers' layout may have changed again — aborting weekend scrape.")
+        return []
+
+    def get_cell(cells, key, default=""):
+        i = col.get(key)
+        if i is None or i >= len(cells):
+            return default
+        return cells[i].get_text(" ", strip=True)
+
+    rows = table.find_all("tr")
     results = []
 
     for row in rows:
         cells = row.find_all("td")
-        if len(cells) < 4:
+        if len(cells) < 3:
             continue
         try:
-            change_text = cells[4].get_text(strip=True) if len(cells) > 4 else ""
-            is_new = change_text in ("", "-", "n/a") or change_text.upper() == "NEW"
-            try:
-                change_pct = None if is_new else float(change_text.replace("%", "").replace("+", ""))
-            except ValueError:
-                change_pct = None
+            title_idx = col["title"]
+            if title_idx >= len(cells):
+                continue
+            title = cells[title_idx].get_text(" ", strip=True)
+            if not title or title.lower().startswith("reporting"):
+                continue
 
-            def safe_int(s):
-                try:
-                    return int(s.replace(",", "").replace("#", "").strip() or 0)
-                except (ValueError, AttributeError):
-                    return 0
+            gross = parse_money(get_cell(cells, "gross"))
+            if gross <= 0:
+                continue
+
+            change_text = get_cell(cells, "pct_change")
+            is_new = change_text in ("", "-", "--", "n/a") or change_text.upper() == "NEW"
+            change_pct = _safe_pct(change_text)
+
+            link = cells[title_idx].find("a")
+            movie_url = link["href"] if link and link.has_attr("href") else ""
 
             entry = {
-                "rank":             safe_int(cells[0].get_text(strip=True)),
-                "title":            cells[1].get_text(strip=True),
-                "movie_url":        cells[1].find("a")["href"] if cells[1].find("a") else "",
-                "distributor":      "",
-                "weekend_gross":    parse_money(cells[2].get_text(strip=True)),
-                "theaters":         safe_int(cells[3].get_text(strip=True)),
+                "rank":             _safe_int(get_cell(cells, "rank")),
+                "title":            title,
+                "movie_url":        movie_url,
+                "distributor":      get_cell(cells, "distributor"),
+                "weekend_gross":    gross,
+                "theaters":         _safe_int(get_cell(cells, "theaters")),
                 "change_pct":       change_pct,
                 "is_new":           is_new,
-                "avg_per_theater":  parse_money(cells[5].get_text(strip=True)) if len(cells) > 5 else 0,
-                "total_gross":      parse_money(cells[6].get_text(strip=True)) if len(cells) > 6 else 0,
-                "weeks_in_release": safe_int(cells[7].get_text(strip=True)) if len(cells) > 7 else 0,
+                "avg_per_theater":  parse_money(get_cell(cells, "avg")),
+                "total_gross":      parse_money(get_cell(cells, "total")),
+                "weeks_in_release": _safe_int(get_cell(cells, "days")),
             }
-            if entry["title"] and entry["weekend_gross"] > 0:
-                results.append(entry)
-        except (ValueError, TypeError, KeyError):
+            results.append(entry)
+        except (ValueError, TypeError, KeyError) as e:
+            print(f"  Skipped row due to {type(e).__name__}: {e}")
             continue
+
+    # Fill in sequential ranks if ranks column is blank for most rows
+    ranked = [e for e in results if e["rank"] > 0]
+    if len(ranked) < len(results) / 2 and results:
+        for i, e in enumerate(results, start=1):
+            if e["rank"] <= 0:
+                e["rank"] = i
 
     print(f"  Found {len(results)} entries.")
     return results
@@ -483,87 +635,151 @@ def main():
         default="all",
         help="What to update: daily chart, weekend chart, or all (default: all)",
     )
+    parser.add_argument(
+        "--date",
+        default=None,
+        help=(
+            "Scrape a specific date (YYYY-MM-DD). "
+            "In daily mode this scrapes the given day (useful for backfilling). "
+            "In weekend mode this should be the Friday of the target weekend."
+        ),
+    )
+    parser.add_argument(
+        "--end-date",
+        default=None,
+        help=(
+            "Inclusive end of a daily date range (YYYY-MM-DD). "
+            "Only valid with --mode daily and --date. "
+            "Example: --date 2026-04-17 --end-date 2026-04-18."
+        ),
+    )
     args = parser.parse_args()
 
     now = datetime.now()
     print(f"Box Office Jedi Scraper — {now.strftime('%Y-%m-%d %H:%M:%S')} — mode: {args.mode}")
     print("=" * 60)
 
+    # Build the list of days we'll scrape in daily mode
+    daily_dates = []
+    if args.date:
+        try:
+            start_d = datetime.strptime(args.date, "%Y-%m-%d")
+        except ValueError:
+            print(f"  --date must be YYYY-MM-DD, got: {args.date}")
+            return
+        if args.end_date:
+            try:
+                end_d = datetime.strptime(args.end_date, "%Y-%m-%d")
+            except ValueError:
+                print(f"  --end-date must be YYYY-MM-DD, got: {args.end_date}")
+                return
+            if end_d < start_d:
+                print("  --end-date is before --date; nothing to do.")
+                return
+            d = start_d
+            while d <= end_d:
+                daily_dates.append(d)
+                d += timedelta(days=1)
+        else:
+            daily_dates.append(start_d)
+    else:
+        # Default: yesterday only
+        daily_dates.append(now - timedelta(days=1))
+
     # ── Daily chart ────────────────────────────────────────────────
     if args.mode in ("daily", "all"):
-        daily = scrape_daily()
-        if daily:
-            day_iso = (now - timedelta(days=1)).strftime("%Y-%m-%d")
+        for _target in daily_dates:
+            daily = scrape_daily(_target)
+            if daily:
+                day_iso = _target.strftime("%Y-%m-%d")
 
-            # 1) Legacy "latest" flat file (kept for backward compatibility)
-            save_json("daily.json", {
-                "updated": now.isoformat(),
-                "date":    day_iso,
-                "chart":   daily,
-            })
+                # 1) Legacy "latest" flat file (kept for backward compatibility).
+                #    Only rewrite daily.json if we're scraping the newest date.
+                #    This matters when backfilling: we don't want --date 2026-04-17
+                #    to overwrite daily.json with older data.
+                existing_latest = load_json("daily.json") or {}
+                existing_latest_date = existing_latest.get("date", "")
+                if day_iso >= existing_latest_date:
+                    save_json("daily.json", {
+                        "updated": now.isoformat(),
+                        "date":    day_iso,
+                        "chart":   daily,
+                    })
+                else:
+                    print(f"  (daily.json stays on {existing_latest_date}; "
+                          f"{day_iso} is older)")
 
-            # 2) Per-day archive file — this is what daily.html actually reads.
-            #    Normalize to the same shape the hand-filled files use.
-            archive_chart = []
-            for row in daily:
-                archive_chart.append({
-                    "rank":            row.get("rank"),
-                    "title":           row.get("title"),
-                    "tmdb_id":         None,
-                    "distributor":     row.get("distributor", ""),
-                    "theaters":        row.get("theaters"),
-                    "daily_gross":     row.get("daily_gross"),
-                    "pct_change":      row.get("pct_change"),
-                    "avg_per_theater": row.get("avg_per_theater"),
-                    "total_gross":     row.get("total_gross"),
-                    "days_in_release": row.get("days_in_release"),
-                    "is_new":          False,
+                # 2) Per-day archive file — this is what daily.html actually reads.
+                #    Normalize to the same shape the hand-filled files use.
+                archive_chart = []
+                for row in daily:
+                    archive_chart.append({
+                        "rank":            row.get("rank"),
+                        "title":           row.get("title"),
+                        "tmdb_id":         None,
+                        "distributor":     row.get("distributor", ""),
+                        "theaters":        row.get("theaters"),
+                        "daily_gross":     row.get("daily_gross"),
+                        "pct_change":      row.get("pct_change"),
+                        "avg_per_theater": row.get("avg_per_theater"),
+                        "total_gross":     row.get("total_gross"),
+                        "days_in_release": row.get("days_in_release"),
+                        "is_new":          False,
+                    })
+                archive_path = os.path.join("daily", day_iso + ".json")
+                save_json(archive_path, {
+                    "date":         day_iso,
+                    "is_estimates": False,
+                    "chart":        archive_chart,
                 })
-            archive_path = os.path.join("daily", day_iso + ".json")
-            save_json(archive_path, {
-                "date":         day_iso,
-                "is_estimates": False,
-                "chart":        archive_chart,
-            })
 
-            # 3) Keep data/daily/index.json in sync so the daily page's
-            #    prev/next navigation sees the new date.
-            idx_path = os.path.join(DATA_DIR, "daily", "index.json")
-            try:
-                with open(idx_path, "r", encoding="utf-8") as f:
-                    idx = json.load(f)
-            except Exception:
-                idx = {"updated": "", "dates": []}
-            dates = set(idx.get("dates", []))
-            dates.add(day_iso)
-            idx["dates"] = sorted(dates)
-            idx["updated"] = day_iso
-            os.makedirs(os.path.dirname(idx_path), exist_ok=True)
-            with open(idx_path, "w", encoding="utf-8") as f:
-                json.dump(idx, f, indent=2)
-            print(f"  → wrote daily/{day_iso}.json and updated daily/index.json")
-        else:
-            print("  No daily data — skipping save.")
+                # 3) Keep data/daily/index.json in sync so the daily page's
+                #    prev/next navigation sees the new date.
+                idx_path = os.path.join(DATA_DIR, "daily", "index.json")
+                try:
+                    with open(idx_path, "r", encoding="utf-8") as f:
+                        idx = json.load(f)
+                except Exception:
+                    idx = {"updated": "", "dates": []}
+                dates = set(idx.get("dates", []))
+                dates.add(day_iso)
+                idx["dates"] = sorted(dates)
+                # Keep 'updated' as the newest date we know about
+                idx["updated"] = max(dates)
+                os.makedirs(os.path.dirname(idx_path), exist_ok=True)
+                with open(idx_path, "w", encoding="utf-8") as f:
+                    json.dump(idx, f, indent=2)
+                print(f"  → wrote daily/{day_iso}.json and updated daily/index.json")
+            else:
+                print("  No daily data — skipping save.")
 
     # ── Weekend chart ───────────────────────────────────────────────
     if args.mode in ("weekend", "all"):
 
-        # Determine the most recent Friday with available data
         today = now.date()
-        days_since_friday = (today.weekday() - 4) % 7
-        friday = today - timedelta(days=days_since_friday)
-        # Go back one extra week if it's Friday or Saturday —
-        # current weekend just started and data isn't posted yet.
-        # Monday is NOT excluded: actuals post on Monday afternoon.
-        if today.weekday() in (4, 5):
-            friday -= timedelta(days=7)
+        if args.date:
+            try:
+                friday = datetime.strptime(args.date, "%Y-%m-%d").date()
+            except ValueError:
+                print(f"  --date must be YYYY-MM-DD, got: {args.date}")
+                return
+        else:
+            # Determine the most recent Friday with available data
+            days_since_friday = (today.weekday() - 4) % 7
+            friday = today - timedelta(days=days_since_friday)
+            # Go back one extra week if it's Friday or Saturday —
+            # current weekend just started and data isn't posted yet.
+            # Monday is NOT excluded: actuals post on Monday afternoon.
+            if today.weekday() in (4, 5):
+                friday -= timedelta(days=7)
         sunday   = friday + timedelta(days=2)
         week_num = int(sunday.strftime("%U"))
         friday_str = str(friday)
 
-        # is_estimates: True on Sunday (estimates day), False Mon+ (actuals confirmed)
+        # is_estimates: True on Sunday (estimates day), False Mon+ (actuals confirmed).
+        # When --date is used for a historical backfill, treat as actuals.
         # weekday(): 0=Mon, 1=Tue, ..., 6=Sun
-        is_estimates = (today.weekday() == 6)
+        is_estimates = (not args.date) and (today.weekday() == 6)
 
         print(f"\n[Weekend] Target: {friday_str} → {sunday}")
         print(f"          is_estimates: {is_estimates} "

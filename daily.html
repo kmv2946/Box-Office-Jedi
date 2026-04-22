@@ -277,9 +277,9 @@
 
     /* ── KEY section ─────────────────────────────────────────────── */
     .daily-key-wrap {
-      margin: 0 12px 16px;
+      margin: 0 auto 16px;
       border: 1px solid #AAAAAA;
-      display: inline-block;
+      display: table; /* shrinks to content width so margin:auto centers it */
     }
     .daily-key-header {
       background: #DCDCDC;
@@ -627,21 +627,31 @@
     const loadedDates = _loadedDates;
     const dayDataMap  = _dayDataMap;
 
+    // Defensive filter: skip footer/summary rows like "Reporting: 14" that
+    // older versions of the scraper accidentally captured as movie rows.
+    const isRealMovie = row =>
+      row && typeof row.title === 'string' &&
+      row.title.trim() !== '' &&
+      !/^reporting\s*:/i.test(row.title.trim());
+
+    const chartFor = iso =>
+      ((dayDataMap[iso] || {}).chart || []).filter(isRealMovie);
+
     // Build title map
     const titleMap = {};
     loadedDates.forEach(iso => {
-      (dayDataMap[iso].chart || []).forEach(row => {
+      chartFor(iso).forEach(row => {
         if (!titleMap[row.title]) titleMap[row.title] = { meta: row, days: {} };
         titleMap[row.title].days[iso] = row;
       });
     });
 
     // Sort titles by sortIso gross (descending)
-    const primaryChart = (dayDataMap[sortIso] || {}).chart || [];
+    const primaryChart = chartFor(sortIso);
     const sortedTitles = primaryChart.map(r => r.title);
     loadedDates.forEach(iso => {
       if (iso === sortIso) return;
-      (dayDataMap[iso].chart || []).forEach(r => {
+      chartFor(iso).forEach(r => {
         if (!sortedTitles.includes(r.title)) sortedTitles.push(r.title);
       });
     });
