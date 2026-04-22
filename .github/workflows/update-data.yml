@@ -13,7 +13,14 @@
 #     NEVER overwrites weekend.json with data older than what's already there.
 #
 # Manual trigger:
-#   GitHub → Actions → "Update Box Office Data" → Run workflow → choose mode
+#   GitHub → Actions → "Update Box Office Data" → Run workflow
+#   Inputs:
+#     mode       : daily / weekend / all (default: all)
+#     start_date : optional YYYY-MM-DD — scrape that specific day
+#                  (in weekend mode, the Friday of the target weekend)
+#     end_date   : optional YYYY-MM-DD — inclusive end of a daily range.
+#                  Example: start_date=2026-04-17, end_date=2026-04-21
+#                  scrapes all five days in one run.
 
 name: Update Box Office Data
 
@@ -29,6 +36,14 @@ on:
         description: "What to update: daily, weekend, or all"
         required: false
         default: "all"
+      start_date:
+        description: "Backfill start date (YYYY-MM-DD). Leave blank for default (yesterday)."
+        required: false
+        default: ""
+      end_date:
+        description: "Backfill end date (YYYY-MM-DD). Leave blank to scrape just start_date."
+        required: false
+        default: ""
 
 jobs:
   update-data:
@@ -63,7 +78,16 @@ jobs:
           fi
 
       - name: Run scraper (${{ steps.mode.outputs.mode }} mode)
-        run: python3 scripts/scrape_the_numbers.py --mode ${{ steps.mode.outputs.mode }}
+        run: |
+          ARGS="--mode ${{ steps.mode.outputs.mode }}"
+          if [ -n "${{ github.event.inputs.start_date }}" ]; then
+            ARGS="$ARGS --date ${{ github.event.inputs.start_date }}"
+          fi
+          if [ -n "${{ github.event.inputs.end_date }}" ]; then
+            ARGS="$ARGS --end-date ${{ github.event.inputs.end_date }}"
+          fi
+          echo "Running: python3 scripts/scrape_the_numbers.py $ARGS"
+          python3 scripts/scrape_the_numbers.py $ARGS
         continue-on-error: true
 
       - name: Run TMDB sync (Mondays only)
