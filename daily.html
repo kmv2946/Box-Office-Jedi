@@ -672,13 +672,29 @@
     const tbody = document.getElementById('daily-chart-body');
     tbody.innerHTML = '';
 
+    // Helper: previous loaded date (chronologically) for pct_change derivation.
+    // loadedDates is in display order; sort a copy ascending so we always know
+    // the actual calendar order regardless of how the page renders columns.
+    const chronoDates = [...loadedDates].sort();
+    const prevIsoOf = {};
+    chronoDates.forEach((iso, i) => { prevIsoOf[iso] = i > 0 ? chronoDates[i - 1] : null; });
+
     sortedTitles.forEach((title, idx) => {
       const entry = titleMap[title];
       if (!entry) return;
       const rank = idx + 1;
       const meta = entry.meta;
       const tmdbId = meta.tmdb_id || '';
-      const studio = meta.distributor || '';
+
+      // Distributor: inherit from any day that has it, since recent backfills
+      // may have left the field blank on individual rows.
+      let studio = meta.distributor || '';
+      if (!studio) {
+        for (const iso of loadedDates) {
+          const d = entry.days[iso];
+          if (d && d.distributor) { studio = d.distributor; break; }
+        }
+      }
 
       let theaters = null;
       for (const iso of loadedDates) {
@@ -724,13 +740,36 @@
           const estMark = dayDataMap[iso].is_estimates ? '*' : '';
           const grossHtml = `<span class="dc-gross">${fmtGross(dr.daily_gross)}${estMark}</span>`;
 
+          // Derive pct_change from yesterday's gross when scraped value is missing.
+          let pctChange = (dr.pct_change != null) ? dr.pct_change : null;
+          if (pctChange == null) {
+            const prevIso = prevIsoOf[iso];
+            const prev = prevIso ? entry.days[prevIso] : null;
+            if (prev && prev.daily_gross > 0 && dr.daily_gross > 0) {
+              pctChange = Math.round(((dr.daily_gross - prev.daily_gross) / prev.daily_gross) * 1000) / 10;
+            }
+          }
+
+          // Derive per-theater avg from gross/theaters when scraped value is missing
+          // or obviously bogus (the old broken scraper put ToDate totals here, so
+          // anything bigger than $200k clearly isn't a per-theater number).
+          let avg = (dr.avg_per_theater && dr.avg_per_theater < 200000)
+            ? dr.avg_per_theater
+            : null;
+          if (avg == null) {
+            const dayTheaters = dr.theaters || theaters;
+            if (dayTheaters && dr.daily_gross > 0) {
+              avg = Math.round(dr.daily_gross / dayTheaters);
+            }
+          }
+
           let changeAvgHtml = '';
-          const changeStr = fmtChange(dr.pct_change);
-          const avgStr = dr.avg_per_theater ? fmtAvg(dr.avg_per_theater) : null;
+          const changeStr = fmtChange(pctChange);
+          const avgStr = avg ? fmtAvg(avg) : null;
           if (changeStr !== null || avgStr) {
             let changePart = '';
             if (changeStr !== null) {
-              const cls = dr.pct_change > 0 ? 'dc-change-pos' : (dr.pct_change < 0 ? 'dc-change-neg' : 'dc-change-neu');
+              const cls = pctChange > 0 ? 'dc-change-pos' : (pctChange < 0 ? 'dc-change-neg' : 'dc-change-neu');
               changePart = `<span class="${cls}">${changeStr}</span>`;
             }
             const avgPart = avgStr ? `<span class="dc-avg"> / ${avgStr}</span>` : '';
