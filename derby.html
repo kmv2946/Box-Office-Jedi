@@ -211,10 +211,14 @@
       <h1 class="db-title">BOX OFFICE <span class="red">DERBY</span></h1>
       <p class="db-tagline">Put your predicting prowess to the test.</p>
 
-      <!-- Shown when visitor has submitted this weekend (from localStorage + API check) -->
+      <!-- Shown right after a fresh submission (?just=YYYY-MM-DD in the URL) -->
+      <div class="db-already" id="db-just-banner" style="display:none;">
+        <strong>Thanks for playing.</strong>
+      </div>
+
+      <!-- Shown when a returning visitor is already in the books for this weekend -->
       <div class="db-already" id="db-already" style="display:none;">
         <strong>Your predictions are already counted for this week.</strong>
-        <span id="db-just-msg" style="display:none;"> Thanks for playing!</span>
       </div>
 
       <p class="db-deadline" id="db-deadline-line">Predictions are due by Thursday at midnight, Eastern Time.</p>
@@ -223,10 +227,7 @@
       <hr class="db-hr">
 
       <p class="db-past">
-        Game Results:
-        <a href="derby-leaderboard.html" id="db-last-week-link">Last Week</a>,
-        <a href="derby-leaderboard.html">All-Time / Monthly / Yearly Charts</a>,
-        <a href="derby-leaderboard.html">Index of past games</a>.
+        Game Results: <a href="derby-leaderboard.html">Index of past games</a>.
       </p>
 
       <p class="db-avg-intro">
@@ -311,37 +312,50 @@
     document.getElementById('db-weekend-label').textContent = current.label;
 
     // ── "Already counted" / "Just submitted" banner ────────────────
+    // Two distinct paths:
+    //   • Fresh submission (?just=YYYY-MM-DD)  → "Thanks for playing."
+    //   • Returning visitor we recognize       → "Your predictions are already counted for this week."
     const justParam = new URLSearchParams(location.search).get('just');
-    let alreadySubmitted = false;
+    const justSubmitted = !!(justParam && justParam === current.weekend);
+
+    let recognizedReturn = false;
     try {
-      if (localStorage.getItem('derby_submitted_' + current.weekend)) alreadySubmitted = true;
+      if (!justSubmitted && localStorage.getItem('derby_submitted_' + current.weekend)) {
+        recognizedReturn = true;
+      }
     } catch (e) {}
-    if (justParam && justParam === current.weekend) {
-      alreadySubmitted = true;
-      try { localStorage.setItem('derby_submitted_' + current.weekend, '1'); } catch (e) {}
-      const m = document.getElementById('db-just-msg');
-      if (m) m.style.display = '';
-    }
-    // Secondary IP-based check on the server
-    if (!alreadySubmitted) {
+    // Secondary IP-based check on the server (only matters when this isn't the fresh-submit view)
+    if (!justSubmitted && !recognizedReturn) {
       try {
         const c = await fetch('/api/derby/check?weekend=' + encodeURIComponent(current.weekend));
         if (c.ok) {
           const cd = await c.json();
-          if (cd && cd.submitted) {
-            alreadySubmitted = true;
-            try { localStorage.setItem('derby_submitted_' + current.weekend, '1'); } catch (e) {}
-          }
+          if (cd && cd.submitted) recognizedReturn = true;
         }
       } catch (e) { /* network problem — ignore */ }
     }
-    if (alreadySubmitted) {
+
+    // Persist the fact that we've submitted, so future visits show the right banner.
+    if (justSubmitted) {
+      try { localStorage.setItem('derby_submitted_' + current.weekend, '1'); } catch (e) {}
+    }
+    if (recognizedReturn) {
+      try { localStorage.setItem('derby_submitted_' + current.weekend, '1'); } catch (e) {}
+    }
+
+    if (justSubmitted) {
+      document.getElementById('db-just-banner').style.display = '';
+    } else if (recognizedReturn) {
       document.getElementById('db-already').style.display = '';
+    }
+
+    // If they've submitted (either path), the Predict link + deadline line are unhelpful
+    // — the predictions are listed directly below.
+    if (justSubmitted || recognizedReturn) {
       const link = document.getElementById('db-predict-link');
-      if (link) {
-        link.textContent = 'See this week\u2019s predictions';
-        link.href = '#db-avg-wrap';
-      }
+      if (link) link.style.display = 'none';
+      const dl = document.getElementById('db-deadline-line');
+      if (dl) dl.style.display = 'none';
     }
 
     // ── Averages: try the live API first, fall back to a static file ──

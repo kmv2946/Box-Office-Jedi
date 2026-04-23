@@ -1,5 +1,5 @@
 {
-  "updated":         "2026-04-19",
+  "updated":         "2026-04-22",
   "current_weekend": "2026-04-24",
   "games": [
     {
@@ -33,6 +33,16 @@
       ],
       "averages_url":    null,
       "leaderboard_url": null
+    },
+    {
+      "weekend":         "2026-04-17",
+      "date_to":         "2026-04-19",
+      "label":           "April 17\u201319",
+      "label_long":      "April 17\u201319, 2026",
+      "status":          "closed",
+      "headliner":       "Lee Cronin\u2019s The Mummy",
+      "averages_url":    null,
+      "leaderboard_url": "data/derby/leaderboard-2026-04-17.json"
     }
   ]
 }
