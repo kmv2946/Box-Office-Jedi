@@ -111,36 +111,14 @@
 
         <div class="home-right-body">
 
-          <!-- Main story with photo -->
-          <div class="top-story-main" id="top-story-main">
-            <img class="top-story-photo" id="top-story-photo" src="assets/images/forecast-apr-11-2026.jpg" alt="Super Mario Galaxy">
-            <div class="top-story-headline"><a href="forecast-apr-11-2026.html" id="top-story-link">FORECAST: Holy Mario</a></div>
-            <div class="top-story-byline" id="top-story-byline">by Box Office Jedi staff</div>
-            <p class="top-story-teaser" id="top-story-teaser">
-              April 10 &#8211; <strong>Super Mario Galaxy</strong> is poised to repeat at number one this weekend, with <strong>Project Hail Mary</strong> continuing its journey into the infinite...
-            </p>
-          </div>
-
-          <div class="story-divider"></div>
-
-          <!-- Story 2 -->
-          <div class="top-story-secondary">
-            <div class="top-story-headline"><a href="weekend-chart.html">Weekend Chart: Apr 4&#8211;6</a></div>
-            <div class="top-story-byline">Box Office Jedi staff</div>
-            <p class="top-story-teaser">
-              <strong>Super Mario Galaxy</strong> opened to $131.7 million, the biggest opening weekend of 2026. Check the full chart for complete results...
-            </p>
-          </div>
-
-          <div class="story-divider"></div>
-
-          <!-- Story 3 -->
-          <div class="top-story-secondary">
-            <div class="top-story-headline"><a href="news.html">Weekend Roundup: Latest Box Office Results</a></div>
-            <div class="top-story-byline">Box Office Jedi staff</div>
-            <p class="top-story-teaser">
-              The latest weekend totals are in. Check the full chart for complete results...
-            </p>
+          <!-- Populated dynamically from data/analysis.json +
+               data/features.json. The 3 most recent editorial posts
+               (forecasts, roundups, analysis, features) appear here,
+               newest first. Falls back to empty state if no JSON. -->
+          <div id="top-stories">
+            <div class="top-story-main">
+              <div class="top-story-headline">Loading top stories&hellip;</div>
+            </div>
           </div>
 
           <div class="stories-more-link">&gt; MORE: <a href="news.html">News</a> | <a href="forecast.html">Features</a></div>
@@ -404,6 +382,92 @@
     } catch(e) { return null; }
   }
 
+  // Strip a leading editorial-kind prefix (e.g. "FORECAST: ") from an article
+  // title so the Latest Updates list doesn't double up the label. We only
+  // strip known kinds — random titles are left alone.
+  // "FORECAST: Holy Mario"  →  "Holy Mario"
+  // "Mario Holds…"          →  "Mario Holds…"  (no change)
+  const EDITORIAL_KINDS = ['FORECAST','ROUNDUP','FEATURE','ANALYSIS','REWIND'];
+  function stripLeadingKind(title) {
+    const t = String(title || '');
+    for (const k of EDITORIAL_KINDS) {
+      const re = new RegExp('^\\s*' + k + '\\s*:\\s*', 'i');
+      if (re.test(t)) return t.replace(re, '');
+    }
+    return t;
+  }
+
+  function escapeHtmlBasic(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+
+  // ── Top Stories (right column) ──────────────────────────────────────────
+  // Pulls the 3 most recent editorial posts from analysis.json + features.json
+  // and renders them into #top-stories. Weekend/daily box office updates are
+  // intentionally excluded — this section is reserved for written pieces.
+  async function loadTopStories() {
+    const container = document.getElementById('top-stories');
+    if (!container) return;
+
+    const all = [];
+    const ana = await fetchJSON('data/analysis.json');
+    if (ana && ana.articles) {
+      ana.articles.forEach(a => all.push(Object.assign({}, a)));
+    }
+    const feats = await fetchJSON('data/features.json');
+    if (feats && feats.articles) {
+      feats.articles.forEach(a => all.push(Object.assign({}, a)));
+    }
+
+    // Newest first, pick top 3.
+    all.sort((a, b) => (b.date > a.date ? 1 : -1));
+    const top = all.slice(0, 3);
+    if (!top.length) {
+      container.innerHTML =
+        '<div class="top-story-main"><div class="top-story-headline">' +
+        'No stories posted yet.</div></div>';
+      return;
+    }
+
+    const html = top.map((a, i) => {
+      const title  = escapeHtmlBasic(a.title);
+      const url    = escapeHtmlBasic(a.url || '#');
+      const teaser = a.teaser ? escapeHtmlBasic(a.teaser) : '';
+      const byline = 'by Box Office Jedi staff';
+      const divider = (i < top.length - 1) ? '<div class="story-divider"></div>' : '';
+
+      if (i === 0) {
+        // Lead story: photo + headline + byline + teaser
+        const imgTag = a.image
+          ? '<img class="top-story-photo" src="' + escapeHtmlBasic(a.image) + '" alt="' + title + '">'
+          : '';
+        return (
+          '<div class="top-story-main">' +
+            imgTag +
+            '<div class="top-story-headline"><a href="' + url + '">' + title + '</a></div>' +
+            '<div class="top-story-byline">' + byline + '</div>' +
+            (teaser ? '<p class="top-story-teaser">' + teaser + '</p>' : '') +
+          '</div>' +
+          divider
+        );
+      }
+
+      // Stories 2 & 3: compact
+      return (
+        '<div class="top-story-secondary">' +
+          '<div class="top-story-headline"><a href="' + url + '">' + title + '</a></div>' +
+          '<div class="top-story-byline">' + byline + '</div>' +
+          (teaser ? '<p class="top-story-teaser">' + teaser + '</p>' : '') +
+        '</div>' +
+        divider
+      );
+    }).join('');
+
+    container.innerHTML = html;
+  }
+
   async function loadQuickLinks() {
     // Latest daily → "(Thurs.)" + link to that date
     const idx = await fetchJSON('data/daily/index.json');
@@ -476,7 +540,7 @@
         items.push({
           date: a.date,
           sort: a.date + 'T12',
-          label: 'FEATURE: ' + a.title,
+          label: 'FEATURE: ' + stripLeadingKind(a.title),
           url: a.url,
         });
       });
@@ -493,7 +557,7 @@
         items.push({
           date: a.date,
           sort: a.date + timeTag,
-          label: kind + ': ' + a.title,
+          label: kind + ': ' + stripLeadingKind(a.title),
           url: a.url,
         });
       });
@@ -651,6 +715,7 @@
   loadHomepagePoll();
   loadQuickLinks();
   loadLatestUpdates();
+  loadTopStories();
 </script>
 
 </body>
