@@ -934,6 +934,12 @@ img {
 .site-footer .footer-flag {
   margin-top: 8px;
 }
+.site-footer .footer-disclaimer {
+  max-width: 620px;
+  margin: 10px auto 0;
+  line-height: 1.45;
+  /* inherits font-family / size / color from .site-footer (Verdana 11px #555) */
+}
 
 
 /* ── Utility ──────────────────────────────────────────────── */

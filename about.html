@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Box Office Jedi</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .about-header {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 22px;
+      color: #7F170E;
+      padding: 6px 12px 4px;
+      border-bottom: 3px solid #7F170E;
+      margin-bottom: 12px;
+    }
+    .about-body {
+      padding: 0 16px 24px;
+      max-width: 720px;
+    }
+    .about-body p {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16px;
+      line-height: 1.65;
+      margin-bottom: 12px;
+      color: #000;
+    }
+    .about-body h2 {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 15px;
+      color: #000;
+      margin: 18px 0 6px;
+    }
+    .about-placeholder {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
+      font-style: italic;
+      color: #666;
+      padding: 16px;
+      background: #F4F4FE;
+      border: 1px dashed #bbb;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">CONTENTS</span>
+      <ul>
+        <li><a href="predictions.html">PREDICTIONS</a></li>
+        <li><a href="analysis.html">ANALYSIS</a></li>
+        <li><a href="features.html">FEATURES</a></li>
+        <li><a href="releases.html">RELEASE SCHEDULE</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li class="active"><a href="about.html">ABOUT</a></li>
+        <li class="derby"><a href="derby.html">THE DERBY</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+
+  <main class="main-content">
+
+    <div class="about-header">&gt; ABOUT</div>
+
+    <div class="about-body">
+      <div class="about-placeholder">
+        About content coming soon.
+      </div>
+    </div>
+
+  </main>
+
+
+  <aside class="right-sidebar">
+    <div class="widget">
+      <div class="widget-header">BOX OFFICE JEDI</div>
+      <div class="widget-body">
+        <p>A throwback box office archive and daily tracker.</p>
+      </div>
+    </div>
+    <div class="widget">
+      <div class="widget-header">THE FORECAST</div>
+      <div class="widget-body">
+        <p>This weekend's predictions. <a href="forecast.html"><strong>Read &gt;</strong></a></p>
+      </div>
+    </div>
+    <div class="widget">
+      <div class="widget-header">THE DERBY</div>
+      <div class="widget-body" style="background:#e8f4fd;">
+        <p>Play the box office prediction game. <a href="derby.html"><strong>Play now &gt;</strong></a></p>
+      </div>
+    </div>
+  </aside>
+
+</div><!-- /page-wrapper -->
+
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">"Serving your box office needs since 2026."</span>
+  <div style="margin-top:8px;">
+    <img src="assets/images/flag_sm_anim.gif" alt="American flag" style="display:inline-block;height:auto;">
+  </div>
+  <div class="footer-disclaimer">
+    Box Office Jedi is an independent fan project and is not affiliated with Box Office Mojo, IMDb, Amazon, Lucasfilm, or The Walt Disney Company. All trademarks are the property of their respective owners.
+  </div>
+</footer>
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+</script>
+
+</body>
+</html>
