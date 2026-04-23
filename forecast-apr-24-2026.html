@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>&lsquo;Michael&rsquo; to Dethrone &lsquo;Mario&rsquo; as Box Office King &mdash; Box Office Jedi</title>
+  <title>Forecast: &lsquo;Michael&rsquo; to Dethrone &lsquo;Mario&rsquo; &mdash; Box Office Jedi</title>
   <link rel="stylesheet" href="assets/css/styles.css">
   <style>
 
@@ -11,7 +11,7 @@
       padding: 0;
     }
 
-    /* FEATURE section bar */
+    /* FORECAST section bar at top */
     .article-section-header {
       padding: 4px 10px 2px;
     }
@@ -29,7 +29,7 @@
       margin-bottom: 10px;
     }
 
-    /* Headline */
+    /* Headline — Verdana Bold 18pt */
     .article-headline {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
@@ -37,15 +37,6 @@
       color: #000;
       line-height: 1.15;
       margin: 0 10px 3px;
-    }
-
-    /* Subheadline */
-    .article-subheadline {
-      font-family: 'Times New Roman', Times, serif;
-      font-style: italic;
-      font-size: 14pt;
-      color: #333;
-      margin: 0 10px 6px;
     }
 
     /* Byline */
@@ -65,7 +56,7 @@
       margin: 0 10px 10px;
     }
 
-    /* Body text */
+    /* Body text — Times Regular 16pt, justified, tight leading */
     .article-body {
       padding: 0 10px;
     }
@@ -89,7 +80,36 @@
       color: #00239C;
     }
 
-    /* Film links — first mention */
+    /* Placeholder image */
+    .article-img {
+      float: left;
+      margin: 0 12px 8px 0;
+      border: 1px solid #CCCCCC;
+    }
+    .article-img-placeholder {
+      width: 200px;
+      height: 150px;
+      background: #CCCCCC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      color: #666;
+      text-align: center;
+    }
+    .article-img-caption {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 10px;
+      color: #333;
+      text-align: center;
+      background: #EEEEEE;
+      padding: 3px 4px;
+      width: 200px;
+      box-sizing: border-box;
+    }
+
+    /* First mention of a film: Times Bold Blue link */
     .article-body a.film-link {
       font-family: 'Times New Roman', Times, serif;
       font-weight: bold;
@@ -99,10 +119,16 @@
     }
     .article-body a.film-link:hover { text-decoration: underline; }
 
-    /* Film subsequent mention */
+    /* Subsequent mention: Times Bold Black */
     .article-body .film {
       font-family: 'Times New Roman', Times, serif;
       font-weight: bold;
+    }
+
+    /* Italic */
+    .article-body em {
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
     }
 
     /* External links in body */
@@ -112,23 +138,7 @@
     }
     .article-body a.ext-link:hover { color: #0000EE; }
 
-    /* Italic */
-    .article-body em {
-      font-family: 'Times New Roman', Times, serif;
-      font-style: italic;
-    }
-
-    /* Section break */
-    .section-break {
-      text-align: center;
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 16pt;
-      color: #AAAAAA;
-      letter-spacing: 6px;
-      margin: 16px 0 14px;
-    }
-
-    /* Edit note */
+    /* Edit note — dry, subtle */
     .article-body p.edit-note {
       font-family: 'Times New Roman', Times, serif;
       font-size: 14pt;
@@ -144,11 +154,47 @@
       color: #990000;
     }
 
-    /* Clearfix */
+    /* Clearfix after image */
     .clearfix::after {
       content: "";
       display: table;
       clear: both;
+    }
+
+    /* Forecast table */
+    .forecast-table-wrap {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+    }
+    .forecast-table {
+      border-collapse: collapse;
+      width: auto;
+    }
+    .forecast-table tbody td {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16pt;
+      color: #000;
+      padding: 3px 16px 3px 6px;
+      border-bottom: 1px solid #EEEEEE;
+    }
+    .forecast-table tbody tr:nth-child(odd)  td { background: #F4F4FE; }
+    .forecast-table tbody tr:nth-child(even) td { background: #FFFFFF; }
+    .forecast-table tbody td.fc-rank { color: #555; width: 24px; text-align: right; padding-right: 10px; }
+    .forecast-table tbody td.fc-title { font-weight: bold; white-space: nowrap; }
+    .forecast-table tbody td.fc-gross { text-align: right; color: #00007B; white-space: nowrap; padding-right: 4px; }
+    .forecast-table tbody td.fc-rank-pending { color: #999; font-style: italic; text-align: right; padding-right: 10px; }
+    .forecast-table tbody td.fc-title-pending { font-weight: bold; color: #555; white-space: nowrap; }
+    .forecast-table tbody td.fc-gross-pending { text-align: right; color: #999; white-space: nowrap; padding-right: 4px; font-style: italic; }
+
+    /* Pending note below table */
+    .forecast-table-note {
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+      font-size: 11pt;
+      color: #555;
+      text-align: center;
+      margin-top: 8px;
     }
 
   </style>
@@ -177,8 +223,8 @@
       <span class="nav-banner">CONTENTS</span>
       <ul>
         <li><a href="predictions.html">PREDICTIONS</a></li>
-        <li><a href="analysis.html">ANALYSIS</a></li>
-        <li class="active"><a href="features.html">FEATURES</a></li>
+        <li class="active"><a href="analysis.html">ANALYSIS</a></li>
+        <li><a href="features.html">FEATURES</a></li>
         <li><a href="releases.html">RELEASE SCHEDULE</a></li>
         <li><a href="showdowns.html">SHOWDOWNS</a></li>
         <li class="derby"><a href="derby.html">THE DERBY</a></li>
@@ -191,16 +237,17 @@
   <main class="main-content">
     <div class="article-wrap">
 
+      <!-- Section header -->
       <div class="article-section-header">
-        <a href="features.html">FEATURE</a>
+        <a href="forecast.html">FORECAST</a>
       </div>
       <div class="article-section-bar"></div>
 
-      <h1 class="article-headline">&lsquo;Michael&rsquo; to Dethrone &lsquo;Mario&rsquo; as Box Office King</h1>
-      <p class="article-byline-name">by Box Office Jedi</p>
+      <h1 class="article-headline">FORECAST: &lsquo;Michael&rsquo; to Dethrone &lsquo;Mario&rsquo; as Box Office King</h1>
+      <p class="article-byline-name">by Box Office Jedi staff</p>
       <span class="article-byline-date">Thursday, April 23, 2026</span>
 
-      <div class="article-body clearfix">
+      <div class="article-body">
 
         <p class="drop-cap">Angels are back this weekend and it feels more than divine. It&rsquo;s been exactly 30 years since John Travolta&rsquo;s <a href="#" class="film-link">Michael</a> was released in cinemas, going on to make $95.3 million at the domestic box office&mdash;$240 million adjusted to 2026, more than <a href="#" class="film-link">Captain America: Brave New World</a> made last year.</p>
 
@@ -216,7 +263,65 @@
 
         <p>Summer starts next weekend with a bang. Check out our <a href="#" class="ext-link">Summer Preview</a> here.</p>
 
-        <p>For our full weekend predictions, head to the <a href="predictions.html" class="ext-link">Predictions page</a>.</p>
+        <p>Our official predictions are below:</p>
+
+        <div class="forecast-table-wrap">
+          <table class="forecast-table">
+            <tbody>
+              <tr>
+                <td class="fc-rank">1</td>
+                <td class="fc-title">Michael</td>
+                <td class="fc-gross">$58.5M</td>
+              </tr>
+              <tr>
+                <td class="fc-rank">2</td>
+                <td class="fc-title">The Super Mario Galaxy Movie</td>
+                <td class="fc-gross">$19.0M</td>
+              </tr>
+              <tr>
+                <td class="fc-rank">3</td>
+                <td class="fc-title">Project Hail Mary</td>
+                <td class="fc-gross">$12.6M</td>
+              </tr>
+              <tr>
+                <td class="fc-rank">4</td>
+                <td class="fc-title">Lee Cronin&#8217;s The Mummy</td>
+                <td class="fc-gross">$5.3M</td>
+              </tr>
+              <tr>
+                <td class="fc-rank">5</td>
+                <td class="fc-title">The Drama</td>
+                <td class="fc-gross">$2.9M</td>
+              </tr>
+              <tr>
+                <td class="fc-rank">6</td>
+                <td class="fc-title">You, Me &amp; Tuscany</td>
+                <td class="fc-gross">$2.2M</td>
+              </tr>
+              <tr>
+                <td class="fc-rank">7</td>
+                <td class="fc-title">Hoppers</td>
+                <td class="fc-gross">$2.1M</td>
+              </tr>
+              <tr>
+                <td class="fc-rank">8</td>
+                <td class="fc-title">Normal</td>
+                <td class="fc-gross">$1.2M</td>
+              </tr>
+              <tr>
+                <td class="fc-rank-pending">9</td>
+                <td class="fc-title-pending">Mother Mary</td>
+                <td class="fc-gross-pending">&mdash;</td>
+              </tr>
+              <tr>
+                <td class="fc-rank-pending">10</td>
+                <td class="fc-title-pending">BTS</td>
+                <td class="fc-gross-pending">&mdash;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="forecast-table-note">Awaiting final theater counts for <em>Mother Mary</em> and <em>BTS</em>.</p>
 
       </div><!-- /article-body -->
     </div><!-- /article-wrap -->
@@ -224,29 +329,24 @@
 
 
   <aside class="right-sidebar">
-
     <div class="widget">
-      <div class="widget-header">FEATURES</div>
-      <div class="widget-body">
-        <p><a href="features.html"><strong>Features Index &gt;</strong></a></p>
+      <div class="widget-header" style="background:#7F170E;">DERBY GAME</div>
+      <div class="widget-body" style="background:#e8f4fd;">
+        <p>Make your own predictions. <a href="derby.html"><strong>Play now &gt;</strong></a></p>
       </div>
     </div>
-
-    <div class="widget">
-      <div class="widget-header">PREDICTIONS</div>
-      <div class="widget-body">
-        <p>This weekend&rsquo;s picks. <a href="predictions.html"><strong>Read &gt;</strong></a></p>
-      </div>
-    </div>
-
     <div class="widget">
       <div class="widget-header">WEEKEND CHART</div>
       <div class="widget-body">
-        <p><a href="weekend.html"><strong>All Weekends</strong></a><br>
-        <a href="weekend-chart.html">Latest Chart</a></p>
+        <p>See the latest numbers. <a href="weekend-chart.html"><strong>View chart &gt;</strong></a></p>
       </div>
     </div>
-
+    <div class="widget">
+      <div class="widget-header">MOVIE NEWS</div>
+      <div class="widget-body">
+        <p>Weekend roundups &amp; analysis. <a href="news.html"><strong>Read &gt;</strong></a></p>
+      </div>
+    </div>
   </aside>
 
 </div><!-- /page-wrapper -->
@@ -254,14 +354,11 @@
 
 <footer class="site-footer">
   Box Office Jedi &copy; <span id="footer-year">2026</span>
-  <span class="footer-tagline">&ldquo;Serving your box office needs since 2026.&rdquo;</span>
+  <span class="footer-tagline">"Serving your box office needs since 2026."</span>
   <div style="margin-top:8px;">
-    <a href="https://www.netflix.com" target="_blank" rel="noopener">
-      <img src="assets/images/free-dvd-rentals.gif" alt="Free DVD Rentals" style="display:inline-block;height:auto;">
-    </a>
+    <img src="assets/images/flag_sm_anim.gif" alt="American flag" style="display:inline-block;height:auto;">
   </div>
 </footer>
-
 
 <script>
   document.getElementById('footer-year').textContent = new Date().getFullYear();
