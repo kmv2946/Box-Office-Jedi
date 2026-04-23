@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 Summer Preview — Box Office Jedi</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+
+    .article-wrap {
+      padding: 0;
+    }
+
+    /* FEATURE section bar */
+    .article-section-header {
+      padding: 4px 10px 2px;
+    }
+    .article-section-header a {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .article-section-header a:hover { text-decoration: underline; }
+    .article-section-bar {
+      height: 5px;
+      background: #7F170E;
+      margin-bottom: 10px;
+    }
+
+    /* Headline */
+    .article-headline {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 18pt;
+      color: #000;
+      line-height: 1.15;
+      margin: 0 10px 3px;
+    }
+
+    /* Subheadline */
+    .article-subheadline {
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+      font-size: 14pt;
+      color: #333;
+      margin: 0 10px 6px;
+    }
+
+    /* Byline */
+    .article-byline-name {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 13pt;
+      color: #000;
+      margin: 0 10px 1px;
+    }
+    .article-byline-date {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 10pt;
+      color: #000;
+      display: block;
+      margin: 0 10px 10px;
+    }
+
+    /* Body text */
+    .article-body {
+      padding: 0 10px;
+    }
+    .article-body p {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16pt;
+      line-height: 1.35;
+      color: #000;
+      margin-bottom: 10px;
+      text-align: justify;
+    }
+
+    /* Drop cap */
+    .article-body p.drop-cap::first-letter {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 4em;
+      line-height: 0.75;
+      float: left;
+      margin: 5px 3px 0 0;
+      color: #00239C;
+    }
+
+    /* Film links — first mention */
+    .article-body a.film-link {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 16pt;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .article-body a.film-link:hover { text-decoration: underline; }
+
+    /* Film subsequent mention */
+    .article-body .film {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+    }
+
+    /* External links in body */
+    .article-body a.ext-link {
+      color: #00239C;
+      text-decoration: underline;
+    }
+    .article-body a.ext-link:hover { color: #0000EE; }
+
+    /* Section break */
+    .section-break {
+      text-align: center;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16pt;
+      color: #AAAAAA;
+      letter-spacing: 6px;
+      margin: 16px 0 14px;
+    }
+
+    /* Mini-section label (Scary Movie's return, Disclosure Day, etc.) */
+    .article-body p .mini-label {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 14pt;
+      color: #000;
+    }
+
+    /* Prediction blocks — ranked list */
+    .prediction-list {
+      margin: 0 0 6px;
+      padding: 0;
+    }
+    .prediction-block {
+      border-top: 2px solid #7F170E;
+      padding: 8px 0 6px;
+      margin-bottom: 6px;
+    }
+    .prediction-block:first-child {
+      border-top: 3px double #7F170E;
+    }
+    .prediction-block:last-child {
+      border-bottom: 2px solid #7F170E;
+      margin-bottom: 14px;
+    }
+    .prediction-header {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+    }
+    .prediction-rank {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 16pt;
+      color: #7F170E;
+      min-width: 34px;
+    }
+    .prediction-title {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 15pt;
+      color: #000;
+      flex: 1;
+    }
+    .prediction-date {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 11pt;
+      color: #666;
+      white-space: nowrap;
+    }
+    .prediction-block p {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15pt;
+      line-height: 1.35;
+      color: #000;
+      margin: 0 0 8px 42px;
+      text-align: justify;
+    }
+    .prediction-picks {
+      margin: 4px 0 0 42px;
+      padding: 6px 10px;
+      background: #F4F4FE;
+      border-left: 3px solid #00239C;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11pt;
+      line-height: 1.5;
+      color: #000;
+    }
+    .prediction-picks strong {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      color: #7F170E;
+    }
+
+    /* Breakouts list */
+    .breakouts-list {
+      list-style: none;
+      margin: 0 0 14px 0;
+      padding: 10px 12px;
+      background: #F8F8F8;
+      border: 1px solid #DDDDDD;
+    }
+    .breakouts-list li {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14pt;
+      line-height: 1.4;
+      padding: 4px 0;
+      border-bottom: 1px dotted #CCCCCC;
+    }
+    .breakouts-list li:last-child { border-bottom: none; }
+    .breakouts-list .bo-title {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      color: #000;
+    }
+    .breakouts-list .bo-note {
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+      color: #444;
+    }
+
+    /* Closer */
+    .article-closer {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15pt;
+      font-style: italic;
+      color: #444;
+      text-align: center;
+      margin: 18px 0 8px;
+      padding: 10px 0;
+      border-top: 1px solid #CCCCCC;
+      border-bottom: 1px solid #CCCCCC;
+    }
+
+    /* Clearfix */
+    .clearfix::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">CONTENTS</span>
+      <ul>
+        <li><a href="predictions.html">PREDICTIONS</a></li>
+        <li><a href="analysis.html">ANALYSIS</a></li>
+        <li class="active"><a href="features.html">FEATURES</a></li>
+        <li><a href="releases.html">RELEASE SCHEDULE</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li class="derby"><a href="derby.html">THE DERBY</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+
+  <main class="main-content">
+    <div class="article-wrap">
+
+      <div class="article-section-header">
+        <a href="features.html">FEATURE</a>
+      </div>
+      <div class="article-section-bar"></div>
+
+      <h1 class="article-headline">2026 Summer Preview</h1>
+      <p class="article-subheadline">Signs, signals, and our rankings for the summer of &rsquo;26.</p>
+      <p class="article-byline-name">by Box Office Jedi</p>
+      <span class="article-byline-date">April 23, 2026</span>
+
+      <div class="article-body clearfix">
+
+        <p class="drop-cap">There&rsquo;s something about this summer that is concerning. Not in a bad way. But somewhere in the titles, it feels like there&rsquo;s a warning. They subconsciously point to a beginning or an end or both.</p>
+
+        <p>Last summer was narrative-less. <span class="film">Weapons</span>, <span class="film">F1</span>, <span class="film">Jurassic World</span>, <span class="film">Lilo and Stitch</span>. If anything, it was Warner Brothers&rsquo; last hurrah.</p>
+
+        <p>But with May approaching, we find ourselves with a sense that this could be our last hurrah &mdash; though not quite in the way that phrase usually lands. It&rsquo;s like slowly walking out to the edge of a diving board at night. The water is dark, reflecting the stars in the clear sky. You could splash, or you could fall infinitely into space.</p>
+
+        <p>A few things that feel&hellip; like something &mdash;</p>
+
+        <p><span class="mini-label">Scary Movie&rsquo;s return.</span> This feels like one of those end-of-wokeness moves we&rsquo;re seeing a lot of from Paramount lately. While somewhat reactionary, the Wayans&rsquo; return to the franchise feels like the planting of a stake. The first <span class="film">Scary Movie</span> was released in 2000, and in a way, severed &rsquo;90s horror and trends from the decade that followed.</p>
+
+        <p><span class="mini-label">Disclosure Day.</span> In a way, this feels like Spielberg&rsquo;s last film. It feels like he&rsquo;s recognized how bad all the movies he&rsquo;s made since <span class="film">Lincoln</span> have been, and he&rsquo;s trying to reconcile that while he&rsquo;s still got the chance. There are shots in the trailer that reference <span class="film">A.I.</span> and <span class="film">Minority Report</span> and <span class="film">War of the Worlds</span> and, of course, <span class="film">Close Encounters</span>. But the thing that feels most timely about the project is how its release coincides with the White House <a class="ext-link" href="https://www.usatoday.com/story/news/politics/2026/03/19/alien-gov-homeland-security-new-website/89224417007/" target="_blank" rel="noopener">purchasing the domains for alien.gov and aliens.gov</a>.</p>
+
+        <p><span class="mini-label">Spider-Man.</span> This also feels like one last stand for Marvel, and somehow a reminder of how fragmented the pandemic made reality. Some movies feel like they&rsquo;ve moved on. Other movies feel like they never made it past 2019. And a few feel perpetually stuck in that 2020&ndash;2021 chapter and don&rsquo;t know how to escape, like they got lost in one of Doctor Strange&rsquo;s dimensions. <span class="film">Spider-Man: Brand New Day</span>&rsquo;s title strikes us as ironic. It&rsquo;s a subtle attempt to reboot the Marvel franchise (at some point everyone stopped using the term &ldquo;universe&rdquo;) before the new <span class="film">Avengers</span> movie comes out this December. But what it actually feels like is a smoke signal from 2021, when the last Spider-Man came out, asking us to come back and save it. Sounds like an Avengers movie.</p>
+
+        <p><span class="mini-label">Toy Story 5</span> feels incredibly sad, too. It&rsquo;s the most nihilistic Pixar movie since <span class="film">Wall-E</span>, where the studio finally grapples with the fact that toys are no longer relevant, as we once knew them. Another smoke signal. Wonder if there&rsquo;ll be any <span class="film">Lightyear</span> jokes.</p>
+
+        <p><span class="mini-label">The Odyssey</span>, while hyped as hell, doesn&rsquo;t really feel like part of this arrangement of signs yet to be deciphered. That&rsquo;s because Christopher Nolan feels apart from anything going on in the film industry &mdash; not necessarily in a spearheading way, just&hellip; apart. If Hollywood were to evaporate at the snap of a finger, or the world were to end this summer, Christopher Nolan would still be off in some remote land making his next movie. The money will come from somewhere.</p>
+
+        <div class="section-break">* * *</div>
+
+        <p>Here&rsquo;s how we predict everything will play out.</p>
+
+        <div class="prediction-list">
+
+          <div class="prediction-block">
+            <div class="prediction-header">
+              <span class="prediction-rank">1.</span>
+              <span class="prediction-title">Spider-Man: Brand New Day</span>
+              <span class="prediction-date">July 31</span>
+            </div>
+            <p>While this already feels like a disappointment, Spider-Man remains the most reliable IP in Hollywood. It will be the highest-grossing movie of the summer by default, but with a guaranteed decline from <span class="film">Brand New Day</span>&rsquo;s 2021 predecessor, which benefited from the holiday season and the pandemic drought.</p>
+            <div class="prediction-picks">
+              <div><strong>Opening Weekend:</strong> $219 million</div>
+              <div><strong>Domestic Total:</strong> $640 million</div>
+            </div>
+          </div>
+
+          <div class="prediction-block">
+            <div class="prediction-header">
+              <span class="prediction-rank">2.</span>
+              <span class="prediction-title">Toy Story 5</span>
+              <span class="prediction-date">June 19</span>
+            </div>
+            <p><span class="film">Inside Out 2</span> was such a success because it was the first sequel to a post-millennial Pixar film, and <span class="film">Toy Story 5</span> seems to be riding on that with a hook every generation can rally behind: the exhaustion of screens. Despite the nothingness that was <span class="film">Lightyear</span>, we predict this installment will play pretty close to <span class="film">Toy Story 4</span>, if not better. It just feels like the right time &mdash; all we can really go off of for the box office lately.</p>
+            <div class="prediction-picks">
+              <div><strong>Opening Weekend:</strong> $132 million</div>
+              <div><strong>Domestic Total:</strong> $454 million</div>
+            </div>
+          </div>
+
+          <div class="prediction-block">
+            <div class="prediction-header">
+              <span class="prediction-rank">3.</span>
+              <span class="prediction-title">The Odyssey</span>
+              <span class="prediction-date">July 17</span>
+            </div>
+            <p>This feels like a bit of a Trojan horse, giving us pause on ranking it this high. By Trojan horse, we just mean the industry is hauling it in through its gates, ogling it like the second coming of <span class="film">Oppenheimer</span>, and then they open it up and <span class="film">Interstellar</span> is sitting inside. But we&rsquo;re going to play the Trojans and assume all is good. At the end of the day, it feels like an extended trailer for <span class="film">Dune 3</span>.</p>
+            <p>We&rsquo;ll note that the opening weekend will have a strict ceiling, in the way <span class="film">Avatar: The Way of Water</span> did. There are only so many IMAX showtimes, and no one is going to see <span class="film">The Odyssey</span> any other way. They&rsquo;ll wait until weekend two or three to see it in its intended format, which means a slightly lower opening and slightly better legs than usual.</p>
+            <div class="prediction-picks">
+              <div><strong>Opening Weekend:</strong> $115 million</div>
+              <div><strong>Domestic Total:</strong> $322 million</div>
+            </div>
+          </div>
+
+          <div class="prediction-block">
+            <div class="prediction-header">
+              <span class="prediction-rank">4.</span>
+              <span class="prediction-title">The Devil Wears Prada 2</span>
+              <span class="prediction-date">May 1</span>
+            </div>
+            <p>How big will this be? <span class="film">Barbie</span> feels like the ceiling, with $162 million. But we expect it to play closer to <span class="film">Wicked</span> ($112.5 million), with a lot of room to break out. This baby has really marinated.</p>
+            <div class="prediction-picks">
+              <div><strong>Opening Weekend:</strong> $121 million</div>
+              <div><strong>Domestic Total:</strong> $306 million</div>
+            </div>
+          </div>
+
+          <div class="prediction-block">
+            <div class="prediction-header">
+              <span class="prediction-rank">5.</span>
+              <span class="prediction-title">Moana</span>
+              <span class="prediction-date">July 10</span>
+            </div>
+            <p>They could&rsquo;ve waited another year or two. This is just gonna confuse kids. Didn&rsquo;t they just see this a year ago? Why is it back in theaters? Why do they look like that? And <span class="film">Moana</span>, as sunny as the franchise is, simply is not a summer franchise. <span class="film">Moana</span> is for Thanksgiving. This will do fine, but it could&rsquo;ve done better. Plus competition with <span class="film">Minions</span>.</p>
+            <div class="prediction-picks">
+              <div><strong>Opening Weekend:</strong> $92 million</div>
+              <div><strong>Domestic Total:</strong> $300 million</div>
+            </div>
+          </div>
+
+          <div class="prediction-block">
+            <div class="prediction-header">
+              <span class="prediction-rank">6.</span>
+              <span class="prediction-title">Minions &amp; Monsters</span>
+              <span class="prediction-date">July 1 (Weds)</span>
+            </div>
+            <p>This franchise is relatively consistent, and even after six installments shows no sign of dying, like the Minions themselves. That said, the totals for the six movies have followed a pattern of increase&ndash;decrease&ndash;increase&ndash;decrease (in order: $251m, $368m, $336m, $264m, $370m, $361m). Yes, they&rsquo;ve steadied over the years, but we are in a decrease year this installment, and despite the addition of monsters, we&rsquo;re sticking with the pattern. Dinosaurs didn&rsquo;t really add much to <span class="film">Ice Age</span>, after all.</p>
+            <div class="prediction-picks">
+              <div><strong>Opening Weekend:</strong> $68 million (3-day) / $115 million (5-day)</div>
+              <div><strong>Domestic Total:</strong> $276 million</div>
+            </div>
+          </div>
+
+          <div class="prediction-block">
+            <div class="prediction-header">
+              <span class="prediction-rank">7.</span>
+              <span class="prediction-title">The Mandalorian &amp; Grogu</span>
+              <span class="prediction-date">May 22</span>
+            </div>
+            <p>It&rsquo;s insane that <span class="film">The Rise of Skywalker</span> came out in 2019. It feels like a far more distant memory. If others feel that way, this could turn out well. It could also completely tank, but our instincts are telling us the ill will or ambivalence toward this franchise has worn off a little, and the degree to which this movie seems to not take itself seriously will probably do it a favor. But that also gives it a pretty low ceiling. We&rsquo;re giving it the benefit of the doubt so LucasFilm and Disney don&rsquo;t sue us over our name.</p>
+            <div class="prediction-picks">
+              <div><strong>Opening Weekend:</strong> $96 million</div>
+              <div><strong>Domestic Total:</strong> $238 million</div>
+            </div>
+          </div>
+
+          <div class="prediction-block">
+            <div class="prediction-header">
+              <span class="prediction-rank">8.</span>
+              <span class="prediction-title">Scary Movie</span>
+              <span class="prediction-date">June 5</span>
+            </div>
+            <p>There&rsquo;s an interesting parallel happening with this one. The first <span class="film">Scream</span> trilogy (<span class="film">Scream 1&ndash;3</span>) was released between 1996 and 2000. <span class="film">Scream 3</span> hit a franchise-high opening weekend with $34.7 million. <span class="film">Scary Movie</span> opened a few months later and outgrossed <span class="film">Scream 3</span> with a $42.3 million opening weekend.</p>
+            <p>This year, the same pattern has played out. The new <span class="film">Scream</span> trilogy (<span class="film">Scream 5, 6, 7</span>) was released from 2022&ndash;2026, with the latest in the franchise scoring another franchise high with $63.6 million. And again, <span class="film">Scary Movie</span> will come out a few months later. It&rsquo;s like the <span class="film">Scream</span> reboots were here solely to lead up to the new <span class="film">Scary Movie</span>.</p>
+            <p>And we expect the box office to play out accordingly. <span class="film">Scary Movie</span> (2000) opened 22% higher than <span class="film">Scream 3</span>, so we&rsquo;re predicting the same jump from <span class="film">Scream 7</span>.</p>
+            <div class="prediction-picks">
+              <div><strong>Opening Weekend:</strong> $77.5 million</div>
+              <div><strong>Domestic Total:</strong> $171.5 million</div>
+            </div>
+          </div>
+
+          <div class="prediction-block">
+            <div class="prediction-header">
+              <span class="prediction-rank">9.</span>
+              <span class="prediction-title">Disclosure Day</span>
+              <span class="prediction-date">June 12</span>
+            </div>
+            <p>This could play out terribly, but we suspect it will enter our consciousness as a return of Spielberg &mdash; someone who once played for the masses &mdash; and now, with rumored alien announcements from the government, it feels like people will be paying attention. With major goodwill from <span class="film">Project Hail Mary</span> and Artemis II, we predict space and its many mysteries will be a welcome topic this summer. The marketing campaign just needs to sing.</p>
+            <div class="prediction-picks">
+              <div><strong>Opening Weekend:</strong> $58 million</div>
+              <div><strong>Domestic Total:</strong> $155 million</div>
+            </div>
+          </div>
+
+          <div class="prediction-block">
+            <div class="prediction-header">
+              <span class="prediction-rank">10.</span>
+              <span class="prediction-title">Mortal Kombat II</span>
+              <span class="prediction-date">May 15</span>
+            </div>
+            <p>The counter-programming to <span class="film">The Devil Wears Prada 2</span>. The boys will be out in full force, having had their summer inauguration weekend stolen from them.</p>
+            <div class="prediction-picks">
+              <div><strong>Opening Weekend:</strong> $54 million</div>
+              <div><strong>Domestic Total:</strong> $107 million</div>
+            </div>
+          </div>
+
+        </div><!-- /prediction-list -->
+
+        <div class="section-break">* * *</div>
+
+        <p><span class="mini-label">Look out for possible breakouts.</span></p>
+
+        <ul class="breakouts-list">
+          <li><span class="bo-title">The End of Oak Street</span> &mdash; <span class="bo-note">could be a late summer surprise.</span></li>
+          <li><span class="bo-title">Jackass: Best and Last</span> &mdash; <span class="bo-note">it felt like <span class="film">Jackass Forever</span> could&rsquo;ve made $400 million, but it capped out at $57m. This also feels like it could do either/or.</span></li>
+          <li><span class="bo-title">Billie Eilish: Hit Me Hard and Soft &mdash; The Tour Live 3D</span> &mdash; <span class="bo-note">the real wildcard.</span></li>
+          <li><span class="bo-title">Masters of the Universe</span> &mdash; <span class="bo-note">remember when <span class="film">Pirates of the Caribbean</span> felt like a sure bomb in 2003, coming off the swashbuckling disaster <span class="film">Cutthroat Island</span> and when Disney was in a slump. You never know.</span></li>
+          <li><span class="bo-title">Ice Cream Man</span> &mdash; <span class="bo-note">this could hit just right.</span></li>
+          <li><span class="bo-title">Backrooms</span> &mdash; <span class="bo-note">probably not.</span></li>
+        </ul>
+
+        <div class="article-closer">
+          And no, we didn&rsquo;t forget to rank <span class="film">Supergirl</span>.
+        </div>
+
+      </div><!-- /article-body -->
+    </div><!-- /article-wrap -->
+  </main>
+
+
+  <aside class="right-sidebar">
+
+    <div class="widget">
+      <div class="widget-header">FEATURES</div>
+      <div class="widget-body">
+        <p><a href="features.html"><strong>Features Index &gt;</strong></a></p>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-header">THE FORECAST</div>
+      <div class="widget-body">
+        <p>This weekend&rsquo;s predictions. <a href="forecast.html"><strong>Read &gt;</strong></a></p>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-header">RELEASE SCHEDULE</div>
+      <div class="widget-body">
+        <p>See what&rsquo;s opening next. <a href="releases.html"><strong>View &gt;</strong></a></p>
+      </div>
+    </div>
+
+  </aside>
+
+</div><!-- /page-wrapper -->
+
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">&ldquo;Serving your box office needs since 2026.&rdquo;</span>
+  <div style="margin-top:8px;">
+    <img src="assets/images/flag_sm_anim.gif" alt="American flag" style="display:inline-block;height:auto;">
+  </div>
+  <div class="footer-disclaimer">
+    Box Office Jedi is an independent fan project and is not affiliated with Box Office Mojo, IMDb, Amazon, Lucasfilm, or The Walt Disney Company. All trademarks are the property of their respective owners.
+  </div>
+</footer>
+
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+</script>
+
+</body>
+</html>
