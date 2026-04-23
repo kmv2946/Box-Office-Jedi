@@ -339,12 +339,89 @@
     return Math.max(0, acc);
   }
 
+  // Normalize a title for fuzzy matching against the weekend actuals file.
+  // Lowercase, drop a leading "The ", then strip everything non-alphanumeric
+  // so punctuation / curly quotes / accents / spacing don't matter.
+  //   "Lee Cronin’s The Mummy"  → "leecroninsthemummy"
+  //   "The Exit 8"              → "exit8"
+  //   "Bus Boys" / "Busboys"    → "busboys"
+  function normTitle(s) {
+    if (!s) return '';
+    let t = String(s).toLowerCase().trim();
+    if (t.startsWith('the ')) t = t.slice(4);
+    return t.replace(/[^a-z0-9]/g, '');
+  }
+
+  // For a given weekend block in predictions.json, try to fill in actual_m /
+  // actual_total_m from data/weekends/{date_from}.json. Only runs when at
+  // least one prediction is still missing its actual — so any values you've
+  // hand-edited into predictions.json are left alone.
+  async function mergeWeekendActuals(w) {
+    if (!w.predictions || !w.predictions.length) return;
+    const hasMissing = w.predictions.some(p => p.actual_m === null || p.actual_m === undefined);
+    if (!hasMissing) return;
+
+    let wk;
+    try {
+      const r = await fetch('data/weekends/' + w.date_from + '.json', {cache:'no-store'});
+      if (!r.ok) return;
+      wk = await r.json();
+    } catch (e) { return; }
+
+    // Only trust confirmed actuals, never Sunday estimates.
+    if (wk.is_estimates) return;
+
+    const chart = wk.chart || wk.movies || wk.results || [];
+    if (!chart.length) return;
+
+    // Build normalized-title → row map, skipping scraper noise rows.
+    const byTitle = {};
+    for (const row of chart) {
+      const t = row.title || '';
+      if (/^reporting/i.test(t)) continue;
+      const k = normTitle(t);
+      if (k) byTitle[k] = row;
+    }
+
+    // Pre-compute the list of keys for prefix-fallback matching below.
+    const keys = Object.keys(byTitle);
+
+    for (const p of w.predictions) {
+      if (p.actual_m !== null && p.actual_m !== undefined) continue; // respect hand-curated values
+      const nk = normTitle(p.title);
+      if (!nk) continue;
+
+      // 1) Exact normalized match.
+      let row = byTitle[nk];
+
+      // 2) Fallback: subtitle-tolerant. The Numbers sometimes lists
+      //    "Ready or Not 2: Here I Come" while we predict just "Ready or Not 2",
+      //    so accept a chart key that starts with our normalized title
+      //    (or vice versa). Require at least 5 chars so we don't match
+      //    something like "A" or "The".
+      if (!row && nk.length >= 5) {
+        const hit = keys.find(k => k.startsWith(nk) || nk.startsWith(k));
+        if (hit) row = byTitle[hit];
+      }
+
+      if (!row) continue;
+      const wg = row.weekend_gross || 0;
+      const tg = row.total_gross   || 0;
+      if (wg > 0) p.actual_m       = Math.round(wg / 1e5) / 10;   // round to nearest 0.1M
+      if (tg > 0) p.actual_total_m = Math.round(tg / 1e5) / 10;
+    }
+  }
+
   // ── Build a single weekend section ───────────────────────────
   function buildSection(w) {
     const label = fmtDateLabel(w.date_from, w.date_to);
     const chartLink = `weekend-chart.html?date=${w.date_from}`;
     const hasAny    = w.predictions && w.predictions.length > 0;
     const hasActual = hasAny && w.predictions.some(p => p.actual_m !== null);
+    // Totals aren't always available — e.g. weekend-file totals can be zero
+    // while weekend grosses are right. Only show the total/week sub-line if
+    // we actually have a total to show.
+    const hasTotals = hasAny && w.predictions.some(p => p.actual_total_m !== null);
 
     const section = document.createElement('div');
     section.className = 'pred-section';
@@ -394,10 +471,11 @@
         ? `<span class="pred-title-theaters">(${fmtThousands(p.theaters)} theaters)</span>`
         : '';
 
-      // Only show the predicted-total / week # sub-line once we have actuals
-      // for this weekend. Before actuals come in, week numbers and rolling
-      // totals are unknown for new releases, so we hide the sub entirely.
-      const predSub = hasActual
+      // Only show the predicted-total / week # sub-line once we have totals
+      // for this weekend. If the weekend actuals file didn't include totals
+      // (scraper column quirk), we hide the sub entirely to avoid misleading
+      // "weekend-as-total" numbers.
+      const predSub = hasTotals
         ? `<span class="num-sub">${predTotalM} / ${p.weeks}</span>`
         : '';
 
@@ -411,10 +489,13 @@
       let accCell    = '';
       if (hasActual) {
         if (actualM !== null) {
+          const actualSub = (actualTotalM !== null)
+            ? `<span class="num-sub">${actualTotalM} / ${p.weeks}</span>`
+            : '';
           actualCell = `
             <td class="td-num">
               <span class="num-main v-actual">${actualM}</span>
-              <span class="num-sub">${actualTotalM} / ${p.weeks}</span>
+              ${actualSub}
             </td>`;
           accCell = `
             <td class="td-num">
@@ -469,6 +550,10 @@
 
       // Sort most recent first
       weekends.sort((a, b) => b.date_from > a.date_from ? 1 : -1);
+
+      // Auto-merge actuals from data/weekends/*.json for any weekend that's
+      // missing them. Runs in parallel, silently fails per weekend on miss.
+      await Promise.all(weekends.map(mergeWeekendActuals));
 
       weekends.forEach(w => container.appendChild(buildSection(w)));
 
