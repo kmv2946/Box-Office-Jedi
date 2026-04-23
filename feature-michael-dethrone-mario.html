@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>&lsquo;Michael&rsquo; to Dethrone &lsquo;Mario&rsquo; as Box Office King &mdash; Box Office Jedi</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+
+    .article-wrap {
+      padding: 0;
+    }
+
+    /* FEATURE section bar */
+    .article-section-header {
+      padding: 4px 10px 2px;
+    }
+    .article-section-header a {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .article-section-header a:hover { text-decoration: underline; }
+    .article-section-bar {
+      height: 5px;
+      background: #7F170E;
+      margin-bottom: 10px;
+    }
+
+    /* Headline */
+    .article-headline {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 18pt;
+      color: #000;
+      line-height: 1.15;
+      margin: 0 10px 3px;
+    }
+
+    /* Subheadline */
+    .article-subheadline {
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+      font-size: 14pt;
+      color: #333;
+      margin: 0 10px 6px;
+    }
+
+    /* Byline */
+    .article-byline-name {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 13pt;
+      color: #000;
+      margin: 0 10px 1px;
+    }
+    .article-byline-date {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 10pt;
+      color: #000;
+      display: block;
+      margin: 0 10px 10px;
+    }
+
+    /* Body text */
+    .article-body {
+      padding: 0 10px;
+    }
+    .article-body p {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16pt;
+      line-height: 1.35;
+      color: #000;
+      margin-bottom: 10px;
+      text-align: justify;
+    }
+
+    /* Drop cap */
+    .article-body p.drop-cap::first-letter {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 4em;
+      line-height: 0.75;
+      float: left;
+      margin: 5px 3px 0 0;
+      color: #00239C;
+    }
+
+    /* Film links — first mention */
+    .article-body a.film-link {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 16pt;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .article-body a.film-link:hover { text-decoration: underline; }
+
+    /* Film subsequent mention */
+    .article-body .film {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+    }
+
+    /* External links in body */
+    .article-body a.ext-link {
+      color: #00239C;
+      text-decoration: underline;
+    }
+    .article-body a.ext-link:hover { color: #0000EE; }
+
+    /* Italic */
+    .article-body em {
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+    }
+
+    /* Section break */
+    .section-break {
+      text-align: center;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16pt;
+      color: #AAAAAA;
+      letter-spacing: 6px;
+      margin: 16px 0 14px;
+    }
+
+    /* Edit note */
+    .article-body p.edit-note {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14pt;
+      color: #333;
+      font-style: italic;
+      text-align: left;
+      border-left: 3px solid #CCCCCC;
+      padding-left: 10px;
+      margin: 14px 0;
+    }
+    .article-body p.edit-note strong {
+      font-style: normal;
+      color: #990000;
+    }
+
+    /* Clearfix */
+    .clearfix::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">CONTENTS</span>
+      <ul>
+        <li><a href="predictions.html">PREDICTIONS</a></li>
+        <li><a href="analysis.html">ANALYSIS</a></li>
+        <li class="active"><a href="features.html">FEATURES</a></li>
+        <li><a href="releases.html">RELEASE SCHEDULE</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li class="derby"><a href="derby.html">THE DERBY</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+
+  <main class="main-content">
+    <div class="article-wrap">
+
+      <div class="article-section-header">
+        <a href="features.html">FEATURE</a>
+      </div>
+      <div class="article-section-bar"></div>
+
+      <h1 class="article-headline">&lsquo;Michael&rsquo; to Dethrone &lsquo;Mario&rsquo; as Box Office King</h1>
+      <p class="article-byline-name">by Box Office Jedi</p>
+      <span class="article-byline-date">Thursday, April 23, 2026</span>
+
+      <div class="article-body clearfix">
+
+        <p class="drop-cap">Angels are back this weekend and it feels more than divine. It&rsquo;s been exactly 30 years since John Travolta&rsquo;s <a href="#" class="film-link">Michael</a> was released in cinemas, going on to make $95.3 million at the domestic box office&mdash;$240 million adjusted to 2026, more than <a href="#" class="film-link">Captain America: Brave New World</a> made last year.</p>
+
+        <p>There&rsquo;s a cyclical thing in the air, with the reboot (sequel? requel?) of <span class="film">Michael</span> arriving 30 years later, and next weekend <a href="#" class="film-link">The Devil Wears Prada 2</a> landing 20 years after its predecessor. With <span class="film">Michael</span> getting a big IMAX push, it&rsquo;s being positioned as a major comeback for the IP&mdash;and, well, for John Travolta, too. He hasn&rsquo;t had a real onscreen breakout since <a href="#" class="film-link">Wild Hogs</a> in 2007.</p>
+
+        <p>The bigger question than whether Travolta can still draw a crowd is whether religious-adjacent blockbusters still resonate. Things were different in the 90s, when Christianity was just a given, something the public breathed like air, and movies about angels or some strain of divinity were all the rage: <a href="#" class="film-link">City of Angels</a>, <a href="#" class="film-link">The Preacher&rsquo;s Wife</a>, <a href="#" class="film-link">Angels in the Outfield</a>, <a href="#" class="film-link">Dear God</a>, <a href="#" class="film-link">Holy Man</a>&mdash;where Eddie Murphy turns the Home Shopping Network into a religious experience. Even the summer blockbuster <a href="#" class="film-link">Deep Impact</a> features a monologue from Morgan Freeman, playing the president of the United States, who begins his address to the nation with, &ldquo;I believe in God&hellip;&rdquo;</p>
+
+        <p class="edit-note"><strong>EDIT:</strong> <span class="film">Michael</span> is an American biographical film about Michael Jackson, directed by Antoine Fuqua and starring Jaafar Jackson, Michael&rsquo;s real-life nephew.</p>
+
+        <p>Its comps are all over the place. The most recent is <a href="#" class="film-link">Elvis</a>, which opened to $31.2 million in 2022 but multiplied beautifully to a $151 million domestic total. But <span class="film">Elvis</span> wasn&rsquo;t positioned as an IMAX release (<a href="#" class="film-link">Top Gun: Maverick</a> still held onto most of those screens). A closer comp might be <a href="#" class="film-link">Bohemian Rhapsody</a>, which opened to $51 million and totaled $216.7 million domestically&mdash;and whose international tripled its domestic gross, nearly earning it a rare $1 billion worldwide total. We expect <span class="film">Michael</span> to dominate overseas in the same way. How well it&rsquo;ll do here is still kind of blurry. Projections are calling for $65&ndash;85 million this weekend, but we&rsquo;re sensing a little lower, for whatever reason. <a href="#" class="film-link">Straight Outta Compton</a> holds the record for biggest opening for a musical biopic with $60.2 million in 2015, so that&rsquo;s on the line.</p>
+
+        <p>Expect <a href="#" class="film-link">Lee Cronin&rsquo;s The Mummy</a> to fall hard in its second weekend. <a href="#" class="film-link">Super Mario Galaxy</a> continues to trail its predecessor by more and more, despite holding a little better than estimates suggested last weekend, and <a href="#" class="film-link">Project Hail Mary</a> loses its premium format screens to <span class="film">Michael</span>, so expect a bigger dip than usual&mdash;though that film feels like it&rsquo;s operating on its own intergalactic plane, and it&rsquo;ll have another soft landing.</p>
+
+        <p>Summer starts next weekend with a bang. Check out our <a href="#" class="ext-link">Summer Preview</a> here.</p>
+
+        <p>For our full weekend predictions, head to the <a href="predictions.html" class="ext-link">Predictions page</a>.</p>
+
+      </div><!-- /article-body -->
+    </div><!-- /article-wrap -->
+  </main>
+
+
+  <aside class="right-sidebar">
+
+    <div class="widget">
+      <div class="widget-header">FEATURES</div>
+      <div class="widget-body">
+        <p><a href="features.html"><strong>Features Index &gt;</strong></a></p>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-header">PREDICTIONS</div>
+      <div class="widget-body">
+        <p>This weekend&rsquo;s picks. <a href="predictions.html"><strong>Read &gt;</strong></a></p>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-header">WEEKEND CHART</div>
+      <div class="widget-body">
+        <p><a href="weekend.html"><strong>All Weekends</strong></a><br>
+        <a href="weekend-chart.html">Latest Chart</a></p>
+      </div>
+    </div>
+
+  </aside>
+
+</div><!-- /page-wrapper -->
+
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">&ldquo;Serving your box office needs since 2026.&rdquo;</span>
+  <div style="margin-top:8px;">
+    <a href="https://www.netflix.com" target="_blank" rel="noopener">
+      <img src="assets/images/free-dvd-rentals.gif" alt="Free DVD Rentals" style="display:inline-block;height:auto;">
+    </a>
+  </div>
+</footer>
+
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+</script>
+
+</body>
+</html>
