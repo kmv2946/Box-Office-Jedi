@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2026 Summer Preview — Box Office Jedi</title>
+  <title>2026 Summer Forecast — Box Office Jedi</title>
   <link rel="stylesheet" href="assets/css/styles.css">
   <style>
 
@@ -105,12 +105,47 @@
       font-weight: bold;
     }
 
-    /* External links in body */
-    .article-body a.ext-link {
+    /* External links in body — keep them inline-sized, not bumped up to film-link size */
+    .article-body p a.ext-link {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      font-size: inherit;
       color: #00239C;
       text-decoration: underline;
     }
-    .article-body a.ext-link:hover { color: #0000EE; }
+    .article-body p a.ext-link:hover { color: #0000EE; }
+
+    /* Hero image (top of article) */
+    .article-hero {
+      width: 100%;
+      margin: 0 0 14px;
+      display: block;
+    }
+    .article-hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Inline full-width image used in place of a section break */
+    .article-inline-img {
+      width: 100%;
+      margin: 14px 0;
+      display: block;
+    }
+    .article-inline-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .article-inline-img .img-caption {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 10px;
+      color: #333;
+      text-align: center;
+      background: #EEEEEE;
+      padding: 3px 4px;
+    }
 
     /* Section break */
     .section-break {
@@ -224,8 +259,8 @@
       <span class="nav-banner">CONTENTS</span>
       <ul>
         <li><a href="predictions.html">PREDICTIONS</a></li>
-        <li><a href="analysis.html">ANALYSIS</a></li>
-        <li class="active"><a href="features.html">FEATURES</a></li>
+        <li class="active"><a href="analysis.html">ANALYSIS</a></li>
+        <li><a href="features.html">FEATURES</a></li>
         <li><a href="releases.html">RELEASE SCHEDULE</a></li>
         <li><a href="showdowns.html">SHOWDOWNS</a></li>
         <li><a href="about.html">ABOUT</a></li>
@@ -240,16 +275,20 @@
     <div class="article-wrap">
 
       <div class="article-section-header">
-        <a href="features.html">FEATURE</a>
+        <a href="analysis.html">ANALYSIS</a>
       </div>
       <div class="article-section-bar"></div>
 
-      <h1 class="article-headline">2026 Summer Preview</h1>
+      <h1 class="article-headline">2026 Summer Forecast</h1>
       <p class="article-subheadline">Signs, signals, and our rankings for the summer of &rsquo;26.</p>
       <p class="article-byline-name">by Box Office Jedi</p>
       <span class="article-byline-date">April 22, 2026</span>
 
       <div class="article-body clearfix">
+
+        <div class="article-hero">
+          <img src="assets/images/feature-summer-preview.png" alt="2026 Summer Forecast">
+        </div>
 
         <p class="drop-cap">There&rsquo;s something about this summer that is concerning. Not in a bad way. But somewhere in this lineup, it feels like there&rsquo;s a warning. They subconsciously point to a beginning or an end or both.</p>
 
@@ -263,13 +302,15 @@
 
         <p><a href="#" class="film-link">Disclosure Day</a>. In a way, this feels like Spielberg&rsquo;s last film. It feels like he&rsquo;s recognized how bad all the movies he&rsquo;s made since <a href="#" class="film-link">Lincoln</a> have been, and he&rsquo;s trying to reconcile that while he&rsquo;s still got the chance. There are shots in the trailer that reference <a href="#" class="film-link">A.I.</a> and <a href="#" class="film-link">Minority Report</a> and <a href="#" class="film-link">War of the Worlds</a> and, of course, <a href="#" class="film-link">Close Encounters</a>. But the thing that feels most timely about the project is how its release coincides with the White House <a class="ext-link" href="https://www.usatoday.com/story/news/politics/2026/03/19/alien-gov-homeland-security-new-website/89224417007/" target="_blank" rel="noopener">purchasing the domains for alien.gov and aliens.gov</a>.</p>
 
-        <p>Spider-Man. This also feels like one last stand for Marvel, and somehow a reminder of how fragmented the pandemic made reality. Some movies feel like they&rsquo;ve moved on. Other movies feel like they never made it past 2019. And a few feel perpetually stuck in that 2020&ndash;2021 chapter and don&rsquo;t know how to escape, like they got lost in one of Doctor Strange&rsquo;s dimensions. <a href="#" class="film-link">Spider-Man: Brand New Day</a>&rsquo;s title strikes us as ironic. It&rsquo;s a subtle attempt to reboot the Marvel franchise (at some point everyone stopped using the term &ldquo;universe&rdquo;) before the new <a href="#" class="film-link">Avengers</a> movie comes out this December. But what it actually feels like is a smoke signal from 2021, when the last Spider-Man came out, asking us to come back and save it. Sounds like an <span class="film">Avengers</span> movie.</p>
+        <p><strong>Spider-Man.</strong> This also feels like one last stand for Marvel, and somehow a reminder of how fragmented the pandemic made reality. Some movies feel like they&rsquo;ve moved on. Other movies feel like they never made it past 2019. And a few feel perpetually stuck in that 2020&ndash;2021 chapter and don&rsquo;t know how to escape, like they got lost in one of Doctor Strange&rsquo;s dimensions. <a href="#" class="film-link">Spider-Man: Brand New Day</a>&rsquo;s title strikes us as ironic. It&rsquo;s a subtle attempt to reboot the Marvel franchise (at some point everyone stopped using the term &ldquo;universe&rdquo;) before the new <a href="#" class="film-link">Avengers</a> movie comes out this December. But what it actually feels like is a smoke signal from 2021, when the last Spider-Man came out, asking us to come back and save it. Sounds like an <span class="film">Avengers</span> movie.</p>
 
         <p><a href="#" class="film-link">Toy Story 5</a> feels incredibly sad, too. It&rsquo;s the most nihilistic Pixar movie since <a href="#" class="film-link">Wall-E</a>, where the studio finally grapples with the fact that toys are no longer relevant, as we once knew them. Another smoke signal. Wonder if there&rsquo;ll be any <a href="#" class="film-link">Lightyear</a> jokes.</p>
 
         <p><a href="#" class="film-link">The Odyssey</a>, while hyped as hell, doesn&rsquo;t really feel like part of this arrangement of signs yet to be deciphered. That&rsquo;s because Christopher Nolan feels apart from anything going on in the film industry &mdash; not necessarily in a spearheading way, just&hellip; apart. If Hollywood were to evaporate at the snap of a finger, or the world were to end this summer, Christopher Nolan would still be off in some remote land making his next movie. The money will come from somewhere.</p>
 
-        <div class="section-break">* * *</div>
+        <div class="article-inline-img">
+          <img src="assets/images/feature-summer-preview-inline.jpg" alt="Scary Movie meets The Odyssey">
+        </div>
 
         <p>Here&rsquo;s how we predict everything will play out.</p>
 

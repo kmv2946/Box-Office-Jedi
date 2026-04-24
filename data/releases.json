@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-18",
+  "updated": "2026-04-23",
   "months": {
     "2026-01": {
       "name": "January 2026",
@@ -374,7 +374,7 @@
           "date": "2026-04-17",
           "releases": [
             {
-              "title": "Lee Cronin’s The Mummy",
+              "title": "Lee Cronin\u2019s The Mummy",
               "distributor": "Universal Pictures",
               "release": "Wide",
               "is_wide": true,
@@ -395,20 +395,28 @@
           "date": "2026-04-24",
           "releases": [
             {
-              "title": "[Movie Title]",
-              "distributor": "[Studio]",
+              "title": "Michael",
+              "distributor": "Lionsgate",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": 3955,
+              "genre": "Biography / Drama / History / Music"
             },
             {
-              "title": "[Limited Title]",
-              "distributor": "[Studio]",
+              "title": "Mother Mary (expansion)",
+              "distributor": "A24",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null,
-              "genre": "Genre"
+              "theaters": 1103,
+              "genre": "Drama / Music / Thriller"
+            },
+            {
+              "title": "Fuze",
+              "distributor": "Roadside Attractions",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": 1164,
+              "genre": "Crime / Thriller"
             }
           ]
         }
@@ -459,7 +467,7 @@
           "date": "2026-05-08",
           "releases": [
             {
-              "title": "Billie Eilish: Hit Me Hard and Soft — The Tour Live 3D",
+              "title": "Billie Eilish: Hit Me Hard and Soft \u2014 The Tour Live 3D",
               "genre": "Documentary / Music",
               "distributor": "Paramount Pictures",
               "release": "Wide",

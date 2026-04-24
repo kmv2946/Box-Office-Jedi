@@ -335,7 +335,7 @@
   // Both sections are populated from the data files, so they auto-update as
   // soon as a new day/weekend/feature/analysis/prediction/milestone is committed.
 
-  const MAX_UPDATES = 20;
+  const MAX_UPDATES = 25;
 
   // Parse "YYYY-MM-DD" safely as local date (avoid UTC shift)
   function parseISODate(iso) {
@@ -442,8 +442,8 @@
       const byline = 'by Box Office Jedi staff';
       const divider = (i < top.length - 1) ? '<div class="story-divider"></div>' : '';
 
-      if (i === 0) {
-        // Lead story: photo + headline + byline + teaser
+      // Top TWO stories get a photo (if they have one); the 3rd stays compact.
+      if (i <= 1) {
         const imgTag = a.image
           ? '<img class="top-story-photo" src="' + escapeHtmlBasic(a.image) + '" alt="' + title + '">'
           : '';
@@ -458,7 +458,7 @@
         );
       }
 
-      // Stories 2 & 3: compact
+      // Story #3: compact, no photo
       return (
         '<div class="top-story-secondary">' +
           '<div class="top-story-headline"><a href="' + url + '">' + title + '</a></div>' +

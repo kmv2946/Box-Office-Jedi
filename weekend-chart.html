@@ -311,9 +311,9 @@
       <span class="wc-topnav-sep">|</span>
       <a href="about.html">ABOUT</a>
       <span class="wc-topnav-sep">|</span>
-      <a href="forecast.html">THE FORECAST</a>
+      <a href="analysis.html">ANALYSIS</a>
       <span class="wc-topnav-sep">|</span>
-      <a href="news.html">MOVIE NEWS</a>
+      <a href="features.html">FEATURES</a>
       <span class="wc-topnav-sep">|</span>
       <a href="derby.html">DERBY GAME</a>
     </div>
@@ -487,20 +487,36 @@
 
     // Prev / Next weekend navigation — use date_from (Friday) to match filenames
     const navIso = data.date_from || data.date;
+    const prevEl = document.getElementById('wc-nav-prev');
+    const nextEl = document.getElementById('wc-nav-next');
+    // Default to disabled; we'll re-enable when we have a valid neighbor.
+    if (prevEl) { prevEl.classList.add('disabled'); prevEl.removeAttribute('href'); }
+    if (nextEl) { nextEl.classList.add('disabled'); nextEl.removeAttribute('href'); }
+
     if (allDates && allDates.length && navIso) {
       const sortedDates = [...allDates].sort();
-      const currentIdx  = sortedDates.indexOf(navIso);
+      let currentIdx = sortedDates.indexOf(navIso);
 
-      const prevEl = document.getElementById('wc-nav-prev');
-      const nextEl = document.getElementById('wc-nav-next');
+      // If this exact date isn't indexed, find where it would slot in so the
+      // neighbors still work (prevents pre-index weekends from jumping to the
+      // first indexed date, or losing their Last Weekend link).
+      let prevDate = null, nextDate = null;
+      if (currentIdx >= 0) {
+        if (currentIdx > 0) prevDate = sortedDates[currentIdx - 1];
+        if (currentIdx < sortedDates.length - 1) nextDate = sortedDates[currentIdx + 1];
+      } else {
+        // binary-search-ish scan for neighbors around navIso
+        for (let i = 0; i < sortedDates.length; i++) {
+          if (sortedDates[i] < navIso) prevDate = sortedDates[i];
+          else if (sortedDates[i] > navIso) { nextDate = sortedDates[i]; break; }
+        }
+      }
 
-      if (currentIdx > 0) {
-        const prevDate = sortedDates[currentIdx - 1];
+      if (prevEl && prevDate) {
         prevEl.href = 'weekend-chart.html?date=' + prevDate;
         prevEl.classList.remove('disabled');
       }
-      if (currentIdx < sortedDates.length - 1) {
-        const nextDate = sortedDates[currentIdx + 1];
+      if (nextEl && nextDate) {
         nextEl.href = 'weekend-chart.html?date=' + nextDate;
         nextEl.classList.remove('disabled');
       }
@@ -510,7 +526,8 @@
       document.getElementById('wc-estimates-note').style.display = 'block';
     }
 
-    // Story block — always visible; update content if data has a story
+    // Story block — if the weekend data has an inline story, use it; otherwise
+    // pull the latest roundup from analysis.json automatically.
     if (data.story && (data.story.headline || data.story.teaser)) {
       const s = data.story;
       if (s.headline) document.getElementById('wc-story-headline').textContent = s.headline;
@@ -524,6 +541,8 @@
         wrap.classList.remove('wc-story-photo-placeholder');
         wrap.classList.add('wc-story-photo');
       }
+    } else {
+      loadLatestRoundup();
     }
 
     // Chart rows
@@ -561,6 +580,36 @@
       `;
       tbody.appendChild(tr);
     });
+  }
+
+  // ── Latest roundup loader — pulls the most recent analysis.json entry
+  //    with type === "roundup" and puts it in the top story block.
+  async function loadLatestRoundup() {
+    try {
+      const r = await fetch('data/analysis.json', { cache: 'no-store' });
+      if (!r.ok) return;
+      const j = await r.json();
+      const roundups = (j.articles || [])
+        .filter(a => a.type === 'roundup')
+        .sort((a, b) => (b.date > a.date ? 1 : -1));
+      if (!roundups.length) return;
+      const latest = roundups[0];
+      const headEl = document.getElementById('wc-story-headline');
+      const linkEl = document.getElementById('wc-story-link');
+      const teaseEl = document.getElementById('wc-story-teaser');
+      if (headEl && latest.title)  headEl.textContent = latest.title;
+      if (linkEl && latest.url)    linkEl.href = latest.url;
+      if (teaseEl && latest.teaser) teaseEl.textContent = latest.teaser;
+      if (latest.image) {
+        const img = document.createElement('img');
+        img.src = latest.image; img.className = 'wc-story-photo';
+        img.alt = latest.title || 'Weekend roundup';
+        const wrap = document.getElementById('wc-story-photo-wrap');
+        wrap.innerHTML = ''; wrap.appendChild(img);
+        wrap.classList.remove('wc-story-photo-placeholder');
+        wrap.classList.add('wc-story-photo');
+      }
+    } catch(e) { /* keep fallback headline */ }
   }
 
   // ── Studio abbreviator ──────────────────────────────────────────
