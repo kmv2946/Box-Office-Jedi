@@ -1053,3 +1053,104 @@ img {
   margin-top: 4px;
   color: #222;
 }
+
+
+/* ============================================================
+   RESPONSIVE OVERRIDES — Derby form pages only
+   ------------------------------------------------------------
+   Most BOJ pages use a fixed-width purist viewport (1080px) so
+   the desktop layout simply scales-to-fit on phones. The Derby
+   form pages opt in to a real responsive layout because they
+   need touch-friendly inputs. Activate by adding
+       <body class="is-responsive">
+   on those specific pages.
+   ============================================================ */
+@media (max-width: 768px) {
+  body.is-responsive .page-wrapper {
+    flex-direction: column;
+    max-width: 100%;
+  }
+
+  /* Sidebar: collapse to a top strip ──────────────────────── */
+  body.is-responsive .sidebar {
+    width: 100%;
+    max-height: none;
+    overflow-y: visible;
+    position: relative;
+    top: auto;
+    border-right: none;
+    border-bottom: 2px solid #7F170E;
+  }
+  body.is-responsive .sidebar-search {
+    padding: 6px 8px;
+  }
+  body.is-responsive .sidebar-search input[type="text"] {
+    font-size: 16px;   /* prevents iOS auto-zoom on focus */
+    padding: 8px 10px;
+    min-height: 40px;
+  }
+  body.is-responsive .sidebar-search button {
+    padding: 8px 14px;
+    font-size: 13px;
+    min-height: 40px;
+  }
+  /* Stack each nav <ul> as a 2-column grid to save vertical space */
+  body.is-responsive .sidebar-nav ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  body.is-responsive .sidebar-nav ul li a {
+    padding: 10px 8px;
+    font-size: 13px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+  }
+  body.is-responsive .sidebar-home {
+    padding: 12px 10px;
+    font-size: 18px;
+  }
+
+  /* Main content: full width with a bit of breathing room ── */
+  body.is-responsive .main-content {
+    width: 100%;
+    min-width: 0;
+    padding: 0 6px;
+  }
+
+  /* Right sidebar (auxiliary widgets) — hide on phones ────── */
+  body.is-responsive .right-sidebar {
+    display: none;
+  }
+
+  /* Forms: touch-friendly sizing (font-size 16px is the iOS
+     focus-zoom threshold — anything smaller triggers zoom) ── */
+  body.is-responsive input[type="text"],
+  body.is-responsive input[type="email"],
+  body.is-responsive input[type="number"],
+  body.is-responsive input[type="tel"],
+  body.is-responsive textarea,
+  body.is-responsive select {
+    font-size: 16px;
+    padding: 10px 12px;
+    min-height: 44px;
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+  body.is-responsive button,
+  body.is-responsive input[type="submit"],
+  body.is-responsive input[type="button"] {
+    min-height: 44px;
+    padding: 10px 18px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  /* Site footer: more padding on phones */
+  body.is-responsive .site-footer {
+    padding: 18px 14px 16px;
+  }
+  body.is-responsive .site-footer .footer-disclaimer {
+    max-width: 100%;
+  }
+}
