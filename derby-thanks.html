@@ -46,6 +46,10 @@
       <span class="logo-top">BOX OFFICE</span>
       <span class="logo-bottom">JEDI</span>
     </a>
+    <button class="mobile-menu-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span class="menu-label">Menu</span>
+      <span class="menu-icon">&#9776;</span>
+    </button>
     <div class="sidebar-nav">
       <span class="nav-banner">BOX OFFICE</span>
       <ul>
@@ -99,6 +103,14 @@
 
 <script>
   document.getElementById('footer-year').textContent = new Date().getFullYear();
+  document.querySelectorAll('.mobile-menu-toggle').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var sb = btn.closest('.sidebar');
+      if (!sb) return;
+      var open = sb.classList.toggle('nav-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
 </script>
 
 </body>

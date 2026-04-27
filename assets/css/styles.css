@@ -1063,15 +1063,21 @@ img {
    form pages opt in to a real responsive layout because they
    need touch-friendly inputs. Activate by adding
        <body class="is-responsive">
-   on those specific pages.
+   on those specific pages, and put a
+       <button class="mobile-menu-toggle">…</button>
+   inside the sidebar (after the logo) for the hamburger.
    ============================================================ */
+
+/* Hamburger button is hidden on desktop. */
+body.is-responsive .mobile-menu-toggle { display: none; }
+
 @media (max-width: 768px) {
   body.is-responsive .page-wrapper {
     flex-direction: column;
     max-width: 100%;
   }
 
-  /* Sidebar: collapse to a top strip ──────────────────────── */
+  /* Sidebar: collapse to a thin strip on phones ───────────── */
   body.is-responsive .sidebar {
     width: 100%;
     max-height: none;
@@ -1081,9 +1087,51 @@ img {
     border-right: none;
     border-bottom: 2px solid #7F170E;
   }
-  body.is-responsive .sidebar-search {
-    padding: 6px 8px;
+
+  /* Hamburger button shown on mobile (Derby pages only). */
+  body.is-responsive .mobile-menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: #DCDCDC;
+    border: none;
+    border-bottom: 1px solid #ffffff;
+    padding: 10px 14px;
+    cursor: pointer;
+    user-select: none;
+    font-family: Verdana, Geneva, sans-serif;
+    min-height: 44px;
   }
+  body.is-responsive .mobile-menu-toggle .menu-label {
+    font-weight: bold;
+    font-size: 13px;
+    color: #00239C;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  body.is-responsive .mobile-menu-toggle .menu-icon {
+    font-family: monospace;
+    font-size: 20px;
+    color: #7F170E;
+    line-height: 1;
+  }
+  body.is-responsive .mobile-menu-toggle:hover {
+    background: #cccccc;
+  }
+
+  /* By default, hide the search + nav + HOME link on mobile.
+     They re-appear when .sidebar has .nav-open. */
+  body.is-responsive .sidebar-search,
+  body.is-responsive .sidebar-nav,
+  body.is-responsive .sidebar-home {
+    display: none;
+  }
+  body.is-responsive .sidebar.nav-open .sidebar-search { display: flex; }
+  body.is-responsive .sidebar.nav-open .sidebar-nav { display: block; }
+  body.is-responsive .sidebar.nav-open .sidebar-home { display: block; }
+
+  body.is-responsive .sidebar-search { padding: 6px 8px; }
   body.is-responsive .sidebar-search input[type="text"] {
     font-size: 16px;   /* prevents iOS auto-zoom on focus */
     padding: 8px 10px;
@@ -1094,10 +1142,15 @@ img {
     font-size: 13px;
     min-height: 40px;
   }
-  /* Stack each nav <ul> as a 2-column grid to save vertical space */
+  /* Stack each nav <ul> as a 2-column grid to save vertical space.
+     If the last item is alone in the left column (odd count), let
+     it span the full row so we don't get an empty cell beside it. */
   body.is-responsive .sidebar-nav ul {
     display: grid;
     grid-template-columns: 1fr 1fr;
+  }
+  body.is-responsive .sidebar-nav ul li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
   }
   body.is-responsive .sidebar-nav ul li a {
     padding: 10px 8px;

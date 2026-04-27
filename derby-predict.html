@@ -155,6 +155,10 @@
       <span class="logo-top">BOX OFFICE</span>
       <span class="logo-bottom">JEDI</span>
     </a>
+    <button class="mobile-menu-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span class="menu-label">Menu</span>
+      <span class="menu-icon">&#9776;</span>
+    </button>
     <div class="sidebar-search">
       <input type="text" placeholder="Search..." id="sidebar-search-input">
       <button type="button" onclick="doSearch()">Go</button>
@@ -298,6 +302,15 @@
 
 <script>
   document.getElementById('footer-year').textContent = new Date().getFullYear();
+  document.querySelectorAll('.mobile-menu-toggle').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var sb = btn.closest('.sidebar');
+      if (\!sb) return;
+      var open = sb.classList.toggle('nav-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
   function doSearch() {
     const q = document.getElementById('sidebar-search-input').value.trim();
     if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
