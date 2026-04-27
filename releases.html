@@ -395,7 +395,11 @@
   // ── Build a row + table ─────────────────────────────────────────────────
   function buildReleaseRow(r) {
     const wide = r.is_wide ? ' class="rs-wide"' : '';
-    const release = r.release || (r.theaters ? r.theaters.toLocaleString('en-US') : 'TBD');
+    // Theater count takes priority once it's confirmed. Falls back to the
+    // generic "Wide" / "Limited" label, then "TBD" if neither is known.
+    const release = r.theaters
+      ? r.theaters.toLocaleString('en-US')
+      : (r.release || 'TBD');
     const genreHtml = r.genre
       ? '<span class="rs-td-genre">' + escapeHtml(r.genre) + '</span>'
       : '';
