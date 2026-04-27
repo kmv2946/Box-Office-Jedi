@@ -216,6 +216,7 @@ img {
   background: #F0F0F0;
   white-space: nowrap;
   overflow: hidden;
+  text-align: center;
 }
 .quick-links > span.ql-label {
   font-weight: bold;
@@ -836,6 +837,115 @@ img {
 }
 .widget-body p strong {
   font-family: Verdana, Geneva, sans-serif;
+}
+
+
+/* ── Right-sidebar Release Schedule widget ──────────────── */
+.rs-widget-body {
+  padding: 0;
+}
+.rs-widget-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.rs-widget-table thead th {
+  background: #DCDCDC;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  font-size: 13px;
+  color: #000;
+  padding: 5px 8px;
+  text-align: center;
+  border-bottom: 1px solid #fff;
+}
+.rs-widget-table td {
+  padding: 5px 8px;
+  font-size: 12px;
+  border-bottom: 1px solid #e8e8e8;
+}
+.rs-widget-table tr:nth-child(odd)  td { background: #F4F4FE; }
+.rs-widget-table tr:nth-child(even) td { background: #FFFFFF; }
+.rs-widget-table td.rs-widget-title {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  text-align: left;
+}
+.rs-widget-table td.rs-widget-title a {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  color: #00239C;
+}
+.rs-widget-table td.rs-widget-theaters {
+  font-family: Tahoma, Geneva, sans-serif;
+  font-weight: normal;
+  font-size: 13px;
+  color: #000;
+  text-align: right;
+  white-space: nowrap;
+}
+.rs-widget-empty {
+  text-align: center;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 11px;
+  color: #888;
+  font-style: italic;
+  padding: 12px 8px;
+}
+.rs-widget-body .widget-more-link {
+  display: block;
+  text-align: right;
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  color: #00239C;
+  padding: 5px 8px;
+  background: #F9F9F9;
+  border-top: 1px solid #e0e0e0;
+}
+
+
+/* ── Advertisement block (right sidebar) ─────────────────
+   Distinct from .widget on purpose — Web 1.0 banner-ad look.
+   No red header, no border, just a small label + image + caption. */
+.ad-block {
+  margin: 14px 0 8px;
+  text-align: center;
+  padding: 0 4px;
+}
+.ad-label {
+  font-family: 'Times New Roman', Times, serif;
+  font-style: normal;
+  font-size: 16px;
+  color: #00239C;
+  margin-bottom: 6px;
+}
+.ad-image-link {
+  display: block;
+  font-family: inherit;
+  font-weight: normal;
+}
+.ad-image-link:hover { text-decoration: none; }
+.ad-block img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.ad-caption {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 13px;
+  color: #00239C;
+  margin-top: 6px;
+  line-height: 1.35;
+}
+.ad-caption a {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 13px;
+  color: #00239C;
 }
 
 

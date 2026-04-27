@@ -132,6 +132,7 @@
           <div class="home-poll-body" id="home-poll-body">
             <div class="poll-empty">Loading poll&hellip;</div>
           </div>
+          <a href="polls.html" class="view-chart-link">&gt; MORE POLLS</a>
         </div>
 
       </div><!-- /home-right -->
@@ -146,43 +147,34 @@
   ══════════════════════════════════════════════════════════ -->
   <aside class="right-sidebar">
 
-    <!-- Theater Counts -->
+    <!-- Release Schedule (next Friday's slate; populated dynamically) -->
     <div class="widget">
-      <div class="widget-header">THEATER COUNTS</div>
-      <div class="widget-body" id="theater-widget">
-        <div class="widget-subheader" id="theater-date">—</div>
-        <div id="theater-rows">
-          <div class="theater-row">
-            <span class="t-title">Loading...</span>
-            <span class="t-count">—</span>
-          </div>
-        </div>
-        <a href="weekend.html" class="widget-more-link">&gt; MORE COUNTS</a>
+      <div class="widget-header">RELEASE SCHEDULE</div>
+      <div class="widget-body rs-widget-body">
+        <table class="rs-widget-table" id="rs-widget-table">
+          <thead>
+            <tr>
+              <th id="rs-widget-date" class="rs-widget-date-th">&mdash;</th>
+              <th class="rs-widget-theaters-th">Theaters</th>
+            </tr>
+          </thead>
+          <tbody id="rs-widget-body">
+            <tr><td colspan="2" class="rs-widget-empty">Loading&hellip;</td></tr>
+          </tbody>
+        </table>
+        <a href="releases.html" class="widget-more-link">&gt;VIEW FULL SCHEDULE</a>
       </div>
     </div>
 
-    <!-- The Forecast promo -->
-    <div class="widget">
-      <div class="widget-header">THE FORECAST</div>
-      <div class="widget-body">
-        <p>Read this weekend's box office predictions. <a href="forecast.html"><strong>Click here &gt;</strong></a></p>
-      </div>
-    </div>
-
-    <!-- Derby promo -->
-    <div class="widget">
-      <div class="widget-header" style="background:#7F170E;">DERBY GAME</div>
-      <div class="widget-body" style="background:#e8f4fd;">
-        <p>Predict the weekend box office. Enter the <a href="derby.html"><strong>Derby Game &gt;</strong></a></p>
-      </div>
-    </div>
-
-    <!-- Newsletter -->
-    <div class="widget">
-      <div class="widget-header">NEWSLETTER</div>
-      <div class="widget-body">
-        <p>Receive box office reports by email.</p>
-        <p><a href="mailto:keatonventura@gmail.com?subject=Subscribe%20to%20Box%20Office%20Jedi"><strong>SUBSCRIBE</strong></a></p>
+    <!-- Advertisement (manually rotated every few weeks) -->
+    <div class="ad-block">
+      <div class="ad-label">Advertisement</div>
+      <a href="https://www.ebay.com/sch/i.html?_nkw=disclosure+day+poster&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&LH_TitleDesc=0&_odkw=disclosure+day+poster&_osacat=0" target="_blank" rel="noopener" class="ad-image-link">
+        <img src="assets/images/disclosure_day_ver3_xxlg.jpg" alt="Disclosure Day — In Theaters June 12">
+      </a>
+      <div class="ad-caption">In Theaters June 12th</div>
+      <div class="ad-caption">
+        <a href="https://www.ebay.com/sch/i.html?_nkw=disclosure+day+poster&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&LH_TitleDesc=0&_odkw=disclosure+day+poster&_osacat=0" target="_blank" rel="noopener">Buy Poster from Ebay.com</a>
       </div>
     </div>
 
@@ -641,11 +633,26 @@
       return;
     }
     const prior = localStorage.getItem(POLL_STORAGE_PREFIX + poll.id);
-    if (prior) {
+    const isClosed = pollIsClosed(poll);
+    if (isClosed) {
+      // Voting is over — show frozen results to everyone, no form.
+      renderPollResults(body, poll, prior, /*justVoted*/ false, /*isClosed*/ true);
+    } else if (prior) {
       renderPollResults(body, poll, prior, /*justVoted*/ false);
     } else {
       renderPollForm(body, poll);
     }
+  }
+
+  // A poll is closed when its `closes` date is past (treats `closes` as the
+  // last day voting is still open — closes:"2026-05-01" means votes accepted
+  // through end of day May 1, closed starting May 2).
+  function pollIsClosed(poll) {
+    if (!poll || !poll.closes) return false;
+    const today = new Date();
+    const [y, m, d] = poll.closes.split('-').map(Number);
+    const closeEnd = new Date(y, (m || 1) - 1, d || 1, 23, 59, 59);
+    return today > closeEnd;
   }
 
   function escapeHtml(s) {
@@ -687,7 +694,7 @@
     });
   }
 
-  function renderPollResults(body, poll, userChoice, justVoted) {
+  function renderPollResults(body, poll, userChoice, justVoted, isClosed) {
     const total = poll.options.reduce((s, o) => s + (o.votes || 0), 0);
     const rows = poll.options
       .map(o => {
@@ -702,17 +709,91 @@
             <div class="poll-bar-track"><div class="poll-bar-fill" style="width:${pct}%"></div></div>
           </li>`;
       }).join('');
-    const thanksLine = justVoted
-      ? '<span class="poll-thanks">Thanks for voting!</span>'
-      : (userChoice ? '<span class="poll-thanks">You voted.</span>' : '<span></span>');
+    let leftLine;
+    if (isClosed) {
+      leftLine = '<span class="poll-thanks">Poll closed.</span>';
+    } else if (justVoted) {
+      leftLine = '<span class="poll-thanks">Thanks for voting!</span>';
+    } else if (userChoice) {
+      leftLine = '<span class="poll-thanks">You voted.</span>';
+    } else {
+      leftLine = '<span></span>';
+    }
     body.innerHTML = `
       <div class="poll-question">${escapeHtml(poll.question)}</div>
       <ul class="poll-results">${rows}</ul>
       <div class="poll-footer">
-        ${thanksLine}
+        ${leftLine}
         <span class="poll-total-votes">${total.toLocaleString('en-US')} total votes</span>
       </div>
     `;
+  }
+
+  // ── Right-sidebar Release Schedule widget ───────────────────────────────
+  // Pulls the next upcoming Friday's slate from data/releases.json. Same
+  // fallback as the main release schedule: theater count if known,
+  // otherwise "Wide" / "Limited", otherwise "TBD".
+  async function loadReleaseScheduleWidget() {
+    const tbody = document.getElementById('rs-widget-body');
+    const dateEl = document.getElementById('rs-widget-date');
+    if (!tbody) return;
+
+    const data = await fetchJSON('data/releases.json');
+    if (!data || !data.months) {
+      tbody.innerHTML = '<tr><td colspan="2" class="rs-widget-empty">No schedule data.</td></tr>';
+      return;
+    }
+
+    // Find the next Friday on or after today.
+    const today = new Date();
+    const dow = today.getDay(); // 0 Sun ... 5 Fri
+    const daysUntilFri = (5 - dow + 7) % 7;
+    const fri = new Date(today.getFullYear(), today.getMonth(), today.getDate() + daysUntilFri);
+    const friIso = fri.getFullYear() + '-' +
+      String(fri.getMonth() + 1).padStart(2, '0') + '-' +
+      String(fri.getDate()).padStart(2, '0');
+    const monthKey = friIso.slice(0, 7);
+
+    const month = data.months[monthKey];
+    if (!month) {
+      tbody.innerHTML = '<tr><td colspan="2" class="rs-widget-empty">No releases scheduled.</td></tr>';
+      return;
+    }
+
+    // Pick the week matching this Friday; if not found, take the first week
+    // in the month whose date is >= friIso.
+    let week = (month.weeks || []).find(w => w.date === friIso)
+            || (month.weeks || []).find(w => w.date >= friIso);
+    if (!week || !(week.releases || []).length) {
+      tbody.innerHTML = '<tr><td colspan="2" class="rs-widget-empty">No releases scheduled.</td></tr>';
+      return;
+    }
+
+    // Header label (e.g. "May 1")
+    const monNames = ['Jan.','Feb.','Mar.','Apr.','May','June','July','Aug.','Sept.','Oct.','Nov.','Dec.'];
+    const wp = week.date.split('-').map(Number);
+    if (dateEl) dateEl.textContent = monNames[wp[1] - 1] + ' ' + wp[2];
+
+    // Skip placeholder rows — they look silly in a small widget.
+    const realReleases = (week.releases || []).filter(r => r.title && !/^\[/.test(r.title));
+    if (!realReleases.length) {
+      tbody.innerHTML = '<tr><td colspan="2" class="rs-widget-empty">No releases scheduled.</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = realReleases.map(r => {
+      const release = r.theaters
+        ? r.theaters.toLocaleString('en-US')
+        : (r.release || 'TBD');
+      const titleHref = 'movie.html?title=' + encodeURIComponent(r.title);
+      return (
+        '<tr>' +
+          '<td class="rs-widget-title"><a href="' + titleHref + '">' +
+            escapeHtmlBasic(r.title) + '</a></td>' +
+          '<td class="rs-widget-theaters">' + escapeHtmlBasic(release) + '</td>' +
+        '</tr>'
+      );
+    }).join('');
   }
 
   loadHomepageData();
@@ -720,6 +801,7 @@
   loadQuickLinks();
   loadLatestUpdates();
   loadTopStories();
+  loadReleaseScheduleWidget();
 </script>
 
 </body>

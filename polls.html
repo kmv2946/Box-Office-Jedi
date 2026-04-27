@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080, user-scalable=yes">
+  <title>Polls — Box Office Jedi</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+
+    /* ── Page title ──────────────────────────────────────────── */
+    .idx-page-header {
+      padding: 16px 14px 10px;
+      text-align: center;
+      border-bottom: 2px solid #990000;
+    }
+    .idx-page-title {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 28px;
+      letter-spacing: -0.5px;
+      color: #000;
+      margin: 0;
+    }
+    .idx-page-sub {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      color: #444;
+      margin-top: 4px;
+    }
+
+    /* ── Section headings (LIVE / CLOSED) ────────────────────── */
+    .polls-section-header {
+      display: table;
+      background: #7F170E;
+      color: #ffffff;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      padding: 4px 10px;
+      letter-spacing: 0.05em;
+      margin: 18px 14px 6px;
+    }
+    .polls-empty-section {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      color: #888;
+      font-style: italic;
+      margin: 0 14px 14px;
+    }
+
+    /* ── Poll card ───────────────────────────────────────────── */
+    .polls-list {
+      padding: 0 14px 16px;
+      list-style: none;
+      margin: 0;
+    }
+    .poll-card {
+      border: 1px solid #DCDCDC;
+      background: #FFFFFF;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+    }
+    .poll-card .poll-question {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #000;
+      margin: 0 0 4px;
+    }
+    .poll-card .poll-meta {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      color: #666;
+      margin: 0 0 10px;
+    }
+    .poll-card .poll-meta .meta-tag {
+      display: inline-block;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 10px;
+      color: #FFFFFF;
+      background: #7F170E;
+      padding: 1px 5px;
+      border-radius: 2px;
+      margin-right: 7px;
+      vertical-align: middle;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .poll-card .poll-meta .meta-tag.is-live  { background: #2E7D32; }
+    .poll-card .poll-meta .meta-tag.is-closed { background: #4E4E4E; }
+
+    /* Reuse existing .poll-results / .poll-bar-* styles from styles.css.
+       Just tighten margins inside the card. */
+    .poll-card .poll-results { margin-top: 4px; }
+
+    .polls-empty {
+      text-align: center;
+      padding: 40px 20px;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+      color: #888;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">CONTENTS</span>
+      <ul>
+        <li><a href="predictions.html">PREDICTIONS</a></li>
+        <li><a href="analysis.html">ANALYSIS</a></li>
+        <li><a href="features.html">FEATURES</a></li>
+        <li><a href="releases.html">RELEASE SCHEDULE</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li class="derby"><a href="derby.html">THE DERBY</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+
+  <main class="main-content">
+
+    <div class="idx-page-header">
+      <h1 class="idx-page-title">POLLS</h1>
+      <div class="idx-page-sub">Vote on what&rsquo;s next. Browse what&rsquo;s closed.</div>
+    </div>
+
+    <div id="polls-content">
+      <p class="polls-empty">Loading polls&hellip;</p>
+    </div>
+
+  </main>
+
+
+  <aside class="right-sidebar">
+
+    <div class="widget">
+      <div class="widget-header">PREDICTIONS</div>
+      <div class="widget-body">
+        <p>This weekend&rsquo;s picks. <a href="predictions.html"><strong>Read &gt;</strong></a></p>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-header">THE DERBY</div>
+      <div class="widget-body" style="background:#e8f4fd;">
+        <p>Make your own predictions. <a href="derby.html"><strong>Play now &gt;</strong></a></p>
+      </div>
+    </div>
+
+  </aside>
+
+</div><!-- /page-wrapper -->
+
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">&ldquo;Serving your box office needs since 2026.&rdquo;</span>
+  <div style="margin-top:8px;">
+    <img src="assets/images/flag_sm_anim.gif" alt="American flag" style="display:inline-block;height:auto;">
+  </div>
+  <div class="footer-disclaimer">
+    Box Office Jedi is an independent fan project and is not affiliated with Box Office Mojo, IMDb, Amazon, Lucasfilm, or The Walt Disney Company. All trademarks are the property of their respective owners.
+  </div>
+</footer>
+
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+    });
+  }
+
+  // A poll is closed when its `closes` date is past (last day of voting).
+  function pollIsClosed(poll) {
+    if (!poll || !poll.closes) return false;
+    const today = new Date();
+    const parts = poll.closes.split('-').map(Number);
+    const closeEnd = new Date(parts[0], (parts[1] || 1) - 1, parts[2] || 1, 23, 59, 59);
+    return today > closeEnd;
+  }
+
+  function fmtClosesDate(iso) {
+    const months = ['Jan.','Feb.','Mar.','Apr.','May','June','July','Aug.','Sept.','Oct.','Nov.','Dec.'];
+    const p = iso.split('-').map(Number);
+    return months[(p[1] || 1) - 1] + ' ' + (p[2] || 1) + ', ' + p[0];
+  }
+
+  // Reusable poll-card renderer. For closed polls we mark the winner, for
+  // live polls we just render bars (with the user's pick highlighted if
+  // they voted on the homepage).
+  function renderPollCard(poll, isClosed, userChoice) {
+    const total = poll.options.reduce(function(s, o){ return s + (o.votes || 0); }, 0);
+    let winnerId = null;
+    if (isClosed) {
+      let max = -1;
+      poll.options.forEach(function(o){
+        if ((o.votes || 0) > max) { max = o.votes || 0; winnerId = o.id; }
+      });
+    }
+    const rows = poll.options.map(function(o){
+      const pct = total > 0 ? Math.round((o.votes || 0) / total * 100) : 0;
+      const isPick = o.id === userChoice;
+      const isWin  = o.id === winnerId;
+      const cls = (isPick ? 'is-your-pick' : '') + (isWin ? ' is-winner' : '');
+      const labelExtra = isWin ? ' <span style="color:#7F170E;font-weight:bold;font-size:10px;">&#9733; WINNER</span>' : '';
+      return (
+        '<li class="poll-result-row ' + cls + '">' +
+          '<div class="poll-result-top">' +
+            '<span class="poll-result-label ' + (isPick ? 'is-your-pick' : '') + '">' +
+              escapeHtml(o.label) + labelExtra + '</span>' +
+            '<span class="poll-result-pct">' + pct + '%</span>' +
+          '</div>' +
+          '<div class="poll-bar-track"><div class="poll-bar-fill" style="width:' + pct + '%"></div></div>' +
+        '</li>'
+      );
+    }).join('');
+
+    const tag = isClosed
+      ? '<span class="meta-tag is-closed">Closed</span>'
+      : '<span class="meta-tag is-live">Live</span>';
+    const closesText = isClosed
+      ? 'Closed ' + fmtClosesDate(poll.closes)
+      : 'Voting closes ' + fmtClosesDate(poll.closes);
+
+    const voteAction = isClosed ? '' :
+      '<div style="margin-top:8px; text-align:right;">' +
+        '<a href="index.html#home-poll" style="font-family:Verdana,sans-serif;font-weight:bold;font-size:11px;color:#00239C;">' +
+          'Cast your vote on the homepage &gt;' +
+        '</a>' +
+      '</div>';
+
+    return (
+      '<div class="poll-card">' +
+        '<div class="poll-question">' + escapeHtml(poll.question) + '</div>' +
+        '<div class="poll-meta">' + tag + closesText +
+          ' &middot; ' + total.toLocaleString('en-US') + ' total votes' +
+        '</div>' +
+        '<ul class="poll-results">' + rows + '</ul>' +
+        voteAction +
+      '</div>'
+    );
+  }
+
+  async function loadPolls() {
+    const container = document.getElementById('polls-content');
+    let data;
+    try {
+      const r = await fetch('data/polls.json', { cache: 'no-store' });
+      if (!r.ok) throw new Error('no polls');
+      data = await r.json();
+    } catch(e) {
+      container.innerHTML = '<p class="polls-empty">Could not load polls.</p>';
+      return;
+    }
+
+    const polls = (data.polls || []).slice();
+    if (!polls.length) {
+      container.innerHTML = '<p class="polls-empty">No polls posted yet. Check back soon.</p>';
+      return;
+    }
+
+    const live = [];
+    const closed = [];
+    polls.forEach(function(p){
+      (pollIsClosed(p) ? closed : live).push(p);
+    });
+
+    // Most recently closed first; for live, keep file order (active first).
+    closed.sort(function(a, b){ return (b.closes || '') > (a.closes || '') ? 1 : -1; });
+
+    let html = '';
+
+    html += '<div class="polls-section-header">LIVE POLLS</div>';
+    if (live.length) {
+      html += '<ul class="polls-list">';
+      live.forEach(function(p){
+        const userChoice = (function(){
+          try { return localStorage.getItem('boj_poll_' + p.id); } catch(e) { return null; }
+        })();
+        html += '<li>' + renderPollCard(p, false, userChoice) + '</li>';
+      });
+      html += '</ul>';
+    } else {
+      html += '<p class="polls-empty-section">No active polls right now. Check back soon.</p>';
+    }
+
+    html += '<div class="polls-section-header">CLOSED POLLS</div>';
+    if (closed.length) {
+      html += '<ul class="polls-list">';
+      closed.forEach(function(p){
+        const userChoice = (function(){
+          try { return localStorage.getItem('boj_poll_' + p.id); } catch(e) { return null; }
+        })();
+        html += '<li>' + renderPollCard(p, true, userChoice) + '</li>';
+      });
+      html += '</ul>';
+    } else {
+      html += '<p class="polls-empty-section">No closed polls yet.</p>';
+    }
+
+    container.innerHTML = html;
+  }
+
+  loadPolls();
+</script>
+
+</body>
+</html>

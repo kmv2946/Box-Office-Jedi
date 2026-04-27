@@ -4,14 +4,14 @@
     {
       "id": "2026-may-highest-grossing",
       "question": "What will be the highest-grossing movie in May?",
-      "closes": "2026-05-31",
+      "closes": "2026-05-01",
       "options": [
-        { "id": "billie-eilish",  "label": "Billie Eilish: Hit Me Hard and Soft — The Tour Live in 3D", "votes": 18 },
-        { "id": "devil-wears-prada-2", "label": "The Devil Wears Prada 2", "votes": 64 },
-        { "id": "mortal-kombat-2", "label": "Mortal Kombat II", "votes": 47 },
-        { "id": "sheep-detectives", "label": "The Sheep Detectives", "votes": 12 },
-        { "id": "mandalorian-grogu", "label": "Star Wars: The Mandalorian and Grogu", "votes": 103 },
-        { "id": "other", "label": "Other", "votes": 9 }
+        { "id": "billie-eilish",       "label": "Billie Eilish: Hit Me Hard and Soft \u2014 The Tour Live in 3D", "votes": 6   },
+        { "id": "devil-wears-prada-2", "label": "The Devil Wears Prada 2",                                       "votes": 100 },
+        { "id": "mortal-kombat-2",     "label": "Mortal Kombat II",                                              "votes": 16  },
+        { "id": "sheep-detectives",    "label": "The Sheep Detectives",                                          "votes": 10  },
+        { "id": "mandalorian-grogu",   "label": "Star Wars: The Mandalorian and Grogu",                          "votes": 64  },
+        { "id": "other",               "label": "Other",                                                          "votes": 4   }
       ]
     }
   ]
