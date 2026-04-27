@@ -305,7 +305,7 @@
   document.querySelectorAll('.mobile-menu-toggle').forEach(function(btn){
     btn.addEventListener('click', function(){
       var sb = btn.closest('.sidebar');
-      if (\!sb) return;
+      if (!sb) return;
       var open = sb.classList.toggle('nav-open');
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
