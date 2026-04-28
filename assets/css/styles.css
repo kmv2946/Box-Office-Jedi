@@ -880,7 +880,7 @@ img {
   font-weight: bold;
   font-size: 13px;
   color: #000000;
-  padding: 6px 10px;
+  padding: 3px 8px;
   text-align: center;
   border-bottom: 1px solid #C8C8C8;
 }
@@ -890,7 +890,7 @@ img {
   border-left: 1px solid #FFFFFF;
 }
 .rs-widget-table td {
-  padding: 6px 10px;
+  padding: 3px 8px;
   font-size: 13px;
   border-bottom: 1px solid #FFFFFF;
 }
@@ -961,6 +961,7 @@ img {
   display: block;
   font-family: inherit;
   font-weight: normal;
+  padding: 0 22px;          /* white space to either side of the poster */
 }
 .ad-image-link:hover { text-decoration: none; }
 .ad-block img {
