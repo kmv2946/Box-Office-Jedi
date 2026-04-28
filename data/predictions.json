@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-23",
+  "updated": "2026-04-27",
   "weekends": [
     {
       "date_from": "2026-04-24",
@@ -10,7 +10,7 @@
           "title": "Michael",
           "is_new": true,
           "theaters": 3955,
-          "predicted_m": 68.5,
+          "predicted_m": 88.5,
           "actual_m": null,
           "actual_total_m": null,
           "weeks": 1
@@ -77,6 +77,16 @@
         },
         {
           "pred_rank": 8,
+          "title": "Mother Mary",
+          "is_new": false,
+          "theaters": 1103,
+          "predicted_m": 1.3,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 1
+        },
+        {
+          "pred_rank": 9,
           "title": "Normal",
           "is_new": false,
           "theaters": null,
@@ -84,6 +94,16 @@
           "actual_m": null,
           "actual_total_m": null,
           "weeks": 3
+        },
+        {
+          "pred_rank": 10,
+          "title": "Over Your Dead Body",
+          "is_new": true,
+          "theaters": null,
+          "predicted_m": 1.1,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 1
         }
       ]
     },

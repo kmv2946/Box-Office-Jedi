@@ -764,7 +764,7 @@ img {
 
 /* ── Right Sidebar ────────────────────────────────────────── */
 .right-sidebar {
-  width: 188px;
+  width: 250px;
   flex-shrink: 0;
   padding: 0;
 }
@@ -840,9 +840,29 @@ img {
 }
 
 
-/* ── Right-sidebar Release Schedule widget ──────────────── */
-.rs-widget-body {
-  padding: 0;
+/* ── Right-sidebar Release Schedule widget ────────────────
+   The red "RELEASE SCHEDULE" banner shrink-wraps to its text
+   (display:table) and is left-aligned. The chart itself sits
+   inside a thin gray border that does NOT wrap the banner. */
+.rs-widget {
+  margin-bottom: 14px;
+}
+.rs-widget-banner {
+  display: table;
+  background: #7F170E;
+  color: #ffffff;
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 11px;
+  padding: 3px 8px;
+  letter-spacing: 0.05em;
+  margin: 0 0 -1px;          /* tuck under the chart's top border */
+  position: relative;
+  z-index: 1;
+}
+.rs-widget-chart {
+  border: 1px solid #C8C8C8;
+  background: #FFFFFF;
 }
 .rs-widget-table {
   width: 100%;
@@ -850,36 +870,43 @@ img {
 }
 .rs-widget-table thead th {
   background: #DCDCDC;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: Verdana, Geneva, sans-serif;
   font-weight: bold;
   font-size: 13px;
-  color: #000;
-  padding: 5px 8px;
+  color: #000000;
+  padding: 6px 10px;
   text-align: center;
-  border-bottom: 1px solid #fff;
+}
+/* Thin white line separating Date | Theaters columns */
+.rs-widget-table thead th + th,
+.rs-widget-table tbody td + td {
+  border-left: 1px solid #FFFFFF;
 }
 .rs-widget-table td {
-  padding: 5px 8px;
-  font-size: 12px;
-  border-bottom: 1px solid #e8e8e8;
+  padding: 6px 10px;
+  font-size: 13px;
+  border-bottom: 1px solid #FFFFFF;
 }
 .rs-widget-table tr:nth-child(odd)  td { background: #F4F4FE; }
 .rs-widget-table tr:nth-child(even) td { background: #FFFFFF; }
 .rs-widget-table td.rs-widget-title {
   font-family: Verdana, Geneva, sans-serif;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 13px;
   text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .rs-widget-table td.rs-widget-title a {
   font-family: Verdana, Geneva, sans-serif;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 13px;
   color: #00239C;
 }
 .rs-widget-table td.rs-widget-theaters {
-  font-family: Tahoma, Geneva, sans-serif;
-  font-weight: normal;
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
   font-size: 13px;
   color: #000;
   text-align: right;
@@ -893,16 +920,16 @@ img {
   font-style: italic;
   padding: 12px 8px;
 }
-.rs-widget-body .widget-more-link {
+.rs-widget-more {
   display: block;
   text-align: right;
   font-family: Verdana, Geneva, sans-serif;
   font-weight: bold;
   font-size: 12px;
   color: #00239C;
-  padding: 5px 8px;
-  background: #F9F9F9;
-  border-top: 1px solid #e0e0e0;
+  padding: 6px 10px;
+  background: #FFFFFF;
+  border-top: 1px solid #E0E0E0;
 }
 
 
@@ -934,17 +961,17 @@ img {
   margin: 0 auto;
 }
 .ad-caption {
-  font-family: Verdana, Geneva, sans-serif;
+  font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
-  font-size: 13px;
+  font-size: 16px;
   color: #00239C;
   margin-top: 6px;
   line-height: 1.35;
 }
 .ad-caption a {
-  font-family: Verdana, Geneva, sans-serif;
+  font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
-  font-size: 13px;
+  font-size: 16px;
   color: #00239C;
 }
 
