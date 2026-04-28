@@ -861,12 +861,15 @@ img {
   z-index: 1;
 }
 .rs-widget-chart {
-  border: 1px solid #C8C8C8;
   background: #FFFFFF;
+  border: 1px solid #C8C8C8;
+  /* outline border wraps the entire chart (header rows, body rows,
+     and the >VIEW FULL SCHEDULE link). */
 }
 .rs-widget-table {
   width: 100%;
   border-collapse: collapse;
+  display: table;
 }
 .rs-widget-table thead th {
   background: #DCDCDC;
@@ -876,6 +879,7 @@ img {
   color: #000000;
   padding: 6px 10px;
   text-align: center;
+  border-bottom: 1px solid #C8C8C8;
 }
 /* Thin white line separating Date | Theaters columns */
 .rs-widget-table thead th + th,
@@ -909,7 +913,7 @@ img {
   font-weight: bold;
   font-size: 13px;
   color: #000;
-  text-align: right;
+  text-align: center;
   white-space: nowrap;
 }
 .rs-widget-empty {
@@ -935,11 +939,13 @@ img {
 
 /* ── Advertisement block (right sidebar) ─────────────────
    Distinct from .widget on purpose — Web 1.0 banner-ad look.
-   No red header, no border, just a small label + image + caption. */
+   No red header, no border, just a small label + image + caption.
+   Same horizontal extent as the Release Schedule chart so the two
+   modules visually align (no left/right padding here). */
 .ad-block {
   margin: 14px 0 8px;
   text-align: center;
-  padding: 0 4px;
+  padding: 0;
 }
 .ad-label {
   font-family: 'Times New Roman', Times, serif;
@@ -965,8 +971,11 @@ img {
   font-weight: bold;
   font-size: 16px;
   color: #00239C;
-  margin-top: 6px;
-  line-height: 1.35;
+  margin-top: 4px;
+  line-height: 1.15;
+}
+.ad-caption + .ad-caption {
+  margin-top: 0;
 }
 .ad-caption a {
   font-family: 'Times New Roman', Times, serif;
