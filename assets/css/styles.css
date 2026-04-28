@@ -862,15 +862,18 @@ img {
 }
 .rs-widget-chart {
   background: #FFFFFF;
-  border: 1px solid #C8C8C8;
+  border: 1px solid #B8B8B8;
+  overflow: hidden;        /* clip any cell content that would push past the right edge */
   /* outline border wraps the entire chart (header rows, body rows,
      and the >VIEW FULL SCHEDULE link). */
 }
 .rs-widget-table {
   width: 100%;
   border-collapse: collapse;
-  display: table;
+  table-layout: fixed;     /* respect the column widths below; prevents auto-sizing overflow */
 }
+.rs-widget-table col.rs-col-date     { width: 62%; }
+.rs-widget-table col.rs-col-theaters { width: 38%; }
 .rs-widget-table thead th {
   background: #DCDCDC;
   font-family: Verdana, Geneva, sans-serif;
