@@ -335,18 +335,22 @@
         `).join('');
       }
 
-      // Recent articles sidebar (latest 6)
-      const recent = articles.slice(0, 6);
+      // Recent articles sidebar (latest 6) — only when the widget exists.
+      // The shared right sidebar replaced this slot, but we keep the code
+      // so it's still there if a future variant brings the widget back.
       const recentList = document.getElementById('recent-list');
-      if (!recent.length) {
-        recentList.innerHTML = '<li style="color:#aaa;font-family:Verdana,sans-serif;font-size:11px;">No articles yet.</li>';
-      } else {
-        recentList.innerHTML = recent.map(a => `
-          <li>
-            <span class="recent-date">${longDate(a.date)}</span>
-            <a href="${a.url}">${a.title}</a>
-          </li>
-        `).join('');
+      if (recentList) {
+        const recent = articles.slice(0, 6);
+        if (!recent.length) {
+          recentList.innerHTML = '<li style="color:#aaa;font-family:Verdana,sans-serif;font-size:11px;">No articles yet.</li>';
+        } else {
+          recentList.innerHTML = recent.map(a => `
+            <li>
+              <span class="recent-date">${longDate(a.date)}</span>
+              <a href="${a.url}">${a.title}</a>
+            </li>
+          `).join('');
+        }
       }
 
     } catch(e) {
@@ -358,5 +362,6 @@
   load();
 </script>
 
+<script src="assets/js/right-sidebar.js" defer></script>
 </body>
 </html>
