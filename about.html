@@ -95,24 +95,42 @@
 
 
   <aside class="right-sidebar">
-    <div class="widget">
-      <div class="widget-header">BOX OFFICE JEDI</div>
-      <div class="widget-body">
-        <p>A throwback box office archive and daily tracker.</p>
+
+    <!-- Release Schedule (next Friday's slate; populated by assets/js/right-sidebar.js) -->
+    <div class="rs-widget">
+      <div class="rs-widget-banner">RELEASE SCHEDULE</div>
+      <div class="rs-widget-chart">
+        <table class="rs-widget-table" id="rs-widget-table">
+          <colgroup>
+            <col class="rs-col-date">
+            <col class="rs-col-theaters">
+          </colgroup>
+          <thead>
+            <tr>
+              <th id="rs-widget-date" class="rs-widget-date-th">&mdash;</th>
+              <th class="rs-widget-theaters-th">Theaters</th>
+            </tr>
+          </thead>
+          <tbody id="rs-widget-body">
+            <tr><td colspan="2" class="rs-widget-empty">Loading&hellip;</td></tr>
+          </tbody>
+        </table>
+        <a href="releases.html" class="rs-widget-more">&gt;VIEW FULL SCHEDULE</a>
       </div>
     </div>
-    <div class="widget">
-      <div class="widget-header">THE FORECAST</div>
-      <div class="widget-body">
-        <p>This weekend's predictions. <a href="forecast.html"><strong>Read &gt;</strong></a></p>
+
+    <!-- Advertisement (manually rotated every few weeks) -->
+    <div class="ad-block">
+      <div class="ad-label">Advertisement</div>
+      <a href="https://www.ebay.com/sch/i.html?_nkw=disclosure+day+poster&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&LH_TitleDesc=0&_odkw=disclosure+day+poster&_osacat=0" target="_blank" rel="noopener" class="ad-image-link">
+        <img src="assets/images/disclosure_day_ver3_xxlg.jpg" alt="Disclosure Day — In Theaters June 12">
+      </a>
+      <div class="ad-caption">In Theaters June 12th</div>
+      <div class="ad-caption">
+        <a href="https://www.ebay.com/sch/i.html?_nkw=disclosure+day+poster&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&LH_TitleDesc=0&_odkw=disclosure+day+poster&_osacat=0" target="_blank" rel="noopener">Buy Poster from Ebay.com</a>
       </div>
     </div>
-    <div class="widget">
-      <div class="widget-header">THE DERBY</div>
-      <div class="widget-body" style="background:#e8f4fd;">
-        <p>Play the box office prediction game. <a href="derby.html"><strong>Play now &gt;</strong></a></p>
-      </div>
-    </div>
+
   </aside>
 
 </div><!-- /page-wrapper -->
