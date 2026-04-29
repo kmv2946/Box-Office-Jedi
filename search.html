@@ -342,16 +342,14 @@
     const rowsHtml = hits.map(r => {
       const [title, year, tmdbId, hasTmdb] = r;
       const yr = year || '';
-      if (hasTmdb) {
-        const href = 'movie.html?' +
-          (tmdbId ? 'id=' + encodeURIComponent(tmdbId) + '&' : '') +
-          'title=' + encodeURIComponent(title);
-        return '<tr>' +
-          '<td class="sr-title"><a href="' + href + '">' + escapeHtml(title) + '</a></td>' +
-          '<td class="sr-year">' + yr + '</td></tr>';
-      }
+      // Always make the title clickable — link to the movie profile page.
+      // If we have a TMDB id we'll pass it for a faster lookup, but the
+      // movie page can also resolve by title alone.
+      const href = 'movie.html?' +
+        (tmdbId ? 'id=' + encodeURIComponent(tmdbId) + '&' : '') +
+        'title=' + encodeURIComponent(title);
       return '<tr>' +
-        '<td class="sr-title archive">' + escapeHtml(title) + '</td>' +
+        '<td class="sr-title"><a href="' + href + '">' + escapeHtml(title) + '</a></td>' +
         '<td class="sr-year">' + yr + '</td></tr>';
     }).join('');
 

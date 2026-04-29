@@ -7,23 +7,26 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <style>
 
-    /* ── Page title ─────────────────────────────────────────────── */
-    .at-page-header {
-      padding: 10px 14px 8px;
-      border-bottom: 3px solid #79160A;
+    /* ── Page title (matches Weekend/Yearly Index pattern) ────── */
+    .at-page-crumb {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #00239C;
+      padding: 6px 10px 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
+    .at-section-bar { height: 5px; background: #79160A; margin-bottom: 12px; }
     .at-page-title {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 28px;
+      font-size: 32px;
       color: #000;
-      margin: 0;
+      text-align: center;
+      margin: 6px 0 14px;
       letter-spacing: -0.5px;
-    }
-    .at-page-title span.arrow {
-      color: #79160A;
-      margin-right: 6px;
-      font-family: 'Times New Roman', Times, serif;
+      text-decoration: underline;
     }
 
     /* ── Index table ─────────────────────────────────────────────── */
@@ -96,11 +99,17 @@
       color: #0000EE;
     }
 
-    /* Film title cell — auto-width */
+    /* Film title cell — Verdana Regular dark blue, auto-width */
     .at-table td.td-film {
       text-align: center;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 13px;
     }
     .at-table td.td-film a {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 13px;
       color: #00007B;
       text-decoration: none;
     }
@@ -110,12 +119,14 @@
     .at-table td.td-film.tbd {
       color: #AAAAAA;
       font-style: italic;
-      font-size: 13px;
     }
 
-    /* Gross cell — right-aligned, fits content */
+    /* Gross cell — Verdana Regular black, right-aligned */
     .at-table td.td-gross {
       text-align: right;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 13px;
       color: #000;
       white-space: nowrap;
     }
@@ -167,9 +178,9 @@
 
   <main class="main-content">
 
-    <div class="at-page-header">
-      <h1 class="at-page-title"><span class="arrow">&gt;</span> ALL TIME BOX OFFICE</h1>
-    </div>
+    <div class="at-page-crumb">&gt; ALL TIME BOX OFFICE</div>
+    <div class="at-section-bar"></div>
+    <h1 class="at-page-title">ALL TIME INDEX</h1>
 
     <div class="at-wrap">
 
@@ -491,11 +502,17 @@
     const grossCell = tr.querySelector('.td-gross');
 
     if (titleIdx !== -1 && filmCell) {
-      const title = top[titleIdx];
+      let title = top[titleIdx];
       if (title) {
+        // One-off display rename — the canonical TMDB title is too long
+        // for this column.
+        const DISPLAY_RENAMES = {
+          'Star Wars: Episode VII - The Force Awakens': 'Star Wars: The Force Awakens'
+        };
+        const displayTitle = DISPLAY_RENAMES[title] || title;
         filmCell.classList.remove('tbd');
         filmCell.innerHTML = '<a href="movie.html?title=' +
-          encodeURIComponent(title) + '">' + title + '</a>';
+          encodeURIComponent(title) + '">' + displayTitle + '</a>';
       }
     }
     if (statIdx !== -1 && grossCell) {
