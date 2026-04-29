@@ -8,33 +8,39 @@
   <style>
 
     /* ── Weekend index page header ───────────────────────────────── */
-    .wknd-page-header {
-      padding: 10px 14px 6px;
-      text-align: center;
-      border-bottom: none;
-      margin-bottom: 0;
-    }
-    .wknd-site-label {
+    /* Top crumb (small Verdana bold dark blue, left-aligned, with red bar
+       beneath it stretching the page width — same pattern as yearly.html) */
+    .wknd-page-crumb {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 13px;
+      font-size: 14px;
       color: #00239C;
-      margin: 0 0 2px;
+      padding: 6px 10px 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
+    .wknd-section-bar { height: 5px; background: #7F170E; margin-bottom: 12px; }
+
+    /* Main title — "WEEKEND INDEX" with underline */
     .wknd-page-title {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 28px;
+      font-size: 32px;
       color: #000;
-      margin: 0 0 10px;
+      text-align: center;
+      margin: 6px 0 10px;
       letter-spacing: -0.5px;
+      text-decoration: underline;
     }
 
     /* ── Year navigation ─────────────────────────────────────────── */
+    /* Padded so the year list never reaches the chart edges */
     .wknd-year-nav {
-      padding: 8px 60px 10px;
+      padding: 8px 30px 10px;
       text-align: center;
       border-bottom: none;
+      max-width: 880px;
+      margin: 0 auto;
     }
     .wknd-year-current {
       font-family: 'Times New Roman', Times, serif;
@@ -71,21 +77,26 @@
     .wknd-year-more-link:hover { text-decoration: underline; }
 
     /* ── Weekend index table ─────────────────────────────────────── */
+    /* Wrapper centers the table and adds page padding so it doesn't run
+       to the edges of the freed-sidebar space. */
     .wknd-chart-wrap {
-      padding: 10px 14px 14px;
+      padding: 10px 30px 14px;
+      max-width: 880px;
+      margin: 0 auto;
     }
     .wknd-table {
-      width: 100%;
+      width: auto;          /* let columns size to content */
+      margin: 0 auto;
       border-collapse: collapse;
       border: none;
     }
     .wknd-table thead th {
       background: #DCDCDC;
       font-family: 'Times New Roman', Times, serif;
-      font-weight: normal;
+      font-weight: bold;
       font-size: 13px;
       color: #000;
-      padding: 5px 10px;
+      padding: 5px 14px;
       text-align: center;
       border-bottom: 1px solid #FFFFFF;
       border-right: 1px solid #FFFFFF;
@@ -94,15 +105,16 @@
     .wknd-table thead th:last-child { border-right: none; }
     .wknd-table thead th.num { text-align: center; }
 
-    /* Data rows */
+    /* Data rows — light gray dividers (#DCDCDC) to match the header gaps */
     .wknd-table tbody tr.wknd-row td {
       font-family: 'Times New Roman', Times, serif;
       font-size: 14px;
       color: #000;
-      padding: 4px 10px;
-      border-bottom: 1px solid #DDDDDD;
-      border-right: 1px solid #EEEEEE;
+      padding: 4px 14px;
+      border-bottom: 1px solid #DCDCDC;
+      border-right: 1px solid #DCDCDC;
       vertical-align: middle;
+      white-space: nowrap;
     }
     .wknd-table tbody tr.wknd-row td:last-child { border-right: none; }
     .wknd-table tbody tr.wknd-row:nth-child(odd)  td { background: #F4F4FE; }
@@ -113,11 +125,11 @@
       background: #FFFFA6 !important;
     }
 
-    /* Month separator rows */
+    /* Month separator rows — softer separator that matches the new palette */
     .wknd-table tbody tr.wknd-month-sep td {
-      background: #BBBBBB;
-      padding: 9px 0;
-      border-bottom: 1px solid #999999;
+      background: #DCDCDC;
+      padding: 6px 0;
+      border-bottom: 1px solid #C0C0C0;
       border-right: none;
       line-height: 0;
       font-size: 0;
@@ -219,11 +231,10 @@
 
   <main class="main-content">
 
-    <!-- Page title -->
-    <div class="wknd-page-header">
-      <p class="wknd-site-label">BOX OFFICE JEDI</p>
-      <h1 class="wknd-page-title">WEEKEND BOX OFFICE</h1>
-    </div>
+    <!-- Page title (small crumb + red bar + main heading) -->
+    <div class="wknd-page-crumb">&gt; WEEKEND BOX OFFICE</div>
+    <div class="wknd-section-bar"></div>
+    <h1 class="wknd-page-title">WEEKEND INDEX</h1>
 
     <!-- Year navigation (top) -->
     <div class="wknd-year-nav">
@@ -440,6 +451,21 @@
       if (!weekends.length) {
         // Try falling back to weekend.json (single latest weekend)
         throw new Error('no data for year');
+      }
+
+      // Recompute change_pct client-side from top_total — the values stored
+      // in weekends.json are unreliable. We mutate the original objects so
+      // the existing display order (descending) is preserved.
+      const sortedAsc = [...weekends].sort((a, b) =>
+        a.date_from < b.date_from ? -1 : 1);
+      for (let i = 0; i < sortedAsc.length; i++) {
+        const cur = sortedAsc[i];
+        const prev = sortedAsc[i - 1];
+        if (prev && prev.top_total && cur.top_total) {
+          cur.change_pct = ((cur.top_total - prev.top_total) / prev.top_total) * 100;
+        } else {
+          cur.change_pct = null;
+        }
       }
 
       // Latest weekend = most recent date_from
