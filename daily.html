@@ -7,32 +7,27 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <style>
 
-    /* ── Daily page header ───────────────────────────────────────── */
-    .daily-page-header {
-      padding: 8px 12px 4px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .daily-page-title {
+    /* ── Daily page header (matches Weekend/Yearly Index pattern) ── */
+    .daily-page-crumb {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 22px;
+      font-size: 14px;
       color: #00239C;
-      margin: 0;
+      padding: 6px 10px 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
-    .daily-print-link {
+    .daily-section-bar { height: 5px; background: #7F170E; margin-bottom: 12px; }
+    .daily-page-title-main {
       font-family: Verdana, Geneva, sans-serif;
-      font-size: 12px;
+      font-weight: bold;
+      font-size: 32px;
       color: #000;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      white-space: nowrap;
+      text-align: center;
+      margin: 6px 0 8px;
+      letter-spacing: -0.5px;
+      text-decoration: underline;
     }
-    .daily-print-link:hover { text-decoration: underline; }
-    .daily-print-link img { vertical-align: middle; }
 
     /* ── Related links bar ───────────────────────────────────────── */
     .daily-related-links {
@@ -42,14 +37,14 @@
     }
     .daily-related-links .rl-heading {
       font-weight: bold;
-      font-size: 13px;
+      font-size: 15px;
       color: #000;
       display: block;
       text-decoration: underline;
-      margin-bottom: 3px;
+      margin-bottom: 4px;
     }
     .daily-related-links .rl-row {
-      font-size: 12px;
+      font-size: 14px;
       display: block;
     }
     .daily-related-links a {
@@ -60,14 +55,26 @@
     .daily-related-links a:hover { text-decoration: underline; }
     .daily-related-links .rl-sep { color: #000; margin: 0 4px; }
 
+    /* ── Chart region: wraps nav + chart so both share the same width
+       and "<< PREVIOUS" / "NEXT >>" line up with the chart edges. ── */
+    .daily-chart-region {
+      display: inline-block;
+      max-width: 100%;
+      text-align: left;
+    }
+    .daily-chart-region-wrap {
+      text-align: center;        /* centers the inline-block */
+      padding: 0 12px;
+    }
+
     /* ── Date navigation bar ─────────────────────────────────────── */
     .daily-nav {
       display: flex;
       align-items: center;
-      padding: 3px 12px 2px;
+      padding: 6px 0 4px;
       margin: 0;
       font-family: Verdana, Geneva, sans-serif;
-      font-size: 12px;
+      font-size: 13px;
     }
     .daily-nav-arrow {
       font-weight: bold;
@@ -101,16 +108,16 @@
 
     /* ── Main chart table ────────────────────────────────────────── */
     .daily-chart-wrap {
-      padding: 0 12px 6px;
+      padding: 0 0 6px;
       overflow-x: auto;
-      text-align: center;
     }
     .daily-chart-table {
       width: auto;             /* auto-fit columns to content */
       margin: 0 auto;          /* center under page */
       border-collapse: collapse;
-      border: 1px solid #A8A8A8;
-      box-shadow: 3px 3px 0 #545454;
+      border: 2px solid #888888;
+      /* No outer drop-shadow — the per-row line shadow does the heavy
+         lifting now. */
     }
 
     /* Column headers — DCDCDC bg, Times Bold black text per spec.
@@ -121,11 +128,12 @@
       color: #00239C;
       font-family: 'Times New Roman', Times, serif;
       font-weight: bold;
-      font-size: 13px;
-      padding: 5px 10px;
+      font-size: 16px;
+      padding: 8px 14px;
       text-align: center;
-      border-left: 1px solid #A8A8A8;
-      border-bottom: 1px solid #A8A8A8;
+      border-left: 2px solid #888888;
+      border-bottom: 2px solid #888888;
+      box-shadow: 0 1px 0 #DCDCDC;
       white-space: nowrap;
       cursor: pointer;
       user-select: none;
@@ -162,24 +170,28 @@
       background: #DCDCDC;
     }
 
-    /* Data rows — fixed uniform height across every row */
+    /* Data rows — fixed uniform height across every row.
+       Each cell carries its own bottom + right borders (2px) plus a
+       1px lighter "drop shadow" line via box-shadow so every separator
+       reads as two thin parallel lines (BOM-style). */
     .daily-chart-table tbody tr:nth-child(odd)  td { background: #F4F4FE; }
     .daily-chart-table tbody tr:nth-child(even) td { background: #FFFFFF; }
-    .daily-chart-table tbody tr { height: 92px; }
+    .daily-chart-table tbody tr { height: 100px; }
     .daily-chart-table tbody td {
-      border-bottom: 1px solid #A8A8A8;
-      border-left: 1px solid #A8A8A8;
+      border-bottom: 2px solid #888888;
+      border-left: 2px solid #888888;
+      box-shadow: 0 1px 0 #DCDCDC, 1px 0 0 #DCDCDC;
       vertical-align: middle;
       padding: 0;
-      height: 92px;            /* match the row */
+      height: 100px;
     }
-    .daily-chart-table tbody td:first-child { border-left: none; }
+    .daily-chart-table tbody td:first-child { border-left: none; box-shadow: 0 1px 0 #DCDCDC; }
 
     /* "N/A" placeholder for days that haven't reported yet */
     .dc-day-cell.dc-na {
       font-family: 'Times New Roman', Times, serif;
       font-weight: normal;
-      font-size: 14px;
+      font-size: 16px;
       color: #000;
       text-align: center;
     }
@@ -188,66 +200,68 @@
     .dc-rank {
       font-family: 'Times New Roman', Times, serif;
       font-weight: normal;
-      font-size: 16px;
+      font-size: 22px;
       color: #000;
       text-align: center;
-      width: 44px;
+      width: 56px;
       padding: 10px 4px;
       white-space: nowrap;
     }
 
-    /* Title cell */
+    /* Title cell — title sits tight to studio; theaters get a bigger gap */
     .dc-title-cell {
-      padding: 14px 2px;
-      min-width: 140px;
-      border-left: 1px solid #A8A8A8;
+      padding: 14px 12px;
+      min-width: 170px;
+      border-left: 2px solid #888888;
       text-align: center;
       vertical-align: middle;
     }
     .dc-title-link {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 12px;
+      font-size: 14px;
       color: #00239C;
       text-decoration: none;
       text-transform: uppercase;
       display: block;
       text-align: center;
+      line-height: 1.15;
     }
     .dc-title-link:hover { text-decoration: underline; }
     .dc-studio {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: normal;
-      font-size: 10px;
+      font-size: 12px;
       color: #000;
       display: block;
-      margin-top: 3px;
+      margin-top: 1px;          /* tight to title per spec */
     }
     .dc-theaters {
       font-family: 'Times New Roman', Times, serif;
       font-weight: normal;
-      font-size: 13px;
+      font-size: 14px;
       color: #000;
       display: block;
-      margin-top: 6px;
+      margin-top: 12px;         /* generous gap from studio per spec */
       margin-bottom: 4px;
     }
 
-    /* Day data cell */
+    /* Day data cell — bigger min-width, more breathing room between
+       gross / change / total. */
     .dc-day-cell {
-      padding: 10px 0px;
+      padding: 12px 8px;
       text-align: center;
-      min-width: 100px;
+      min-width: 130px;
       line-height: 1.5;
-      border-left: 1px solid #A8A8A8;
+      border-left: 2px solid #888888;
       vertical-align: middle;
     }
     .dc-day-cell.na-cell {
       text-align: center;
-      color: #bbb;
-      font-family: Verdana, Geneva, sans-serif;
-      font-size: 13px;
-      min-width: 80px;
+      color: #000;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16px;
+      min-width: 130px;
     }
 
     /* Selected column: all values bold */
@@ -260,27 +274,28 @@
 
     .dc-gross {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 15px;
+      font-size: 18px;
       color: #00007B;
       display: block;
-      margin-bottom: 5px;
+      margin-bottom: 12px;       /* generous gap to change/avg per spec */
     }
     .dc-change-avg {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 12px;
+      font-size: 14px;
       display: block;
+      margin-bottom: 4px;
     }
     .dc-change-pos { color: #00239C; }   /* Blue for increase */
     .dc-change-neg { color: #CC0000; }   /* Red for decrease  */
     .dc-change-neu { color: #555; }
     .dc-avg {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 12px;
+      font-size: 14px;
       color: #000;
     }
     .dc-total-day {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 12px;
+      font-size: 14px;
       color: #75147C;
       display: block;
     }
@@ -406,12 +421,9 @@
 
   <main class="main-content">
 
-    <div class="daily-page-header">
-      <h1 class="daily-page-title">&gt; DAILY BOX OFFICE</h1>
-      <a href="javascript:window.print()" class="daily-print-link">
-        <img src="article_print.gif" alt="Print"> Print
-      </a>
-    </div>
+    <div class="daily-page-crumb">&gt; DAILY BOX OFFICE</div>
+    <div class="daily-section-bar"></div>
+    <h1 class="daily-page-title-main">DAILY BOX OFFICE</h1>
 
     <!-- Related Box Office Links -->
     <div class="daily-related-links">
@@ -426,30 +438,39 @@
       </span>
     </div>
 
-    <!-- Date navigation -->
-    <div class="daily-nav">
-      <a class="daily-nav-arrow" id="nav-prev" href="#">&lt;&lt; PREVIOUS</a>
-      <span class="daily-nav-label">Stay tuned for daily updates...</span>
-      <a class="daily-nav-arrow disabled" id="nav-next" href="#">NEXT &gt;&gt;</a>
-    </div>
+    <!-- Chart region: nav + chart wrapped together so they share the
+         same shrink-wrapped width and the prev/next align with the
+         chart's left and right edges. -->
+    <div class="daily-chart-region-wrap">
+      <div class="daily-chart-region">
 
-    <div class="daily-estimates-notice" id="estimates-notice" style="display:none;">
-      * Figures marked with an asterisk are estimates and will be updated when actuals are reported.
-    </div>
+        <!-- Date navigation -->
+        <div class="daily-nav">
+          <a class="daily-nav-arrow" id="nav-prev" href="#">&lt;&lt; PREVIOUS</a>
+          <span class="daily-nav-label">Stay tuned for daily updates...</span>
+          <a class="daily-nav-arrow disabled" id="nav-next" href="#">NEXT &gt;&gt;</a>
+        </div>
 
-    <!-- Chart table -->
-    <div class="daily-chart-wrap">
-      <table class="daily-chart-table" id="daily-chart-table">
-        <thead>
-          <tr class="day-header-row" id="day-header-row">
-            <th class="dc-rank-head">Rank*</th>
-            <th class="dc-title-head">Title<br><span style="font-size:10px;font-weight:normal;color:#000;">(Click to view chart)</span></th>
-          </tr>
-        </thead>
-        <tbody id="daily-chart-body">
-          <tr><td colspan="3" class="daily-loading">Loading data...</td></tr>
-        </tbody>
-      </table>
+        <div class="daily-estimates-notice" id="estimates-notice" style="display:none;">
+          * Figures marked with an asterisk are estimates and will be updated when actuals are reported.
+        </div>
+
+        <!-- Chart table -->
+        <div class="daily-chart-wrap">
+          <table class="daily-chart-table" id="daily-chart-table">
+            <thead>
+              <tr class="day-header-row" id="day-header-row">
+                <th class="dc-rank-head">Rank*</th>
+                <th class="dc-title-head">Title<br><span style="font-size:12px;font-weight:bold;color:#000;">(Click to view chart)</span></th>
+              </tr>
+            </thead>
+            <tbody id="daily-chart-body">
+              <tr><td colspan="6" class="daily-loading">Loading data...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
     </div>
 
     <p class="daily-footnote">* Ranked by selected day. Click on the day at the top of the chart to sort by that day.</p>
