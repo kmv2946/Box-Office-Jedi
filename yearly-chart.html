@@ -7,37 +7,64 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <style>
 
-    /* Breadcrumb / crest. "YEARLY BOX OFFICE" is clickable back to index. */
-    .yc-page-title {
+    /* ── Page header (matches Yearly/Weekend/All Time index pages) ─── */
+    .yc-page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px 4px;
+    }
+    .yc-page-crumb {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 20px;
+      font-size: 14px;
       color: #00239C;
-      padding: 6px 14px 4px;
       text-transform: uppercase;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.04em;
     }
-    .yc-page-title a { color: #00239C; text-decoration: none; }
-    .yc-page-title a:hover { text-decoration: underline; }
-    .yc-page-title .arrow { color: #7F170E; margin-right: 4px; }
-    .yc-section-bar { height: 3px; background: #7F170E; margin-bottom: 16px; }
+    .yc-page-crumb a { color: #00239C; text-decoration: none; }
+    .yc-page-crumb a:hover { text-decoration: underline; }
 
-    /* Big red year title */
+    /* Right-side toolbar that sits on the same line as the crumb */
+    .yc-page-tools {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .yc-page-tools a {
+      color: #00239C;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .yc-page-tools a:hover { text-decoration: underline; }
+    .yc-page-tools .yc-pt-sep { color: #AAA; font-weight: normal; }
+    .yc-page-tools img { vertical-align: middle; }
+
+    .yc-section-bar { height: 5px; background: #7F170E; margin-bottom: 12px; }
+
+    /* Big page title (matches the 32px underlined Verdana of other index pages) */
     .yc-title {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 26px;
-      color: #7F170E;
+      font-size: 32px;
+      color: #000;
       text-align: center;
-      margin: 6px 0 16px;
-      letter-spacing: 0.03em;
+      margin: 6px 0 2px;
+      letter-spacing: -0.5px;
+      text-decoration: underline;
+      line-height: 1.05;
     }
 
     /* Prev/next year strip */
     .yc-prevnext {
       display: flex;
       justify-content: space-between;
-      padding: 0 14px 12px;
+      padding: 8px 14px 12px;
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
       font-size: 12px;
@@ -46,67 +73,76 @@
     .yc-prevnext a:hover { text-decoration: underline; }
     .yc-prevnext span { color: #999; }
 
-    /* Table */
-    .yc-wrap  { padding: 0 14px 20px; }
-    .yc-table { width: 100%; border-collapse: collapse; }
+    /* ── Table — auto-fit columns, white inter-cell lines, gray header ─ */
+    .yc-wrap {
+      padding: 0 14px 20px;
+      text-align: center;       /* centers the auto-width table */
+    }
+    .yc-table {
+      width: auto;              /* auto-fit to content */
+      margin: 0 auto;
+      border-collapse: collapse;
+      border: 2px solid #888888;
+      box-shadow: 0 1px 0 #DCDCDC, 1px 0 0 #DCDCDC;
+    }
 
     .yc-table thead th {
       font-family: 'Times New Roman', Times, serif;
-      font-weight: bold;
-      font-size: 15px;
+      font-weight: normal;       /* default — only Rank + Total Gross are bold */
+      font-size: 14px;
       color: #000;
-      padding: 6px 8px;
-      background: #FFFFFF;
-      border-bottom: 1px solid #999;
-      vertical-align: bottom;
+      padding: 6px 10px;
+      background: #DCDCDC;       /* gray header background, matches site */
+      border-right: 1px solid #FFFFFF;
+      border-bottom: 1px solid #FFFFFF;
+      vertical-align: middle;
       text-align: center;
-    }
-    .yc-table thead th.yc-th-left { text-align: left; }
-
-    .yc-table tbody tr:nth-child(odd)  td { background: #F4F4FE; }
-    .yc-table tbody tr:nth-child(even) td { background: #FFFFFF; }
-    .yc-table td {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 15px;
-      color: #000;
-      padding: 5px 8px;
-      text-align: right;
       white-space: nowrap;
     }
-    .yc-table td.yc-td-rank {
-      width: 44px;
-      text-align: center;
+    .yc-table thead th:last-child { border-right: none; }
+    .yc-table thead th.yc-th-left  { text-align: left; }
+    .yc-table thead th.yc-th-rank  { font-weight: bold; }
+    .yc-table thead th.yc-th-gross { font-weight: bold; }
+    .yc-table thead th .yc-hdr-hint {
       font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      color: #666;
+      font-size: 12px;
+    }
+
+    .yc-table tbody tr td {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
       color: #000;
+      padding: 5px 10px;
+      text-align: right;
+      vertical-align: middle;
+      white-space: nowrap;
+      border-right: 1px solid #FFFFFF;
+      border-bottom: 1px solid #FFFFFF;
     }
-    .yc-table td.yc-td-title {
-      text-align: left;
-      white-space: normal;       /* let long titles wrap */
-    }
+    .yc-table tbody tr td:last-child { border-right: none; }
+    .yc-table tbody tr:nth-child(odd)  td { background: #F4F4FE; }
+    .yc-table tbody tr:nth-child(even) td { background: #FFFFFF; }
+
+    .yc-table td.yc-td-rank   { width: 44px; text-align: center; }
+    .yc-table td.yc-td-title  { text-align: left; white-space: normal; }
     .yc-table td.yc-td-title a {
       font-family: 'Times New Roman', Times, serif;
       color: #00007B;
-      font-weight: bold;
+      font-weight: bold;       /* film titles stay bold (their own typographic weight) */
       text-decoration: none;
     }
     .yc-table td.yc-td-title a:hover { text-decoration: underline; }
-
-    .yc-table td.yc-td-studio {
-      font-family: 'Times New Roman', Times, serif;
-      color: #000;
-      text-align: left;
-      white-space: normal;
+    .yc-table td.yc-td-studio { text-align: left; white-space: normal; }
+    .yc-table td.yc-td-gross  { font-weight: bold; }
+    .yc-table td.yc-td-th     { color: #000; }
+    .yc-table td.yc-td-open   { color: #00239C; }
+    .yc-table td.yc-td-opendate { color: #00239C; }
+    .yc-table td.yc-td-opendate a {
+      color: #00239C; text-decoration: none; font-weight: normal;
     }
-    .yc-table td.yc-td-gross   { font-weight: bold; }
-    .yc-table td.yc-td-th      { color: #000; }
-    .yc-table td.yc-td-open    { color: #00239C; }    /* matches BOM's blue date */
-    .yc-table td.yc-td-opendate{ color: #00239C; }
-
-    /* Subtle visual separation between the paired columns (Gross|Max Th and Open|Open Th) */
-    .yc-table td.yc-td-gross   { border-right: 1px solid #E0E0E0; }
-    .yc-table td.yc-td-open    { border-right: 1px solid #E0E0E0; }
-    .yc-table thead th.yc-th-gross { border-right: 1px solid #E0E0E0; }
-    .yc-table thead th.yc-th-open  { border-right: 1px solid #E0E0E0; }
+    .yc-table td.yc-td-opendate a:hover { text-decoration: underline; }
 
     .yc-empty {
       font-family: 'Times New Roman', Times, serif;
@@ -131,6 +167,11 @@
       display: inline-block;
     }
     .yc-back:hover { text-decoration: underline; }
+
+    /* The default page-tools (left over from inflation.js's banner) is no
+       longer needed; we use yc-page-tools in the header instead. */
+    #page-tools { display: none; }
+    .infl-banner { margin: 0 14px 8px; }
   </style>
 </head>
 <body>
@@ -170,15 +211,25 @@
 
   <main class="main-content">
 
-    <div id="page-tools"></div>
-    <div class="infl-banner">Showing grosses adjusted for inflation (relative to today&rsquo;s ticket prices).</div>
-
-    <!-- Crumb: clicking "YEARLY BOX OFFICE" goes back to the yearly index -->
-    <div class="yc-page-title">
-      <span class="arrow">&gt;</span>
-      <a href="yearly.html">YEARLY BOX OFFICE</a>
+    <!-- Combined page header: crumb on the left, Print + Adjust on the right -->
+    <div class="yc-page-header">
+      <div class="yc-page-crumb">
+        &gt; <a href="yearly.html">YEARLY BOX OFFICE</a>
+      </div>
+      <div class="yc-page-tools">
+        <a href="javascript:window.print()" class="yc-print-link">
+          <img src="article_print.gif" alt="Print"> Print
+        </a>
+        <span class="yc-pt-sep">|</span>
+        <a href="#" id="yc-adjust-link">Adjust this page for inflation&nbsp;...&gt;&gt;&gt;</a>
+      </div>
     </div>
     <div class="yc-section-bar"></div>
+
+    <!-- Hidden mount point for InflationTool — we hide its toolbar via CSS
+         and drive its toggle from our own #yc-adjust-link in the header. -->
+    <div id="page-tools"></div>
+    <div class="infl-banner">Showing grosses adjusted for inflation (relative to today&rsquo;s ticket prices).</div>
 
     <h1 class="yc-title" id="yc-title">YEAR</h1>
 
@@ -192,14 +243,15 @@
       <table class="yc-table">
         <thead>
           <tr>
-            <th rowspan="2" class="yc-th-rank">Rank</th>
-            <th rowspan="2" class="yc-th-left">Movie Title <span style="font-weight:normal;color:#666;font-size:12px;">(click to view)</span></th>
-            <th rowspan="2" class="yc-th-left">Studio</th>
-            <th colspan="2" class="yc-th-gross">Total Gross / Theaters</th>
-            <th colspan="2" class="yc-th-open">Opening / Theaters</th>
-            <th rowspan="2">Open</th>
+            <th class="yc-th-rank">Rank</th>
+            <th class="yc-th-left">Movie Title <span class="yc-hdr-hint">(click to view)</span></th>
+            <th class="yc-th-left">Studio</th>
+            <th class="yc-th-gross">Total Gross</th>
+            <th>/&nbsp;Theaters</th>
+            <th>Opening</th>
+            <th>/&nbsp;Theaters</th>
+            <th>Open</th>
           </tr>
-          <tr><!-- (second header row is implied by rowspan; nothing needed) --></tr>
         </thead>
         <tbody id="yc-body">
           <tr><td colspan="8" class="yc-empty">Loading&hellip;</td></tr>
@@ -251,6 +303,23 @@
   function fmtOpenDate(s) {
     if (!s) return '—';
     return s;
+  }
+
+  // Convert "Apr 3" + page year → "2026-04-03" so the open date can link
+  // back to that weekend's chart page. Returns null if it can't parse.
+  const MONTH_ABBREV = {
+    jan:1, feb:2, mar:3, apr:4, may:5, jun:6,
+    jul:7, aug:8, sep:9, sept:9, oct:10, nov:11, dec:12,
+  };
+  function openDateToIso(openStr, yr) {
+    if (!openStr || !yr) return null;
+    const m = String(openStr).trim().match(/^([A-Za-z]+)\s+(\d{1,2})$/);
+    if (!m) return null;
+    const mo = MONTH_ABBREV[m[1].toLowerCase()];
+    if (!mo) return null;
+    const day = parseInt(m[2], 10);
+    if (!day) return null;
+    return yr + '-' + String(mo).padStart(2,'0') + '-' + String(day).padStart(2,'0');
   }
 
   // Abbreviate the long studio names so the Studio column stays compact,
@@ -311,6 +380,13 @@
 
   // Row builder
   function buildRow(r) {
+    // Linkify the Open date if we can parse it back to a weekend file.
+    const openIso = openDateToIso(r.open_date, year);
+    const openDateLabel = escapeHtml(fmtOpenDate(r.open_date));
+    const openDateCell = openIso
+      ? '<a href="weekend-chart.html?date=' + openIso + '">' + openDateLabel + '</a>'
+      : openDateLabel;
+
     return '<tr>' +
       '<td class="yc-td-rank">' + r.rank + '</td>' +
       '<td class="yc-td-title"><a href="movie.html?title=' +
@@ -321,7 +397,7 @@
       '<td class="yc-td-th">'    + fmtInt(r.max_theaters) + '</td>' +
       '<td class="yc-td-open">'  + fmtDollars(r.opening_weekend) + '</td>' +
       '<td class="yc-td-th">'    + fmtInt(r.opening_theaters) + '</td>' +
-      '<td class="yc-td-opendate">' + escapeHtml(fmtOpenDate(r.open_date)) + '</td>' +
+      '<td class="yc-td-opendate">' + openDateCell + '</td>' +
     '</tr>';
   }
 
@@ -357,10 +433,13 @@
 
   load().then(() => {
     if (!window.InflationTool || !(window.__ycRows || []).length) return;
-    // Inflation adjust: all rows share the page year for the "from" side.
+    // Mount the InflationTool's hidden toolbar (we display none on
+    // #page-tools, then forward our header link's click to the hidden
+    // adjust anchor and mirror its label back into our header).
     InflationTool.mount({
       container: document.getElementById('page-tools'),
       defaultYear: year,
+      showPrint: false,
       getMovies: () => window.__ycRows || [],
       adjust: (m) => ({ year: m.year || year, gross: m.total_gross }),
       applyAdjusted: (m, g, r) => Object.assign({}, m, { rank: r, total_gross: g }),
@@ -371,6 +450,27 @@
         render(rows);
       },
     });
+
+    // Forward header-link clicks to the hidden inflation toggle, and
+    // mirror the toggle's label back so the header stays in sync.
+    const headerLink = document.getElementById('yc-adjust-link');
+    const hiddenLink = document.querySelector('#page-tools .pt-inflation');
+    const hiddenLbl  = document.querySelector('#page-tools .pt-inflation-label');
+    if (headerLink && hiddenLink) {
+      headerLink.addEventListener('click', e => {
+        e.preventDefault();
+        hiddenLink.click();
+      });
+    }
+    if (headerLink && hiddenLbl) {
+      const sync = () => { headerLink.innerHTML = hiddenLbl.innerHTML; };
+      sync();
+      // Watch the hidden label for text changes (toggle flips it between
+      // "Adjust this page..." and "View original grosses...").
+      new MutationObserver(sync).observe(hiddenLbl, {
+        childList: true, characterData: true, subtree: true,
+      });
+    }
   });
 </script>
 
