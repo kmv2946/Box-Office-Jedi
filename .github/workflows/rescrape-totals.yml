@@ -69,15 +69,22 @@ jobs:
       - name: Rebuild yearly chart from refreshed weekends
         run: python3 scripts/build_yearly_chart.py
 
+      - name: Restore master snapshots
+        # Defensive — re-derives data/weekend.json (homepage's "latest")
+        # and data/weekends.json (master index) from the per-date files.
+        # Cheap to run; ensures a safe state regardless of which weekend
+        # the rescrape touched last.
+        run: python3 scripts/restore_master_snapshots.py
+
       - name: Commit and push refreshed data
         run: |
           git config user.name "Box Office Jedi Bot"
           git config user.email "bot@boxofficejedi.com"
-          git add data/weekends/ data/yearly.json
+          git add -A data/
           if ! git diff --staged --quiet; then
             COUNT=$(git diff --staged --name-only | wc -l)
             git commit -m "📈 Re-scrape Total Gross — $COUNT files refreshed"
-            git pull --rebase origin main
+            git pull --rebase --autostash origin main
             git push
           else
             echo "No changes — nothing to commit."

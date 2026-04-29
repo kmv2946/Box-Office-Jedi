@@ -949,14 +949,28 @@ def main():
             ok, reason = True, "FORCE flag passed; protection bypassed."
         else:
             ok, reason = should_update_weekend(friday_str, is_estimates)
+
+        # Historical re-scrape signal: when --force AND --date are both set,
+        # we're targeting a specific past weekend. Don't touch master files
+        # (weekend.json / weekends.json / yearly.json) — those describe the
+        # current state of the site, not the past. Only update the per-date
+        # weekend file.
+        historical_rescrape = bool(args.force and args.date)
+
         if not ok:
             print(f"\n[Weekend] SKIPPED — {reason}")
         else:
             print(f"\n[Weekend] Proceeding — {reason}")
+            if historical_rescrape:
+                print("[Weekend] Historical re-scrape mode: only the "
+                      "per-date file will be updated; master files left alone.")
 
-            # Yearly chart needed to enrich weekend with running totals
+            # Yearly chart needed to enrich weekend with running totals.
+            # In historical-rescrape mode, scrape it locally for enrichment
+            # but do NOT write it to disk — the workflow rebuilds yearly.json
+            # afterwards from the freshly-updated weekend files.
             yearly = scrape_yearly()
-            if yearly:
+            if yearly and not historical_rescrape:
                 save_json("yearly.json", {
                     "updated": now.isoformat(),
                     "year": now.year,
@@ -991,17 +1005,20 @@ def main():
                     "chart":        weekend_enriched,
                 }
 
-                # Save current weekend (homepage Top 5 + fallback)
-                save_json("weekend.json", weekend_payload)
-
                 # Save per-date file (individual chart pages + nav)
                 save_json(f"weekends/{friday_str}.json", weekend_payload)
 
-                # Update master index (drives weekend.html year view)
-                update_weekends_index(
-                    friday_str, str(sunday), week_num,
-                    weekend_enriched, is_estimates=is_estimates
-                )
+                # Master files only get updated for "live" runs. Historical
+                # re-scrapes target a specific past weekend and shouldn't
+                # touch the homepage's latest snapshot or master index.
+                if not historical_rescrape:
+                    # Save current weekend (homepage Top 5 + fallback)
+                    save_json("weekend.json", weekend_payload)
+                    # Update master index (drives weekend.html year view)
+                    update_weekends_index(
+                        friday_str, str(sunday), week_num,
+                        weekend_enriched, is_estimates=is_estimates
+                    )
 
     print("\n" + "=" * 60)
     print("Done!")
