@@ -1,0 +1,76 @@
+# Box Office Jedi — Yearly Chart Aggregator
+# ============================================
+# Aggregates every weekend in `data/weekends/*.json` for the current year
+# into a single rollup file `data/yearly.json` that powers the Yearly
+# Index page (yearly-chart.html?year=YYYY).
+#
+# Schedule:
+#   TUESDAY 9:00 AM ET (14:00 UTC)
+#   This sits comfortably AFTER the Monday 5 PM ET weekend-actuals scrape
+#   (update-data.yml), so by the time we run we always have the previous
+#   weekend's confirmed numbers folded in.
+#
+# Manual trigger:
+#   GitHub → Actions → "Build Yearly Chart" → Run workflow
+#   Inputs:
+#     year     : optional YYYY — defaults to the current year
+#     archive  : true/false — also write data/years/{year}.json
+#                 (use this to FREEZE a finished year, typically run
+#                 once in early January)
+
+name: Build Yearly Chart
+
+on:
+  schedule:
+    # Tuesday 9:00 AM ET (14:00 UTC, EST convention to match update-data.yml)
+    - cron: "0 14 * * 2"
+  workflow_dispatch:
+    inputs:
+      year:
+        description: "Year to build (defaults to current year)"
+        required: false
+        default: ""
+      archive:
+        description: "Also write data/years/{year}.json (use to freeze a closed year)"
+        required: false
+        default: "false"
+
+jobs:
+  build-yearly:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build yearly chart
+        run: |
+          ARGS=""
+          if [ -n "${{ github.event.inputs.year }}" ]; then
+            ARGS="$ARGS ${{ github.event.inputs.year }}"
+          fi
+          if [ "${{ github.event.inputs.archive }}" = "true" ]; then
+            ARGS="$ARGS --archive"
+          fi
+          echo "Running: python3 scripts/build_yearly_chart.py $ARGS"
+          python3 scripts/build_yearly_chart.py $ARGS
+
+      - name: Commit and push updated chart
+        run: |
+          git config user.name "Box Office Jedi Bot"
+          git config user.email "bot@boxofficejedi.com"
+          git add data/yearly.json data/years/ 2>/dev/null || true
+          if ! git diff --staged --quiet; then
+            git commit -m "📊 Rebuild yearly chart $(date +'%Y-%m-%d')"
+            git pull --rebase origin main
+            git push
+          else
+            echo "No changes — skipping commit."
+          fi
