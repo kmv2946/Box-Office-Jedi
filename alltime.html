@@ -10,7 +10,7 @@
     /* ── Page title ─────────────────────────────────────────────── */
     .at-page-header {
       padding: 10px 14px 8px;
-      border-bottom: 3px solid #990000;
+      border-bottom: 3px solid #79160A;
     }
     .at-page-title {
       font-family: Verdana, Geneva, sans-serif;
@@ -21,7 +21,7 @@
       letter-spacing: -0.5px;
     }
     .at-page-title span.arrow {
-      color: #990000;
+      color: #79160A;
       margin-right: 6px;
       font-family: 'Times New Roman', Times, serif;
     }
@@ -31,14 +31,14 @@
       padding: 10px 14px 20px;
     }
     .at-table {
-      width: 100%;
+      width: auto;             /* auto-fit columns to content */
+      margin: 0 auto 16px;     /* center each section table */
       border-collapse: collapse;
-      margin-bottom: 16px;
     }
 
-    /* Section header row */
+    /* Section header row (red banner) */
     .at-table tr.at-section th {
-      background: #990000;
+      background: #79160A;
       color: #FFFFFF;
       font-family: Verdana, Geneva, sans-serif;
       font-size: 12px;
@@ -48,34 +48,40 @@
       padding: 5px 10px;
     }
 
-    /* Sub-header row */
+    /* Sub-header row (column labels) */
     .at-table tr.at-subhead td {
       background: #DCDCDC;
-      font-family: 'Times New Roman', Times, serif;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
       font-size: 12px;
-      color: #555;
-      font-style: italic;
-      padding: 3px 10px;
+      color: #000;
+      font-style: normal;
+      padding: 4px 14px;
+      text-align: center;
+      border-right: 1px solid #FFFFFF;
       border-bottom: 1px solid #FFFFFF;
     }
+    .at-table tr.at-subhead td:last-child { border-right: none; }
     .at-table tr.at-subhead td.td-num {
-      text-align: right;
+      text-align: center;
     }
 
-    /* Data rows */
-    .at-table tr.at-row:nth-child(odd)  td { background: #F5F5F5; }
-    .at-table tr.at-row:nth-child(even) td { background: #FFFFFF;  }
+    /* Data rows — alternating FFFFFF / F4F4FE per spec */
+    .at-table tr.at-row:nth-child(odd)  td { background: #F4F4FE; }
+    .at-table tr.at-row:nth-child(even) td { background: #FFFFFF; }
     .at-table tr.at-row td {
       font-family: 'Times New Roman', Times, serif;
       font-size: 14px;
-      padding: 5px 10px;
-      border-bottom: 1px solid #E8E8E8;
+      padding: 5px 14px;
+      border-bottom: 1px solid #FFFFFF;
+      border-right: 1px solid #FFFFFF;
       vertical-align: middle;
+      white-space: nowrap;
     }
+    .at-table tr.at-row td:last-child { border-right: none; }
 
-    /* Category name cell */
+    /* Category name cell — auto-width, bold blue link */
     .at-table td.td-cat {
-      width: 44%;
       font-weight: bold;
     }
     .at-table td.td-cat a {
@@ -87,9 +93,9 @@
       color: #0000EE;
     }
 
-    /* Film title cell */
+    /* Film title cell — auto-width */
     .at-table td.td-film {
-      width: 36%;
+      text-align: center;
     }
     .at-table td.td-film a {
       color: #00007B;
@@ -104,11 +110,10 @@
       font-size: 13px;
     }
 
-    /* Gross cell */
+    /* Gross cell — right-aligned, fits content */
     .at-table td.td-gross {
-      width: 20%;
       text-align: right;
-      color: #333;
+      color: #000;
       white-space: nowrap;
     }
     .at-table td.td-gross.tbd {

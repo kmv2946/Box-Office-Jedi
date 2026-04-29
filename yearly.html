@@ -251,12 +251,11 @@
             <th>Change</th>
             <th>Total<br>Screens</th>
             <th>Ticket<br>Price</th>
-            <th>Avg.</th>
             <th># of<br>Pics.</th>
             <th class="yr-th-left">#1 Picture</th>
           </tr>
         </thead>
-        <tbody id="yr-domestic-body"><tr><td colspan="10" class="yr-empty">Loading&hellip;</td></tr></tbody>
+        <tbody id="yr-domestic-body"><tr><td colspan="9" class="yr-empty">Loading&hellip;</td></tr></tbody>
       </table>
       <p class="yr-note">* Total Gross is the sum of domestic theatrical grosses earned during the calendar year, including holdovers from the prior year.<br>
         ** Calculated by dividing Total Gross by that year&rsquo;s average ticket price.</p>
@@ -397,7 +396,6 @@
         '<td>' + (y.total_screens ? fmtInt(y.total_screens) : '—') + '</td>' +
         '<td>' + (y.avg_ticket_price ? '$' + y.avg_ticket_price.toFixed(2) : '—') + '</td>' +
         '<td>' + (y.num_pictures ? fmtInt(y.num_pictures) : '—') + '</td>' +
-        '<td>' + '—' + '</td>' +
         '<td class="yr-td-title">' + (y.top_title ? '<a href="movie.html?title=' + encodeURIComponent(y.top_title) + '">' + y.top_title + '</a>' : '—') + '</td>' +
         '</tr>';
     }).join('');
