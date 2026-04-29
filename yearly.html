@@ -94,9 +94,9 @@
       background: #DCDCDC;
       font-family: 'Times New Roman', Times, serif;
       font-weight: normal;
-      font-size: 13px;
+      font-size: 14px;
       color: #000;
-      padding: 5px 14px;
+      padding: 5px 10px;
       text-align: center;
       border-bottom: 1px solid #FFFFFF;
       border-right: 1px solid #FFFFFF;
@@ -105,7 +105,7 @@
     }
     .yr-table thead th:last-child { border-right: none; }
     /* Override the legacy "left-aligned" header class — everything centers now */
-    .yr-table thead th.yr-th-left { text-align: center; padding-left: 14px; }
+    .yr-table thead th.yr-th-left { text-align: center; padding-left: 10px; }
     .yr-table thead th.yr-th-year { text-align: center; }
 
     /* Alternating rows: F4F4FE / FFFFFF */
@@ -115,41 +115,51 @@
     /* Most recent year (current) highlighted yellow */
     .yr-table tbody tr.yr-current td { background: #FFFDA5 !important; }
 
+    /* Default body cell: Times Regular 14px, right-aligned for numeric data,
+       a touch tighter padding than the headers. Year and Title cells override. */
     .yr-table td {
-      font-size: 13px;
+      font-size: 14px;
       color: #000;
-      padding: 4px 14px;
-      text-align: center;
+      padding: 4px 10px;
+      text-align: right;
       white-space: nowrap;
       border-bottom: 1px solid #FFFFFF;
       border-right: 1px solid #FFFFFF;
     }
     .yr-table td:last-child { border-right: none; }
 
-    /* Year column: Times Bold dark blue, clickable */
+    /* Year column: Times Bold dark blue, clickable, slightly larger */
     .yr-table td.yr-td-year {
       text-align: center;
       font-family: 'Times New Roman', Times, serif;
       font-weight: bold;
-      font-size: 14px;
+      font-size: 16px;
     }
     .yr-table td.yr-td-year a {
       font-family: 'Times New Roman', Times, serif;
       font-weight: bold;
-      font-size: 14px;
+      font-size: 16px;
       color: #00007B;
       text-decoration: none;
     }
     .yr-table td.yr-td-year a:hover { text-decoration: underline; }
 
-    /* #1 Picture title cell: Times Regular dark blue (no bold) */
+    /* #1 Picture title cell: Times Regular dark blue (no bold), centered.
+       Fixed width — long titles wrap onto a second line. The width below
+       matches the natural width of "The Super Mario Galaxy Movie". */
     .yr-table td.yr-td-title {
       text-align: center;
-      padding-left: 14px;
+      padding: 4px 10px;
+      font-size: 13px;
+      width: 220px;
+      max-width: 220px;
+      white-space: normal;
+      line-height: 1.25;
     }
     .yr-table td.yr-td-title a {
       font-family: 'Times New Roman', Times, serif;
       font-weight: normal;
+      font-size: 13px;
       color: #00007B;
       text-decoration: none;
     }
@@ -163,8 +173,9 @@
       font-family: Verdana, Geneva, sans-serif;
       font-size: 11px;
       color: #777;
-      margin-top: 8px;
+      margin-top: 10px;
       padding: 0 4px;
+      text-align: center;
     }
 
     .yr-empty {
@@ -234,9 +245,9 @@
         <thead>
           <tr>
             <th class="yr-th-year">Year</th>
-            <th>Total<br>Gross**</th>
+            <th>Total<br>Gross*</th>
             <th>Change</th>
-            <th>Tickets<br>Sold*</th>
+            <th>Tickets<br>Sold**</th>
             <th>% Change</th>
             <th>Total<br>Screens</th>
             <th>Ticket<br>Price</th>
@@ -247,8 +258,8 @@
         </thead>
         <tbody id="yr-domestic-body"><tr><td colspan="10" class="yr-empty">Loading&hellip;</td></tr></tbody>
       </table>
-      <p class="yr-note">* Calculated by dividing Total Gross by that year&rsquo;s average ticket price.<br>
-        ** Totals include the domestic theatrical gross for all features released in the calendar year.</p>
+      <p class="yr-note">* Totals include the domestic theatrical gross for all features released in the calendar year.<br>
+        ** Calculated by dividing Total Gross by that year&rsquo;s average ticket price.</p>
     </div>
 
     <!-- YTD COMPARISON -->
