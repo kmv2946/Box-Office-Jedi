@@ -21,17 +21,21 @@
     .yr-title {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 24px;
-      color: #7F170E;
+      font-size: 32px;
+      color: #000;
       text-align: center;
-      margin: 4px 0 2px;
+      margin: 6px 0 2px;
+      letter-spacing: -0.5px;
+      text-decoration: underline;
+      line-height: 1.05;
     }
     .yr-subtitle {
-      font-family: 'Times New Roman', Times, serif;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
       font-size: 13px;
-      color: #444;
+      color: #000;
       text-align: center;
-      margin-bottom: 10px;
+      margin: 0 0 10px;
     }
 
     /* Tabs — mirror the showdown tab pattern for visual consistency */
@@ -43,10 +47,10 @@
       align-items: center;
     }
     .yr-tabs-label {
-      font-family: Verdana, Geneva, sans-serif;
+      font-family: 'Times New Roman', Times, serif;
       font-weight: normal;
-      font-size: 11px;
-      color: #444;
+      font-size: 13px;
+      color: #000;
       margin-right: 10px;
     }
     .yr-tab {
@@ -55,8 +59,8 @@
       font-size: 11px;
       padding: 5px 12px;
       cursor: pointer;
-      background: #EEEEEE;
-      color: #333;
+      background: #DCDCDC;
+      color: #00239C;
       border: 1px solid #CCCCCC;
       border-bottom: none;
       margin-right: 2px;
@@ -64,14 +68,15 @@
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
-    .yr-tab:hover { background: #DCDCDC; color: #000; }
+    .yr-tab:hover { background: #C8C8C8; color: #00239C; }
     .yr-tab.active {
       background: #FFFFFF;
-      color: #00239C;
+      color: #000;
       border-bottom: 2px solid #FFFFFF;
       margin-bottom: -2px;
       position: relative;
     }
+    .yr-tab.active:hover { color: #000; background: #FFFFFF; }
 
     /* Panels */
     .yr-panel { display: none; padding: 10px 14px 20px; }
@@ -79,68 +84,80 @@
 
     /* Shared table styles */
     .yr-table {
-      width: 100%;
+      width: auto;             /* auto-fit to content */
+      margin: 10px auto 0;     /* center inside its panel */
       border-collapse: collapse;
       font-family: 'Times New Roman', Times, serif;
     }
+    /* Top banner row: gray (#DCDCDC), Times Regular black, centered */
     .yr-table thead th {
-      background: #F4F4FE;
-      font-family: Verdana, Geneva, sans-serif;
-      font-weight: bold;
-      font-size: 10px;
-      color: #444;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 4px 6px;
-      text-align: right;
-      border-bottom: 2px solid #7F170E;
-      vertical-align: bottom;
+      background: #DCDCDC;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      font-size: 13px;
+      color: #000;
+      padding: 5px 14px;
+      text-align: center;
+      border-bottom: 1px solid #FFFFFF;
+      border-right: 1px solid #FFFFFF;
+      vertical-align: middle;
       white-space: nowrap;
     }
-    .yr-table thead th.yr-th-left { text-align: left; padding-left: 10px; }
+    .yr-table thead th:last-child { border-right: none; }
+    /* Override the legacy "left-aligned" header class — everything centers now */
+    .yr-table thead th.yr-th-left { text-align: center; padding-left: 14px; }
     .yr-table thead th.yr-th-year { text-align: center; }
 
+    /* Alternating rows: F4F4FE / FFFFFF */
     .yr-table tbody tr:nth-child(odd)  td { background: #F4F4FE; }
     .yr-table tbody tr:nth-child(even) td { background: #FFFFFF; }
-    .yr-table tbody tr.yr-current td    { background: #FFFEE0; }  /* highlight current year */
+
+    /* Most recent year (current) highlighted yellow */
+    .yr-table tbody tr.yr-current td { background: #FFFDA5 !important; }
 
     .yr-table td {
       font-size: 13px;
       color: #000;
-      padding: 4px 6px;
-      text-align: right;
+      padding: 4px 14px;
+      text-align: center;
       white-space: nowrap;
-      border-right: 1px solid #E8E8E8;
+      border-bottom: 1px solid #FFFFFF;
+      border-right: 1px solid #FFFFFF;
     }
+    .yr-table td:last-child { border-right: none; }
+
+    /* Year column: Times Bold dark blue, clickable */
     .yr-table td.yr-td-year {
       text-align: center;
-      font-family: Verdana, Geneva, sans-serif;
+      font-family: 'Times New Roman', Times, serif;
       font-weight: bold;
-      font-size: 13px;
-      color: #000;
-      width: 56px;
+      font-size: 14px;
     }
     .yr-table td.yr-td-year a {
-      font-family: Verdana, Geneva, sans-serif;
+      font-family: 'Times New Roman', Times, serif;
       font-weight: bold;
-      font-size: 13px;
-      color: #00239C;
+      font-size: 14px;
+      color: #00007B;
       text-decoration: none;
     }
     .yr-table td.yr-td-year a:hover { text-decoration: underline; }
+
+    /* #1 Picture title cell: Times Regular dark blue (no bold) */
     .yr-table td.yr-td-title {
-      text-align: left;
-      padding-left: 10px;
+      text-align: center;
+      padding-left: 14px;
     }
     .yr-table td.yr-td-title a {
       font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
       color: #00007B;
       text-decoration: none;
     }
     .yr-table td.yr-td-title a:hover { text-decoration: underline; }
 
-    .yr-pos { color: #006600; }
-    .yr-neg { color: #990000; }
+    /* Brighter change colors per spec */
+    .yr-pos { color: #002AF5; }
+    .yr-neg { color: #F23924; }
 
     .yr-note {
       font-family: Verdana, Geneva, sans-serif;
@@ -222,9 +239,9 @@
             <th>Tickets<br>Sold*</th>
             <th>% Change</th>
             <th>Total<br>Screens</th>
-            <th>Total<br>Price</th>
+            <th>Ticket<br>Price</th>
             <th>Avg.</th>
-            <th># of<br>Pictures</th>
+            <th># of<br>Pics.</th>
             <th class="yr-th-left">#1 Picture</th>
           </tr>
         </thead>
@@ -404,7 +421,8 @@
     const op = years.map(y => {
       const pct = (y.top_opening && y.top_gross) ? y.top_opening / y.top_gross : null;
       const avg = (y.top_opening && y.top_theaters) ? Math.floor(y.top_opening / y.top_theaters) : null;
-      return '<tr>' +
+      const mark = y.year === currentYear ? ' class="yr-current"' : '';
+      return '<tr' + mark + '>' +
         '<td class="yr-td-year"><a href="yearly-chart.html?year=' + y.year + '">' + y.year + '</a></td>' +
         '<td class="yr-td-title">' + (y.top_title ? '<a href="movie.html?title=' + encodeURIComponent(y.top_title) + '">' + y.top_title + '</a>' : '—') + '</td>' +
         '<td>' + fmtDollars(y.top_opening) + '</td>' +
@@ -418,7 +436,8 @@
 
     // — Worldwide —
     const ww = years.map(y => {
-      return '<tr>' +
+      const mark = y.year === currentYear ? ' class="yr-current"' : '';
+      return '<tr' + mark + '>' +
         '<td class="yr-td-year"><a href="yearly-chart.html?year=' + y.year + '">' + y.year + '</a></td>' +
         '<td class="yr-td-title">' + (y.top_title ? '<a href="movie.html?title=' + encodeURIComponent(y.top_title) + '">' + y.top_title + '</a>' : '—') + '</td>' +
         '<td>' + fmtShort(y.top_worldwide) + '</td>' +
