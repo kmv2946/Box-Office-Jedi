@@ -129,6 +129,7 @@
       font-family: 'Times New Roman', Times, serif;
       font-weight: bold;
       font-size: 16px;
+      line-height: 1.05;       /* tighter day/date stacking */
       padding: 8px 14px;
       text-align: center;
       border-left: 2px solid #888888;
@@ -283,10 +284,11 @@
       font-family: 'Times New Roman', Times, serif;
       font-size: 14px;
       display: block;
-      margin-bottom: 4px;
+      margin-bottom: 0;        /* keep change tight to total below */
+      line-height: 1.15;
     }
-    .dc-change-pos { color: #00239C; }   /* Blue for increase */
-    .dc-change-neg { color: #CC0000; }   /* Red for decrease  */
+    .dc-change-pos { color: #002AF5; }   /* Brighter blue for increase */
+    .dc-change-neg { color: #F23620; }   /* Brighter red for decrease  */
     .dc-change-neu { color: #555; }
     .dc-avg {
       font-family: 'Times New Roman', Times, serif;
@@ -298,6 +300,7 @@
       font-size: 14px;
       color: #75147C;
       display: block;
+      line-height: 1.15;       /* tight to change-avg above */
     }
 
     /* Footnote */
@@ -527,8 +530,8 @@
     return '$' + n.toLocaleString('en-US');
   }
   function fmtTotal(n) {
+    // Full comma-formatted gross (e.g. "$97,206,874") — no abbreviation.
     if (n === null || n === undefined) return '—';
-    if (n >= 1000000) return '$' + (n / 1000000).toFixed(2) + 'M';
     return '$' + n.toLocaleString('en-US');
   }
   function fmtAvg(n) {
@@ -873,8 +876,9 @@
       navNext.classList.add('disabled');
     }
 
-    // Estimates notice
-    const hasEstimates = loadedDates.some(d => dayDataMap[d].is_estimates);
+    // Estimates notice — guard against days that haven't reported yet
+    // (loadedDates now includes them as N/A columns).
+    const hasEstimates = loadedDates.some(d => dayDataMap[d] && dayDataMap[d].is_estimates);
     if (hasEstimates) document.getElementById('estimates-notice').style.display = 'block';
 
     // Render with the default sort
