@@ -103,22 +103,25 @@
     .daily-chart-wrap {
       padding: 0 12px 6px;
       overflow-x: auto;
+      text-align: center;
     }
     .daily-chart-table {
-      width: 100%;
+      width: auto;             /* auto-fit columns to content */
+      margin: 0 auto;          /* center under page */
       border-collapse: collapse;
       border: 1px solid #A8A8A8;
       box-shadow: 3px 3px 0 #545454;
-      min-width: 420px;
     }
 
-    /* Column headers — all DCDCDC, blue bold text */
+    /* Column headers — DCDCDC bg, Times Bold black text per spec.
+       Date columns keep blue text; the "Title (Click to view chart)"
+       header is explicitly black to distinguish from clickable dates. */
     .daily-chart-table thead tr.day-header-row th {
       background: #DCDCDC;
       color: #00239C;
-      font-family: Verdana, Geneva, sans-serif;
+      font-family: 'Times New Roman', Times, serif;
       font-weight: bold;
-      font-size: 12px;
+      font-size: 13px;
       padding: 5px 10px;
       text-align: center;
       border-left: 1px solid #A8A8A8;
@@ -136,6 +139,8 @@
     .daily-chart-table thead tr.day-header-row th.dc-rank-head {
       background: #DCDCDC;
       color: #000;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
       text-align: center;
       border-left: none;
       width: 44px;
@@ -146,7 +151,9 @@
     }
     .daily-chart-table thead tr.day-header-row th.dc-title-head {
       background: #DCDCDC;
-      color: #00239C;
+      color: #000;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
       text-align: center;
       border-left: 1px solid #AAAAAA;
       cursor: default;
@@ -155,16 +162,27 @@
       background: #DCDCDC;
     }
 
-    /* Data rows */
+    /* Data rows — fixed uniform height across every row */
     .daily-chart-table tbody tr:nth-child(odd)  td { background: #F4F4FE; }
     .daily-chart-table tbody tr:nth-child(even) td { background: #FFFFFF; }
+    .daily-chart-table tbody tr { height: 92px; }
     .daily-chart-table tbody td {
       border-bottom: 1px solid #A8A8A8;
       border-left: 1px solid #A8A8A8;
       vertical-align: middle;
       padding: 0;
+      height: 92px;            /* match the row */
     }
     .daily-chart-table tbody td:first-child { border-left: none; }
+
+    /* "N/A" placeholder for days that haven't reported yet */
+    .dc-day-cell.dc-na {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      font-size: 14px;
+      color: #000;
+      text-align: center;
+    }
 
     /* Rank cell */
     .dc-rank {
@@ -737,8 +755,11 @@
         const dr = entry.days[iso];
 
         if (!dr) {
-          td.classList.add('na-cell');
-          td.innerHTML = '&mdash;';
+          // No data for this title on this day — could mean the day hasn't
+          // been reported yet, OR the title fell off the chart. Either way
+          // we show "N/A" per spec.
+          td.classList.add('na-cell', 'dc-na');
+          td.innerHTML = 'N/A';
         } else {
           const estMark = dayDataMap[iso].is_estimates ? '*' : '';
           const grossHtml = `<span class="dc-gross">${fmtGross(dr.daily_gross)}${estMark}</span>`;
@@ -800,14 +821,19 @@
 
   // ── Build chart (called once after data load) ────────────────────
   function buildChart(groupDates, dayDataMap, allIndexDates, currentDate) {
-    const loadedDates = groupDates.filter(d => dayDataMap[d]);
-    if (!loadedDates.length) { showError('No data available for this period.'); return; }
+    // Always render the full slate of days for this group (3 for weekends,
+    // 4 for weekdays). Days without scraped data still appear as columns —
+    // their cells render as "N/A" so the layout stays consistent across
+    // the whole window.
+    const datesWithData = groupDates.filter(d => dayDataMap[d]);
+    if (!datesWithData.length) { showError('No data available for this period.'); return; }
+    const loadedDates = groupDates.slice();
 
     // Store in module-level state
     _loadedDates    = loadedDates;
     _dayDataMap     = dayDataMap;
     _allIndexDates  = allIndexDates;
-    _selectedIso    = loadedDates[loadedDates.length - 1]; // default: most recent day
+    _selectedIso    = datesWithData[datesWithData.length - 1]; // default: latest day with data
 
     // ── Navigation ──
     const prevDate = prevGroupDate(groupDates[0]);
