@@ -172,13 +172,14 @@ def _build_column_map(table) -> dict:
     """
     Walk the table's header row and return a {canonical_name: column_index} map.
 
-    The Numbers has changed its daily table layout over time. Historically it was:
-      Rank | Title | Gross | %Chg | Theaters | Avg | Total | Days
-    More recently it's been seen as:
-      TD | YD | Release | Daily | %±YD | %±LW | Theaters | Avg | ToDate | Days | Distributor
+    The Numbers' weekend chart layout (as of 2026):
+      Rank | Prev | Title | Gross | Weekly Change | Theaters | Theater Average | Total Gross | Days in Release
 
     Rather than hard-code positions, we read the <th>/<td> header row and map each
-    header to a canonical key we care about.
+    header to a canonical key we care about. The matcher is intentionally
+    PERMISSIVE — it uses substring tests rather than exact string equality so
+    header drift (e.g. "Cume" vs "Total Gross", "LW" vs "Prev") doesn't quietly
+    drop a column.
     """
     # Prefer <thead>, else use the first row of the table
     header_cells = []
@@ -192,56 +193,99 @@ def _build_column_map(table) -> dict:
         if first_row:
             header_cells = first_row.find_all(["th", "td"])
 
-    # Pattern → canonical key. Order matters; earlier patterns win.
     canonical = {}
+    raw_headers = []
     for i, cell in enumerate(header_cells):
         raw = cell.get_text(" ", strip=True)
         n = _norm_header(raw)
+        raw_headers.append((i, raw, n))
         if not n:
             continue
 
-        # Skip if already mapped — we want the first occurrence
         def put(key):
             canonical.setdefault(key, i)
 
-        raw_low = raw.lower()
-
-        # Any header containing '%' or the word 'change' is a percent-change column.
-        # (Must run BEFORE the yd/lw mappings because "% YD" and "% LW" would
-        # otherwise be misrouted to yd_rank.)
+        # ── % change column ──
+        # Any header containing '%' or the substring 'change'/'chg' is a
+        # percent-change column. MUST run before the yd/lw block because
+        # "% YD" or "% LW" would otherwise be miscategorized.
         if "%" in raw or "change" in n or "chg" in n or n.startswith("pct"):
             put("pct_change")
             continue
 
-        # Rank (today's rank)
-        if n in ("rank", "td") or n.startswith("rank"):
+        # ── rank ──
+        if n in ("rank", "td") or n.startswith("rank") or n == "tw":
             put("rank")
-        # Yesterday / last-period rank
-        elif n in ("yd", "yesterday", "lw", "lastweek", "lastrank", "ydyesterday"):
+            continue
+
+        # ── previous-period rank (LW / YD / Prev) ──
+        if (n in ("yd", "yesterday", "lw", "lastweek", "lastrank",
+                  "ydyesterday", "prev", "previous", "prevrank", "prevweek")
+            or n.startswith("prev") or n.startswith("last")):
             put("yd_rank")
-        # Title / release / movie
-        elif n in ("release", "movie", "title") or n.startswith("movie") or n.startswith("release"):
+            continue
+
+        # ── title / release / movie ──
+        if (n in ("release", "movie", "title") or n.startswith("movie")
+            or n.startswith("release") or n.startswith("title")
+            or "title" in n):
             put("title")
-        # Daily / weekend / gross (dollar amount for this period)
-        elif n in ("daily", "dailygross", "gross", "weekend", "weekendgross"):
-            put("gross")
-        # Distributor / studio
-        elif n in ("distributor", "studio"):
+            continue
+
+        # ── distributor / studio ── (must run before "gross" so a
+        # "Distributor" header with the word "gross" elsewhere isn't grabbed)
+        if n in ("distributor", "studio") or "distrib" in n or "studio" in n:
             put("distributor")
-        # Theaters / locations
-        elif n in ("theatres", "theaters", "locations", "location", "loc", "theatrestotal"):
-            put("theaters")
-        # Average per theater
-        elif n in ("avg", "average", "pertheater", "perlocation", "perloc",
-                   "pertheatre", "dollarsperlocation", "dollarspertheater"):
-            put("avg")
-        # Cumulative / to-date total
-        elif n in ("total", "totalgross", "todate", "cumulative", "cumulativegross",
-                   "running", "runningtotal", "grosstotaltodate", "totaltodate"):
+            continue
+
+        # ── total / cumulative / to-date / cume ──
+        # ANY header containing 'total' or 'cume' or 'todate' is the
+        # cumulative-gross column. This catches "Total Gross", "Cume",
+        # "Cumulative", "Gross to Date", "Total Box Office", etc.
+        if ("total" in n or "cume" in n or "todate" in n
+            or "cumul" in n or "running" in n
+            or n in ("total", "totalgross", "grosstotal", "grosstotaltodate")):
             put("total")
-        # Days / weeks in release
-        elif n in ("days", "daysinrelease", "daysinrel", "weeks", "weeksinrelease"):
+            continue
+
+        # ── theaters / locations ──
+        if (n in ("theatres", "theaters", "locations", "location", "loc",
+                  "theatrestotal")
+            or n.startswith("theat") or "location" in n):
+            put("theaters")
+            continue
+
+        # ── average per theater ──
+        # "Theater Average", "Avg", "Per Theater", "$/Theater", etc.
+        if (n in ("avg", "average", "pertheater", "perlocation", "perloc",
+                  "pertheatre", "dollarsperlocation", "dollarspertheater")
+            or "average" in n or n.startswith("avg") or "pertheat" in n
+            or "perlocation" in n):
+            put("avg")
+            continue
+
+        # ── days / weeks in release ──
+        if (n in ("days", "daysinrelease", "daysinrel", "weeks", "weeksinrelease")
+            or n.startswith("days") or n.startswith("weeks")
+            or "inrelease" in n):
             put("days")
+            continue
+
+        # ── gross / weekend / daily (must run LAST so it doesn't grab
+        # "Total Gross" — that's already been matched above) ──
+        if (n in ("daily", "dailygross", "gross", "weekend", "weekendgross")
+            or n == "wkndgross" or n.startswith("weekend")):
+            put("gross")
+            continue
+
+    # Diagnostic logging: warn loudly about any expected column that got
+    # dropped, so a silent regression on the source page surfaces in CI logs.
+    expected = ("rank", "title", "gross", "theaters", "total", "days", "pct_change")
+    missing  = [k for k in expected if k not in canonical]
+    if missing:
+        print(f"  ⚠ Column map missing {missing}. Headers were:")
+        for i, raw, n in raw_headers:
+            print(f"      [{i}] raw={raw!r}  norm={n!r}")
 
     return canonical
 
@@ -759,6 +803,15 @@ def main():
             "Example: --date 2026-04-17 --end-date 2026-04-18."
         ),
     )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help=(
+            "Bypass the weekend-actuals protection rule. Use this when "
+            "re-scraping a weekend whose stored file is incomplete (e.g. "
+            "missing Total Gross or Days in Release columns)."
+        ),
+    )
     args = parser.parse_args()
 
     now = datetime.now()
@@ -891,8 +944,11 @@ def main():
         print(f"          is_estimates: {is_estimates} "
               f"({'Sunday estimates run' if is_estimates else 'Monday+ actuals run'})")
 
-        # Protection check before scraping
-        ok, reason = should_update_weekend(friday_str, is_estimates)
+        # Protection check before scraping (skipped with --force)
+        if args.force:
+            ok, reason = True, "FORCE flag passed; protection bypassed."
+        else:
+            ok, reason = should_update_weekend(friday_str, is_estimates)
         if not ok:
             print(f"\n[Weekend] SKIPPED — {reason}")
         else:

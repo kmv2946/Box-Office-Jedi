@@ -1,0 +1,84 @@
+# Box Office Jedi — Re-scrape Missing Totals
+# ============================================
+# Scans every `data/weekends/*.json` file. For any weekend where Total
+# Gross is 0 across every chart row, re-fetches that date from
+# The Numbers using the hardened column-mapper in scrape_the_numbers.py.
+#
+# When to run this:
+#   - After updating the scraper's column-detection logic
+#   - When you notice missing Total Gross / Days in Release on weekend
+#     chart pages
+#
+# How to run:
+#   GitHub → Actions → "Re-scrape Missing Totals" → Run workflow
+#
+# Inputs:
+#   since: only re-scrape weekends with date_from >= this YYYY-MM-DD.
+#          Default empty = all weekends (~1,600 — runs ~40 min).
+#   limit: cap the number of weekends touched in one run (0 = no cap).
+#          Useful if you want to validate on a small batch first.
+#
+# Each weekend takes ~1.5s due to the polite delay built into the
+# scraper. A full historical run is well within the 6-hour timeout.
+
+name: Re-scrape Missing Totals
+
+on:
+  workflow_dispatch:
+    inputs:
+      since:
+        description: "Earliest date to re-scrape (YYYY-MM-DD). Blank = all."
+        required: false
+        default: ""
+      limit:
+        description: "Max number of weekends to re-scrape (0 = no cap)."
+        required: false
+        default: "0"
+
+jobs:
+  rescrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 lxml
+
+      - name: Re-scrape weekends with missing Total Gross
+        run: |
+          ARGS=""
+          if [ -n "${{ github.event.inputs.since }}" ]; then
+            ARGS="$ARGS --since ${{ github.event.inputs.since }}"
+          fi
+          if [ -n "${{ github.event.inputs.limit }}" ] && [ "${{ github.event.inputs.limit }}" != "0" ]; then
+            ARGS="$ARGS --limit ${{ github.event.inputs.limit }}"
+          fi
+          echo "Running: python3 scripts/rescrape_missing_totals.py $ARGS"
+          python3 scripts/rescrape_missing_totals.py $ARGS
+
+      - name: Rebuild yearly chart from refreshed weekends
+        run: python3 scripts/build_yearly_chart.py
+
+      - name: Commit and push refreshed data
+        run: |
+          git config user.name "Box Office Jedi Bot"
+          git config user.email "bot@boxofficejedi.com"
+          git add data/weekends/ data/yearly.json
+          if ! git diff --staged --quiet; then
+            COUNT=$(git diff --staged --name-only | wc -l)
+            git commit -m "📈 Re-scrape Total Gross — $COUNT files refreshed"
+            git pull --rebase origin main
+            git push
+          else
+            echo "No changes — nothing to commit."
+          fi
