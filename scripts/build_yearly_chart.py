@@ -25,18 +25,61 @@ def normalize_title(s):
     return (s or "").strip()
 
 
-def find_release_years():
-    """Scan ALL weekend files (every year we have data for) and return a
-    dict: normalized_title -> the YEAR of the film's first appearance.
+def display_title(s):
+    """Strip wrapping curly/straight quotes from a title before display.
+    The scraper occasionally captures titles wrapped in “smart quotes”
+    (e.g. "“Wuthering Heights”") — those don't belong in the chart."""
+    s = (s or "").strip()
+    return s.strip('“”"\'')
 
-    A film's "first appearance" is read from the earliest weekend file in
-    which the title shows up. We treat that year as its release year so
-    holdovers crossing the calendar boundary don't get double-counted in
-    the wrong year's chart.
+
+def film_key(row, url_for_title=None):
+    """Unique key for a film, used to merge weekend rows of the same
+    film. Prefers movie_url (which encodes the release year, so
+    Michael-(2026) is distinct from Michael-(1996)); falls back to
+    a cached URL looked up by title when this row's movie_url is
+    missing (the scraper occasionally drops it on follow-up weekends);
+    finally falls back to title when no URL has ever been seen."""
+    url = (row.get("movie_url") or "").strip()
+    if url:
+        return ("url", url)
+    t = normalize_title(row.get("title")).lower()
+    if url_for_title and t in url_for_title:
+        return ("url", url_for_title[t])
+    return ("title", t)
+
+
+def find_release_years():
+    """Scan ALL weekend files and return:
+       (first_year, url_for_title)
+
+    first_year:    film_key -> YEAR of first appearance
+    url_for_title: lower(title) -> first non-empty movie_url ever seen.
+                   Used to merge later weekends where the scraper dropped
+                   the movie_url field but the title is still recognizable.
     """
     weekends_dir = "data/weekends"
     files = sorted(glob.glob(os.path.join(weekends_dir, "*.json")))
-    first_year = {}  # norm_title -> year
+
+    # First sub-pass: build title->url cache so subsequent keying is stable.
+    url_for_title = {}
+    for path in files:
+        try:
+            with open(path) as f:
+                wknd = json.load(f)
+        except Exception:
+            continue
+        for row in (wknd.get("chart") or []):
+            t = normalize_title(row.get("title"))
+            url = (row.get("movie_url") or "").strip()
+            if not t or not url:
+                continue
+            tl = t.lower()
+            if tl not in url_for_title:
+                url_for_title[tl] = url
+
+    # Second sub-pass: build first_year using the resolved keys.
+    first_year = {}
     for path in files:
         base = os.path.basename(path).replace(".json", "")
         if not base[:4].isdigit():
@@ -53,16 +96,18 @@ def find_release_years():
                 continue
             if t.lower().startswith("reporting:"):
                 continue
-            key = t.lower()
+            key = film_key(row, url_for_title)
             if key not in first_year:
                 first_year[key] = year
-    return first_year
+    return first_year, url_for_title
 
 
 def aggregate_year(year):
-    # Build the release-year map once so we can filter holdovers out of
-    # the year we're aggregating.
-    release_year = find_release_years()
+    # Build the release-year map + title->url cache once so we can
+    # (a) filter holdovers out of the year we're aggregating, and
+    # (b) merge weekends of the same film even if the scraper drops
+    # movie_url between weeks.
+    release_year, url_for_title = find_release_years()
 
     weekends_dir = "data/weekends"
     pattern = os.path.join(weekends_dir, f"{year}-*.json")
@@ -95,10 +140,11 @@ def aggregate_year(year):
             if title.lower().startswith("reporting:"):
                 continue
             # Holdover filter: only include films whose first appearance
-            # in our weekend data was in this year. Avatar: Fire and Ash
-            # (released Dec 2024) won't show up in the 2026 chart even
-            # though it had revenue here.
-            if release_year.get(title.lower()) != year:
+            # in our weekend data was in this year. Same-titled remakes
+            # (e.g. Michael 1996 vs Michael 2026) are distinguished via
+            # movie_url so the 2026 film classifies as a 2026 release.
+            key = film_key(row, url_for_title)
+            if release_year.get(key) != year:
                 continue
 
             wknd_gross = row.get("weekend_gross") or 0
@@ -108,10 +154,10 @@ def aggregate_year(year):
             wkn_rank   = row.get("rank") or 0
             wknd_total = row.get("total_gross") or 0  # film cumulative as of this weekend
 
-            m = movies.get(title)
+            m = movies.get(key)
             if m is None:
-                m = movies[title] = {
-                    "title":            title,
+                m = movies[key] = {
+                    "title":            display_title(title),
                     "distributor":      distrib,
                     "total_gross":      0,
                     "max_theaters":     0,

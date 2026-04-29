@@ -523,33 +523,104 @@ def scrape_yearly(year: int = None) -> list[dict]:
 
 # ── Enrich weekend data with derived fields ───────────────────────────────────
 
+def _norm_title_key(s: str) -> str:
+    """Lowercase + strip non-alphanumeric. Used to match titles between
+    sources that disagree on punctuation (curly vs. straight apostrophes,
+    "&" vs. "and", etc.)."""
+    import re
+    return re.sub(r'[^a-z0-9]', '', (s or '').lower())
+
+
+def _archive_first_seen() -> dict:
+    """Scan all weekend files and return {movie_url_or_titlekey: earliest date_from}.
+    Used to determine whether a film on the current weekend is *truly* new
+    (its first ever appearance in our archive) or an expansion / re-release /
+    chart re-entry.
+    """
+    import glob
+    first_seen = {}
+    weekend_dir = os.path.join(DATA_DIR, "weekends")
+    files = sorted(glob.glob(os.path.join(weekend_dir, "*.json")))
+    # Pass 1: build title->url cache so re-keying is stable across weeks
+    url_for_title = {}
+    for path in files:
+        if os.path.basename(path) == "index.json":
+            continue
+        try:
+            with open(path) as f:
+                d = json.load(f)
+        except Exception:
+            continue
+        for row in (d.get("chart") or []):
+            tk = _norm_title_key(row.get("title"))
+            url = (row.get("movie_url") or "").strip()
+            if tk and url and tk not in url_for_title:
+                url_for_title[tk] = url
+    # Pass 2: build first-seen map keyed by url (preferred) or title
+    for path in files:
+        if os.path.basename(path) == "index.json":
+            continue
+        try:
+            with open(path) as f:
+                d = json.load(f)
+        except Exception:
+            continue
+        date_from = d.get("date_from") or ""
+        if not date_from:
+            continue
+        for row in (d.get("chart") or []):
+            url = (row.get("movie_url") or "").strip()
+            if not url:
+                tk = _norm_title_key(row.get("title"))
+                url = url_for_title.get(tk, "")
+            key = url or _norm_title_key(row.get("title"))
+            if not key:
+                continue
+            if key not in first_seen or date_from < first_seen[key]:
+                first_seen[key] = date_from
+    return first_seen, url_for_title
+
+
 def enrich_weekend(current: list[dict], previous_path: str, yearly: list[dict]) -> list[dict]:
     """
     Add calculated fields to the weekend chart:
       - avg_per_theater  : weekend_gross / theaters
-      - last_rank        : rank from previous weekend (None if new)
+      - last_rank        : rank from previous weekend (None if no LW data)
       - change_pct       : % change in gross vs previous weekend
       - theater_change   : theater count difference vs previous weekend
-      - total_gross      : from year-to-date chart
-      - is_new           : True if not in previous weekend's chart
+      - total_gross      : from year-to-date chart, falling back to a
+                           normalized-title match, then to whatever the
+                           weekend row itself reported
+      - is_new           : True ONLY if this is the film's first appearance
+                           anywhere in our weekend archive (re-releases,
+                           expansions, and chart re-entries are NOT new)
     """
     prev_by_title = {}
     try:
         with open(previous_path, "r", encoding="utf-8") as f:
             prev_data = json.load(f)
         for m in prev_data.get("chart", []):
-            prev_by_title[m["title"].lower()] = m
+            prev_by_title[_norm_title_key(m["title"])] = m
     except (FileNotFoundError, json.JSONDecodeError):
         pass
 
-    yearly_by_title = {}
+    # Two yearly maps: by raw lowercased title (legacy) and by normalized
+    # alphanumeric-only title (catches curly-apostrophe / & vs and mismatches).
+    yearly_by_title_raw  = {}
+    yearly_by_title_norm = {}
     for m in yearly:
-        yearly_by_title[m["title"].lower()] = m.get("total_gross", 0)
+        title = m.get("title") or ""
+        yearly_by_title_raw[title.lower()]      = m.get("total_gross", 0)
+        yearly_by_title_norm[_norm_title_key(title)] = m.get("total_gross", 0)
+
+    # Build the archive first-seen map ONCE per run.
+    archive_first_seen, archive_url_for_title = _archive_first_seen()
 
     enriched = []
     for m in current:
-        key = m["title"].lower()
-        prev = prev_by_title.get(key)
+        title    = m.get("title") or ""
+        norm_key = _norm_title_key(title)
+        prev = prev_by_title.get(norm_key)
 
         theaters = m.get("theaters") or 0
         gross    = m.get("weekend_gross") or 0
@@ -561,14 +632,32 @@ def enrich_weekend(current: list[dict], previous_path: str, yearly: list[dict]) 
             prev_theaters  = prev.get("theaters") or 0
             change_pct     = round((gross - prev_gross) / prev_gross * 100, 1) if prev_gross > 0 else None
             theater_change = (theaters - prev_theaters) if theaters > 0 and prev_theaters > 0 else None
-            is_new         = False
         else:
             last_rank      = None
             change_pct     = None
             theater_change = None
-            is_new         = True
 
-        total_gross = yearly_by_title.get(key) or m.get("total_gross") or 0
+        # ── is_new: archive-aware ──
+        # We're appending THIS weekend's data to the archive after this run,
+        # so to test "first ever appearance," we ask: does the archive
+        # already know about this film from a date BEFORE today?
+        url = (m.get("movie_url") or "").strip()
+        if not url:
+            url = archive_url_for_title.get(norm_key, "")
+        film_key = url or norm_key
+        prior_date = archive_first_seen.get(film_key)
+        # The current weekend's date_from isn't known here, but if a prior
+        # archive date exists for this film, it's definitely not new.
+        # Conservatively: is_new iff archive has NO prior record for it.
+        is_new = (prior_date is None)
+
+        # ── total_gross: yearly chart with normalized fallback ──
+        total_gross = (
+            yearly_by_title_raw.get(title.lower())
+            or yearly_by_title_norm.get(norm_key)
+            or m.get("total_gross")
+            or 0
+        )
 
         enriched.append({
             **m,

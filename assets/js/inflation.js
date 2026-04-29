@@ -79,26 +79,36 @@
   }
 
   // ── Toolbar UI ─────────────────────────────────────────────────────────
-  const TOOLBAR_HTML = (
-    '<div class="page-tools-inner">' +
-      '<a class="pt-print" href="#" data-pt-action="print" title="Print this page">' +
-        // Simple filled-body printer silhouette — reads clearly at small size
-        '<svg class="pt-print-icon" width="20" height="16" viewBox="0 0 20 16" aria-hidden="true">' +
-          '<rect x="5" y="1.5" width="10" height="4" fill="#7F170E"/>' +
-          '<path d="M2.5 6 H17.5 Q19 6 19 7.5 V11 Q19 12 18 12 H15 V10 H5 V12 H2 Q1 12 1 11 V7.5 Q1 6 2.5 6 Z" fill="#7F170E"/>' +
-          '<rect x="5" y="10" width="10" height="5" fill="#ffffff" stroke="#7F170E" stroke-width="1"/>' +
-          '<line x1="7" y1="12" x2="13" y2="12" stroke="#7F170E" stroke-width="1"/>' +
-          '<line x1="7" y1="13.5" x2="13" y2="13.5" stroke="#7F170E" stroke-width="1"/>' +
-          '<circle cx="16.5" cy="8" r="0.7" fill="#ffffff"/>' +
-        '</svg>' +
-        '<span class="pt-label">Print</span>' +
-      '</a>' +
-      '<span class="pt-sep">|</span>' +
-      '<a class="pt-inflation" href="#" data-pt-action="inflation">' +
-        '<span class="pt-inflation-label">Adjust this page for inflation&nbsp;...&gt;&gt;&gt;</span>' +
-      '</a>' +
-    '</div>'
+  // Two variants: with the Print link (default) and without. Pages that
+  // already have a Print button in their top nav (e.g. weekend-chart.html)
+  // can pass `showPrint: false` to InflationTool.mount() to use the
+  // inflation-only toolbar.
+  const PRINT_LINK_HTML = (
+    '<a class="pt-print" href="#" data-pt-action="print" title="Print this page">' +
+      // Simple filled-body printer silhouette — reads clearly at small size
+      '<svg class="pt-print-icon" width="20" height="16" viewBox="0 0 20 16" aria-hidden="true">' +
+        '<rect x="5" y="1.5" width="10" height="4" fill="#7F170E"/>' +
+        '<path d="M2.5 6 H17.5 Q19 6 19 7.5 V11 Q19 12 18 12 H15 V10 H5 V12 H2 Q1 12 1 11 V7.5 Q1 6 2.5 6 Z" fill="#7F170E"/>' +
+        '<rect x="5" y="10" width="10" height="5" fill="#ffffff" stroke="#7F170E" stroke-width="1"/>' +
+        '<line x1="7" y1="12" x2="13" y2="12" stroke="#7F170E" stroke-width="1"/>' +
+        '<line x1="7" y1="13.5" x2="13" y2="13.5" stroke="#7F170E" stroke-width="1"/>' +
+        '<circle cx="16.5" cy="8" r="0.7" fill="#ffffff"/>' +
+      '</svg>' +
+      '<span class="pt-label">Print</span>' +
+    '</a>' +
+    '<span class="pt-sep">|</span>'
   );
+  const INFLATION_LINK_HTML = (
+    '<a class="pt-inflation" href="#" data-pt-action="inflation">' +
+      '<span class="pt-inflation-label">Adjust this page for inflation&nbsp;...&gt;&gt;&gt;</span>' +
+    '</a>'
+  );
+  function buildToolbarHTML(showPrint) {
+    return '<div class="page-tools-inner">' +
+      (showPrint ? PRINT_LINK_HTML : '') +
+      INFLATION_LINK_HTML +
+    '</div>';
+  }
 
   function injectStylesOnce() {
     if (document.getElementById('inflation-tool-styles')) return;
@@ -129,13 +139,17 @@
       const container = opts.container;
       if (!container) return;
       container.classList.add('page-tools');
-      container.innerHTML = TOOLBAR_HTML;
+      const showPrint = opts.showPrint !== false;   // default true
+      container.innerHTML = buildToolbarHTML(showPrint);
 
-      // Print handler
-      container.querySelector('[data-pt-action="print"]').addEventListener('click', e => {
-        e.preventDefault();
-        window.print();
-      });
+      // Print handler — only wire it up if the link is present
+      const printEl = container.querySelector('[data-pt-action="print"]');
+      if (printEl) {
+        printEl.addEventListener('click', e => {
+          e.preventDefault();
+          window.print();
+        });
+      }
 
       const inflationLink  = container.querySelector('[data-pt-action="inflation"]');
       const labelEl        = inflationLink.querySelector('.pt-inflation-label');
