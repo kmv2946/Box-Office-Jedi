@@ -31,10 +31,13 @@
       padding: 10px 14px 20px;
     }
     .at-table {
-      width: auto;             /* auto-fit columns to content */
-      margin: 0 auto 16px;     /* center each section table */
+      width: auto;             /* one unified table — auto-fit columns to longest content across all sections */
+      margin: 0 auto;
       border-collapse: collapse;
     }
+    /* Spacing between section blocks: a small gap above each red banner */
+    .at-table tr.at-section + tr.at-subhead { /* no-op, just for clarity */ }
+    .at-table tr.at-section th { padding-top: 12px; }
 
     /* Section header row (red banner) */
     .at-table tr.at-section th {
@@ -170,259 +173,204 @@
 
     <div class="at-wrap">
 
-      <!-- ════════════════════ GROSSES ════════════════════ -->
-      <table class="at-table">
-        <tr class="at-section">
-          <th colspan="3">GROSSES</th>
-        </tr>
-        <tr class="at-subhead">
-          <td>Click to view chart.</td>
-          <td>#1 Picture</td>
-          <td class="td-num">Gross</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-domestic.html">DOMESTIC</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=top-lifetime-grosses-by-mpa-rating-r">R-RATING</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=grosses-movies-that-never-hit-1">MOVIES THAT NEVER HIT #1</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=top-lifetime-grosses-worldwide">WORLDWIDE</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
+      <!-- One unified table — sections are red-banner divider rows. -->
+      <table class="at-table" id="at-master">
+        <tbody>
+
+          <tr class="at-section"><th colspan="3">GROSSES</th></tr>
+          <tr class="at-subhead">
+            <td>Click to view chart.</td>
+            <td>#1 Picture</td>
+            <td class="td-num">Gross</td>
+          </tr>
+          <tr class="at-row" data-slug="top-lifetime-grosses-by-mpa-rating-pg-13">
+            <td class="td-cat"><a href="alltime-domestic.html">DOMESTIC</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="top-lifetime-grosses-by-mpa-rating-r">
+            <td class="td-cat"><a href="alltime-chart.html?chart=top-lifetime-grosses-by-mpa-rating-r">R-RATING</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="grosses-movies-that-never-hit-1">
+            <td class="td-cat"><a href="alltime-chart.html?chart=grosses-movies-that-never-hit-1">MOVIES THAT NEVER HIT #1</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="top-lifetime-grosses-worldwide">
+            <td class="td-cat"><a href="alltime-chart.html?chart=top-lifetime-grosses-worldwide">WORLDWIDE</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+
+          <tr class="at-section"><th colspan="3">WEEKENDS</th></tr>
+          <tr class="at-subhead">
+            <td>Click to view chart.</td>
+            <td>#1 Picture</td>
+            <td class="td-num">Gross</td>
+          </tr>
+          <tr class="at-row" data-slug="weekends-openings">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekends-openings">OPENING WEEKENDS</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="weekends-january">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekends-january">JANUARY</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="weekends-february">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekends-february">FEBRUARY</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="weekends-march">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekends-march">MARCH</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="weekends-april">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekends-april">APRIL</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="weekends-may">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekends-may">MAY</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="weekends-june">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekends-june">JUNE</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="weekends-july">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekends-july">JULY</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="weekends-august">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekends-august">AUGUST</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="weekends-september">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekends-september">SEPTEMBER</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="weekends-october">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekends-october">OCTOBER</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="weekends-november">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekends-november">NOVEMBER</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="weekends-december">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekends-december">DECEMBER</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="weekends-memorial-day">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekends-memorial-day">MEMORIAL DAY</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="weekends-fourth-of-july">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekends-fourth-of-july">FOURTH OF JULY</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="weekends-thanksgiving-3-day">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekends-thanksgiving-3-day">THANKSGIVING (3-DAY)</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="weekends-thanksgiving-5-day">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekends-thanksgiving-5-day">THANKSGIVING (4-DAY)</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="weekends-r-rated">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekends-r-rated">R-RATED</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="weekends-second-weekends">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekends-second-weekends">SECOND WEEKENDS</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="weekends-third-weekends">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekends-third-weekends">THIRD WEEKENDS</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="weekends-fourth-weekends">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekends-fourth-weekends">FOURTH WEEKENDS</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="weekends-fifth-weekends">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekends-fifth-weekends">FIFTH WEEKENDS</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="weekends-sixth-weekends">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekends-sixth-weekends">SIXTH WEEKENDS</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="weekends-seventh-weekends">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekends-seventh-weekends">SEVENTH WEEKENDS</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="smallest-second-weekend-drops-saturated-2500-plus">
+            <td class="td-cat"><a href="alltime-chart.html?chart=smallest-second-weekend-drops-saturated-2500-plus">SMALLEST DROPS</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="weekend-biggest-second-weekend-drops">
+            <td class="td-cat"><a href="alltime-chart.html?chart=weekend-biggest-second-weekend-drops">BIGGEST DROPS</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+
+          <tr class="at-section"><th colspan="3">DAYS</th></tr>
+          <tr class="at-subhead">
+            <td>Click to view chart.</td>
+            <td>#1 Picture</td>
+            <td class="td-num">Gross</td>
+          </tr>
+          <tr class="at-row" data-slug="days-single-days">
+            <td class="td-cat"><a href="alltime-chart.html?chart=days-single-days">SINGLE DAYS</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="days-opening-days">
+            <td class="td-cat"><a href="alltime-chart.html?chart=days-opening-days">OPENING DAYS</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="top-holiday-single-day-grosses-christmas">
+            <td class="td-cat"><a href="alltime-chart.html?chart=top-holiday-single-day-grosses-christmas">CHRISTMAS &ndash; ALL DAYS</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+
+          <tr class="at-section"><th colspan="3">MISCELLANEOUS</th></tr>
+          <tr class="at-subhead">
+            <td>Click to view chart.</td>
+            <td>#1 Picture</td>
+            <td class="td-num">Gross</td>
+          </tr>
+          <tr class="at-row" data-slug="top-per-theater-averages-wide-release">
+            <td class="td-cat"><a href="alltime-chart.html?chart=top-per-theater-averages-wide-release">TOP PER THEATER AVERAGES</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="widest-releases-overall">
+            <td class="td-cat"><a href="alltime-chart.html?chart=widest-releases-overall">WIDEST RELEASES &ndash; OVERALL</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="widest-releases-opening">
+            <td class="td-cat"><a href="alltime-chart.html?chart=widest-releases-opening">WIDEST RELEASES &ndash; OPENING</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="misc-fastest-to-100-million">
+            <td class="td-cat"><a href="alltime-chart.html?chart=misc-fastest-to-100-million">FASTEST TO $100M</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="misc-fastest-to-200-million">
+            <td class="td-cat"><a href="alltime-chart.html?chart=misc-fastest-to-200-million">FASTEST TO $200M</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="misc-fastest-to-300-million">
+            <td class="td-cat"><a href="alltime-chart.html?chart=misc-fastest-to-300-million">FASTEST TO $300M</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="misc-fastest-to-500-million">
+            <td class="td-cat"><a href="alltime-chart.html?chart=misc-fastest-to-500-million">FASTEST TO $500M</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+          <tr class="at-row" data-slug="friday-share-of-opening-weekend">
+            <td class="td-cat"><a href="alltime-chart.html?chart=friday-share-of-opening-weekend">FRIDAY SHARE OF OPENING WEEKEND</a></td>
+            <td class="td-film tbd">—</td><td class="td-gross tbd">—</td>
+          </tr>
+
+        </tbody>
       </table>
-
-      <!-- ════════════════════ WEEKENDS ════════════════════ -->
-      <table class="at-table">
-        <tr class="at-section">
-          <th colspan="3">WEEKENDS</th>
-        </tr>
-        <tr class="at-subhead">
-          <td>Click to view chart.</td>
-          <td>#1 Picture</td>
-          <td class="td-num">Gross</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekends-openings">OPENING WEEKENDS</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekends-january">JANUARY</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekends-february">FEBRUARY</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekends-march">MARCH</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekends-april">APRIL</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekends-may">MAY</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekends-june">JUNE</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekends-july">JULY</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekends-august">AUGUST</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekends-september">SEPTEMBER</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekends-october">OCTOBER</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekends-november">NOVEMBER</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekends-december">DECEMBER</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekends-memorial-day">MEMORIAL DAY</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekends-fourth-of-july">FOURTH OF JULY</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekends-thanksgiving-3-day">THANKSGIVING (3-DAY)</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekends-thanksgiving-5-day">THANKSGIVING (4-DAY)</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekends-r-rated">R-RATED</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekends-second-weekends">SECOND WEEKENDS</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekends-third-weekends">THIRD WEEKENDS</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekends-fourth-weekends">FOURTH WEEKENDS</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekends-fifth-weekends">FIFTH WEEKENDS</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekends-sixth-weekends">SIXTH WEEKENDS</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekends-seventh-weekends">SEVENTH WEEKENDS</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=smallest-second-weekend-drops-saturated-2500-plus">SMALLEST DROPS</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=weekend-biggest-second-weekend-drops">BIGGEST DROPS</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-      </table>
-
-      <!-- ════════════════════ DAYS ════════════════════ -->
-      <table class="at-table">
-        <tr class="at-section">
-          <th colspan="3">DAYS</th>
-        </tr>
-        <tr class="at-subhead">
-          <td>Click to view chart.</td>
-          <td>#1 Picture</td>
-          <td class="td-num">Gross</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=days-single-days">SINGLE DAYS</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=days-opening-days">OPENING DAYS</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=top-holiday-single-day-grosses-christmas">CHRISTMAS &ndash; ALL DAYS</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-      </table>
-
-      <!-- ════════════════════ MISCELLANEOUS ════════════════════ -->
-      <table class="at-table">
-        <tr class="at-section">
-          <th colspan="3">MISCELLANEOUS</th>
-        </tr>
-        <tr class="at-subhead">
-          <td>Click to view chart.</td>
-          <td>#1 Picture</td>
-          <td class="td-num">Gross</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=top-per-theater-averages-wide-release">TOP PER THEATER AVERAGES</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=widest-releases-overall">WIDEST RELEASES &ndash; OVERALL</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=widest-releases-opening">WIDEST RELEASES &ndash; OPENING</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=misc-fastest-to-100-million">FASTEST TO $100M</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=misc-fastest-to-200-million">FASTEST TO $200M</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=misc-fastest-to-300-million">FASTEST TO $300M</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=misc-fastest-to-500-million">FASTEST TO $500M</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-
-        <tr class="at-row">
-          <td class="td-cat"><a href="alltime-chart.html?chart=friday-share-of-opening-weekend">FRIDAY SHARE OF OPENING WEEKEND</a></td>
-          <td class="td-film tbd">—</td>
-          <td class="td-gross tbd">—</td>
-        </tr>
-        </table>
 
     </div><!-- /at-wrap -->
 
@@ -454,6 +402,116 @@
   document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') doSearch();
   });
+
+  // ── Auto-populate #1 Picture and Gross from each chart's data ──────────
+  // Each row has data-slug pointing at data/charts/{slug}.json. We resolve
+  // the "headline" stat per slug — different charts highlight different
+  // stats (Opening for monthly weekends, % Change for drops, Max Theaters
+  // for widest, Days to Milestone for fastest-to, etc.).
+  const STAT_OVERRIDES = {
+    // Monthly + holiday weekends — headline is the weekend's Opening gross
+    'weekends-openings':           'Opening',
+    'weekends-january':            'Opening',
+    'weekends-february':           'Opening',
+    'weekends-march':              'Opening',
+    'weekends-april':              'Opening',
+    'weekends-may':                'Opening',
+    'weekends-june':               'Opening',
+    'weekends-july':               'Opening',
+    'weekends-august':             'Opening',
+    'weekends-september':          'Opening',
+    'weekends-october':            'Opening',
+    'weekends-november':           'Opening',
+    'weekends-december':           'Opening',
+    'weekends-memorial-day':       'Gross',
+    'weekends-fourth-of-july':     'Gross',
+    'weekends-thanksgiving-3-day': 'Gross',
+    'weekends-thanksgiving-5-day': 'Gross',
+    'weekends-r-rated':            'Gross',
+    // Nth-weekend charts use the gross *for that weekend*
+    'weekends-second-weekends':  'Gross',
+    'weekends-third-weekends':   'Gross',
+    'weekends-fourth-weekends':  'Gross',
+    'weekends-fifth-weekends':   'Gross',
+    'weekends-sixth-weekends':   'Gross',
+    'weekends-seventh-weekends': 'Gross',
+    // Drops — headline is the percent change (smallest / biggest)
+    'smallest-second-weekend-drops-saturated-2500-plus': '% Change',
+    'weekend-biggest-second-weekend-drops':              '% Change',
+    // Days
+    'days-single-days':                         'Gross',
+    'days-opening-days':                        'Gross',
+    'top-holiday-single-day-grosses-christmas': 'Gross',
+    // Misc
+    'top-per-theater-averages-wide-release': 'Average',
+    'widest-releases-overall':               'Max Theaters',
+    'widest-releases-opening':               'Max Theaters',
+    'misc-fastest-to-100-million': 'Days to Milestone',
+    'misc-fastest-to-200-million': 'Days to Milestone',
+    'misc-fastest-to-300-million': 'Days to Milestone',
+    'misc-fastest-to-500-million': 'Days to Milestone',
+    'friday-share-of-opening-weekend': '% of Weekend',
+    // Lifetime grosses
+    'top-lifetime-grosses-worldwide':           'Worldwide Lifetime Gross',
+    'top-lifetime-grosses-by-mpa-rating-pg-13': 'Lifetime Gross',
+    'top-lifetime-grosses-by-mpa-rating-r':     'Lifetime Gross',
+    // Movies that never hit #1 — only Total Gross is useful
+    'grosses-movies-that-never-hit-1':          'Total Gross',
+  };
+
+  function findColIndex(cols, name) {
+    if (!name) return -1;
+    return cols.findIndex(c => c && c.toLowerCase() === name.toLowerCase());
+  }
+
+  async function populateAllTimeRow(tr) {
+    const slug = tr.getAttribute('data-slug');
+    if (!slug) return;
+    let data;
+    try {
+      const r = await fetch('data/charts/' + slug + '.json', { cache: 'no-store' });
+      if (!r.ok) return;
+      data = await r.json();
+    } catch (e) { return; }
+
+    const cols = data.columns || [];
+    const rows = data.rows || [];
+    if (!rows.length) return;
+    const top = rows[0];
+
+    // Title column — try a few common names
+    let titleIdx = findColIndex(cols, 'Title');
+    if (titleIdx === -1) titleIdx = findColIndex(cols, 'Release');
+    if (titleIdx === -1) titleIdx = findColIndex(cols, 'Title (click to view)');
+
+    const statName = STAT_OVERRIDES[slug];
+    const statIdx  = findColIndex(cols, statName);
+
+    const filmCell  = tr.querySelector('.td-film');
+    const grossCell = tr.querySelector('.td-gross');
+
+    if (titleIdx !== -1 && filmCell) {
+      const title = top[titleIdx];
+      if (title) {
+        filmCell.classList.remove('tbd');
+        filmCell.innerHTML = '<a href="movie.html?title=' +
+          encodeURIComponent(title) + '">' + title + '</a>';
+      }
+    }
+    if (statIdx !== -1 && grossCell) {
+      let stat = top[statIdx];
+      // Bare integers (Theaters, Days) → comma-format
+      if (stat && /^\d+$/.test(String(stat))) {
+        stat = parseInt(stat, 10).toLocaleString('en-US');
+      }
+      if (stat) {
+        grossCell.classList.remove('tbd');
+        grossCell.textContent = stat;
+      }
+    }
+  }
+
+  document.querySelectorAll('tr.at-row[data-slug]').forEach(populateAllTimeRow);
 </script>
 
 </body>
