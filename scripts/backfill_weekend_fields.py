@@ -2,8 +2,8 @@
 """
 Box Office Jedi — Weekend File Backfill
 =========================================
-Walks every `data/weekends/*.json` chart file and corrects two fields that
-the original scraper got wrong on a non-trivial number of weekends:
+Walks every `data/weekends/*.json` chart file and corrects three fields
+that the original scraper left blank or wrong on many weekends:
 
   1. is_new   — was True for any film not in the *immediately preceding*
                 weekend's chart, which incorrectly flagged re-releases,
@@ -15,7 +15,16 @@ the original scraper got wrong on a non-trivial number of weekends:
                 missed titles (curly apostrophes, slight variants). We
                 now compute a running total per movie_url across every
                 prior weekend (inclusive of the current one), and only
-                overwrite the file's value when it's currently 0.
+                overwrite the file's value when it's currently 0. Note
+                that for films that drop off the chart's tail and come
+                back, we miss those weekends — and we always miss
+                weekday gross — so this is an approximation, not the
+                full theatrical total.
+
+  3. weeks_in_release — typically 0 in scraped files because The Numbers
+                hides the column for older entries. Computed here as
+                the number of distinct weekends from the film's first
+                appearance through and including this one.
 
 Run (one-off):
     python3 scripts/backfill_weekend_fields.py
@@ -30,6 +39,7 @@ import os
 import re
 import sys
 from collections import defaultdict
+from datetime import datetime
 
 
 WEEKENDS_DIR = "data/weekends"
@@ -64,12 +74,13 @@ def main():
     ap.add_argument("--only-is-new", action="store_true",
                     help="Backfill only is_new (skip total_gross)")
     ap.add_argument("--only-totals", action="store_true",
-                    help="Backfill only total_gross (skip is_new)")
-    ap.add_argument("--totals-from-year", type=int, default=2026,
+                    help="Backfill only total_gross (skip is_new + weeks)")
+    ap.add_argument("--totals-from-year", type=int, default=0,
                     help="Only backfill total_gross for weekend files >= this "
-                         "year (default 2026). Older years often have spotty "
-                         "weekend coverage, so summing weekend grosses misses "
-                         "weekday revenue and post-drop-off runs.")
+                         "year (default 0 = all years). Note that summing "
+                         "weekend grosses across our archive is an "
+                         "underestimate (misses weekday revenue and any "
+                         "weekends where a film fell off the top-50).")
     args = ap.parse_args()
 
     files = sorted(glob.glob(os.path.join(WEEKENDS_DIR, "*.json")))
@@ -122,6 +133,7 @@ def main():
 
     is_new_changes = 0
     total_changes  = 0
+    weeks_changes  = 0
     files_changed  = 0
 
     for path in files_by_date:
@@ -161,9 +173,7 @@ def main():
             # ── 2. total_gross fill-in ─────────────────────────
             # Only overwrite when the file's value is 0/missing — preserves
             # any actual cumulative figure the scraper or yearly chart
-            # successfully captured. Limited to recent years (default 2026+)
-            # because older archives have spotty weekend coverage and
-            # summing weekend grosses misses weekday revenue + drop-off runs.
+            # successfully captured.
             if not args.only_is_new:
                 file_year = int(date_from[:4]) if date_from[:4].isdigit() else 0
                 if file_year >= args.totals_from_year:
@@ -172,6 +182,26 @@ def main():
                         row["total_gross"] = running_total[key]
                         total_changes += 1
                         file_dirty = True
+
+            # ── 3. weeks_in_release ────────────────────────────
+            # Number of weekends from the film's first appearance through
+            # this one. Opening weekend = 1, second weekend = 2, etc.
+            # Only overwrite when the file's value is 0/missing.
+            if not args.only_totals:
+                cur_weeks = row.get("weeks_in_release") or 0
+                if cur_weeks <= 0:
+                    first_dt_str = first_seen.get(key)
+                    if first_dt_str:
+                        try:
+                            d_first = datetime.strptime(first_dt_str, "%Y-%m-%d")
+                            d_now   = datetime.strptime(date_from, "%Y-%m-%d")
+                            delta_days = (d_now - d_first).days
+                            wk = max(1, (delta_days // 7) + 1)
+                            row["weeks_in_release"] = wk
+                            weeks_changes += 1
+                            file_dirty = True
+                        except Exception:
+                            pass
 
         if file_dirty:
             files_changed += 1
@@ -182,6 +212,7 @@ def main():
     print()
     print(f"is_new flips:        {is_new_changes}")
     print(f"total_gross fills:   {total_changes}")
+    print(f"weeks_in_release:    {weeks_changes}")
     print(f"files updated:       {files_changed}{' (DRY RUN)' if args.dry_run else ''}")
 
 

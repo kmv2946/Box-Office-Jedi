@@ -581,7 +581,8 @@ def _archive_first_seen() -> dict:
     return first_seen, url_for_title
 
 
-def enrich_weekend(current: list[dict], previous_path: str, yearly: list[dict]) -> list[dict]:
+def enrich_weekend(current: list[dict], previous_path: str, yearly: list[dict],
+                   current_friday_str: str = "") -> list[dict]:
     """
     Add calculated fields to the weekend chart:
       - avg_per_theater  : weekend_gross / theaters
@@ -594,6 +595,9 @@ def enrich_weekend(current: list[dict], previous_path: str, yearly: list[dict]) 
       - is_new           : True ONLY if this is the film's first appearance
                            anywhere in our weekend archive (re-releases,
                            expansions, and chart re-entries are NOT new)
+      - weeks_in_release : number of weekends (1-indexed) since the film's
+                           first archive appearance, inclusive of this one.
+                           Requires `current_friday_str`.
     """
     prev_by_title = {}
     try:
@@ -659,6 +663,18 @@ def enrich_weekend(current: list[dict], previous_path: str, yearly: list[dict]) 
             or 0
         )
 
+        # ── weeks_in_release: count weekends from first archive
+        # appearance (inclusive). New films get 1.
+        weeks_in_release = m.get("weeks_in_release") or 0
+        if current_friday_str:
+            anchor = prior_date or current_friday_str
+            try:
+                d_first = datetime.strptime(anchor, "%Y-%m-%d")
+                d_now   = datetime.strptime(current_friday_str, "%Y-%m-%d")
+                weeks_in_release = max(1, ((d_now - d_first).days // 7) + 1)
+            except Exception:
+                pass
+
         enriched.append({
             **m,
             "avg_per_theater":  avg,
@@ -667,6 +683,7 @@ def enrich_weekend(current: list[dict], previous_path: str, yearly: list[dict]) 
             "theater_change":   theater_change,
             "total_gross":      total_gross,
             "is_new":           is_new,
+            "weeks_in_release": weeks_in_release,
         })
 
     return enriched
@@ -904,7 +921,10 @@ def main():
             if not weekend_raw:
                 print("  No weekend data scraped — skipping save.")
             else:
-                weekend_enriched = enrich_weekend(weekend_raw, prev_path, yearly if yearly else [])
+                weekend_enriched = enrich_weekend(
+                    weekend_raw, prev_path, yearly if yearly else [],
+                    current_friday_str=friday_str,
+                )
 
                 weekend_payload = {
                     "updated":      now.isoformat(),
