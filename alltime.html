@@ -40,18 +40,22 @@
     }
     /* Spacing between section blocks: a small gap above each red banner */
     .at-table tr.at-section + tr.at-subhead { /* no-op, just for clarity */ }
-    .at-table tr.at-section th { padding-top: 12px; }
+    .at-table tr.at-section th { padding-top: 10px; }
 
-    /* Section header row (red banner) */
+    /* Section header row (red banner). Slightly larger title text but
+       reduced top/bottom padding so the row height stays the same.
+       The 1px white border-bottom creates a hairline between the red
+       banner and the gray sub-head row beneath it. */
     .at-table tr.at-section th {
       background: #79160A;
       color: #FFFFFF;
       font-family: Verdana, Geneva, sans-serif;
-      font-size: 12px;
+      font-size: 14px;
       font-weight: bold;
       letter-spacing: 1px;
       text-align: center;
-      padding: 5px 10px;
+      padding: 4px 10px;
+      border-bottom: 1px solid #FFFFFF;
     }
 
     /* Sub-header row (column labels) */
@@ -99,30 +103,31 @@
       color: #0000EE;
     }
 
-    /* Film title cell — Verdana Regular dark blue, auto-width */
-    .at-table td.td-film {
+    /* Film title cell — Verdana Regular dark blue, auto-width.
+       Use .at-row in the selector to win specificity over the row default. */
+    .at-table tr.at-row td.td-film {
       text-align: center;
       font-family: Verdana, Geneva, sans-serif;
       font-weight: normal;
       font-size: 13px;
     }
-    .at-table td.td-film a {
+    .at-table tr.at-row td.td-film a {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: normal;
       font-size: 13px;
       color: #00007B;
       text-decoration: none;
     }
-    .at-table td.td-film a:hover {
+    .at-table tr.at-row td.td-film a:hover {
       text-decoration: underline;
     }
-    .at-table td.td-film.tbd {
+    .at-table tr.at-row td.td-film.tbd {
       color: #AAAAAA;
       font-style: italic;
     }
 
     /* Gross cell — Verdana Regular black, right-aligned */
-    .at-table td.td-gross {
+    .at-table tr.at-row td.td-gross {
       text-align: right;
       font-family: Verdana, Geneva, sans-serif;
       font-weight: normal;
@@ -130,7 +135,7 @@
       color: #000;
       white-space: nowrap;
     }
-    .at-table td.td-gross.tbd {
+    .at-table tr.at-row td.td-gross.tbd {
       color: #AAAAAA;
       font-style: italic;
     }
