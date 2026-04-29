@@ -34,12 +34,14 @@
     }
 
     /* ── Year navigation ─────────────────────────────────────────── */
-    /* Padded so the year list never reaches the chart edges */
+    /* Padded so the year list never reaches the chart edges. Narrower
+       max-width than the chart wrapper so years wrap into multiple lines
+       (BOM-style) instead of overflowing horizontally. */
     .wknd-year-nav {
       padding: 8px 30px 10px;
       text-align: center;
       border-bottom: none;
-      max-width: 880px;
+      max-width: 720px;
       margin: 0 auto;
     }
     .wknd-year-current {
@@ -104,15 +106,20 @@
     }
     .wknd-table thead th:last-child { border-right: none; }
     .wknd-table thead th.num { text-align: center; }
+    /* Per-column header padding to match the body — keeps Change and Week tight,
+       and trims the left side of the date column so it doesn't drift. */
+    .wknd-table thead th:first-child { padding-left: 8px; }
+    .wknd-table thead th.num.col-change,
+    .wknd-table thead th.num.col-week  { padding-left: 6px; padding-right: 6px; }
 
-    /* Data rows — light gray dividers (#DCDCDC) to match the header gaps */
+    /* Data rows — white dividers (#FFFFFF) per spec */
     .wknd-table tbody tr.wknd-row td {
       font-family: 'Times New Roman', Times, serif;
       font-size: 14px;
       color: #000;
       padding: 4px 14px;
-      border-bottom: 1px solid #DCDCDC;
-      border-right: 1px solid #DCDCDC;
+      border-bottom: 1px solid #FFFFFF;
+      border-right: 1px solid #FFFFFF;
       vertical-align: middle;
       white-space: nowrap;
     }
@@ -120,16 +127,22 @@
     .wknd-table tbody tr.wknd-row:nth-child(odd)  td { background: #F4F4FE; }
     .wknd-table tbody tr.wknd-row:nth-child(even) td { background: #FFFFFF; }
 
+    /* Per-column body padding */
+    .wknd-table tbody tr.wknd-row td:first-child { padding-left: 8px; }
+    .wknd-table tbody tr.wknd-row td.col-change,
+    .wknd-table tbody tr.wknd-row td.wknd-weeknum { padding-left: 6px; padding-right: 6px; }
+
     /* Latest weekend highlight */
     .wknd-table tbody tr.wknd-row.wknd-latest td {
       background: #FFFFA6 !important;
     }
 
-    /* Month separator rows — softer separator that matches the new palette */
+    /* Month separator rows — softer separator (now sits on a white-divider
+       table, so we use a slightly darker fill to be visible) */
     .wknd-table tbody tr.wknd-month-sep td {
       background: #DCDCDC;
       padding: 6px 0;
-      border-bottom: 1px solid #C0C0C0;
+      border-bottom: 1px solid #FFFFFF;
       border-right: none;
       line-height: 0;
       font-size: 0;
@@ -246,11 +259,11 @@
       <table class="wknd-table" id="wknd-table">
         <thead>
           <tr>
-            <th style="width:160px;">Click to view Top 10</th>
+            <th>Weekend<br>(Click to view)</th>
             <th class="num">Top 10 Total</th>
-            <th class="num">Change</th>
-            <th style="text-align:center;">#1 Picture</th>
-            <th class="num">Week</th>
+            <th class="num col-change">Change</th>
+            <th style="text-align:center;">#1 Movie</th>
+            <th class="num col-week">Week</th>
           </tr>
         </thead>
         <tbody id="wknd-body">
@@ -310,17 +323,17 @@
     const [y, m, d] = iso.split('-').map(Number);
     return new Date(y, m - 1, d);
   }
-  // "April 4-6" style label
+  // "Apr. 4-6" style label (abbreviated months; May has no period).
   function weekendLabel(from, to) {
     const d1 = isoToLocal(from);
     const d2 = isoToLocal(to);
-    const months = ['January','February','March','April','May','June',
-                    'July','August','September','October','November','December'];
+    const monthsShort = ['Jan.','Feb.','Mar.','Apr.','May','Jun.',
+                         'Jul.','Aug.','Sep.','Oct.','Nov.','Dec.'];
     if (d1.getMonth() === d2.getMonth()) {
-      return months[d1.getMonth()] + ' ' + d1.getDate() + '-' + d2.getDate();
+      return monthsShort[d1.getMonth()] + ' ' + d1.getDate() + '-' + d2.getDate();
     }
-    return months[d1.getMonth()] + ' ' + d1.getDate() + '-' +
-           months[d2.getMonth()].slice(0,3) + '. ' + d2.getDate();
+    return monthsShort[d1.getMonth()] + ' ' + d1.getDate() + '-' +
+           monthsShort[d2.getMonth()] + ' ' + d2.getDate();
   }
   function monthOf(iso) {
     return iso.slice(0, 7); // "YYYY-MM"
@@ -423,7 +436,7 @@
       tr.innerHTML = `
         <td><a class="wknd-date-link" href="${chartHref}">${label}</a></td>
         <td class="num">${totalFmt}${estimatesFlag}</td>
-        <td class="num">${w.change_pct !== null && w.change_pct !== undefined ? fmtChange(w.change_pct) : '—'}</td>
+        <td class="num col-change">${w.change_pct !== null && w.change_pct !== undefined ? fmtChange(w.change_pct) : '—'}</td>
         <td class="top-film">${topFilmHtml}</td>
         <td class="wknd-weeknum">${w.week_number || '—'}</td>
       `;
