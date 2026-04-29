@@ -69,10 +69,18 @@
       margin-top: 0;
       padding-top: 8px;
     }
+    /* Each decade renders on its own row */
+    .wknd-year-row {
+      line-height: 1.5;
+      margin: 2px 0;
+    }
+    .wknd-year-more-row {
+      margin-top: 6px;
+    }
     .wknd-year-more-link {
       font-family: 'Times New Roman', Times, serif;
       font-weight: bold;
-      font-size: 15px;
+      font-size: 13px;
       color: #00007B;
       text-decoration: none;
     }
@@ -350,34 +358,46 @@
   }
 
   function buildYearNav(currentYear, containerId) {
-    const thisYear = new Date().getFullYear();
-    const primaryStart = 2007;   // primary row goes back to 2007
-    const extendedStart = 1995;  // "more years" goes back to 1995
-
-    // Primary years: thisYear down to 2007 (or site launch if later)
-    const primaryYears = [];
-    for (let y = Math.max(thisYear, 2026); y >= primaryStart; y--) primaryYears.push(y);
-
-    // Extended years: 2006 down to 1995
-    const extendedYears = [];
-    for (let y = primaryStart - 1; y >= extendedStart; y--) extendedYears.push(y);
-
+    const thisYear = Math.max(new Date().getFullYear(), 2026);
     const sep = `<span class="wknd-year-sep"> - </span>`;
 
-    const primaryHtml = primaryYears.map(y => yearEl(y, currentYear)).join(sep);
+    // One row per decade. Row 1 starts at thisYear and walks back to the
+    // start of the current decade. Subsequent rows are full decades down to
+    // 2000. Pre-2000 years (1995–1999) go behind a "more years »" link.
+    const rows = [];
+    const currentDecadeStart = Math.floor(thisYear / 10) * 10;
 
-    let extendedHtml = '';
+    const row1 = [];
+    for (let y = thisYear; y >= currentDecadeStart; y--) row1.push(y);
+    rows.push(row1);
+
+    for (let dStart = currentDecadeStart - 10; dStart >= 2000; dStart -= 10) {
+      const row = [];
+      for (let y = dStart + 9; y >= dStart; y--) row.push(y);
+      rows.push(row);
+    }
+
+    const extendedYears = [];
+    for (let y = 1999; y >= 1995; y--) extendedYears.push(y);
+
+    let html = '';
+    rows.forEach(row => {
+      const rowHtml = row.map(y => yearEl(y, currentYear)).join(sep);
+      html += `<div class="wknd-year-row">${rowHtml}</div>`;
+    });
+
     if (extendedYears.length) {
-      extendedHtml = `
-        <span class="wknd-year-sep"> - </span>
-        <a class="wknd-year-more-link" href="#" onclick="toggleMoreYears(event, '${containerId}')">more years &raquo;</a>
-        <span class="wknd-more-years" id="more-years-${containerId}" style="display:none;">
-          ${sep}${extendedYears.map(y => yearEl(y, currentYear)).join(sep)}
-        </span>`;
+      html += `
+        <div class="wknd-year-row wknd-year-more-row">
+          <a class="wknd-year-more-link" href="#" onclick="toggleMoreYears(event, '${containerId}')">more years &raquo;</a>
+          <span class="wknd-more-years" id="more-years-${containerId}" style="display:none;">
+            ${sep}${extendedYears.map(y => yearEl(y, currentYear)).join(sep)}
+          </span>
+        </div>`;
     }
 
     const container = document.getElementById(containerId);
-    if (container) container.innerHTML = primaryHtml + extendedHtml;
+    if (container) container.innerHTML = html;
   }
 
   function toggleMoreYears(e, containerId) {
@@ -429,8 +449,13 @@
 
       const totalFmt = w.top_total ? fmtTotal(w.top_total) : '—';
 
-      const topFilmHtml = w.top_film
-        ? `<a class="wknd-top-film-link" href="movie.html?id=${w.top_film_tmdb_id || ''}&title=${encodeURIComponent(w.top_film)}">${w.top_film}</a>`
+      // Strip wrapping quote characters (the scraper sometimes captures
+      // curly quotes around titles, e.g. "“Wuthering Heights”").
+      const cleanFilm = w.top_film
+        ? String(w.top_film).replace(/^[“”"']+|[“”"']+$/g, '')
+        : '';
+      const topFilmHtml = cleanFilm
+        ? `<a class="wknd-top-film-link" href="movie.html?id=${w.top_film_tmdb_id || ''}&title=${encodeURIComponent(cleanFilm)}">${cleanFilm}</a>`
         : '—';
 
       tr.innerHTML = `
@@ -458,28 +483,32 @@
       if (!r.ok) throw new Error('no weekends.json');
       const d = await r.json();
 
-      // Filter to requested year
-      let weekends = (d.weekends || []).filter(w => w.date_from.startsWith(reqYear + '-'));
-
-      if (!weekends.length) {
-        // Try falling back to weekend.json (single latest weekend)
-        throw new Error('no data for year');
-      }
-
-      // Recompute change_pct client-side from top_total — the values stored
-      // in weekends.json are unreliable. We mutate the original objects so
-      // the existing display order (descending) is preserved.
-      const sortedAsc = [...weekends].sort((a, b) =>
+      // Recompute change_pct ACROSS ALL weekends (so the first weekend of a
+      // year gets its delta vs the last weekend of the prior year), then
+      // filter down to the requested year.
+      const allAsc = [...(d.weekends || [])].sort((a, b) =>
         a.date_from < b.date_from ? -1 : 1);
-      for (let i = 0; i < sortedAsc.length; i++) {
-        const cur = sortedAsc[i];
-        const prev = sortedAsc[i - 1];
+      for (let i = 0; i < allAsc.length; i++) {
+        const cur = allAsc[i];
+        const prev = allAsc[i - 1];
         if (prev && prev.top_total && cur.top_total) {
           cur.change_pct = ((cur.top_total - prev.top_total) / prev.top_total) * 100;
         } else {
           cur.change_pct = null;
         }
       }
+
+      // Filter to requested year
+      let weekends = allAsc.filter(w => w.date_from.startsWith(reqYear + '-'));
+      if (!weekends.length) throw new Error('no data for year');
+
+      // Recompute week_number as 1-indexed chronological position within
+      // the year. The data file's week_number is unreliable (e.g., 2026's
+      // first weekend has week_number=0), so we derive it for the index.
+      weekends.forEach((w, i) => { w.week_number = i + 1; });
+
+      // Display order is newest-first, so reverse for rendering.
+      weekends = [...weekends].reverse();
 
       // Latest weekend = most recent date_from
       const latestDateFrom = weekends.reduce((best, w) =>
