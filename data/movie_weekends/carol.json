@@ -1,6 +1,8 @@
 {
  "key": "carol",
  "title": "Carol",
+ "year": null,
+ "movie_url": "/movie/Carol",
  "opening_date": "2015-11-20",
  "opening_gross": 253510,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 253510,
    "rank": 22,
    "theaters": 4,
-   "total_gross": 0
+   "total_gross": 253510
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 197772,
    "rank": 25,
    "theaters": 4,
-   "total_gross": 0
+   "total_gross": 583021
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 145123,
    "rank": 25,
    "theaters": 4,
-   "total_gross": 0
+   "total_gross": 815001
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 337673,
    "rank": 18,
    "theaters": 16,
-   "total_gross": 0
+   "total_gross": 1221486
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 231137,
    "rank": 23,
    "theaters": 16,
-   "total_gross": 0
+   "total_gross": 1627965
   },
   {
    "n": 6,
@@ -50,7 +52,7 @@
    "gross": 1093571,
    "rank": 16,
    "theaters": 180,
-   "total_gross": 0
+   "total_gross": 2877882
   },
   {
    "n": 7,
@@ -58,7 +60,7 @@
    "gross": 1181341,
    "rank": 16,
    "theaters": 189,
-   "total_gross": 0
+   "total_gross": 4982475
   },
   {
    "n": 8,
@@ -66,7 +68,7 @@
    "gross": 1486065,
    "rank": 15,
    "theaters": 525,
-   "total_gross": 0
+   "total_gross": 7004358
   },
   {
    "n": 9,
@@ -74,7 +76,7 @@
    "gross": 1458049,
    "rank": 15,
    "theaters": 790,
-   "total_gross": 0
+   "total_gross": 9153903
   },
   {
    "n": 10,
@@ -82,7 +84,7 @@
    "gross": 644746,
    "rank": 20,
    "theaters": 692,
-   "total_gross": 0
+   "total_gross": 10579777
   },
   {
    "n": 11,
@@ -90,7 +92,7 @@
    "gross": 435966,
    "rank": 26,
    "theaters": 313,
-   "total_gross": 0
+   "total_gross": 11403211
   },
   {
    "n": 12,
@@ -98,7 +100,7 @@
    "gross": 222152,
    "rank": 27,
    "theaters": 236,
-   "total_gross": 0
+   "total_gross": 11816008
   },
   {
    "n": 13,
@@ -106,7 +108,7 @@
    "gross": 161705,
    "rank": 30,
    "theaters": 141,
-   "total_gross": 0
+   "total_gross": 12097699
   },
   {
    "n": 14,
@@ -114,7 +116,7 @@
    "gross": 100000,
    "rank": 38,
    "theaters": 101,
-   "total_gross": 0
+   "total_gross": 12300175
   },
   {
    "n": 15,
@@ -122,7 +124,7 @@
    "gross": 119586,
    "rank": 39,
    "theaters": 202,
-   "total_gross": 0
+   "total_gross": 12501507
   },
   {
    "n": 16,
@@ -130,7 +132,7 @@
    "gross": 47298,
    "rank": 46,
    "theaters": 55,
-   "total_gross": 0
+   "total_gross": 12609584
   },
   {
    "n": 17,
@@ -138,7 +140,7 @@
    "gross": 24997,
    "rank": 57,
    "theaters": 33,
-   "total_gross": 0
+   "total_gross": 12658244
   },
   {
    "n": 18,
@@ -146,7 +148,7 @@
    "gross": 19668,
    "rank": 61,
    "theaters": 53,
-   "total_gross": 0
+   "total_gross": 12692832
   },
   {
    "n": 19,
@@ -154,7 +156,7 @@
    "gross": 4931,
    "rank": 71,
    "theaters": 23,
-   "total_gross": 0
+   "total_gross": 12706393
   }
  ]
 }

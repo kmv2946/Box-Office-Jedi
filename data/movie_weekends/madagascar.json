@@ -1,6 +1,8 @@
 {
  "key": "madagascar",
  "title": "Madagascar",
+ "year": null,
+ "movie_url": "/movie/Madagascar",
  "opening_date": "2005-05-27",
  "opening_gross": 47224594,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 47224594,
    "rank": 3,
    "theaters": 4131,
-   "total_gross": 0
+   "total_gross": 47224594
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 28110235,
    "rank": 1,
    "theaters": 4142,
-   "total_gross": 0
+   "total_gross": 100377791
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 17180801,
    "rank": 2,
    "theaters": 3929,
-   "total_gross": 0
+   "total_gross": 128414334
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 10737325,
    "rank": 3,
    "theaters": 3533,
-   "total_gross": 0
+   "total_gross": 146831846
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 7434917,
    "rank": 6,
    "theaters": 2948,
-   "total_gross": 0
+   "total_gross": 160191242
   },
   {
    "n": 6,
@@ -50,7 +52,7 @@
    "gross": 5443338,
    "rank": 6,
    "theaters": 2526,
-   "total_gross": 0
+   "total_gross": 170872831
   },
   {
    "n": 7,
@@ -58,7 +60,7 @@
    "gross": 4009053,
    "rank": 8,
    "theaters": 2162,
-   "total_gross": 0
+   "total_gross": 179259220
   },
   {
    "n": 8,
@@ -66,7 +68,7 @@
    "gross": 2308169,
    "rank": 10,
    "theaters": 1779,
-   "total_gross": 0
+   "total_gross": 184083054
   },
   {
    "n": 9,
@@ -74,7 +76,7 @@
    "gross": 1199205,
    "rank": 14,
    "theaters": 1101,
-   "total_gross": 0
+   "total_gross": 186730236
   },
   {
    "n": 10,
@@ -82,7 +84,7 @@
    "gross": 565142,
    "rank": 17,
    "theaters": 663,
-   "total_gross": 0
+   "total_gross": 188238726
   },
   {
    "n": 11,
@@ -90,7 +92,7 @@
    "gross": 406050,
    "rank": 19,
    "theaters": 489,
-   "total_gross": 0
+   "total_gross": 189114004
   },
   {
    "n": 12,
@@ -98,7 +100,7 @@
    "gross": 330015,
    "rank": 24,
    "theaters": 327,
-   "total_gross": 0
+   "total_gross": 189788036
   },
   {
    "n": 13,
@@ -106,7 +108,7 @@
    "gross": 251782,
    "rank": 27,
    "theaters": 363,
-   "total_gross": 0
+   "total_gross": 190252852
   },
   {
    "n": 14,
@@ -114,7 +116,7 @@
    "gross": 446640,
    "rank": 21,
    "theaters": 483,
-   "total_gross": 0
+   "total_gross": 190832874
   },
   {
    "n": 15,
@@ -122,7 +124,7 @@
    "gross": 451060,
    "rank": 23,
    "theaters": 453,
-   "total_gross": 0
+   "total_gross": 191465386
   },
   {
    "n": 16,
@@ -130,7 +132,7 @@
    "gross": 295723,
    "rank": 26,
    "theaters": 373,
-   "total_gross": 0
+   "total_gross": 191952758
   },
   {
    "n": 17,
@@ -138,7 +140,7 @@
    "gross": 273073,
    "rank": 28,
    "theaters": 324,
-   "total_gross": 0
+   "total_gross": 192342140
   },
   {
    "n": 18,
@@ -146,7 +148,7 @@
    "gross": 241883,
    "rank": 26,
    "theaters": 323,
-   "total_gross": 0
+   "total_gross": 192664956
   },
   {
    "n": 19,
@@ -154,7 +156,7 @@
    "gross": 186301,
    "rank": 29,
    "theaters": 292,
-   "total_gross": 0
+   "total_gross": 192933489
   },
   {
    "n": 20,
@@ -162,23 +164,23 @@
    "gross": 136683,
    "rank": 35,
    "theaters": 252,
-   "total_gross": 0
+   "total_gross": 193136719
   },
   {
    "n": 21,
    "date": "2026-01-16",
    "gross": 402695,
-   "rank": 0,
+   "rank": 20,
    "theaters": 1083,
-   "total_gross": 0
+   "total_gross": 193998695
   },
   {
    "n": 22,
    "date": "2026-01-23",
    "gross": 15320,
-   "rank": 0,
+   "rank": 40,
    "theaters": 136,
-   "total_gross": 0
+   "total_gross": 194300155
   }
  ]
 }

@@ -1,6 +1,8 @@
 {
  "key": "thecomedy",
  "title": "The Comedy",
+ "year": null,
+ "movie_url": "/movie/Comedy-The",
  "opening_date": "2012-11-09",
  "opening_gross": 6000,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 6000,
    "rank": 74,
    "theaters": 6,
-   "total_gross": 0
+   "total_gross": 6000
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 13150,
    "rank": 55,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 21194
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 8100,
    "rank": 63,
    "theaters": 3,
-   "total_gross": 0
+   "total_gross": 29294
   }
  ]
 }

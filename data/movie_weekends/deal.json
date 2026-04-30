@@ -1,6 +1,8 @@
 {
  "key": "deal",
  "title": "Deal",
+ "year": null,
+ "movie_url": "/movie/Deal",
  "opening_date": "2008-04-25",
  "opening_gross": 35281,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 35281,
    "rank": 65,
    "theaters": 50,
-   "total_gross": 0
+   "total_gross": 35281
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 5926,
    "rank": 80,
    "theaters": 51,
-   "total_gross": 0
+   "total_gross": 57180
   }
  ]
 }

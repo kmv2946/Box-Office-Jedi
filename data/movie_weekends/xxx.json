@@ -1,6 +1,8 @@
 {
  "key": "xxx",
  "title": "xXx",
+ "year": null,
+ "movie_url": "/movie/xXx",
  "opening_date": "2002-08-09",
  "opening_gross": 44506103,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 44506103,
    "rank": 1,
    "theaters": 3374,
-   "total_gross": 0
+   "total_gross": 44506103
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 22111421,
    "rank": 1,
    "theaters": 3388,
-   "total_gross": 0
+   "total_gross": 83963506
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 13258453,
    "rank": 2,
    "theaters": 3517,
-   "total_gross": 0
+   "total_gross": 105954999
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 10306426,
    "rank": 3,
    "theaters": 3536,
-   "total_gross": 0
+   "total_gross": 123567204
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 5206740,
    "rank": 5,
    "theaters": 3088,
-   "total_gross": 0
+   "total_gross": 130399129
   },
   {
    "n": 6,
@@ -50,7 +52,7 @@
    "gross": 3308202,
    "rank": 8,
    "theaters": 2771,
-   "total_gross": 0
+   "total_gross": 135084283
   },
   {
    "n": 7,
@@ -58,7 +60,7 @@
    "gross": 2013634,
    "rank": 11,
    "theaters": 1891,
-   "total_gross": 0
+   "total_gross": 138005370
   },
   {
    "n": 8,
@@ -66,7 +68,7 @@
    "gross": 1010682,
    "rank": 14,
    "theaters": 1261,
-   "total_gross": 0
+   "total_gross": 139493548
   },
   {
    "n": 9,
@@ -74,7 +76,7 @@
    "gross": 538419,
    "rank": 17,
    "theaters": 841,
-   "total_gross": 0
+   "total_gross": 140296449
   },
   {
    "n": 10,
@@ -82,7 +84,7 @@
    "gross": 220717,
    "rank": 28,
    "theaters": 336,
-   "total_gross": 0
+   "total_gross": 140677455
   },
   {
    "n": 11,
@@ -90,7 +92,7 @@
    "gross": 100711,
    "rank": 41,
    "theaters": 153,
-   "total_gross": 0
+   "total_gross": 140825036
   },
   {
    "n": 12,
@@ -98,7 +100,7 @@
    "gross": 47001,
    "rank": 56,
    "theaters": 77,
-   "total_gross": 0
+   "total_gross": 140894960
   },
   {
    "n": 13,
@@ -106,7 +108,7 @@
    "gross": 138000,
    "rank": 33,
    "theaters": 148,
-   "total_gross": 0
+   "total_gross": 141405944
   }
  ]
 }

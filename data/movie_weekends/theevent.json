@@ -1,6 +1,8 @@
 {
  "key": "theevent",
  "title": "The Event",
+ "year": null,
+ "movie_url": "/movie/Event-The",
  "opening_date": "2003-10-03",
  "opening_gross": 54288,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 54288,
    "rank": 57,
    "theaters": 27,
-   "total_gross": 0
+   "total_gross": 54288
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 4478,
    "rank": 87,
    "theaters": 4,
-   "total_gross": 0
+   "total_gross": 30357
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 1542,
    "rank": 102,
    "theaters": 6,
-   "total_gross": 0
+   "total_gross": 34406
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 435,
    "rank": 105,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 35518
   }
  ]
 }

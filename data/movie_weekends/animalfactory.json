@@ -1,6 +1,8 @@
 {
  "key": "animalfactory",
  "title": "Animal Factory",
+ "year": null,
+ "movie_url": "/movie/Animal-Factory",
  "opening_date": "2000-10-20",
  "opening_gross": 5746,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 5746,
    "rank": 88,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 5746
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 5836,
    "rank": 108,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 15270
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 4349,
    "rank": 111,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 22528
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 2586,
    "rank": 126,
    "theaters": 3,
-   "total_gross": 0
+   "total_gross": 38956
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 1983,
    "rank": 116,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 43805
   }
  ]
 }

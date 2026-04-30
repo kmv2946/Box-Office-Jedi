@@ -1,6 +1,8 @@
 {
  "key": "malignant",
  "title": "Malignant",
+ "year": null,
+ "movie_url": "/movie/Malignant",
  "opening_date": "2021-09-10",
  "opening_gross": 5434620,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 5434620,
    "rank": 3,
    "theaters": 3485,
-   "total_gross": 0
+   "total_gross": 5434620
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 2716557,
    "rank": 5,
    "theaters": 3501,
-   "total_gross": 0
+   "total_gross": 9840084
   },
   {
    "n": 3,
@@ -26,31 +28,31 @@
    "gross": 1500765,
    "rank": 7,
    "theaters": 2534,
-   "total_gross": 0
+   "total_gross": 12264268
   },
   {
    "n": 4,
    "date": "2021-10-01",
    "gross": 340068,
-   "rank": 0,
+   "rank": 13,
    "theaters": 653,
-   "total_gross": 0
+   "total_gross": 13086394
   },
   {
    "n": 5,
    "date": "2021-10-08",
    "gross": 112090,
-   "rank": 0,
+   "rank": 18,
    "theaters": 166,
-   "total_gross": 0
+   "total_gross": 13316073
   },
   {
    "n": 6,
    "date": "2021-10-15",
    "gross": 18043,
-   "rank": 0,
+   "rank": 21,
    "theaters": 81,
-   "total_gross": 0
+   "total_gross": 13366258
   }
  ]
 }

@@ -1,6 +1,8 @@
 {
  "key": "betatest",
  "title": "Beta Test",
+ "year": null,
+ "movie_url": "/movie/Beta-Test",
  "opening_date": "2016-07-22",
  "opening_gross": 5778,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 5778,
    "rank": 67,
    "theaters": 18,
-   "total_gross": 0
+   "total_gross": 5778
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 680,
    "rank": 90,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 8966
   }
  ]
 }

@@ -1,6 +1,8 @@
 {
  "key": "mysalingeryear",
  "title": "My Salinger Year",
+ "year": null,
+ "movie_url": "/movie/My-Salinger-Year-(Canada)",
  "opening_date": "2021-03-05",
  "opening_gross": 28851,
  "weekends": [
@@ -8,33 +10,33 @@
    "n": 1,
    "date": "2021-03-05",
    "gross": 28851,
-   "rank": 0,
+   "rank": 20,
    "theaters": 123,
-   "total_gross": 0
+   "total_gross": 28851
   },
   {
    "n": 2,
    "date": "2021-03-12",
    "gross": 7053,
-   "rank": 0,
+   "rank": 28,
    "theaters": 86,
-   "total_gross": 0
+   "total_gross": 45111
   },
   {
    "n": 3,
    "date": "2021-03-19",
    "gross": 2807,
-   "rank": 0,
+   "rank": 31,
    "theaters": 25,
-   "total_gross": 0
+   "total_gross": 51500
   },
   {
    "n": 4,
    "date": "2021-03-26",
    "gross": 1153,
-   "rank": 0,
+   "rank": 39,
    "theaters": 9,
-   "total_gross": 0
+   "total_gross": 53990
   }
  ]
 }

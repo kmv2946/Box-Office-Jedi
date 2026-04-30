@@ -1,6 +1,8 @@
 {
  "key": "somebody",
  "title": "Some Body",
+ "year": null,
+ "movie_url": "/movie/Some-Body",
  "opening_date": "2002-04-26",
  "opening_gross": 2042,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 2042,
    "rank": 129,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 2042
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 2374,
    "rank": 111,
    "theaters": 3,
-   "total_gross": 0
+   "total_gross": 5485
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 1632,
    "rank": 114,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 6365
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 3429,
    "rank": 93,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 9794
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 408,
    "rank": 99,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 11527
   },
   {
    "n": 6,
@@ -50,7 +52,7 @@
    "gross": 145,
    "rank": 125,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 11696
   }
  ]
 }

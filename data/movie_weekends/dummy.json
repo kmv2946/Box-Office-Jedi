@@ -1,6 +1,8 @@
 {
  "key": "dummy",
  "title": "Dummy",
+ "year": null,
+ "movie_url": "/movie/Dummy",
  "opening_date": "2003-09-12",
  "opening_gross": 30120,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 30120,
    "rank": 62,
    "theaters": 5,
-   "total_gross": 0
+   "total_gross": 30120
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 17803,
    "rank": 75,
    "theaters": 5,
-   "total_gross": 0
+   "total_gross": 58736
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 2990,
    "rank": 119,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 68467
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 1219,
    "rank": 130,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 71305
   }
  ]
 }

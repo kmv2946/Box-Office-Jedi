@@ -1,6 +1,8 @@
 {
  "key": "evening",
  "title": "Evening",
+ "year": null,
+ "movie_url": "/movie/Evening",
  "opening_date": "2007-06-29",
  "opening_gross": 3501971,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 3501971,
    "rank": 10,
    "theaters": 977,
-   "total_gross": 0
+   "total_gross": 3501971
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 2374904,
    "rank": 12,
    "theaters": 979,
-   "total_gross": 0
+   "total_gross": 8378433
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 1156407,
    "rank": 14,
    "theaters": 760,
-   "total_gross": 0
+   "total_gross": 10842501
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 397034,
    "rank": 17,
    "theaters": 396,
-   "total_gross": 0
+   "total_gross": 12004435
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 125743,
    "rank": 31,
    "theaters": 164,
-   "total_gross": 0
+   "total_gross": 12406646
   }
  ]
 }

@@ -1,6 +1,8 @@
 {
  "key": "weekend",
  "title": "Weekend",
+ "year": null,
+ "movie_url": "/movie/Weekend",
  "opening_date": "2011-09-23",
  "opening_gross": 27245,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 27245,
    "rank": 61,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 27245
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 48418,
    "rank": 50,
    "theaters": 6,
-   "total_gross": 0
+   "total_gross": 92232
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 49342,
    "rank": 46,
    "theaters": 14,
-   "total_gross": 0
+   "total_gross": 162694
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 68472,
    "rank": 40,
    "theaters": 24,
-   "total_gross": 0
+   "total_gross": 258002
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 48407,
    "rank": 48,
    "theaters": 26,
-   "total_gross": 0
+   "total_gross": 338480
   },
   {
    "n": 6,
@@ -50,7 +52,7 @@
    "gross": 24317,
    "rank": 59,
    "theaters": 18,
-   "total_gross": 0
+   "total_gross": 383412
   },
   {
    "n": 7,
@@ -58,7 +60,7 @@
    "gross": 20089,
    "rank": 60,
    "theaters": 16,
-   "total_gross": 0
+   "total_gross": 416385
   },
   {
    "n": 8,
@@ -66,7 +68,7 @@
    "gross": 12766,
    "rank": 66,
    "theaters": 17,
-   "total_gross": 0
+   "total_gross": 438690
   },
   {
    "n": 9,
@@ -74,7 +76,7 @@
    "gross": 9325,
    "rank": 62,
    "theaters": 11,
-   "total_gross": 0
+   "total_gross": 455459
   },
   {
    "n": 10,
@@ -82,7 +84,7 @@
    "gross": 9212,
    "rank": 66,
    "theaters": 8,
-   "total_gross": 0
+   "total_gross": 469947
   }
  ]
 }

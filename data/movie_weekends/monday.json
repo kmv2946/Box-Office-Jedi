@@ -1,6 +1,8 @@
 {
  "key": "monday",
  "title": "Monday",
+ "year": null,
+ "movie_url": "/movie/Monday",
  "opening_date": "2021-04-16",
  "opening_gross": 18767,
  "weekends": [
@@ -8,25 +10,25 @@
    "n": 1,
    "date": "2021-04-16",
    "gross": 18767,
-   "rank": 0,
+   "rank": 31,
    "theaters": 54,
-   "total_gross": 0
+   "total_gross": 18767
   },
   {
    "n": 2,
    "date": "2021-04-23",
    "gross": 4687,
-   "rank": 0,
+   "rank": 33,
    "theaters": 35,
-   "total_gross": 0
+   "total_gross": 28065
   },
   {
    "n": 3,
    "date": "2021-04-30",
    "gross": 782,
-   "rank": 0,
+   "rank": 38,
    "theaters": 7,
-   "total_gross": 0
+   "total_gross": 30862
   }
  ]
 }

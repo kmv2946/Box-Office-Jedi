@@ -559,9 +559,12 @@
     const rows = slice.map((m, i) => {
       const cls = m.inRelease ? 'at-row in-release' : 'at-row';
       const badge = m.inRelease ? '<span class="in-release-badge">In Release</span>' : '';
+      // Title links to the movie profile, with year for disambiguation
+      const yPart = m.y ? '&year=' + m.y : '';
+      const href  = 'movie.html?title=' + encodeURIComponent(m.t || '') + yPart;
       return `<tr class="${cls}">
         <td class="td-rank">${m.r}</td>
-        <td class="td-title"><a href="#">${m.t}</a>${badge}</td>
+        <td class="td-title"><a href="${href}">${m.t}</a>${badge}</td>
         <td class="td-gross">${fmtGross(m.g)}</td>
         <td class="td-year">${m.y}</td>
       </tr>`;

@@ -1,6 +1,8 @@
 {
  "key": "thisisnotafilm",
  "title": "This Is Not a Film",
+ "year": null,
+ "movie_url": "/movie/In-Film-Nist",
  "opening_date": "2012-03-02",
  "opening_gross": 12608,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 12608,
    "rank": 70,
    "theaters": 5,
-   "total_gross": 0
+   "total_gross": 12608
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 7638,
    "rank": 76,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 30451
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 920,
    "rank": 92,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 37706
   }
  ]
 }

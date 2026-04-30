@@ -1,6 +1,8 @@
 {
  "key": "pearlharbor",
  "title": "Pearl Harbor",
+ "year": null,
+ "movie_url": "/movie/Pearl-Harbor",
  "opening_date": "2001-05-25",
  "opening_gross": 59078912,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 59078912,
    "rank": 1,
    "theaters": 3214,
-   "total_gross": 0
+   "total_gross": 59078912
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 29558276,
    "rank": 1,
    "theaters": 3214,
-   "total_gross": 0
+   "total_gross": 118853439
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 14721419,
    "rank": 3,
    "theaters": 3255,
-   "total_gross": 0
+   "total_gross": 143987500
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 9859120,
    "rank": 5,
    "theaters": 3140,
-   "total_gross": 0
+   "total_gross": 160358492
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 6818896,
    "rank": 7,
    "theaters": 2668,
-   "total_gross": 0
+   "total_gross": 171886718
   },
   {
    "n": 6,
@@ -50,7 +52,7 @@
    "gross": 4722956,
    "rank": 8,
    "theaters": 2305,
-   "total_gross": 0
+   "total_gross": 179731614
   },
   {
    "n": 7,
@@ -58,7 +60,7 @@
    "gross": 3242099,
    "rank": 12,
    "theaters": 1434,
-   "total_gross": 0
+   "total_gross": 186599845
   },
   {
    "n": 8,
@@ -66,7 +68,7 @@
    "gross": 1968363,
    "rank": 14,
    "theaters": 1210,
-   "total_gross": 0
+   "total_gross": 190112436
   },
   {
    "n": 9,
@@ -74,7 +76,7 @@
    "gross": 1077223,
    "rank": 16,
    "theaters": 892,
-   "total_gross": 0
+   "total_gross": 192166709
   },
   {
    "n": 10,
@@ -82,7 +84,7 @@
    "gross": 826872,
    "rank": 16,
    "theaters": 715,
-   "total_gross": 0
+   "total_gross": 193662453
   },
   {
    "n": 11,
@@ -90,7 +92,7 @@
    "gross": 434965,
    "rank": 18,
    "theaters": 462,
-   "total_gross": 0
+   "total_gross": 194582166
   },
   {
    "n": 12,
@@ -98,7 +100,7 @@
    "gross": 237128,
    "rank": 24,
    "theaters": 293,
-   "total_gross": 0
+   "total_gross": 195072119
   },
   {
    "n": 13,
@@ -106,7 +108,7 @@
    "gross": 132569,
    "rank": 33,
    "theaters": 194,
-   "total_gross": 0
+   "total_gross": 195315237
   },
   {
    "n": 14,
@@ -114,7 +116,7 @@
    "gross": 75852,
    "rank": 41,
    "theaters": 116,
-   "total_gross": 0
+   "total_gross": 195456759
   },
   {
    "n": 15,
@@ -122,7 +124,7 @@
    "gross": 867300,
    "rank": 21,
    "theaters": 1036,
-   "total_gross": 0
+   "total_gross": 196324059
   },
   {
    "n": 16,
@@ -130,7 +132,7 @@
    "gross": 183145,
    "rank": 32,
    "theaters": 272,
-   "total_gross": 0
+   "total_gross": 196684795
   },
   {
    "n": 17,
@@ -138,7 +140,7 @@
    "gross": 129408,
    "rank": 37,
    "theaters": 168,
-   "total_gross": 0
+   "total_gross": 196863852
   },
   {
    "n": 18,
@@ -146,7 +148,7 @@
    "gross": 145951,
    "rank": 38,
    "theaters": 227,
-   "total_gross": 0
+   "total_gross": 197047519
   },
   {
    "n": 19,
@@ -154,7 +156,7 @@
    "gross": 76018,
    "rank": 46,
    "theaters": 122,
-   "total_gross": 0
+   "total_gross": 197175014
   },
   {
    "n": 20,
@@ -162,7 +164,7 @@
    "gross": 226733,
    "rank": 23,
    "theaters": 311,
-   "total_gross": 0
+   "total_gross": 197429107
   },
   {
    "n": 21,
@@ -170,7 +172,7 @@
    "gross": 183116,
    "rank": 29,
    "theaters": 262,
-   "total_gross": 0
+   "total_gross": 197733966
   },
   {
    "n": 22,
@@ -178,7 +180,7 @@
    "gross": 106723,
    "rank": 34,
    "theaters": 181,
-   "total_gross": 0
+   "total_gross": 197913548
   },
   {
    "n": 23,
@@ -186,7 +188,7 @@
    "gross": 63749,
    "rank": 45,
    "theaters": 113,
-   "total_gross": 0
+   "total_gross": 198023963
   },
   {
    "n": 24,
@@ -194,7 +196,7 @@
    "gross": 43421,
    "rank": 52,
    "theaters": 89,
-   "total_gross": 0
+   "total_gross": 198089442
   },
   {
    "n": 25,
@@ -202,7 +204,7 @@
    "gross": 33493,
    "rank": 55,
    "theaters": 66,
-   "total_gross": 0
+   "total_gross": 198141122
   },
   {
    "n": 26,
@@ -210,7 +212,7 @@
    "gross": 14643,
    "rank": 68,
    "theaters": 42,
-   "total_gross": 0
+   "total_gross": 198174519
   },
   {
    "n": 27,
@@ -218,7 +220,7 @@
    "gross": 8838,
    "rank": 80,
    "theaters": 23,
-   "total_gross": 0
+   "total_gross": 198195073
   },
   {
    "n": 28,
@@ -226,7 +228,7 @@
    "gross": 8437,
    "rank": 77,
    "theaters": 21,
-   "total_gross": 0
+   "total_gross": 198207422
   }
  ]
 }

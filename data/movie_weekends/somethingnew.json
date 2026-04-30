@@ -1,6 +1,8 @@
 {
  "key": "somethingnew",
  "title": "Something New",
+ "year": null,
+ "movie_url": "/movie/Something-New",
  "opening_date": "2006-02-03",
  "opening_gross": 4879736,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 4879736,
    "rank": 7,
    "theaters": 1265,
-   "total_gross": 0
+   "total_gross": 4879736
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 2252448,
    "rank": 11,
    "theaters": 1265,
-   "total_gross": 0
+   "total_gross": 8213332
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 1195422,
    "rank": 17,
    "theaters": 639,
-   "total_gross": 0
+   "total_gross": 10383900
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 365199,
    "rank": 28,
    "theaters": 273,
-   "total_gross": 0
+   "total_gross": 11222803
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 99661,
    "rank": 48,
    "theaters": 79,
-   "total_gross": 0
+   "total_gross": 11425894
   }
  ]
 }

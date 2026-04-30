@@ -68,7 +68,7 @@
 
     <!-- Quick Links bar (populated dynamically from data files) -->
     <div class="quick-links">
-      <span class="ql-label">Quick Links:</span><a href="daily.html" id="ql-daily-link">Daily Box Office <span class="ql-paren" id="ql-daily-paren">(&mdash;)</span></a><span class="sep">|</span><a href="weekend.html" id="ql-weekend-link">Weekend Box Office <span class="ql-paren" id="ql-weekend-paren">(&mdash;)</span></a><span class="sep">|</span><a href="movie.html?title=Super%20Mario%20Galaxy%20Movie" id="ql-top-movie">#1 Movie: &#8216;Super Mario Galaxy Movie&#8217;</a>
+      <span class="ql-label">Quick Links:</span><a href="daily.html" id="ql-daily-link">Daily Box Office <span class="ql-paren" id="ql-daily-paren">(&mdash;)</span></a><span class="sep">|</span><a href="weekend.html" id="ql-weekend-link">Weekend Box Office <span class="ql-paren" id="ql-weekend-paren">(&mdash;)</span></a><span class="sep">|</span><a href="movie.html?title=Super%20Mario%20Galaxy%20Movie&year=2026" id="ql-top-movie">#1 Movie: &#8216;Super Mario Galaxy Movie&#8217;</a>
     </div>
 
     <!-- Homepage content: two-column layout -->
@@ -281,9 +281,13 @@
 
           const top5 = wd.chart.slice(0, 5).map((m, i) => {
             const title = (m.title || '').length > 22 ? (m.title || '').slice(0, 21) + '…' : (m.title || '—');
+            // Extract year from the scraped movie_url (e.g., /movie/Michael-(2026))
+            // and pass it as &year= so the movie page disambiguates same-title films.
+            const yMatch = (m.movie_url || '').match(/\((\d{4})/);
+            const yPart = yMatch ? '&year=' + yMatch[1] : '';
             return `<tr class="${i % 2 === 0 ? 'hc-odd' : 'hc-even'}">
               <td class="hc-rank">${m.rank}.</td>
-              <td class="hc-title"><a href="movie.html?id=${m.tmdb_id||''}&title=${encodeURIComponent(m.title)}">${title}</a></td>
+              <td class="hc-title"><a href="movie.html?id=${m.tmdb_id||''}&title=${encodeURIComponent(m.title)}${yPart}">${title}</a></td>
               <td class="hc-gross">${fmtM(m.weekend_gross)}</td>
             </tr>`;
           }).join('');

@@ -1,6 +1,8 @@
 {
  "key": "mrandmrssmith",
  "title": "Mr. And Mrs. Smith",
+ "year": null,
+ "movie_url": "/movie/Mr-and-Mrs-Smith",
  "opening_date": "2005-06-10",
  "opening_gross": 50342878,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 50342878,
    "rank": 1,
    "theaters": 3424,
-   "total_gross": 0
+   "total_gross": 50342878
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 26037023,
    "rank": 2,
    "theaters": 3451,
-   "total_gross": 0
+   "total_gross": 96697986
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 16825209,
    "rank": 3,
    "theaters": 3265,
-   "total_gross": 0
+   "total_gross": 125513483
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 10572608,
    "rank": 3,
    "theaters": 2985,
-   "total_gross": 0
+   "total_gross": 143931499
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 7872275,
    "rank": 5,
    "theaters": 2781,
-   "total_gross": 0
+   "total_gross": 158669309
   },
   {
    "n": 6,
@@ -50,7 +52,7 @@
    "gross": 5234822,
    "rank": 6,
    "theaters": 2370,
-   "total_gross": 0
+   "total_gross": 168276570
   },
   {
    "n": 7,
@@ -58,7 +60,7 @@
    "gross": 3701842,
    "rank": 11,
    "theaters": 1916,
-   "total_gross": 0
+   "total_gross": 174644345
   },
   {
    "n": 8,
@@ -66,7 +68,7 @@
    "gross": 1833400,
    "rank": 14,
    "theaters": 1142,
-   "total_gross": 0
+   "total_gross": 178540329
   },
   {
    "n": 9,
@@ -74,7 +76,7 @@
    "gross": 1304441,
    "rank": 15,
    "theaters": 833,
-   "total_gross": 0
+   "total_gross": 180959870
   },
   {
    "n": 10,
@@ -82,7 +84,7 @@
    "gross": 817703,
    "rank": 20,
    "theaters": 576,
-   "total_gross": 0
+   "total_gross": 182521560
   },
   {
    "n": 11,
@@ -90,7 +92,7 @@
    "gross": 458038,
    "rank": 21,
    "theaters": 416,
-   "total_gross": 0
+   "total_gross": 183386949
   },
   {
    "n": 12,
@@ -98,7 +100,7 @@
    "gross": 373070,
    "rank": 24,
    "theaters": 355,
-   "total_gross": 0
+   "total_gross": 183979256
   },
   {
    "n": 13,
@@ -106,7 +108,7 @@
    "gross": 401558,
    "rank": 25,
    "theaters": 351,
-   "total_gross": 0
+   "total_gross": 184550477
   },
   {
    "n": 14,
@@ -114,7 +116,7 @@
    "gross": 308606,
    "rank": 25,
    "theaters": 383,
-   "total_gross": 0
+   "total_gross": 185032410
   },
   {
    "n": 15,
@@ -122,7 +124,7 @@
    "gross": 205325,
    "rank": 33,
    "theaters": 268,
-   "total_gross": 0
+   "total_gross": 185346461
   },
   {
    "n": 16,
@@ -130,7 +132,7 @@
    "gross": 162200,
    "rank": 32,
    "theaters": 232,
-   "total_gross": 0
+   "total_gross": 185576334
   },
   {
    "n": 17,
@@ -138,7 +140,7 @@
    "gross": 137790,
    "rank": 37,
    "theaters": 188,
-   "total_gross": 0
+   "total_gross": 185774715
   },
   {
    "n": 18,
@@ -146,7 +148,7 @@
    "gross": 97516,
    "rank": 42,
    "theaters": 140,
-   "total_gross": 0
+   "total_gross": 185921664
   },
   {
    "n": 19,
@@ -154,7 +156,7 @@
    "gross": 84237,
    "rank": 46,
    "theaters": 105,
-   "total_gross": 0
+   "total_gross": 186064011
   },
   {
    "n": 20,
@@ -162,7 +164,7 @@
    "gross": 54033,
    "rank": 54,
    "theaters": 70,
-   "total_gross": 0
+   "total_gross": 186160823
   },
   {
    "n": 21,
@@ -170,7 +172,7 @@
    "gross": 35660,
    "rank": 59,
    "theaters": 60,
-   "total_gross": 0
+   "total_gross": 186219280
   },
   {
    "n": 22,
@@ -178,7 +180,7 @@
    "gross": 33111,
    "rank": 62,
    "theaters": 55,
-   "total_gross": 0
+   "total_gross": 186267775
   },
   {
    "n": 23,
@@ -186,7 +188,7 @@
    "gross": 17800,
    "rank": 67,
    "theaters": 22,
-   "total_gross": 0
+   "total_gross": 186301615
   },
   {
    "n": 24,
@@ -194,7 +196,7 @@
    "gross": 12663,
    "rank": 69,
    "theaters": 17,
-   "total_gross": 0
+   "total_gross": 186319314
   },
   {
    "n": 25,
@@ -202,7 +204,7 @@
    "gross": 6856,
    "rank": 83,
    "theaters": 13,
-   "total_gross": 0
+   "total_gross": 186330528
   },
   {
    "n": 26,
@@ -210,7 +212,7 @@
    "gross": 2136,
    "rank": 103,
    "theaters": 5,
-   "total_gross": 0
+   "total_gross": 186334749
   },
   {
    "n": 27,
@@ -218,7 +220,7 @@
    "gross": 592,
    "rank": 118,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 186336103
   }
  ]
 }

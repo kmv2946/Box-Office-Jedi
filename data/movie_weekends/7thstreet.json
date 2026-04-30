@@ -1,6 +1,8 @@
 {
  "key": "7thstreet",
  "title": "7th Street",
+ "year": null,
+ "movie_url": "/movie/7th-Street",
  "opening_date": "2003-01-17",
  "opening_gross": 6354,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 6354,
    "rank": 89,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 6354
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 1045,
    "rank": 111,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 13390
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 1134,
    "rank": 107,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 15629
   }
  ]
 }

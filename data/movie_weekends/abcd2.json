@@ -1,6 +1,8 @@
 {
  "key": "abcd2",
  "title": "ABCD 2",
+ "year": null,
+ "movie_url": "/movie/ABCD-2",
  "opening_date": "2015-06-19",
  "opening_gross": 444195,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 444195,
    "rank": 14,
    "theaters": 146,
-   "total_gross": 0
+   "total_gross": 444195
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 155088,
    "rank": 25,
    "theaters": 105,
-   "total_gross": 0
+   "total_gross": 770145
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 27739,
    "rank": 41,
    "theaters": 22,
-   "total_gross": 0
+   "total_gross": 869848
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 7348,
    "rank": 64,
    "theaters": 8,
-   "total_gross": 0
+   "total_gross": 889696
   }
  ]
 }

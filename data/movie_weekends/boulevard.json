@@ -1,6 +1,8 @@
 {
  "key": "boulevard",
  "title": "Boulevard",
+ "year": null,
+ "movie_url": "/movie/Boulevard",
  "opening_date": "2015-07-10",
  "opening_gross": 7000,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 7000,
    "rank": 65,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 7000
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 24742,
    "rank": 51,
    "theaters": 11,
-   "total_gross": 0
+   "total_gross": 31742
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 12189,
    "rank": 60,
    "theaters": 8,
-   "total_gross": 0
+   "total_gross": 55688
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 6138,
    "rank": 72,
    "theaters": 3,
-   "total_gross": 0
+   "total_gross": 119669
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 6138,
    "rank": 70,
    "theaters": 3,
-   "total_gross": 0
+   "total_gross": 126150
   }
  ]
 }

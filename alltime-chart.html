@@ -349,14 +349,18 @@
       const thCls = cls === 'td-rank' ? 'th-center' : cls === 'td-title' ? 'th-left' : '';
       return '<th' + (thCls ? ' class="' + thCls + '"' : '') + '>' + escapeHtml(c) + '</th>';
     }).join('') + '</tr>';
-    // Rows
+    // Rows. When the chart has a Year column, propagate that year into the
+    // title link so same-title films resolve to the right profile.
+    const yearColIdx = YEAR_COL >= 0 ? YEAR_COL : -1;
     body.innerHTML = chart.rows.map((row, rowIdx) => {
+      const rowYear = (yearColIdx >= 0) ? parseYear(row[yearColIdx]) : null;
+      const yPart = rowYear ? '&year=' + rowYear : '';
       const cells = row.map((cell, i) => {
         let cls = colClass(chart.columns[i]);
         if (!cls && isPrimaryGrossCol(chart.columns[i])) cls = 'td-gross';
         if (cls === 'td-title') {
           return '<td class="td-title"><a href="movie.html?title=' +
-                 encodeURIComponent(cell) + '">' + escapeHtml(cell) + '</a></td>';
+                 encodeURIComponent(cell) + yPart + '">' + escapeHtml(cell) + '</a></td>';
         }
         return '<td' + (cls ? ' class="' + cls + '"' : '') + '>' + escapeHtml(cell) + '</td>';
       }).join('');

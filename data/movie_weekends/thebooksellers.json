@@ -1,6 +1,8 @@
 {
  "key": "thebooksellers",
  "title": "The Booksellers",
+ "year": null,
+ "movie_url": "/movie/Booksellers-The",
  "opening_date": "2020-03-06",
  "opening_gross": 15794,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 15794,
    "rank": 51,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 15794
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 2632,
    "rank": 61,
    "theaters": 3,
-   "total_gross": 0
+   "total_gross": 25249
   }
  ]
 }

@@ -1,6 +1,8 @@
 {
  "key": "celebrity",
  "title": "Celebrity",
+ "year": null,
+ "movie_url": "/movie/Celebrity",
  "opening_date": "1998-11-20",
  "opening_gross": 1588013,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 1588013,
    "rank": 10,
    "theaters": 493,
-   "total_gross": 0
+   "total_gross": 1588013
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 1026750,
    "rank": 15,
    "theaters": 493,
-   "total_gross": 0
+   "total_gross": 3311714
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 530059,
    "rank": 17,
    "theaters": 468,
-   "total_gross": 0
+   "total_gross": 4115638
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 298383,
    "rank": 24,
    "theaters": 381,
-   "total_gross": 0
+   "total_gross": 4598059
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 147865,
    "rank": 32,
    "theaters": 201,
-   "total_gross": 0
+   "total_gross": 4873604
   },
   {
    "n": 6,
@@ -50,7 +52,7 @@
    "gross": 27193,
    "rank": 54,
    "theaters": 33,
-   "total_gross": 0
+   "total_gross": 4989910
   },
   {
    "n": 7,
@@ -58,7 +60,7 @@
    "gross": 23415,
    "rank": 60,
    "theaters": 34,
-   "total_gross": 0
+   "total_gross": 5032496
   }
  ]
 }

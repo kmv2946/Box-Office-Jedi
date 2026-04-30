@@ -605,7 +605,10 @@
         : (m.last_rank ? m.last_rank : '—');
 
       const titleCls  = isTop ? 'wc-title-top' : 'wc-title-lower';
-      const movieHref = `movie.html?id=${m.tmdb_id || ''}&title=${encodeURIComponent(m.title)}`;
+      // Pass year from movie_url so same-title films resolve correctly.
+      const yrMatch = (m.movie_url || '').match(/\((\d{4})/);
+      const yrPart  = yrMatch ? '&year=' + yrMatch[1] : '';
+      const movieHref = `movie.html?id=${m.tmdb_id || ''}&title=${encodeURIComponent(m.title)}${yrPart}`;
       const distrib   = m.distributor || lookupDistrib(m.title) || '';
 
       const tr = document.createElement('tr');

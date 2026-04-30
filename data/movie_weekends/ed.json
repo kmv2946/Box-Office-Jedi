@@ -1,6 +1,8 @@
 {
  "key": "ed",
  "title": "Ed",
+ "year": null,
+ "movie_url": "/movie/Ed",
  "opening_date": "1996-03-15",
  "opening_gross": 1910840,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 1910840,
    "rank": 8,
    "theaters": 1541,
-   "total_gross": 0
+   "total_gross": 1910840
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 1052695,
    "rank": 16,
    "theaters": 1583,
-   "total_gross": 0
+   "total_gross": 3489320
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 191275,
    "rank": 31,
    "theaters": 375,
-   "total_gross": 0
+   "total_gross": 3956785
   }
  ]
 }

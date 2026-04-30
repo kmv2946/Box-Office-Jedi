@@ -1,6 +1,8 @@
 {
  "key": "gigli",
  "title": "Gigli",
+ "year": null,
+ "movie_url": "/movie/Gigli",
  "opening_date": "2003-08-01",
  "opening_gross": 3753518,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 3753518,
    "rank": 8,
    "theaters": 2215,
-   "total_gross": 0
+   "total_gross": 3753518
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 678640,
    "rank": 18,
    "theaters": 2215,
-   "total_gross": 0
+   "total_gross": 5660084
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 18702,
    "rank": 63,
    "theaters": 73,
-   "total_gross": 0
+   "total_gross": 6068735
   }
  ]
 }

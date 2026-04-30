@@ -1,56 +1,42 @@
 {
  "key": "lamb",
  "title": "Lamb",
- "opening_date": "2016-01-08",
- "opening_gross": 3150,
+ "year": null,
+ "movie_url": "/movie/Lamb-(Iceland-2021)",
+ "opening_date": "2021-10-08",
+ "opening_gross": 1000089,
  "weekends": [
   {
    "n": 1,
-   "date": "2016-01-08",
-   "gross": 3150,
-   "rank": 72,
-   "theaters": 2,
-   "total_gross": 0
-  },
-  {
-   "n": 2,
-   "date": "2016-01-15",
-   "gross": 10800,
-   "rank": 50,
-   "theaters": 43,
-   "total_gross": 0
-  },
-  {
-   "n": 3,
    "date": "2021-10-08",
    "gross": 1000089,
    "rank": 8,
    "theaters": 583,
-   "total_gross": 0
+   "total_gross": 1000089
+  },
+  {
+   "n": 2,
+   "date": "2021-10-15",
+   "gross": 543004,
+   "rank": 8,
+   "theaters": 865,
+   "total_gross": 2037730
+  },
+  {
+   "n": 3,
+   "date": "2021-10-22",
+   "gross": 159075,
+   "rank": 14,
+   "theaters": 435,
+   "total_gross": 2522098
   },
   {
    "n": 4,
-   "date": "2021-10-15",
-   "gross": 543004,
-   "rank": 0,
-   "theaters": 865,
-   "total_gross": 0
-  },
-  {
-   "n": 5,
-   "date": "2021-10-22",
-   "gross": 159075,
-   "rank": 0,
-   "theaters": 435,
-   "total_gross": 0
-  },
-  {
-   "n": 6,
    "date": "2021-10-29",
    "gross": 36790,
-   "rank": 0,
+   "rank": 20,
    "theaters": 145,
-   "total_gross": 0
+   "total_gross": 2676410
   }
  ]
 }

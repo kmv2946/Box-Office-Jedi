@@ -1,6 +1,8 @@
 {
  "key": "empirerecords",
  "title": "Empire Records",
+ "year": null,
+ "movie_url": "/movie/Empire-Records",
  "opening_date": "1995-09-22",
  "opening_gross": 150800,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 150800,
    "rank": 37,
    "theaters": 87,
-   "total_gross": 0
+   "total_gross": 150800
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 74850,
    "rank": 46,
    "theaters": 85,
-   "total_gross": 0
+   "total_gross": 255136
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 11764,
    "rank": 69,
    "theaters": 16,
-   "total_gross": 0
+   "total_gross": 284952
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 4881,
    "rank": 81,
    "theaters": 8,
-   "total_gross": 0
+   "total_gross": 293879
   }
  ]
 }

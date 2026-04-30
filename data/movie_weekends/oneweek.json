@@ -1,6 +1,8 @@
 {
  "key": "oneweek",
  "title": "One Week",
+ "year": null,
+ "movie_url": "/movie/One-Week",
  "opening_date": "2001-10-19",
  "opening_gross": 77575,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 77575,
    "rank": 40,
    "theaters": 18,
-   "total_gross": 0
+   "total_gross": 77575
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 42526,
    "rank": 51,
    "theaters": 16,
-   "total_gross": 0
+   "total_gross": 145958
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 29106,
    "rank": 58,
    "theaters": 6,
-   "total_gross": 0
+   "total_gross": 190441
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 19430,
    "rank": 64,
    "theaters": 6,
-   "total_gross": 0
+   "total_gross": 219704
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 3381,
    "rank": 100,
    "theaters": 3,
-   "total_gross": 0
+   "total_gross": 229706
   },
   {
    "n": 6,
@@ -50,7 +52,7 @@
    "gross": 1014,
    "rank": 112,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 234808
   },
   {
    "n": 7,
@@ -58,7 +60,7 @@
    "gross": 822,
    "rank": 120,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 236016
   },
   {
    "n": 8,
@@ -66,7 +68,7 @@
    "gross": 600,
    "rank": 124,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 237406
   },
   {
    "n": 9,
@@ -74,7 +76,7 @@
    "gross": 360,
    "rank": 129,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 237166
   }
  ]
 }

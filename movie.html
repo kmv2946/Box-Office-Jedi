@@ -713,29 +713,45 @@
     const titleParam = params.get('title') || '';
     STATE.title = decodeURIComponent(titleParam);
 
+    // Optional disambiguation: ?slug=michael-2026 picks an exact film when
+    // two share a normalized title. Also accept ?year=2026 as a convenience
+    // (we'll synthesize the slug from title + year).
+    const slugParam = params.get('slug') || '';
+    const yearParam = params.get('year') || '';
+    STATE.slug = slugParam ||
+      (titleParam && yearParam ? normKey(STATE.title) + '-' + yearParam : '');
+
     document.title = (STATE.title || 'Movie') + ' — Box Office Jedi';
     document.getElementById('mv-title').textContent = (STATE.title || 'Movie').toUpperCase();
 
-    // Two metadata sources, tried in order:
-    //   1. data/movies_meta/{key}.json   — hand-curated overrides (title-keyed)
-    //   2. data/movies/{tmdb_id}.json    — TMDB-scraped catalog
-    // The curated file wins so editors can fix anything TMDB got wrong
-    // (or fill in titles TMDB doesn't carry yet, like upcoming releases).
+    // Lookups happen against TWO key spaces, tried in priority order:
+    //   1. The exact slug (e.g. "michael-2026") — only when ?slug= or
+    //      ?year= was passed
+    //   2. The plain title key (e.g. "michael") — fallback / legacy links
+    // For each key we try curated meta first (hand-edited overrides),
+    // then TMDB-by-id metadata.
     const titleKey = normKey(STATE.title);
-    const curatedPromise = titleKey
-      ? fetchJSON('data/movies_meta/' + titleKey + '.json') : Promise.resolve(null);
-    const tmdbPromise = STATE.id
-      ? fetchJSON('data/movies/' + STATE.id + '.json') : Promise.resolve(null);
+    const lookupKeys = [];
+    if (STATE.slug) lookupKeys.push(STATE.slug);
+    if (titleKey && lookupKeys.indexOf(titleKey) === -1) lookupKeys.push(titleKey);
 
-    const [curated, tmdb] = await Promise.all([curatedPromise, tmdbPromise]);
-    // Merge — curated fields take precedence
+    let curated = null;
+    for (const k of lookupKeys) {
+      curated = await fetchJSON('data/movies_meta/' + k + '.json');
+      if (curated) break;
+    }
+    const tmdb = STATE.id
+      ? await fetchJSON('data/movies/' + STATE.id + '.json') : null;
+
     let meta = null;
     if (curated || tmdb) meta = Object.assign({}, tmdb || {}, curated || {});
     STATE.meta = meta;
 
-    const key = titleKey || normKey(meta && meta.title);
-    const weekendData = key
-      ? await fetchJSON('data/movie_weekends/' + key + '.json') : null;
+    let weekendData = null;
+    for (const k of lookupKeys) {
+      weekendData = await fetchJSON('data/movie_weekends/' + k + '.json');
+      if (weekendData) break;
+    }
     STATE.weekendData = weekendData;
 
     // Bail-out empty state
@@ -781,18 +797,31 @@
 
     if (!domesticTotal) {
       const totalsIdx = await fetchJSON('data/movie_totals.json');
-      if (totalsIdx && totalsIdx.by_title) {
-        // Try a sequence of lookups: the URL title, the meta title, and the
-        // weekend-archive title (handles minor punctuation differences).
-        const lookups = [
-          STATE.title,
-          meta && meta.title,
-          weekendData && weekendData.title,
-        ].filter(Boolean).map(normKey);
-        for (const k of lookups) {
-          if (totalsIdx.by_title[k] && totalsIdx.by_title[k].total_gross) {
-            domesticTotal = totalsIdx.by_title[k].total_gross;
+      if (totalsIdx) {
+        // Slug map (by_slug) takes priority — exact match for the right
+        // film when two share a title (Michael 1996 vs 2026). Fall back
+        // to the plain title map when no slug match.
+        const slugLookups = [];
+        if (STATE.slug) slugLookups.push(STATE.slug);
+        if (weekendData && weekendData.key) slugLookups.push(weekendData.key);
+        for (const k of slugLookups) {
+          if (totalsIdx.by_slug && totalsIdx.by_slug[k]
+              && totalsIdx.by_slug[k].total_gross) {
+            domesticTotal = totalsIdx.by_slug[k].total_gross;
             break;
+          }
+        }
+        if (!domesticTotal && totalsIdx.by_title) {
+          const titleLookups = [
+            STATE.title,
+            meta && meta.title,
+            weekendData && weekendData.title,
+          ].filter(Boolean).map(normKey);
+          for (const k of titleLookups) {
+            if (totalsIdx.by_title[k] && totalsIdx.by_title[k].total_gross) {
+              domesticTotal = totalsIdx.by_title[k].total_gross;
+              break;
+            }
           }
         }
       }

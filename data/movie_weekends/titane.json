@@ -1,6 +1,8 @@
 {
  "key": "titane",
  "title": "Titane",
+ "year": null,
+ "movie_url": "/movie/Titane-(France)",
  "opening_date": "2021-10-01",
  "opening_gross": 533397,
  "weekends": [
@@ -8,9 +10,9 @@
    "n": 1,
    "date": "2021-10-01",
    "gross": 533397,
-   "rank": 0,
+   "rank": 10,
    "theaters": 562,
-   "total_gross": 0
+   "total_gross": 533397
   },
   {
    "n": 2,
@@ -18,23 +20,23 @@
    "gross": 212719,
    "rank": 12,
    "theaters": 474,
-   "total_gross": 0
+   "total_gross": 1024734
   },
   {
    "n": 3,
    "date": "2021-10-15",
    "gross": 90207,
-   "rank": 0,
+   "rank": 12,
    "theaters": 112,
-   "total_gross": 0
+   "total_gross": 1297695
   },
   {
    "n": 4,
    "date": "2021-10-22",
    "gross": 41099,
-   "rank": 0,
+   "rank": 19,
    "theaters": 39,
-   "total_gross": 0
+   "total_gross": 1409664
   }
  ]
 }

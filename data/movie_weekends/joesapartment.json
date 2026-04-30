@@ -1,6 +1,8 @@
 {
  "key": "joesapartment",
  "title": "Joe's Apartment",
+ "year": null,
+ "movie_url": "/movie/Joes-Apartment",
  "opening_date": "1996-07-26",
  "opening_gross": 1854490,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 1854490,
    "rank": 15,
    "theaters": 1512,
-   "total_gross": 0
+   "total_gross": 1854490
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 769011,
    "rank": 20,
    "theaters": 1479,
-   "total_gross": 0
+   "total_gross": 3752455
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 134501,
    "rank": 32,
    "theaters": 322,
-   "total_gross": 0
+   "total_gross": 4365692
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 81838,
    "rank": 44,
    "theaters": 251,
-   "total_gross": 0
+   "total_gross": 4566826
   }
  ]
 }

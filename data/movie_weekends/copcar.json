@@ -1,6 +1,8 @@
 {
  "key": "copcar",
  "title": "Cop Car",
+ "year": null,
+ "movie_url": "/movie/Cop-Car",
  "opening_date": "2015-08-07",
  "opening_gross": 26146,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 26146,
    "rank": 51,
    "theaters": 3,
-   "total_gross": 0
+   "total_gross": 26146
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 50826,
    "rank": 40,
    "theaters": 60,
-   "total_gross": 0
+   "total_gross": 86165
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 12829,
    "rank": 65,
    "theaters": 25,
-   "total_gross": 0
+   "total_gross": 128002
   }
  ]
 }

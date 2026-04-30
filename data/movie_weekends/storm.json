@@ -1,6 +1,8 @@
 {
  "key": "storm",
  "title": "Storm",
+ "year": null,
+ "movie_url": "/movie/Storm",
  "opening_date": "2009-10-30",
  "opening_gross": 8307,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 8307,
    "rank": 79,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 8307
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 1253,
    "rank": 116,
    "theaters": 3,
-   "total_gross": 0
+   "total_gross": 15109
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 3421,
    "rank": 81,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 20772
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 152,
    "rank": 111,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 22165
   }
  ]
 }

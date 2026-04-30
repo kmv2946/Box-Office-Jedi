@@ -1,6 +1,8 @@
 {
  "key": "todaysspecial",
  "title": "Today's Special",
+ "year": null,
+ "movie_url": "/movie/Todays-Special",
  "opening_date": "2010-11-19",
  "opening_gross": 90639,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 90639,
    "rank": 31,
    "theaters": 55,
-   "total_gross": 0
+   "total_gross": 90639
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 87088,
    "rank": 35,
    "theaters": 24,
-   "total_gross": 0
+   "total_gross": 206929
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 50293,
    "rank": 39,
    "theaters": 26,
-   "total_gross": 0
+   "total_gross": 276112
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 26117,
    "rank": 45,
    "theaters": 27,
-   "total_gross": 0
+   "total_gross": 317831
   }
  ]
 }

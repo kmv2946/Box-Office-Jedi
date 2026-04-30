@@ -1,6 +1,8 @@
 {
  "key": "thesong",
  "title": "The Song",
+ "year": null,
+ "movie_url": "/movie/Song-The",
  "opening_date": "2014-09-26",
  "opening_gross": 568596,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 568596,
    "rank": 15,
    "theaters": 340,
-   "total_gross": 0
+   "total_gross": 568596
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 15651,
    "rank": 71,
    "theaters": 31,
-   "total_gross": 0
+   "total_gross": 993114
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 6285,
    "rank": 81,
    "theaters": 17,
-   "total_gross": 0
+   "total_gross": 1005691
   }
  ]
 }

@@ -1,6 +1,8 @@
 {
  "key": "bogus",
  "title": "Bogus",
+ "year": null,
+ "movie_url": "/movie/Bogus",
  "opening_date": "1996-09-06",
  "opening_gross": 1895593,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 1895593,
    "rank": 11,
    "theaters": 1134,
-   "total_gross": 0
+   "total_gross": 1895593
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 1004550,
    "rank": 16,
    "theaters": 1209,
-   "total_gross": 0
+   "total_gross": 3412720
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 235890,
    "rank": 26,
    "theaters": 815,
-   "total_gross": 0
+   "total_gross": 3893486
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 103289,
    "rank": 38,
    "theaters": 253,
-   "total_gross": 0
+   "total_gross": 4061169
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 138230,
    "rank": 35,
    "theaters": 514,
-   "total_gross": 0
+   "total_gross": 4268452
   },
   {
    "n": 6,
@@ -50,7 +52,7 @@
    "gross": 55553,
    "rank": 49,
    "theaters": 271,
-   "total_gross": 0
+   "total_gross": 4340826
   }
  ]
 }

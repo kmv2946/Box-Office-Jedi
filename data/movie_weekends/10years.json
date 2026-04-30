@@ -1,6 +1,8 @@
 {
  "key": "10years",
  "title": "10 Years",
+ "year": null,
+ "movie_url": "/movie/10-Years",
  "opening_date": "2012-09-14",
  "opening_gross": 22707,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 22707,
    "rank": 59,
    "theaters": 3,
-   "total_gross": 0
+   "total_gross": 22707
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 73946,
    "rank": 47,
    "theaters": 43,
-   "total_gross": 0
+   "total_gross": 104861
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 39721,
    "rank": 55,
    "theaters": 63,
-   "total_gross": 0
+   "total_gross": 178035
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 5236,
    "rank": 76,
    "theaters": 21,
-   "total_gross": 0
+   "total_gross": 201146
   }
  ]
 }

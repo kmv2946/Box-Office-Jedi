@@ -1,6 +1,8 @@
 {
  "key": "accident",
  "title": "Accident",
+ "year": null,
+ "movie_url": "/movie/Accident",
  "opening_date": "2014-05-23",
  "opening_gross": 5798,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 5798,
    "rank": 63,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 5798
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 1593,
    "rank": 94,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 14315
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 378,
    "rank": 97,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 17161
   }
  ]
 }

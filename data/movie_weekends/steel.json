@@ -1,6 +1,8 @@
 {
  "key": "steel",
  "title": "Steel",
+ "year": null,
+ "movie_url": "/movie/Steel",
  "opening_date": "1997-08-15",
  "opening_gross": 870068,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 870068,
    "rank": 16,
    "theaters": 1260,
-   "total_gross": 0
+   "total_gross": 870068
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 191667,
    "rank": 33,
    "theaters": 1237,
-   "total_gross": 0
+   "total_gross": 1520268
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 72720,
    "rank": 41,
    "theaters": 249,
-   "total_gross": 0
+   "total_gross": 1686429
   }
  ]
 }

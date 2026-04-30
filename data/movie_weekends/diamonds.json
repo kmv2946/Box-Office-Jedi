@@ -1,6 +1,8 @@
 {
  "key": "diamonds",
  "title": "Diamonds",
+ "year": null,
+ "movie_url": "/movie/Diamonds",
  "opening_date": "1999-12-10",
  "opening_gross": 7837,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 7837,
    "rank": 85,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 7837
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 18084,
    "rank": 69,
    "theaters": 11,
-   "total_gross": 0
+   "total_gross": 30979
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 7984,
    "rank": 84,
    "theaters": 11,
-   "total_gross": 0
+   "total_gross": 43212
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 6999,
    "rank": 83,
    "theaters": 7,
-   "total_gross": 0
+   "total_gross": 53160
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 26675,
    "rank": 73,
    "theaters": 27,
-   "total_gross": 0
+   "total_gross": 81897
   }
  ]
 }

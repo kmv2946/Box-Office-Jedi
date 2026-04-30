@@ -1,6 +1,8 @@
 {
  "key": "voyages",
  "title": "Voyages",
+ "year": null,
+ "movie_url": "/movie/Voyages",
  "opening_date": "2000-12-15",
  "opening_gross": 1055,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 1055,
    "rank": 121,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 1055
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 9241,
    "rank": 70,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 10810
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 1938,
    "rank": 96,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 20776
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 633,
    "rank": 122,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 22437
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 1252,
    "rank": 110,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 23778
   }
  ]
 }

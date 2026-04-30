@@ -1,6 +1,8 @@
 {
  "key": "xxxy",
  "title": "XX/XY",
+ "year": null,
+ "movie_url": "/movie/XX-XY",
  "opening_date": "2003-04-11",
  "opening_gross": 17089,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 17089,
    "rank": 78,
    "theaters": 5,
-   "total_gross": 0
+   "total_gross": 17089
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 6925,
    "rank": 98,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 31320
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 10777,
    "rank": 90,
    "theaters": 10,
-   "total_gross": 0
+   "total_gross": 45030
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 15477,
    "rank": 79,
    "theaters": 14,
-   "total_gross": 0
+   "total_gross": 65691
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 7992,
    "rank": 93,
    "theaters": 10,
-   "total_gross": 0
+   "total_gross": 80782
   },
   {
    "n": 6,
@@ -50,7 +52,7 @@
    "gross": 2214,
    "rank": 127,
    "theaters": 5,
-   "total_gross": 0
+   "total_gross": 85155
   },
   {
    "n": 7,
@@ -58,7 +60,7 @@
    "gross": 7061,
    "rank": 90,
    "theaters": 7,
-   "total_gross": 0
+   "total_gross": 93362
   },
   {
    "n": 8,
@@ -66,7 +68,7 @@
    "gross": 2876,
    "rank": 82,
    "theaters": 4,
-   "total_gross": 0
+   "total_gross": 101291
   },
   {
    "n": 9,
@@ -74,7 +76,7 @@
    "gross": 775,
    "rank": 99,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 103874
   }
  ]
 }

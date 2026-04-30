@@ -1,6 +1,8 @@
 {
  "key": "fashion",
  "title": "Fashion",
+ "year": null,
+ "movie_url": "/movie/Fashion",
  "opening_date": "2008-10-31",
  "opening_gross": 105812,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 105812,
    "rank": 38,
    "theaters": 40,
-   "total_gross": 0
+   "total_gross": 105812
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 44158,
    "rank": 50,
    "theaters": 37,
-   "total_gross": 0
+   "total_gross": 173551
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 4191,
    "rank": 89,
    "theaters": 13,
-   "total_gross": 0
+   "total_gross": 191442
   }
  ]
 }

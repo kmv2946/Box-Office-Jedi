@@ -1,6 +1,8 @@
 {
  "key": "mongol",
  "title": "Mongol",
+ "year": null,
+ "movie_url": "/movie/Mongol",
  "opening_date": "2008-06-06",
  "opening_gross": 135326,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 135326,
    "rank": 22,
    "theaters": 5,
-   "total_gross": 0
+   "total_gross": 135326
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 112212,
    "rank": 24,
    "theaters": 5,
-   "total_gross": 0
+   "total_gross": 312051
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 778963,
    "rank": 13,
    "theaters": 94,
-   "total_gross": 0
+   "total_gross": 1149760
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 812862,
    "rank": 13,
    "theaters": 209,
-   "total_gross": 0
+   "total_gross": 2288109
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 765120,
    "rank": 14,
    "theaters": 253,
-   "total_gross": 0
+   "total_gross": 3472331
   },
   {
    "n": 6,
@@ -50,7 +52,7 @@
    "gross": 532439,
    "rank": 16,
    "theaters": 252,
-   "total_gross": 0
+   "total_gross": 4355846
   },
   {
    "n": 7,
@@ -58,7 +60,7 @@
    "gross": 257411,
    "rank": 20,
    "theaters": 195,
-   "total_gross": 0
+   "total_gross": 4867490
   },
   {
    "n": 8,
@@ -66,7 +68,7 @@
    "gross": 163137,
    "rank": 25,
    "theaters": 144,
-   "total_gross": 0
+   "total_gross": 5171878
   },
   {
    "n": 9,
@@ -74,7 +76,7 @@
    "gross": 131388,
    "rank": 31,
    "theaters": 138,
-   "total_gross": 0
+   "total_gross": 5398009
   },
   {
    "n": 10,
@@ -82,7 +84,7 @@
    "gross": 75239,
    "rank": 40,
    "theaters": 97,
-   "total_gross": 0
+   "total_gross": 5542235
   },
   {
    "n": 11,
@@ -90,7 +92,7 @@
    "gross": 36219,
    "rank": 52,
    "theaters": 55,
-   "total_gross": 0
+   "total_gross": 5621596
   },
   {
    "n": 12,
@@ -98,7 +100,7 @@
    "gross": 19728,
    "rank": 63,
    "theaters": 30,
-   "total_gross": 0
+   "total_gross": 5664414
   },
   {
    "n": 13,
@@ -106,7 +108,7 @@
    "gross": 7591,
    "rank": 85,
    "theaters": 16,
-   "total_gross": 0
+   "total_gross": 5684339
   },
   {
    "n": 14,
@@ -114,7 +116,7 @@
    "gross": 11503,
    "rank": 81,
    "theaters": 24,
-   "total_gross": 0
+   "total_gross": 5701643
   }
  ]
 }

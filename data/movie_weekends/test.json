@@ -1,6 +1,8 @@
 {
  "key": "test",
  "title": "Test",
+ "year": null,
+ "movie_url": "/movie/Test",
  "opening_date": "2014-06-13",
  "opening_gross": 4473,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 4473,
    "rank": 79,
    "theaters": 4,
-   "total_gross": 0
+   "total_gross": 11843
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 797,
    "rank": 103,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 18172
   }
  ]
 }

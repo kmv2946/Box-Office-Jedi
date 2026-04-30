@@ -1,6 +1,8 @@
 {
  "key": "mynameisjoe",
  "title": "My Name is Joe",
+ "year": null,
+ "movie_url": "/movie/My-Name-is-Joe",
  "opening_date": "1999-01-22",
  "opening_gross": 16017,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 16017,
    "rank": 58,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 16017
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 13423,
    "rank": 58,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 35835
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 31773,
    "rank": 52,
    "theaters": 7,
-   "total_gross": 0
+   "total_gross": 73760
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 34910,
    "rank": 54,
    "theaters": 9,
-   "total_gross": 0
+   "total_gross": 120681
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 28333,
    "rank": 59,
    "theaters": 12,
-   "total_gross": 0
+   "total_gross": 156729
   },
   {
    "n": 6,
@@ -50,7 +52,7 @@
    "gross": 31381,
    "rank": 56,
    "theaters": 13,
-   "total_gross": 0
+   "total_gross": 198229
   },
   {
    "n": 7,
@@ -58,7 +60,7 @@
    "gross": 31338,
    "rank": 62,
    "theaters": 16,
-   "total_gross": 0
+   "total_gross": 238224
   },
   {
    "n": 8,
@@ -66,7 +68,7 @@
    "gross": 15011,
    "rank": 67,
    "theaters": 12,
-   "total_gross": 0
+   "total_gross": 263037
   },
   {
    "n": 9,
@@ -74,7 +76,7 @@
    "gross": 10076,
    "rank": 68,
    "theaters": 13,
-   "total_gross": 0
+   "total_gross": 278545
   },
   {
    "n": 10,
@@ -82,7 +84,7 @@
    "gross": 8719,
    "rank": 75,
    "theaters": 11,
-   "total_gross": 0
+   "total_gross": 291501
   },
   {
    "n": 11,
@@ -90,7 +92,7 @@
    "gross": 7894,
    "rank": 72,
    "theaters": 10,
-   "total_gross": 0
+   "total_gross": 302225
   },
   {
    "n": 12,
@@ -98,7 +100,7 @@
    "gross": 8927,
    "rank": 0,
    "theaters": 10,
-   "total_gross": 0
+   "total_gross": 314700
   },
   {
    "n": 13,
@@ -106,7 +108,7 @@
    "gross": 12238,
    "rank": 78,
    "theaters": 12,
-   "total_gross": 0
+   "total_gross": 330925
   },
   {
    "n": 14,
@@ -114,7 +116,7 @@
    "gross": 10788,
    "rank": 84,
    "theaters": 10,
-   "total_gross": 0
+   "total_gross": 346696
   }
  ]
 }

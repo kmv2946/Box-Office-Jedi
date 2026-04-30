@@ -1,6 +1,8 @@
 {
  "key": "tomcats",
  "title": "Tomcats",
+ "year": null,
+ "movie_url": "/movie/Tomcats",
  "opening_date": "2001-03-30",
  "opening_gross": 6406076,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 6406076,
    "rank": 4,
    "theaters": 2617,
-   "total_gross": 0
+   "total_gross": 6406076
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 2811509,
    "rank": 10,
    "theaters": 2617,
-   "total_gross": 0
+   "total_gross": 10953131
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 906802,
    "rank": 17,
    "theaters": 1711,
-   "total_gross": 0
+   "total_gross": 12853541
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 243118,
    "rank": 27,
    "theaters": 508,
-   "total_gross": 0
+   "total_gross": 13456293
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 37225,
    "rank": 55,
    "theaters": 64,
-   "total_gross": 0
+   "total_gross": 13558739
   }
  ]
 }

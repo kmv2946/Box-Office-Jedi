@@ -1,6 +1,8 @@
 {
  "key": "cake",
  "title": "Cake",
+ "year": null,
+ "movie_url": "/movie/Cake",
  "opening_date": "2015-01-23",
  "opening_gross": 916179,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 916179,
    "rank": 19,
    "theaters": 482,
-   "total_gross": 0
+   "total_gross": 916179
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 300888,
    "rank": 30,
    "theaters": 373,
-   "total_gross": 0
+   "total_gross": 1620918
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 81182,
    "rank": 43,
    "theaters": 75,
-   "total_gross": 0
+   "total_gross": 1873547
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 21698,
    "rank": 62,
    "theaters": 34,
-   "total_gross": 0
+   "total_gross": 1937374
   }
  ]
 }

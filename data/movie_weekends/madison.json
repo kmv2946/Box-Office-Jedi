@@ -1,6 +1,8 @@
 {
  "key": "madison",
  "title": "Madison",
+ "year": null,
+ "movie_url": "/movie/Madison",
  "opening_date": "2005-04-22",
  "opening_gross": 268370,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 268370,
    "rank": 22,
    "theaters": 93,
-   "total_gross": 0
+   "total_gross": 268370
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 148827,
    "rank": 33,
    "theaters": 94,
-   "total_gross": 0
+   "total_gross": 466285
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 24098,
    "rank": 55,
    "theaters": 49,
-   "total_gross": 0
+   "total_gross": 508867
   }
  ]
 }

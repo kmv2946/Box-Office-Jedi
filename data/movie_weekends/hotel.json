@@ -1,6 +1,8 @@
 {
  "key": "hotel",
  "title": "Hotel",
+ "year": null,
+ "movie_url": "/movie/Hotel",
  "opening_date": "2003-07-25",
  "opening_gross": 12840,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 12840,
    "rank": 67,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 12840
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 1102,
    "rank": 128,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 28839
   }
  ]
 }

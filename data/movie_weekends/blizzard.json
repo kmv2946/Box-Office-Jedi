@@ -1,6 +1,8 @@
 {
  "key": "blizzard",
  "title": "Blizzard",
+ "year": null,
+ "movie_url": "/movie/Blizzard",
  "opening_date": "2003-12-12",
  "opening_gross": 145525,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 145525,
    "rank": 30,
    "theaters": 136,
-   "total_gross": 0
+   "total_gross": 145525
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 83279,
    "rank": 35,
    "theaters": 136,
-   "total_gross": 0
+   "total_gross": 267501
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 31985,
    "rank": 58,
    "theaters": 88,
-   "total_gross": 0
+   "total_gross": 385810
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 27691,
    "rank": 58,
    "theaters": 45,
-   "total_gross": 0
+   "total_gross": 504600
   }
  ]
 }

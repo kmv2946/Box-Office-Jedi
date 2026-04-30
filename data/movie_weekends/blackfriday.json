@@ -1,6 +1,8 @@
 {
  "key": "blackfriday",
  "title": "Black Friday",
+ "year": null,
+ "movie_url": "/movie/Black-Friday",
  "opening_date": "2007-02-09",
  "opening_gross": 25000,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 25000,
    "rank": 63,
    "theaters": 10,
-   "total_gross": 0
+   "total_gross": 25000
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 4000,
    "rank": 71,
    "theaters": 9,
-   "total_gross": 0
+   "total_gross": 33000
   }
  ]
 }

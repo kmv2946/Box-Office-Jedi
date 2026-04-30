@@ -1,6 +1,8 @@
 {
  "key": "renaissance",
  "title": "Renaissance",
+ "year": null,
+ "movie_url": "/movie/Renaissance",
  "opening_date": "2006-09-22",
  "opening_gross": 10800,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 10800,
    "rank": 88,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 10800
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 14568,
    "rank": 74,
    "theaters": 7,
-   "total_gross": 0
+   "total_gross": 31111
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 10412,
    "rank": 64,
    "theaters": 13,
-   "total_gross": 0
+   "total_gross": 47213
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 9815,
    "rank": 78,
    "theaters": 12,
-   "total_gross": 0
+   "total_gross": 63260
   }
  ]
 }

@@ -106,7 +106,10 @@ def main():
     print(f"Scanning {len(weekend_files)} per-movie weekend archives...")
 
     candidates = []
+    seen_keys = set()
     for path in weekend_files:
+        if os.path.basename(path) == "index.json":
+            continue
         try:
             with open(path) as f:
                 d = json.load(f)
@@ -114,9 +117,17 @@ def main():
             continue
         title = d.get("title") or ""
         opening = d.get("opening_date") or ""
+        # Prefer the slug stored on the file itself — aggregate_movie_weekends
+        # writes year-disambiguated slugs (e.g. "michael-2026"). For old files
+        # without a stored key, fall back to the filename.
         key = (d.get("key") or os.path.basename(path).replace(".json", ""))
-        if not title:
+        if not title or not key:
             continue
+        # Skip the legacy-alias copies (plain-title duplicates of slug files)
+        # so we don't enrich the same film twice.
+        if key in seen_keys:
+            continue
+        seen_keys.add(key)
         if args.year and opening[:4] != str(args.year):
             continue
         if args.since and opening < args.since:
@@ -148,7 +159,15 @@ def main():
     failed   = 0
 
     for i, (key, title, opening) in enumerate(candidates, 1):
-        year = int(opening[:4]) if opening[:4].isdigit() else None
+        # Prefer the year embedded in the slug (e.g., "michael-2026") because
+        # the aggregate writes the actual film's release year there. Fall back
+        # to opening_date's year for slug-less legacy files.
+        year = None
+        m = re.search(r"-(\d{4})$", key)
+        if m:
+            year = int(m.group(1))
+        if not year and opening[:4].isdigit():
+            year = int(opening[:4])
         result = search_tmdb(title, year)
         if not result:
             print(f"  [{i}/{len(candidates)}] {title!r} ({year}) — no TMDB match")

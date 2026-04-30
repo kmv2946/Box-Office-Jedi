@@ -1,6 +1,8 @@
 {
  "key": "sunday",
  "title": "Sunday",
+ "year": null,
+ "movie_url": "/movie/Sunday",
  "opening_date": "1997-08-22",
  "opening_gross": 25682,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 25682,
    "rank": 59,
    "theaters": 4,
-   "total_gross": 0
+   "total_gross": 25682
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 34222,
    "rank": 58,
    "theaters": 6,
-   "total_gross": 0
+   "total_gross": 69734
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 33783,
    "rank": 48,
    "theaters": 11,
-   "total_gross": 0
+   "total_gross": 110341
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 34123,
    "rank": 52,
    "theaters": 14,
-   "total_gross": 0
+   "total_gross": 156128
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 36966,
    "rank": 49,
    "theaters": 19,
-   "total_gross": 0
+   "total_gross": 203230
   },
   {
    "n": 6,
@@ -50,7 +52,7 @@
    "gross": 37743,
    "rank": 51,
    "theaters": 20,
-   "total_gross": 0
+   "total_gross": 253640
   },
   {
    "n": 7,
@@ -58,7 +60,7 @@
    "gross": 20765,
    "rank": 59,
    "theaters": 17,
-   "total_gross": 0
+   "total_gross": 288661
   },
   {
    "n": 8,
@@ -66,7 +68,7 @@
    "gross": 9997,
    "rank": 67,
    "theaters": 14,
-   "total_gross": 0
+   "total_gross": 371451
   },
   {
    "n": 9,
@@ -74,7 +76,7 @@
    "gross": 8868,
    "rank": 68,
    "theaters": 13,
-   "total_gross": 0
+   "total_gross": 385003
   },
   {
    "n": 10,
@@ -82,7 +84,7 @@
    "gross": 5000,
    "rank": 72,
    "theaters": 14,
-   "total_gross": 0
+   "total_gross": 394027
   },
   {
    "n": 11,
@@ -90,7 +92,7 @@
    "gross": 5932,
    "rank": 67,
    "theaters": 12,
-   "total_gross": 0
+   "total_gross": 403402
   },
   {
    "n": 12,
@@ -98,7 +100,7 @@
    "gross": 4517,
    "rank": 70,
    "theaters": 9,
-   "total_gross": 0
+   "total_gross": 410919
   }
  ]
 }

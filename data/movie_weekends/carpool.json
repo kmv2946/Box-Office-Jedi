@@ -1,6 +1,8 @@
 {
  "key": "carpool",
  "title": "Carpool",
+ "year": null,
+ "movie_url": "/movie/Carpool",
  "opening_date": "1996-08-23",
  "opening_gross": 1628482,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 1628482,
    "rank": 13,
    "theaters": 1487,
-   "total_gross": 0
+   "total_gross": 1628482
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 703642,
    "rank": 28,
    "theaters": 1417,
-   "total_gross": 0
+   "total_gross": 3130767
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 71777,
    "rank": 42,
    "theaters": 231,
-   "total_gross": 0
+   "total_gross": 3308758
   }
  ]
 }

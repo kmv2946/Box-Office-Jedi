@@ -1,6 +1,8 @@
 {
  "key": "therental",
  "title": "The Rental",
+ "year": null,
+ "movie_url": "/movie/Rental-The",
  "opening_date": "2020-07-24",
  "opening_gross": 403852,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 403852,
    "rank": 1,
    "theaters": 250,
-   "total_gross": 0
+   "total_gross": 403852
   },
   {
    "n": 2,
@@ -18,31 +20,31 @@
    "gross": 290272,
    "rank": 1,
    "theaters": 242,
-   "total_gross": 0
+   "total_gross": 890390
   },
   {
    "n": 3,
    "date": "2020-08-07",
    "gross": 140725,
-   "rank": 0,
+   "rank": 2,
    "theaters": 178,
-   "total_gross": 0
+   "total_gross": 1195457
   },
   {
    "n": 4,
    "date": "2020-08-14",
    "gross": 93618,
-   "rank": 0,
+   "rank": 4,
    "theaters": 144,
-   "total_gross": 0
+   "total_gross": 1372894
   },
   {
    "n": 5,
    "date": "2020-08-21",
    "gross": 93373,
-   "rank": 0,
+   "rank": 7,
    "theaters": 105,
-   "total_gross": 0
+   "total_gross": 1510327
   },
   {
    "n": 6,
@@ -50,55 +52,55 @@
    "gross": 22839,
    "rank": 11,
    "theaters": 58,
-   "total_gross": 0
+   "total_gross": 1561048
   },
   {
    "n": 7,
    "date": "2020-09-04",
    "gross": 22695,
-   "rank": 0,
+   "rank": 11,
    "theaters": 25,
-   "total_gross": 0
+   "total_gross": 1589020
   },
   {
    "n": 8,
    "date": "2020-09-11",
    "gross": 19697,
-   "rank": 0,
+   "rank": 12,
    "theaters": 18,
-   "total_gross": 0
+   "total_gross": 1620106
   },
   {
    "n": 9,
    "date": "2020-09-18",
    "gross": 6184,
-   "rank": 0,
+   "rank": 20,
    "theaters": 20,
-   "total_gross": 0
+   "total_gross": 1628230
   },
   {
    "n": 10,
    "date": "2020-09-25",
    "gross": 3293,
-   "rank": 0,
+   "rank": 29,
    "theaters": 13,
-   "total_gross": 0
+   "total_gross": 1632803
   },
   {
    "n": 11,
    "date": "2020-10-02",
    "gross": 871,
-   "rank": 0,
+   "rank": 33,
    "theaters": 7,
-   "total_gross": 0
+   "total_gross": 1635175
   },
   {
    "n": 12,
    "date": "2020-10-09",
    "gross": 2158,
-   "rank": 0,
+   "rank": 35,
    "theaters": 3,
-   "total_gross": 0
+   "total_gross": 1637503
   }
  ]
 }

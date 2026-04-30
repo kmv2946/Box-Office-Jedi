@@ -1,6 +1,8 @@
 {
  "key": "restaurant",
  "title": "Restaurant",
+ "year": null,
+ "movie_url": "/movie/Restaurant",
  "opening_date": "2000-01-28",
  "opening_gross": 11750,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 11750,
    "rank": 80,
    "theaters": 24,
-   "total_gross": 0
+   "total_gross": 11750
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 16884,
    "rank": 80,
    "theaters": 6,
-   "total_gross": 0
+   "total_gross": 32184
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 15284,
    "rank": 79,
    "theaters": 6,
-   "total_gross": 0
+   "total_gross": 52571
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 8456,
    "rank": 89,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 65512
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 2597,
    "rank": 98,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 73613
   }
  ]
 }

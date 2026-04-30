@@ -1,6 +1,8 @@
 {
  "key": "django",
  "title": "Django",
+ "year": null,
+ "movie_url": "/movie/Django-(France-2017)",
  "opening_date": "2012-12-21",
  "opening_gross": 6150,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 6150,
    "rank": 60,
    "theaters": 8,
-   "total_gross": 0
+   "total_gross": 6150
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 2795,
    "rank": 71,
    "theaters": 5,
-   "total_gross": 0
+   "total_gross": 17277
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 1848,
    "rank": 78,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 19391
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 11722,
    "rank": 51,
    "theaters": 4,
-   "total_gross": 0
+   "total_gross": 11722
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 4508,
    "rank": 63,
    "theaters": 5,
-   "total_gross": 0
+   "total_gross": 18348
   },
   {
    "n": 6,
@@ -50,7 +52,7 @@
    "gross": 6005,
    "rank": 60,
    "theaters": 7,
-   "total_gross": 0
+   "total_gross": 29294
   },
   {
    "n": 7,
@@ -58,7 +60,7 @@
    "gross": 5455,
    "rank": 63,
    "theaters": 7,
-   "total_gross": 0
+   "total_gross": 40728
   },
   {
    "n": 8,
@@ -66,7 +68,7 @@
    "gross": 4047,
    "rank": 66,
    "theaters": 5,
-   "total_gross": 0
+   "total_gross": 47147
   },
   {
    "n": 9,
@@ -74,7 +76,7 @@
    "gross": 5029,
    "rank": 65,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 56556
   }
  ]
 }

@@ -1,6 +1,8 @@
 {
  "key": "thecube",
  "title": "The Cube",
+ "year": null,
+ "movie_url": "/movie/Cube",
  "opening_date": "1998-09-11",
  "opening_gross": 57147,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 57147,
    "rank": 50,
    "theaters": 16,
-   "total_gross": 0
+   "total_gross": 57147
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 45593,
    "rank": 56,
    "theaters": 0,
-   "total_gross": 0
+   "total_gross": 125717
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 28891,
    "rank": 59,
    "theaters": 24,
-   "total_gross": 0
+   "total_gross": 269654
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 26543,
    "rank": 58,
    "theaters": 24,
-   "total_gross": 0
+   "total_gross": 314484
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 24025,
    "rank": 55,
    "theaters": 22,
-   "total_gross": 0
+   "total_gross": 357839
   },
   {
    "n": 6,
@@ -50,7 +52,7 @@
    "gross": 22002,
    "rank": 55,
    "theaters": 20,
-   "total_gross": 0
+   "total_gross": 398289
   },
   {
    "n": 7,
@@ -58,7 +60,7 @@
    "gross": 19489,
    "rank": 59,
    "theaters": 20,
-   "total_gross": 0
+   "total_gross": 431472
   },
   {
    "n": 8,
@@ -66,7 +68,7 @@
    "gross": 16491,
    "rank": 58,
    "theaters": 18,
-   "total_gross": 0
+   "total_gross": 459823
   },
   {
    "n": 9,
@@ -74,7 +76,7 @@
    "gross": 15261,
    "rank": 61,
    "theaters": 15,
-   "total_gross": 0
+   "total_gross": 489220
   }
  ]
 }

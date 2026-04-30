@@ -69,9 +69,17 @@ def main():
     sources.extend(sorted(glob.glob(os.path.join(DATA_DIR, "years", "*.json"))))
     sources.append(os.path.join(DATA_DIR, "yearly.json"))   # current year
 
-    by_title = {}     # norm_title → {year, total_gross, distributor, rank}
+    by_title = {}     # plain title key  → entry  (most-recent / largest wins)
+    by_slug  = {}     # slug (title-year) → entry  (always exact match)
+
     files_seen = 0
     rows_seen  = 0
+
+    def url_year(url: str):
+        if not url:
+            return None
+        m = re.search(r"\((\d{4})", url)
+        return int(m.group(1)) if m else None
 
     for path in sources:
         if not os.path.exists(path):
@@ -79,12 +87,11 @@ def main():
         d = load_json(path)
         if not d:
             continue
-        year = d.get("year") or 0
-        # Files like data/years/2006.json — derive year from filename if missing
-        if not year:
+        file_year = d.get("year") or 0
+        if not file_year:
             base = os.path.basename(path).replace(".json", "")
             if base[:4].isdigit():
-                year = int(base[:4])
+                file_year = int(base[:4])
         rows = d.get("chart") or []
         if not rows:
             continue
@@ -94,39 +101,58 @@ def main():
             tot   = r.get("total_gross") or 0
             if not title or tot <= 0:
                 continue
-            key = norm_title(title)
-            if not key:
+            tk = norm_title(title)
+            if not tk:
                 continue
+            # Prefer the year encoded in the row's movie_url (which actually
+            # identifies the film) over the chart's calendar year — a film
+            # released in late 2005 can be on the 2006 chart. Fall back to
+            # the chart year when the movie_url is missing.
+            row_year = url_year(r.get("movie_url")) or file_year or None
+            slug_key = f"{tk}-{row_year}" if row_year else tk
+
             rows_seen += 1
             entry = {
                 "title":       title,
-                "year":        year,
+                "year":        row_year or file_year,
                 "total_gross": tot,
                 "distributor": r.get("distributor", "") or "",
                 "rank":        r.get("rank") or 0,
             }
-            existing = by_title.get(key)
-            # Keep the larger total_gross when a film carries across years.
-            # Preserve the YEAR of the larger total too, so opening-year
-            # films don't get retagged with a holdover year.
-            if existing is None or tot > existing["total_gross"]:
-                by_title[key] = entry
+
+            # Slug map: ALWAYS keeps the largest total for that exact film
+            # (handles the same film appearing in multiple yearly charts as
+            # a holdover — last year's run is the cumulative total).
+            existing_slug = by_slug.get(slug_key)
+            if existing_slug is None or tot > existing_slug["total_gross"]:
+                by_slug[slug_key] = entry
+
+            # Plain title map: when two different films share the title
+            # (Michael 1996 vs 2026), the most-recent one wins so legacy
+            # links resolve to the relevant current film.
+            existing_plain = by_title.get(tk)
+            if (existing_plain is None
+                or (entry["year"] or 0) > (existing_plain["year"] or 0)
+                or ((entry["year"] or 0) == (existing_plain["year"] or 0)
+                    and tot > existing_plain["total_gross"])):
+                by_title[tk] = entry
 
     payload = {
-        "updated": datetime.now().isoformat(timespec="seconds"),
-        "count":   len(by_title),
-        "by_title": by_title,
+        "updated":  datetime.now().isoformat(timespec="seconds"),
+        "count":    len(by_title),
+        "by_title": by_title,    # plain key → most-recent film of that title
+        "by_slug":  by_slug,     # slug (title-year) → exact film
     }
 
     out_path = os.path.join(DATA_DIR, "movie_totals.json")
     print(f"  Scanned {files_seen} yearly files, {rows_seen} rows.")
-    print(f"  Indexed {len(by_title)} unique films.")
+    print(f"  Indexed {len(by_title)} unique titles, {len(by_slug)} unique slug entries.")
     if args.dry_run:
-        # Show a few sample lookups so the user can sanity-check.
-        for sample in ("cars", "thedevilwearsprada", "thedarkknight", "avatar"):
-            v = by_title.get(sample)
+        for sample in ("michael", "michael-1996", "michael-2026",
+                       "cars", "thedevilwearsprada"):
+            v = by_slug.get(sample) or by_title.get(sample)
             if v:
-                print(f"    {sample:30s} → ${v['total_gross']:>13,}  ({v['year']})  {v['title']}")
+                print(f"    {sample:25s} → ${v['total_gross']:>13,}  ({v['year']})  {v['title']}")
         print("  (dry run — no file written)")
         return
     with open(out_path, "w") as f:

@@ -1,6 +1,8 @@
 {
  "key": "becky",
  "title": "Becky",
+ "year": null,
+ "movie_url": "/movie/Becky",
  "opening_date": "2020-06-05",
  "opening_gross": 205797,
  "weekends": [
@@ -8,65 +10,65 @@
    "n": 1,
    "date": "2020-06-05",
    "gross": 205797,
-   "rank": 0,
+   "rank": 1,
    "theaters": 45,
-   "total_gross": 0
+   "total_gross": 205797
   },
   {
    "n": 2,
    "date": "2020-06-12",
    "gross": 187686,
-   "rank": 0,
+   "rank": 1,
    "theaters": 50,
-   "total_gross": 0
+   "total_gross": 482593
   },
   {
    "n": 3,
    "date": "2020-06-19",
    "gross": 90278,
-   "rank": 0,
+   "rank": 3,
    "theaters": 23,
-   "total_gross": 0
+   "total_gross": 657320
   },
   {
    "n": 4,
    "date": "2020-06-26",
    "gross": 72776,
-   "rank": 0,
+   "rank": 2,
    "theaters": 17,
-   "total_gross": 0
+   "total_gross": 817916
   },
   {
    "n": 5,
    "date": "2020-07-03",
    "gross": 27793,
-   "rank": 0,
+   "rank": 3,
    "theaters": 15,
-   "total_gross": 0
+   "total_gross": 903662
   },
   {
    "n": 6,
    "date": "2020-07-10",
    "gross": 14446,
-   "rank": 0,
+   "rank": 6,
    "theaters": 7,
-   "total_gross": 0
+   "total_gross": 926505
   },
   {
    "n": 7,
    "date": "2020-07-17",
    "gross": 8375,
-   "rank": 0,
+   "rank": 6,
    "theaters": 12,
-   "total_gross": 0
+   "total_gross": 933592
   },
   {
    "n": 8,
    "date": "2020-07-24",
    "gross": 5710,
-   "rank": 0,
+   "rank": 8,
    "theaters": 12,
-   "total_gross": 0
+   "total_gross": 936456
   }
  ]
 }

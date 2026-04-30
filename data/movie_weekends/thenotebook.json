@@ -1,6 +1,8 @@
 {
  "key": "thenotebook",
  "title": "The Notebook",
+ "year": null,
+ "movie_url": "/movie/nagy-fuzet-A",
  "opening_date": "2004-06-25",
  "opening_gross": 13464745,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 13464745,
    "rank": 4,
    "theaters": 2303,
-   "total_gross": 0
+   "total_gross": 13464745
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 7441973,
    "rank": 6,
    "theaters": 2323,
-   "total_gross": 0
+   "total_gross": 28753526
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 6538093,
    "rank": 5,
    "theaters": 2288,
-   "total_gross": 0
+   "total_gross": 43083691
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 5651212,
    "rank": 7,
    "theaters": 2089,
-   "total_gross": 0
+   "total_gross": 53880561
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 4268634,
    "rank": 8,
    "theaters": 2003,
-   "total_gross": 0
+   "total_gross": 62318684
   },
   {
    "n": 6,
@@ -50,7 +52,7 @@
    "gross": 2688124,
    "rank": 12,
    "theaters": 1506,
-   "total_gross": 0
+   "total_gross": 68257495
   },
   {
    "n": 7,
@@ -58,7 +60,7 @@
    "gross": 1866066,
    "rank": 12,
    "theaters": 1255,
-   "total_gross": 0
+   "total_gross": 72227947
   },
   {
    "n": 8,
@@ -66,7 +68,7 @@
    "gross": 1155431,
    "rank": 14,
    "theaters": 925,
-   "total_gross": 0
+   "total_gross": 74694064
   },
   {
    "n": 9,
@@ -74,7 +76,7 @@
    "gross": 774126,
    "rank": 17,
    "theaters": 621,
-   "total_gross": 0
+   "total_gross": 76295611
   },
   {
    "n": 10,
@@ -82,7 +84,7 @@
    "gross": 586818,
    "rank": 21,
    "theaters": 481,
-   "total_gross": 0
+   "total_gross": 77371100
   },
   {
    "n": 11,
@@ -90,7 +92,7 @@
    "gross": 650051,
    "rank": 22,
    "theaters": 562,
-   "total_gross": 0
+   "total_gross": 78303467
   },
   {
    "n": 12,
@@ -98,7 +100,7 @@
    "gross": 445542,
    "rank": 22,
    "theaters": 468,
-   "total_gross": 0
+   "total_gross": 79132071
   },
   {
    "n": 13,
@@ -106,7 +108,7 @@
    "gross": 350219,
    "rank": 23,
    "theaters": 390,
-   "total_gross": 0
+   "total_gross": 79674756
   },
   {
    "n": 14,
@@ -114,7 +116,7 @@
    "gross": 231762,
    "rank": 28,
    "theaters": 323,
-   "total_gross": 0
+   "total_gross": 80045027
   },
   {
    "n": 15,
@@ -122,7 +124,7 @@
    "gross": 161092,
    "rank": 30,
    "theaters": 245,
-   "total_gross": 0
+   "total_gross": 80313619
   },
   {
    "n": 16,
@@ -130,7 +132,7 @@
    "gross": 99261,
    "rank": 35,
    "theaters": 170,
-   "total_gross": 0
+   "total_gross": 80496140
   },
   {
    "n": 17,
@@ -138,7 +140,7 @@
    "gross": 79673,
    "rank": 38,
    "theaters": 144,
-   "total_gross": 0
+   "total_gross": 80640867
   },
   {
    "n": 18,
@@ -146,7 +148,7 @@
    "gross": 66036,
    "rank": 43,
    "theaters": 116,
-   "total_gross": 0
+   "total_gross": 80751161
   },
   {
    "n": 19,
@@ -154,7 +156,7 @@
    "gross": 48595,
    "rank": 38,
    "theaters": 99,
-   "total_gross": 0
+   "total_gross": 80831296
   },
   {
    "n": 20,
@@ -162,7 +164,7 @@
    "gross": 43750,
    "rank": 44,
    "theaters": 70,
-   "total_gross": 0
+   "total_gross": 80901086
   },
   {
    "n": 21,
@@ -170,7 +172,7 @@
    "gross": 38362,
    "rank": 46,
    "theaters": 54,
-   "total_gross": 0
+   "total_gross": 80964984
   },
   {
    "n": 22,
@@ -178,7 +180,7 @@
    "gross": 20692,
    "rank": 50,
    "theaters": 44,
-   "total_gross": 0
+   "total_gross": 81001787
   },
   {
    "n": 23,
@@ -186,7 +188,7 @@
    "gross": 4193,
    "rank": 77,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 4193
   },
   {
    "n": 24,
@@ -194,7 +196,7 @@
    "gross": 5150,
    "rank": 82,
    "theaters": 7,
-   "total_gross": 0
+   "total_gross": 10658
   },
   {
    "n": 25,
@@ -202,7 +204,7 @@
    "gross": 2475,
    "rank": 82,
    "theaters": 4,
-   "total_gross": 0
+   "total_gross": 16635
   },
   {
    "n": 26,
@@ -210,7 +212,7 @@
    "gross": 3707,
    "rank": 82,
    "theaters": 6,
-   "total_gross": 0
+   "total_gross": 24452
   },
   {
    "n": 27,
@@ -218,7 +220,7 @@
    "gross": 6541,
    "rank": 73,
    "theaters": 13,
-   "total_gross": 0
+   "total_gross": 32991
   },
   {
    "n": 28,
@@ -226,7 +228,7 @@
    "gross": 8124,
    "rank": 70,
    "theaters": 15,
-   "total_gross": 0
+   "total_gross": 45704
   },
   {
    "n": 29,
@@ -234,7 +236,7 @@
    "gross": 4154,
    "rank": 84,
    "theaters": 15,
-   "total_gross": 0
+   "total_gross": 55368
   },
   {
    "n": 30,
@@ -242,7 +244,7 @@
    "gross": 1718,
    "rank": 94,
    "theaters": 14,
-   "total_gross": 0
+   "total_gross": 59000
   },
   {
    "n": 31,
@@ -250,7 +252,7 @@
    "gross": 2518,
    "rank": 94,
    "theaters": 7,
-   "total_gross": 0
+   "total_gross": 63053
   },
   {
    "n": 32,
@@ -258,7 +260,7 @@
    "gross": 508,
    "rank": 104,
    "theaters": 3,
-   "total_gross": 0
+   "total_gross": 64286
   },
   {
    "n": 33,
@@ -266,7 +268,7 @@
    "gross": 560,
    "rank": 101,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 65270
   },
   {
    "n": 34,
@@ -274,7 +276,7 @@
    "gross": 550,
    "rank": 86,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 66235
   }
  ]
 }

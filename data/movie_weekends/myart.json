@@ -1,6 +1,8 @@
 {
  "key": "myart",
  "title": "My Art",
+ "year": null,
+ "movie_url": "/movie/My-Art",
  "opening_date": "2018-01-12",
  "opening_gross": 5538,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 5538,
    "rank": 61,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 5538
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 3131,
    "rank": 70,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 11126
   }
  ]
 }

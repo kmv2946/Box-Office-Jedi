@@ -761,10 +761,15 @@
       const titleTd = document.createElement('td');
       titleTd.className = 'dc-title-cell';
       let titleHtml = '';
+      // Extract year from a /movie/Title-(YYYY) movie_url so same-title
+      // films (Michael 1996 vs 2026) resolve to the right profile.
+      const movieUrlAny = (entry && entry.movie_url) || '';
+      const yMatch = movieUrlAny.match(/\((\d{4})/);
+      const yPart  = yMatch ? '&year=' + yMatch[1] : '';
       if (tmdbId) {
-        titleHtml += `<a class="dc-title-link" href="movie.html?id=${tmdbId}&title=${encodeURIComponent(title)}">${title}</a>`;
+        titleHtml += `<a class="dc-title-link" href="movie.html?id=${tmdbId}&title=${encodeURIComponent(title)}${yPart}">${title}</a>`;
       } else {
-        titleHtml += `<a class="dc-title-link" href="#" onclick="return false;">${title}</a>`;
+        titleHtml += `<a class="dc-title-link" href="movie.html?title=${encodeURIComponent(title)}${yPart}">${title}</a>`;
       }
       if (studio)   titleHtml += `<span class="dc-studio">${studio}</span>`;
       if (theaters) titleHtml += `<span class="dc-theaters">${fmtTheaters(theaters)}</span>`;

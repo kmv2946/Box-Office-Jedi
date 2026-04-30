@@ -1,6 +1,8 @@
 {
  "key": "meetbill",
  "title": "Meet Bill",
+ "year": null,
+ "movie_url": "/movie/Meet-Bill",
  "opening_date": "2008-04-04",
  "opening_gross": 35201,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 35201,
    "rank": 59,
    "theaters": 36,
-   "total_gross": 0
+   "total_gross": 35201
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 13185,
    "rank": 76,
    "theaters": 27,
-   "total_gross": 0
+   "total_gross": 59108
   }
  ]
 }

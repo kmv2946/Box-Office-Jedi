@@ -1,6 +1,8 @@
 {
  "key": "tennessee",
  "title": "Tennessee",
+ "year": null,
+ "movie_url": "/movie/Tennessee",
  "opening_date": "2009-06-05",
  "opening_gross": 9438,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 9438,
    "rank": 63,
    "theaters": 15,
-   "total_gross": 0
+   "total_gross": 9438
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 663,
    "rank": 110,
    "theaters": 3,
-   "total_gross": 0
+   "total_gross": 15377
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 225,
    "rank": 114,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 15979
   }
  ]
 }

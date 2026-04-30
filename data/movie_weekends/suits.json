@@ -1,6 +1,8 @@
 {
  "key": "suits",
  "title": "Suits",
+ "year": null,
+ "movie_url": "/movie/Suits",
  "opening_date": "1999-09-24",
  "opening_gross": 2972,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 2972,
    "rank": 100,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 2972
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 398,
    "rank": 113,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 3676
   }
  ]
 }

@@ -1,6 +1,8 @@
 {
  "key": "99francs",
  "title": "99 francs",
+ "year": null,
+ "movie_url": "/movie/99-francs",
  "opening_date": "2008-06-06",
  "opening_gross": 30800,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 30800,
    "rank": 45,
    "theaters": 8,
-   "total_gross": 0
+   "total_gross": 30800
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 19370,
    "rank": 56,
    "theaters": 8,
-   "total_gross": 0
+   "total_gross": 79477
   }
  ]
 }

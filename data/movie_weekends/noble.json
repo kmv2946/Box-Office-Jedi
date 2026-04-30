@@ -1,6 +1,8 @@
 {
  "key": "noble",
  "title": "Noble",
+ "year": null,
+ "movie_url": "/movie/Noble",
  "opening_date": "2015-05-08",
  "opening_gross": 231319,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 231319,
    "rank": 24,
    "theaters": 175,
-   "total_gross": 0
+   "total_gross": 231319
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 29643,
    "rank": 46,
    "theaters": 175,
-   "total_gross": 0
+   "total_gross": 320341
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 5931,
    "rank": 63,
    "theaters": 7,
-   "total_gross": 0
+   "total_gross": 341866
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 1136,
    "rank": 81,
    "theaters": 3,
-   "total_gross": 0
+   "total_gross": 347321
   }
  ]
 }

@@ -1,6 +1,8 @@
 {
  "key": "shanghai",
  "title": "Shanghai",
+ "year": null,
+ "movie_url": "/movie/Shanghai",
  "opening_date": "2015-10-02",
  "opening_gross": 26604,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 26604,
    "rank": 59,
    "theaters": 103,
-   "total_gross": 0
+   "total_gross": 26604
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 2443,
    "rank": 81,
    "theaters": 11,
-   "total_gross": 0
+   "total_gross": 44689
   }
  ]
 }

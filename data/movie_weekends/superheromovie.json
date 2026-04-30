@@ -1,6 +1,8 @@
 {
  "key": "superheromovie",
  "title": "Superhero Movie",
+ "year": null,
+ "movie_url": "/movie/Superhero-Movie",
  "opening_date": "2008-03-28",
  "opening_gross": 9510297,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 9510297,
    "rank": 3,
    "theaters": 2960,
-   "total_gross": 0
+   "total_gross": 9510297
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 5417920,
    "rank": 6,
    "theaters": 2965,
-   "total_gross": 0
+   "total_gross": 16899661
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 3216247,
    "rank": 9,
    "theaters": 2526,
-   "total_gross": 0
+   "total_gross": 21304164
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 1608072,
    "rank": 11,
    "theaters": 1880,
-   "total_gross": 0
+   "total_gross": 23604200
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 869112,
    "rank": 15,
    "theaters": 1103,
-   "total_gross": 0
+   "total_gross": 24912802
   },
   {
    "n": 6,
@@ -50,7 +52,7 @@
    "gross": 202879,
    "rank": 23,
    "theaters": 463,
-   "total_gross": 0
+   "total_gross": 25263751
   },
   {
    "n": 7,
@@ -58,7 +60,7 @@
    "gross": 73170,
    "rank": 36,
    "theaters": 131,
-   "total_gross": 0
+   "total_gross": 25380619
   },
   {
    "n": 8,
@@ -66,7 +68,7 @@
    "gross": 20877,
    "rank": 63,
    "theaters": 54,
-   "total_gross": 0
+   "total_gross": 25413112
   },
   {
    "n": 9,
@@ -74,7 +76,7 @@
    "gross": 86773,
    "rank": 29,
    "theaters": 153,
-   "total_gross": 0
+   "total_gross": 25507610
   },
   {
    "n": 10,
@@ -82,7 +84,7 @@
    "gross": 82780,
    "rank": 26,
    "theaters": 157,
-   "total_gross": 0
+   "total_gross": 26638520
   },
   {
    "n": 11,
@@ -90,7 +92,7 @@
    "gross": 45001,
    "rank": 37,
    "theaters": 90,
-   "total_gross": 0
+   "total_gross": 25726090
   },
   {
    "n": 12,
@@ -98,7 +100,7 @@
    "gross": 26063,
    "rank": 49,
    "theaters": 59,
-   "total_gross": 0
+   "total_gross": 25777962
   },
   {
    "n": 13,
@@ -106,7 +108,7 @@
    "gross": 19173,
    "rank": 53,
    "theaters": 34,
-   "total_gross": 0
+   "total_gross": 25815447
   },
   {
    "n": 14,
@@ -114,7 +116,7 @@
    "gross": 11441,
    "rank": 65,
    "theaters": 25,
-   "total_gross": 0
+   "total_gross": 25837097
   },
   {
    "n": 15,
@@ -122,7 +124,7 @@
    "gross": 8676,
    "rank": 67,
    "theaters": 18,
-   "total_gross": 0
+   "total_gross": 25852624
   },
   {
    "n": 16,
@@ -130,7 +132,7 @@
    "gross": 5767,
    "rank": 78,
    "theaters": 12,
-   "total_gross": 0
+   "total_gross": 25864428
   },
   {
    "n": 17,
@@ -138,7 +140,7 @@
    "gross": 4401,
    "rank": 80,
    "theaters": 12,
-   "total_gross": 0
+   "total_gross": 25871834
   }
  ]
 }

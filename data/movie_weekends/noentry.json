@@ -1,6 +1,8 @@
 {
  "key": "noentry",
  "title": "No Entry",
+ "year": null,
+ "movie_url": "/movie/No-Entry",
  "opening_date": "2005-08-26",
  "opening_gross": 312000,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 312000,
    "rank": 26,
    "theaters": 48,
-   "total_gross": 0
+   "total_gross": 312000
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 140000,
    "rank": 33,
    "theaters": 156,
-   "total_gross": 0
+   "total_gross": 520000
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 36446,
    "rank": 51,
    "theaters": 49,
-   "total_gross": 0
+   "total_gross": 628886
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 49114,
    "rank": 49,
    "theaters": 49,
-   "total_gross": 0
+   "total_gross": 678000
   }
  ]
 }

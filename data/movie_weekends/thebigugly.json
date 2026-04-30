@@ -1,6 +1,8 @@
 {
  "key": "thebigugly",
  "title": "The Big Ugly",
+ "year": null,
+ "movie_url": "/movie/Big-Ugly-The",
  "opening_date": "2020-07-24",
  "opening_gross": 152598,
  "weekends": [
@@ -8,9 +10,9 @@
    "n": 1,
    "date": "2020-07-24",
    "gross": 152598,
-   "rank": 0,
+   "rank": 2,
    "theaters": 68,
-   "total_gross": 0
+   "total_gross": 152598
   },
   {
    "n": 2,
@@ -18,23 +20,23 @@
    "gross": 99312,
    "rank": 2,
    "theaters": 68,
-   "total_gross": 0
+   "total_gross": 328694
   },
   {
    "n": 3,
    "date": "2020-08-07",
    "gross": 71690,
-   "rank": 0,
+   "rank": 4,
    "theaters": 36,
-   "total_gross": 0
+   "total_gross": 446240
   },
   {
    "n": 4,
    "date": "2020-08-14",
    "gross": 22255,
-   "rank": 0,
+   "rank": 8,
    "theaters": 14,
-   "total_gross": 0
+   "total_gross": 502388
   }
  ]
 }

@@ -1,6 +1,8 @@
 {
  "key": "nosuchthing",
  "title": "No Such Thing",
+ "year": null,
+ "movie_url": "/movie/No-Such-Thing",
  "opening_date": "2002-03-29",
  "opening_gross": 25324,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 25324,
    "rank": 58,
    "theaters": 9,
-   "total_gross": 0
+   "total_gross": 25324
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 14156,
    "rank": 74,
    "theaters": 9,
-   "total_gross": 0
+   "total_gross": 49499
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 2481,
    "rank": 95,
    "theaters": 3,
-   "total_gross": 0
+   "total_gross": 60006
   }
  ]
 }

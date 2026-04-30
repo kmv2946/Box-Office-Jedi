@@ -422,10 +422,14 @@
       ? '<a href="weekend-chart.html?date=' + openIso + '">' + openDateLabel + '</a>'
       : openDateLabel;
 
+    // The yearly page is scoped to one year — pass that year into the
+    // movie link so same-title films (Michael 1996 vs 2026) resolve to
+    // the right profile.
+    const titleHref = 'movie.html?title=' +
+      encodeURIComponent(r.title || '') + '&year=' + year;
     return '<tr>' +
       '<td class="yc-td-rank">' + r.rank + '</td>' +
-      '<td class="yc-td-title"><a href="movie.html?title=' +
-          encodeURIComponent(r.title || '') + '">' +
+      '<td class="yc-td-title"><a href="' + titleHref + '">' +
           escapeHtml(r.title || '—') + '</a></td>' +
       '<td class="yc-td-studio">' + escapeHtml(shortStudio(r.distributor)) + '</td>' +
       '<td class="yc-td-gross">' + fmtDollars(r.total_gross) + '</td>' +

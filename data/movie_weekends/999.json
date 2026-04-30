@@ -1,6 +1,8 @@
 {
  "key": "999",
  "title": "$9.99",
+ "year": null,
+ "movie_url": "/movie/9-99",
  "opening_date": "2008-12-12",
  "opening_gross": 478,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 478,
    "rank": 105,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 478
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 11219,
    "rank": 57,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 11219
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 5348,
    "rank": 75,
    "theaters": 3,
-   "total_gross": 0
+   "total_gross": 22475
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 3521,
    "rank": 73,
    "theaters": 3,
-   "total_gross": 0
+   "total_gross": 29294
   },
   {
    "n": 5,
@@ -42,7 +44,7 @@
    "gross": 2033,
    "rank": 95,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 33217
   },
   {
    "n": 6,
@@ -50,7 +52,7 @@
    "gross": 594,
    "rank": 109,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 35989
   },
   {
    "n": 7,
@@ -58,7 +60,7 @@
    "gross": 2472,
    "rank": 94,
    "theaters": 3,
-   "total_gross": 0
+   "total_gross": 39110
   },
   {
    "n": 8,
@@ -66,7 +68,7 @@
    "gross": 1533,
    "rank": 103,
    "theaters": 3,
-   "total_gross": 0
+   "total_gross": 42749
   },
   {
    "n": 9,
@@ -74,7 +76,7 @@
    "gross": 692,
    "rank": 110,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 44974
   },
   {
    "n": 10,
@@ -82,7 +84,7 @@
    "gross": 728,
    "rank": 110,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 45729
   },
   {
    "n": 11,
@@ -90,7 +92,7 @@
    "gross": 597,
    "rank": 117,
    "theaters": 3,
-   "total_gross": 0
+   "total_gross": 46912
   },
   {
    "n": 12,
@@ -98,7 +100,7 @@
    "gross": 538,
    "rank": 123,
    "theaters": 3,
-   "total_gross": 0
+   "total_gross": 47638
   },
   {
    "n": 13,
@@ -106,7 +108,7 @@
    "gross": 425,
    "rank": 128,
    "theaters": 3,
-   "total_gross": 0
+   "total_gross": 48611
   },
   {
    "n": 14,
@@ -114,7 +116,7 @@
    "gross": 625,
    "rank": 126,
    "theaters": 2,
-   "total_gross": 0
+   "total_gross": 50410
   },
   {
    "n": 15,
@@ -122,7 +124,7 @@
    "gross": 862,
    "rank": 77,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 51563
   },
   {
    "n": 16,
@@ -130,7 +132,7 @@
    "gross": 466,
    "rank": 84,
    "theaters": 1,
-   "total_gross": 0
+   "total_gross": 52029
   }
  ]
 }

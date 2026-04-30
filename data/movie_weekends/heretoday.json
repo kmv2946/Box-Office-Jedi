@@ -1,6 +1,8 @@
 {
  "key": "heretoday",
  "title": "Here Today",
+ "year": null,
+ "movie_url": "/movie/Here-Today",
  "opening_date": "2021-05-07",
  "opening_gross": 1042171,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 1042171,
    "rank": 7,
    "theaters": 1200,
-   "total_gross": 0
+   "total_gross": 1042171
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 535454,
    "rank": 10,
    "theaters": 1200,
-   "total_gross": 0
+   "total_gross": 1914276
   },
   {
    "n": 3,
@@ -26,31 +28,31 @@
    "gross": 330710,
    "rank": 13,
    "theaters": 1230,
-   "total_gross": 0
+   "total_gross": 2460294
   },
   {
    "n": 4,
    "date": "2021-05-28",
    "gross": 70349,
-   "rank": 0,
+   "rank": 17,
    "theaters": 321,
-   "total_gross": 0
+   "total_gross": 2671354
   },
   {
    "n": 5,
    "date": "2021-06-04",
    "gross": 27733,
-   "rank": 0,
+   "rank": 20,
    "theaters": 85,
-   "total_gross": 0
+   "total_gross": 2748629
   },
   {
    "n": 6,
    "date": "2021-06-11",
    "gross": 25016,
-   "rank": 0,
+   "rank": 21,
    "theaters": 48,
-   "total_gross": 0
+   "total_gross": 2785942
   }
  ]
 }

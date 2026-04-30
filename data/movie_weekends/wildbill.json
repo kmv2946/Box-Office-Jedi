@@ -1,6 +1,8 @@
 {
  "key": "wildbill",
  "title": "Wild Bill",
+ "year": null,
+ "movie_url": "/movie/Wild-Bill",
  "opening_date": "1995-12-01",
  "opening_gross": 987515,
  "weekends": [
@@ -10,7 +12,7 @@
    "gross": 987515,
    "rank": 12,
    "theaters": 775,
-   "total_gross": 0
+   "total_gross": 987515
   },
   {
    "n": 2,
@@ -18,7 +20,7 @@
    "gross": 453333,
    "rank": 13,
    "theaters": 775,
-   "total_gross": 0
+   "total_gross": 1805471
   },
   {
    "n": 3,
@@ -26,7 +28,7 @@
    "gross": 87544,
    "rank": 31,
    "theaters": 260,
-   "total_gross": 0
+   "total_gross": 2095492
   },
   {
    "n": 4,
@@ -34,7 +36,7 @@
    "gross": 7204,
    "rank": 71,
    "theaters": 11,
-   "total_gross": 0
+   "total_gross": 2169373
   }
  ]
 }
