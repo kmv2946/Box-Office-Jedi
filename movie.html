@@ -52,16 +52,22 @@
       letter-spacing: 0.01em;
     }
 
+    /* Wrapper that lets the info table shrink to fit its content rather
+       than stretching the full info-wrap column. */
+    .mv-info-shrink {
+      display: inline-block;
+      max-width: 100%;
+    }
     .mv-info-table {
-      width: 100%;
+      width: auto;                   /* auto-fit around content */
       border-collapse: collapse;
-      border: 3px solid #75140C;     /* thicker outer border */
+      border: 3px solid #75140C;
       font-family: 'Times New Roman', Times, serif;
       font-size: 17px;
       background: #FFFFFF;
     }
     .mv-info-table td {
-      border: 1px solid #75140C;
+      border: 3px solid #75140C;     /* same weight as outer border */
       padding: 10px 14px;
       vertical-align: middle;
       background: #FFFFFF;
@@ -126,9 +132,9 @@
       border-bottom: 2px solid #000000;     /* black baseline */
     }
     .mv-tabs-label {
-      font-family: Verdana, Geneva, sans-serif;
-      font-weight: bold;
-      font-size: 13px;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      font-size: 14px;
       color: #000;
       padding: 6px 10px 8px 0;
     }
@@ -157,34 +163,56 @@
     .mv-view { display: none; padding: 0 14px; }
     .mv-view.active { display: block; }
 
-    /* Shared panel (red header strip) */
+    /* Shared panel (red header strip + gray body border).
+       Two flavours via class:
+         .mv-panel          → auto-fit width (Lifetime, Domestic)
+         .mv-panel-full     → full row width (Charts, Articles) */
     .mv-panel {
-      border: 1px solid #75140C;
+      border: 1px solid #888888;        /* gray body border */
       background: #fff;
-      margin: 14px 0;
+      margin: 0;
+      width: fit-content;
+      max-width: 100%;
+    }
+    .mv-panel.mv-panel-full {
+      width: auto;
+      flex: 1 1 100%;
+      max-width: 100%;
     }
     .mv-panel-hd {
       background: #75140C;
       color: #fff;
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 12px;
+      font-size: 11px;                   /* slightly smaller than before */
       text-transform: uppercase;
       padding: 5px 12px;
       letter-spacing: 0.04em;
     }
-    .mv-panel-body { padding: 10px 14px; }
+    .mv-panel-body { padding: 8px 14px; }
+    /* Charts/Articles panels need their list rows to span full width
+       (no horizontal padding on the body — list items handle their own). */
+    .mv-panel-full .mv-panel-body { padding: 0; }
 
-    /* Summary KV tables */
+    /* Summary KV tables — Times Regular, alternating row stripes */
     .mv-kv {
-      width: 100%;
       border-collapse: collapse;
       font-family: 'Times New Roman', Times, serif;
-      font-size: 17px;
+      font-size: 18px;
+      color: #000;
     }
     .mv-kv td {
-      padding: 5px 2px;
+      padding: 4px 12px;
       vertical-align: baseline;
+      white-space: nowrap;
+    }
+    .mv-kv tr td:first-child { padding-left: 0; }
+    .mv-kv tr td:last-child { padding-right: 0; }
+    .mv-kv tr:nth-child(odd)  td { background: #FFFFFF; }
+    .mv-kv tr:nth-child(even) td { background: #EEF0FB; }
+    .mv-kv tr.mv-kv-divider:nth-child(odd)  td,
+    .mv-kv tr.mv-kv-divider:nth-child(even) td {
+      background: #FFFFFF;
     }
     .mv-kv td.mv-kv-label {
       color: #000;
@@ -193,18 +221,17 @@
     .mv-kv td.mv-kv-value {
       color: #000;
       font-weight: bold;
-      white-space: nowrap;
       text-align: right;
     }
-    .mv-kv td.mv-kv-value .mv-kv-pct {
-      color: #555;
-      font-weight: normal;
-      font-style: italic;
-      margin-left: 10px;
-      font-size: 14px;
+    /* Percent on Lifetime rows — same size + color as the gross next to it */
+    .mv-kv td.mv-kv-pct {
+      color: #000;
+      font-weight: bold;
+      text-align: right;
+      padding-left: 12px;
     }
     .mv-kv tr.mv-kv-divider td {
-      border-top: 2px solid #75140C;
+      border-top: 2px solid #000000;     /* black divider above Worldwide */
       padding-top: 8px;
     }
     .mv-kv-note {
@@ -214,15 +241,23 @@
       font-style: italic;
       margin-top: 4px;
     }
-
-    /* Summary two-column layout */
-    .mv-summary-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
+    /* Sub-line under Opening Weekend (theaters / avg detail) */
+    .mv-kv-sub {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      font-size: 15px;
+      color: #000;
+      padding-top: 0 !important;
     }
-    @media (max-width: 820px) {
-      .mv-summary-grid { grid-template-columns: 1fr; gap: 0; }
+
+    /* Summary panels layout: flex wrap.
+       Lifetime + Domestic are auto-width (.mv-panel) and sit side by side.
+       Charts + Articles are full-width (.mv-panel-full) and break to new rows. */
+    .mv-summary-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: flex-start;
     }
 
     /* Related Articles / Charts lists */
@@ -450,11 +485,13 @@
       <div class="mv-info-wrap">
         <h1 class="mv-title" id="mv-title">Loading&hellip;</h1>
         <div class="mv-tagline" id="mv-tagline" style="display:none;"></div>
-        <table class="mv-info-table">
-          <tbody id="mv-info-body">
-            <tr><td class="mv-info-dtg"><em style="color:#888;">Loading&hellip;</em></td></tr>
-          </tbody>
-        </table>
+        <div class="mv-info-shrink">
+          <table class="mv-info-table">
+            <tbody id="mv-info-body">
+              <tr><td class="mv-info-dtg"><em style="color:#888;">Loading&hellip;</em></td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div class="mv-poster" id="mv-poster">
         <div class="mv-poster-empty">No poster</div>
@@ -487,14 +524,14 @@
           </div>
         </div>
 
-        <div class="mv-panel">
+        <div class="mv-panel mv-panel-full">
           <div class="mv-panel-hd">Related Articles</div>
           <div class="mv-panel-body" id="mv-articles">
             <p class="mv-empty">&mdash;</p>
           </div>
         </div>
 
-        <div class="mv-panel">
+        <div class="mv-panel mv-panel-full">
           <div class="mv-panel-hd">Charts</div>
           <div class="mv-panel-body" id="mv-charts">
             <p class="mv-empty">&mdash;</p>
@@ -750,14 +787,17 @@
 
   // ── Info Table ──────────────────────────────────────────────
   function renderInfoTable({ meta, weekendData, domesticTotal }) {
-    // Release date link → the weekend page for that movie's opening weekend
+    // Release date links to that opening weekend's individual chart page.
+    // Prefer curated meta.release_date; fall back to the first weekend in
+    // the archive (in case meta is missing the release_date field).
     const openingFriday = weekendData && weekendData.weekends && weekendData.weekends[0]
       ? weekendData.weekends[0].date : null;
-    const releaseDateIso = (meta && meta.release_date) || null;
+    const releaseDateIso = (meta && meta.release_date) || openingFriday || null;
     const releaseDateDisplay = fmtRelease(releaseDateIso);
     let releaseDateHtml;
-    if (openingFriday) {
-      releaseDateHtml = '<a href="weekend.html?date=' + openingFriday + '">' + escapeHtml(releaseDateDisplay) + '</a>';
+    const linkDate = openingFriday || releaseDateIso;
+    if (linkDate) {
+      releaseDateHtml = '<a href="weekend-chart.html?date=' + linkDate + '">' + escapeHtml(releaseDateDisplay) + '</a>';
     } else {
       releaseDateHtml = escapeHtml(releaseDateDisplay);
     }
@@ -818,25 +858,26 @@
     }
     const pct = (n) => (base && n) ? ((n / base) * 100).toFixed(1) + '%' : '—';
 
-    // If we don't have foreign, show Domestic + note; if no worldwide, just show domestic.
     let html = '<table class="mv-kv"><tbody>';
     html += `
       <tr>
-        <td class="mv-kv-label">Domestic</td>
-        <td class="mv-kv-value">${fmtDollars(domesticTotal)}<span class="mv-kv-pct">${pct(domesticTotal)}</span></td>
+        <td class="mv-kv-label">Domestic:</td>
+        <td class="mv-kv-value">${fmtDollars(domesticTotal)}</td>
+        <td class="mv-kv-pct">${pct(domesticTotal)}</td>
       </tr>`;
     if (foreign || (worldwide && domesticTotal && worldwide > domesticTotal)) {
       const f = foreign || (worldwide - domesticTotal);
       html += `
       <tr>
-        <td class="mv-kv-label">+ Foreign</td>
-        <td class="mv-kv-value">${fmtDollars(f)}<span class="mv-kv-pct">${pct(f)}</span></td>
+        <td class="mv-kv-label">+ Foreign:</td>
+        <td class="mv-kv-value">${fmtDollars(f)}</td>
+        <td class="mv-kv-pct">${pct(f)}</td>
       </tr>`;
     }
     html += `
       <tr class="mv-kv-divider">
-        <td class="mv-kv-label"><strong>Worldwide</strong></td>
-        <td class="mv-kv-value">${fmtDollars(worldwide || domesticTotal)}</td>
+        <td class="mv-kv-label">= Worldwide:</td>
+        <td class="mv-kv-value" colspan="2">${fmtDollars(worldwide || domesticTotal)}</td>
       </tr>
     </tbody></table>`;
     if (!worldwide) {
@@ -852,40 +893,51 @@
         '<p class="mv-empty">No weekend archive data for this title yet.</p>';
       return;
     }
+    const meta = STATE.meta || {};
     const first = weekends[0];
-    const widest = Math.max(...weekends.map(w => w.theaters || 0));
-    const openTheaters = first.theaters || null;
-    const openAvg = (first.gross && openTheaters) ? first.gross / openTheaters : null;
-    const openPct = (domesticTotal && first.gross)
-      ? ((first.gross / domesticTotal) * 100).toFixed(1) + '%' : null;
+    const widest = (meta.widest_release && Number(meta.widest_release))
+      || Math.max(...weekends.map(w => w.theaters || 0));
+    const openGross = meta.opening_weekend || first.gross;
+    const openTheaters = meta.opening_theaters || first.theaters || null;
+    const openAvg = (openGross && openTheaters) ? openGross / openTheaters : null;
+    const openPct = (domesticTotal && openGross)
+      ? ((openGross / domesticTotal) * 100).toFixed(1) + '%' : null;
 
-    let openingLine = fmtDollars(first.gross);
+    // Sub-line: "(2,847 theaters, $9,672 average)"
     const parts = [];
     if (openTheaters) parts.push(fmtInt(openTheaters) + ' theaters');
     if (openAvg) parts.push('$' + fmtInt(openAvg) + ' average');
-    if (parts.length) openingLine += ' <span class="mv-kv-pct">(' + parts.join(', ') + ')</span>';
+    const subLine = parts.length ? '(' + parts.join(', ') + ')' : '';
 
     let html = '<table class="mv-kv"><tbody>';
+    // Opening Weekend — main number, with the theaters/avg detail on its own
+    // sub-row (Times Regular black, slightly smaller).
     html += `
       <tr>
-        <td class="mv-kv-label">Opening Weekend</td>
-        <td class="mv-kv-value">${openingLine}</td>
+        <td class="mv-kv-label">Opening Weekend:</td>
+        <td class="mv-kv-value">${fmtDollars(openGross)}</td>
       </tr>`;
+    if (subLine) {
+      html += `
+      <tr>
+        <td class="mv-kv-sub" colspan="2">${escapeHtml(subLine)}</td>
+      </tr>`;
+    }
     if (openPct) {
       html += `
       <tr>
-        <td class="mv-kv-label">&nbsp;&nbsp;% of Domestic Total</td>
+        <td class="mv-kv-label">% of Total Gross:</td>
         <td class="mv-kv-value">${openPct}</td>
       </tr>`;
     }
     html += `
       <tr>
-        <td class="mv-kv-label">Widest Release</td>
+        <td class="mv-kv-label">Widest Release:</td>
         <td class="mv-kv-value">${fmtInt(widest)} theaters</td>
       </tr>
       <tr>
-        <td class="mv-kv-label">Weekends Charted</td>
-        <td class="mv-kv-value">${weekends.length}</td>
+        <td class="mv-kv-label">In Release:</td>
+        <td class="mv-kv-value">${weekends.length} weeks</td>
       </tr>
     </tbody></table>`;
     document.getElementById('mv-domestic').innerHTML = html;
@@ -928,10 +980,12 @@
         '<p class="mv-empty">No Box Office Jedi articles for this title yet.</p>';
       return;
     }
+    // Kind labels (Forecast, Roundup, etc.) intentionally omitted — the
+    // article titles already say "FORECAST:" / "ROUNDUP:" up front, so the
+    // extra tag was redundant.
     container.innerHTML =
       '<ul class="mv-list">' + found.map(a =>
         '<li><span class="mv-list-main">' +
-          (a.kind ? '<span class="mv-list-kind">' + escapeHtml(a.kind) + '</span>' : '') +
           '<a href="' + escapeHtml(a.href) + '">' + escapeHtml(a.title || a.href) + '</a>' +
         '</span></li>').join('') +
       '</ul>';
