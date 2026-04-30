@@ -78,7 +78,9 @@
       color: #444;
     }
 
-    /* Data rows */
+    /* Data rows — alignment is set per-cell so the column-titles-centered,
+       data-aligned-otherwise rule works correctly even though the table
+       wrapper has text-align:center for centering the auto-width table. */
     .idx-table tbody tr.idx-row td {
       font-family: 'Times New Roman', Times, serif;
       font-size: 14px;
@@ -100,6 +102,10 @@
       color: #000;
       font-size: 13px;
     }
+    /* Article cell content is left-aligned (header cell is centered). */
+    .idx-table td.td-article {
+      text-align: left;
+    }
     .idx-table td.td-article a {
       color: #00007B;
       text-decoration: none;
@@ -107,14 +113,23 @@
     }
     .idx-table td.td-article a:hover { text-decoration: underline; color: #0000EE; }
 
-    /* Type badge — black background with white text per design spec */
+    /* Header hint "(click to read)" — bolded per design spec */
+    .th-hint {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;     /* override the looser default above */
+      font-size: 11px;
+      color: #444;
+    }
+
+    /* Type badges — Forecast and Roundup keep their original colors;
+       only Seasonal switches to black per design spec. */
     .art-type {
       display: inline-block;
       font-size: 10px;
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
       color: #FFFFFF;
-      background: #000000;
+      background: #7F170E;       /* default fallback */
       padding: 1px 5px;
       border-radius: 2px;
       margin-left: 7px;
@@ -122,13 +137,11 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
-    /* All article types share the black/white badge — keeps the index
-       visually quiet and lets the article titles do the work. */
-    .art-type.type-forecast,
-    .art-type.type-roundup,
-    .art-type.type-seasonal,
-    .art-type.type-spotlight,
-    .art-type.type-rewind { background: #000000; }
+    .art-type.type-forecast { background: #00239C; }   /* blue */
+    .art-type.type-roundup  { background: #7F170E; }   /* dark red */
+    .art-type.type-seasonal { background: #000000; }   /* black with white text */
+    .art-type.type-spotlight{ background: #6A1B9A; }
+    .art-type.type-rewind   { background: #4E4E4E; }
 
     /* Empty state */
     .idx-empty {

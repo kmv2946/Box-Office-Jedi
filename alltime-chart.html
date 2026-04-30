@@ -235,9 +235,6 @@
 
     <h1 class="at-title" id="at-title">ALL TIME CHART</h1>
 
-    <div class="at-back"><a href="alltime.html">&laquo; All-Time Index</a></div>
-
-    <div class="chart-section-header" id="chart-header">CHART</div>
     <div class="chart-subtitle"  id="chart-subtitle"></div>
     <p   class="chart-description" id="chart-description" style="display:none;"></p>
     <p   class="chart-notes"       id="chart-notes"       style="display:none;"></p>
@@ -390,7 +387,8 @@
     document.title = data.label + ' — Box Office Jedi';
     const titleEl = document.getElementById('at-title');
     if (titleEl) titleEl.textContent = data.label.toUpperCase();
-    document.getElementById('chart-header').textContent = data.label.toUpperCase();
+    const headerEl = document.getElementById('chart-header');
+    if (headerEl) headerEl.textContent = data.label.toUpperCase();
     if (data.category && data.category !== data.label) {
       document.getElementById('chart-subtitle').textContent = data.category;
     }
@@ -430,7 +428,9 @@
         },
         renderMovies: (rows, isAdjusted) => {
           const suffix = isAdjusted ? ' — ADJUSTED FOR INFLATION' : '';
-          document.getElementById('chart-header').textContent = data.label.toUpperCase() + suffix;
+          // Update the big black title with the adjusted suffix.
+          const tEl = document.getElementById('at-title');
+          if (tEl) tEl.textContent = data.label.toUpperCase() + suffix;
           // Renumber rank column if present
           const rankIdx = data.columns.findIndex(c => /^\s*rank\s*$/i.test(c));
           if (rankIdx >= 0) {
