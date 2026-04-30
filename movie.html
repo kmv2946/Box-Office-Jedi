@@ -7,58 +7,69 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <style>
 
+    /* Page background — keep things bright white */
+    body { background: #FFFFFF; }
+
     /* ── Breadcrumb + red bar ────────────────────────────────── */
     .mv-crumb {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 20px;
+      font-size: 14px;
       color: #00239C;
       padding: 6px 14px 4px;
       text-transform: uppercase;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.04em;
     }
-    .mv-crumb .arrow { color: #75140C; margin-right: 6px; }
+    .mv-crumb .arrow { color: #75140C; margin-right: 4px; }
     .mv-crumb a { color: #00239C; text-decoration: none; }
     .mv-crumb a:hover { text-decoration: underline; }
-    .mv-section-bar { height: 3px; background: #75140C; margin-bottom: 14px; }
+    .mv-section-bar { height: 5px; background: #75140C; margin-bottom: 0; }
 
-    /* ── Title ───────────────────────────────────────────────── */
-    .mv-title {
-      font-family: Verdana, Geneva, sans-serif;
-      font-weight: bold;
-      font-size: 28px;
-      color: #000;
-      text-decoration: underline;
-      text-transform: uppercase;
-      text-align: center;
-      margin: 6px 14px 16px;
-      line-height: 1.15;
-      letter-spacing: 0.01em;
-    }
-
-    /* ── Top row: info table + poster ────────────────────────── */
+    /* ── Top: title + info table on left, poster on right.
+       The poster's top sits right under the red bar (matches the user's
+       "top of poster nearly touching the red border" spec). ─ */
     .mv-top {
       display: flex;
-      gap: 18px;
+      gap: 22px;
       padding: 0 14px 8px;
       align-items: flex-start;
     }
     .mv-info-wrap { flex: 1; min-width: 0; }
+
+    /* Title gets generous padding above (poster on the right is taller, so
+       this keeps the visual axis aligned) */
+    .mv-title {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 32px;
+      color: #000;
+      text-decoration: underline;
+      text-transform: uppercase;
+      text-align: center;
+      margin: 0 0 18px;
+      padding: 26px 0 0;
+      line-height: 1.15;
+      letter-spacing: 0.01em;
+    }
+
     .mv-info-table {
       width: 100%;
       border-collapse: collapse;
-      border: 1px solid #75140C;
+      border: 3px solid #75140C;     /* thicker outer border */
       font-family: 'Times New Roman', Times, serif;
-      font-size: 15px;
+      font-size: 17px;
+      background: #FFFFFF;
     }
     .mv-info-table td {
       border: 1px solid #75140C;
-      padding: 8px 12px;
+      padding: 10px 14px;
       vertical-align: middle;
+      background: #FFFFFF;
     }
     .mv-info-table td.mv-info-dtg {
       text-align: center;
-      padding: 10px 14px;
+      padding: 12px 14px;
+      font-size: 18px;
     }
     .mv-info-label { font-weight: normal; color: #000; }
     .mv-info-value { font-weight: bold; color: #000; }
@@ -69,20 +80,21 @@
     }
     .mv-info-value a:hover { text-decoration: underline; }
 
-    /* Poster */
+    /* Poster — sits at top of right column, near red bar */
     .mv-poster {
-      width: 180px;
+      width: 200px;
       flex-shrink: 0;
+      margin-top: 8px;     /* small gap from red bar */
     }
     .mv-poster img {
-      width: 180px;
+      width: 200px;
       border: 1px solid #999;
       display: block;
     }
     .mv-poster-empty {
-      width: 180px;
-      height: 265px;
-      background: #eee;
+      width: 200px;
+      height: 295px;
+      background: #FFFFFF;
       border: 1px solid #999;
       display: flex;
       align-items: center;
@@ -111,32 +123,32 @@
       padding: 0 14px;
       margin: 18px 0 0;
       align-items: flex-end;
-      border-bottom: 2px solid #75140C;
+      border-bottom: 2px solid #000000;     /* black baseline */
     }
     .mv-tabs-label {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 12px;
+      font-size: 13px;
       color: #000;
       padding: 6px 10px 8px 0;
     }
     .mv-tab {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 12px;
+      font-size: 13px;
       padding: 6px 18px;
-      background: #F4F4FE;
+      background: #DCDCDC;          /* inactive: gray */
       color: #00239C;
-      border: 1px solid #75140C;
+      border: 1px solid #000000;    /* black border */
       border-bottom: none;
       text-decoration: none;
       cursor: pointer;
       margin-bottom: -2px;
       display: inline-block;
     }
-    .mv-tab:hover { background: #DCDCDC; color: #000; }
+    .mv-tab:hover { background: #C8C8C8; color: #000; }
     .mv-tab.active {
-      background: #FFFFFF;
+      background: #FFFFFF;          /* active: white, blends with bg below */
       color: #000;
       border-bottom: 2px solid #FFFFFF;
     }
@@ -168,10 +180,10 @@
       width: 100%;
       border-collapse: collapse;
       font-family: 'Times New Roman', Times, serif;
-      font-size: 15px;
+      font-size: 17px;
     }
     .mv-kv td {
-      padding: 4px 2px;
+      padding: 5px 2px;
       vertical-align: baseline;
     }
     .mv-kv td.mv-kv-label {
@@ -189,7 +201,7 @@
       font-weight: normal;
       font-style: italic;
       margin-left: 10px;
-      font-size: 13px;
+      font-size: 14px;
     }
     .mv-kv tr.mv-kv-divider td {
       border-top: 2px solid #75140C;
@@ -197,7 +209,7 @@
     }
     .mv-kv-note {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 13px;
+      font-size: 14px;
       color: #555;
       font-style: italic;
       margin-top: 4px;
@@ -217,8 +229,8 @@
     .mv-list { list-style: none; margin: 0; padding: 0; }
     .mv-list li {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 15px;
-      padding: 5px 10px;
+      font-size: 17px;
+      padding: 6px 12px;
       display: flex;
       justify-content: space-between;
       align-items: baseline;
@@ -432,13 +444,12 @@
     <div class="mv-crumb"><span class="arrow">&gt;</span> MOVIES</div>
     <div class="mv-section-bar"></div>
 
-    <!-- Title -->
-    <h1 class="mv-title" id="mv-title">Loading&hellip;</h1>
-    <div class="mv-tagline" id="mv-tagline" style="display:none;"></div>
-
-    <!-- Info table + poster -->
+    <!-- Title + info table on left, poster on right.
+         Poster's top sits right under the red section bar. -->
     <div class="mv-top">
       <div class="mv-info-wrap">
+        <h1 class="mv-title" id="mv-title">Loading&hellip;</h1>
+        <div class="mv-tagline" id="mv-tagline" style="display:none;"></div>
         <table class="mv-info-table">
           <tbody id="mv-info-body">
             <tr><td class="mv-info-dtg"><em style="color:#888;">Loading&hellip;</em></td></tr>
@@ -643,13 +654,24 @@
     document.title = (STATE.title || 'Movie') + ' — Box Office Jedi';
     document.getElementById('mv-title').textContent = (STATE.title || 'Movie').toUpperCase();
 
-    // Fetch TMDB meta + weekend archive in parallel
-    const metaPromise = STATE.id
+    // Two metadata sources, tried in order:
+    //   1. data/movies_meta/{key}.json   — hand-curated overrides (title-keyed)
+    //   2. data/movies/{tmdb_id}.json    — TMDB-scraped catalog
+    // The curated file wins so editors can fix anything TMDB got wrong
+    // (or fill in titles TMDB doesn't carry yet, like upcoming releases).
+    const titleKey = normKey(STATE.title);
+    const curatedPromise = titleKey
+      ? fetchJSON('data/movies_meta/' + titleKey + '.json') : Promise.resolve(null);
+    const tmdbPromise = STATE.id
       ? fetchJSON('data/movies/' + STATE.id + '.json') : Promise.resolve(null);
-    let meta = await metaPromise;
+
+    const [curated, tmdb] = await Promise.all([curatedPromise, tmdbPromise]);
+    // Merge — curated fields take precedence
+    let meta = null;
+    if (curated || tmdb) meta = Object.assign({}, tmdb || {}, curated || {});
     STATE.meta = meta;
 
-    const key = normKey(STATE.title || (meta && meta.title));
+    const key = titleKey || normKey(meta && meta.title);
     const weekendData = key
       ? await fetchJSON('data/movie_weekends/' + key + '.json') : null;
     STATE.weekendData = weekendData;
@@ -685,17 +707,24 @@
         '<img src="' + meta.poster_url + '" alt="' + escapeHtml(displayTitle) + ' poster">';
     }
 
-    // Domestic total (largest total_gross in the weekend archive, else revenue)
+    // Domestic total — curated value wins; otherwise use the largest
+    // total_gross in the weekend archive (or sum of weekends if archive
+    // hasn't been backfilled yet).
     const weekends = (weekendData && weekendData.weekends) || [];
-    let domesticTotal = weekends.length
-      ? Math.max(...weekends.map(w => w.total_gross || 0)) : 0;
-    // Fallback: sum of weekend grosses if total_gross is missing (the archive sometimes has 0)
+    let domesticTotal = (meta && meta.domestic_total) || 0;
+    if (!domesticTotal && weekends.length) {
+      domesticTotal = Math.max(...weekends.map(w => w.total_gross || 0));
+    }
     if (!domesticTotal && weekends.length) {
       domesticTotal = weekends.reduce((s, w) => s + (w.gross || 0), 0);
     }
-    const worldwide = (meta && meta.revenue) || null;
-    const foreign = (worldwide && domesticTotal && worldwide > domesticTotal)
-      ? worldwide - domesticTotal : null;
+    // Worldwide: curated > TMDB revenue
+    const worldwide = (meta && (meta.worldwide || meta.revenue)) || null;
+    // Foreign: curated > derived
+    let foreign = (meta && meta.foreign) || null;
+    if (!foreign && worldwide && domesticTotal && worldwide > domesticTotal) {
+      foreign = worldwide - domesticTotal;
+    }
 
     // ── Info table ────────────────────────────────────────────
     renderInfoTable({ meta, weekendData, domesticTotal });
@@ -733,17 +762,25 @@
       releaseDateHtml = escapeHtml(releaseDateDisplay);
     }
 
-    const genre = (meta && meta.genres && meta.genres.length)
-      ? meta.genres.slice(0, 3).join(' / ') : '—';
+    // Genre: support both `genres` (TMDB array) and `genre` (curated string).
+    let genre = '—';
+    if (meta && typeof meta.genre === 'string' && meta.genre.trim()) {
+      genre = meta.genre;
+    } else if (meta && Array.isArray(meta.genres) && meta.genres.length) {
+      genre = meta.genres.slice(0, 3).join(' / ');
+    }
     const runtime = meta ? fmtRuntime(meta.runtime) : '—';
     const mpaa = (meta && meta.mpaa) ? meta.mpaa : '—';
     const budget = (meta && meta.budget) ? fmtMillionsBudget(meta.budget) : '—';
 
+    // Distributor: curated meta wins over the weekend-archive scrape because
+    // the scraper sometimes leaves the distributor field blank. The All-Time
+    // index distributor_overrides.json file feeds back into curated meta.
     let distributor = '—';
-    if (weekendData && weekendData.weekends && weekendData.weekends[0] && weekendData.weekends[0].distributor) {
-      distributor = weekendData.weekends[0].distributor;
-    } else if (meta && meta.distributor) {
+    if (meta && meta.distributor) {
       distributor = meta.distributor;
+    } else if (weekendData && weekendData.weekends && weekendData.weekends[0] && weekendData.weekends[0].distributor) {
+      distributor = weekendData.weekends[0].distributor;
     }
 
     const dtgLabel = domesticTotal
@@ -855,17 +892,22 @@
   }
 
   // ── Summary: Related Articles ───────────────────────────────
-  // Cross-reference index expected at data/movie_articles.json:
-  //   { "<tmdb_id>": [{title, href, kind}], "<slug>": [...] }
+  // Two sources, in priority order:
+  //   1. STATE.meta.articles  — inline list on the curated metadata file
+  //   2. data/movie_articles.json — cross-reference index keyed by tmdb_id or slug
   async function renderRelatedArticles() {
     const container = document.getElementById('mv-articles');
+
+    let found = [];
+    if (STATE.meta && Array.isArray(STATE.meta.articles)) {
+      found = found.concat(STATE.meta.articles);
+    }
     const idx = await fetchJSON('data/movie_articles.json');
     const lookups = [];
     if (STATE.id) lookups.push(String(STATE.id));
     if (STATE.title) lookups.push(normKey(STATE.title));
     if (STATE.meta && STATE.meta.title) lookups.push(normKey(STATE.meta.title));
 
-    let found = [];
     if (idx) {
       for (const k of lookups) {
         if (idx[k] && Array.isArray(idx[k])) {
@@ -896,17 +938,22 @@
   }
 
   // ── Summary: Charts ─────────────────────────────────────────
-  // Expected at data/movie_charts.json:
-  //   { "<tmdb_id>": [{chart, href, rank}], "<slug>": [...] }
+  // Two sources, in priority order:
+  //   1. STATE.meta.charts — inline list on the curated metadata file
+  //   2. data/movie_charts.json — cross-reference index keyed by tmdb_id or slug
   async function renderCharts() {
     const container = document.getElementById('mv-charts');
+
+    let found = [];
+    if (STATE.meta && Array.isArray(STATE.meta.charts)) {
+      found = found.concat(STATE.meta.charts);
+    }
     const idx = await fetchJSON('data/movie_charts.json');
     const lookups = [];
     if (STATE.id) lookups.push(String(STATE.id));
     if (STATE.title) lookups.push(normKey(STATE.title));
     if (STATE.meta && STATE.meta.title) lookups.push(normKey(STATE.meta.title));
 
-    let found = [];
     if (idx) {
       for (const k of lookups) {
         if (idx[k] && Array.isArray(idx[k])) found = found.concat(idx[k]);

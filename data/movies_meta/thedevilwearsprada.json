@@ -1,0 +1,24 @@
+{
+  "_comment": "Hand-curated metadata for The Devil Wears Prada (2006). Loaded by movie.html before TMDB data and merged on top, so any field here always wins. Add other titles as data/movies_meta/{normKey(title)}.json.",
+  "title": "The Devil Wears Prada",
+  "poster_url": "assets/images/devil_wears_prada_xxlg.jpg",
+  "distributor": "Fox",
+  "release_date": "2006-06-30",
+  "genre": "Comedy",
+  "runtime": 106,
+  "mpaa": "PG-13",
+  "budget": 35000000,
+  "domestic_total": 124740460,
+  "foreign":  201809450,
+  "worldwide": 326549910,
+  "opening_weekend": 27537244,
+  "opening_theaters": 2847,
+  "widest_release": 2882,
+  "charts": [
+    { "chart": "Movies That Never Hit #1",     "href": "alltime-chart.html?chart=grosses-movies-that-never-hit-1", "rank": 92 },
+    { "chart": "Top Fourth of July Weekends",  "href": "alltime-chart.html?chart=weekends-fourth-of-july",        "rank": 15 }
+  ],
+  "articles": [
+    { "title": "FORECAST: ‘The Devil Wears Prada 2’ Suits Up for Summer", "href": "forecast-may-1-2026.html", "kind": "Forecast" }
+  ]
+}
