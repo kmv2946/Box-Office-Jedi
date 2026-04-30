@@ -728,30 +728,43 @@
     //   1. The exact slug (e.g. "michael-2026") — only when ?slug= or
     //      ?year= was passed
     //   2. The plain title key (e.g. "michael") — fallback / legacy links
-    // For each key we try curated meta first (hand-edited overrides),
-    // then TMDB-by-id metadata.
     const titleKey = normKey(STATE.title);
     const lookupKeys = [];
     if (STATE.slug) lookupKeys.push(STATE.slug);
     if (titleKey && lookupKeys.indexOf(titleKey) === -1) lookupKeys.push(titleKey);
 
-    let curated = null;
-    for (const k of lookupKeys) {
-      curated = await fetchJSON('data/movies_meta/' + k + '.json');
-      if (curated) break;
+    // Per-film data is now stored in letter-sharded JSON files
+    // (data/movies_meta_shards/{letter}.json and
+    // data/movie_weekends_shards/{letter}.json). Each shard is a
+    // {slug: payload} object. We fetch the relevant shard once per
+    // shard letter and look up the slug locally.
+    const shardCache = {};
+    async function loadShard(dir, letter) {
+      if (!letter) return null;
+      const k = dir + '/' + letter;
+      if (k in shardCache) return shardCache[k];
+      shardCache[k] = await fetchJSON('data/' + dir + '/' + letter + '.json');
+      return shardCache[k];
     }
-    const tmdb = STATE.id
-      ? await fetchJSON('data/movies/' + STATE.id + '.json') : null;
+    function shardLetter(key) {
+      if (!key) return null;
+      const c = key[0].toLowerCase();
+      return (c >= 'a' && c <= 'z') ? c : '_';
+    }
+    async function lookupInShards(dir, keys) {
+      for (const k of keys) {
+        const shard = await loadShard(dir, shardLetter(k));
+        if (shard && shard.entries && shard.entries[k]) return shard.entries[k];
+      }
+      return null;
+    }
 
+    const curated = await lookupInShards('movies_meta_shards', lookupKeys);
     let meta = null;
-    if (curated || tmdb) meta = Object.assign({}, tmdb || {}, curated || {});
+    if (curated) meta = Object.assign({}, curated);
     STATE.meta = meta;
 
-    let weekendData = null;
-    for (const k of lookupKeys) {
-      weekendData = await fetchJSON('data/movie_weekends/' + k + '.json');
-      if (weekendData) break;
-    }
+    const weekendData = await lookupInShards('movie_weekends_shards', lookupKeys);
     STATE.weekendData = weekendData;
 
     // Bail-out empty state

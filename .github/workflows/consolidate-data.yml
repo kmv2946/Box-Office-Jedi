@@ -1,0 +1,71 @@
+# Box Office Jedi — Consolidate Per-Film Data
+# =============================================
+# One-shot cleanup for the Cloudflare Pages 20k-file cap.
+# Walks data/movies_meta/, data/movie_weekends/, data/movies/ and
+# consolidates them into letter-sharded JSON files at
+# data/movies_meta_shards/ and data/movie_weekends_shards/.
+# The redundant data/movies/ TMDB cache is removed (its fields are
+# already mirrored in data/movies_meta_shards/).
+#
+# Run once after the TMDB enrichment to bring the deployed file count
+# back under 20k. Future scheduled runs of aggregate_movie_weekends.py
+# and enrich_movies_tmdb.py write directly to the shards, so the file
+# count stays low.
+#
+# How to run:
+#   GitHub → Actions → "Consolidate Per-Film Data" → Run workflow
+#
+# Inputs:
+#   keep_originals: true/false (default false) — set true to leave the
+#                   per-file folders in place (useful for verifying the
+#                   shards before deleting). Note: keeping them means
+#                   Cloudflare will still hit the 20k cap.
+
+name: Consolidate Per-Film Data
+
+on:
+  workflow_dispatch:
+    inputs:
+      keep_originals:
+        description: "Keep the per-file folders (true/false). Default false — delete to shrink deployment."
+        required: false
+        default: "false"
+
+jobs:
+  consolidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run consolidation
+        run: |
+          ARGS=""
+          if [ "${{ github.event.inputs.keep_originals }}" = "true" ]; then
+            ARGS="--keep-originals"
+          fi
+          echo "Running: python3 scripts/consolidate_movie_data.py $ARGS"
+          python3 scripts/consolidate_movie_data.py $ARGS
+
+      - name: Commit and push consolidated data
+        run: |
+          git config user.name "Box Office Jedi Bot"
+          git config user.email "bot@boxofficejedi.com"
+          git add -A data/
+          if ! git diff --staged --quiet; then
+            COUNT=$(git diff --staged --name-only | wc -l)
+            git commit -m "🗜️  Consolidate per-film data into letter shards ($COUNT changes)"
+            git pull --rebase --autostash origin main
+            git push
+          else
+            echo "No changes — nothing to commit."
+          fi

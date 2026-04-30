@@ -80,8 +80,67 @@ def search_tmdb(title: str, year: int | None = None) -> dict | None:
     return results[0] if results else None
 
 
+SHARDS_DIR = os.path.join(DATA_DIR, "movies_meta_shards")
+
+
+def shard_letter(key: str) -> str:
+    """First letter of slug → shard. Non-alphabetic → '_'."""
+    if not key:
+        return "_"
+    c = key[0].lower()
+    return c if "a" <= c <= "z" else "_"
+
+
+# In-memory shard cache so we read each shard at most once per run, then
+# flush dirty shards at the end (or every N films).
+_SHARD_CACHE: dict = {}
+_DIRTY_SHARDS: set = set()
+
+
+def load_shard(letter: str) -> dict:
+    if letter in _SHARD_CACHE:
+        return _SHARD_CACHE[letter]
+    path = os.path.join(SHARDS_DIR, f"{letter}.json")
+    try:
+        with open(path) as f:
+            d = json.load(f)
+            _SHARD_CACHE[letter] = d.get("entries") or {}
+            return _SHARD_CACHE[letter]
+    except (FileNotFoundError, json.JSONDecodeError):
+        _SHARD_CACHE[letter] = {}
+        return _SHARD_CACHE[letter]
+
+
+def write_shard(letter: str):
+    os.makedirs(SHARDS_DIR, exist_ok=True)
+    path = os.path.join(SHARDS_DIR, f"{letter}.json")
+    entries = _SHARD_CACHE.get(letter) or {}
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump({
+            "updated": __import__("datetime").datetime.now().isoformat(timespec="seconds"),
+            "letter":  letter,
+            "count":   len(entries),
+            "entries": entries,
+        }, f, ensure_ascii=False)
+
+
+def flush_dirty_shards():
+    for letter in list(_DIRTY_SHARDS):
+        write_shard(letter)
+    _DIRTY_SHARDS.clear()
+
+
+def existing_curated_entry(key: str) -> bool:
+    """True if either the legacy per-file or the new shard already has this slug."""
+    if os.path.exists(os.path.join(DATA_DIR, "movies_meta", key + ".json")):
+        return True
+    shard = load_shard(shard_letter(key))
+    return key in shard
+
+
+# Legacy alias retained for any older callers
 def existing_curated_file(key: str) -> bool:
-    return os.path.exists(os.path.join(DATA_DIR, "movies_meta", key + ".json"))
+    return existing_curated_entry(key)
 
 
 def main():
@@ -149,19 +208,16 @@ def main():
             print(f"    ... and {len(candidates) - 50} more")
         return
 
-    out_dir = os.path.join(DATA_DIR, "movies_meta")
-    os.makedirs(out_dir, exist_ok=True)
-    cache_dir = os.path.join(DATA_DIR, "movies")
-    os.makedirs(cache_dir, exist_ok=True)
+    os.makedirs(SHARDS_DIR, exist_ok=True)
 
     enriched = 0
     skipped  = 0
     failed   = 0
 
     for i, (key, title, opening) in enumerate(candidates, 1):
-        # Prefer the year embedded in the slug (e.g., "michael-2026") because
-        # the aggregate writes the actual film's release year there. Fall back
-        # to opening_date's year for slug-less legacy files.
+        # Prefer the year embedded in the slug (e.g., "michael-2026") — the
+        # aggregate writes the actual film's release year there. Fall back
+        # to opening_date's year for slug-less legacy entries.
         year = None
         m = re.search(r"-(\d{4})$", key)
         if m:
@@ -178,11 +234,6 @@ def main():
             failed += 1
             continue
 
-        # Save the full TMDB detail by id (parallel to existing /movies/ store)
-        with open(os.path.join(cache_dir, f"{result['id']}.json"), "w") as f:
-            json.dump(detail, f, indent=2, ensure_ascii=False)
-
-        # Write the curated-meta-style override file
         meta = {
             "_source": "tmdb-enrich",
             "title":          detail.get("title") or title,
@@ -198,13 +249,21 @@ def main():
             "tagline":        detail.get("tagline") or "",
             "overview":       detail.get("overview") or "",
         }
-        with open(os.path.join(out_dir, f"{key}.json"), "w") as f:
-            json.dump(meta, f, indent=2, ensure_ascii=False)
+        # Write into the shard (Cloudflare Pages caps at 20k files; per-film
+        # files would re-explode the count, so we batch into letter shards).
+        letter = shard_letter(key)
+        shard = load_shard(letter)
+        shard[key] = meta
+        _DIRTY_SHARDS.add(letter)
 
         enriched += 1
-        if i % 25 == 0:
+        # Flush periodically so a long run that gets killed still leaves a
+        # valid set of shard files behind.
+        if i % 100 == 0:
+            flush_dirty_shards()
             print(f"  Progress: {i}/{len(candidates)}  enriched={enriched}  failed={failed}")
 
+    flush_dirty_shards()
     print()
     print(f"Done. enriched={enriched}  skipped={skipped}  failed={failed}")
 

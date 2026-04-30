@@ -48,7 +48,11 @@ from datetime import datetime
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WEEKENDS  = os.path.join(REPO_ROOT, "data", "weekends")
-OUT_DIR   = os.path.join(REPO_ROOT, "data", "movie_weekends")
+# Output is letter-sharded JSON (one file per first-letter of slug, plus
+# `_` for non-alphabetic) under data/movie_weekends_shards/. Cloudflare
+# Pages caps deployments at 20k files; one-file-per-movie pushed us past
+# that, so we consolidate.
+OUT_DIR   = os.path.join(REPO_ROOT, "data", "movie_weekends_shards")
 
 
 def norm_title(t: str) -> str:
@@ -138,10 +142,10 @@ def main():
 
     os.makedirs(OUT_DIR, exist_ok=True)
 
-    # ── Write per-movie files ──────────────────────────────────────────────
+    # ── Build per-movie payloads ────────────────────────────────────────────
+    payloads = {}            # slug → payload dict
     titles_index = {}        # slug → title
-    plain_to_slugs = {}      # plain_key → list of (slug, latest_date) — used to
-                             # decide which slug owns the plain-key alias
+    plain_to_slugs = {}      # plain_key → list of (slug, latest_date)
 
     total_weekends = 0
     for key, b in movies.items():
@@ -165,7 +169,7 @@ def main():
             })
         if not weekends:
             continue
-        movie = {
+        payloads[key] = {
             "key":           key,
             "title":         b["title"],
             "year":          b.get("year"),
@@ -174,47 +178,62 @@ def main():
             "opening_gross": weekends[0]["gross"],
             "weekends":      weekends,
         }
-        with open(os.path.join(OUT_DIR, key + ".json"), "w", encoding="utf-8") as f:
-            json.dump(movie, f, indent=1, ensure_ascii=False)
         titles_index[key] = b["title"]
         total_weekends += len(weekends)
-
-        # Track plain-key aliases for backward compat
         plain = norm_title(b["title"])
         plain_to_slugs.setdefault(plain, []).append((key, b["_latest"]))
 
-    # ── For each plain title, pick the slug whose latest weekend is most
-    # recent and write that as `{plain}.json` too — keeps old movie.html
-    # ?title= links working. ─────────────────────────────────────────────
+    # ── Backward-compat aliases: when a plain title corresponds to multiple
+    # slugged films, the most-recent slug owns the plain key (so legacy
+    # ?title=Michael links resolve to the relevant current film).
     aliases = {}
     for plain, options in plain_to_slugs.items():
-        # If there's only one slug for this title, the file is already named
-        # plain (since slug == plain when there's no year). No alias needed.
         if len(options) == 1 and options[0][0] == plain:
             continue
         winner_slug = sorted(options, key=lambda x: x[1], reverse=True)[0][0]
         aliases[plain] = winner_slug
-        # Write a copy of the winner's data as plain.json so legacy links work.
-        src = os.path.join(OUT_DIR, winner_slug + ".json")
-        dst = os.path.join(OUT_DIR, plain + ".json")
-        if os.path.exists(src) and src != dst:
-            with open(src, encoding="utf-8") as f:
-                data = json.load(f)
-            with open(dst, "w", encoding="utf-8") as f:
-                json.dump(data, f, indent=1, ensure_ascii=False)
+        # Mirror the winner's payload under the plain key so the front-end
+        # finds it when looking up by plain title alone.
+        if plain not in payloads and winner_slug in payloads:
+            payloads[plain] = dict(payloads[winner_slug])
 
-    # Index file: lists every key (slug) and the plain-title aliases
+    # ── Group payloads by shard letter (first letter of slug) ──────────────
+    def shard_letter(s):
+        if not s:
+            return "_"
+        c = s[0].lower()
+        return c if "a" <= c <= "z" else "_"
+
+    shards = {}
+    for slug, payload in payloads.items():
+        shards.setdefault(shard_letter(slug), {})[slug] = payload
+
+    now_iso = datetime.utcnow().isoformat()
+    for letter, entries in shards.items():
+        path = os.path.join(OUT_DIR, f"{letter}.json")
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump({
+                "updated": now_iso,
+                "letter":  letter,
+                "count":   len(entries),
+                "entries": entries,
+            }, f, ensure_ascii=False)
+
+    # Top-level index — lists every slug and plain-title aliases for clients
+    # that want to enumerate the catalog without touching every shard.
     with open(os.path.join(OUT_DIR, "index.json"), "w", encoding="utf-8") as f:
         json.dump({
-            "updated":  datetime.utcnow().isoformat(),
+            "updated":  now_iso,
             "count":    len(titles_index),
             "titles":   titles_index,
             "aliases":  aliases,
-        }, f, indent=1, ensure_ascii=False)
+            "shards":   sorted(shards.keys()),
+        }, f, ensure_ascii=False)
 
-    print("Wrote per-movie files to " + OUT_DIR)
+    print("Wrote sharded weekend archives to " + OUT_DIR)
     print("  films (slugged):  {:>7,}".format(len(titles_index)))
     print("  legacy aliases:   {:>7,}".format(len(aliases)))
+    print("  shard files:      {:>7,}".format(len(shards) + 1))
     print("  weekends in:      {:>7,}".format(total_weekends))
 
 

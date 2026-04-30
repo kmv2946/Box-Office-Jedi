@@ -60,11 +60,32 @@
     return sign + Math.abs(p).toFixed(1) + '%';
   }
 
+  // Per-film weekend data is now in letter-sharded JSON
+  // (data/movie_weekends_shards/{a..z|_}.json). Each shard is
+  // { entries: { slug: payload, ... } }. We cache shards by letter
+  // so a showdown with multiple films from the same letter only fetches once.
+  var _SHARD_CACHE = {};
+  function shardLetter(k) {
+    if (!k) return null;
+    var c = (k[0] || '').toLowerCase();
+    return (c >= 'a' && c <= 'z') ? c : '_';
+  }
   async function fetchMovie(key) {
     try {
-      var r = await fetch('data/movie_weekends/' + key + '.json', { cache: 'no-store' });
-      if (!r.ok) return null;
-      return await r.json();
+      var letter = shardLetter(key);
+      if (!letter) return null;
+      if (!(letter in _SHARD_CACHE)) {
+        var r = await fetch('data/movie_weekends_shards/' + letter + '.json',
+                            { cache: 'no-store' });
+        if (!r.ok) {
+          _SHARD_CACHE[letter] = null;
+          return null;
+        }
+        var shard = await r.json();
+        _SHARD_CACHE[letter] = (shard && shard.entries) || {};
+      }
+      var entries = _SHARD_CACHE[letter];
+      return (entries && entries[key]) ? entries[key] : null;
     } catch (e) {
       return null;
     }
