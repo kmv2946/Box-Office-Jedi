@@ -1,11 +1,12 @@
 {
-  "updated": "2026-04-08T15:39:11.530560",
+  "updated": "2026-04-29T23:45:44.915932",
   "date_from": "2020-03-20",
   "date_to": "2020-03-22",
-  "week_number": 11,
+  "week_number": 12,
+  "is_estimates": false,
   "chart": [
     {
-      "rank": 0,
+      "rank": 1,
       "title": "I Still Believe",
       "movie_url": "/movie/I-Still-Believe-(2020)",
       "distributor": "",
@@ -14,28 +15,28 @@
       "change_pct": -99.6,
       "is_new": false,
       "avg_per_theater": 264,
-      "total_gross": 0,
+      "total_gross": 9901755,
       "weeks_in_release": 2,
       "last_rank": 3,
       "theater_change": -3124
     },
     {
-      "rank": 0,
+      "rank": 2,
       "title": "Phoenix, Oregon",
       "movie_url": "/movie/Phoenix-Oregon-(2019)",
       "distributor": "",
       "weekend_gross": 3842,
       "theaters": 17,
-      "change_pct": 198.8,
+      "change_pct": null,
       "is_new": false,
       "avg_per_theater": 226,
-      "total_gross": 0,
-      "weeks_in_release": 9,
-      "last_rank": 72,
-      "theater_change": 11
+      "total_gross": 22198,
+      "weeks_in_release": 48,
+      "last_rank": null,
+      "theater_change": null
     },
     {
-      "rank": 0,
+      "rank": 3,
       "title": "The Gentlemen",
       "movie_url": "/movie/Gentlemen-The",
       "distributor": "",
@@ -44,13 +45,13 @@
       "change_pct": -99.8,
       "is_new": false,
       "avg_per_theater": 22,
-      "total_gross": 0,
+      "total_gross": 36297094,
       "weeks_in_release": 9,
       "last_rank": 19,
       "theater_change": -215
     },
     {
-      "rank": 0,
+      "rank": 4,
       "title": "Lost in America",
       "movie_url": "/movie/Lost-in-America-(2020)",
       "distributor": "",
@@ -59,25 +60,10 @@
       "change_pct": -96.4,
       "is_new": false,
       "avg_per_theater": 78,
-      "total_gross": 0,
+      "total_gross": 11277,
       "weeks_in_release": 4,
       "last_rank": 66,
       "theater_change": -1
-    },
-    {
-      "rank": 0,
-      "title": "Reporting: 4",
-      "movie_url": "",
-      "distributor": "",
-      "weekend_gross": 37394,
-      "theaters": 0,
-      "change_pct": null,
-      "is_new": true,
-      "avg_per_theater": 0,
-      "total_gross": 0,
-      "weeks_in_release": 1,
-      "last_rank": null,
-      "theater_change": null
     }
   ]
 }
