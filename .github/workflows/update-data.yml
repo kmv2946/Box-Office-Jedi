@@ -111,6 +111,14 @@ jobs:
         run: python3 scripts/build_distributor_index.py
         continue-on-error: true
 
+      - name: Rebuild movie totals index
+        # Walks every yearly archive and builds data/movie_totals.json so the
+        # movie profile page can show the real cumulative domestic gross
+        # (including weekday revenue and post-drop-off run) instead of an
+        # underestimate from summing weekend grosses.
+        run: python3 scripts/build_movie_totals_index.py
+        continue-on-error: true
+
       - name: Commit and push updated data files
         run: |
           git config user.name "Box Office Jedi Bot"

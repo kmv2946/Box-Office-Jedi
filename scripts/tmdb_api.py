@@ -160,6 +160,28 @@ def fetch_movie_detail(tmdb_id: int) -> dict | None:
                 director = member["name"]
                 break
 
+    # MPAA rating — pulled from the US release-dates block. TMDB lists every
+    # country's rating; we want the US theatrical certification (G, PG,
+    # PG-13, R, NC-17). Try Theatrical (type 3) first; fall back to any
+    # non-empty US certification.
+    mpaa = ""
+    if "release_dates" in detail and detail["release_dates"].get("results"):
+        for country in detail["release_dates"]["results"]:
+            if country.get("iso_3166_1") != "US":
+                continue
+            theatrical = ""
+            any_cert = ""
+            for rd in country.get("release_dates", []):
+                cert = (rd.get("certification") or "").strip()
+                if not cert:
+                    continue
+                if rd.get("type") == 3 and not theatrical:
+                    theatrical = cert
+                if not any_cert:
+                    any_cert = cert
+            mpaa = theatrical or any_cert
+            break
+
     return {
         "tmdb_id":       detail["id"],
         "title":         detail["title"],
@@ -170,6 +192,7 @@ def fetch_movie_detail(tmdb_id: int) -> dict | None:
         "budget":        detail.get("budget", 0),
         "revenue":       detail.get("revenue", 0),
         "genres":        [g["name"] for g in detail.get("genres", [])],
+        "mpaa":          mpaa,
         "poster_url":    poster_url(detail.get("poster_path"), size="w342"),
         "backdrop_url":  poster_url(detail.get("backdrop_path"), size="w1280"),
         "director":      director,

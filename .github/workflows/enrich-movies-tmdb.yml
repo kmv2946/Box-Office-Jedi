@@ -1,0 +1,93 @@
+# Box Office Jedi — TMDB Movie Enrichment
+# ==========================================
+# Walks every per-movie weekend archive and enriches it with TMDB
+# metadata (poster, MPAA rating, runtime, genres, budget, etc.) by
+# searching TMDB for the title + opening year. Writes the result to
+# data/movies_meta/{key}.json — the same shape as our hand-curated
+# overrides, so the movie profile page picks it up automatically.
+#
+# Requires a TMDB API key stored in the repo secrets as TMDB_API_KEY.
+# Free key: https://www.themoviedb.org/settings/api
+#
+# When to run:
+#   - First-time bulk enrich (leave inputs blank)
+#   - After scraping a new year (year=YYYY)
+#   - After fixing a wrong field (refresh=true to re-pull)
+#
+# How to run:
+#   GitHub → Actions → "Enrich Movies (TMDB)" → Run workflow
+
+name: Enrich Movies (TMDB)
+
+on:
+  workflow_dispatch:
+    inputs:
+      year:
+        description: "Only enrich films opening in this year (YYYY). Blank = all."
+        required: false
+        default: ""
+      since:
+        description: "Only enrich films opening on/after this date (YYYY-MM-DD)."
+        required: false
+        default: ""
+      limit:
+        description: "Cap the number of titles enriched (0 = no cap)."
+        required: false
+        default: "0"
+      refresh:
+        description: "Re-fetch even if a curated meta file already exists (true/false)."
+        required: false
+        default: "false"
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run TMDB enrichment
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: |
+          ARGS=""
+          if [ -n "${{ github.event.inputs.year }}" ]; then
+            ARGS="$ARGS --year ${{ github.event.inputs.year }}"
+          fi
+          if [ -n "${{ github.event.inputs.since }}" ]; then
+            ARGS="$ARGS --since ${{ github.event.inputs.since }}"
+          fi
+          if [ -n "${{ github.event.inputs.limit }}" ] && [ "${{ github.event.inputs.limit }}" != "0" ]; then
+            ARGS="$ARGS --limit ${{ github.event.inputs.limit }}"
+          fi
+          if [ "${{ github.event.inputs.refresh }}" = "true" ]; then
+            ARGS="$ARGS --refresh"
+          fi
+          echo "Running: python3 scripts/enrich_movies_tmdb.py $ARGS"
+          python3 scripts/enrich_movies_tmdb.py $ARGS
+
+      - name: Commit and push enriched metadata
+        run: |
+          git config user.name "Box Office Jedi Bot"
+          git config user.email "bot@boxofficejedi.com"
+          git add -A data/movies_meta/ data/movies/
+          if ! git diff --staged --quiet; then
+            COUNT=$(git diff --staged --name-only | wc -l)
+            git commit -m "🎞️ TMDB enrichment — $COUNT movie files"
+            git pull --rebase --autostash origin main
+            git push
+          else
+            echo "No changes — nothing to commit."
+          fi

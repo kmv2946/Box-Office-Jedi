@@ -386,55 +386,70 @@
       display: block;
     }
 
-    /* ── Weekend Breakdown Table ────────────────────────────── */
+    /* ── Weekend Breakdown Table — same styling as weekend-chart.html ── */
     .mv-wk-year {
       font-family: Verdana, sans-serif;
       font-weight: bold;
-      font-size: 20px;
+      font-size: 22px;
       color: #000;
       text-align: center;
       padding: 14px 0 8px;
     }
+    /* Wrapper centers the auto-width table on the page */
+    .mv-wk-wrap { text-align: center; }
     .mv-wk-table {
-      width: 100%;
+      width: auto;
+      margin: 0 auto;
       border-collapse: collapse;
       font-family: 'Times New Roman', Times, serif;
       font-size: 14px;
-      border: 1px solid #A8A8A8;
+      border: 2px solid #888888;
+      box-shadow: 0 1px 0 #DCDCDC, 1px 0 0 #DCDCDC;
     }
     .mv-wk-table thead th {
       background: #DCDCDC;
       color: #000;
-      font-family: Verdana, sans-serif;
-      font-weight: bold;
-      font-size: 11px;
-      padding: 6px 6px;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      font-size: 13px;
+      padding: 5px 10px;
       text-align: center;
-      border: 1px solid #A8A8A8;
+      border-right: 1px solid #FFFFFF;
+      border-bottom: 1px solid #FFFFFF;
       vertical-align: middle;
       white-space: nowrap;
     }
-    .mv-wk-table tbody tr:nth-child(odd) td  { background: #F4F4FE; }
-    .mv-wk-table tbody tr:nth-child(even) td { background: #FFFFFF; }
+    .mv-wk-table thead th:last-child { border-right: none; }
+    .mv-wk-table thead th.th-gross { font-weight: bold; }
+    .mv-wk-table tbody tr:nth-child(odd) td  { background: #FFFFFF; }
+    .mv-wk-table tbody tr:nth-child(even) td { background: #EEF0FB; }
     .mv-wk-table tbody td {
-      padding: 5px 8px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      color: #000;
+      padding: 4px 10px;
       text-align: right;
-      border: 1px solid #D8D8D8;
+      border-right: 1px solid #FFFFFF;
+      border-bottom: 1px solid #FFFFFF;
       white-space: nowrap;
     }
+    .mv-wk-table tbody td:last-child { border-right: none; }
     .mv-wk-table td.wk-date,
     .mv-wk-table td.wk-rank,
     .mv-wk-table td.wk-weekn {
-      text-align: left;
+      text-align: center;
     }
     .mv-wk-table td.wk-date a {
+      font-family: 'Times New Roman', Times, serif;
       color: #00239C;
       font-weight: bold;
       text-decoration: none;
     }
-    .mv-wk-table td.wk-date a:hover { text-decoration: underline; }
-    .mv-wk-table td.wk-neg { color: #CC0000; }
-    .mv-wk-table td.wk-pos { color: #00239C; }
+    .mv-wk-table td.wk-date a:hover { text-decoration: underline; color: #002AF5; }
+    .mv-wk-table td.wk-gross { font-weight: bold; }
+    /* Color rules from the weekend-chart palette */
+    .mv-wk-table td.wk-neg { color: #F23620; }
+    .mv-wk-table td.wk-pos { color: #002AF5; }
     .mv-wk-table td.wk-dash { color: #999; }
 
     /* Empty / loading state */
@@ -754,11 +769,34 @@
         '<img src="' + meta.poster_url + '" alt="' + escapeHtml(displayTitle) + ' poster">';
     }
 
-    // Domestic total — curated value wins; otherwise use the largest
-    // total_gross in the weekend archive (or sum of weekends if archive
-    // hasn't been backfilled yet).
+    // Domestic total — priority order (most-authoritative first):
+    //   1. curated meta.domestic_total (hand-edited override)
+    //   2. data/movie_totals.json (built from yearly archives — has real
+    //      cumulative figures including weekday gross + post-drop-off run)
+    //   3. weekend archive's largest total_gross
+    //   4. sum of weekend grosses (last-resort approximation)
+    // Pull the totals index lazily and stash on window so we only fetch once.
     const weekends = (weekendData && weekendData.weekends) || [];
     let domesticTotal = (meta && meta.domestic_total) || 0;
+
+    if (!domesticTotal) {
+      const totalsIdx = await fetchJSON('data/movie_totals.json');
+      if (totalsIdx && totalsIdx.by_title) {
+        // Try a sequence of lookups: the URL title, the meta title, and the
+        // weekend-archive title (handles minor punctuation differences).
+        const lookups = [
+          STATE.title,
+          meta && meta.title,
+          weekendData && weekendData.title,
+        ].filter(Boolean).map(normKey);
+        for (const k of lookups) {
+          if (totalsIdx.by_title[k] && totalsIdx.by_title[k].total_gross) {
+            domesticTotal = totalsIdx.by_title[k].total_gross;
+            break;
+          }
+        }
+      }
+    }
     if (!domesticTotal && weekends.length) {
       domesticTotal = Math.max(...weekends.map(w => w.total_gross || 0));
     }
@@ -1110,7 +1148,7 @@
     });
 
     const years = Object.keys(byYear).sort();
-    let html = '';
+    let html = '<div class="mv-wk-wrap">';
     years.forEach(year => {
       const rows = byYear[year];
       html += `<div class="mv-wk-year">${year}</div>`;
@@ -1118,14 +1156,14 @@
         <table class="mv-wk-table">
           <thead>
             <tr>
-              <th style="text-align:left;">Date<br><span style="font-weight:normal;font-size:10px;">(click to view chart)</span></th>
+              <th>Date <span style="font-weight:normal;font-size:11px;color:#444;">(click to view chart)</span></th>
               <th>Rank</th>
-              <th>Weekend<br>Gross</th>
-              <th>%<br>Change</th>
-              <th>Theater<br>Count</th>
-              <th>Change /<br>Avg.</th>
-              <th>Gross-to-<br>Date</th>
-              <th>Week<br>#</th>
+              <th class="th-gross">Weekend Gross</th>
+              <th>% Change</th>
+              <th>Theaters&nbsp;/ Chg</th>
+              <th>Average</th>
+              <th>Gross-to-Date</th>
+              <th>Week&nbsp;#</th>
             </tr>
           </thead>
           <tbody>`;
@@ -1137,21 +1175,24 @@
                         (r.theater_change > 0 ? '+' : '') + r.theater_change.toLocaleString('en-US');
         const avgTxt = r.avg_per_theater ? '$' + fmtInt(r.avg_per_theater) : '—';
         const dateLabel = shortDateRange(r.date);
-        const dateHref = 'weekend.html?date=' + r.date;
+        // Link to the individual weekend chart page (not the index)
+        const dateHref = 'weekend-chart.html?date=' + r.date;
+        const theatersTxt = fmtInt(r.theaters) + ' / <span class="' + tcClass + '">' + tcTxt + '</span>';
         html += `
             <tr>
               <td class="wk-date"><a href="${dateHref}">${dateLabel}</a></td>
               <td class="wk-rank">${r.rank ? r.rank : '—'}</td>
-              <td>${fmtDollars(r.gross)}</td>
+              <td class="wk-gross">${fmtDollars(r.gross)}</td>
               <td class="${pctClass}">${pctTxt}</td>
-              <td>${fmtInt(r.theaters)}</td>
-              <td><span class="${tcClass}">${tcTxt}</span> / ${avgTxt}</td>
+              <td>${theatersTxt}</td>
+              <td>${avgTxt}</td>
               <td>${fmtDollars(r.running_total)}</td>
               <td class="wk-weekn">${r.n || '—'}</td>
             </tr>`;
       });
       html += `</tbody></table>`;
     });
+    html += '</div>';
     container.innerHTML = html;
   }
 
