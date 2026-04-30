@@ -152,7 +152,12 @@ def main():
     ap.add_argument("--limit", type=int, default=0,
                     help="Stop after enriching this many titles (0 = no cap)")
     ap.add_argument("--refresh", action="store_true",
-                    help="Re-fetch even if a curated meta file already exists")
+                    help="Re-fetch even if a meta entry already exists. "
+                         "Hand-curated entries (any meta NOT tagged "
+                         "_source: tmdb-enrich) are still skipped — pass "
+                         "--force-overwrite to clobber those too.")
+    ap.add_argument("--force-overwrite", action="store_true",
+                    help="Allow --refresh to also overwrite hand-curated entries.")
     ap.add_argument("--dry-run", action="store_true",
                     help="List the titles that would be enriched, then exit")
     args = ap.parse_args()
@@ -161,39 +166,73 @@ def main():
         print("ERROR: No TMDB API key set. Export TMDB_API_KEY first.")
         sys.exit(1)
 
-    weekend_files = sorted(glob.glob(os.path.join(DATA_DIR, "movie_weekends", "*.json")))
-    print(f"Scanning {len(weekend_files)} per-movie weekend archives...")
-
+    # Collect candidates from the sharded weekend archives. Falls back to
+    # the legacy per-file dir if the shards haven't been built yet (first run
+    # on an old branch).
     candidates = []
     seen_keys = set()
-    for path in weekend_files:
-        if os.path.basename(path) == "index.json":
-            continue
-        try:
-            with open(path) as f:
-                d = json.load(f)
-        except Exception:
-            continue
-        title = d.get("title") or ""
-        opening = d.get("opening_date") or ""
-        # Prefer the slug stored on the file itself — aggregate_movie_weekends
-        # writes year-disambiguated slugs (e.g. "michael-2026"). For old files
-        # without a stored key, fall back to the filename.
-        key = (d.get("key") or os.path.basename(path).replace(".json", ""))
+    weekend_shards = sorted(glob.glob(
+        os.path.join(DATA_DIR, "movie_weekends_shards", "*.json")))
+    weekend_per_file = sorted(glob.glob(
+        os.path.join(DATA_DIR, "movie_weekends", "*.json")))
+
+    def consider(key, title, opening):
         if not title or not key:
-            continue
-        # Skip the legacy-alias copies (plain-title duplicates of slug files)
-        # so we don't enrich the same film twice.
+            return
         if key in seen_keys:
-            continue
+            return
         seen_keys.add(key)
         if args.year and opening[:4] != str(args.year):
-            continue
+            return
         if args.since and opening < args.since:
-            continue
-        if not args.refresh and existing_curated_file(key):
-            continue
+            return
+
+        # Existing-entry check. Skip unless --refresh is explicit. And even
+        # with --refresh, leave hand-curated entries alone unless the caller
+        # ALSO passed --force-overwrite (rare, intentional).
+        existing = None
+        shard = load_shard(shard_letter(key))
+        if key in shard:
+            existing = shard[key]
+        elif os.path.exists(os.path.join(DATA_DIR, "movies_meta", key + ".json")):
+            try:
+                with open(os.path.join(DATA_DIR, "movies_meta", key + ".json")) as f:
+                    existing = json.load(f)
+            except Exception:
+                existing = None
+        if existing and not args.refresh:
+            return
+        if existing and args.refresh and not args.force_overwrite:
+            src = (existing.get("_source") or "manual").strip().lower()
+            if src != "tmdb-enrich":
+                return
         candidates.append((key, title, opening))
+
+    if weekend_shards:
+        print(f"Scanning {len(weekend_shards)} weekend shard files...")
+        for path in weekend_shards:
+            if os.path.basename(path) == "index.json":
+                continue
+            try:
+                with open(path) as f:
+                    d = json.load(f)
+            except Exception:
+                continue
+            for key, payload in (d.get("entries") or {}).items():
+                consider(key, payload.get("title") or "",
+                         payload.get("opening_date") or "")
+    else:
+        print(f"Scanning {len(weekend_per_file)} per-movie weekend files (legacy)...")
+        for path in weekend_per_file:
+            if os.path.basename(path) == "index.json":
+                continue
+            try:
+                with open(path) as f:
+                    d = json.load(f)
+            except Exception:
+                continue
+            key = (d.get("key") or os.path.basename(path).replace(".json", ""))
+            consider(key, d.get("title") or "", d.get("opening_date") or "")
 
     print(f"  {len(candidates)} titles to enrich.")
 

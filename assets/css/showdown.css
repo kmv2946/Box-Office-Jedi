@@ -1,0 +1,183 @@
+/* Box Office Jedi — Showdown shared styles
+ * -----------------------------------------
+ * Used by every showdown-*.html page. The page itself is a thin shell;
+ * showdown.js builds the tables and these classes paint them.
+ */
+
+.sd-page-header { padding: 6px 10px 4px; }
+.sd-page-header a {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold; font-size: 14px;
+  color: #00239C; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.sd-page-header a:hover { text-decoration: underline; }
+.sd-page-header span {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold; font-size: 14px;
+  color: #00239C; text-transform: uppercase; letter-spacing: 0.04em;
+}
+.sd-section-bar { height: 5px; background: #7F170E; margin-bottom: 12px; }
+
+.sd-title {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold; font-size: 32px;
+  color: #000;
+  text-align: center;
+  margin: 18px 0 14px;
+  letter-spacing: -0.5px;
+  text-decoration: underline;
+  line-height: 1.05;
+}
+
+/* Tabs — match weekend chart pattern (black bottom border, gray inactive) */
+.sd-tabs {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  padding: 0 16px;
+  margin: 4px 0 0;
+  border-bottom: 2px solid #000000;
+}
+.sd-tab {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold; font-size: 13px;
+  padding: 6px 18px;
+  background: #DCDCDC;
+  color: #00239C;
+  border: 1px solid #000000;
+  border-bottom: none;
+  text-decoration: none;
+  cursor: pointer;
+  margin-bottom: -2px;
+  display: inline-block;
+}
+.sd-tab:hover { background: #C8C8C8; color: #000; }
+.sd-tab.active {
+  background: #FFFFFF; color: #000;
+  border-bottom: 2px solid #FFFFFF;
+}
+
+.sd-panel { display: none; }
+.sd-panel.active { display: block; }
+
+.sd-wrap {
+  padding: 18px 16px 20px;
+  overflow-x: auto;
+  text-align: center;       /* centers the auto-width table */
+}
+
+/* Table itself: auto-fit columns instead of stretching to 100%. The wrapper
+ * scrolls horizontally on narrow viewports if the content is wider. */
+.sd-table {
+  width: auto;
+  margin: 0 auto;
+  border-collapse: collapse;
+  border: 2px solid #888888;
+  box-shadow: 3px 3px 0 #888888;
+}
+
+/* Per-column color stripes — six slots so we can fit up to a 6-film showdown */
+.sd-col-1 { background: #FFFED1; }   /* yellow */
+.sd-col-2 { background: #E4FCD1; }   /* green */
+.sd-col-3 { background: #FBD9D8; }   /* red */
+.sd-col-4 { background: #D1EDFC; }   /* blue */
+.sd-col-5 { background: #F0D1FC; }   /* purple */
+.sd-col-6 { background: #FCE0D1; }   /* orange */
+
+/* Header row: poster + linked title + year */
+.sd-head-cell {
+  text-align: center; padding: 10px 8px 8px;
+  vertical-align: bottom;
+  border: 1px solid #A8A8A8;
+  border-bottom: 2px solid #7F170E;
+}
+.sd-poster {
+  width: 90px; height: 132px; object-fit: cover;
+  display: block; margin: 0 auto 6px; border: 1px solid #888;
+}
+.sd-poster-placeholder {
+  width: 90px; height: 132px;
+  background: #DDD;
+  display: flex; align-items: center; justify-content: center;
+  font-family: Verdana, sans-serif; font-size: 10px; color: #666;
+  margin: 0 auto 6px; border: 1px solid #888;
+}
+.sd-movie-title-link {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold; font-size: 12px;
+  color: #00239C; text-decoration: none;
+  display: block; line-height: 1.3; max-width: 140px;
+  margin: 0 auto;
+}
+.sd-movie-title-link:hover { text-decoration: underline; }
+.sd-movie-year {
+  font-family: Verdana, sans-serif; font-size: 10px;
+  color: #666; display: block; margin-top: 2px;
+}
+
+/* Left-side label cells (Genre, Studio, etc.) */
+.sd-label {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold; font-size: 13px;
+  color: #000;
+  padding: 6px 14px;
+  border: 1px solid #A8A8A8;
+  background: #F0F0F0;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+/* Tiny weekend-number cell on the Weekend tab */
+.sd-wknd-label {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold; font-size: 16px; color: #000;
+  padding: 6px 8px; border: 1px solid #A8A8A8;
+  background: #F0F0F0; text-align: center;
+  vertical-align: middle;
+}
+.sd-corner,
+.sd-corner-wknd {
+  background: #F0F0F0; border: 1px solid #A8A8A8;
+  border-bottom: 2px solid #7F170E;
+}
+
+/* Body cells (Summary tab) */
+.sd-movie {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px; color: #000;
+  padding: 6px 12px; border: 1px solid #A8A8A8;
+  text-align: center; vertical-align: middle;
+  white-space: nowrap;
+}
+.sd-movie.best { font-weight: bold; }
+
+/* Body cells (Weekend tab) — multi-line stack */
+.sd-wknd-cell {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 15px; color: #000;
+  padding: 6px 10px; border: 1px solid #A8A8A8;
+  text-align: center; vertical-align: top; line-height: 1.5;
+}
+.sd-wknd-cell .wg  { font-size: 16px; display: block; }
+.sd-wknd-cell .wg.best { font-weight: bold; }
+.sd-wknd-cell .wm  { font-size: 12px; color: #00239C; display: block; }
+.sd-wknd-cell .wth { font-size: 12px; color: #555; display: block; }
+.sd-wknd-cell .wch { font-size: 12px; color: #CC0000; display: block; }
+.sd-wknd-cell .wgt { font-size: 12px; color: #000; display: block; }
+.sd-wknd-cell .wpend {
+  color: #999; font-size: 16px;
+}
+
+/* Footer rows on the Weekend tab (Total, Budget, Theaters, Release Date,
+ * Yearly Rank). The "Total" row gets a heavier top border to separate
+ * from the weekend grid. */
+.sd-table tr.sd-footer-row:first-of-type td {
+  border-top: 2px solid #7F170E;
+}
+
+/* "Loading…" placeholder shown while data fetches */
+.sd-empty {
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic; color: #777;
+  padding: 28px; text-align: center;
+}

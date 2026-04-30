@@ -35,7 +35,11 @@ on:
         required: false
         default: "0"
       refresh:
-        description: "Re-fetch even if a curated meta file already exists (true/false)."
+        description: "Re-fetch even if a meta entry exists (TMDB-sourced only; hand-curated stays safe). true/false."
+        required: false
+        default: "false"
+      force_overwrite:
+        description: "DANGEROUS: also overwrite HAND-CURATED entries on refresh. true/false. Almost always leave false."
         required: false
         default: "false"
 
@@ -74,6 +78,9 @@ jobs:
           fi
           if [ "${{ github.event.inputs.refresh }}" = "true" ]; then
             ARGS="$ARGS --refresh"
+          fi
+          if [ "${{ github.event.inputs.force_overwrite }}" = "true" ]; then
+            ARGS="$ARGS --force-overwrite"
           fi
           echo "Running: python3 scripts/enrich_movies_tmdb.py $ARGS"
           python3 scripts/enrich_movies_tmdb.py $ARGS

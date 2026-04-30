@@ -1,170 +1,406 @@
-/* Box Office Jedi — Showdown weekend-data connector
- * ---------------------------------------------------
- * On any showdown page, this script finds the #panel-weekend table,
- * reads each column's movie title, and fetches per-movie weekend data
- * from data/movie_weekends/<normalized-key>.json. It then fills the
- * Weekend-1..Weekend-5 rows with the rich 5-line cell format:
+/* Box Office Jedi — Showdown Renderer (data-driven)
+ * --------------------------------------------------
+ * Each showdown page provides:
  *
- *   Line 1 (.wg)  — weekend gross (bold)
- *   Line 2 (.wm)  — "M-D-YY / <b>N</b>" (Sunday of weekend / weekend #)
- *   Line 3 (.wth) — "theaters / $avg"
- *   Line 4 (.wch) — % change vs last weekend ("—" for week 1)
- *   Line 5 (.wgt) — cumulative total gross
+ *   <script>
+ *     window.SHOWDOWN_CONFIG = {
+ *       title: 'SUMMER STARTERS',
+ *       breadcrumb: 'SUMMER STARTERS',
+ *       films: [
+ *         { slug: 'twister',                title: 'Twister'           },
+ *         { slug: 'themummy-1999',          title: 'The Mummy'         },
+ *         ...
+ *       ],
+ *     };
+ *   </script>
+ *   <div id="showdown-root"></div>
  *
- * The cell also gets data-val=<gross> so the existing applyBolding()
- * helper will highlight the winning film per row.
- *
- * Title matching is case- and punctuation-insensitive, so the archive's
- * "Everything Everywhere All At Once" still matches a showdown's
- * "Everything Everywhere All at Once".
+ * This script:
+ *   - Renders the page header + tabs (Summary, Weekend)
+ *   - Fetches each film's meta from data/movies_meta_shards/{letter}.json
+ *   - Fetches each film's weekends from data/movie_weekends_shards/{letter}.json
+ *   - Fetches data/movie_totals.json for authoritative domestic totals
+ *   - Builds the Summary table (Genre, Studio, Release Date, Opening Weekend,
+ *     Domestic Gross, Production Budget, Running Time, MPAA Rating)
+ *   - Builds the Weekend table — one row per weekend (1..N where N is the
+ *     longest run across the included films), plus footer rows
+ *     (Total, Budget, Theaters, Release Date, Yearly Rank). Films with shorter
+ *     runs get an em-dash in any rows past their last weekend.
+ *   - Bolds the leader value in each row.
  */
 (function () {
   'use strict';
 
-  function normTitle(s) {
+  // ── Helpers ──────────────────────────────────────────────────────────
+  function $(sel, root) { return (root || document).querySelector(sel); }
+  function escapeHtml(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g,
+      function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]; });
+  }
+  function normKey(s) {
     return (s || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
   }
-
-  function fmtMoney(n) {
-    if (n === null || n === undefined || n === 0) return '\u2014';
-    return '$' + n.toLocaleString('en-US');
-  }
-
-  // "1996-05-10" (Friday) -> "5-12-96" (Sunday of that weekend)
-  function fmtSunDate(isoFri) {
-    if (!isoFri) return '\u2014';
-    var parts = isoFri.split('-').map(function (x) { return parseInt(x, 10); });
-    if (parts.length !== 3 || !parts[0]) return '\u2014';
-    // Build in UTC so the +2 days shift doesn't dance around a local DST boundary.
-    var dt = new Date(Date.UTC(parts[0], parts[1] - 1, parts[2] + 2));
-    var mm = dt.getUTCMonth() + 1;
-    var dd = dt.getUTCDate();
-    var yy = String(dt.getUTCFullYear()).slice(-2);
-    return mm + '-' + dd + '-' + yy;
-  }
-
-  function fmtTheatersAvg(theaters, gross) {
-    if (!theaters || !gross) return '\u2014';
-    var avg = Math.floor(gross / theaters);
-    return theaters.toLocaleString('en-US') + ' / $' + avg.toLocaleString('en-US');
-  }
-
-  // Change vs previous weekend. Returns an HTML string so we can apply a
-  // sign-aware modifier class (positive = green, negative = red, none = dash).
-  function fmtChange(curr, prev) {
-    if (prev === null || prev === undefined || prev === 0 || !curr) return '\u2014';
-    var p = (curr - prev) / prev * 100;
-    if (!isFinite(p)) return '\u2014';
-    // Use the typographic minus (U+2212) to match the hand-filled cells.
-    var sign = p >= 0 ? '+' : '\u2212';
-    return sign + Math.abs(p).toFixed(1) + '%';
-  }
-
-  // Per-film weekend data is now in letter-sharded JSON
-  // (data/movie_weekends_shards/{a..z|_}.json). Each shard is
-  // { entries: { slug: payload, ... } }. We cache shards by letter
-  // so a showdown with multiple films from the same letter only fetches once.
-  var _SHARD_CACHE = {};
   function shardLetter(k) {
     if (!k) return null;
     var c = (k[0] || '').toLowerCase();
     return (c >= 'a' && c <= 'z') ? c : '_';
   }
-  async function fetchMovie(key) {
-    try {
-      var letter = shardLetter(key);
-      if (!letter) return null;
-      if (!(letter in _SHARD_CACHE)) {
-        var r = await fetch('data/movie_weekends_shards/' + letter + '.json',
-                            { cache: 'no-store' });
-        if (!r.ok) {
-          _SHARD_CACHE[letter] = null;
-          return null;
-        }
-        var shard = await r.json();
-        _SHARD_CACHE[letter] = (shard && shard.entries) || {};
-      }
-      var entries = _SHARD_CACHE[letter];
-      return (entries && entries[key]) ? entries[key] : null;
-    } catch (e) {
-      return null;
-    }
+  function fmtMoney(n) {
+    if (n === null || n === undefined || n === 0) return '—';
+    return '$' + Number(n).toLocaleString('en-US');
+  }
+  function fmtMoneyMillions(n) {
+    if (!n) return '—';
+    if (n >= 1e6) return '$' + (n / 1e6).toFixed(n % 1e6 === 0 ? 0 : 1) + ' million';
+    return fmtMoney(n);
+  }
+  function fmtInt(n) {
+    if (!n) return '—';
+    return Number(n).toLocaleString('en-US');
+  }
+  function fmtRuntime(m) {
+    if (!m) return '—';
+    var h = Math.floor(m / 60), r = m % 60;
+    return h + ' hr. ' + (r < 10 ? '0' + r : r) + ' min.';
+  }
+  function fmtRelease(iso) {
+    if (!iso) return '—';
+    var p = iso.split('-').map(function(x){ return parseInt(x, 10); });
+    var MO = ['January','February','March','April','May','June',
+              'July','August','September','October','November','December'];
+    return MO[p[1]-1] + ' ' + p[2] + ', ' + p[0];
+  }
+  function fmtReleaseShort(iso) {
+    if (!iso) return '—';
+    var p = iso.split('-');
+    return p[1] + '/' + p[2] + '/' + p[0].slice(-2);
+  }
+  function fmtSunDate(isoFri) {
+    if (!isoFri) return '—';
+    var p = isoFri.split('-').map(function(x){ return parseInt(x, 10); });
+    var dt = new Date(Date.UTC(p[0], p[1] - 1, p[2] + 2));
+    var mm = dt.getUTCMonth() + 1, dd = dt.getUTCDate();
+    var yy = String(dt.getUTCFullYear()).slice(-2);
+    return mm + '-' + dd + '-' + yy;
+  }
+  function fmtChange(curr, prev) {
+    if (!prev || !curr) return '—';
+    var p = (curr - prev) / prev * 100;
+    if (!isFinite(p)) return '—';
+    var sign = p >= 0 ? '+' : '−';
+    return sign + Math.abs(p).toFixed(1) + '%';
   }
 
-  function renderCell(cell, movie, n) {
-    if (!movie) {
-      cell.innerHTML = '<span class="wpend">\u2014</span>';
-      return;
+  // ── Shard cache: each shard fetched at most once per page ────────────
+  var _SHARDS = {};
+  async function loadShard(dir, letter) {
+    if (!letter) return null;
+    var k = dir + '/' + letter;
+    if (k in _SHARDS) return _SHARDS[k];
+    try {
+      var r = await fetch('data/' + dir + '/' + letter + '.json',
+                          { cache: 'no-store' });
+      _SHARDS[k] = r.ok ? (await r.json()).entries || {} : null;
+    } catch (e) { _SHARDS[k] = null; }
+    return _SHARDS[k];
+  }
+  async function lookup(dir, key) {
+    if (!key) return null;
+    var sh = await loadShard(dir, shardLetter(key));
+    return (sh && sh[key]) || null;
+  }
+
+  // Movie totals index — fetched once, cached
+  var _TOTALS = null;
+  async function loadTotals() {
+    if (_TOTALS !== null) return _TOTALS;
+    try {
+      var r = await fetch('data/movie_totals.json', { cache: 'no-store' });
+      _TOTALS = r.ok ? await r.json() : {};
+    } catch (e) { _TOTALS = {}; }
+    return _TOTALS;
+  }
+
+  // ── Per-film data fetch ──────────────────────────────────────────────
+  async function fetchFilm(film) {
+    // film: {slug, title}
+    // Try slug first, then fall back to title-keyed lookup so old configs
+    // that don't include the year still resolve.
+    var keys = [];
+    if (film.slug) keys.push(film.slug);
+    var tk = normKey(film.title);
+    if (tk && keys.indexOf(tk) === -1) keys.push(tk);
+
+    var meta = null, weekends = null;
+    for (var i = 0; i < keys.length && !meta; i++)
+      meta = await lookup('movies_meta_shards', keys[i]);
+    for (var i = 0; i < keys.length && !weekends; i++)
+      weekends = await lookup('movie_weekends_shards', keys[i]);
+
+    var totals = await loadTotals();
+    var totalEntry = null;
+    if (totals && totals.by_slug) {
+      for (var i = 0; i < keys.length && !totalEntry; i++)
+        totalEntry = totals.by_slug[keys[i]];
     }
-    var w = null;
-    var prev = null;
-    for (var i = 0; i < movie.weekends.length; i++) {
-      if (movie.weekends[i].n === n)     w    = movie.weekends[i];
-      if (movie.weekends[i].n === n - 1) prev = movie.weekends[i];
+    if (!totalEntry && totals && totals.by_title) {
+      for (var i = 0; i < keys.length && !totalEntry; i++)
+        totalEntry = totals.by_title[keys[i]];
     }
-    if (!w) {
-      cell.innerHTML = '<span class="wpend">\u2014</span>';
-      cell.removeAttribute('data-val');
-      return;
+
+    return {
+      film:     film,
+      meta:     meta || {},
+      weekends: weekends || null,
+      total:    totalEntry || null,
+    };
+  }
+
+  // ── Render: Summary table ────────────────────────────────────────────
+  function renderSummary(films) {
+    var rows = [
+      { label: 'Genre',             pick: function(f){ return (f.meta.genres||[]).slice(0,2).join(' / ') || '—'; } },
+      { label: 'Studio',            pick: function(f){ return f.meta.distributor || '—'; } },
+      { label: 'Release Date',      pick: function(f){ return fmtRelease(f.meta.release_date); } },
+      { label: 'Opening Weekend',   pick: function(f){
+          var w = f.weekends && f.weekends.weekends && f.weekends.weekends[0];
+          return w ? fmtMoney(w.gross) : '—';
+        }, val: function(f){
+          var w = f.weekends && f.weekends.weekends && f.weekends.weekends[0];
+          return w && w.gross ? w.gross : 0;
+        } },
+      { label: 'Domestic Gross',    pick: function(f){
+          var t = (f.total && f.total.total_gross) || 0;
+          return t ? fmtMoney(t) : '—';
+        }, val: function(f){ return (f.total && f.total.total_gross) || 0; } },
+      { label: 'Production Budget', pick: function(f){ return fmtMoneyMillions(f.meta.budget); },
+        val: function(f){ return f.meta.budget || 0; } },
+      { label: 'Running Time',      pick: function(f){ return fmtRuntime(f.meta.runtime); } },
+      { label: 'MPAA Rating',       pick: function(f){ return f.meta.mpaa || '—'; } },
+    ];
+
+    var html = '<table class="sd-table"><thead><tr>';
+    html += '<th class="sd-corner"></th>';
+    films.forEach(function(f, i) {
+      var n = i + 1;
+      var poster = (f.meta && f.meta.poster_url)
+        ? '<img class="sd-poster" src="' + escapeHtml(f.meta.poster_url) +
+          '" alt="' + escapeHtml(f.film.title) + '">'
+        : '<div class="sd-poster-placeholder">No poster</div>';
+      var year = f.meta && f.meta.release_date ? f.meta.release_date.slice(0, 4) : '';
+      var slugParam = '?slug=' + encodeURIComponent(f.film.slug);
+      html += '<th class="sd-head-cell sd-col-' + n + '">' +
+        poster +
+        '<a class="sd-movie-title-link" href="movie.html' + slugParam + '">' +
+          escapeHtml(f.film.title) + '</a>' +
+        (year ? '<span class="sd-movie-year">' + year + '</span>' : '') +
+      '</th>';
+    });
+    html += '</tr></thead><tbody>';
+
+    rows.forEach(function(r) {
+      html += '<tr><td class="sd-label">' + r.label + '</td>';
+      var vals = films.map(function(f) {
+        return r.val ? (r.val(f) || 0) : null;
+      });
+      var max = vals.some(function(v){ return v != null; })
+        ? Math.max.apply(null, vals.map(function(v){ return v || 0; })) : 0;
+      films.forEach(function(f, i) {
+        var n = i + 1;
+        var txt = r.pick(f);
+        var isBest = (max > 0 && vals[i] === max);
+        html += '<td class="sd-movie sd-col-' + n + (isBest ? ' best' : '') + '">' +
+                escapeHtml(txt) + '</td>';
+      });
+      html += '</tr>';
+    });
+    html += '</tbody></table>';
+    return html;
+  }
+
+  // ── Render: Weekend table ────────────────────────────────────────────
+  function renderWeekend(films) {
+    // Determine the longest run across all films so every row is filled
+    // (or em-dashed for films that didn't reach that weekend).
+    var maxWeeks = 0;
+    films.forEach(function(f) {
+      var ws = f.weekends && f.weekends.weekends;
+      if (ws && ws.length > maxWeeks) maxWeeks = ws.length;
+    });
+
+    var html = '<table class="sd-table"><thead><tr>';
+    html += '<th class="sd-corner-wknd"></th>';
+    films.forEach(function(f, i) {
+      var n = i + 1;
+      var poster = (f.meta && f.meta.poster_url)
+        ? '<img class="sd-poster" src="' + escapeHtml(f.meta.poster_url) +
+          '" alt="' + escapeHtml(f.film.title) + '">'
+        : '<div class="sd-poster-placeholder">No poster</div>';
+      var year = f.meta && f.meta.release_date ? f.meta.release_date.slice(0, 4) : '';
+      var slugParam = '?slug=' + encodeURIComponent(f.film.slug);
+      html += '<th class="sd-head-cell sd-col-' + n + '">' +
+        poster +
+        '<a class="sd-movie-title-link" href="movie.html' + slugParam + '">' +
+          escapeHtml(f.film.title) + '</a>' +
+        (year ? '<span class="sd-movie-year">' + year + '</span>' : '') +
+      '</th>';
+    });
+    html += '</tr></thead><tbody>';
+
+    // Weekend rows
+    for (var n = 1; n <= maxWeeks; n++) {
+      html += '<tr><td class="sd-wknd-label">' + n + '</td>';
+      var grosses = films.map(function(f) {
+        var ws = f.weekends && f.weekends.weekends;
+        var w = ws ? ws[n - 1] : null;
+        return w ? (w.gross || 0) : 0;
+      });
+      var max = grosses.length ? Math.max.apply(null, grosses) : 0;
+      films.forEach(function(f, i) {
+        var col = i + 1;
+        var ws = f.weekends && f.weekends.weekends;
+        var w = ws ? ws[n - 1] : null;
+        var prev = (ws && n > 1) ? ws[n - 2] : null;
+        if (!w) {
+          html += '<td class="sd-wknd-cell sd-col-' + col +
+                  '"><span class="wpend">—</span></td>';
+          return;
+        }
+        var isBest = (max > 0 && (w.gross || 0) === max);
+        var totalToDate = w.total_gross || 0;
+        // Fall back to running sum when total_gross is missing in archive.
+        if (!totalToDate && ws) {
+          var run = 0;
+          for (var k = 0; k < n; k++) run += (ws[k].gross || 0);
+          totalToDate = run;
+        }
+        html += '<td class="sd-wknd-cell sd-col-' + col + '" data-val="' + (w.gross || 0) + '">' +
+          '<span class="wg' + (isBest ? ' best' : '') + '">' + fmtMoney(w.gross) + '</span>' +
+          '<span class="wm">' + fmtSunDate(w.date) + ' / <b>' + (w.rank || '—') + '</b></span>' +
+          '<span class="wth">' + ((w.theaters || 0) ? Number(w.theaters).toLocaleString('en-US') + ' / $' + (Math.floor((w.gross||0)/(w.theaters||1))).toLocaleString('en-US') : '—') + '</span>' +
+          '<span class="wch">' + (prev ? fmtChange(w.gross, prev.gross) : '—') + '</span>' +
+          '<span class="wgt">' + fmtMoney(totalToDate) + '</span>' +
+        '</td>';
+      });
+      html += '</tr>';
     }
-    var prevGross = prev ? prev.gross : null;
-    if (w.gross) cell.setAttribute('data-val', String(w.gross));
-    cell.innerHTML = (
-      '<span class="wg">'  + fmtMoney(w.gross) + '</span>' +
-      '<span class="wm">'  + fmtSunDate(w.date) + ' / <b>' + n + '</b></span>' +
-      '<span class="wth">' + fmtTheatersAvg(w.theaters, w.gross) + '</span>' +
-      '<span class="wch">' + fmtChange(w.gross, prevGross) + '</span>' +
-      '<span class="wgt">' + fmtMoney(w.total_gross) + '</span>'
+
+    // ── Footer rows: Total, Budget, Theaters, Release Date, Yearly Rank
+    var footerRows = [
+      {
+        label: 'Total',
+        pick: function(f) { return fmtMoney((f.total && f.total.total_gross) || 0); },
+        val:  function(f) { return (f.total && f.total.total_gross) || 0; },
+      },
+      {
+        label: 'Budget',
+        pick: function(f) { return fmtMoneyMillions(f.meta.budget); },
+        val:  function(f) { return f.meta.budget || 0; },
+      },
+      {
+        label: 'Theaters',
+        pick: function(f) {
+          var ws = f.weekends && f.weekends.weekends;
+          if (!ws || !ws.length) return '—';
+          var widest = 0;
+          ws.forEach(function(w){ if ((w.theaters || 0) > widest) widest = w.theaters; });
+          return widest ? fmtInt(widest) : '—';
+        },
+        val: function(f) {
+          var ws = f.weekends && f.weekends.weekends;
+          if (!ws || !ws.length) return 0;
+          var widest = 0;
+          ws.forEach(function(w){ if ((w.theaters || 0) > widest) widest = w.theaters; });
+          return widest;
+        },
+      },
+      {
+        label: 'Release Date',
+        pick: function(f) { return fmtReleaseShort(f.meta.release_date); },
+      },
+      {
+        label: 'Yearly Rank',
+        pick: function(f) {
+          var r = (f.total && f.total.rank) || 0;
+          return r ? String(r) : '—';
+        },
+        // Lower rank is better — invert for "best" highlighting
+        val: function(f) {
+          var r = (f.total && f.total.rank) || 9999;
+          return -r;
+        },
+      },
+    ];
+
+    footerRows.forEach(function(r) {
+      html += '<tr class="sd-footer-row"><td class="sd-label">' + r.label + '</td>';
+      var vals = films.map(function(f) { return r.val ? r.val(f) : null; });
+      var max = vals.some(function(v){ return v != null && v !== 0; })
+        ? Math.max.apply(null, vals.map(function(v){ return v == null ? -Infinity : v; })) : null;
+      films.forEach(function(f, i) {
+        var col = i + 1;
+        var txt = r.pick(f);
+        var isBest = (max != null && vals[i] === max && vals[i] !== 0 && vals[i] !== -Infinity);
+        html += '<td class="sd-movie sd-col-' + col + (isBest ? ' best' : '') + '">' +
+                escapeHtml(txt) + '</td>';
+      });
+      html += '</tr>';
+    });
+    html += '</tbody></table>';
+    return html;
+  }
+
+  // ── Page header / tab scaffolding ────────────────────────────────────
+  function renderHeader(cfg) {
+    return (
+      '<div class="sd-page-header">' +
+        '<a href="showdowns.html">SHOWDOWNS</a>' +
+        '<span> &gt; ' + escapeHtml(cfg.breadcrumb || cfg.title || '') + '</span>' +
+      '</div>' +
+      '<div class="sd-section-bar"></div>' +
+      '<div class="sd-title">' + escapeHtml(cfg.title || '') + '</div>' +
+      '<div class="sd-tabs">' +
+        '<a class="sd-tab active" href="#" data-panel="summary">Summary Stats</a>' +
+        '<a class="sd-tab" href="#" data-panel="weekend">Weekend Box Office</a>' +
+      '</div>'
     );
   }
 
-  function fillColumn(panel, colIdx, movie) {
-    var rows = panel.querySelectorAll('tbody tr');
-    rows.forEach(function (tr) {
-      var label = tr.querySelector('.sd-wknd-label');
-      if (!label) return;
-      var n = parseInt(label.textContent.trim(), 10);
-      if (!n) return;
-      var cell = tr.querySelector('.sd-wknd-cell.sd-col-' + colIdx);
-      if (!cell) return;
-      // Only auto-fill cells still showing the "Data pending" placeholder.
-      // Any cell with hand-filled content is left alone so the author can
-      // override archive data (e.g. pre-2000 films where The Numbers'
-      // weekend aggregation differs from traditional Fri–Sun reporting).
-      if (!cell.querySelector('.wpend')) return;
-      renderCell(cell, movie, n);
+  function attachTabHandlers(root) {
+    root.querySelectorAll('.sd-tab').forEach(function(tab) {
+      tab.addEventListener('click', function(e) {
+        e.preventDefault();
+        root.querySelectorAll('.sd-tab').forEach(function(t){ t.classList.remove('active'); });
+        tab.classList.add('active');
+        root.querySelectorAll('.sd-panel').forEach(function(p){ p.classList.remove('active'); });
+        var panel = root.querySelector('#panel-' + tab.dataset.panel);
+        if (panel) panel.classList.add('active');
+      });
     });
   }
 
+  // ── Main ─────────────────────────────────────────────────────────────
   async function init() {
-    var panel = document.getElementById('panel-weekend');
-    if (!panel) return;
+    var cfg = window.SHOWDOWN_CONFIG;
+    if (!cfg || !cfg.films || !cfg.films.length) return;
+    var root = document.getElementById('showdown-root');
+    if (!root) return;
 
-    var heads = panel.querySelectorAll('thead .sd-head-cell');
-    if (!heads.length) return;
+    document.title = (cfg.title || 'Showdown') + ' — Box Office Jedi';
 
-    var work = [];
-    heads.forEach(function (th) {
-      var colIdx = null;
-      th.classList.forEach(function (c) {
-        var m = /^sd-col-(\d+)$/.exec(c);
-        if (m) colIdx = parseInt(m[1], 10);
-      });
-      if (!colIdx) return;
-      var link = th.querySelector('.sd-movie-title-link');
-      var title = link ? link.textContent.trim() : '';
-      if (!title) return;
-      work.push({ colIdx: colIdx, title: title, key: normTitle(title) });
-    });
+    root.innerHTML = renderHeader(cfg) +
+      '<div class="sd-panel active" id="panel-summary"><div class="sd-wrap">' +
+        '<div class="sd-empty">Loading…</div>' +
+      '</div></div>' +
+      '<div class="sd-panel" id="panel-weekend"><div class="sd-wrap">' +
+        '<div class="sd-empty">Loading…</div>' +
+      '</div></div>';
+    attachTabHandlers(root);
 
-    var results = await Promise.all(work.map(function (w) { return fetchMovie(w.key); }));
-    work.forEach(function (w, i) { fillColumn(panel, w.colIdx, results[i]); });
+    var films = await Promise.all(cfg.films.map(fetchFilm));
 
-    // Re-run the page's bolding helper so the leader per row becomes bold
-    // once our data has populated the data-val attributes.
-    if (typeof window.applyBolding === 'function') {
-      try { window.applyBolding(); } catch (e) { /* ignore */ }
-    }
+    root.querySelector('#panel-summary .sd-wrap').innerHTML = renderSummary(films);
+    root.querySelector('#panel-weekend .sd-wrap').innerHTML = renderWeekend(films);
   }
 
   if (document.readyState === 'loading') {
