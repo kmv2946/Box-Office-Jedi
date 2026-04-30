@@ -1,26 +1,27 @@
 {
-  "updated": "2026-04-08T15:39:19.788815",
+  "updated": "2026-04-29T23:46:10.799446",
   "date_from": "2020-04-17",
   "date_to": "2020-04-19",
-  "week_number": 15,
+  "week_number": 16,
+  "is_estimates": false,
   "chart": [
     {
-      "rank": 0,
+      "rank": 1,
       "title": "Resistance",
       "movie_url": "/movie/Resistance-(France)",
       "distributor": "",
       "weekend_gross": 2490,
       "theaters": 1,
       "change_pct": null,
-      "is_new": true,
+      "is_new": false,
       "avg_per_theater": 2490,
-      "total_gross": 0,
+      "total_gross": 2490,
       "weeks_in_release": 1,
       "last_rank": null,
       "theater_change": null
     },
     {
-      "rank": 0,
+      "rank": 2,
       "title": "Swallow",
       "movie_url": "/movie/Swallow-(2019)",
       "distributor": "",
@@ -29,13 +30,13 @@
       "change_pct": 45.6,
       "is_new": false,
       "avg_per_theater": 2490,
-      "total_gross": 0,
-      "weeks_in_release": 4,
-      "last_rank": 0,
+      "total_gross": 31646,
+      "weeks_in_release": 7,
+      "last_rank": 4,
       "theater_change": 0
     },
     {
-      "rank": 0,
+      "rank": 3,
       "title": "The Other Lamb",
       "movie_url": "/movie/Other-Lamb-The",
       "distributor": "",
@@ -44,13 +45,13 @@
       "change_pct": -81.2,
       "is_new": false,
       "avg_per_theater": 265,
-      "total_gross": 0,
+      "total_gross": 4825,
       "weeks_in_release": 3,
-      "last_rank": 0,
+      "last_rank": 5,
       "theater_change": 0
     },
     {
-      "rank": 0,
+      "rank": 4,
       "title": "Monero Means Money: Cryptocurrency 101, Live from Leipzig",
       "movie_url": "/movie/Monero-Means-Money-Cryptocurrency-101-Live-from-Leipzig",
       "distributor": "",
@@ -59,25 +60,10 @@
       "change_pct": -98.0,
       "is_new": false,
       "avg_per_theater": 35,
-      "total_gross": 0,
+      "total_gross": 3570,
       "weeks_in_release": 2,
-      "last_rank": 0,
+      "last_rank": 2,
       "theater_change": -245
-    },
-    {
-      "rank": 0,
-      "title": "Reporting: 4",
-      "movie_url": "",
-      "distributor": "",
-      "weekend_gross": 5315,
-      "theaters": 0,
-      "change_pct": -70.0,
-      "is_new": false,
-      "avg_per_theater": 0,
-      "total_gross": 0,
-      "weeks_in_release": 3,
-      "last_rank": 0,
-      "theater_change": null
     }
   ]
 }

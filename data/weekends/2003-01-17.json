@@ -1,8 +1,9 @@
 {
-  "updated": "2026-04-17T06:37:31.929458",
+  "updated": "2026-04-29T21:34:53.652280",
   "date_from": "2003-01-17",
   "date_to": "2003-01-19",
-  "week_number": 2,
+  "week_number": 3,
+  "is_estimates": false,
   "chart": [
     {
       "rank": 1,
@@ -14,7 +15,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 5884,
-      "total_gross": 0,
+      "total_gross": 16580209,
       "weeks_in_release": 1,
       "last_rank": null,
       "theater_change": null
@@ -29,7 +30,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 5266,
-      "total_gross": 0,
+      "total_gross": 14369694,
       "weeks_in_release": 1,
       "last_rank": null,
       "theater_change": null
@@ -41,13 +42,13 @@
       "distributor": "",
       "weekend_gross": 11871330,
       "theaters": 2769,
-      "change_pct": null,
+      "change_pct": -32.4,
       "is_new": false,
       "avg_per_theater": 4287,
-      "total_gross": 0,
+      "total_gross": 35329299,
       "weeks_in_release": 2,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 1,
+      "theater_change": 3
     },
     {
       "rank": 4,
@@ -56,13 +57,13 @@
       "distributor": "",
       "weekend_gross": 10696726,
       "theaters": 3050,
-      "change_pct": null,
+      "change_pct": -26.9,
       "is_new": false,
       "avg_per_theater": 3507,
-      "total_gross": 0,
+      "total_gross": 136318125,
       "weeks_in_release": 4,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 3,
+      "theater_change": -175
     },
     {
       "rank": 5,
@@ -71,13 +72,13 @@
       "distributor": "",
       "weekend_gross": 10274388,
       "theaters": 3110,
-      "change_pct": null,
+      "change_pct": -30.4,
       "is_new": false,
       "avg_per_theater": 3304,
-      "total_gross": 0,
+      "total_gross": 300122052,
       "weeks_in_release": 5,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 2,
+      "theater_change": -367
     },
     {
       "rank": 6,
@@ -86,13 +87,13 @@
       "distributor": "",
       "weekend_gross": 7602133,
       "theaters": 557,
-      "change_pct": null,
+      "change_pct": 33.6,
       "is_new": false,
       "avg_per_theater": 13648,
-      "total_gross": 0,
+      "total_gross": 29403704,
       "weeks_in_release": 4,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 6,
+      "theater_change": 195
     },
     {
       "rank": 7,
@@ -104,7 +105,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 2779,
-      "total_gross": 0,
+      "total_gross": 6988749,
       "weeks_in_release": 1,
       "last_rank": null,
       "theater_change": null
@@ -116,13 +117,13 @@
       "distributor": "",
       "weekend_gross": 5669076,
       "theaters": 946,
-      "change_pct": null,
+      "change_pct": -11.5,
       "is_new": false,
       "avg_per_theater": 5993,
-      "total_gross": 0,
+      "total_gross": 30689435,
       "weeks_in_release": 6,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 5,
+      "theater_change": 81
     },
     {
       "rank": 9,
@@ -131,13 +132,13 @@
       "distributor": "",
       "weekend_gross": 4644924,
       "theaters": 402,
-      "change_pct": null,
+      "change_pct": 411.8,
       "is_new": false,
       "avg_per_theater": 11555,
-      "total_gross": 0,
+      "total_gross": 8428972,
       "weeks_in_release": 4,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 22,
+      "theater_change": 357
     },
     {
       "rank": 10,
@@ -146,13 +147,13 @@
       "distributor": "",
       "weekend_gross": 4009157,
       "theaters": 2240,
-      "change_pct": null,
+      "change_pct": -41.3,
       "is_new": false,
       "avg_per_theater": 1790,
-      "total_gross": 0,
+      "total_gross": 85611004,
       "weeks_in_release": 5,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 4,
+      "theater_change": -515
     },
     {
       "rank": 11,
@@ -161,13 +162,13 @@
       "distributor": "",
       "weekend_gross": 3712112,
       "theaters": 2170,
-      "change_pct": null,
+      "change_pct": -23.1,
       "is_new": false,
       "avg_per_theater": 1711,
-      "total_gross": 0,
+      "total_gross": 61399206,
       "weeks_in_release": 5,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 8,
+      "theater_change": -170
     },
     {
       "rank": 12,
@@ -176,13 +177,13 @@
       "distributor": "",
       "weekend_gross": 3113850,
       "theaters": 2171,
-      "change_pct": null,
+      "change_pct": -39.5,
       "is_new": false,
       "avg_per_theater": 1434,
-      "total_gross": 0,
+      "total_gross": 88971392,
       "weeks_in_release": 6,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 7,
+      "theater_change": -755
     },
     {
       "rank": 13,
@@ -191,13 +192,13 @@
       "distributor": "",
       "weekend_gross": 2776529,
       "theaters": 1021,
-      "change_pct": null,
+      "change_pct": -26.6,
       "is_new": false,
       "avg_per_theater": 2719,
-      "total_gross": 0,
+      "total_gross": 14947613,
       "weeks_in_release": 5,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 9,
+      "theater_change": 14
     },
     {
       "rank": 14,
@@ -206,13 +207,13 @@
       "distributor": "",
       "weekend_gross": 2291590,
       "theaters": 490,
-      "change_pct": null,
+      "change_pct": -19.1,
       "is_new": false,
       "avg_per_theater": 4677,
-      "total_gross": 0,
+      "total_gross": 7584011,
       "weeks_in_release": 5,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 11,
+      "theater_change": 0
     },
     {
       "rank": 15,
@@ -221,13 +222,13 @@
       "distributor": "",
       "weekend_gross": 2173330,
       "theaters": 1171,
-      "change_pct": null,
+      "change_pct": 3.4,
       "is_new": false,
       "avg_per_theater": 1856,
-      "total_gross": 0,
+      "total_gross": 234268965,
       "weeks_in_release": 40,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 16,
+      "theater_change": -41
     },
     {
       "rank": 16,
@@ -236,13 +237,13 @@
       "distributor": "",
       "weekend_gross": 1925304,
       "theaters": 822,
-      "change_pct": null,
+      "change_pct": -31.9,
       "is_new": false,
       "avg_per_theater": 2342,
-      "total_gross": 0,
+      "total_gross": 6633525,
       "weeks_in_release": 5,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 12,
+      "theater_change": 0
     },
     {
       "rank": 17,
@@ -251,13 +252,13 @@
       "distributor": "",
       "weekend_gross": 1825420,
       "theaters": 564,
-      "change_pct": null,
+      "change_pct": -30.8,
       "is_new": false,
       "avg_per_theater": 3237,
-      "total_gross": 0,
+      "total_gross": 12307166,
       "weeks_in_release": 7,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 14,
+      "theater_change": 4
     },
     {
       "rank": 18,
@@ -266,13 +267,13 @@
       "distributor": "",
       "weekend_gross": 1412259,
       "theaters": 1077,
-      "change_pct": null,
+      "change_pct": -41.4,
       "is_new": false,
       "avg_per_theater": 1311,
-      "total_gross": 0,
+      "total_gross": 257897677,
       "weeks_in_release": 10,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 15,
+      "theater_change": -473
     },
     {
       "rank": 19,
@@ -281,13 +282,13 @@
       "distributor": "",
       "weekend_gross": 1408213,
       "theaters": 1117,
-      "change_pct": null,
+      "change_pct": -49.8,
       "is_new": false,
       "avg_per_theater": 1261,
-      "total_gross": 0,
+      "total_gross": 53637010,
       "weeks_in_release": 6,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 13,
+      "theater_change": -417
     },
     {
       "rank": 20,
@@ -296,13 +297,13 @@
       "distributor": "",
       "weekend_gross": 1356826,
       "theaters": 2061,
-      "change_pct": null,
+      "change_pct": -52.3,
       "is_new": false,
       "avg_per_theater": 658,
-      "total_gross": 0,
+      "total_gross": 37707036,
       "weeks_in_release": 5,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 10,
+      "theater_change": -547
     },
     {
       "rank": 21,
@@ -311,13 +312,13 @@
       "distributor": "",
       "weekend_gross": 1263509,
       "theaters": 258,
-      "change_pct": null,
+      "change_pct": 23.9,
       "is_new": false,
       "avg_per_theater": 4897,
-      "total_gross": 0,
+      "total_gross": 4386556,
       "weeks_in_release": 4,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 20,
+      "theater_change": 97
     },
     {
       "rank": 22,
@@ -326,13 +327,13 @@
       "distributor": "",
       "weekend_gross": 930215,
       "theaters": 975,
-      "change_pct": null,
+      "change_pct": -37.6,
       "is_new": false,
       "avg_per_theater": 954,
-      "total_gross": 0,
+      "total_gross": 157698762,
       "weeks_in_release": 9,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 18,
+      "theater_change": -205
     },
     {
       "rank": 23,
@@ -341,13 +342,13 @@
       "distributor": "",
       "weekend_gross": 911671,
       "theaters": 66,
-      "change_pct": null,
+      "change_pct": -2.1,
       "is_new": false,
       "avg_per_theater": 13813,
-      "total_gross": 0,
+      "total_gross": 320563421,
       "weeks_in_release": 420,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 21,
+      "theater_change": 0
     },
     {
       "rank": 24,
@@ -356,13 +357,13 @@
       "distributor": "",
       "weekend_gross": 556106,
       "theaters": 666,
-      "change_pct": null,
+      "change_pct": -67.6,
       "is_new": false,
       "avg_per_theater": 835,
-      "total_gross": 0,
+      "total_gross": 33595715,
       "weeks_in_release": 6,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 17,
+      "theater_change": -935
     },
     {
       "rank": 25,
@@ -371,13 +372,13 @@
       "distributor": "",
       "weekend_gross": 433998,
       "theaters": 264,
-      "change_pct": null,
+      "change_pct": -12.9,
       "is_new": false,
       "avg_per_theater": 1644,
-      "total_gross": 0,
+      "total_gross": 12706263,
       "weeks_in_release": 11,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 24,
+      "theater_change": -27
     },
     {
       "rank": 26,
@@ -386,13 +387,13 @@
       "distributor": "",
       "weekend_gross": 401462,
       "theaters": 1022,
-      "change_pct": null,
+      "change_pct": -61.3,
       "is_new": false,
       "avg_per_theater": 393,
-      "total_gross": 0,
+      "total_gross": 42476927,
       "weeks_in_release": 6,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 19,
+      "theater_change": -755
     },
     {
       "rank": 27,
@@ -401,13 +402,13 @@
       "distributor": "",
       "weekend_gross": 368672,
       "theaters": 512,
-      "change_pct": null,
+      "change_pct": -32.3,
       "is_new": false,
       "avg_per_theater": 720,
-      "total_gross": 0,
+      "total_gross": 37179160,
       "weeks_in_release": 8,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 23,
+      "theater_change": -247
     },
     {
       "rank": 28,
@@ -416,13 +417,13 @@
       "distributor": "",
       "weekend_gross": 342826,
       "theaters": 366,
-      "change_pct": null,
+      "change_pct": 102.5,
       "is_new": false,
       "avg_per_theater": 937,
-      "total_gross": 0,
+      "total_gross": 127941835,
       "weeks_in_release": 14,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 36,
+      "theater_change": 171
     },
     {
       "rank": 29,
@@ -431,13 +432,13 @@
       "distributor": "",
       "weekend_gross": 341177,
       "theaters": 213,
-      "change_pct": null,
+      "change_pct": -3.2,
       "is_new": false,
       "avg_per_theater": 1602,
-      "total_gross": 0,
+      "total_gross": 17231700,
       "weeks_in_release": 15,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 28,
+      "theater_change": 9
     },
     {
       "rank": 30,
@@ -446,13 +447,13 @@
       "distributor": "",
       "weekend_gross": 328518,
       "theaters": 66,
-      "change_pct": null,
+      "change_pct": -14.3,
       "is_new": false,
       "avg_per_theater": 4978,
-      "total_gross": 0,
+      "total_gross": 3422976,
       "weeks_in_release": 9,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 25,
+      "theater_change": 1
     },
     {
       "rank": 31,
@@ -461,13 +462,13 @@
       "distributor": "",
       "weekend_gross": 319110,
       "theaters": 200,
-      "change_pct": null,
+      "change_pct": -16.4,
       "is_new": false,
       "avg_per_theater": 1596,
-      "total_gross": 0,
+      "total_gross": 22484106,
       "weeks_in_release": 13,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 26,
+      "theater_change": -37
     },
     {
       "rank": 32,
@@ -476,13 +477,13 @@
       "distributor": "",
       "weekend_gross": 286715,
       "theaters": 94,
-      "change_pct": null,
+      "change_pct": -10.9,
       "is_new": false,
       "avg_per_theater": 3050,
-      "total_gross": 0,
+      "total_gross": 2616136,
       "weeks_in_release": 8,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 30,
+      "theater_change": 0
     },
     {
       "rank": 33,
@@ -491,13 +492,13 @@
       "distributor": "",
       "weekend_gross": 205000,
       "theaters": 70,
-      "change_pct": null,
+      "change_pct": -24.0,
       "is_new": false,
       "avg_per_theater": 2929,
-      "total_gross": 0,
+      "total_gross": 5715000,
       "weeks_in_release": 8,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 32,
+      "theater_change": -7
     },
     {
       "rank": 34,
@@ -506,13 +507,13 @@
       "distributor": "",
       "weekend_gross": 188190,
       "theaters": 246,
-      "change_pct": null,
+      "change_pct": -12.9,
       "is_new": false,
       "avg_per_theater": 765,
-      "total_gross": 0,
+      "total_gross": 115953495,
       "weeks_in_release": 11,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 35,
+      "theater_change": -79
     },
     {
       "rank": 35,
@@ -521,13 +522,13 @@
       "distributor": "",
       "weekend_gross": 180629,
       "theaters": 296,
-      "change_pct": null,
+      "change_pct": -40.0,
       "is_new": false,
       "avg_per_theater": 610,
-      "total_gross": 0,
+      "total_gross": 139016718,
       "weeks_in_release": 12,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 31,
+      "theater_change": -254
     },
     {
       "rank": 36,
@@ -536,13 +537,13 @@
       "distributor": "",
       "weekend_gross": 172965,
       "theaters": 93,
-      "change_pct": null,
+      "change_pct": -26.9,
       "is_new": false,
       "avg_per_theater": 1860,
-      "total_gross": 0,
+      "total_gross": 813916,
       "weeks_in_release": 4,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 33,
+      "theater_change": -7
     },
     {
       "rank": 37,
@@ -551,13 +552,13 @@
       "distributor": "",
       "weekend_gross": 172575,
       "theaters": 219,
-      "change_pct": null,
+      "change_pct": -25.4,
       "is_new": false,
       "avg_per_theater": 788,
-      "total_gross": 0,
+      "total_gross": 126721462,
       "weeks_in_release": 17,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 34,
+      "theater_change": -48
     },
     {
       "rank": 38,
@@ -566,13 +567,13 @@
       "distributor": "",
       "weekend_gross": 154275,
       "theaters": 92,
-      "change_pct": null,
+      "change_pct": -3.0,
       "is_new": false,
       "avg_per_theater": 1677,
-      "total_gross": 0,
+      "total_gross": 5036231,
       "weeks_in_release": 10,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 37,
+      "theater_change": -3
     },
     {
       "rank": 39,
@@ -581,13 +582,13 @@
       "distributor": "",
       "weekend_gross": 142905,
       "theaters": 42,
-      "change_pct": null,
+      "change_pct": 63.8,
       "is_new": false,
       "avg_per_theater": 3402,
-      "total_gross": 0,
+      "total_gross": 31138395,
       "weeks_in_release": 40,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 42,
+      "theater_change": 6
     },
     {
       "rank": 40,
@@ -596,13 +597,13 @@
       "distributor": "",
       "weekend_gross": 106001,
       "theaters": 142,
-      "change_pct": null,
+      "change_pct": -71.7,
       "is_new": false,
       "avg_per_theater": 746,
-      "total_gross": 0,
+      "total_gross": 31754138,
       "weeks_in_release": 7,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 27,
+      "theater_change": -360
     },
     {
       "rank": 41,
@@ -611,13 +612,13 @@
       "distributor": "",
       "weekend_gross": 103725,
       "theaters": 133,
-      "change_pct": null,
+      "change_pct": -68.5,
       "is_new": false,
       "avg_per_theater": 780,
-      "total_gross": 0,
+      "total_gross": 17418270,
       "weeks_in_release": 7,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 29,
+      "theater_change": -191
     },
     {
       "rank": 42,
@@ -629,7 +630,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 17658,
-      "total_gross": 0,
+      "total_gross": 88292,
       "weeks_in_release": 1,
       "last_rank": null,
       "theater_change": null
@@ -641,13 +642,13 @@
       "distributor": "",
       "weekend_gross": 82430,
       "theaters": 9,
-      "change_pct": null,
+      "change_pct": 29.7,
       "is_new": false,
       "avg_per_theater": 9159,
-      "total_gross": 0,
+      "total_gross": 539241,
       "weeks_in_release": 9,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 48,
+      "theater_change": 2
     },
     {
       "rank": 44,
@@ -656,13 +657,13 @@
       "distributor": "",
       "weekend_gross": 76913,
       "theaters": 5,
-      "change_pct": null,
+      "change_pct": -6.0,
       "is_new": false,
       "avg_per_theater": 15383,
-      "total_gross": 0,
+      "total_gross": 461916,
       "weeks_in_release": 3,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 43,
+      "theater_change": 0
     },
     {
       "rank": 45,
@@ -671,13 +672,13 @@
       "distributor": "",
       "weekend_gross": 71100,
       "theaters": 81,
-      "change_pct": null,
+      "change_pct": -26.0,
       "is_new": false,
       "avg_per_theater": 878,
-      "total_gross": 0,
+      "total_gross": 5614086,
       "weeks_in_release": 14,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 41,
+      "theater_change": -13
     },
     {
       "rank": 46,
@@ -689,7 +690,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 582,
-      "total_gross": 0,
+      "total_gross": 23540328,
       "weeks_in_release": 8,
       "last_rank": null,
       "theater_change": null
@@ -701,13 +702,13 @@
       "distributor": "",
       "weekend_gross": 53209,
       "theaters": 103,
-      "change_pct": null,
+      "change_pct": -45.9,
       "is_new": false,
       "avg_per_theater": 517,
-      "total_gross": 0,
+      "total_gross": 32831553,
       "weeks_in_release": 9,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 39,
+      "theater_change": -40
     },
     {
       "rank": 48,
@@ -719,7 +720,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 675,
-      "total_gross": 0,
+      "total_gross": 2882062,
       "weeks_in_release": 27,
       "last_rank": null,
       "theater_change": null
@@ -731,13 +732,13 @@
       "distributor": "",
       "weekend_gross": 47116,
       "theaters": 82,
-      "change_pct": null,
+      "change_pct": -35.4,
       "is_new": false,
       "avg_per_theater": 575,
-      "total_gross": 0,
+      "total_gross": 30079316,
       "weeks_in_release": 13,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 46,
+      "theater_change": -47
     },
     {
       "rank": 50,
@@ -749,7 +750,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 5811,
-      "total_gross": 0,
+      "total_gross": 120983,
       "weeks_in_release": 17,
       "last_rank": null,
       "theater_change": null
@@ -761,13 +762,13 @@
       "distributor": "",
       "weekend_gross": 43476,
       "theaters": 71,
-      "change_pct": null,
+      "change_pct": -34.3,
       "is_new": false,
       "avg_per_theater": 612,
-      "total_gross": 0,
+      "total_gross": 227939127,
       "weeks_in_release": 25,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 47,
+      "theater_change": -19
     },
     {
       "rank": 52,
@@ -776,13 +777,13 @@
       "distributor": "",
       "weekend_gross": 40031,
       "theaters": 63,
-      "change_pct": null,
+      "change_pct": -58.4,
       "is_new": false,
       "avg_per_theater": 635,
-      "total_gross": 0,
+      "total_gross": 1296631,
       "weeks_in_release": 6,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 40,
+      "theater_change": -44
     },
     {
       "rank": 53,
@@ -791,13 +792,13 @@
       "distributor": "",
       "weekend_gross": 35715,
       "theaters": 76,
-      "change_pct": null,
+      "change_pct": -54.3,
       "is_new": false,
       "avg_per_theater": 470,
-      "total_gross": 0,
+      "total_gross": 14028385,
       "weeks_in_release": 9,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 44,
+      "theater_change": -92
     },
     {
       "rank": 54,
@@ -806,13 +807,13 @@
       "distributor": "",
       "weekend_gross": 34768,
       "theaters": 66,
-      "change_pct": null,
+      "change_pct": -23.8,
       "is_new": false,
       "avg_per_theater": 527,
-      "total_gross": 0,
+      "total_gross": 33561137,
       "weeks_in_release": 12,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 52,
+      "theater_change": -36
     },
     {
       "rank": 55,
@@ -821,13 +822,13 @@
       "distributor": "",
       "weekend_gross": 34365,
       "theaters": 4,
-      "change_pct": null,
+      "change_pct": -38.4,
       "is_new": false,
       "avg_per_theater": 8591,
-      "total_gross": 0,
+      "total_gross": 338062,
       "weeks_in_release": 6,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 50,
+      "theater_change": 1
     },
     {
       "rank": 56,
@@ -836,13 +837,13 @@
       "distributor": "",
       "weekend_gross": 33501,
       "theaters": 73,
-      "change_pct": null,
+      "change_pct": -55.1,
       "is_new": false,
       "avg_per_theater": 459,
-      "total_gross": 0,
+      "total_gross": 19105191,
       "weeks_in_release": 15,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 45,
+      "theater_change": -85
     },
     {
       "rank": 57,
@@ -851,13 +852,13 @@
       "distributor": "",
       "weekend_gross": 31295,
       "theaters": 102,
-      "change_pct": null,
+      "change_pct": -46.5,
       "is_new": false,
       "avg_per_theater": 307,
-      "total_gross": 0,
+      "total_gross": 25548201,
       "weeks_in_release": 16,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 49,
+      "theater_change": -70
     },
     {
       "rank": 58,
@@ -866,13 +867,13 @@
       "distributor": "",
       "weekend_gross": 30000,
       "theaters": 38,
-      "change_pct": null,
+      "change_pct": -3.2,
       "is_new": false,
       "avg_per_theater": 789,
-      "total_gross": 0,
+      "total_gross": 85803000,
       "weeks_in_release": 24,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 56,
+      "theater_change": -27
     },
     {
       "rank": 59,
@@ -881,13 +882,13 @@
       "distributor": "",
       "weekend_gross": 29342,
       "theaters": 5,
-      "change_pct": null,
+      "change_pct": -2.2,
       "is_new": false,
       "avg_per_theater": 5868,
-      "total_gross": 0,
+      "total_gross": 14786444,
       "weeks_in_release": 142,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 57,
+      "theater_change": 0
     },
     {
       "rank": 60,
@@ -896,13 +897,13 @@
       "distributor": "",
       "weekend_gross": 28197,
       "theaters": 19,
-      "change_pct": null,
+      "change_pct": -40.2,
       "is_new": false,
       "avg_per_theater": 1484,
-      "total_gross": 0,
+      "total_gross": 1041228,
       "weeks_in_release": 5,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 51,
+      "theater_change": -6
     },
     {
       "rank": 61,
@@ -911,13 +912,13 @@
       "distributor": "",
       "weekend_gross": 25248,
       "theaters": 44,
-      "change_pct": null,
+      "change_pct": -8.0,
       "is_new": false,
       "avg_per_theater": 574,
-      "total_gross": 0,
+      "total_gross": 1440367,
       "weeks_in_release": 10,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 58,
+      "theater_change": -4
     },
     {
       "rank": 62,
@@ -926,13 +927,13 @@
       "distributor": "",
       "weekend_gross": 24000,
       "theaters": 30,
-      "change_pct": null,
+      "change_pct": 4.3,
       "is_new": false,
       "avg_per_theater": 800,
-      "total_gross": 0,
+      "total_gross": 50575000,
       "weeks_in_release": 17,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 62,
+      "theater_change": -22
     },
     {
       "rank": 63,
@@ -941,13 +942,13 @@
       "distributor": "",
       "weekend_gross": 21808,
       "theaters": 25,
-      "change_pct": null,
+      "change_pct": -49.9,
       "is_new": false,
       "avg_per_theater": 872,
-      "total_gross": 0,
+      "total_gross": 195477,
       "weeks_in_release": 6,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 53,
+      "theater_change": -2
     },
     {
       "rank": 64,
@@ -959,7 +960,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 3059,
-      "total_gross": 0,
+      "total_gross": 13861485,
       "weeks_in_release": 100,
       "last_rank": null,
       "theater_change": null
@@ -971,13 +972,13 @@
       "distributor": "",
       "weekend_gross": 20931,
       "theaters": 22,
-      "change_pct": null,
+      "change_pct": -6.4,
       "is_new": false,
       "avg_per_theater": 951,
-      "total_gross": 0,
+      "total_gross": 3949075,
       "weeks_in_release": 18,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 63,
+      "theater_change": 0
     },
     {
       "rank": 66,
@@ -986,13 +987,13 @@
       "distributor": "",
       "weekend_gross": 18724,
       "theaters": 1,
-      "change_pct": null,
+      "change_pct": 13.2,
       "is_new": false,
       "avg_per_theater": 18724,
-      "total_gross": 0,
+      "total_gross": 872679,
       "weeks_in_release": 2,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 67,
+      "theater_change": 0
     },
     {
       "rank": 67,
@@ -1001,13 +1002,13 @@
       "distributor": "",
       "weekend_gross": 17547,
       "theaters": 11,
-      "change_pct": null,
+      "change_pct": 3.5,
       "is_new": false,
       "avg_per_theater": 1595,
-      "total_gross": 0,
+      "total_gross": 135569,
       "weeks_in_release": 4,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 66,
+      "theater_change": 5
     },
     {
       "rank": 68,
@@ -1016,13 +1017,13 @@
       "distributor": "",
       "weekend_gross": 17182,
       "theaters": 1,
-      "change_pct": null,
+      "change_pct": 15.8,
       "is_new": false,
       "avg_per_theater": 17182,
-      "total_gross": 0,
+      "total_gross": 48234,
       "weeks_in_release": 2,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 70,
+      "theater_change": 0
     },
     {
       "rank": 69,
@@ -1034,7 +1035,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 16492,
-      "total_gross": 0,
+      "total_gross": 67025,
       "weeks_in_release": 12,
       "last_rank": null,
       "theater_change": null
@@ -1046,13 +1047,13 @@
       "distributor": "",
       "weekend_gross": 16125,
       "theaters": 3,
-      "change_pct": null,
+      "change_pct": 128.5,
       "is_new": false,
       "avg_per_theater": 5375,
-      "total_gross": 0,
+      "total_gross": 42137097,
       "weeks_in_release": 222,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 76,
+      "theater_change": 1
     },
     {
       "rank": 71,
@@ -1061,13 +1062,13 @@
       "distributor": "",
       "weekend_gross": 16033,
       "theaters": 20,
-      "change_pct": null,
+      "change_pct": -22.5,
       "is_new": false,
       "avg_per_theater": 802,
-      "total_gross": 0,
+      "total_gross": 5523342,
       "weeks_in_release": 18,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 64,
+      "theater_change": -3
     },
     {
       "rank": 72,
@@ -1076,13 +1077,13 @@
       "distributor": "",
       "weekend_gross": 15481,
       "theaters": 30,
-      "change_pct": null,
+      "change_pct": -51.8,
       "is_new": false,
       "avg_per_theater": 516,
-      "total_gross": 0,
+      "total_gross": 75772620,
       "weeks_in_release": 19,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 55,
+      "theater_change": -37
     },
     {
       "rank": 73,
@@ -1094,7 +1095,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 13228,
-      "total_gross": 0,
+      "total_gross": 13228,
       "weeks_in_release": 1,
       "last_rank": null,
       "theater_change": null
@@ -1106,13 +1107,13 @@
       "distributor": "",
       "weekend_gross": 11978,
       "theaters": 4,
-      "change_pct": null,
+      "change_pct": 68.3,
       "is_new": false,
       "avg_per_theater": 2994,
-      "total_gross": 0,
+      "total_gross": 90415,
       "weeks_in_release": 5,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 75,
+      "theater_change": 3
     },
     {
       "rank": 75,
@@ -1121,13 +1122,13 @@
       "distributor": "",
       "weekend_gross": 11697,
       "theaters": 11,
-      "change_pct": null,
+      "change_pct": 66.4,
       "is_new": false,
       "avg_per_theater": 1063,
-      "total_gross": 0,
+      "total_gross": 1431625,
       "weeks_in_release": 17,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 77,
+      "theater_change": 4
     },
     {
       "rank": 76,
@@ -1136,13 +1137,13 @@
       "distributor": "",
       "weekend_gross": 10938,
       "theaters": 24,
-      "change_pct": null,
+      "change_pct": -54.4,
       "is_new": false,
       "avg_per_theater": 456,
-      "total_gross": 0,
+      "total_gross": 27356292,
       "weeks_in_release": 15,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 61,
+      "theater_change": -18
     },
     {
       "rank": 77,
@@ -1151,13 +1152,13 @@
       "distributor": "",
       "weekend_gross": 10637,
       "theaters": 40,
-      "change_pct": null,
+      "change_pct": -91.0,
       "is_new": false,
       "avg_per_theater": 266,
-      "total_gross": 0,
+      "total_gross": 3673005,
       "weeks_in_release": 4,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 38,
+      "theater_change": -419
     },
     {
       "rank": 78,
@@ -1169,7 +1170,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 3435,
-      "total_gross": 0,
+      "total_gross": 377635,
       "weeks_in_release": 9,
       "last_rank": null,
       "theater_change": null
@@ -1181,13 +1182,13 @@
       "distributor": "",
       "weekend_gross": 10144,
       "theaters": 19,
-      "change_pct": null,
+      "change_pct": -60.9,
       "is_new": false,
       "avg_per_theater": 534,
-      "total_gross": 0,
+      "total_gross": 765540,
       "weeks_in_release": 9,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 59,
+      "theater_change": -6
     },
     {
       "rank": 80,
@@ -1199,7 +1200,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 3300,
-      "total_gross": 0,
+      "total_gross": 5603902,
       "weeks_in_release": 66,
       "last_rank": null,
       "theater_change": null
@@ -1214,7 +1215,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 814,
-      "total_gross": 0,
+      "total_gross": 4748943,
       "weeks_in_release": 19,
       "last_rank": null,
       "theater_change": null
@@ -1229,7 +1230,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 1884,
-      "total_gross": 0,
+      "total_gross": 9421,
       "weeks_in_release": 1,
       "last_rank": null,
       "theater_change": null
@@ -1244,7 +1245,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 4540,
-      "total_gross": 0,
+      "total_gross": 306475,
       "weeks_in_release": 17,
       "last_rank": null,
       "theater_change": null
@@ -1259,7 +1260,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 4438,
-      "total_gross": 0,
+      "total_gross": 23470,
       "weeks_in_release": 1,
       "last_rank": null,
       "theater_change": null
@@ -1271,13 +1272,13 @@
       "distributor": "",
       "weekend_gross": 8106,
       "theaters": 18,
-      "change_pct": null,
+      "change_pct": -30.5,
       "is_new": false,
       "avg_per_theater": 450,
-      "total_gross": 0,
+      "total_gross": 14895981,
       "weeks_in_release": 8,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 73,
+      "theater_change": -6
     },
     {
       "rank": 86,
@@ -1289,7 +1290,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 3994,
-      "total_gross": 0,
+      "total_gross": 17746,
       "weeks_in_release": 37,
       "last_rank": null,
       "theater_change": null
@@ -1301,13 +1302,13 @@
       "distributor": "",
       "weekend_gross": 6983,
       "theaters": 9,
-      "change_pct": null,
+      "change_pct": -41.3,
       "is_new": false,
       "avg_per_theater": 776,
-      "total_gross": 0,
+      "total_gross": 1547792,
       "weeks_in_release": 10,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 71,
+      "theater_change": -2
     },
     {
       "rank": 88,
@@ -1316,13 +1317,13 @@
       "distributor": "",
       "weekend_gross": 6503,
       "theaters": 3,
-      "change_pct": null,
+      "change_pct": -7.4,
       "is_new": false,
       "avg_per_theater": 2168,
-      "total_gross": 0,
+      "total_gross": 152721,
       "weeks_in_release": 18,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 78,
+      "theater_change": 0
     },
     {
       "rank": 89,
@@ -1334,7 +1335,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 6354,
-      "total_gross": 0,
+      "total_gross": 6354,
       "weeks_in_release": 1,
       "last_rank": null,
       "theater_change": null
@@ -1349,7 +1350,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 3000,
-      "total_gross": 0,
+      "total_gross": 6703512,
       "weeks_in_release": 204,
       "last_rank": null,
       "theater_change": null
@@ -1364,7 +1365,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 1690,
-      "total_gross": 0,
+      "total_gross": 184255,
       "weeks_in_release": 13,
       "last_rank": null,
       "theater_change": null
@@ -1376,13 +1377,13 @@
       "distributor": "",
       "weekend_gross": 5012,
       "theaters": 2,
-      "change_pct": null,
+      "change_pct": -57.6,
       "is_new": false,
       "avg_per_theater": 2506,
-      "total_gross": 0,
+      "total_gross": 66150,
       "weeks_in_release": 3,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 72,
+      "theater_change": -3
     },
     {
       "rank": 93,
@@ -1391,13 +1392,13 @@
       "distributor": "",
       "weekend_gross": 4963,
       "theaters": 2,
-      "change_pct": null,
+      "change_pct": 76.2,
       "is_new": false,
       "avg_per_theater": 2482,
-      "total_gross": 0,
+      "total_gross": 317259,
       "weeks_in_release": 10,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 84,
+      "theater_change": -2
     },
     {
       "rank": 94,
@@ -1409,7 +1410,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 307,
-      "total_gross": 0,
+      "total_gross": 1260761,
       "weeks_in_release": 13,
       "last_rank": null,
       "theater_change": null
@@ -1424,7 +1425,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 1462,
-      "total_gross": 0,
+      "total_gross": 596237,
       "weeks_in_release": 28,
       "last_rank": null,
       "theater_change": null
@@ -1436,13 +1437,13 @@
       "distributor": "",
       "weekend_gross": 4263,
       "theaters": 10,
-      "change_pct": null,
+      "change_pct": -82.3,
       "is_new": false,
       "avg_per_theater": 426,
-      "total_gross": 0,
+      "total_gross": 2058259,
       "weeks_in_release": 14,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 60,
+      "theater_change": -21
     },
     {
       "rank": 97,
@@ -1451,13 +1452,13 @@
       "distributor": "",
       "weekend_gross": 3936,
       "theaters": 2,
-      "change_pct": null,
+      "change_pct": 10.1,
       "is_new": false,
       "avg_per_theater": 1968,
-      "total_gross": 0,
+      "total_gross": 173449023,
       "weeks_in_release": 395,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 80,
+      "theater_change": -2
     },
     {
       "rank": 98,
@@ -1466,13 +1467,13 @@
       "distributor": "",
       "weekend_gross": 3830,
       "theaters": 3,
-      "change_pct": null,
+      "change_pct": 140.9,
       "is_new": false,
       "avg_per_theater": 1277,
-      "total_gross": 0,
+      "total_gross": 13899201,
       "weeks_in_release": 168,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 89,
+      "theater_change": 1
     },
     {
       "rank": 99,
@@ -1481,13 +1482,13 @@
       "distributor": "",
       "weekend_gross": 3592,
       "theaters": 2,
-      "change_pct": null,
+      "change_pct": -76.1,
       "is_new": false,
       "avg_per_theater": 1796,
-      "total_gross": 0,
+      "total_gross": 423543,
       "weeks_in_release": 17,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 69,
+      "theater_change": -6
     },
     {
       "rank": 100,
@@ -1496,13 +1497,13 @@
       "distributor": "",
       "weekend_gross": 3549,
       "theaters": 11,
-      "change_pct": null,
+      "change_pct": -40.1,
       "is_new": false,
       "avg_per_theater": 323,
-      "total_gross": 0,
+      "total_gross": 4158045,
       "weeks_in_release": 23,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 79,
+      "theater_change": -3
     },
     {
       "rank": 101,
@@ -1514,7 +1515,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 2812,
-      "total_gross": 0,
+      "total_gross": 5344,
       "weeks_in_release": 1,
       "last_rank": null,
       "theater_change": null
@@ -1529,7 +1530,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 1402,
-      "total_gross": 0,
+      "total_gross": 3367727,
       "weeks_in_release": 84,
       "last_rank": null,
       "theater_change": null
@@ -1544,7 +1545,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 341,
-      "total_gross": 0,
+      "total_gross": 610418,
       "weeks_in_release": 17,
       "last_rank": null,
       "theater_change": null
@@ -1559,7 +1560,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 2367,
-      "total_gross": 0,
+      "total_gross": 22867,
       "weeks_in_release": 7,
       "last_rank": null,
       "theater_change": null
@@ -1571,13 +1572,13 @@
       "distributor": "",
       "weekend_gross": 2108,
       "theaters": 1,
-      "change_pct": null,
+      "change_pct": -37.0,
       "is_new": false,
       "avg_per_theater": 2108,
-      "total_gross": 0,
+      "total_gross": 189498,
       "weeks_in_release": 21,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 82,
+      "theater_change": 0
     },
     {
       "rank": 106,
@@ -1589,7 +1590,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 2100,
-      "total_gross": 0,
+      "total_gross": 4244704,
       "weeks_in_release": 145,
       "last_rank": null,
       "theater_change": null
@@ -1604,7 +1605,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 2030,
-      "total_gross": 0,
+      "total_gross": 18332800,
       "weeks_in_release": 289,
       "last_rank": null,
       "theater_change": null
@@ -1616,13 +1617,13 @@
       "distributor": "",
       "weekend_gross": 2010,
       "theaters": 3,
-      "change_pct": null,
+      "change_pct": -42.6,
       "is_new": false,
       "avg_per_theater": 670,
-      "total_gross": 0,
+      "total_gross": 25296447,
       "weeks_in_release": 15,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 81,
+      "theater_change": -5
     },
     {
       "rank": 109,
@@ -1631,13 +1632,13 @@
       "distributor": "",
       "weekend_gross": 1930,
       "theaters": 7,
-      "change_pct": null,
+      "change_pct": -6.5,
       "is_new": false,
       "avg_per_theater": 276,
-      "total_gross": 0,
+      "total_gross": 768045,
       "weeks_in_release": 16,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 87,
+      "theater_change": 3
     },
     {
       "rank": 110,
@@ -1649,7 +1650,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 1850,
-      "total_gross": 0,
+      "total_gross": 113888,
       "weeks_in_release": 28,
       "last_rank": null,
       "theater_change": null
@@ -1664,7 +1665,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 1670,
-      "total_gross": 0,
+      "total_gross": 15955289,
       "weeks_in_release": 379,
       "last_rank": null,
       "theater_change": null
@@ -1679,7 +1680,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 1535,
-      "total_gross": 0,
+      "total_gross": 9171,
       "weeks_in_release": 14,
       "last_rank": null,
       "theater_change": null
@@ -1694,7 +1695,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 1501,
-      "total_gross": 0,
+      "total_gross": 1501,
       "weeks_in_release": 1,
       "last_rank": null,
       "theater_change": null
@@ -1706,13 +1707,13 @@
       "distributor": "",
       "weekend_gross": 1499,
       "theaters": 2,
-      "change_pct": null,
+      "change_pct": 116.0,
       "is_new": false,
       "avg_per_theater": 750,
-      "total_gross": 0,
+      "total_gross": 236837,
       "weeks_in_release": 20,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 92,
+      "theater_change": 0
     },
     {
       "rank": 115,
@@ -1724,7 +1725,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 720,
-      "total_gross": 0,
+      "total_gross": 12350681,
       "weeks_in_release": 196,
       "last_rank": null,
       "theater_change": null
@@ -1739,7 +1740,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 1187,
-      "total_gross": 0,
+      "total_gross": 20834,
       "weeks_in_release": 9,
       "last_rank": null,
       "theater_change": null
@@ -1754,7 +1755,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 511,
-      "total_gross": 0,
+      "total_gross": 1007370,
       "weeks_in_release": 89,
       "last_rank": null,
       "theater_change": null
@@ -1769,7 +1770,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 492,
-      "total_gross": 0,
+      "total_gross": 70646,
       "weeks_in_release": 1,
       "last_rank": null,
       "theater_change": null
@@ -1784,7 +1785,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 983,
-      "total_gross": 0,
+      "total_gross": 118450,
       "weeks_in_release": 42,
       "last_rank": null,
       "theater_change": null
@@ -1796,13 +1797,13 @@
       "distributor": "",
       "weekend_gross": 946,
       "theaters": 2,
-      "change_pct": null,
+      "change_pct": -35.2,
       "is_new": false,
       "avg_per_theater": 473,
-      "total_gross": 0,
+      "total_gross": 4039,
       "weeks_in_release": 2,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 91,
+      "theater_change": 0
     },
     {
       "rank": 121,
@@ -1811,13 +1812,13 @@
       "distributor": "",
       "weekend_gross": 890,
       "theaters": 1,
-      "change_pct": null,
+      "change_pct": -70.2,
       "is_new": false,
       "avg_per_theater": 890,
-      "total_gross": 0,
+      "total_gross": 3776273,
       "weeks_in_release": 37,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 83,
+      "theater_change": -3
     },
     {
       "rank": 122,
@@ -1826,13 +1827,13 @@
       "distributor": "",
       "weekend_gross": 855,
       "theaters": 1,
-      "change_pct": null,
+      "change_pct": 43.9,
       "is_new": false,
       "avg_per_theater": 855,
-      "total_gross": 0,
+      "total_gross": 2990981,
       "weeks_in_release": 78,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 93,
+      "theater_change": -2
     },
     {
       "rank": 123,
@@ -1844,7 +1845,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 827,
-      "total_gross": 0,
+      "total_gross": 395661,
       "weeks_in_release": 26,
       "last_rank": null,
       "theater_change": null
@@ -1859,7 +1860,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 763,
-      "total_gross": 0,
+      "total_gross": 15053652,
       "weeks_in_release": 405,
       "last_rank": null,
       "theater_change": null
@@ -1874,7 +1875,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 729,
-      "total_gross": 0,
+      "total_gross": 187733,
       "weeks_in_release": 19,
       "last_rank": null,
       "theater_change": null
@@ -1889,7 +1890,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 717,
-      "total_gross": 0,
+      "total_gross": 74199,
       "weeks_in_release": 9,
       "last_rank": null,
       "theater_change": null
@@ -1904,7 +1905,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 549,
-      "total_gross": 0,
+      "total_gross": 2294028,
       "weeks_in_release": 238,
       "last_rank": null,
       "theater_change": null
@@ -1919,7 +1920,7 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 264,
-      "total_gross": 0,
+      "total_gross": 529,
       "weeks_in_release": 1,
       "last_rank": null,
       "theater_change": null
@@ -1931,13 +1932,13 @@
       "distributor": "",
       "weekend_gross": 461,
       "theaters": 1,
-      "change_pct": null,
+      "change_pct": -19.4,
       "is_new": false,
       "avg_per_theater": 461,
-      "total_gross": 0,
+      "total_gross": 55331,
       "weeks_in_release": 28,
-      "last_rank": null,
-      "theater_change": null
+      "last_rank": 94,
+      "theater_change": 0
     },
     {
       "rank": 130,
@@ -1949,23 +1950,8 @@
       "change_pct": null,
       "is_new": false,
       "avg_per_theater": 80,
-      "total_gross": 0,
+      "total_gross": 218947,
       "weeks_in_release": 37,
-      "last_rank": null,
-      "theater_change": null
-    },
-    {
-      "rank": 0,
-      "title": "Reporting: 130",
-      "movie_url": "",
-      "distributor": "",
-      "weekend_gross": 124014219,
-      "theaters": 0,
-      "change_pct": null,
-      "is_new": true,
-      "avg_per_theater": 0,
-      "total_gross": 0,
-      "weeks_in_release": 0,
       "last_rank": null,
       "theater_change": null
     }

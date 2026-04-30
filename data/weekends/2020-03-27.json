@@ -1,8 +1,9 @@
 {
-  "updated": "2026-04-08T15:39:13.587816",
+  "updated": "2026-04-29T23:45:53.633179",
   "date_from": "2020-03-27",
   "date_to": "2020-03-29",
-  "week_number": 12,
+  "week_number": 13,
+  "is_estimates": false,
   "chart": [
     {
       "rank": 1,
@@ -14,9 +15,9 @@
       "change_pct": -58.0,
       "is_new": false,
       "avg_per_theater": 775,
-      "total_gross": 0,
+      "total_gross": 9920284,
       "weeks_in_release": 3,
-      "last_rank": 0,
+      "last_rank": 1,
       "theater_change": -108
     },
     {
@@ -26,13 +27,13 @@
       "distributor": "",
       "weekend_gross": 1934,
       "theaters": 2,
-      "change_pct": -3.5,
+      "change_pct": null,
       "is_new": false,
       "avg_per_theater": 967,
-      "total_gross": 0,
-      "weeks_in_release": 3,
-      "last_rank": 74,
-      "theater_change": -1
+      "total_gross": 1934,
+      "weeks_in_release": 1,
+      "last_rank": null,
+      "theater_change": null
     },
     {
       "rank": 3,
@@ -44,9 +45,9 @@
       "change_pct": -57.5,
       "is_new": false,
       "avg_per_theater": 65,
-      "total_gross": 0,
-      "weeks_in_release": 10,
-      "last_rank": 0,
+      "total_gross": 25143,
+      "weeks_in_release": 49,
+      "last_rank": 2,
       "theater_change": 8
     },
     {
@@ -56,27 +57,12 @@
       "distributor": "",
       "weekend_gross": 192,
       "theaters": 1,
-      "change_pct": 860.0,
+      "change_pct": null,
       "is_new": false,
       "avg_per_theater": 192,
-      "total_gross": 0,
-      "weeks_in_release": 32,
-      "last_rank": 66,
-      "theater_change": 0
-    },
-    {
-      "rank": 0,
-      "title": "Reporting: 4",
-      "movie_url": "",
-      "distributor": "",
-      "weekend_gross": 17709,
-      "theaters": 0,
-      "change_pct": -52.6,
-      "is_new": false,
-      "avg_per_theater": 0,
-      "total_gross": 0,
-      "weeks_in_release": 2,
-      "last_rank": 0,
+      "total_gross": 115684,
+      "weeks_in_release": 50,
+      "last_rank": null,
       "theater_change": null
     }
   ]
