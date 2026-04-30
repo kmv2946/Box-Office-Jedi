@@ -636,6 +636,7 @@
   let _selectedIso = null;
   let _shadowPrevIso = null;    // one day BEFORE the displayed window
   let _distributorIndex = {};   // normalized_title → distributor (loaded once)
+  let _movieTotals     = null; // {by_title, by_slug} for year disambiguation (loaded once)
 
   // Same normalization as scripts/build_distributor_index.py — must stay in sync.
   function normTitle(s) {
@@ -761,10 +762,11 @@
       const titleTd = document.createElement('td');
       titleTd.className = 'dc-title-cell';
       let titleHtml = '';
-      // Extract year from a /movie/Title-(YYYY) movie_url so same-title
-      // films (Michael 1996 vs 2026) resolve to the right profile.
-      // movie_url lives on each day's row payload — pull it from meta
-      // first, then fall back to any day in the week that has one.
+      // Year disambiguation. Pull the year from a /movie/Title-(YYYY)
+      // movie_url when present; the daily archive ALSO drops movie_url
+      // for many days, so we additionally consult data/movie_totals.json
+      // (loaded once into _movieTotals) by normalized title — that index
+      // resolves "Michael" to the most-recent year (2026) automatically.
       let movieUrlAny = (meta && meta.movie_url) || '';
       if (!movieUrlAny) {
         for (const iso of loadedDates) {
@@ -772,8 +774,15 @@
           if (d && d.movie_url) { movieUrlAny = d.movie_url; break; }
         }
       }
-      const yMatch = movieUrlAny.match(/\((\d{4})/);
-      const yPart  = yMatch ? '&year=' + yMatch[1] : '';
+      let yPart = '';
+      const urlMatch = movieUrlAny.match(/\((\d{4})/);
+      if (urlMatch) {
+        yPart = '&year=' + urlMatch[1];
+      } else if (_movieTotals && _movieTotals.by_title) {
+        const tk = normTitle(title);
+        const t  = _movieTotals.by_title[tk];
+        if (t && t.year) yPart = '&year=' + t.year;
+      }
       if (tmdbId) {
         titleHtml += `<a class="dc-title-link" href="movie.html?id=${tmdbId}&title=${encodeURIComponent(title)}${yPart}">${title}</a>`;
       } else {
@@ -907,11 +916,12 @@
   // ── Load data ───────────────────────────────────────────────────
   async function load() {
     try {
-      // Fire the index + distributor map fetches in parallel — distributor
-      // index is optional (graceful degrade if missing).
-      const [idxResp, distResp] = await Promise.all([
+      // Fire the index + distributor + totals fetches in parallel.
+      // The latter two are optional — graceful degrade if missing.
+      const [idxResp, distResp, totalsResp] = await Promise.all([
         fetch('data/daily/index.json'),
         fetch('data/distributors.json').catch(() => null),
+        fetch('data/movie_totals.json').catch(() => null),
       ]);
       if (!idxResp.ok) throw new Error('Index not found');
       const idx = await idxResp.json();
@@ -922,6 +932,11 @@
         try {
           const distData = await distResp.json();
           _distributorIndex = distData.by_title || {};
+        } catch (_) { /* tolerate parse errors */ }
+      }
+      if (totalsResp && totalsResp.ok) {
+        try {
+          _movieTotals = await totalsResp.json();
         } catch (_) { /* tolerate parse errors */ }
       }
 

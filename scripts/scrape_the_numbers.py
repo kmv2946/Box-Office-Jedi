@@ -876,6 +876,7 @@ def main():
                         "rank":            row.get("rank"),
                         "title":           row.get("title"),
                         "tmdb_id":         None,
+                        "movie_url":       row.get("movie_url", ""),
                         "distributor":     row.get("distributor", ""),
                         "theaters":        row.get("theaters"),
                         "daily_gross":     row.get("daily_gross"),
