@@ -26,15 +26,20 @@
     .mv-section-bar { height: 5px; background: #75140C; margin-bottom: 0; }
 
     /* ── Top: title + info table on left, poster on right.
-       The poster's top sits right under the red bar (matches the user's
-       "top of poster nearly touching the red border" spec). ─ */
+       The poster's top sits right under the red bar; the left column
+       is text-align:center so the title and the inline-block info table
+       both center horizontally above each other. ─ */
     .mv-top {
       display: flex;
       gap: 22px;
       padding: 0 14px 8px;
       align-items: flex-start;
     }
-    .mv-info-wrap { flex: 1; min-width: 0; }
+    .mv-info-wrap {
+      flex: 1;
+      min-width: 0;
+      text-align: center;        /* centers title + inline-block info table */
+    }
 
     /* Title gets generous padding above (poster on the right is taller, so
        this keeps the visual axis aligned) */
@@ -63,19 +68,20 @@
       border-collapse: collapse;
       border: 3px solid #75140C;
       font-family: 'Times New Roman', Times, serif;
-      font-size: 17px;
+      font-size: 19px;
       background: #FFFFFF;
     }
     .mv-info-table td {
       border: 3px solid #75140C;     /* same weight as outer border */
-      padding: 10px 14px;
+      padding: 4px 10px;             /* snug — was 10px 14px */
       vertical-align: middle;
       background: #FFFFFF;
+      text-align: left;              /* override the centered .mv-info-wrap */
     }
     .mv-info-table td.mv-info-dtg {
       text-align: center;
-      padding: 12px 14px;
-      font-size: 18px;
+      padding: 6px 14px;
+      font-size: 22px;
     }
     .mv-info-label { font-weight: normal; color: #000; }
     .mv-info-value { font-weight: bold; color: #000; }
@@ -160,79 +166,70 @@
     }
 
     /* ── Views ───────────────────────────────────────────────── */
-    .mv-view { display: none; padding: 0 14px; }
+    .mv-view { display: none; padding: 18px 14px 0; }   /* breathing room below tabs */
     .mv-view.active { display: block; }
 
     /* Shared panel (red header strip + gray body border).
        Two flavours via class:
          .mv-panel          → auto-fit width (Lifetime, Domestic)
-         .mv-panel-full     → full row width (Charts, Articles) */
+         .mv-panel-full     → spans the full grid row width (Charts, Articles) */
     .mv-panel {
       border: 1px solid #888888;        /* gray body border */
       background: #fff;
       margin: 0;
-      width: fit-content;
-      max-width: 100%;
-    }
-    .mv-panel.mv-panel-full {
-      width: auto;
-      flex: 1 1 100%;
-      max-width: 100%;
     }
     .mv-panel-hd {
       background: #75140C;
       color: #fff;
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 11px;                   /* slightly smaller than before */
+      font-size: 11px;
       text-transform: uppercase;
       padding: 5px 12px;
       letter-spacing: 0.04em;
     }
-    .mv-panel-body { padding: 8px 14px; }
-    /* Charts/Articles panels need their list rows to span full width
-       (no horizontal padding on the body — list items handle their own). */
-    .mv-panel-full .mv-panel-body { padding: 0; }
+    /* Panel body has no horizontal padding so each row's alt-bg can stretch
+       edge-to-edge inside the panel. The cell padding inside the table
+       handles the visual indent. */
+    .mv-panel-body { padding: 0; }
 
-    /* Summary KV tables — Times Regular, alternating row stripes */
+    /* Summary KV tables — Times Regular, alternating row stripes that
+       fill the full panel width. */
     .mv-kv {
+      width: 100%;
       border-collapse: collapse;
       font-family: 'Times New Roman', Times, serif;
       font-size: 18px;
       color: #000;
+      background: #FFFFFF;
     }
     .mv-kv td {
       padding: 4px 12px;
       vertical-align: baseline;
       white-space: nowrap;
     }
-    .mv-kv tr td:first-child { padding-left: 0; }
-    .mv-kv tr td:last-child { padding-right: 0; }
-    .mv-kv tr:nth-child(odd)  td { background: #FFFFFF; }
-    .mv-kv tr:nth-child(even) td { background: #EEF0FB; }
-    .mv-kv tr.mv-kv-divider:nth-child(odd)  td,
-    .mv-kv tr.mv-kv-divider:nth-child(even) td {
-      background: #FFFFFF;
-    }
     .mv-kv td.mv-kv-label {
       color: #000;
       font-weight: normal;
+      padding-right: 4px;          /* tight gap between colon and value */
     }
     .mv-kv td.mv-kv-value {
       color: #000;
       font-weight: bold;
-      text-align: right;
+      text-align: left;
+      padding-left: 4px;
     }
-    /* Percent on Lifetime rows — same size + color as the gross next to it */
+    /* Percent column on Lifetime rows — same size + color as the gross */
     .mv-kv td.mv-kv-pct {
       color: #000;
       font-weight: bold;
       text-align: right;
-      padding-left: 12px;
+      padding-left: 16px;
     }
+    /* Black divider line above Worldwide */
     .mv-kv tr.mv-kv-divider td {
-      border-top: 2px solid #000000;     /* black divider above Worldwide */
-      padding-top: 8px;
+      border-top: 2px solid #000000;
+      padding-top: 6px;
     }
     .mv-kv-note {
       font-family: 'Times New Roman', Times, serif;
@@ -241,23 +238,36 @@
       font-style: italic;
       margin-top: 4px;
     }
-    /* Sub-line under Opening Weekend (theaters / avg detail) */
+
+    /* Lifetime panel: NO alt row stripes (all rows white, divider does the
+       visual separation). Domestic panel: alt rows on. */
+    .mv-kv-domestic tr.mv-row-alt td { background: #EEF0FB; }
+    .mv-kv-domestic tr.mv-row-plain td { background: #FFFFFF; }
+
+    /* Sub-line under Opening Weekend — Times Regular black, smaller, centered.
+       Inherits the bg from the previous row's group color (always white). */
     .mv-kv-sub {
       font-family: 'Times New Roman', Times, serif;
       font-weight: normal;
       font-size: 15px;
       color: #000;
-      padding-top: 0 !important;
+      text-align: center !important;
+      padding: 0 12px 4px !important;
     }
 
-    /* Summary panels layout: flex wrap.
-       Lifetime + Domestic are auto-width (.mv-panel) and sit side by side.
-       Charts + Articles are full-width (.mv-panel-full) and break to new rows. */
+    /* Summary panels layout — CSS Grid with auto-sized columns.
+       Lifetime + Domestic auto-fit their content side-by-side.
+       Charts + Articles span both columns, so they're as wide as
+       (Lifetime + gap + Domestic) combined. */
     .mv-summary-grid {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: auto auto;
       gap: 14px;
-      align-items: flex-start;
+      justify-content: start;
+      align-items: start;
+    }
+    .mv-panel.mv-panel-full {
+      grid-column: 1 / -1;
     }
 
     /* Related Articles / Charts lists */
@@ -858,7 +868,7 @@
     }
     const pct = (n) => (base && n) ? ((n / base) * 100).toFixed(1) + '%' : '—';
 
-    let html = '<table class="mv-kv"><tbody>';
+    let html = '<table class="mv-kv mv-kv-lifetime"><tbody>';
     html += `
       <tr>
         <td class="mv-kv-label">Domestic:</td>
@@ -895,6 +905,7 @@
     }
     const meta = STATE.meta || {};
     const first = weekends[0];
+    const last = weekends[weekends.length - 1];
     const widest = (meta.widest_release && Number(meta.widest_release))
       || Math.max(...weekends.map(w => w.theaters || 0));
     const openGross = meta.opening_weekend || first.gross;
@@ -903,41 +914,73 @@
     const openPct = (domesticTotal && openGross)
       ? ((openGross / domesticTotal) * 100).toFixed(1) + '%' : null;
 
-    // Sub-line: "(2,847 theaters, $9,672 average)"
+    // In Release: weekends_count weeks → days = weeks * 7.
+    const weeksCount = weekends.length;
+    const daysCount  = weeksCount * 7;
+    const inReleaseLabel = daysCount + ' days / ' + weeksCount + ' weeks';
+
+    // Close Date: opening Friday + (weeks * 7 - 1) days = the Thursday of
+    // the film's last full week in theaters. Matches the "December 14, 2006"
+    // close date for The Devil Wears Prada (opened June 30, 24 weeks).
+    let closeDateStr = null;
+    if (first && first.date) {
+      try {
+        const [y, mo, d] = first.date.split('-').map(Number);
+        const open = new Date(Date.UTC(y, mo - 1, d));
+        open.setUTCDate(open.getUTCDate() + (daysCount - 1));
+        const yy = open.getUTCFullYear();
+        const mm = open.getUTCMonth() + 1;
+        const dd = open.getUTCDate();
+        closeDateStr = fmtRelease(yy + '-' + String(mm).padStart(2,'0') + '-' + String(dd).padStart(2,'0'));
+      } catch(e) { /* ignore */ }
+    }
+
+    // Sub-line: "(2,847 theaters, $9,672 average)" — centered, smaller.
     const parts = [];
     if (openTheaters) parts.push(fmtInt(openTheaters) + ' theaters');
     if (openAvg) parts.push('$' + fmtInt(openAvg) + ' average');
     const subLine = parts.length ? '(' + parts.join(', ') + ')' : '';
 
-    let html = '<table class="mv-kv"><tbody>';
-    // Opening Weekend — main number, with the theaters/avg detail on its own
-    // sub-row (Times Regular black, slightly smaller).
+    let html = '<table class="mv-kv mv-kv-domestic"><tbody>';
+    // Opening Weekend — three rows visually grouped (white):
+    //   Opening Weekend:  $X
+    //   (theaters, avg)
+    //   % of Total Gross: Y%
     html += `
-      <tr>
+      <tr class="mv-row-plain">
         <td class="mv-kv-label">Opening Weekend:</td>
         <td class="mv-kv-value">${fmtDollars(openGross)}</td>
       </tr>`;
     if (subLine) {
       html += `
-      <tr>
+      <tr class="mv-row-plain">
         <td class="mv-kv-sub" colspan="2">${escapeHtml(subLine)}</td>
       </tr>`;
     }
     if (openPct) {
       html += `
-      <tr>
+      <tr class="mv-row-plain">
         <td class="mv-kv-label">% of Total Gross:</td>
         <td class="mv-kv-value">${openPct}</td>
       </tr>`;
     }
+    // Then alt: Widest (blue), Close Date (white), In Release (blue)
     html += `
-      <tr>
+      <tr class="mv-row-alt">
         <td class="mv-kv-label">Widest Release:</td>
         <td class="mv-kv-value">${fmtInt(widest)} theaters</td>
-      </tr>
-      <tr>
+      </tr>`;
+    if (closeDateStr) {
+      html += `
+      <tr class="mv-row-plain">
+        <td class="mv-kv-label">Close Date:</td>
+        <td class="mv-kv-value">${escapeHtml(closeDateStr)}</td>
+      </tr>`;
+    }
+    html += `
+      <tr class="mv-row-alt">
         <td class="mv-kv-label">In Release:</td>
-        <td class="mv-kv-value">${weekends.length} weeks</td>
+        <td class="mv-kv-value">${inReleaseLabel}</td>
       </tr>
     </tbody></table>`;
     document.getElementById('mv-domestic').innerHTML = html;
