@@ -7,34 +7,71 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <style>
 
-    /* ── Page title & section bar (match alltime-domestic) ──────────── */
-    .at-page-header { padding: 10px 14px 8px; border-bottom: 3px solid #990000; }
-    .at-page-title {
+    /* ── Page header (matches Yearly chart pattern) ──────────────── */
+    .at-page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px 4px;
+    }
+    .at-page-crumb {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 28px;
-      color: #000;
-      margin: 0;
-      letter-spacing: -0.5px;
+      font-size: 14px;
+      color: #00239C;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
-    .at-page-title span.arrow { color: #990000; margin-right: 6px; font-family: 'Times New Roman', Times, serif; }
-    .at-page-title a { color: #000; text-decoration: none; }
-    .at-page-title a:hover { color: #00239C; }
+    .at-page-crumb a { color: #00239C; text-decoration: none; }
+    .at-page-crumb a:hover { text-decoration: underline; }
 
-    .at-back { padding: 6px 14px; font-family: Verdana, Geneva, sans-serif; font-size: 11px; }
+    .at-page-tools {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .at-page-tools a {
+      color: #00239C;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .at-page-tools a:hover { text-decoration: underline; }
+    .at-page-tools .at-pt-sep { color: #AAA; font-weight: normal; }
+    .at-page-tools img { vertical-align: middle; }
+
+    .at-section-bar { height: 5px; background: #7F170E; margin-bottom: 12px; }
+
+    .at-title {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 32px;
+      color: #000;
+      text-align: center;
+      margin: 18px 0 14px;
+      letter-spacing: -0.5px;
+      text-decoration: underline;
+      line-height: 1.05;
+    }
+
+    .at-back { padding: 4px 14px 6px; font-family: Verdana, Geneva, sans-serif; font-size: 11px; }
     .at-back a { color: #00239C; font-weight: bold; text-decoration: none; }
     .at-back a:hover { text-decoration: underline; }
 
     .chart-section-header {
-      background: #990000;
+      background: #7F170E;
       color: #FFFFFF;
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 16px;
-      letter-spacing: 0.05em;
+      font-size: 14px;
+      letter-spacing: 0.06em;
       text-align: center;
       padding: 7px 10px;
-      margin: 10px 0 4px;
+      margin: 6px 14px 4px;
       text-transform: uppercase;
     }
     .chart-subtitle {
@@ -69,55 +106,64 @@
       font-size: 11px;
       color: #777;
       padding: 0 14px 6px;
+      text-align: center;
     }
 
-    .at-wrap { padding: 0 14px 24px; }
-
-    /* Chart table */
+    /* Chart table — auto-fit, gray header, white inter-cell lines */
+    .at-wrap {
+      padding: 0 14px 24px;
+      text-align: center;
+    }
     .at-chart {
-      width: 100%;
+      width: auto;
+      margin: 0 auto;
       border-collapse: collapse;
-      font-family: 'Times New Roman', Times, serif;
     }
     .at-chart thead th {
-      background: #F4F4FE;
+      background: #DCDCDC;
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 10px;
-      color: #444;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 6px 6px;
-      border-bottom: 2px solid #7F170E;
-      text-align: right;
-      vertical-align: bottom;
+      font-size: 12px;
+      color: #000;
+      padding: 6px 10px;
+      border-right: 1px solid #FFFFFF;
+      border-bottom: 1px solid #FFFFFF;
+      text-align: center;
+      vertical-align: middle;
       white-space: nowrap;
     }
-    .at-chart thead th.th-left  { text-align: left; padding-left: 10px; }
-    .at-chart thead th.th-center{ text-align: center; }
+    .at-chart thead th:last-child { border-right: none; }
 
-    .at-chart tbody tr:nth-child(odd)  td { background: #F5F5F5; }
+    .at-chart tbody tr:nth-child(odd)  td { background: #EEF0FB; }
     .at-chart tbody tr:nth-child(even) td { background: #FFFFFF; }
     .at-chart td {
-      font-size: 13px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
       color: #000;
-      padding: 5px 6px;
-      border-bottom: 1px solid #E8E8E8;
+      padding: 5px 10px;
+      border-right: 1px solid #FFFFFF;
+      border-bottom: 1px solid #FFFFFF;
       text-align: right;
+      vertical-align: middle;
       white-space: nowrap;
     }
-    .at-chart td.td-rank  { text-align: center; color: #555; width: 50px; }
+    .at-chart td:last-child { border-right: none; }
+
+    .at-chart td.td-rank  { text-align: center; color: #444; }
     .at-chart td.td-title {
       text-align: left;
-      padding-left: 10px;
       white-space: normal;
     }
     .at-chart td.td-title a {
       font-family: 'Times New Roman', Times, serif;
       color: #00007B;
       text-decoration: none;
+      font-weight: bold;
     }
-    .at-chart td.td-title a:hover { text-decoration: underline; }
+    .at-chart td.td-title a:hover { text-decoration: underline; color: #0000EE; }
+
+    /* Lifetime Gross is the bolded primary stat */
+    .at-chart td.td-gross { font-weight: bold; color: #000; }
 
     .at-empty {
       font-family: 'Times New Roman', Times, serif;
@@ -126,6 +172,9 @@
       padding: 20px;
       text-align: center;
     }
+
+    #page-tools { display: none; }
+    .infl-banner { margin: 0 14px 8px; }
 
   </style>
 </head>
@@ -166,12 +215,25 @@
 
   <main class="main-content">
 
+    <!-- Page header: crumb left, Print + Adjust right, on the same line -->
+    <div class="at-page-header">
+      <div class="at-page-crumb">
+        &gt; <a href="alltime.html">ALL TIME BOX OFFICE</a>
+      </div>
+      <div class="at-page-tools">
+        <a href="javascript:window.print()">
+          <img src="article_print.gif" alt="Print"> Print
+        </a>
+        <span class="at-pt-sep">|</span>
+        <a href="#" id="at-adjust-link">Adjust this page for inflation&nbsp;...&gt;&gt;&gt;</a>
+      </div>
+    </div>
+    <div class="at-section-bar"></div>
+
     <div id="page-tools"></div>
     <div class="infl-banner">Showing grosses adjusted for inflation (relative to today&rsquo;s ticket prices).</div>
 
-    <div class="at-page-header">
-      <h1 class="at-page-title"><span class="arrow">&gt;</span> <a href="alltime.html">ALL TIME BOX OFFICE</a></h1>
-    </div>
+    <h1 class="at-title" id="at-title">ALL TIME CHART</h1>
 
     <div class="at-back"><a href="alltime.html">&laquo; All-Time Index</a></div>
 
@@ -241,6 +303,13 @@
     if (/title|release/.test(c) && !/rank|date/.test(c)) return 'td-title';
     return '';
   }
+  // Identify the column that should be visually emphasized (bold) — usually
+  // Lifetime Gross or the most prominent dollar figure for the chart.
+  function isPrimaryGrossCol(col) {
+    if (!col) return false;
+    const c = col.toLowerCase().trim();
+    return /^(lifetime gross|worldwide lifetime gross|domestic lifetime gross|total gross|gross|worldwide)$/.test(c);
+  }
 
   // ── Rendering ──────────────────────────────────────────────────────────
   let CHART = null;           // {columns, rows}
@@ -286,7 +355,8 @@
     // Rows
     body.innerHTML = chart.rows.map((row, rowIdx) => {
       const cells = row.map((cell, i) => {
-        const cls = colClass(chart.columns[i]);
+        let cls = colClass(chart.columns[i]);
+        if (!cls && isPrimaryGrossCol(chart.columns[i])) cls = 'td-gross';
         if (cls === 'td-title') {
           return '<td class="td-title"><a href="movie.html?title=' +
                  encodeURIComponent(cell) + '">' + escapeHtml(cell) + '</a></td>';
@@ -318,6 +388,8 @@
 
     CHART = data;
     document.title = data.label + ' — Box Office Jedi';
+    const titleEl = document.getElementById('at-title');
+    if (titleEl) titleEl.textContent = data.label.toUpperCase();
     document.getElementById('chart-header').textContent = data.label.toUpperCase();
     if (data.category && data.category !== data.label) {
       document.getElementById('chart-subtitle').textContent = data.category;
@@ -345,6 +417,7 @@
     if (window.InflationTool && GROSS_COL >= 0 && YEAR_COL >= 0) {
       InflationTool.mount({
         container: document.getElementById('page-tools'),
+        showPrint: false,
         getMovies: () => data.rows.slice(),
         adjust: (row) => ({
           year:  parseYear(row[YEAR_COL]),
@@ -366,6 +439,24 @@
           renderChart({columns: data.columns, rows}, isAdjusted);
         },
       });
+
+      // Forward header link clicks to the hidden inflation toggle, mirror its label.
+      const headerLink = document.getElementById('at-adjust-link');
+      const hiddenLink = document.querySelector('#page-tools .pt-inflation');
+      const hiddenLbl  = document.querySelector('#page-tools .pt-inflation-label');
+      if (headerLink && hiddenLink) {
+        headerLink.addEventListener('click', e => {
+          e.preventDefault();
+          hiddenLink.click();
+        });
+      }
+      if (headerLink && hiddenLbl) {
+        const sync = () => { headerLink.innerHTML = hiddenLbl.innerHTML; };
+        sync();
+        new MutationObserver(sync).observe(hiddenLbl, {
+          childList: true, characterData: true, subtree: true,
+        });
+      }
     }
   }
 

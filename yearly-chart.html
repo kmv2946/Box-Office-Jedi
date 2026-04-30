@@ -54,17 +54,17 @@
       font-size: 32px;
       color: #000;
       text-align: center;
-      margin: 6px 0 2px;
+      margin: 18px 0 14px;
       letter-spacing: -0.5px;
       text-decoration: underline;
       line-height: 1.05;
     }
 
-    /* Prev/next year strip */
+    /* Prev/next year strip — tight against the chart below */
     .yc-prevnext {
       display: flex;
       justify-content: space-between;
-      padding: 8px 14px 12px;
+      padding: 0 14px 4px;
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
       font-size: 12px;
@@ -73,7 +73,8 @@
     .yc-prevnext a:hover { text-decoration: underline; }
     .yc-prevnext span { color: #999; }
 
-    /* ── Table — auto-fit columns, white inter-cell lines, gray header ─ */
+    /* ── Table — auto-fit columns, white inter-cell lines, gray header,
+       NO outer border (per design spec) ─ */
     .yc-wrap {
       padding: 0 14px 20px;
       text-align: center;       /* centers the auto-width table */
@@ -82,17 +83,19 @@
       width: auto;              /* auto-fit to content */
       margin: 0 auto;
       border-collapse: collapse;
-      border: 2px solid #888888;
-      box-shadow: 0 1px 0 #DCDCDC, 1px 0 0 #DCDCDC;
+      /* No outer border — bare against the page */
     }
 
+    /* All thead cells centered by default; Rank + Total Gross are the
+       only bold headers. The "(click to view)" hint matches the
+       surrounding header text size and color. */
     .yc-table thead th {
       font-family: 'Times New Roman', Times, serif;
-      font-weight: normal;       /* default — only Rank + Total Gross are bold */
+      font-weight: normal;
       font-size: 14px;
       color: #000;
       padding: 6px 10px;
-      background: #DCDCDC;       /* gray header background, matches site */
+      background: #DCDCDC;
       border-right: 1px solid #FFFFFF;
       border-bottom: 1px solid #FFFFFF;
       vertical-align: middle;
@@ -100,14 +103,13 @@
       white-space: nowrap;
     }
     .yc-table thead th:last-child { border-right: none; }
-    .yc-table thead th.yc-th-left  { text-align: left; }
     .yc-table thead th.yc-th-rank  { font-weight: bold; }
     .yc-table thead th.yc-th-gross { font-weight: bold; }
     .yc-table thead th .yc-hdr-hint {
       font-family: 'Times New Roman', Times, serif;
       font-weight: normal;
-      color: #666;
-      font-size: 12px;
+      color: #000;          /* matches "Movie Title" color */
+      font-size: 14px;       /* matches "Movie Title" size */
     }
 
     .yc-table tbody tr td {
@@ -130,17 +132,30 @@
     .yc-table td.yc-td-title a {
       font-family: 'Times New Roman', Times, serif;
       color: #00007B;
-      font-weight: bold;       /* film titles stay bold (their own typographic weight) */
+      font-weight: bold;
       text-decoration: none;
     }
     .yc-table td.yc-td-title a:hover { text-decoration: underline; }
-    .yc-table td.yc-td-studio { text-align: left; white-space: normal; }
+    .yc-table td.yc-td-studio {
+      text-align: left;
+      white-space: nowrap;       /* keep tight; abbreviator handles long names */
+      max-width: 140px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     .yc-table td.yc-td-gross  { font-weight: bold; }
     .yc-table td.yc-td-th     { color: #000; }
-    .yc-table td.yc-td-open   { color: #00239C; }
-    .yc-table td.yc-td-opendate { color: #00239C; }
+    .yc-table td.yc-td-open   { color: #000; }       /* opening column = black, not blue */
+    .yc-table td.yc-td-opendate {
+      font-family: 'Times New Roman', Times, serif;  /* Times Regular */
+      font-weight: normal;
+      color: #00239C;                                 /* blue */
+    }
     .yc-table td.yc-td-opendate a {
-      color: #00239C; text-decoration: none; font-weight: normal;
+      font-family: 'Times New Roman', Times, serif;
+      color: #00239C;
+      text-decoration: none;
+      font-weight: normal;
     }
     .yc-table td.yc-td-opendate a:hover { text-decoration: underline; }
 
@@ -244,12 +259,14 @@
         <thead>
           <tr>
             <th class="yc-th-rank">Rank</th>
-            <th class="yc-th-left">Movie Title <span class="yc-hdr-hint">(click to view)</span></th>
-            <th class="yc-th-left">Studio</th>
-            <th class="yc-th-gross">Total Gross</th>
-            <th>/&nbsp;Theaters</th>
-            <th>Opening</th>
-            <th>/&nbsp;Theaters</th>
+            <th>Movie Title <span class="yc-hdr-hint">(click to view)</span></th>
+            <th>Studio</th>
+            <!-- One header cell spanning the two data columns underneath:
+                 the white border between the data cells provides the
+                 visual divide for "Total Gross | Theaters" and
+                 "Opening | Theaters" while the header reads as one label. -->
+            <th colspan="2" class="yc-th-gross">Total Gross&nbsp;/&nbsp;Theaters</th>
+            <th colspan="2">Opening&nbsp;/&nbsp;Theaters</th>
             <th>Open</th>
           </tr>
         </thead>
@@ -356,11 +373,29 @@
     'Angel Studios': 'Angel',
     'Black Bear': 'BBr.',
   };
+  // Suffixes we strip when a studio name has no entry in STUDIO_MAP.
+  // Order matters — longer suffixes first so "Pictures International"
+  // matches before "Pictures".
+  const STUDIO_SUFFIXES = [
+    ' Pictures International', ' Pictures Releasing', ' Pictures Classics',
+    ' Studios Motion Pictures', ' Motion Pictures',
+    ' Entertainment', ' Distributing', ' Distribution',
+    ' Pictures', ' Studios', ' Releasing',
+    ' Films', ' Film Group', ' Picture Group',
+    ' Cinema', ' Co.', ' Company',
+  ];
   function shortStudio(s) {
     if (!s) return '—';
     if (STUDIO_MAP[s]) return STUDIO_MAP[s];
-    // Auto-trim if very long
-    return s.length > 22 ? s.slice(0, 20) + '…' : s;
+    let trimmed = s;
+    for (const suf of STUDIO_SUFFIXES) {
+      if (trimmed.endsWith(suf) && trimmed.length - suf.length >= 3) {
+        trimmed = trimmed.slice(0, -suf.length);
+        break;
+      }
+    }
+    // Cap at 18 chars so the column stays narrow even after trimming.
+    return trimmed.length > 18 ? trimmed.slice(0, 16) + '…' : trimmed;
   }
 
   // ── Page state ────────────────────────────────────────────────────────

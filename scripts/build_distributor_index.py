@@ -100,6 +100,23 @@ def main():
 
     by_title = {k: counter.most_common(1)[0][0] for k, counter in votes.items()}
 
+    # Merge manual overrides — these ALWAYS win, even over auto-detected
+    # values. Any keys starting with "_" (like "_comment") are skipped.
+    override_count = 0
+    overrides_path = os.path.join(DATA_DIR, "distributor_overrides.json")
+    overrides = load_json(overrides_path)
+    if overrides:
+        for k, v in overrides.items():
+            if k.startswith("_"):
+                continue
+            if isinstance(v, str) and v.strip():
+                # Re-normalize the override key in case the file was
+                # hand-edited with looser casing/punctuation.
+                norm_key = norm_title(k)
+                if norm_key:
+                    by_title[norm_key] = v.strip()
+                    override_count += 1
+
     out_path = os.path.join(DATA_DIR, "distributors.json")
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump({
@@ -109,6 +126,8 @@ def main():
         }, f, indent=2, ensure_ascii=False)
 
     print(f"  ✓ Scanned {files_seen} files, {rows_seen} rows.")
+    print(f"  ✓ Applied {override_count} manual override(s) from "
+          f"{os.path.basename(overrides_path)}.")
     print(f"  ✓ Wrote {out_path} with {len(by_title)} distributor mappings.")
 
 

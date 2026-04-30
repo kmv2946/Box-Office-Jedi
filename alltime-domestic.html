@@ -7,24 +7,60 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <style>
 
-    /* ── Page header ─────────────────────────────────────────────── */
+    /* ── Page header (matches Yearly/Weekend chart pattern) ───────── */
     .at-page-header {
-      padding: 10px 14px 8px;
-      border-bottom: 3px solid #990000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px 4px;
     }
-    .at-page-title {
-      font-family: 'Times New Roman', Times, serif;
+    .at-page-crumb {
+      font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 24px;
-      color: #000;
-      margin: 0;
-      letter-spacing: 1px;
+      font-size: 14px;
+      color: #00239C;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
-    .at-page-title .arrow { color: #990000; margin-right: 6px; }
+    .at-page-crumb a { color: #00239C; text-decoration: none; }
+    .at-page-crumb a:hover { text-decoration: underline; }
 
-    /* ── Chart section ───────────────────────────────────────────── */
+    .at-page-tools {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .at-page-tools a {
+      color: #00239C;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .at-page-tools a:hover { text-decoration: underline; }
+    .at-page-tools .at-pt-sep { color: #AAA; font-weight: normal; }
+    .at-page-tools img { vertical-align: middle; }
+
+    .at-section-bar { height: 5px; background: #7F170E; margin-bottom: 12px; }
+
+    .at-title {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 32px;
+      color: #000;
+      text-align: center;
+      margin: 18px 0 14px;
+      letter-spacing: -0.5px;
+      text-decoration: underline;
+      line-height: 1.05;
+    }
+
+    /* ── Chart section subhead ────────────────────────────────────── */
     .chart-section-header {
-      background: #990000;
+      background: #7F170E;
       color: #FFF;
       font-family: Verdana, Geneva, sans-serif;
       font-size: 13px;
@@ -32,15 +68,15 @@
       letter-spacing: 1.5px;
       text-align: center;
       padding: 7px 14px;
-      margin: 0;
+      margin: 6px 14px 0;
     }
 
-    /* ── Pagination nav ──────────────────────────────────────────── */
+    /* ── Pagination nav (Verdana Bold; active in black) ────────── */
     .at-pager {
       text-align: center;
       padding: 8px 14px 4px;
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 16px;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 14px;
       font-weight: bold;
     }
     .at-pager a {
@@ -60,30 +96,40 @@
       padding: 2px 14px 8px;
     }
 
-    /* ── Chart table ─────────────────────────────────────────────── */
-    .at-wrap { padding: 0 14px 20px; }
+    /* ── Chart table — auto-fit columns, gray header, white inter-cell
+       lines, NO outer border ─ */
+    .at-wrap {
+      padding: 0 14px 24px;
+      text-align: center;     /* centers the auto-width table */
+    }
 
     .at-chart {
-      width: 100%;
+      width: auto;
+      margin: 0 auto;
       border-collapse: collapse;
     }
 
-    /* Column header row */
+    /* Column header row — Verdana Bold black, all centered */
     .at-chart thead tr th {
       background: #DCDCDC;
       font-family: Verdana, Geneva, sans-serif;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: bold;
-      color: #333;
-      padding: 5px 8px;
+      color: #000;
+      padding: 6px 10px;
+      text-align: center;
+      vertical-align: middle;
       border-right: 1px solid #FFF;
-      border-bottom: 2px solid #999;
+      border-bottom: 1px solid #FFF;
+      white-space: nowrap;
     }
     .at-chart thead tr th:last-child { border-right: none; }
-    .th-rank   { width: 42px; text-align: center; }
-    .th-title  { text-align: left; }
-    .th-gross  { width: 130px; text-align: right; }
-    .th-year   { width: 50px; text-align: right; padding-right: 12px !important; }
+    .at-chart thead tr th .at-hdr-hint {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      color: #444;
+      font-size: 11px;
+    }
 
     /* Data rows — alternating */
     .at-chart tbody tr.at-row:nth-child(odd)  td { background: #EEF0FB; }
@@ -94,22 +140,29 @@
 
     .at-chart tbody tr.at-row td {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 14px;
-      padding: 5px 8px;
-      border-bottom: 1px solid #E0E0E0;
+      font-size: 15px;
+      padding: 5px 10px;
       vertical-align: middle;
+      border-right: 1px solid #FFF;
+      border-bottom: 1px solid #FFF;
+      white-space: nowrap;
     }
+    .at-chart tbody tr.at-row td:last-child { border-right: none; }
 
-    /* Rank cell */
+    /* Rank */
     .at-chart td.td-rank {
       text-align: center;
       color: #444;
-      font-size: 13px;
-      width: 42px;
+      font-size: 14px;
     }
 
-    /* Title cell */
+    /* Title — Times Bold dark blue, clickable */
+    .at-chart td.td-title {
+      text-align: left;
+      white-space: normal;
+    }
     .at-chart td.td-title a {
+      font-family: 'Times New Roman', Times, serif;
       color: #00007B;
       text-decoration: none;
       font-weight: bold;
@@ -119,23 +172,23 @@
       color: #0000EE;
     }
 
-    /* Gross cell */
+    /* Lifetime Gross — bold (this is the chart's primary stat) */
     .at-chart td.td-gross {
       text-align: right;
       font-weight: bold;
       color: #000;
-      white-space: nowrap;
-      width: 130px;
     }
 
-    /* Year cell */
+    /* Year — right aligned, Times Regular */
     .at-chart td.td-year {
       text-align: right;
       color: #444;
-      width: 50px;
-      padding-right: 12px;
-      font-size: 13px;
+      font-size: 14px;
     }
+
+    /* Hide the inflation toolbar's stock #page-tools — we use header tools */
+    #page-tools { display: none; }
+    .infl-banner { margin: 0 14px 8px; }
 
     /* In-release indicator */
     .in-release-badge {
@@ -206,16 +259,26 @@
 
   <main class="main-content">
 
+    <!-- Page header (crumb left, Print + Adjust right, on the same line) -->
+    <div class="at-page-header">
+      <div class="at-page-crumb">
+        &gt; <a href="alltime.html">ALL TIME BOX OFFICE</a>
+      </div>
+      <div class="at-page-tools">
+        <a href="javascript:window.print()">
+          <img src="article_print.gif" alt="Print"> Print
+        </a>
+        <span class="at-pt-sep">|</span>
+        <a href="#" id="at-adjust-link">Adjust this page for inflation&nbsp;...&gt;&gt;&gt;</a>
+      </div>
+    </div>
+    <div class="at-section-bar"></div>
+
+    <!-- Hidden mount point for InflationTool — driven by #at-adjust-link -->
     <div id="page-tools"></div>
     <div class="infl-banner">Showing grosses adjusted for inflation (relative to today&rsquo;s ticket prices). Rankings reflect adjusted values.</div>
 
-    <div class="at-page-header">
-      <h1 class="at-page-title"><span class="arrow">&gt;</span> ALL TIME BOX OFFICE</h1>
-    </div>
-
-    <div class="at-back">
-      <a href="alltime.html">&laquo; All-Time Index</a>
-    </div>
+    <h1 class="at-title">ALL-TIME DOMESTIC GROSSES</h1>
 
     <div class="chart-section-header" id="chart-section-header">DOMESTIC GROSSES</div>
 
@@ -231,10 +294,10 @@
       <table class="at-chart" id="at-chart">
         <thead>
           <tr>
-            <th class="th-rank">Rank</th>
-            <th class="th-title">Title <span style="font-weight:normal;font-size:10px;color:#666;">(click to view)</span></th>
-            <th class="th-gross">Lifetime Gross</th>
-            <th class="th-year">Year</th>
+            <th>Rank</th>
+            <th>Title <span class="at-hdr-hint">(click to view)</span></th>
+            <th>Lifetime Gross</th>
+            <th>Year</th>
           </tr>
         </thead>
         <tbody id="chart-body">
@@ -551,6 +614,7 @@
   let ORIGINAL = CHART.slice();
   InflationTool.mount({
     container: document.getElementById('page-tools'),
+    showPrint: false,        // we render our own Print link in the page header
     getMovies: () => ORIGINAL,
     adjust: (m) => ({ year: m.y, gross: m.g }),
     applyAdjusted: (m, g, r) => Object.assign({}, m, { g: g, r: r }),
@@ -564,6 +628,24 @@
       showPage(currentPage);
     },
   });
+
+  // Forward header-link clicks to the hidden inflation toggle, mirror its label.
+  const headerLink = document.getElementById('at-adjust-link');
+  const hiddenLink = document.querySelector('#page-tools .pt-inflation');
+  const hiddenLbl  = document.querySelector('#page-tools .pt-inflation-label');
+  if (headerLink && hiddenLink) {
+    headerLink.addEventListener('click', e => {
+      e.preventDefault();
+      hiddenLink.click();
+    });
+  }
+  if (headerLink && hiddenLbl) {
+    const sync = () => { headerLink.innerHTML = hiddenLbl.innerHTML; };
+    sync();
+    new MutationObserver(sync).observe(hiddenLbl, {
+      childList: true, characterData: true, subtree: true,
+    });
+  }
 </script>
 
 </body>

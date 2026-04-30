@@ -1,0 +1,11 @@
+{
+  "_comment": "Manual distributor overrides. Keys are lowercase + alphanumeric-only film titles. These ALWAYS win over auto-detected values from chart files, so when The Numbers omits a Distributor column we still show the right studio. Edit this file by hand whenever you spot a missing studio that the scraper hasn't picked up.",
+  "michael":              "Lionsgate",
+  "leecroninsthemummy":   "Warner Bros.",
+  "mothermary":           "A24",
+  "overyourdeadbody":     "IFC Films",
+  "iswear":               "Sony Pictures Classics",
+  "desertwarrior":        "Vertical Entertainment",
+  "fightclub":            "20th Century Studios",
+  "lorne":                "Focus Features"
+}
