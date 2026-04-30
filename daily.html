@@ -763,7 +763,15 @@
       let titleHtml = '';
       // Extract year from a /movie/Title-(YYYY) movie_url so same-title
       // films (Michael 1996 vs 2026) resolve to the right profile.
-      const movieUrlAny = (entry && entry.movie_url) || '';
+      // movie_url lives on each day's row payload — pull it from meta
+      // first, then fall back to any day in the week that has one.
+      let movieUrlAny = (meta && meta.movie_url) || '';
+      if (!movieUrlAny) {
+        for (const iso of loadedDates) {
+          const d = entry.days[iso];
+          if (d && d.movie_url) { movieUrlAny = d.movie_url; break; }
+        }
+      }
       const yMatch = movieUrlAny.match(/\((\d{4})/);
       const yPart  = yMatch ? '&year=' + yMatch[1] : '';
       if (tmdbId) {

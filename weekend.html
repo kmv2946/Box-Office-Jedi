@@ -454,8 +454,13 @@
       const cleanFilm = w.top_film
         ? String(w.top_film).replace(/^[“”"']+|[“”"']+$/g, '')
         : '';
+      // Pass the weekend's year as the disambiguator. Films released late
+      // the prior year sometimes top a January weekend, but the year of
+      // this row is still the most useful default.
+      const wYear = (w.date_from || '').slice(0, 4);
+      const yPartW = wYear ? '&year=' + wYear : '';
       const topFilmHtml = cleanFilm
-        ? `<a class="wknd-top-film-link" href="movie.html?id=${w.top_film_tmdb_id || ''}&title=${encodeURIComponent(cleanFilm)}">${cleanFilm}</a>`
+        ? `<a class="wknd-top-film-link" href="movie.html?id=${w.top_film_tmdb_id || ''}&title=${encodeURIComponent(cleanFilm)}${yPartW}">${cleanFilm}</a>`
         : '—';
 
       tr.innerHTML = `

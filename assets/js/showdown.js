@@ -156,6 +156,20 @@
     };
   }
 
+  // ── Header cell builder (poster + title link, no year line) ─────────
+  function headerCell(f, n) {
+    var poster = (f.meta && f.meta.poster_url)
+      ? '<img class="sd-poster" src="' + escapeHtml(f.meta.poster_url) +
+        '" alt="' + escapeHtml(f.film.title) + '">'
+      : '<div class="sd-poster-placeholder">No poster</div>';
+    var slugParam = '?slug=' + encodeURIComponent(f.film.slug);
+    return '<th class="sd-head-cell sd-col-' + n + '">' +
+      poster +
+      '<a class="sd-movie-title-link" href="movie.html' + slugParam + '">' +
+        escapeHtml(f.film.title) + '</a>' +
+    '</th>';
+  }
+
   // ── Render: Summary table ────────────────────────────────────────────
   function renderSummary(films) {
     var rows = [
@@ -181,21 +195,7 @@
 
     var html = '<table class="sd-table"><thead><tr>';
     html += '<th class="sd-corner"></th>';
-    films.forEach(function(f, i) {
-      var n = i + 1;
-      var poster = (f.meta && f.meta.poster_url)
-        ? '<img class="sd-poster" src="' + escapeHtml(f.meta.poster_url) +
-          '" alt="' + escapeHtml(f.film.title) + '">'
-        : '<div class="sd-poster-placeholder">No poster</div>';
-      var year = f.meta && f.meta.release_date ? f.meta.release_date.slice(0, 4) : '';
-      var slugParam = '?slug=' + encodeURIComponent(f.film.slug);
-      html += '<th class="sd-head-cell sd-col-' + n + '">' +
-        poster +
-        '<a class="sd-movie-title-link" href="movie.html' + slugParam + '">' +
-          escapeHtml(f.film.title) + '</a>' +
-        (year ? '<span class="sd-movie-year">' + year + '</span>' : '') +
-      '</th>';
-    });
+    films.forEach(function(f, i) { html += headerCell(f, i + 1); });
     html += '</tr></thead><tbody>';
 
     rows.forEach(function(r) {
@@ -230,21 +230,7 @@
 
     var html = '<table class="sd-table"><thead><tr>';
     html += '<th class="sd-corner-wknd"></th>';
-    films.forEach(function(f, i) {
-      var n = i + 1;
-      var poster = (f.meta && f.meta.poster_url)
-        ? '<img class="sd-poster" src="' + escapeHtml(f.meta.poster_url) +
-          '" alt="' + escapeHtml(f.film.title) + '">'
-        : '<div class="sd-poster-placeholder">No poster</div>';
-      var year = f.meta && f.meta.release_date ? f.meta.release_date.slice(0, 4) : '';
-      var slugParam = '?slug=' + encodeURIComponent(f.film.slug);
-      html += '<th class="sd-head-cell sd-col-' + n + '">' +
-        poster +
-        '<a class="sd-movie-title-link" href="movie.html' + slugParam + '">' +
-          escapeHtml(f.film.title) + '</a>' +
-        (year ? '<span class="sd-movie-year">' + year + '</span>' : '') +
-      '</th>';
-    });
+    films.forEach(function(f, i) { html += headerCell(f, i + 1); });
     html += '</tr></thead><tbody>';
 
     // Weekend rows
@@ -359,9 +345,13 @@
       '</div>' +
       '<div class="sd-section-bar"></div>' +
       '<div class="sd-title">' + escapeHtml(cfg.title || '') + '</div>' +
-      '<div class="sd-tabs">' +
-        '<a class="sd-tab active" href="#" data-panel="summary">Summary Stats</a>' +
-        '<a class="sd-tab" href="#" data-panel="weekend">Weekend Box Office</a>' +
+      // "Compare:" label sits just left of the tabs in Times Regular
+      '<div class="sd-tabstrip">' +
+        '<span class="sd-compare-label">Compare:</span>' +
+        '<div class="sd-tabs">' +
+          '<a class="sd-tab active" href="#" data-panel="summary">Summary Stats</a>' +
+          '<a class="sd-tab" href="#" data-panel="weekend">Weekend Box Office</a>' +
+        '</div>' +
       '</div>'
     );
   }

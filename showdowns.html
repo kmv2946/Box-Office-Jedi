@@ -7,83 +7,111 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <style>
 
-    .sd-index-header {
+    /* Page header — matches Yearly/Weekend/All Time index pattern */
+    .sd-page-crumb {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      font-size: 22px;
-      color: #7F170E;
-      padding: 6px 12px 4px;
-      border-bottom: 3px solid #7F170E;
-      margin-bottom: 12px;
+      font-size: 14px;
+      color: #00239C;
+      padding: 6px 10px 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
-
-    .sd-index-wrap {
-      padding: 0 12px 20px;
-    }
-
-    .sd-index-table {
-      width: 100%;
-      border-collapse: collapse;
-      border: 1px solid #AAAAAA;
+    .sd-section-bar { height: 5px; background: #7F170E; margin-bottom: 12px; }
+    .sd-page-title {
       font-family: Verdana, Geneva, sans-serif;
-      font-size: 12px;
+      font-weight: bold;
+      font-size: 32px;
+      color: #000;
+      text-align: center;
+      margin: 18px 0 14px;
+      letter-spacing: -0.5px;
+      text-decoration: underline;
+      line-height: 1.05;
     }
 
+    /* Index table — auto-fit, gray header, white inter-cell lines */
+    .sd-index-wrap {
+      padding: 0 14px 24px;
+      text-align: center;     /* centers the auto-width table */
+    }
+    .sd-index-table {
+      width: auto;
+      margin: 0 auto;
+      border-collapse: collapse;
+    }
     .sd-index-table thead th {
       background: #DCDCDC;
-      border: 1px solid #AAAAAA;
-      padding: 5px 10px;
+      font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
-      text-align: center;
+      font-size: 12px;
       color: #000;
+      padding: 6px 14px;
+      border-right: 1px solid #FFFFFF;
+      border-bottom: 1px solid #FFFFFF;
+      text-align: center;
+      vertical-align: middle;
       white-space: nowrap;
     }
-    .sd-index-table thead th:first-child {
-      text-align: left;
+    .sd-index-table thead th:last-child { border-right: none; }
+    .sd-index-table thead th .th-hint {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 11px;
+      color: #444;
     }
 
     .sd-index-table tbody tr:nth-child(odd)  td { background: #FFFFFF; }
-    .sd-index-table tbody tr:nth-child(even) td { background: #F4F4F4; }
-    .sd-index-table tbody tr:hover td { background: #EEF2FF; }
-
+    .sd-index-table tbody tr:nth-child(even) td { background: #EEF0FB; }
     .sd-index-table tbody td {
-      border: 1px solid #CCCCCC;
-      padding: 5px 10px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
+      color: #000;
+      padding: 6px 14px;
+      border-right: 1px solid #FFFFFF;
+      border-bottom: 1px solid #FFFFFF;
       vertical-align: middle;
     }
+    .sd-index-table tbody td:last-child { border-right: none; }
 
+    /* Showdown title cell — Times Bold dark blue, clickable */
+    .sd-index-table td.col-showdown {
+      text-align: left;
+      white-space: nowrap;
+    }
     .sd-index-title {
-      font-family: Verdana, Geneva, sans-serif;
+      font-family: 'Times New Roman', Times, serif;
       font-weight: bold;
-      font-size: 12px;
-      color: #00239C;
+      color: #00007B;
       text-decoration: none;
     }
     .sd-index-title:hover { text-decoration: underline; }
 
-    .sd-index-num {
-      text-align: center;
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 13px;
-      color: #000;
+    /* Numeric columns — right-aligned */
+    .sd-index-table td.col-num {
+      text-align: right;
       white-space: nowrap;
     }
-    .sd-index-num.center { text-align: center; }
+    .sd-index-table td.col-num.center { text-align: center; }
 
+    /* #1 Picture cell */
     .sd-index-film {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 13px;
       color: #00239C;
-      font-style: normal;
       text-decoration: none;
     }
     .sd-index-film:hover { text-decoration: underline; }
+    .sd-index-table td.col-film {
+      text-align: center;
+      white-space: nowrap;
+    }
 
     .sd-note {
       font-family: Verdana, sans-serif;
       font-size: 10px;
       color: #888;
       display: block;
+      font-style: italic;
     }
 
   </style>
@@ -126,47 +154,50 @@
 
   <main class="main-content">
 
-    <div class="sd-index-header">&gt; SHOWDOWNS</div>
+    <div class="sd-page-crumb">&gt; SHOWDOWNS</div>
+    <div class="sd-section-bar"></div>
+
+    <h1 class="sd-page-title">SHOWDOWN INDEX</h1>
 
     <div class="sd-index-wrap">
       <table class="sd-index-table">
         <thead>
           <tr>
-            <th style="text-align:center;">Showdown<br><span style="font-weight:normal;font-size:10px;">(click to view chart)</span></th>
+            <th>Showdown <span class="th-hint">(click to view chart)</span></th>
             <th>Total Gross</th>
-            <th># Movies /<br>Average</th>
+            <th># Movies / Average</th>
             <th>#1 Picture</th>
             <th>Gross</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><a class="sd-index-title" href="showdown-mario.html">Mario vs Mario vs Minecraft</a></td>
-            <td class="sd-index-num">$1,391.7<span class="sd-note">Galaxy in release</span></td>
-            <td class="sd-index-num center">3 / $464.0</td>
-            <td><a class="sd-index-film" href="showdown-mario.html">A Minecraft Movie</a></td>
-            <td class="sd-index-num">$577.1</td>
+            <td class="col-showdown"><a class="sd-index-title" href="showdown-mario.html">Mario vs. Mario vs. Minecraft</a></td>
+            <td class="col-num">$1,391.7<span class="sd-note">Galaxy in release</span></td>
+            <td class="col-num center">3 / $464.0</td>
+            <td class="col-film"><a class="sd-index-film" href="showdown-mario.html">A Minecraft Movie</a></td>
+            <td class="col-num">$577.1</td>
           </tr>
           <tr>
-            <td><a class="sd-index-title" href="showdown-summer-giants.html">Summer Starters</a></td>
-            <td class="sd-index-num">$1,143.3</td>
-            <td class="sd-index-num center">5 / $228.7</td>
-            <td><a class="sd-index-film" href="showdown-summer-giants.html">Spider-Man</a></td>
-            <td class="sd-index-num">$403.7</td>
+            <td class="col-showdown"><a class="sd-index-title" href="showdown-summer-giants.html">Summer Starters</a></td>
+            <td class="col-num">$1,143.3</td>
+            <td class="col-num center">5 / $228.7</td>
+            <td class="col-film"><a class="sd-index-film" href="showdown-summer-giants.html">Spider-Man</a></td>
+            <td class="col-num">$403.7</td>
           </tr>
           <tr>
-            <td><a class="sd-index-title" href="showdown-post-pandemic-originals.html">Post-Pandemic Originals</a></td>
-            <td class="sd-index-num">&mdash;<span class="sd-note">data pending</span></td>
-            <td class="sd-index-num center">3 / &mdash;</td>
-            <td><a class="sd-index-film" href="showdown-post-pandemic-originals.html">Oppenheimer</a></td>
-            <td class="sd-index-num">$330.1</td>
+            <td class="col-showdown"><a class="sd-index-title" href="showdown-post-pandemic-originals.html">Post-Pandemic Originals</a></td>
+            <td class="col-num">&mdash;<span class="sd-note">data pending</span></td>
+            <td class="col-num center">3 / &mdash;</td>
+            <td class="col-film"><a class="sd-index-film" href="showdown-post-pandemic-originals.html">Oppenheimer</a></td>
+            <td class="col-num">$330.1</td>
           </tr>
           <tr>
-            <td><a class="sd-index-title" href="showdown-a24-hall-of-fame.html">A24 Hall of Fame</a></td>
-            <td class="sd-index-num">&mdash;<span class="sd-note">data pending</span></td>
-            <td class="sd-index-num center">6 / &mdash;</td>
-            <td><a class="sd-index-film" href="showdown-a24-hall-of-fame.html">Everything Everywhere All at Once</a></td>
-            <td class="sd-index-num">$77.2</td>
+            <td class="col-showdown"><a class="sd-index-title" href="showdown-a24-hall-of-fame.html">A24 Hall of Fame</a></td>
+            <td class="col-num">&mdash;<span class="sd-note">data pending</span></td>
+            <td class="col-num center">6 / &mdash;</td>
+            <td class="col-film"><a class="sd-index-film" href="showdown-a24-hall-of-fame.html">Everything Everywhere All at Once</a></td>
+            <td class="col-num">$77.2</td>
           </tr>
         </tbody>
       </table>
