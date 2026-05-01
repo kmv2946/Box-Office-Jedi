@@ -1005,6 +1005,18 @@ img {
   line-height: 1.4;
   letter-spacing: 0.01em;
 }
+.subscribe-widget-thanks {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 12px;
+  color: #000;
+  line-height: 1.5;
+  text-align: center;
+  padding: 6px 4px 4px;
+}
+.subscribe-widget-thanks strong {
+  font-weight: bold;
+  font-size: 13px;
+}
 
 
 /* ── Advertisement block (right sidebar) ─────────────────

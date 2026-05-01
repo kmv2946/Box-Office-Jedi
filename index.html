@@ -188,23 +188,50 @@
       </div>
     </div>
 
-    <!-- Subscribe (Buttondown). Submits to Buttondown's embed endpoint; the
-         confirmation page opens in a small popup so the user stays on the homepage. -->
+    <!-- Subscribe (Buttondown). The form posts to Buttondown's embed endpoint
+         via AJAX so the homepage doesn't redirect; on submit we hide the form
+         and show an inline "Thanks!" message in the same box. If JS fails the
+         form falls back to a normal submit (full-page redirect to Buttondown). -->
     <div class="subscribe-widget">
       <div class="subscribe-widget-banner">SUBSCRIBE</div>
       <div class="subscribe-widget-box">
-        <span class="subscribe-widget-label">Enter your email to receive our newsletter:</span>
-        <form class="subscribe-widget-form"
-              action="https://buttondown.com/api/emails/embed-subscribe/boxofficejedi"
-              method="post"
-              target="popupwindow"
-              onsubmit="window.open('https://buttondown.com/boxofficejedi', 'popupwindow')">
-          <input type="email" name="email" required>
-          <button type="submit">Subscribe</button>
-        </form>
-        <div class="subscribe-widget-blurb">For updates on forecasts, roundups<br>and other box office news.</div>
+        <div id="subscribe-form-block">
+          <span class="subscribe-widget-label">Enter your email to receive our newsletter:</span>
+          <form id="subscribe-form" class="subscribe-widget-form"
+                action="https://buttondown.com/api/emails/embed-subscribe/boxofficejedi"
+                method="post">
+            <input type="email" name="email" required>
+            <button type="submit">Subscribe</button>
+          </form>
+          <div class="subscribe-widget-blurb">For updates on forecasts, roundups<br>and other box office news.</div>
+        </div>
+        <div id="subscribe-thanks" class="subscribe-widget-thanks" hidden>
+          <strong>Thanks!</strong><br>
+          Check your email to confirm your subscription.
+        </div>
       </div>
     </div>
+    <script>
+      (function () {
+        var form = document.getElementById('subscribe-form');
+        if (!form) return;
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var email = (form.email.value || '').trim();
+          if (!email) return;
+          var data = new FormData();
+          data.append('email', email);
+          // no-cors lets the POST go through to Buttondown. We can't read the
+          // response, so we always show "thanks" — even on duplicate or invalid
+          // emails. Buttondown handles the rest via the confirmation email.
+          fetch(form.action, { method: 'POST', mode: 'no-cors', body: data })
+            .finally(function () {
+              document.getElementById('subscribe-form-block').hidden = true;
+              document.getElementById('subscribe-thanks').hidden = false;
+            });
+        });
+      })();
+    </script>
 
     <!-- Advertisement (manually rotated every few weeks) -->
     <div class="ad-block">
