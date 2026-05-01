@@ -1095,16 +1095,20 @@
       found = found.concat(STATE.meta.articles);
     }
     const idx = await fetchJSON('data/movie_articles.json');
-    const lookups = [];
-    if (STATE.id) lookups.push(String(STATE.id));
-    if (STATE.title) lookups.push(normKey(STATE.title));
-    if (STATE.meta && STATE.meta.title) lookups.push(normKey(STATE.meta.title));
-
     if (idx) {
-      for (const k of lookups) {
-        if (idx[k] && Array.isArray(idx[k])) {
-          found = found.concat(idx[k]);
-        }
+      // Slug map (year-disambiguated) wins; fall back to plain title map.
+      const slugKeys = [];
+      if (STATE.slug) slugKeys.push(STATE.slug);
+      const bySlug = idx.by_slug || {};
+      for (const k of slugKeys) {
+        if (Array.isArray(bySlug[k])) found = found.concat(bySlug[k]);
+      }
+      const titleKeys = [];
+      if (STATE.title) titleKeys.push(normKey(STATE.title));
+      if (STATE.meta && STATE.meta.title) titleKeys.push(normKey(STATE.meta.title));
+      const byTitle = idx.by_title || {};
+      for (const k of titleKeys) {
+        if (Array.isArray(byTitle[k])) found = found.concat(byTitle[k]);
       }
     }
     // Dedupe by href
@@ -1143,14 +1147,20 @@
       found = found.concat(STATE.meta.charts);
     }
     const idx = await fetchJSON('data/movie_charts.json');
-    const lookups = [];
-    if (STATE.id) lookups.push(String(STATE.id));
-    if (STATE.title) lookups.push(normKey(STATE.title));
-    if (STATE.meta && STATE.meta.title) lookups.push(normKey(STATE.meta.title));
-
     if (idx) {
-      for (const k of lookups) {
-        if (idx[k] && Array.isArray(idx[k])) found = found.concat(idx[k]);
+      // Slug map first (e.g. "thedevilwearsprada-2006"), then plain title.
+      const slugKeys = [];
+      if (STATE.slug) slugKeys.push(STATE.slug);
+      const bySlug = idx.by_slug || {};
+      for (const k of slugKeys) {
+        if (Array.isArray(bySlug[k])) found = found.concat(bySlug[k]);
+      }
+      const titleKeys = [];
+      if (STATE.title) titleKeys.push(normKey(STATE.title));
+      if (STATE.meta && STATE.meta.title) titleKeys.push(normKey(STATE.meta.title));
+      const byTitle = idx.by_title || {};
+      for (const k of titleKeys) {
+        if (Array.isArray(byTitle[k])) found = found.concat(byTitle[k]);
       }
     }
     const seen = new Set();

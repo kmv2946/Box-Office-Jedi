@@ -119,6 +119,21 @@ jobs:
         run: python3 scripts/build_movie_totals_index.py
         continue-on-error: true
 
+      - name: Rebuild movie articles index
+        # Cross-references every article HTML for movie.html links so the
+        # movie profile page's "Related Articles" panel populates
+        # automatically — every film mentioned in any forecast/roundup/
+        # feature appears on its own page.
+        run: python3 scripts/build_movie_articles_index.py
+        continue-on-error: true
+
+      - name: Rebuild movie charts index
+        # Walks every all-time chart and records each row's rank so the
+        # movie profile "Charts" panel auto-populates (e.g. Devil Wears
+        # Prada → Movies That Never Hit #1 #92, Top Fourth of July #15).
+        run: python3 scripts/build_movie_charts_index.py
+        continue-on-error: true
+
       - name: Commit and push updated data files
         run: |
           git config user.name "Box Office Jedi Bot"
