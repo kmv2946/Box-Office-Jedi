@@ -188,6 +188,24 @@
       </div>
     </div>
 
+    <!-- Subscribe (Buttondown). Submits to Buttondown's embed endpoint; the
+         confirmation page opens in a small popup so the user stays on the homepage. -->
+    <div class="subscribe-widget">
+      <div class="subscribe-widget-banner">SUBSCRIBE</div>
+      <div class="subscribe-widget-box">
+        <span class="subscribe-widget-label">Enter your email to receive our newsletter:</span>
+        <form class="subscribe-widget-form"
+              action="https://buttondown.com/api/emails/embed-subscribe/boxofficejedi"
+              method="post"
+              target="popupwindow"
+              onsubmit="window.open('https://buttondown.com/boxofficejedi', 'popupwindow')">
+          <input type="email" name="email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+        <div class="subscribe-widget-blurb">For updates on forecasts, roundups<br>and other box office news.</div>
+      </div>
+    </div>
+
     <!-- Advertisement (manually rotated every few weeks) -->
     <div class="ad-block">
       <div class="ad-label">Advertisement</div>
