@@ -188,26 +188,29 @@
       </div>
     </div>
 
-    <!-- Subscribe (Buttondown). The form posts to Buttondown's embed endpoint
-         via AJAX so the homepage doesn't redirect; on submit we hide the form
-         and show an inline "Thanks!" message in the same box. If JS fails the
-         form falls back to a normal submit (full-page redirect to Buttondown). -->
+    <!-- Subscribe (Kit, formerly ConvertKit). The form posts to Kit's form
+         endpoint via AJAX so the homepage doesn't redirect; on submit we hide
+         the form and show an inline "Thanks!" message in the same box. If JS
+         fails, the form falls back to a normal submit (full-page redirect to
+         Kit's confirmation page).
+         The Kit form is configured with auto-confirm (single opt-in), so new
+         subscribers are added immediately — no confirmation email step. -->
     <div class="subscribe-widget">
       <div class="subscribe-widget-banner">SUBSCRIBE</div>
       <div class="subscribe-widget-box">
         <div id="subscribe-form-block">
           <span class="subscribe-widget-label">Enter your email to receive our newsletter:</span>
           <form id="subscribe-form" class="subscribe-widget-form"
-                action="https://buttondown.com/api/emails/embed-subscribe/boxofficejedi"
+                action="https://app.kit.com/forms/9392593/subscriptions"
                 method="post">
-            <input type="email" name="email" required>
+            <input type="email" name="email_address" required>
             <button type="submit">Subscribe</button>
           </form>
           <div class="subscribe-widget-blurb">For updates on forecasts, roundups<br>and other box office news.</div>
         </div>
         <div id="subscribe-thanks" class="subscribe-widget-thanks" hidden>
           <strong>Thanks!</strong><br>
-          Check your email to confirm your subscription.
+          You&rsquo;re subscribed.
         </div>
       </div>
     </div>
@@ -217,13 +220,14 @@
         if (!form) return;
         form.addEventListener('submit', function (e) {
           e.preventDefault();
-          var email = (form.email.value || '').trim();
+          var email = (form.email_address.value || '').trim();
           if (!email) return;
           var data = new FormData();
-          data.append('email', email);
-          // no-cors lets the POST go through to Buttondown. We can't read the
+          data.append('email_address', email);
+          // no-cors lets the POST go through to Kit. We can't read the
           // response, so we always show "thanks" — even on duplicate or invalid
-          // emails. Buttondown handles the rest via the confirmation email.
+          // emails. Kit handles the rest (auto-confirms + sends welcome email
+          // via the Sequence configured in the dashboard).
           fetch(form.action, { method: 'POST', mode: 'no-cors', body: data })
             .finally(function () {
               document.getElementById('subscribe-form-block').hidden = true;
