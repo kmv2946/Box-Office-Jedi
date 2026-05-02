@@ -152,14 +152,15 @@
     .derby-submit:hover { background: #9a1d12; }
 
     .derby-closed {
-      padding: 18px 14px;
-      border: 1px solid #DCDCDC;
-      background: #FFFEE0;
+      padding: 60px 24px;
       font-family: 'Times New Roman', Times, serif;
-      font-size: 14px;
-      color: #000;
+      font-weight: bold;
+      font-size: 22px;
+      color: #F23620;
       margin: 10px;
       text-align: center;
+      line-height: 1.5;
+      letter-spacing: 0.01em;
     }
   </style>
 </head>
@@ -215,12 +216,11 @@
       <div class="derby-weekend-label" id="derby-weekend-label">Loading weekend dates&hellip;</div>
     </div>
 
-    <!-- Shown when submissions are closed for the current weekend -->
+    <!-- Shown when submissions are closed (status=closed/actuals_posted, OR
+         current time is past the submit_deadline). -->
     <div class="derby-closed" id="derby-closed" style="display:none;">
-      <strong>Submissions for this weekend are closed.</strong><br>
-      Results will be posted once actuals are in (usually Monday).<br>
-      Check the <a href="derby-leaderboard.html">leaderboard</a> or
-      <a href="derby.html">the main Derby page</a> for averages and champions.
+      THIS WEEK&rsquo;S CONTEST IS NOW CLOSED.<br>
+      Please check back Monday for results and next week&rsquo;s entry form.
     </div>
 
     <div class="derby-body" id="derby-body">
@@ -396,8 +396,14 @@
       })
       .catch(() => {});
 
-    // If submissions are closed, hide the form and show a notice
-    if (current.status === 'closed' || current.status === 'actuals_posted') {
+    // If submissions are closed, hide the form and show a notice.
+    // Closed when: status flagged closed/actuals_posted, OR current time
+    // is at-or-past the submit_deadline (Thursday 11:59:59 PM ET → game
+    // closes at the stroke of Friday 12:00 AM ET).
+    const nowMs = Date.now();
+    const deadlineMs = current.submit_deadline ? Date.parse(current.submit_deadline) : NaN;
+    const pastDeadline = !isNaN(deadlineMs) && nowMs >= deadlineMs;
+    if (current.status === 'closed' || current.status === 'actuals_posted' || pastDeadline) {
       document.getElementById('derby-body').style.display = 'none';
       document.getElementById('derby-closed').style.display = '';
       return;

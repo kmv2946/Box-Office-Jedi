@@ -62,6 +62,36 @@ export async function onRequestPost({ request, env }) {
     return bad("One of the fields is too long.");
   }
 
+  // Enforce game state + submit deadline server-side. Without this, someone
+  // could bypass the front-end UI by POSTing directly to /api/derby/submit
+  // after Friday midnight. We read the canonical games.json from the same
+  // origin to find the current game's status + deadline.
+  try {
+    const gamesUrl = new URL("/data/derby/games.json", request.url);
+    const gamesResp = await fetch(gamesUrl.toString(), { cf: { cacheTtl: 30 } });
+    if (gamesResp.ok) {
+      const gamesData = await gamesResp.json();
+      const game = (gamesData.games || []).find(g => g.weekend === weekend);
+      if (!game) {
+        return bad("Unknown weekend.");
+      }
+      if (game.status && game.status !== "open") {
+        return bad("Submissions for this weekend are closed.", 403);
+      }
+      if (game.submit_deadline) {
+        const deadlineMs = Date.parse(game.submit_deadline);
+        if (!isNaN(deadlineMs) && Date.now() >= deadlineMs) {
+          return bad("Submissions for this weekend are closed.", 403);
+        }
+      }
+    }
+    // If games.json can't be fetched for whatever reason, fall through —
+    // the existing duplicate-check + DB insert still runs. Better to accept
+    // a submission than 500 on a transient asset fetch.
+  } catch (e) {
+    // swallow
+  }
+
   // Collect picks
   const picks = [];
   const seenTitles = new Set();
