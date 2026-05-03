@@ -10,7 +10,7 @@
           "title": "The Devil Wears Prada 2",
           "is_new": true,
           "theaters": 4150,
-          "predicted_m": 121.0,
+          "predicted_m": 108.0,
           "actual_m": null,
           "actual_total_m": null,
           "weeks": 1
@@ -70,13 +70,23 @@
           "title": "Lee Cronin’s The Mummy",
           "is_new": false,
           "theaters": null,
-          "predicted_m": 2.5,
+          "predicted_m": 2.2,
           "actual_m": null,
           "actual_total_m": null,
           "weeks": 3
         },
         {
           "pred_rank": 8,
+          "title": "Deep Water",
+          "is_new": true,
+          "theaters": null,
+          "predicted_m": 1.5,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 1
+        },
+        {
+          "pred_rank": 9,
           "title": "The Drama",
           "is_new": false,
           "theaters": null,
@@ -86,7 +96,7 @@
           "weeks": 5
         },
         {
-          "pred_rank": 9,
+          "pred_rank": 10,
           "title": "Hoppers",
           "is_new": false,
           "theaters": null,
@@ -94,16 +104,6 @@
           "actual_m": null,
           "actual_total_m": null,
           "weeks": 9
-        },
-        {
-          "pred_rank": 10,
-          "title": "You, Me & Tuscany",
-          "is_new": false,
-          "theaters": null,
-          "predicted_m": 0.8,
-          "actual_m": null,
-          "actual_total_m": null,
-          "weeks": 4
         }
       ]
     },
