@@ -817,7 +817,14 @@
           const shardDate = (meta && meta.release_date) || '';
           const shardYear = shardDate ? String(shardDate).slice(0, 4) : '';
           const yearsDiffer = overrideYear && shardYear && overrideYear !== shardYear;
-          if (prefixMatched && yearsDiffer) {
+          // Replace whenever years differ (regardless of whether match was
+          // direct or prefix). This handles BOTH cases:
+          //   • Bare-title shard hit (e.g. "scarymovie" → 2000) + override
+          //     "scarymovie-2026" matched by prefix
+          //   • Direct slug shard miss but bare-title shard hit (e.g.
+          //     "moana-2026" not in shards, but "moana" alias resolves to
+          //     2016 in some shards)
+          if (yearsDiffer) {
             meta = Object.assign({}, oe);
           } else {
             meta = Object.assign({}, meta || {}, oe);
@@ -828,7 +835,19 @@
     }
     STATE.meta = meta;
 
-    const weekendData = await lookupInShards('movie_weekends_shards', lookupKeys);
+    let weekendData = await lookupInShards('movie_weekends_shards', lookupKeys);
+    // Cross-year guard for weekendData. The movie_weekends_shards index
+    // keeps bare-title aliases (e.g. "moana" → "moana-2016", "scarymovie"
+    // → 2000-Scary-Movie) for backward compatibility with old links that
+    // didn't pass a year. When a film has an override for a *different*
+    // year (Moana 2026, Scary Movie 2026), the bare-title alias would
+    // otherwise leak the wrong year's box office grosses into the new
+    // film's profile. If the override declares a year and the weekend
+    // archive entry is for a different year, discard the archive entry.
+    if (weekendData && meta && meta.year && weekendData.year &&
+        Number(weekendData.year) !== Number(meta.year)) {
+      weekendData = null;
+    }
     STATE.weekendData = weekendData;
 
     // Bail-out empty state
