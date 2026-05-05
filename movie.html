@@ -779,6 +779,35 @@
     const curated = await lookupInShards('movies_meta_shards', lookupKeys);
     let meta = null;
     if (curated) meta = Object.assign({}, curated);
+
+    // Manual overrides — sparse merge on top of curated/shard data.
+    // data/movie_meta_overrides.json is hand-edited (~once a month) for
+    // upcoming/recent films. Override fields ALWAYS win; fields the override
+    // doesn't include fall through to the shard's TMDB-sourced values, so
+    // post-release box office data, articles, and chart appearances continue
+    // to populate automatically. Two match strategies:
+    //   1. Exact slug match (e.g., "thedevilwearsprada2-2026")
+    //   2. Title-prefix match (e.g., bare-title link "?title=Mortal%20Kombat%20II"
+    //      → "mortalkombatii" → finds "mortalkombatii-2026"). Most recent year
+    //      wins on ambiguity.
+    const overrides = await fetchJSON('data/movie_meta_overrides.json');
+    if (overrides) {
+      for (const k of lookupKeys) {
+        if (!k || k.startsWith('_')) continue;
+        let oe = overrides[k];
+        if (!oe && !k.includes('-')) {
+          const matched = Object.keys(overrides)
+            .filter(ok => !ok.startsWith('_') && ok.startsWith(k + '-'))
+            .sort()
+            .pop();
+          if (matched) oe = overrides[matched];
+        }
+        if (oe) {
+          meta = Object.assign({}, meta || {}, oe);
+          break;
+        }
+      }
+    }
     STATE.meta = meta;
 
     const weekendData = await lookupInShards('movie_weekends_shards', lookupKeys);
@@ -894,17 +923,25 @@
 
   // ── Info Table ──────────────────────────────────────────────
   function renderInfoTable({ meta, weekendData, domesticTotal }) {
-    // Release date links to that opening weekend's individual chart page.
-    // Prefer curated meta.release_date; fall back to the first weekend in
-    // the archive (in case meta is missing the release_date field).
+    // Release date link target:
+    //   POST-release (we have weekend archive data) → that opening weekend's
+    //   individual chart page (weekend-chart.html?date=YYYY-MM-DD).
+    //   PRE-release (no weekend data yet, only a curated release_date) →
+    //   the Release Schedule page anchored to the release month
+    //   (releases.html?m=YYYY-MM). Once the film opens and the scraper picks
+    //   it up, weekendData appears and the link auto-flips to the weekend chart.
     const openingFriday = weekendData && weekendData.weekends && weekendData.weekends[0]
       ? weekendData.weekends[0].date : null;
     const releaseDateIso = (meta && meta.release_date) || openingFriday || null;
     const releaseDateDisplay = fmtRelease(releaseDateIso);
     let releaseDateHtml;
-    const linkDate = openingFriday || releaseDateIso;
-    if (linkDate) {
-      releaseDateHtml = '<a href="weekend-chart.html?date=' + linkDate + '">' + escapeHtml(releaseDateDisplay) + '</a>';
+    if (openingFriday) {
+      releaseDateHtml = '<a href="weekend-chart.html?date=' + openingFriday + '">' +
+        escapeHtml(releaseDateDisplay) + '</a>';
+    } else if (releaseDateIso) {
+      const monthAnchor = releaseDateIso.slice(0, 7);  // "2026-05"
+      releaseDateHtml = '<a href="releases.html?m=' + monthAnchor + '">' +
+        escapeHtml(releaseDateDisplay) + '</a>';
     } else {
       releaseDateHtml = escapeHtml(releaseDateDisplay);
     }
