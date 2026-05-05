@@ -842,11 +842,21 @@
     // didn't pass a year. When a film has an override for a *different*
     // year (Moana 2026, Scary Movie 2026), the bare-title alias would
     // otherwise leak the wrong year's box office grosses into the new
-    // film's profile. If the override declares a year and the weekend
-    // archive entry is for a different year, discard the archive entry.
-    if (weekendData && meta && meta.year && weekendData.year &&
-        Number(weekendData.year) !== Number(meta.year)) {
-      weekendData = null;
+    // film's profile. Detect year via .year, then opening_date, then the
+    // movie_url's "(YYYY)" suffix, in that order — some legacy entries
+    // have year=null but their opening_date or movie_url still encodes it.
+    if (weekendData && meta && meta.year) {
+      let wdYear = weekendData.year;
+      if (!wdYear && weekendData.opening_date) {
+        wdYear = Number(String(weekendData.opening_date).slice(0, 4));
+      }
+      if (!wdYear && weekendData.movie_url) {
+        const m = String(weekendData.movie_url).match(/\((\d{4})/);
+        if (m) wdYear = Number(m[1]);
+      }
+      if (wdYear && Number(wdYear) !== Number(meta.year)) {
+        weekendData = null;
+      }
     }
     STATE.weekendData = weekendData;
 
