@@ -70,7 +70,12 @@ def extract_film_keys(article_path):
     pairs = []
     seen = set()
     for m in LINK_RE.finditer(html):
-        href = m.group(1)
+        # HTML-decode the href so &amp;year=2026 → &year=2026 and the
+        # year/title/slug regexes below match. Without this, year suffixes
+        # written as HTML entities (the default when authoring HTML) are
+        # silently dropped and the link gets indexed by bare title only.
+        import html as _html
+        href = _html.unescape(m.group(1))
         slug_m = SLUG_RE.search(href)
         title_m = TITLE_RE.search(href)
         year_m = YEAR_RE.search(href)
