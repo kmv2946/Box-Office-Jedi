@@ -911,7 +911,9 @@
       if (totalsIdx) {
         // Slug map (by_slug) takes priority — exact match for the right
         // film when two share a title (Michael 1996 vs 2026). Fall back
-        // to the plain title map when no slug match.
+        // to the plain title map when no slug match — BUT only when the
+        // user didn't pass an explicit year. Otherwise the bare-title
+        // map would return 2016 Moana data for a 2026 Moana request.
         const slugLookups = [];
         if (STATE.slug) slugLookups.push(STATE.slug);
         if (weekendData && weekendData.key) slugLookups.push(weekendData.key);
@@ -922,7 +924,8 @@
             break;
           }
         }
-        if (!domesticTotal && totalsIdx.by_title) {
+        const userPassedYear = !!STATE.slug;
+        if (!domesticTotal && !userPassedYear && totalsIdx.by_title) {
           const titleLookups = [
             STATE.title,
             meta && meta.title,
@@ -930,6 +933,15 @@
           ].filter(Boolean).map(normKey);
           for (const k of titleLookups) {
             if (totalsIdx.by_title[k] && totalsIdx.by_title[k].total_gross) {
+              // Belt-and-suspenders: even with no user year, if we DO know
+              // the meta year, ensure the by_title entry is for the same
+              // film (e.g. avoid 2016 Moana totals leaking into Moana 2026
+              // when no year was passed but override declared 2026).
+              const metaYear = meta && meta.year;
+              const entryYear = totalsIdx.by_title[k].year;
+              if (metaYear && entryYear && Number(metaYear) !== Number(entryYear)) {
+                continue;
+              }
               domesticTotal = totalsIdx.by_title[k].total_gross;
               break;
             }
@@ -1185,19 +1197,26 @@
     }
     const idx = await fetchJSON('data/movie_articles.json');
     if (idx) {
-      // Slug map (year-disambiguated) wins; fall back to plain title map.
+      // Slug map (year-disambiguated) wins; fall back to plain title map
+      // ONLY when the user didn't pass a specific year. Articles in by_title
+      // can't be disambiguated by year (the article references "Moana"
+      // generically), so for an explicit-year click we don't pull them in
+      // to avoid 2016-Moana article references appearing on the 2026 page.
+      const userPassedYear = !!STATE.slug;
       const slugKeys = [];
       if (STATE.slug) slugKeys.push(STATE.slug);
       const bySlug = idx.by_slug || {};
       for (const k of slugKeys) {
         if (Array.isArray(bySlug[k])) found = found.concat(bySlug[k]);
       }
-      const titleKeys = [];
-      if (STATE.title) titleKeys.push(normKey(STATE.title));
-      if (STATE.meta && STATE.meta.title) titleKeys.push(normKey(STATE.meta.title));
-      const byTitle = idx.by_title || {};
-      for (const k of titleKeys) {
-        if (Array.isArray(byTitle[k])) found = found.concat(byTitle[k]);
+      if (!userPassedYear) {
+        const titleKeys = [];
+        if (STATE.title) titleKeys.push(normKey(STATE.title));
+        if (STATE.meta && STATE.meta.title) titleKeys.push(normKey(STATE.meta.title));
+        const byTitle = idx.by_title || {};
+        for (const k of titleKeys) {
+          if (Array.isArray(byTitle[k])) found = found.concat(byTitle[k]);
+        }
       }
     }
     // Dedupe by href
@@ -1237,19 +1256,25 @@
     }
     const idx = await fetchJSON('data/movie_charts.json');
     if (idx) {
-      // Slug map first (e.g. "thedevilwearsprada-2006"), then plain title.
+      // Slug map first (e.g. "thedevilwearsprada-2006"). Plain-title map
+      // fallback only when user didn't specify a year — chart entries don't
+      // have year info, so by_title["scarymovie"] would otherwise show 2000
+      // film's chart appearances on the Scary Movie 2026 profile.
+      const userPassedYear = !!STATE.slug;
       const slugKeys = [];
       if (STATE.slug) slugKeys.push(STATE.slug);
       const bySlug = idx.by_slug || {};
       for (const k of slugKeys) {
         if (Array.isArray(bySlug[k])) found = found.concat(bySlug[k]);
       }
-      const titleKeys = [];
-      if (STATE.title) titleKeys.push(normKey(STATE.title));
-      if (STATE.meta && STATE.meta.title) titleKeys.push(normKey(STATE.meta.title));
-      const byTitle = idx.by_title || {};
-      for (const k of titleKeys) {
-        if (Array.isArray(byTitle[k])) found = found.concat(byTitle[k]);
+      if (!userPassedYear) {
+        const titleKeys = [];
+        if (STATE.title) titleKeys.push(normKey(STATE.title));
+        if (STATE.meta && STATE.meta.title) titleKeys.push(normKey(STATE.meta.title));
+        const byTitle = idx.by_title || {};
+        for (const k of titleKeys) {
+          if (Array.isArray(byTitle[k])) found = found.concat(byTitle[k]);
+        }
       }
     }
     const seen = new Set();
