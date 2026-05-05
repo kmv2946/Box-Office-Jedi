@@ -362,9 +362,13 @@
       // Always make the title clickable — link to the movie profile page.
       // If we have a TMDB id we'll pass it for a faster lookup, but the
       // movie page can also resolve by title alone.
+      // Pass year so same-titled films (Moana 2016 vs 2026, etc.) resolve
+      // to the right movie profile. Without &year=, movie.html would fall
+      // back to a bare-title alias and pick the wrong one.
       const href = 'movie.html?' +
         (tmdbId ? 'id=' + encodeURIComponent(tmdbId) + '&' : '') +
-        'title=' + encodeURIComponent(title);
+        'title=' + encodeURIComponent(title) +
+        (year ? '&year=' + encodeURIComponent(year) : '');
       return '<tr>' +
         '<td class="sr-title"><a href="' + href + '">' + escapeHtml(title) + '</a></td>' +
         '<td class="sr-year">' + yr + '</td></tr>';

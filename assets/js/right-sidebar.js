@@ -69,11 +69,16 @@
       return;
     }
 
+    // Year derived from the week's Friday date — passed to movie.html so
+    // same-titled films across years (Moana 2016 vs 2026, etc.) resolve
+    // to the right profile.
+    const weekYear = (week.date || '').slice(0, 4);
     tbody.innerHTML = realReleases.map(r => {
       const release = r.theaters
         ? r.theaters.toLocaleString('en-US')
         : (r.release || 'TBD');
-      const titleHref = 'movie.html?title=' + encodeURIComponent(r.title);
+      const yPart = weekYear ? '&year=' + weekYear : '';
+      const titleHref = 'movie.html?title=' + encodeURIComponent(r.title) + yPart;
       return (
         '<tr>' +
           '<td class="rs-widget-title"><a href="' + titleHref + '">' +

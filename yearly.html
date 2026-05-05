@@ -413,7 +413,7 @@
         '<td>' + (y.total_screens ? fmtInt(y.total_screens) : '—') + '</td>' +
         '<td>' + (y.avg_ticket_price ? '$' + y.avg_ticket_price.toFixed(2) : '—') + '</td>' +
         '<td>' + (y.num_pictures ? fmtInt(y.num_pictures) : '—') + '</td>' +
-        '<td class="yr-td-title">' + (y.top_title ? '<a href="movie.html?title=' + encodeURIComponent(y.top_title) + '">' + y.top_title + '</a>' : '—') + '</td>' +
+        '<td class="yr-td-title">' + (y.top_title ? '<a href="movie.html?title=' + encodeURIComponent(y.top_title) + '&year=' + y.year + '">' + y.top_title + '</a>' : '—') + '</td>' +
         '</tr>';
     }).join('');
     document.getElementById('yr-domestic-body').innerHTML = dom;
@@ -450,7 +450,7 @@
       const mark = y.year === currentYear ? ' class="yr-current"' : '';
       return '<tr' + mark + '>' +
         '<td class="yr-td-year"><a href="yearly-chart.html?year=' + y.year + '">' + y.year + '</a></td>' +
-        '<td class="yr-td-title">' + (y.top_title ? '<a href="movie.html?title=' + encodeURIComponent(y.top_title) + '">' + y.top_title + '</a>' : '—') + '</td>' +
+        '<td class="yr-td-title">' + (y.top_title ? '<a href="movie.html?title=' + encodeURIComponent(y.top_title) + '&year=' + y.year + '">' + y.top_title + '</a>' : '—') + '</td>' +
         '<td>' + fmtDollars(y.top_opening) + '</td>' +
         '<td>' + (pct !== null ? (pct * 100).toFixed(1) + '%' : '—') + '</td>' +
         '<td>' + (y.top_theaters ? fmtInt(y.top_theaters) : '—') + '</td>' +
@@ -465,7 +465,7 @@
       const mark = y.year === currentYear ? ' class="yr-current"' : '';
       return '<tr' + mark + '>' +
         '<td class="yr-td-year"><a href="yearly-chart.html?year=' + y.year + '">' + y.year + '</a></td>' +
-        '<td class="yr-td-title">' + (y.top_title ? '<a href="movie.html?title=' + encodeURIComponent(y.top_title) + '">' + y.top_title + '</a>' : '—') + '</td>' +
+        '<td class="yr-td-title">' + (y.top_title ? '<a href="movie.html?title=' + encodeURIComponent(y.top_title) + '&year=' + y.year + '">' + y.top_title + '</a>' : '—') + '</td>' +
         '<td>' + fmtShort(y.top_worldwide) + '</td>' +
         '</tr>';
     }).join('');

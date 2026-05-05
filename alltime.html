@@ -532,9 +532,19 @@
           'Star Wars: Episode VII - The Force Awakens': 'Star Wars: The Force Awakens'
         };
         const displayTitle = DISPLAY_RENAMES[title] || title;
+        // Try to grab a year from a "Year" or "Date" column so the link
+        // disambiguates same-titled films (Moana 2016 vs 2026, etc.).
+        let yearIdx = findColIndex(cols, 'Year');
+        if (yearIdx === -1) yearIdx = findColIndex(cols, 'Release Year');
+        if (yearIdx === -1) yearIdx = findColIndex(cols, 'Date');
+        let yPart = '';
+        if (yearIdx !== -1) {
+          const ym = String(top[yearIdx] || '').match(/(\d{4})/);
+          if (ym) yPart = '&year=' + ym[1];
+        }
         filmCell.classList.remove('tbd');
         filmCell.innerHTML = '<a href="movie.html?title=' +
-          encodeURIComponent(title) + '">' + displayTitle + '</a>';
+          encodeURIComponent(title) + yPart + '">' + displayTitle + '</a>';
       }
     }
     if (statIdx !== -1 && grossCell) {

@@ -424,7 +424,7 @@
   }
 
   // ── Build a row + table ─────────────────────────────────────────────────
-  function buildReleaseRow(r) {
+  function buildReleaseRow(r, year) {
     const wide = r.is_wide ? ' class="rs-wide"' : '';
     // Theater count takes priority once it's confirmed. Falls back to the
     // generic "Wide" / "Limited" label, then "TBD" if neither is known.
@@ -437,10 +437,13 @@
     const noteHtml = r.note
       ? ' <span class="rs-td-note">' + escapeHtml(r.note) + '</span>'
       : '';
+    // Year passed from the parent week's Friday date — disambiguates
+    // same-title films across years (Moana 2016 vs 2026, etc.).
+    const yPart = year ? '&year=' + year : '';
     return (
       '<tr' + wide + '>' +
         '<td class="rs-td-title">' +
-          '<a href="movie.html?title=' + encodeURIComponent(r.title) + '">' +
+          '<a href="movie.html?title=' + encodeURIComponent(r.title) + yPart + '">' +
             escapeHtml(r.title) +
           '</a>' + noteHtml + genreHtml +
         '</td>' +
@@ -450,7 +453,8 @@
     );
   }
   function buildWeekTable(week) {
-    const rows = (week.releases || []).map(buildReleaseRow).join('');
+    const weekYear = (week.date || '').slice(0, 4);
+    const rows = (week.releases || []).map(r => buildReleaseRow(r, weekYear)).join('');
     if (!rows) {
       return '<div class="rs-week">' + buildWeekHead(week.date, week.weekday) +
              '<p class="rs-empty">No theatrical releases scheduled.</p></div>';
@@ -493,10 +497,13 @@
         const genreHtml = r.genre
           ? '<span class="rs-td-genre">' + escapeHtml(r.genre) + '</span>'
           : '';
+        // Try to derive year from the row's date field if present
+        const yMatch = String(r.date || '').match(/(\d{4})/);
+        const yPart = yMatch ? '&year=' + yMatch[1] : '';
         return (
           '<tr' + wide + '>' +
             '<td class="rs-td-title">' +
-              '<a href="movie.html?title=' + encodeURIComponent(r.title) + '">' +
+              '<a href="movie.html?title=' + encodeURIComponent(r.title) + yPart + '">' +
                 escapeHtml(r.title) +
               '</a>' + genreHtml +
             '</td>' +
