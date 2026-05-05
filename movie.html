@@ -795,15 +795,33 @@
       for (const k of lookupKeys) {
         if (!k || k.startsWith('_')) continue;
         let oe = overrides[k];
+        let prefixMatched = false;
         if (!oe && !k.includes('-')) {
           const matched = Object.keys(overrides)
             .filter(ok => !ok.startsWith('_') && ok.startsWith(k + '-'))
             .sort()
             .pop();
-          if (matched) oe = overrides[matched];
+          if (matched) {
+            oe = overrides[matched];
+            prefixMatched = true;
+          }
         }
         if (oe) {
-          meta = Object.assign({}, meta || {}, oe);
+          // Cross-year collision guard: when the curated shard data was found
+          // by bare title (e.g. "moana") but the override is for a different
+          // year (e.g. "moana-2026"), the shard data describes a DIFFERENT
+          // film (Moana 2016) — don't merge it on. Replace meta with the
+          // override alone so 2016's poster/runtime/overview don't leak into
+          // the 2026 profile.
+          const overrideYear = String(oe.year || '');
+          const shardDate = (meta && meta.release_date) || '';
+          const shardYear = shardDate ? String(shardDate).slice(0, 4) : '';
+          const yearsDiffer = overrideYear && shardYear && overrideYear !== shardYear;
+          if (prefixMatched && yearsDiffer) {
+            meta = Object.assign({}, oe);
+          } else {
+            meta = Object.assign({}, meta || {}, oe);
+          }
           break;
         }
       }

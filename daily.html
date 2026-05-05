@@ -472,7 +472,7 @@
         </div>
 
         <div class="daily-estimates-notice" id="estimates-notice" style="display:none;">
-          * Figures marked with an asterisk are estimates and will be updated when actuals are reported.
+          Some figures shown are estimates and will be updated when actuals are reported.
         </div>
 
         <!-- Chart table -->
@@ -824,8 +824,12 @@
           td.classList.add('na-cell', 'dc-na');
           td.innerHTML = 'N/A';
         } else {
-          const estMark = dayDataMap[iso].is_estimates ? '*' : '';
-          const grossHtml = `<span class="dc-gross">${fmtGross(dr.daily_gross)}${estMark}</span>`;
+          // Asterisk markers were dropped — the column header / banner notice
+          // already conveys "this day is estimates" at the day level, and per-
+          // cell markers added visual noise without clarity (see launch
+          // feedback). Estimates vs actuals is now communicated only via the
+          // top-of-page "estimates notice" banner and the day's column color.
+          const grossHtml = `<span class="dc-gross">${fmtGross(dr.daily_gross)}</span>`;
 
           // Derive pct_change from yesterday's gross when scraped value is missing.
           let pctChange = (dr.pct_change != null) ? dr.pct_change : null;
