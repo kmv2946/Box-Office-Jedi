@@ -791,12 +791,17 @@
     //      → "mortalkombatii" → finds "mortalkombatii-2026"). Most recent year
     //      wins on ambiguity.
     const overrides = await fetchJSON('data/movie_meta_overrides.json');
+    // Was a specific year requested via ?year= or ?slug=? If yes, prefix
+    // match in overrides is dangerous — clicking "Moana (2016)" would fall
+    // back to "moana" → prefix-match "moana-2026" → wrong-year override
+    // applied. Only allow prefix match when no year was specified at all.
+    const userPassedYear = !!STATE.slug;
     if (overrides) {
       for (const k of lookupKeys) {
         if (!k || k.startsWith('_')) continue;
         let oe = overrides[k];
         let prefixMatched = false;
-        if (!oe && !k.includes('-')) {
+        if (!oe && !k.includes('-') && !userPassedYear) {
           const matched = Object.keys(overrides)
             .filter(ok => !ok.startsWith('_') && ok.startsWith(k + '-'))
             .sort()

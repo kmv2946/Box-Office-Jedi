@@ -1,17 +1,212 @@
 {
-  "active_poll_id": "2026-may-highest-grossing",
+  "active_poll_id": "2026-summer-top-grosser",
   "polls": [
+    {
+      "id": "2026-summer-top-grosser",
+      "question": "What will be the top-grossing movie of the summer?",
+      "closes": "2026-09-08",
+      "options": [
+        {
+          "id": "devil-wears-prada-2",
+          "label": "The Devil Wears Prada 2",
+          "votes": 5
+        },
+        {
+          "id": "disclosure-day",
+          "label": "Disclosure Day",
+          "votes": 5
+        },
+        {
+          "id": "minions-and-monsters",
+          "label": "Minions & Monsters",
+          "votes": 4
+        },
+        {
+          "id": "moana",
+          "label": "Moana",
+          "votes": 6
+        },
+        {
+          "id": "odyssey",
+          "label": "The Odyssey",
+          "votes": 17
+        },
+        {
+          "id": "scary-movie",
+          "label": "Scary Movie",
+          "votes": 8
+        },
+        {
+          "id": "spider-man-brand-new-day",
+          "label": "Spider-Man: Brand New Day",
+          "votes": 30
+        },
+        {
+          "id": "mandalorian-grogu",
+          "label": "Star Wars: The Mandalorian and Grogu",
+          "votes": 4
+        },
+        {
+          "id": "supergirl",
+          "label": "Supergirl",
+          "votes": 0
+        },
+        {
+          "id": "toy-story-5",
+          "label": "Toy Story 5",
+          "votes": 16
+        },
+        {
+          "id": "other",
+          "label": "Other",
+          "votes": 2
+        }
+      ]
+    },
+    {
+      "id": "2026-summer-underperform",
+      "question": "What summer movie is most likely to underperform?",
+      "closes": "2026-09-08",
+      "options": [
+        {
+          "id": "devil-wears-prada-2",
+          "label": "The Devil Wears Prada 2",
+          "votes": 6
+        },
+        {
+          "id": "disclosure-day",
+          "label": "Disclosure Day",
+          "votes": 9
+        },
+        {
+          "id": "minions-and-monsters",
+          "label": "Minions & Monsters",
+          "votes": 5
+        },
+        {
+          "id": "moana",
+          "label": "Moana",
+          "votes": 11
+        },
+        {
+          "id": "odyssey",
+          "label": "The Odyssey",
+          "votes": 8
+        },
+        {
+          "id": "scary-movie",
+          "label": "Scary Movie",
+          "votes": 4
+        },
+        {
+          "id": "spider-man-brand-new-day",
+          "label": "Spider-Man: Brand New Day",
+          "votes": 6
+        },
+        {
+          "id": "mandalorian-grogu",
+          "label": "Star Wars: The Mandalorian and Grogu",
+          "votes": 13
+        },
+        {
+          "id": "supergirl",
+          "label": "Supergirl",
+          "votes": 28
+        },
+        {
+          "id": "toy-story-5",
+          "label": "Toy Story 5",
+          "votes": 1
+        },
+        {
+          "id": "other",
+          "label": "Other",
+          "votes": 1
+        }
+      ]
+    },
+    {
+      "id": "2026-highest-grossing",
+      "question": "What will be the highest-grossing movie of 2026?",
+      "closes": "2027-01-01",
+      "options": [
+        {
+          "id": "mario-galaxy",
+          "label": "The Super Mario Galaxy Movie",
+          "votes": 10
+        },
+        {
+          "id": "avengers-doomsday",
+          "label": "Avengers: Doomsday",
+          "votes": 24
+        },
+        {
+          "id": "dune-part-three",
+          "label": "Dune: Part Three",
+          "votes": 15
+        },
+        {
+          "id": "odyssey",
+          "label": "The Odyssey",
+          "votes": 16
+        },
+        {
+          "id": "spider-man-brand-new-day",
+          "label": "Spider-Man: Brand New Day",
+          "votes": 25
+        },
+        {
+          "id": "toy-story-5",
+          "label": "Toy Story 5",
+          "votes": 13
+        },
+        {
+          "id": "moana",
+          "label": "Moana",
+          "votes": 1
+        },
+        {
+          "id": "other",
+          "label": "Other",
+          "votes": 3
+        }
+      ]
+    },
     {
       "id": "2026-may-highest-grossing",
       "question": "What will be the highest-grossing movie in May?",
       "closes": "2026-05-01",
       "options": [
-        { "id": "billie-eilish",       "label": "Billie Eilish: Hit Me Hard and Soft \u2014 The Tour Live in 3D", "votes": 6   },
-        { "id": "devil-wears-prada-2", "label": "The Devil Wears Prada 2",                                       "votes": 100 },
-        { "id": "mortal-kombat-2",     "label": "Mortal Kombat II",                                              "votes": 16  },
-        { "id": "sheep-detectives",    "label": "The Sheep Detectives",                                          "votes": 10  },
-        { "id": "mandalorian-grogu",   "label": "Star Wars: The Mandalorian and Grogu",                          "votes": 64  },
-        { "id": "other",               "label": "Other",                                                          "votes": 4   }
+        {
+          "id": "billie-eilish",
+          "label": "Billie Eilish: Hit Me Hard and Soft — The Tour Live in 3D",
+          "votes": 6
+        },
+        {
+          "id": "devil-wears-prada-2",
+          "label": "The Devil Wears Prada 2",
+          "votes": 100
+        },
+        {
+          "id": "mortal-kombat-2",
+          "label": "Mortal Kombat II",
+          "votes": 16
+        },
+        {
+          "id": "sheep-detectives",
+          "label": "The Sheep Detectives",
+          "votes": 10
+        },
+        {
+          "id": "mandalorian-grogu",
+          "label": "Star Wars: The Mandalorian and Grogu",
+          "votes": 64
+        },
+        {
+          "id": "other",
+          "label": "Other",
+          "votes": 4
+        }
       ]
     }
   ]
