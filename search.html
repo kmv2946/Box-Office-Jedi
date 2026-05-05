@@ -313,7 +313,12 @@
   let INDEX = null;
   async function loadIndex() {
     if (INDEX) return INDEX;
-    const r = await fetch('data/search-index.json', { cache: 'force-cache' });
+    // No `cache: 'force-cache'` — that was causing browsers to keep old
+    // copies of the search index forever, hiding new entries (e.g. Moana
+    // 2026 / Scary Movie 2026 not appearing alongside the older entries).
+    // Default caching honors HTTP headers + Cloudflare's edge cache, which
+    // is fast enough and stays current when the file is rebuilt.
+    const r = await fetch('data/search-index.json');
     if (!r.ok) throw new Error('search index not available');
     INDEX = await r.json();
     return INDEX;
