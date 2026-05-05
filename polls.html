@@ -24,71 +24,102 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <style>
 
-    /* ── Page title ──────────────────────────────────────────── */
-    .idx-page-header {
-      padding: 16px 14px 10px;
-      text-align: center;
-      border-bottom: 2px solid #990000;
-    }
-    .idx-page-title {
-      font-family: Verdana, Geneva, sans-serif;
-      font-weight: bold;
-      font-size: 28px;
-      letter-spacing: -0.5px;
-      color: #000;
-      margin: 0;
-    }
-    .idx-page-sub {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 13px;
-      color: #444;
-      margin-top: 4px;
-    }
-
-    /* ── Section headings (LIVE / CLOSED) ────────────────────── */
-    .polls-section-header {
-      display: table;
-      background: #7F170E;
-      color: #ffffff;
-      font-family: Verdana, Geneva, sans-serif;
-      font-weight: bold;
-      font-size: 12px;
-      padding: 4px 10px;
-      letter-spacing: 0.05em;
-      margin: 18px 14px 6px;
-    }
-    .polls-empty-section {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 13px;
-      color: #888;
-      font-style: italic;
-      margin: 0 14px 14px;
-    }
-
-    /* ── Poll card ───────────────────────────────────────────── */
-    .polls-list {
-      padding: 0 14px 16px;
-      list-style: none;
-      margin: 0;
-    }
-    .poll-card {
-      border: 1px solid #DCDCDC;
-      background: #FFFFFF;
-      padding: 12px 14px;
-      margin-bottom: 12px;
-    }
-    .poll-card .poll-question {
+    /* ── Breadcrumb header (matches Yearly / Weekend index pattern) ─ */
+    .polls-page-crumb {
       font-family: Verdana, Geneva, sans-serif;
       font-weight: bold;
       font-size: 14px;
+      color: #00239C;
+      padding: 6px 10px 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .polls-section-bar {
+      height: 5px;
+      background: #7F170E;
+      margin-bottom: 0;
+    }
+
+    /* ── Tab nav: View: [CURRENT POLLS] [PAST POLLS] (BOM-style) ── */
+    .polls-tabs {
+      padding: 14px 14px 0;
+      display: flex;
+      align-items: flex-end;
+      gap: 0;
+      font-family: Verdana, Geneva, sans-serif;
+      border-bottom: 1px solid #B8B8B8;
+    }
+    .polls-tabs-label {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
       color: #000;
-      margin: 0 0 4px;
+      margin-right: 10px;
+      padding-bottom: 8px;
+    }
+    .polls-tab {
+      flex: 1;
+      max-width: 280px;
+      text-align: center;
+      padding: 10px 16px;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #00239C;
+      background: #DCDCDC;
+      border: 1px solid #B8B8B8;
+      border-bottom: none;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .polls-tab + .polls-tab { margin-left: -1px; }
+    .polls-tab:hover { background: #C8C8C8; }
+    .polls-tab.is-active {
+      background: #FFFFFF;
+      color: #000;
+      position: relative;
+      z-index: 1;
+      /* Slight lift over the bottom border */
+      margin-bottom: -1px;
+    }
+
+    /* ── Poll card (Current Polls view) ──────────────────────── */
+    .polls-list {
+      padding: 14px 14px 16px;
+      list-style: none;
+      margin: 0;
+    }
+    .polls-empty-section {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      color: #888;
+      font-style: italic;
+      padding: 24px 14px;
+      text-align: center;
+    }
+
+    .poll-card {
+      border: 1px solid #B8B8B8;
+      background: #FFFFFF;
+      margin-bottom: 14px;
+    }
+    /* Question header — gray bg, bold black, BOM-style banner */
+    .poll-card .poll-question {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 17px;
+      color: #000;
+      background: #DCDCDC;
+      padding: 8px 12px;
+      margin: 0;
+      border-bottom: 1px solid #B8B8B8;
     }
     .poll-card .poll-meta {
       font-family: Verdana, Geneva, sans-serif;
       font-size: 11px;
       color: #666;
-      margin: 0 0 10px;
+      padding: 6px 12px;
+      border-bottom: 1px solid #EEEEEE;
     }
     .poll-card .poll-meta .meta-tag {
       display: inline-block;
@@ -107,10 +138,100 @@
     .poll-card .poll-meta .meta-tag.is-live  { background: #2E7D32; }
     .poll-card .poll-meta .meta-tag.is-closed { background: #4E4E4E; }
 
-    /* Reuse existing .poll-results / .poll-bar-* styles from styles.css.
-       Just tighten margins inside the card. */
-    .poll-card .poll-results { margin-top: 4px; }
+    /* Results bars + form inside the card — more spacious now */
+    .poll-card .poll-results,
+    .poll-card .poll-options { margin: 0; padding: 0; list-style: none; }
+    .poll-card .poll-results { padding: 6px 12px 10px; }
+    .poll-card .poll-options li {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
+    }
+    .poll-card .poll-options li:nth-child(odd)  { background: #F4F4FE; }
+    .poll-card .poll-options li:nth-child(even) { background: #FFFFFF; }
+    .poll-card .poll-options input[type="radio"] {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    .poll-card .poll-options label {
+      cursor: pointer;
+      flex: 1;
+    }
+    .poll-card .poll-actions {
+      padding: 10px 12px;
+      border-top: 1px solid #EEEEEE;
+      text-align: right;
+    }
+    .poll-card .poll-actions .poll-vote-btn {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      color: #FFFFFF;
+      background: #7F170E;
+      border: 1px solid #5a0f08;
+      padding: 6px 18px;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+    }
+    .poll-card .poll-actions .poll-vote-btn:hover { background: #9a1d12; }
+    .poll-card .poll-actions .poll-results-link {
+      background: none;
+      border: none;
+      padding: 0;
+      margin-right: 16px;
+      cursor: pointer;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      color: #00239C;
+      font-weight: bold;
+    }
+    .poll-card .poll-actions .poll-results-link:hover { text-decoration: underline; }
 
+    /* ── Past Polls table view ───────────────────────────────── */
+    .past-table-wrap { padding: 14px 14px 24px; }
+    .past-section-title {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      color: #000;
+      margin: 0 0 8px;
+      letter-spacing: -0.3px;
+    }
+    .past-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #FFFFFF;
+    }
+    .past-table thead th {
+      background: #DCDCDC;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      color: #000;
+      padding: 5px 8px;
+      text-align: left;
+      border-bottom: 1px solid #B8B8B8;
+    }
+    .past-table thead th.col-date { width: 90px; white-space: nowrap; }
+    .past-table tbody tr:nth-child(odd)  td { background: #FFFFFF; }
+    .past-table tbody tr:nth-child(even) td { background: #EEF0FB; }
+    .past-table tbody td {
+      padding: 5px 8px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      color: #000;
+    }
+    .past-table td.col-date { white-space: nowrap; }
+    .past-table td.col-question a {
+      font-family: 'Times New Roman', Times, serif;
+      color: #00007B;
+      text-decoration: none;
+    }
+    .past-table td.col-question a:hover { text-decoration: underline; }
+
+    /* Loading / empty states */
     .polls-empty {
       text-align: center;
       padding: 40px 20px;
@@ -118,6 +239,18 @@
       font-size: 12px;
       color: #888;
     }
+
+    /* Detail view (single poll via ?poll=ID) — compact back link */
+    .polls-back-link {
+      display: inline-block;
+      padding: 8px 14px;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 11px;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .polls-back-link:hover { text-decoration: underline; }
 
   </style>
 </head>
@@ -159,9 +292,13 @@
 
   <main class="main-content">
 
-    <div class="idx-page-header">
-      <h1 class="idx-page-title">POLLS</h1>
-      <div class="idx-page-sub">Vote on what&rsquo;s next. Browse what&rsquo;s closed.</div>
+    <div class="polls-page-crumb">&gt; POLLS</div>
+    <div class="polls-section-bar"></div>
+
+    <div class="polls-tabs" id="polls-tabs">
+      <span class="polls-tabs-label">View:</span>
+      <a class="polls-tab" id="tab-current" href="polls.html">Current Polls</a>
+      <a class="polls-tab" id="tab-past"    href="polls.html?tab=past">Past Polls</a>
     </div>
 
     <div id="polls-content">
@@ -257,10 +394,36 @@
     return months[(p[1] || 1) - 1] + ' ' + (p[2] || 1) + ', ' + p[0];
   }
 
-  // Reusable poll-card renderer. For closed polls we mark the winner, for
-  // live polls we just render bars (with the user's pick highlighted if
-  // they voted on the homepage).
-  function renderPollCard(poll, isClosed, userChoice) {
+  // Render the body of a poll card — either a vote form (live + not yet
+  // voted) or results bars (closed, OR live with a prior vote). Returns
+  // an HTML string. Form submit handlers are bound separately after the
+  // innerHTML is set, in attachVoteHandlers.
+  function renderPollBody(poll, isClosed, userChoice) {
+    // Live + no prior vote → render a vote form
+    if (!isClosed && !userChoice) {
+      const opts = poll.options.map(function(o){
+        return (
+          '<li>' +
+            '<input type="radio" name="poll-' + escapeHtml(poll.id) + '" ' +
+              'id="opt-' + escapeHtml(poll.id) + '-' + escapeHtml(o.id) + '" ' +
+              'value="' + escapeHtml(o.id) + '">' +
+            '<label for="opt-' + escapeHtml(poll.id) + '-' + escapeHtml(o.id) + '">' +
+              escapeHtml(o.label) + '</label>' +
+          '</li>'
+        );
+      }).join('');
+      return (
+        '<form class="poll-form" data-poll-id="' + escapeHtml(poll.id) + '">' +
+          '<ul class="poll-options">' + opts + '</ul>' +
+          '<div class="poll-actions">' +
+            '<button type="submit" class="poll-vote-btn">VOTE</button>' +
+            '<button type="button" class="poll-results-link" data-results-for="' + escapeHtml(poll.id) + '">&gt; See results</button>' +
+          '</div>' +
+        '</form>'
+      );
+    }
+
+    // Otherwise render results bars
     const total = poll.options.reduce(function(s, o){ return s + (o.votes || 0); }, 0);
     let winnerId = null;
     if (isClosed) {
@@ -286,7 +449,12 @@
         '</li>'
       );
     }).join('');
+    return '<ul class="poll-results">' + rows + '</ul>';
+  }
 
+  // Reusable poll-card renderer. Wraps renderPollBody with header/meta.
+  function renderPollCard(poll, isClosed, userChoice) {
+    const total = poll.options.reduce(function(s, o){ return s + (o.votes || 0); }, 0);
     const tag = isClosed
       ? '<span class="meta-tag is-closed">Closed</span>'
       : '<span class="meta-tag is-live">Live</span>';
@@ -294,23 +462,167 @@
       ? 'Closed ' + fmtClosesDate(poll.closes)
       : 'Voting closes ' + fmtClosesDate(poll.closes);
 
-    const voteAction = isClosed ? '' :
-      '<div style="margin-top:8px; text-align:right;">' +
-        '<a href="index.html#home-poll" style="font-family:Verdana,sans-serif;font-weight:bold;font-size:11px;color:#00239C;">' +
-          'Cast your vote on the homepage &gt;' +
-        '</a>' +
-      '</div>';
-
     return (
-      '<div class="poll-card">' +
+      '<div class="poll-card" data-poll-card-id="' + escapeHtml(poll.id) + '">' +
         '<div class="poll-question">' + escapeHtml(poll.question) + '</div>' +
         '<div class="poll-meta">' + tag + closesText +
           ' &middot; ' + total.toLocaleString('en-US') + ' total votes' +
         '</div>' +
-        '<ul class="poll-results">' + rows + '</ul>' +
-        voteAction +
+        renderPollBody(poll, isClosed, userChoice) +
       '</div>'
     );
+  }
+
+  // After innerHTML is set, find any vote forms / "see results" buttons and
+  // bind handlers. Voting on this page mirrors the homepage logic exactly:
+  // optimistic bump + localStorage so the user sees their vote reflected
+  // (counts don't accumulate across users — that requires a backend).
+  function attachVoteHandlers(pollsByCard) {
+    document.querySelectorAll('form.poll-form').forEach(function(form){
+      form.addEventListener('submit', async function(e){
+        e.preventDefault();
+        const pollId = form.getAttribute('data-poll-id');
+        const poll = pollsByCard[pollId];
+        if (!poll) return;
+        const sel = form.querySelector('input[name="poll-' + pollId + '"]:checked');
+        if (!sel) return;
+        const choice = sel.value;
+
+        // Optimistic local bump so the user sees their vote immediately,
+        // even before the API responds.
+        const opt = poll.options.find(function(o){ return o.id === choice; });
+        if (opt) opt.votes = (opt.votes || 0) + 1;
+        try { localStorage.setItem('boj_poll_' + pollId, choice); } catch(e) {}
+        // Re-render in results state right away
+        const card = document.querySelector('[data-poll-card-id="' + pollId + '"]');
+        if (card) card.outerHTML = renderPollCard(poll, false, choice);
+
+        // Submit to the backend in the background. If it returns updated
+        // counts, overwrite our optimistic numbers with the authoritative
+        // merged baseline+real counts and re-render once more.
+        try {
+          const fd = new FormData();
+          fd.append('poll_id',   pollId);
+          fd.append('option_id', choice);
+          const resp = await fetch('/api/polls/vote', { method: 'POST', body: fd });
+          if (resp.ok) {
+            const data = await resp.json();
+            if (data && data.ok && Array.isArray(data.results)) {
+              const byOpt = {};
+              data.results.forEach(function(r){ byOpt[r.option_id] = r.votes; });
+              poll.options.forEach(function(o){
+                if (byOpt[o.id] != null) o.votes = byOpt[o.id];
+              });
+              const card2 = document.querySelector('[data-poll-card-id="' + pollId + '"]');
+              if (card2) card2.outerHTML = renderPollCard(poll, false, choice);
+            }
+          }
+        } catch (err) {
+          // Network error: leave the optimistic count in place.
+        }
+      });
+    });
+    document.querySelectorAll('.poll-results-link[data-results-for]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        const pollId = btn.getAttribute('data-results-for');
+        const poll = pollsByCard[pollId];
+        if (!poll) return;
+        const card = document.querySelector('[data-poll-card-id="' + pollId + '"]');
+        if (card) card.outerHTML = renderPollCard(poll, false, null);
+      });
+    });
+  }
+
+  // ── Backend integration ────────────────────────────────────────
+  // /api/polls/results returns { ok:true, polls: { <poll_id>: { <opt_id>: votes } } }
+  // — the merged baseline+real counts. If the API isn't deployed yet (or D1
+  // hasn't been provisioned), this silently falls back to the polls.json
+  // baseline alone so the page still renders.
+  async function fetchLiveResults() {
+    try {
+      const r = await fetch('/api/polls/results', { cache: 'no-store' });
+      if (!r.ok) return null;
+      const data = await r.json();
+      return (data && data.ok) ? (data.polls || {}) : null;
+    } catch (e) {
+      return null;
+    }
+  }
+  // Apply live counts on top of the polls.json baseline (in place).
+  function applyLiveResults(polls, live) {
+    if (!live) return;
+    polls.forEach(function(p){
+      const merged = live[p.id];
+      if (!merged) return;
+      (p.options || []).forEach(function(o){
+        if (merged[o.id] != null) o.votes = merged[o.id];
+      });
+    });
+  }
+
+  // ── Render: Current Polls list (vote forms or results) ──────────
+  function renderCurrentPolls(live) {
+    if (!live.length) {
+      return '<p class="polls-empty-section">No active polls right now. Check back soon.</p>';
+    }
+    let html = '<ul class="polls-list">';
+    live.forEach(function(p){
+      const userChoice = (function(){
+        try { return localStorage.getItem('boj_poll_' + p.id); } catch(e) { return null; }
+      })();
+      html += '<li>' + renderPollCard(p, false, userChoice) + '</li>';
+    });
+    html += '</ul>';
+    return html;
+  }
+
+  // ── Render: Past Polls table ────────────────────────────────────
+  function fmtPastDate(iso) {
+    if (!iso) return '';
+    const p = iso.split('-').map(Number);
+    const y = String(p[0]).slice(2);
+    return p[1] + '/' + p[2] + '/' + y;  // 5/1/26
+  }
+  function renderPastPolls(closed) {
+    if (!closed.length) {
+      return '<p class="polls-empty-section">No closed polls yet.</p>';
+    }
+    let html = '<div class="past-table-wrap"><div class="past-section-title">PAST POLLS</div>';
+    html += '<table class="past-table">';
+    html += '<thead><tr><th class="col-date">Date</th><th class="col-question">Poll (Click to view)</th></tr></thead>';
+    html += '<tbody>';
+    closed.forEach(function(p){
+      html += '<tr>' +
+        '<td class="col-date">' + escapeHtml(fmtPastDate(p.closes)) + '</td>' +
+        '<td class="col-question"><a href="polls.html?poll=' + encodeURIComponent(p.id) + '">' +
+          escapeHtml(p.question) + '</a></td>' +
+        '</tr>';
+    });
+    html += '</tbody></table></div>';
+    return html;
+  }
+
+  // ── Render: Single-poll detail (?poll=ID) ────────────────────────
+  function renderPollDetail(poll) {
+    const isClosed = pollIsClosed(poll);
+    const userChoice = (function(){
+      try { return localStorage.getItem('boj_poll_' + poll.id); } catch(e) { return null; }
+    })();
+    const backTab = isClosed ? '?tab=past' : '';
+    return (
+      '<a href="polls.html' + backTab + '" class="polls-back-link">&lt; Back to ' +
+        (isClosed ? 'Past Polls' : 'Current Polls') + '</a>' +
+      '<div class="polls-list" style="list-style:none;">' +
+        renderPollCard(poll, isClosed, userChoice) +
+      '</div>'
+    );
+  }
+
+  function setActiveTab(which) {
+    const cur = document.getElementById('tab-current');
+    const past = document.getElementById('tab-past');
+    if (cur)  cur.classList.toggle('is-active',  which === 'current');
+    if (past) past.classList.toggle('is-active', which === 'past');
   }
 
   async function loadPolls() {
@@ -324,53 +636,55 @@
       container.innerHTML = '<p class="polls-empty">Could not load polls.</p>';
       return;
     }
-
     const polls = (data.polls || []).slice();
+
+    // Overlay live counts from the backend on top of the baseline. If the
+    // backend isn't reachable, the baseline alone still renders correctly.
+    const liveResults = await fetchLiveResults();
+    applyLiveResults(polls, liveResults);
+
     if (!polls.length) {
       container.innerHTML = '<p class="polls-empty">No polls posted yet. Check back soon.</p>';
       return;
     }
 
+    const params = new URLSearchParams(window.location.search);
+    const detailId = params.get('poll');
+    const tab = params.get('tab') === 'past' ? 'past' : 'current';
+
+    // Single-poll detail view
+    if (detailId) {
+      const poll = polls.find(function(p){ return p.id === detailId; });
+      if (!poll) {
+        container.innerHTML = '<p class="polls-empty">Poll not found.</p>';
+        setActiveTab('current');
+        return;
+      }
+      setActiveTab(pollIsClosed(poll) ? 'past' : 'current');
+      container.innerHTML = renderPollDetail(poll);
+      const map = {}; map[poll.id] = poll;
+      attachVoteHandlers(map);
+      return;
+    }
+
+    // Tab view
     const live = [];
     const closed = [];
     polls.forEach(function(p){
       (pollIsClosed(p) ? closed : live).push(p);
     });
-
-    // Most recently closed first; for live, keep file order (active first).
     closed.sort(function(a, b){ return (b.closes || '') > (a.closes || '') ? 1 : -1; });
 
-    let html = '';
-
-    html += '<div class="polls-section-header">LIVE POLLS</div>';
-    if (live.length) {
-      html += '<ul class="polls-list">';
-      live.forEach(function(p){
-        const userChoice = (function(){
-          try { return localStorage.getItem('boj_poll_' + p.id); } catch(e) { return null; }
-        })();
-        html += '<li>' + renderPollCard(p, false, userChoice) + '</li>';
-      });
-      html += '</ul>';
+    if (tab === 'past') {
+      setActiveTab('past');
+      container.innerHTML = renderPastPolls(closed);
     } else {
-      html += '<p class="polls-empty-section">No active polls right now. Check back soon.</p>';
+      setActiveTab('current');
+      container.innerHTML = renderCurrentPolls(live);
+      const pollsByCard = {};
+      live.forEach(function(p){ pollsByCard[p.id] = p; });
+      attachVoteHandlers(pollsByCard);
     }
-
-    html += '<div class="polls-section-header">CLOSED POLLS</div>';
-    if (closed.length) {
-      html += '<ul class="polls-list">';
-      closed.forEach(function(p){
-        const userChoice = (function(){
-          try { return localStorage.getItem('boj_poll_' + p.id); } catch(e) { return null; }
-        })();
-        html += '<li>' + renderPollCard(p, true, userChoice) + '</li>';
-      });
-      html += '</ul>';
-    } else {
-      html += '<p class="polls-empty-section">No closed polls yet.</p>';
-    }
-
-    container.innerHTML = html;
   }
 
   loadPolls();
