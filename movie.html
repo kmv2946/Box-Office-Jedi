@@ -996,7 +996,25 @@
     //   it up, weekendData appears and the link auto-flips to the weekend chart.
     const openingFriday = weekendData && weekendData.weekends && weekendData.weekends[0]
       ? weekendData.weekends[0].date : null;
-    const releaseDateIso = (meta && meta.release_date) || openingFriday || null;
+    // Release date priority:
+    //   1. Manual override (_source === "manual") wins — user is explicit
+    //      about upcoming-film release dates and any nuance like "actually
+    //      opened on Wednesday for Thanksgiving."
+    //   2. Opening Friday from weekend archive — more accurate than TMDB's
+    //      release_date for U.S. theatrical purposes (TMDB stores earliest
+    //      release globally, which can be a festival premiere weeks/months
+    //      before wide release; e.g. Moana 2016 has TMDB release_date
+    //      2016-10-13 (AFI Fest) but actual wide-release Friday was 11-25).
+    //   3. TMDB's meta.release_date — last resort.
+    const isOverrideMeta = !!(meta && meta._source === 'manual');
+    let releaseDateIso;
+    if (isOverrideMeta && meta.release_date) {
+      releaseDateIso = meta.release_date;
+    } else if (openingFriday) {
+      releaseDateIso = openingFriday;
+    } else {
+      releaseDateIso = (meta && meta.release_date) || null;
+    }
     const releaseDateDisplay = fmtRelease(releaseDateIso);
     let releaseDateHtml;
     if (openingFriday) {
