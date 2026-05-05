@@ -32,6 +32,35 @@ def year_from_slug(slug):
     return m.group(1) if m else None
 
 
+def build_year_lookup_from_shards():
+    """Walk every weekend shard once, build a {slug: year_str} map.
+    For bare slugs (no -YYYY suffix), this gives us the actual year via
+    opening_date. Without this, search rows for bare slugs would have
+    year=null and search-bar clicks wouldn't pass &year=, causing
+    cross-year data leakage on the movie profile page (Scary Movie 2000
+    showing Scary Movie 2026 data, etc.)."""
+    out = {}
+    for path in glob.glob("data/movie_weekends_shards/*.json"):
+        if path.endswith("/index.json"):
+            continue
+        try:
+            d = json.load(open(path, encoding="utf-8"))
+        except Exception:
+            continue
+        entries = d.get("entries") or {}
+        for slug, entry in entries.items():
+            if not isinstance(entry, dict):
+                continue
+            yr = entry.get("year")
+            if not yr:
+                od = entry.get("opening_date") or ""
+                m = re.match(r"(\d{4})", str(od))
+                if m: yr = int(m.group(1))
+            if yr:
+                out[slug] = str(yr)
+    return out
+
+
 # ── TMDB-enriched movies (carry tmdb_id) ────────────────────────────────────
 # Key by (title.lower(), year) so e.g. two films called "Moana" don't collide.
 tmdb_by_key = {}
@@ -53,13 +82,17 @@ for path in glob.glob("data/movies/*.json"):
 
 # ── Weekend archive (no metadata, but the widest net of titles) ─────────────
 # The new shard index keys by slug like "moana-2016" — year is encoded in
-# the slug itself, so dedup by (title, year) keeps reboots separate.
+# the slug itself, so dedup by (title, year) keeps reboots separate. For
+# legacy bare slugs (no year suffix), derive the year from the shard's
+# opening_date so the search row still has a year — search-bar links use
+# this year to disambiguate same-titled films on the movie profile page.
 arch_by_key = {}
+slug_year_lookup = build_year_lookup_from_shards()
 try:
     idx = json.load(open("data/movie_weekends_shards/index.json"))
     titles_map = idx.get("titles") or {}
     for slug, title in titles_map.items():
-        year = year_from_slug(slug)
+        year = year_from_slug(slug) or slug_year_lookup.get(slug)
         key = (title.lower(), year)
         # Prefer TMDB entries when both sources have the same key
         if key in tmdb_by_key:
