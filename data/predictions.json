@@ -1,6 +1,112 @@
 {
-  "updated": "2026-04-30",
+  "updated": "2026-05-07",
   "weekends": [
+    {
+      "date_from": "2026-05-08",
+      "date_to": "2026-05-10",
+      "predictions": [
+        {
+          "pred_rank": 1,
+          "title": "Michael",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 37.4,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 3
+        },
+        {
+          "pred_rank": 2,
+          "title": "Mortal Kombat II",
+          "is_new": true,
+          "theaters": null,
+          "predicted_m": 37.3,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 1
+        },
+        {
+          "pred_rank": 3,
+          "title": "The Devil Wears Prada 2",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 37.2,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 2
+        },
+        {
+          "pred_rank": 4,
+          "title": "The Sheep Detectives",
+          "is_new": true,
+          "theaters": null,
+          "predicted_m": 20.4,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 1
+        },
+        {
+          "pred_rank": 5,
+          "title": "Billie Eilish: Hit Me Hard and Soft — The Tour 3D",
+          "is_new": true,
+          "theaters": null,
+          "predicted_m": 8.9,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 1
+        },
+        {
+          "pred_rank": 6,
+          "title": "The Super Mario Galaxy Movie",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 7.1,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 6
+        },
+        {
+          "pred_rank": 7,
+          "title": "Project Hail Mary",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 5.2,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 8
+        },
+        {
+          "pred_rank": 8,
+          "title": "Hokum",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 2.9,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 2
+        },
+        {
+          "pred_rank": 9,
+          "title": "Animal Farm",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 1.7,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 2
+        },
+        {
+          "pred_rank": 10,
+          "title": "Deep Water",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 1.2,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 2
+        }
+      ]
+    },
     {
       "date_from": "2026-05-01",
       "date_to": "2026-05-03",
@@ -143,7 +249,7 @@
         },
         {
           "pred_rank": 4,
-          "title": "Lee Cronin\u2019s The Mummy",
+          "title": "Lee Cronin’s The Mummy",
           "is_new": false,
           "theaters": null,
           "predicted_m": 5.3,
@@ -239,7 +345,7 @@
         },
         {
           "pred_rank": 3,
-          "title": "Lee Cronin\u2019s The Mummy",
+          "title": "Lee Cronin’s The Mummy",
           "is_new": true,
           "theaters": null,
           "predicted_m": 14.5,
