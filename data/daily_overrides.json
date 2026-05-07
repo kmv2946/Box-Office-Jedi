@@ -1,0 +1,51 @@
+{
+  "_comment": "Sparse daily-chart overrides. Keys are ISO dates (YYYY-MM-DD). Each date can carry an 'add' list of full row objects to inject (use when The Numbers' daily table is missing a film, e.g. Disney late-reporting), and/or an 'edit' map of {normalized-title: {field: new_value}} to correct values on existing rows. The scraper applies these AFTER scraping so re-scrapes don't blow them away. Re-ranking happens automatically by daily_gross desc. Normalized title = lowercase, alphanumeric only (e.g. 'thedevilwearsprada2', 'hoppers'). Required fields for 'add' rows: title, daily_gross, total_gross. Recommended: movie_url, distributor, theaters.",
+  "2026-05-04": {
+    "add": [
+      {
+        "title": "The Devil Wears Prada 2",
+        "movie_url": "/movie/Devil-Wears-Prada-2-The-(2026)",
+        "distributor": "Walt Disney Studios Motion Pictures",
+        "theaters": 4150,
+        "daily_gross": 5697142,
+        "total_gross": 82444217,
+        "days_in_release": 5,
+        "is_new": false
+      },
+      {
+        "title": "Hoppers",
+        "movie_url": "/movie/Hoppers-(2026)",
+        "distributor": "Walt Disney Studios Motion Pictures",
+        "theaters": 1030,
+        "daily_gross": 37780,
+        "total_gross": 165360594,
+        "days_in_release": 60,
+        "is_new": false
+      }
+    ]
+  },
+  "2026-05-05": {
+    "add": [
+      {
+        "title": "The Devil Wears Prada 2",
+        "movie_url": "/movie/Devil-Wears-Prada-2-The-(2026)",
+        "distributor": "Walt Disney Studios Motion Pictures",
+        "theaters": 4150,
+        "daily_gross": 8264406,
+        "total_gross": 90708623,
+        "days_in_release": 6,
+        "is_new": false
+      },
+      {
+        "title": "Hoppers",
+        "movie_url": "/movie/Hoppers-(2026)",
+        "distributor": "Walt Disney Studios Motion Pictures",
+        "theaters": 1030,
+        "daily_gross": 55170,
+        "total_gross": 165415764,
+        "days_in_release": 61,
+        "is_new": false
+      }
+    ]
+  }
+}

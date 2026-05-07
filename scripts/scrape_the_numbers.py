@@ -38,6 +38,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import os
+import re
 from datetime import datetime, timedelta
 import time
 
@@ -308,6 +309,76 @@ def _safe_pct(s) -> float | None:
         return float(t.replace("%", "").replace("+", "").replace(",", ""))
     except ValueError:
         return None
+
+
+def _norm_title(s: str) -> str:
+    """Lowercase + alphanumeric only — matches the distributor_overrides keying."""
+    return re.sub(r"[^a-z0-9]", "", (s or "").lower())
+
+
+def apply_daily_overrides(day_iso: str, archive_chart: list[dict]) -> list[dict]:
+    """Merge data/daily_overrides.json into a freshly-scraped daily chart.
+    Lets us hand-patch missing rows (e.g. Disney titles that The Numbers
+    silently drops some days) without losing the fix on the next re-scrape.
+
+    Override file shape:
+        { "YYYY-MM-DD": { "add": [ {row…}, … ], "edit": { "normtitle": {field: val} } } }
+    Re-ranking by daily_gross desc happens after the merge.
+    """
+    try:
+        with open(os.path.join(DATA_DIR, "daily_overrides.json"), "r", encoding="utf-8") as f:
+            overrides = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return archive_chart
+
+    day_overrides = overrides.get(day_iso) or {}
+    if not isinstance(day_overrides, dict):
+        return archive_chart
+
+    # ─── EDIT: patch fields on existing rows ───────────────────────────────
+    edits = day_overrides.get("edit") or {}
+    if isinstance(edits, dict):
+        for row in archive_chart:
+            patch = edits.get(_norm_title(row.get("title", "")))
+            if isinstance(patch, dict):
+                row.update(patch)
+
+    # ─── ADD: inject rows missing from the scrape ──────────────────────────
+    additions = day_overrides.get("add") or []
+    if isinstance(additions, list):
+        existing_keys = {_norm_title(r.get("title", "")) for r in archive_chart}
+        added = 0
+        for raw in additions:
+            if not isinstance(raw, dict):
+                continue
+            t = raw.get("title")
+            if not t or _norm_title(t) in existing_keys:
+                # Already present (scraper picked it up after all) — skip.
+                continue
+            # Normalize to the same shape as scraper-written rows.
+            archive_chart.append({
+                "rank":            raw.get("rank", 0),
+                "title":           t,
+                "tmdb_id":         raw.get("tmdb_id"),
+                "movie_url":       raw.get("movie_url", ""),
+                "distributor":     raw.get("distributor", ""),
+                "theaters":        raw.get("theaters", 0),
+                "daily_gross":     raw.get("daily_gross", 0),
+                "pct_change":      raw.get("pct_change"),
+                "avg_per_theater": raw.get("avg_per_theater", 0),
+                "total_gross":     raw.get("total_gross", 0),
+                "days_in_release": raw.get("days_in_release", 0),
+                "is_new":          raw.get("is_new", False),
+            })
+            added += 1
+        if added:
+            print(f"  + Applied {added} override row(s) from daily_overrides.json")
+
+    # ─── Re-rank by daily_gross desc so injected rows land in the right spot
+    archive_chart.sort(key=lambda r: r.get("daily_gross", 0) or 0, reverse=True)
+    for i, r in enumerate(archive_chart, 1):
+        r["rank"] = i
+    return archive_chart
 
 
 def scrape_daily(date: datetime = None) -> list[dict]:
@@ -852,23 +923,7 @@ def main():
             if daily:
                 day_iso = _target.strftime("%Y-%m-%d")
 
-                # 1) Legacy "latest" flat file (kept for backward compatibility).
-                #    Only rewrite daily.json if we're scraping the newest date.
-                #    This matters when backfilling: we don't want --date 2026-04-17
-                #    to overwrite daily.json with older data.
-                existing_latest = load_json("daily.json") or {}
-                existing_latest_date = existing_latest.get("date", "")
-                if day_iso >= existing_latest_date:
-                    save_json("daily.json", {
-                        "updated": now.isoformat(),
-                        "date":    day_iso,
-                        "chart":   daily,
-                    })
-                else:
-                    print(f"  (daily.json stays on {existing_latest_date}; "
-                          f"{day_iso} is older)")
-
-                # 2) Per-day archive file — this is what daily.html actually reads.
+                # 1) Per-day archive file — this is what daily.html reads.
                 #    Normalize to the same shape the hand-filled files use.
                 archive_chart = []
                 for row in daily:
@@ -886,6 +941,43 @@ def main():
                         "days_in_release": row.get("days_in_release"),
                         "is_new":          False,
                     })
+
+                # Merge in any hand-patched rows for this date (Disney late-
+                # reporting fixes, etc.) Re-applied automatically on every
+                # re-scrape so they're never lost.
+                pre_count = len(archive_chart)
+                archive_chart = apply_daily_overrides(day_iso, archive_chart)
+
+                # 2) Legacy "latest" flat file. Mirror the override-merged chart
+                #    so the homepage widget never shows fewer films than the
+                #    archive. Only overwrite if we're on the newest date — when
+                #    backfilling older days, leave daily.json alone.
+                existing_latest = load_json("daily.json") or {}
+                existing_latest_date = existing_latest.get("date", "")
+                if day_iso >= existing_latest_date:
+                    save_json("daily.json", {
+                        "updated": now.isoformat(),
+                        "date":    day_iso,
+                        "chart":   archive_chart,
+                    })
+                else:
+                    print(f"  (daily.json stays on {existing_latest_date}; "
+                          f"{day_iso} is older)")
+
+                # ── Sanity check: warn if we dropped more than 3 rows
+                # day-over-day. Catches silent scraper failures (Disney
+                # missing, table format change, etc.) before they ship.
+                try:
+                    prior_iso = (_target - timedelta(days=1)).strftime("%Y-%m-%d")
+                    prior = load_json(f"daily/{prior_iso}.json") or {}
+                    prior_n = len(prior.get("chart") or [])
+                    if prior_n and len(archive_chart) < prior_n - 3:
+                        print(f"  ⚠ Row count dropped: {prior_iso}={prior_n} → "
+                              f"{day_iso}={len(archive_chart)}. Likely a silent "
+                              f"scrape miss — check daily_overrides.json or re-run.")
+                except Exception:
+                    pass
+
                 archive_path = os.path.join("daily", day_iso + ".json")
                 save_json(archive_path, {
                     "date":         day_iso,
