@@ -107,7 +107,7 @@
       font-size: 14px;
       color: #000;
       margin: 14px 0 10px;
-      text-align: left;
+      text-align: center;
     }
     .db-avg-intro strong { font-weight: bold; }
 
@@ -253,7 +253,6 @@
       </p>
 
       <p class="db-avg-intro">
-        <strong><span id="db-weekend-label">&mdash;</span>:</strong>
         Below are the average predictions for this week.
       </p>
 
@@ -363,8 +362,7 @@
     // "Predict April 24–26"
     document.getElementById('db-predict-link').textContent = 'Predict ' + current.label;
 
-    // Set the header for the averages block
-    document.getElementById('db-weekend-label').textContent = current.label;
+    // (Weekend label was removed from the averages intro — no longer set.)
 
     // ── "Already counted" / "Just submitted" banner ────────────────
     // Two distinct paths:

@@ -610,9 +610,15 @@
       const wkndYear = (data.date_from || data.date || '').slice(0, 4);
       const urlYearMatch = (m.movie_url || '').match(/\((\d{4})/);
       const urlYear  = urlYearMatch ? urlYearMatch[1] : null;
-      // True new = scraper says new, AND no prior chart appearance, AND
-      // (no movie_url year OR url year matches this weekend's year).
-      const isNew = !!m.is_new
+      // True new = first weekend of release, AND no prior chart appearance,
+      // AND no pct change vs prior weekend, AND (no movie_url year OR url
+      // year matches this weekend's year). Note: m.is_new in the data is
+      // unreliable — out of ~147k weekend rows only 36 carry is_new=true,
+      // so we derive it from weeks_in_release + last_rank + change_pct
+      // instead. The scraper's is_new flag is kept as a hint but not
+      // required.
+      const isFirstWeek = (m.weeks_in_release === 1) || !!m.is_new;
+      const isNew = isFirstWeek
         && (m.last_rank === null || m.last_rank === undefined)
         && (m.change_pct === null || m.change_pct === undefined)
         && (!urlYear || urlYear === wkndYear);

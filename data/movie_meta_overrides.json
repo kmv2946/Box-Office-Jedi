@@ -684,5 +684,20 @@
     "mpaa": "PG-13",
     "poster_url": "/assets/images/posters/young-washington-2026.jpg",
     "_source": "manual"
+  },
+  "walle-2008": {
+    "title": "WALL-E",
+    "year": 2008,
+    "release_date": "2008-06-27",
+    "distributor": "Walt Disney Studios Motion Pictures",
+    "genres": [
+      "Animation",
+      "Family",
+      "Science Fiction"
+    ],
+    "runtime": 98,
+    "mpaa": "G",
+    "tmdb_id": 10681,
+    "_source": "manual_fix_wrong_tmdb_match"
   }
 }
