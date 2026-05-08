@@ -381,6 +381,117 @@ def apply_daily_overrides(day_iso: str, archive_chart: list[dict]) -> list[dict]
     return archive_chart
 
 
+def apply_preview_filter(day_iso: str, archive_chart: list[dict]) -> list[dict]:
+    """Drop Thursday-preview rows from a daily chart.
+
+    Industry convention (BOM, The Numbers): Thursday preview grosses are
+    folded into Friday's totals, NOT counted in Thursday's daily chart.
+    The Numbers' table sometimes ignores this — surfacing $5M+ preview
+    rows on the day BEFORE a film officially opens. Those rows mislead
+    the daily chart and have to be stripped.
+
+    Detection rule: a row is a preview iff
+        (1) data/releases.json has the film with a release_date strictly
+            later than `day_iso`, AND
+        (2) total_gross == daily_gross (the film has never charted before).
+
+    Both conditions are required so a re-issue / late-blooming indie
+    isn't accidentally dropped.
+    """
+    try:
+        with open(os.path.join(DATA_DIR, "releases.json"), "r", encoding="utf-8") as f:
+            releases = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return archive_chart
+
+    # Walk every release in releases.json, build a {norm_title: earliest_release_date}
+    # map. Earliest wins so re-releases / expansions don't mask the original opener.
+    title_to_release = {}
+    for month_key, month in (releases.get("months") or {}).items():
+        for week in (month.get("weeks") or []):
+            wk_date = week.get("date") or ""
+            for r in (week.get("releases") or []):
+                t = r.get("title")
+                if not t:
+                    continue
+                rd = r.get("release_date") or wk_date
+                if not rd:
+                    continue
+                key = _norm_title(t)
+                if not key:
+                    continue
+                if key not in title_to_release or rd < title_to_release[key]:
+                    title_to_release[key] = rd
+
+    if not title_to_release:
+        return archive_chart
+
+    def lookup_release(nk: str) -> str | None:
+        """Find the earliest release_date for a normalized title key.
+        Tries exact, then 'the'-stripped, then prefix-prefix matching
+        (handles cases where The Numbers truncates subtitles, e.g.
+        'Hit Me Hard and Soft—The Tour' vs releases.json's
+        'Hit Me Hard and Soft - The Tour Live in 3D')."""
+        if not nk:
+            return None
+        # 1. Exact
+        if nk in title_to_release:
+            return title_to_release[nk]
+        # 2. 'the' stripped on the scraped side
+        if nk.startswith("the"):
+            stripped = nk[3:]
+            if stripped in title_to_release:
+                return title_to_release[stripped]
+        # 3. Prefix-of: scraped norm is a prefix of a releases.json norm
+        #    (catches truncated subtitles). Require min 12 chars to avoid
+        #    "thecrow" matching "thecrowdeluxecollectionedition".
+        if len(nk) >= 12:
+            best = None
+            for k, rd in title_to_release.items():
+                if k.startswith(nk) and (best is None or rd < best):
+                    best = rd
+            if best:
+                return best
+        # 4. Prefix-of (other direction): a releases.json norm is a prefix
+        #    of the scraped norm (catches expanded subtitles in scrape).
+        if len(nk) >= 12:
+            best = None
+            for k, rd in title_to_release.items():
+                if len(k) >= 12 and nk.startswith(k):
+                    if best is None or rd < best:
+                        best = rd
+            if best:
+                return best
+        return None
+
+    keep = []
+    dropped = []
+    for row in archive_chart:
+        nk = _norm_title(row.get("title", ""))
+        rd = lookup_release(nk)
+        is_first_appearance = (
+            row.get("total_gross") is not None
+            and row.get("daily_gross") is not None
+            and row.get("total_gross") == row.get("daily_gross")
+        )
+        if rd and rd > day_iso and is_first_appearance:
+            dropped.append((row.get("title"), row.get("daily_gross"), rd))
+            continue
+        keep.append(row)
+
+    if dropped:
+        print(f"  ✕ Stripped {len(dropped)} preview row(s) on {day_iso} "
+              f"(opens later, total==daily):")
+        for title, gross, rd in dropped:
+            print(f"      − {title:<45}  ${gross:>10,}  (release_date {rd})")
+        # Re-rank by daily_gross desc
+        keep.sort(key=lambda r: r.get("daily_gross", 0) or 0, reverse=True)
+        for i, r in enumerate(keep, 1):
+            r["rank"] = i
+
+    return keep
+
+
 def scrape_daily(date: datetime = None) -> list[dict]:
     """
     Scrape The Numbers daily box office chart for a given date.
@@ -941,6 +1052,12 @@ def main():
                         "days_in_release": row.get("days_in_release"),
                         "is_new":          False,
                     })
+
+                # Strip Thursday-preview rows for films opening LATER than
+                # the scrape date. Industry convention is to fold previews
+                # into Friday's gross, not surface them as their own row.
+                # The Numbers ignores this rule sometimes; we enforce it.
+                archive_chart = apply_preview_filter(day_iso, archive_chart)
 
                 # Merge in any hand-patched rows for this date (Disney late-
                 # reporting fixes, etc.) Re-applied automatically on every
