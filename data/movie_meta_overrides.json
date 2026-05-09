@@ -699,5 +699,19 @@
     "mpaa": "G",
     "tmdb_id": 10681,
     "_source": "manual_fix_wrong_tmdb_match"
+  },
+  "billieeilishhitmehardandsoftthetour-2026": {
+    "title": "Billie Eilish: Hit Me Hard and Soft - The Tour Live in 3D",
+    "year": 2026,
+    "release_date": "2026-05-08",
+    "distributor": "Paramount Pictures",
+    "genres": [
+      "Documentary",
+      "Music"
+    ],
+    "runtime": 114,
+    "mpaa": "PG-13",
+    "poster_url": "/assets/images/posters/billie-eilish-hit-me-hard-and-soft-2026.jpg",
+    "_source": "manual_alias_for_truncated_title"
   }
 }
