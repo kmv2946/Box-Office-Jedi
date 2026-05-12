@@ -1,55 +1,67 @@
 {
   "year": 2026,
-  "updated": "2026-05-05T15:50:31",
+  "updated": "2026-05-12T16:16:49",
   "source": "weekend-aggregate",
   "chart": [
     {
       "title": "The Super Mario Galaxy Movie",
       "distributor": "Universal Pictures",
-      "total_gross": 402680945,
+      "total_gross": 412156435,
       "max_theaters": 4284,
       "opening_weekend": 131703340,
       "opening_theaters": 4252,
       "open_date": "Apr 3",
-      "weekends_in_chart": 5,
+      "weekends_in_chart": 6,
       "best_rank": 1,
       "rank": 1
     },
     {
       "title": "Project Hail Mary",
       "distributor": "Amazon MGM Studios",
-      "total_gross": 318301805,
+      "total_gross": 328302282,
       "max_theaters": 4077,
       "opening_weekend": 80506007,
       "opening_theaters": 4007,
       "open_date": "Mar 20",
-      "weekends_in_chart": 7,
+      "weekends_in_chart": 8,
       "best_rank": 1,
       "rank": 2
     },
     {
       "title": "Michael",
       "distributor": "",
-      "total_gross": 184207084,
+      "total_gross": 241893270,
       "max_theaters": 3955,
       "opening_weekend": 97206874,
       "opening_theaters": 3955,
       "open_date": "Apr 24",
-      "weekends_in_chart": 2,
+      "weekends_in_chart": 3,
       "best_rank": 1,
       "rank": 3
     },
     {
       "title": "Hoppers",
       "distributor": "Walt Disney Studios Motion Pictures",
-      "total_gross": 165322814,
+      "total_gross": 165689624,
       "max_theaters": 4000,
       "opening_weekend": 45349901,
       "opening_theaters": 4000,
       "open_date": "Mar 6",
-      "weekends_in_chart": 9,
+      "weekends_in_chart": 10,
       "best_rank": 1,
       "rank": 4
+    },
+    {
+      "title": "The Devil Wears Prada 2",
+      "distributor": "",
+      "total_gross": 143447244,
+      "max_theaters": 4200,
+      "opening_weekend": 76747075,
+      "opening_theaters": 4150,
+      "open_date": "May 1",
+      "weekends_in_chart": 2,
+      "best_rank": 1,
+      "rank": 5
     },
     {
       "title": "Scream 7",
@@ -61,7 +73,7 @@
       "open_date": "Feb 27",
       "weekends_in_chart": 9,
       "best_rank": 1,
-      "rank": 5
+      "rank": 6
     },
     {
       "title": "GOAT",
@@ -73,7 +85,7 @@
       "open_date": "Feb 13",
       "weekends_in_chart": 11,
       "best_rank": 1,
-      "rank": 6
+      "rank": 7
     },
     {
       "title": "Wuthering Heights",
@@ -85,7 +97,7 @@
       "open_date": "Feb 13",
       "weekends_in_chart": 8,
       "best_rank": 1,
-      "rank": 7
+      "rank": 8
     },
     {
       "title": "Teenage Mutant Ninja Turtles II: The Secret of the Ooze",
@@ -97,18 +109,6 @@
       "open_date": "Mar 13",
       "weekends_in_chart": 1,
       "best_rank": 9,
-      "rank": 8
-    },
-    {
-      "title": "The Devil Wears Prada 2",
-      "distributor": "",
-      "total_gross": 76747075,
-      "max_theaters": 4150,
-      "opening_weekend": 76747075,
-      "opening_theaters": 4150,
-      "open_date": "May 1",
-      "weekends_in_chart": 1,
-      "best_rank": 1,
       "rank": 9
     },
     {
@@ -150,12 +150,12 @@
     {
       "title": "The Drama",
       "distributor": "A24",
-      "total_gross": 46948216,
+      "total_gross": 47725490,
       "max_theaters": 3151,
       "opening_weekend": 14380197,
       "opening_theaters": 3087,
       "open_date": "Apr 3",
-      "weekends_in_chart": 5,
+      "weekends_in_chart": 6,
       "best_rank": 3,
       "rank": 13
     },
@@ -172,6 +172,18 @@
       "rank": 14
     },
     {
+      "title": "Mortal Kombat II",
+      "distributor": "",
+      "total_gross": 38501177,
+      "max_theaters": 3503,
+      "opening_weekend": 38501177,
+      "opening_theaters": 3503,
+      "open_date": "May 8",
+      "weekends_in_chart": 1,
+      "best_rank": 2,
+      "rank": 15
+    },
+    {
       "title": "Crime 101",
       "distributor": "",
       "total_gross": 36555500,
@@ -181,7 +193,19 @@
       "open_date": "Feb 13",
       "weekends_in_chart": 7,
       "best_rank": 3,
-      "rank": 15
+      "rank": 16
+    },
+    {
+      "title": "Lee Cronin\u2019s The Mummy",
+      "distributor": "",
+      "total_gross": 28717189,
+      "max_theaters": 3304,
+      "opening_weekend": 13517172,
+      "opening_theaters": 3304,
+      "open_date": "Apr 17",
+      "weekends_in_chart": 4,
+      "best_rank": 3,
+      "rank": 17
     },
     {
       "title": "Dhurandhar: The Revenge",
@@ -193,19 +217,7 @@
       "open_date": "Mar 20",
       "weekends_in_chart": 4,
       "best_rank": 3,
-      "rank": 16
-    },
-    {
-      "title": "Lee Cronin\u2019s The Mummy",
-      "distributor": "",
-      "total_gross": 27418461,
-      "max_theaters": 3304,
-      "opening_weekend": 13517172,
-      "opening_theaters": 3304,
-      "open_date": "Apr 17",
-      "weekends_in_chart": 3,
-      "best_rank": 3,
-      "rank": 17
+      "rank": 18
     },
     {
       "title": "Dhurandhar The Revenge",
@@ -217,7 +229,7 @@
       "open_date": "Apr 10",
       "weekends_in_chart": 1,
       "best_rank": 13,
-      "rank": 18
+      "rank": 19
     },
     {
       "title": "Solo Mio",
@@ -229,7 +241,7 @@
       "open_date": "Feb 6",
       "weekends_in_chart": 10,
       "best_rank": 2,
-      "rank": 19
+      "rank": 20
     },
     {
       "title": "Primate",
@@ -241,7 +253,7 @@
       "open_date": "Jan 9",
       "weekends_in_chart": 5,
       "best_rank": 2,
-      "rank": 20
+      "rank": 21
     },
     {
       "title": "28 Years Later: The Bone Temple",
@@ -253,7 +265,7 @@
       "open_date": "Jan 16",
       "weekends_in_chart": 5,
       "best_rank": 2,
-      "rank": 21
+      "rank": 22
     },
     {
       "title": "Mercy",
@@ -265,7 +277,7 @@
       "open_date": "Jan 23",
       "weekends_in_chart": 5,
       "best_rank": 1,
-      "rank": 22
+      "rank": 23
     },
     {
       "title": "Ready or Not 2: Here I Come",
@@ -277,7 +289,7 @@
       "open_date": "Mar 20",
       "weekends_in_chart": 7,
       "best_rank": 4,
-      "rank": 23
+      "rank": 24
     },
     {
       "title": "undertone",
@@ -289,7 +301,19 @@
       "open_date": "Mar 13",
       "weekends_in_chart": 6,
       "best_rank": 3,
-      "rank": 24
+      "rank": 25
+    },
+    {
+      "title": "You, Me & Tuscany",
+      "distributor": "Universal Pictures",
+      "total_gross": 18701620,
+      "max_theaters": 3157,
+      "opening_weekend": 7753150,
+      "opening_theaters": 3151,
+      "open_date": "Apr 10",
+      "weekends_in_chart": 5,
+      "best_rank": 4,
+      "rank": 26
     },
     {
       "title": "I Can Only Imagine 2",
@@ -301,19 +325,7 @@
       "open_date": "Feb 20",
       "weekends_in_chart": 6,
       "best_rank": 3,
-      "rank": 25
-    },
-    {
-      "title": "You, Me & Tuscany",
-      "distributor": "Universal Pictures",
-      "total_gross": 18522450,
-      "max_theaters": 3157,
-      "opening_weekend": 7753150,
-      "opening_theaters": 3151,
-      "open_date": "Apr 10",
-      "weekends_in_chart": 4,
-      "best_rank": 4,
-      "rank": 26
+      "rank": 27
     },
     {
       "title": "Greenland 2: Migration",
@@ -325,7 +337,7 @@
       "open_date": "Jan 9",
       "weekends_in_chart": 4,
       "best_rank": 5,
-      "rank": 27
+      "rank": 28
     },
     {
       "title": "Melania",
@@ -337,7 +349,19 @@
       "open_date": "Jan 30",
       "weekends_in_chart": 5,
       "best_rank": 3,
-      "rank": 28
+      "rank": 29
+    },
+    {
+      "title": "The Sheep Detectives",
+      "distributor": "",
+      "total_gross": 15087796,
+      "max_theaters": 3457,
+      "opening_weekend": 15087796,
+      "opening_theaters": 3457,
+      "open_date": "May 8",
+      "weekends_in_chart": 1,
+      "best_rank": 4,
+      "rank": 30
     },
     {
       "title": "EPiC: Elvis Presley in Concert",
@@ -349,7 +373,7 @@
       "open_date": "Feb 20",
       "weekends_in_chart": 7,
       "best_rank": 5,
-      "rank": 29
+      "rank": 31
     },
     {
       "title": "Dracula",
@@ -361,7 +385,7 @@
       "open_date": "Feb 6",
       "weekends_in_chart": 5,
       "best_rank": 5,
-      "rank": 30
+      "rank": 32
     },
     {
       "title": "Shelter",
@@ -373,7 +397,7 @@
       "open_date": "Jan 30",
       "weekends_in_chart": 5,
       "best_rank": 6,
-      "rank": 31
+      "rank": 33
     },
     {
       "title": "The Bride!",
@@ -385,7 +409,19 @@
       "open_date": "Mar 6",
       "weekends_in_chart": 4,
       "best_rank": 3,
-      "rank": 32
+      "rank": 34
+    },
+    {
+      "title": "Hokum",
+      "distributor": "",
+      "total_gross": 12423732,
+      "max_theaters": 1900,
+      "opening_weekend": 6428305,
+      "opening_theaters": 1885,
+      "open_date": "May 1",
+      "weekends_in_chart": 2,
+      "best_rank": 5,
+      "rank": 35
     },
     {
       "title": "They Will Kill You",
@@ -397,7 +433,7 @@
       "open_date": "Mar 27",
       "weekends_in_chart": 5,
       "best_rank": 3,
-      "rank": 33
+      "rank": 36
     },
     {
       "title": "The Strangers: Chapter 3",
@@ -409,7 +445,7 @@
       "open_date": "Feb 6",
       "weekends_in_chart": 4,
       "best_rank": 7,
-      "rank": 34
+      "rank": 37
     },
     {
       "title": "Good Luck, Have Fun, Don\u2019t Die",
@@ -421,19 +457,19 @@
       "open_date": "Feb 13",
       "weekends_in_chart": 6,
       "best_rank": 7,
-      "rank": 35
+      "rank": 38
     },
     {
       "title": "A Great Awakening",
       "distributor": "Roadside Attractions",
-      "total_gross": 7948814,
+      "total_gross": 8070954,
       "max_theaters": 1289,
       "opening_weekend": 2041328,
       "opening_theaters": 1289,
       "open_date": "Apr 3",
-      "weekends_in_chart": 5,
+      "weekends_in_chart": 6,
       "best_rank": 6,
-      "rank": 36
+      "rank": 39
     },
     {
       "title": "How to Make a Killing",
@@ -445,7 +481,7 @@
       "open_date": "Feb 20",
       "weekends_in_chart": 8,
       "best_rank": 6,
-      "rank": 37
+      "rank": 40
     },
     {
       "title": "Stray Kids: The DominATE experience",
@@ -457,19 +493,19 @@
       "open_date": "Feb 6",
       "weekends_in_chart": 3,
       "best_rank": 4,
-      "rank": 38
+      "rank": 41
     },
     {
-      "title": "Hokum",
+      "title": "Billie Eilish: Hit Me Hard and Soft\u2014The Tour",
       "distributor": "",
-      "total_gross": 6428305,
-      "max_theaters": 1885,
-      "opening_weekend": 6428305,
-      "opening_theaters": 1885,
-      "open_date": "May 1",
+      "total_gross": 7011311,
+      "max_theaters": 2613,
+      "opening_weekend": 7011311,
+      "opening_theaters": 2613,
+      "open_date": "May 8",
       "weekends_in_chart": 1,
       "best_rank": 5,
-      "rank": 39
+      "rank": 42
     },
     {
       "title": "Return to Silent Hill",
@@ -481,19 +517,31 @@
       "open_date": "Jan 23",
       "weekends_in_chart": 3,
       "best_rank": 7,
-      "rank": 40
+      "rank": 43
     },
     {
       "title": "Normal",
       "distributor": "",
-      "total_gross": 4676231,
+      "total_gross": 5068789,
       "max_theaters": 2060,
       "opening_weekend": 2550311,
       "opening_theaters": 2060,
       "open_date": "Apr 17",
-      "weekends_in_chart": 3,
+      "weekends_in_chart": 4,
       "best_rank": 7,
-      "rank": 41
+      "rank": 44
+    },
+    {
+      "title": "Animal Farm",
+      "distributor": "",
+      "total_gross": 5040903,
+      "max_theaters": 2600,
+      "opening_weekend": 3301363,
+      "opening_theaters": 2600,
+      "open_date": "May 1",
+      "weekends_in_chart": 2,
+      "best_rank": 6,
+      "rank": 45
     },
     {
       "title": "Nirvanna the Band the Show the Movie",
@@ -505,7 +553,7 @@
       "open_date": "Feb 13",
       "weekends_in_chart": 6,
       "best_rank": 12,
-      "rank": 42
+      "rank": 46
     },
     {
       "title": "The Moment",
@@ -517,7 +565,7 @@
       "open_date": "Jan 30",
       "weekends_in_chart": 11,
       "best_rank": 13,
-      "rank": 43
+      "rank": 47
     },
     {
       "title": "Pillion",
@@ -529,7 +577,7 @@
       "open_date": "Feb 6",
       "weekends_in_chart": 10,
       "best_rank": 14,
-      "rank": 44
+      "rank": 48
     },
     {
       "title": "2026 Oscar Nominated Short Films",
@@ -541,7 +589,7 @@
       "open_date": "Apr 10",
       "weekends_in_chart": 1,
       "best_rank": 48,
-      "rank": 45
+      "rank": 49
     },
     {
       "title": "2026 Oscar Shorts",
@@ -553,7 +601,19 @@
       "open_date": "Feb 20",
       "weekends_in_chart": 7,
       "best_rank": 14,
-      "rank": 46
+      "rank": 50
+    },
+    {
+      "title": "Deep Water",
+      "distributor": "",
+      "total_gross": 3727713,
+      "max_theaters": 1675,
+      "opening_weekend": 2103911,
+      "opening_theaters": 1675,
+      "open_date": "May 1",
+      "weekends_in_chart": 2,
+      "best_rank": 8,
+      "rank": 51
     },
     {
       "title": "We Bury the Dead",
@@ -565,7 +625,7 @@
       "open_date": "Jan 2",
       "weekends_in_chart": 5,
       "best_rank": 11,
-      "rank": 47
+      "rank": 52
     },
     {
       "title": "The Exit 8",
@@ -577,7 +637,7 @@
       "open_date": "Apr 17",
       "weekends_in_chart": 3,
       "best_rank": 10,
-      "rank": 48
+      "rank": 53
     },
     {
       "title": "Twenty One Pilots: More Than We Ever Imagined",
@@ -589,19 +649,7 @@
       "open_date": "Feb 27",
       "weekends_in_chart": 1,
       "best_rank": 4,
-      "rank": 49
-    },
-    {
-      "title": "Animal Farm",
-      "distributor": "",
-      "total_gross": 3301363,
-      "max_theaters": 2600,
-      "opening_weekend": 3301363,
-      "opening_theaters": 2600,
-      "open_date": "May 1",
-      "weekends_in_chart": 1,
-      "best_rank": 6,
-      "rank": 50
+      "rank": 54
     },
     {
       "title": "The Pout-Pout Fish",
@@ -613,7 +661,7 @@
       "open_date": "Mar 20",
       "weekends_in_chart": 4,
       "best_rank": 9,
-      "rank": 51
+      "rank": 55
     },
     {
       "title": "Bendito Coraz\u00f3n",
@@ -625,7 +673,7 @@
       "open_date": "Feb 6",
       "weekends_in_chart": 3,
       "best_rank": 16,
-      "rank": 52
+      "rank": 56
     },
     {
       "title": "Clika",
@@ -637,7 +685,7 @@
       "open_date": "Jan 23",
       "weekends_in_chart": 6,
       "best_rank": 14,
-      "rank": 53
+      "rank": 57
     },
     {
       "title": "Faces of Death",
@@ -649,7 +697,7 @@
       "open_date": "Apr 10",
       "weekends_in_chart": 3,
       "best_rank": 7,
-      "rank": 54
+      "rank": 58
     },
     {
       "title": "Kiki\u2019s Delivery Service",
@@ -661,7 +709,7 @@
       "open_date": "Mar 13",
       "weekends_in_chart": 4,
       "best_rank": 7,
-      "rank": 55
+      "rank": 59
     },
     {
       "title": "Psycho Killer",
@@ -673,7 +721,19 @@
       "open_date": "Feb 20",
       "weekends_in_chart": 3,
       "best_rank": 11,
-      "rank": 56
+      "rank": 60
+    },
+    {
+      "title": "Mother Mary",
+      "distributor": "",
+      "total_gross": 2528482,
+      "max_theaters": 1103,
+      "opening_weekend": 168063,
+      "opening_theaters": 5,
+      "open_date": "Apr 17",
+      "weekends_in_chart": 4,
+      "best_rank": 9,
+      "rank": 61
     },
     {
       "title": "BTS World Tour 'Arirang' in Goyang: Live Viewing",
@@ -685,19 +745,7 @@
       "open_date": "Apr 10",
       "weekends_in_chart": 1,
       "best_rank": 6,
-      "rank": 57
-    },
-    {
-      "title": "Mother Mary",
-      "distributor": "",
-      "total_gross": 2319795,
-      "max_theaters": 1103,
-      "opening_weekend": 168063,
-      "opening_theaters": 5,
-      "open_date": "Apr 17",
-      "weekends_in_chart": 3,
-      "best_rank": 9,
-      "rank": 58
+      "rank": 62
     },
     {
       "title": "Forbidden Fruits",
@@ -709,7 +757,7 @@
       "open_date": "Mar 27",
       "weekends_in_chart": 4,
       "best_rank": 10,
-      "rank": 59
+      "rank": 63
     },
     {
       "title": "The Raja Saab",
@@ -721,31 +769,19 @@
       "open_date": "Jan 9",
       "weekends_in_chart": 1,
       "best_rank": 12,
-      "rank": 60
-    },
-    {
-      "title": "Deep Water",
-      "distributor": "",
-      "total_gross": 2103911,
-      "max_theaters": 1675,
-      "opening_weekend": 2103911,
-      "opening_theaters": 1675,
-      "open_date": "May 1",
-      "weekends_in_chart": 1,
-      "best_rank": 8,
-      "rank": 61
+      "rank": 64
     },
     {
       "title": "Over Your Dead Body",
       "distributor": "",
-      "total_gross": 2055131,
+      "total_gross": 2150496,
       "max_theaters": 1550,
       "opening_weekend": 1393356,
       "opening_theaters": 1550,
       "open_date": "Apr 24",
-      "weekends_in_chart": 2,
+      "weekends_in_chart": 3,
       "best_rank": 8,
-      "rank": 62
+      "rank": 65
     },
     {
       "title": "I Was a Stranger",
@@ -757,7 +793,7 @@
       "open_date": "Jan 9",
       "weekends_in_chart": 4,
       "best_rank": 14,
-      "rank": 63
+      "rank": 66
     },
     {
       "title": "Charlie the Wonderdog",
@@ -769,7 +805,7 @@
       "open_date": "Jan 16",
       "weekends_in_chart": 6,
       "best_rank": 18,
-      "rank": 64
+      "rank": 67
     },
     {
       "title": "Back to the Past",
@@ -781,7 +817,7 @@
       "open_date": "Jan 30",
       "weekends_in_chart": 6,
       "best_rank": 15,
-      "rank": 65
+      "rank": 68
     },
     {
       "title": "American Youngboy",
@@ -793,7 +829,7 @@
       "open_date": "Apr 24",
       "weekends_in_chart": 1,
       "best_rank": 10,
-      "rank": 66
+      "rank": 69
     },
     {
       "title": "The Christophers",
@@ -805,7 +841,7 @@
       "open_date": "Apr 10",
       "weekends_in_chart": 4,
       "best_rank": 11,
-      "rank": 67
+      "rank": 70
     },
     {
       "title": "Blades of the Guardians",
@@ -817,7 +853,7 @@
       "open_date": "Feb 20",
       "weekends_in_chart": 4,
       "best_rank": 17,
-      "rank": 68
+      "rank": 71
     },
     {
       "title": "Cold Storage",
@@ -829,7 +865,19 @@
       "open_date": "Feb 13",
       "weekends_in_chart": 2,
       "best_rank": 14,
-      "rank": 69
+      "rank": 72
+    },
+    {
+      "title": "Fuze",
+      "distributor": "",
+      "total_gross": 1479279,
+      "max_theaters": 1164,
+      "opening_weekend": 1004330,
+      "opening_theaters": 1164,
+      "open_date": "Apr 24",
+      "weekends_in_chart": 3,
+      "best_rank": 11,
+      "rank": 73
     },
     {
       "title": "Exit 8",
@@ -841,19 +889,7 @@
       "open_date": "Apr 10",
       "weekends_in_chart": 1,
       "best_rank": 8,
-      "rank": 70
-    },
-    {
-      "title": "Fuze",
-      "distributor": "",
-      "total_gross": 1430608,
-      "max_theaters": 1164,
-      "opening_weekend": 1004330,
-      "opening_theaters": 1164,
-      "open_date": "Apr 24",
-      "weekends_in_chart": 2,
-      "best_rank": 11,
-      "rank": 71
+      "rank": 74
     },
     {
       "title": "A Private Life",
@@ -865,7 +901,19 @@
       "open_date": "Jan 16",
       "weekends_in_chart": 10,
       "best_rank": 22,
-      "rank": 72
+      "rank": 75
+    },
+    {
+      "title": "That Time I Got Reincarnated as a Slime the Movie: Tears of the Azure Sea",
+      "distributor": "",
+      "total_gross": 1345896,
+      "max_theaters": 837,
+      "opening_weekend": 947325,
+      "opening_theaters": 837,
+      "open_date": "May 1",
+      "weekends_in_chart": 2,
+      "best_rank": 9,
+      "rank": 76
     },
     {
       "title": "Protector",
@@ -877,7 +925,7 @@
       "open_date": "Mar 6",
       "weekends_in_chart": 2,
       "best_rank": 12,
-      "rank": 73
+      "rank": 77
     },
     {
       "title": "Uma Musume: Pretty Derby \u2014 Beginning of a New Era",
@@ -889,7 +937,7 @@
       "open_date": "Feb 27",
       "weekends_in_chart": 3,
       "best_rank": 13,
-      "rank": 74
+      "rank": 78
     },
     {
       "title": "Whistle",
@@ -901,7 +949,7 @@
       "open_date": "Feb 6",
       "weekends_in_chart": 4,
       "best_rank": 16,
-      "rank": 75
+      "rank": 79
     },
     {
       "title": "The AI Doc: Or How I Became an Apocaloptimist",
@@ -913,7 +961,7 @@
       "open_date": "Mar 27",
       "weekends_in_chart": 2,
       "best_rank": 12,
-      "rank": 76
+      "rank": 80
     },
     {
       "title": "Bhooth Bangla",
@@ -925,19 +973,7 @@
       "open_date": "Apr 17",
       "weekends_in_chart": 1,
       "best_rank": 8,
-      "rank": 77
-    },
-    {
-      "title": "That Time I Got Reincarnated as a Slime the Movie: Tears of the Azure Sea",
-      "distributor": "",
-      "total_gross": 947325,
-      "max_theaters": 837,
-      "opening_weekend": 947325,
-      "opening_theaters": 837,
-      "open_date": "May 1",
-      "weekends_in_chart": 1,
-      "best_rank": 9,
-      "rank": 78
+      "rank": 81
     },
     {
       "title": "I Swear",
@@ -949,7 +985,7 @@
       "open_date": "Apr 24",
       "weekends_in_chart": 2,
       "best_rank": 13,
-      "rank": 79
+      "rank": 82
     },
     {
       "title": "Midwinter Break",
@@ -961,7 +997,7 @@
       "open_date": "Feb 20",
       "weekends_in_chart": 2,
       "best_rank": 21,
-      "rank": 80
+      "rank": 83
     },
     {
       "title": "Slanted",
@@ -973,7 +1009,19 @@
       "open_date": "Mar 13",
       "weekends_in_chart": 2,
       "best_rank": 14,
-      "rank": 81
+      "rank": 84
+    },
+    {
+      "title": "RZA\u2019s One Spoon of Chocolate",
+      "distributor": "",
+      "total_gross": 717511,
+      "max_theaters": 636,
+      "opening_weekend": 558440,
+      "opening_theaters": 636,
+      "open_date": "May 1",
+      "weekends_in_chart": 2,
+      "best_rank": 12,
+      "rank": 85
     },
     {
       "title": "Dolly",
@@ -985,7 +1033,7 @@
       "open_date": "Mar 6",
       "weekends_in_chart": 2,
       "best_rank": 16,
-      "rank": 82
+      "rank": 86
     },
     {
       "title": "All You Need Is Kill",
@@ -997,7 +1045,7 @@
       "open_date": "Jan 16",
       "weekends_in_chart": 7,
       "best_rank": 19,
-      "rank": 83
+      "rank": 87
     },
     {
       "title": "Standout: The Ben Kjar Story",
@@ -1009,7 +1057,7 @@
       "open_date": "Jan 23",
       "weekends_in_chart": 10,
       "best_rank": 25,
-      "rank": 84
+      "rank": 88
     },
     {
       "title": "Scarlet",
@@ -1021,7 +1069,19 @@
       "open_date": "Feb 6",
       "weekends_in_chart": 3,
       "best_rank": 25,
-      "rank": 85
+      "rank": 89
+    },
+    {
+      "title": "Fantasy Life",
+      "distributor": "Greenwich Entertainment",
+      "total_gross": 610702,
+      "max_theaters": 215,
+      "opening_weekend": 34616,
+      "opening_theaters": 1,
+      "open_date": "Mar 27",
+      "weekends_in_chart": 7,
+      "best_rank": 13,
+      "rank": 90
     },
     {
       "title": "Palestine 36",
@@ -1033,19 +1093,7 @@
       "open_date": "Mar 20",
       "weekends_in_chart": 6,
       "best_rank": 17,
-      "rank": 86
-    },
-    {
-      "title": "Fantasy Life",
-      "distributor": "Greenwich Entertainment",
-      "total_gross": 605897,
-      "max_theaters": 215,
-      "opening_weekend": 34616,
-      "opening_theaters": 1,
-      "open_date": "Mar 27",
-      "weekends_in_chart": 6,
-      "best_rank": 13,
-      "rank": 87
+      "rank": 91
     },
     {
       "title": "Hunting Matthew Nichols",
@@ -1057,19 +1105,7 @@
       "open_date": "Apr 10",
       "weekends_in_chart": 1,
       "best_rank": 14,
-      "rank": 88
-    },
-    {
-      "title": "RZA\u2019s One Spoon of Chocolate",
-      "distributor": "",
-      "total_gross": 558440,
-      "max_theaters": 636,
-      "opening_weekend": 558440,
-      "opening_theaters": 636,
-      "open_date": "May 1",
-      "weekends_in_chart": 1,
-      "best_rank": 12,
-      "rank": 89
+      "rank": 92
     },
     {
       "title": "All That\u2019s Left Of You",
@@ -1081,7 +1117,7 @@
       "open_date": "Jan 9",
       "weekends_in_chart": 12,
       "best_rank": 26,
-      "rank": 90
+      "rank": 93
     },
     {
       "title": "Youngblood",
@@ -1093,7 +1129,7 @@
       "open_date": "Mar 13",
       "weekends_in_chart": 2,
       "best_rank": 29,
-      "rank": 91
+      "rank": 94
     },
     {
       "title": "Desert Warrior",
@@ -1105,7 +1141,7 @@
       "open_date": "Apr 24",
       "weekends_in_chart": 1,
       "best_rank": 14,
-      "rank": 92
+      "rank": 95
     },
     {
       "title": "The Mortuary Assistant",
@@ -1117,7 +1153,7 @@
       "open_date": "Feb 13",
       "weekends_in_chart": 3,
       "best_rank": 24,
-      "rank": 93
+      "rank": 96
     },
     {
       "title": "Lorne",
@@ -1129,7 +1165,19 @@
       "open_date": "Apr 17",
       "weekends_in_chart": 2,
       "best_rank": 16,
-      "rank": 94
+      "rank": 97
+    },
+    {
+      "title": "Steal This Story, Please!",
+      "distributor": "",
+      "total_gross": 387139,
+      "max_theaters": 33,
+      "opening_weekend": 31485,
+      "opening_theaters": 1,
+      "open_date": "Apr 10",
+      "weekends_in_chart": 3,
+      "best_rank": 17,
+      "rank": 98
     },
     {
       "title": "Hard-Boiled",
@@ -1141,7 +1189,7 @@
       "open_date": "Jan 23",
       "weekends_in_chart": 2,
       "best_rank": 29,
-      "rank": 95
+      "rank": 99
     },
     {
       "title": "Night Patrol",
@@ -1153,7 +1201,7 @@
       "open_date": "Jan 16",
       "weekends_in_chart": 2,
       "best_rank": 25,
-      "rank": 96
+      "rank": 100
     },
     {
       "title": "H is for Hawk",
@@ -1165,7 +1213,7 @@
       "open_date": "Jan 23",
       "weekends_in_chart": 12,
       "best_rank": 28,
-      "rank": 97
+      "rank": 101
     },
     {
       "title": "Marc by Sofia",
@@ -1177,7 +1225,7 @@
       "open_date": "Mar 20",
       "weekends_in_chart": 5,
       "best_rank": 21,
-      "rank": 98
+      "rank": 102
     },
     {
       "title": "Tow",
@@ -1189,7 +1237,7 @@
       "open_date": "Mar 20",
       "weekends_in_chart": 7,
       "best_rank": 18,
-      "rank": 99
+      "rank": 103
     },
     {
       "title": "Hamlet",
@@ -1201,7 +1249,7 @@
       "open_date": "Apr 17",
       "weekends_in_chart": 1,
       "best_rank": 32,
-      "rank": 100
+      "rank": 104
     },
     {
       "title": "A Poet",
@@ -1213,7 +1261,31 @@
       "open_date": "Jan 30",
       "weekends_in_chart": 12,
       "best_rank": 33,
-      "rank": 101
+      "rank": 105
+    },
+    {
+      "title": "Blue Heron",
+      "distributor": "",
+      "total_gross": 265939,
+      "max_theaters": 97,
+      "opening_weekend": 17703,
+      "opening_theaters": 1,
+      "open_date": "Apr 17",
+      "weekends_in_chart": 4,
+      "best_rank": 15,
+      "rank": 106
+    },
+    {
+      "title": "The Stranger",
+      "distributor": "Music Box Films",
+      "total_gross": 263930,
+      "max_theaters": 33,
+      "opening_weekend": 21033,
+      "opening_theaters": 2,
+      "open_date": "Apr 3",
+      "weekends_in_chart": 6,
+      "best_rank": 24,
+      "rank": 107
     },
     {
       "title": "Mile End Kicks",
@@ -1225,7 +1297,19 @@
       "open_date": "Apr 17",
       "weekends_in_chart": 1,
       "best_rank": 17,
-      "rank": 102
+      "rank": 108
+    },
+    {
+      "title": "Mr. Nobody Against Putin",
+      "distributor": "Kino Lorber",
+      "total_gross": 255094,
+      "max_theaters": 46,
+      "opening_weekend": 4464,
+      "opening_theaters": 1,
+      "open_date": "Jan 23",
+      "weekends_in_chart": 16,
+      "best_rank": 27,
+      "rank": 109
     },
     {
       "title": "The President\u2019s Cake",
@@ -1237,31 +1321,7 @@
       "open_date": "Feb 6",
       "weekends_in_chart": 8,
       "best_rank": 29,
-      "rank": 103
-    },
-    {
-      "title": "Mr. Nobody Against Putin",
-      "distributor": "Kino Lorber",
-      "total_gross": 250326,
-      "max_theaters": 46,
-      "opening_weekend": 4464,
-      "opening_theaters": 1,
-      "open_date": "Jan 23",
-      "weekends_in_chart": 15,
-      "best_rank": 27,
-      "rank": 104
-    },
-    {
-      "title": "The Stranger",
-      "distributor": "Music Box Films",
-      "total_gross": 242932,
-      "max_theaters": 33,
-      "opening_weekend": 21033,
-      "opening_theaters": 2,
-      "open_date": "Apr 3",
-      "weekends_in_chart": 5,
-      "best_rank": 24,
-      "rank": 105
+      "rank": 110
     },
     {
       "title": "A\u00edda y vuelta",
@@ -1273,7 +1333,7 @@
       "open_date": "Feb 6",
       "weekends_in_chart": 1,
       "best_rank": 23,
-      "rank": 106
+      "rank": 111
     },
     {
       "title": "Magellan",
@@ -1285,19 +1345,7 @@
       "open_date": "Jan 9",
       "weekends_in_chart": 14,
       "best_rank": 31,
-      "rank": 107
-    },
-    {
-      "title": "Steal This Story, Please!",
-      "distributor": "",
-      "total_gross": 223489,
-      "max_theaters": 24,
-      "opening_weekend": 31485,
-      "opening_theaters": 1,
-      "open_date": "Apr 10",
-      "weekends_in_chart": 2,
-      "best_rank": 22,
-      "rank": 108
+      "rank": 112
     },
     {
       "title": "Buffalo Kids",
@@ -1309,7 +1357,7 @@
       "open_date": "Feb 6",
       "weekends_in_chart": 2,
       "best_rank": 30,
-      "rank": 109
+      "rank": 113
     },
     {
       "title": "Miroirs No. 3",
@@ -1321,7 +1369,7 @@
       "open_date": "Mar 20",
       "weekends_in_chart": 7,
       "best_rank": 24,
-      "rank": 110
+      "rank": 114
     },
     {
       "title": "This Is Not a Test",
@@ -1333,7 +1381,19 @@
       "open_date": "Feb 20",
       "weekends_in_chart": 2,
       "best_rank": 29,
-      "rank": 111
+      "rank": 115
+    },
+    {
+      "title": "Erupcja",
+      "distributor": "",
+      "total_gross": 197285,
+      "max_theaters": 88,
+      "opening_weekend": 25650,
+      "opening_theaters": 2,
+      "open_date": "Apr 17",
+      "weekends_in_chart": 4,
+      "best_rank": 22,
+      "rank": 116
     },
     {
       "title": "Alpha",
@@ -1345,7 +1405,7 @@
       "open_date": "Mar 27",
       "weekends_in_chart": 2,
       "best_rank": 17,
-      "rank": 112
+      "rank": 117
     },
     {
       "title": "The Love That Remains",
@@ -1357,7 +1417,7 @@
       "open_date": "Jan 30",
       "weekends_in_chart": 11,
       "best_rank": 37,
-      "rank": 113
+      "rank": 118
     },
     {
       "title": "My Father\u2019s Shadow",
@@ -1369,7 +1429,7 @@
       "open_date": "Feb 13",
       "weekends_in_chart": 8,
       "best_rank": 39,
-      "rank": 114
+      "rank": 119
     },
     {
       "title": "Days and Nights in the Forest",
@@ -1381,19 +1441,7 @@
       "open_date": "Feb 27",
       "weekends_in_chart": 4,
       "best_rank": 32,
-      "rank": 115
-    },
-    {
-      "title": "Erupcja",
-      "distributor": "",
-      "total_gross": 135940,
-      "max_theaters": 88,
-      "opening_weekend": 25650,
-      "opening_theaters": 2,
-      "open_date": "Apr 17",
-      "weekends_in_chart": 3,
-      "best_rank": 22,
-      "rank": 116
+      "rank": 120
     },
     {
       "title": "Dreams",
@@ -1405,7 +1453,7 @@
       "open_date": "Feb 27",
       "weekends_in_chart": 5,
       "best_rank": 31,
-      "rank": 117
+      "rank": 121
     },
     {
       "title": "The Killer",
@@ -1417,19 +1465,7 @@
       "open_date": "Apr 3",
       "weekends_in_chart": 1,
       "best_rank": 16,
-      "rank": 118
-    },
-    {
-      "title": "Blue Heron",
-      "distributor": "",
-      "total_gross": 131230,
-      "max_theaters": 11,
-      "opening_weekend": 17703,
-      "opening_theaters": 1,
-      "open_date": "Apr 17",
-      "weekends_in_chart": 3,
-      "best_rank": 25,
-      "rank": 119
+      "rank": 122
     },
     {
       "title": "A Magnificent Life",
@@ -1441,7 +1477,7 @@
       "open_date": "Mar 27",
       "weekends_in_chart": 2,
       "best_rank": 24,
-      "rank": 120
+      "rank": 123
     },
     {
       "title": "A Better Tomorrow",
@@ -1453,7 +1489,7 @@
       "open_date": "Feb 27",
       "weekends_in_chart": 1,
       "best_rank": 27,
-      "rank": 121
+      "rank": 124
     },
     {
       "title": "Lupin the IIIRD: The Movie \u2014 The Immortal Bloodline",
@@ -1465,7 +1501,7 @@
       "open_date": "Jan 2",
       "weekends_in_chart": 2,
       "best_rank": 25,
-      "rank": 122
+      "rank": 125
     },
     {
       "title": "Strange Journey: The Story of Rocky Horror",
@@ -1477,19 +1513,19 @@
       "open_date": "Apr 24",
       "weekends_in_chart": 1,
       "best_rank": 38,
-      "rank": 123
+      "rank": 126
     },
     {
       "title": "Two Prosecutors",
       "distributor": "Janus Films",
-      "total_gross": 113504,
+      "total_gross": 114139,
       "max_theaters": 27,
       "opening_weekend": 11668,
       "opening_theaters": 1,
       "open_date": "Mar 20",
-      "weekends_in_chart": 7,
+      "weekends_in_chart": 8,
       "best_rank": 27,
-      "rank": 124
+      "rank": 127
     },
     {
       "title": "HYPNOSISMIC -Division Rap Battle- Interactive Movie",
@@ -1501,7 +1537,19 @@
       "open_date": "Feb 27",
       "weekends_in_chart": 3,
       "best_rank": 32,
-      "rank": 125
+      "rank": 128
+    },
+    {
+      "title": "Fireflies at El Mozote",
+      "distributor": "",
+      "total_gross": 98773,
+      "max_theaters": 39,
+      "opening_weekend": 54886,
+      "opening_theaters": 39,
+      "open_date": "Apr 17",
+      "weekends_in_chart": 4,
+      "best_rank": 24,
+      "rank": 129
     },
     {
       "title": "Pompei: Below The Clouds",
@@ -1513,19 +1561,7 @@
       "open_date": "Mar 6",
       "weekends_in_chart": 5,
       "best_rank": 32,
-      "rank": 126
-    },
-    {
-      "title": "Fireflies at El Mozote",
-      "distributor": "",
-      "total_gross": 96382,
-      "max_theaters": 39,
-      "opening_weekend": 54886,
-      "opening_theaters": 39,
-      "open_date": "Apr 17",
-      "weekends_in_chart": 3,
-      "best_rank": 24,
-      "rank": 127
+      "rank": 130
     },
     {
       "title": "Sound of Falling",
@@ -1537,7 +1573,7 @@
       "open_date": "Jan 16",
       "weekends_in_chart": 7,
       "best_rank": 39,
-      "rank": 128
+      "rank": 131
     },
     {
       "title": "Dead Lover",
@@ -1549,7 +1585,7 @@
       "open_date": "Mar 20",
       "weekends_in_chart": 4,
       "best_rank": 25,
-      "rank": 129
+      "rank": 132
     },
     {
       "title": "Billy Preston: That\u2019s the Way God Planned It",
@@ -1561,7 +1597,7 @@
       "open_date": "Feb 20",
       "weekends_in_chart": 3,
       "best_rank": 40,
-      "rank": 130
+      "rank": 133
     },
     {
       "title": "Jimmy O. Yang: Finally Home",
@@ -1573,7 +1609,19 @@
       "open_date": "Mar 27",
       "weekends_in_chart": 1,
       "best_rank": 23,
-      "rank": 131
+      "rank": 134
+    },
+    {
+      "title": "Silent Friend",
+      "distributor": "",
+      "total_gross": 74440,
+      "max_theaters": 2,
+      "opening_weekend": 74440,
+      "opening_theaters": 2,
+      "open_date": "May 8",
+      "weekends_in_chart": 1,
+      "best_rank": 16,
+      "rank": 135
     },
     {
       "title": "Everyone is Lying to You for Money",
@@ -1585,7 +1633,7 @@
       "open_date": "Apr 17",
       "weekends_in_chart": 3,
       "best_rank": 26,
-      "rank": 132
+      "rank": 136
     },
     {
       "title": "Holding Liat",
@@ -1597,7 +1645,7 @@
       "open_date": "Jan 9",
       "weekends_in_chart": 10,
       "best_rank": 40,
-      "rank": 133
+      "rank": 137
     },
     {
       "title": "Our Hero, Balthazar",
@@ -1609,7 +1657,31 @@
       "open_date": "Mar 27",
       "weekends_in_chart": 2,
       "best_rank": 29,
-      "rank": 134
+      "rank": 138
+    },
+    {
+      "title": "No Picnic",
+      "distributor": "",
+      "total_gross": 60828,
+      "max_theaters": 1,
+      "opening_weekend": 12764,
+      "opening_theaters": 1,
+      "open_date": "Apr 17",
+      "weekends_in_chart": 3,
+      "best_rank": 29,
+      "rank": 139
+    },
+    {
+      "title": "Omaha",
+      "distributor": "",
+      "total_gross": 60663,
+      "max_theaters": 55,
+      "opening_weekend": 13590,
+      "opening_theaters": 1,
+      "open_date": "Apr 24",
+      "weekends_in_chart": 3,
+      "best_rank": 24,
+      "rank": 140
     },
     {
       "title": "Islands",
@@ -1621,7 +1693,7 @@
       "open_date": "Jan 30",
       "weekends_in_chart": 4,
       "best_rank": 35,
-      "rank": 135
+      "rank": 141
     },
     {
       "title": "The Yeti",
@@ -1633,19 +1705,19 @@
       "open_date": "Apr 3",
       "weekends_in_chart": 1,
       "best_rank": 20,
-      "rank": 136
+      "rank": 142
     },
     {
-      "title": "No Picnic",
+      "title": "Amrum",
       "distributor": "",
-      "total_gross": 50752,
-      "max_theaters": 1,
-      "opening_weekend": 12764,
-      "opening_theaters": 1,
+      "total_gross": 52334,
+      "max_theaters": 9,
+      "opening_weekend": 4247,
+      "opening_theaters": 2,
       "open_date": "Apr 17",
-      "weekends_in_chart": 2,
-      "best_rank": 35,
-      "rank": 137
+      "weekends_in_chart": 4,
+      "best_rank": 32,
+      "rank": 143
     },
     {
       "title": "Mad Bills to Pay (or Destiny dile que no soy malo)",
@@ -1657,7 +1729,7 @@
       "open_date": "Apr 17",
       "weekends_in_chart": 3,
       "best_rank": 31,
-      "rank": 138
+      "rank": 144
     },
     {
       "title": "OBEX",
@@ -1669,7 +1741,7 @@
       "open_date": "Jan 9",
       "weekends_in_chart": 8,
       "best_rank": 39,
-      "rank": 139
+      "rank": 145
     },
     {
       "title": "Jimpa",
@@ -1681,19 +1753,19 @@
       "open_date": "Feb 6",
       "weekends_in_chart": 12,
       "best_rank": 45,
-      "rank": 140
+      "rank": 146
     },
     {
       "title": "Queen Kelly",
       "distributor": "Kino Lorber",
-      "total_gross": 44858,
+      "total_gross": 45572,
       "max_theaters": 6,
       "opening_weekend": 6037,
       "opening_theaters": 1,
       "open_date": "Jan 16",
-      "weekends_in_chart": 16,
-      "best_rank": 41,
-      "rank": 141
+      "weekends_in_chart": 17,
+      "best_rank": 38,
+      "rank": 147
     },
     {
       "title": "Chime",
@@ -1705,7 +1777,7 @@
       "open_date": "Mar 27",
       "weekends_in_chart": 3,
       "best_rank": 29,
-      "rank": 142
+      "rank": 148
     },
     {
       "title": "The Napa Boys",
@@ -1717,7 +1789,7 @@
       "open_date": "Feb 27",
       "weekends_in_chart": 6,
       "best_rank": 42,
-      "rank": 143
+      "rank": 149
     },
     {
       "title": "For Worse",
@@ -1729,19 +1801,7 @@
       "open_date": "Feb 27",
       "weekends_in_chart": 3,
       "best_rank": 36,
-      "rank": 144
-    },
-    {
-      "title": "Amrum",
-      "distributor": "",
-      "total_gross": 43047,
-      "max_theaters": 9,
-      "opening_weekend": 4247,
-      "opening_theaters": 2,
-      "open_date": "Apr 17",
-      "weekends_in_chart": 3,
-      "best_rank": 32,
-      "rank": 145
+      "rank": 150
     },
     {
       "title": "Kontinental \u201825",
@@ -1753,7 +1813,7 @@
       "open_date": "Mar 27",
       "weekends_in_chart": 5,
       "best_rank": 38,
-      "rank": 146
+      "rank": 151
     },
     {
       "title": "By Design",
@@ -1765,19 +1825,19 @@
       "open_date": "Feb 13",
       "weekends_in_chart": 7,
       "best_rank": 33,
-      "rank": 147
+      "rank": 152
     },
     {
       "title": "Yes",
       "distributor": "",
-      "total_gross": 40216,
+      "total_gross": 41053,
       "max_theaters": 6,
       "opening_weekend": 7830,
       "opening_theaters": 1,
       "open_date": "Mar 27",
-      "weekends_in_chart": 5,
+      "weekends_in_chart": 6,
       "best_rank": 39,
-      "rank": 148
+      "rank": 153
     },
     {
       "title": "Late Shift",
@@ -1789,31 +1849,31 @@
       "open_date": "Mar 20",
       "weekends_in_chart": 5,
       "best_rank": 35,
-      "rank": 149
+      "rank": 154
     },
     {
       "title": "Reunion",
       "distributor": "",
-      "total_gross": 31837,
+      "total_gross": 35278,
       "max_theaters": 3,
       "opening_weekend": 5750,
       "opening_theaters": 1,
       "open_date": "Apr 3",
-      "weekends_in_chart": 3,
-      "best_rank": 43,
-      "rank": 150
+      "weekends_in_chart": 4,
+      "best_rank": 41,
+      "rank": 155
     },
     {
-      "title": "Omaha",
+      "title": "Blue Film",
       "distributor": "",
-      "total_gross": 29065,
-      "max_theaters": 3,
-      "opening_weekend": 13590,
-      "opening_theaters": 1,
-      "open_date": "Apr 24",
-      "weekends_in_chart": 2,
-      "best_rank": 29,
-      "rank": 151
+      "total_gross": 31000,
+      "max_theaters": 2,
+      "opening_weekend": 31000,
+      "opening_theaters": 2,
+      "open_date": "May 8",
+      "weekends_in_chart": 1,
+      "best_rank": 22,
+      "rank": 156
     },
     {
       "title": "The Blue Trail",
@@ -1825,7 +1885,7 @@
       "open_date": "Apr 3",
       "weekends_in_chart": 3,
       "best_rank": 31,
-      "rank": 152
+      "rank": 157
     },
     {
       "title": "Kontinental '25",
@@ -1837,7 +1897,7 @@
       "open_date": "Apr 10",
       "weekends_in_chart": 1,
       "best_rank": 34,
-      "rank": 153
+      "rank": 158
     },
     {
       "title": "A Road at Night",
@@ -1849,7 +1909,7 @@
       "open_date": "Feb 13",
       "weekends_in_chart": 2,
       "best_rank": 55,
-      "rank": 154
+      "rank": 159
     },
     {
       "title": "Living the Land",
@@ -1861,7 +1921,7 @@
       "open_date": "Apr 3",
       "weekends_in_chart": 3,
       "best_rank": 38,
-      "rank": 155
+      "rank": 160
     },
     {
       "title": "Starman",
@@ -1873,7 +1933,7 @@
       "open_date": "Feb 6",
       "weekends_in_chart": 3,
       "best_rank": 59,
-      "rank": 156
+      "rank": 161
     },
     {
       "title": "Scared to Death",
@@ -1885,7 +1945,19 @@
       "open_date": "Mar 13",
       "weekends_in_chart": 1,
       "best_rank": 36,
-      "rank": 157
+      "rank": 162
+    },
+    {
+      "title": "The Seduction of Mimi",
+      "distributor": "",
+      "total_gross": 22761,
+      "max_theaters": 4,
+      "opening_weekend": 8682,
+      "opening_theaters": 4,
+      "open_date": "Apr 24",
+      "weekends_in_chart": 3,
+      "best_rank": 35,
+      "rank": 163
     },
     {
       "title": "Conversation Piece",
@@ -1897,7 +1969,7 @@
       "open_date": "Jan 23",
       "weekends_in_chart": 11,
       "best_rank": 48,
-      "rank": 158
+      "rank": 164
     },
     {
       "title": "John Lilly and the Earth Coincidence Control Office",
@@ -1909,19 +1981,19 @@
       "open_date": "Mar 27",
       "weekends_in_chart": 6,
       "best_rank": 35,
-      "rank": 159
+      "rank": 165
     },
     {
-      "title": "The Seduction of Mimi",
+      "title": "The Last One For The Road",
       "distributor": "",
-      "total_gross": 19231,
-      "max_theaters": 4,
-      "opening_weekend": 8682,
-      "opening_theaters": 4,
-      "open_date": "Apr 24",
+      "total_gross": 19667,
+      "max_theaters": 3,
+      "opening_weekend": 8663,
+      "opening_theaters": 2,
+      "open_date": "May 1",
       "weekends_in_chart": 2,
-      "best_rank": 35,
-      "rank": 160
+      "best_rank": 27,
+      "rank": 166
     },
     {
       "title": "Silver Star",
@@ -1933,7 +2005,19 @@
       "open_date": "Mar 6",
       "weekends_in_chart": 4,
       "best_rank": 44,
-      "rank": 161
+      "rank": 167
+    },
+    {
+      "title": "Two Pianos",
+      "distributor": "",
+      "total_gross": 18222,
+      "max_theaters": 10,
+      "opening_weekend": 5904,
+      "opening_theaters": 2,
+      "open_date": "May 1",
+      "weekends_in_chart": 2,
+      "best_rank": 30,
+      "rank": 168
     },
     {
       "title": "A Little Something Extra",
@@ -1945,7 +2029,19 @@
       "open_date": "Apr 17",
       "weekends_in_chart": 1,
       "best_rank": 35,
-      "rank": 162
+      "rank": 169
+    },
+    {
+      "title": "The Python Hunt",
+      "distributor": "",
+      "total_gross": 13827,
+      "max_theaters": 1,
+      "opening_weekend": 13827,
+      "opening_theaters": 1,
+      "open_date": "May 8",
+      "weekends_in_chart": 1,
+      "best_rank": 25,
+      "rank": 170
     },
     {
       "title": "Wasteland Cop",
@@ -1957,7 +2053,7 @@
       "open_date": "Apr 24",
       "weekends_in_chart": 2,
       "best_rank": 34,
-      "rank": 163
+      "rank": 171
     },
     {
       "title": "Young Mothers",
@@ -1969,19 +2065,7 @@
       "open_date": "Jan 9",
       "weekends_in_chart": 5,
       "best_rank": 45,
-      "rank": 164
-    },
-    {
-      "title": "Two Pianos",
-      "distributor": "",
-      "total_gross": 11333,
-      "max_theaters": 2,
-      "opening_weekend": 5904,
-      "opening_theaters": 2,
-      "open_date": "May 1",
-      "weekends_in_chart": 1,
-      "best_rank": 36,
-      "rank": 165
+      "rank": 172
     },
     {
       "title": "Wasteman",
@@ -1993,7 +2077,7 @@
       "open_date": "Apr 17",
       "weekends_in_chart": 1,
       "best_rank": 39,
-      "rank": 166
+      "rank": 173
     },
     {
       "title": "Boulevard",
@@ -2005,19 +2089,7 @@
       "open_date": "May 1",
       "weekends_in_chart": 1,
       "best_rank": 30,
-      "rank": 167
-    },
-    {
-      "title": "The Last One For The Road",
-      "distributor": "",
-      "total_gross": 8663,
-      "max_theaters": 2,
-      "opening_weekend": 8663,
-      "opening_theaters": 2,
-      "open_date": "May 1",
-      "weekends_in_chart": 1,
-      "best_rank": 31,
-      "rank": 168
+      "rank": 174
     },
     {
       "title": "Bellissima",
@@ -2029,7 +2101,7 @@
       "open_date": "May 1",
       "weekends_in_chart": 1,
       "best_rank": 33,
-      "rank": 169
+      "rank": 175
     },
     {
       "title": "M\u0101rama",
@@ -2041,7 +2113,7 @@
       "open_date": "Apr 17",
       "weekends_in_chart": 1,
       "best_rank": 41,
-      "rank": 170
+      "rank": 176
     },
     {
       "title": "Heel",
@@ -2053,7 +2125,7 @@
       "open_date": "Mar 6",
       "weekends_in_chart": 1,
       "best_rank": 50,
-      "rank": 171
+      "rank": 177
     }
   ]
 }
