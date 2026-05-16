@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080, user-scalable=yes">
+  <title>Franchises — Box Office Jedi</title>
+  <meta name="description" content="Box office totals by franchise — both film series and brand umbrellas.">
+
+  <!-- Open Graph / link preview cards -->
+  <meta property="og:type"         content="website">
+  <meta property="og:site_name"    content="Box Office Jedi">
+  <meta property="og:url"          content="https://boxofficejedi.com/franchises.html">
+  <meta property="og:title"        content="Franchises — Box Office Jedi">
+  <meta property="og:description"  content="Box office totals by franchise — both film series and brand umbrellas.">
+  <meta property="og:image"        content="https://boxofficejedi.com/assets/images/og-default.jpg">
+  <meta property="og:image:width"  content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter / X cards -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Franchises — Box Office Jedi">
+  <meta name="twitter:description" content="Box office totals by franchise — both film series and brand umbrellas.">
+  <meta name="twitter:image"       content="https://boxofficejedi.com/assets/images/og-default.jpg">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+
+    /* Page header — matches Showdown index pattern */
+    .fr-page-crumb {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #00239C;
+      padding: 6px 10px 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .fr-section-bar { height: 5px; background: #7F170E; margin-bottom: 12px; }
+    .fr-page-title {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 32px;
+      color: #000;
+      text-align: center;
+      margin: 18px 0 6px;
+      letter-spacing: -0.5px;
+      text-decoration: underline;
+      line-height: 1.05;
+    }
+    .fr-page-subtitle {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      color: #000;
+      text-align: center;
+      margin: 0 0 14px;
+    }
+
+    /* Series / Brands tabs — BOM-style. Light gray = inactive, white w/
+       blue bottom border = active. */
+    .fr-tab-row {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      max-width: 760px;
+      margin: 0 auto 0;
+      padding: 0 14px;
+    }
+    .fr-tab-label {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
+      color: #000;
+      padding: 8px 14px 6px;
+      margin-right: 6px;
+      display: flex;
+      align-items: center;
+    }
+    .fr-tab {
+      flex: 1;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 17px;
+      color: #00239C;
+      text-align: center;
+      padding: 10px 14px;
+      background: #EAEAEA;
+      border: 1px solid #BBB;
+      border-bottom: none;
+      cursor: pointer;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .fr-tab:hover { background: #DCDCDC; }
+    .fr-tab.is-active {
+      background: #FFFFFF;
+      color: #000;
+      border-color: #999;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Index table */
+    .fr-index-wrap {
+      padding: 0 14px 24px;
+      text-align: center;
+      border-top: 1px solid #999;
+      margin-top: -1px;
+    }
+    .fr-index-table {
+      width: auto;
+      margin: 14px auto;
+      border-collapse: collapse;
+    }
+    .fr-index-table thead th {
+      background: #DCDCDC;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      font-size: 14px;
+      color: #000;
+      padding: 6px 14px;
+      border-right: 1px solid #FFFFFF;
+      border-bottom: 1px solid #FFFFFF;
+      text-align: center;
+      vertical-align: middle;
+      white-space: nowrap;
+      line-height: 1.25;
+    }
+    .fr-index-table thead th:last-child { border-right: none; }
+    .fr-index-table thead th.col-head-bold { font-weight: bold; }
+    .fr-index-table thead th .th-hint {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      font-size: 12px;
+      color: #444;
+      display: block;
+      margin-top: 1px;
+    }
+
+    .fr-index-table tbody tr:nth-child(odd)  td { background: #FFFFFF; }
+    .fr-index-table tbody tr:nth-child(even) td { background: #EEF0FB; }
+    .fr-index-table tbody td {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
+      color: #000;
+      padding: 6px 14px;
+      border-right: 1px solid #FFFFFF;
+      border-bottom: 1px solid #FFFFFF;
+      vertical-align: middle;
+    }
+    .fr-index-table tbody td:last-child { border-right: none; }
+
+    .fr-index-table td.col-franchise {
+      text-align: left;
+      white-space: nowrap;
+    }
+    .fr-index-title {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      color: #00007B;
+      text-decoration: none;
+    }
+    .fr-index-title:hover { text-decoration: underline; }
+
+    .fr-index-table td.col-num {
+      text-align: right;
+      white-space: nowrap;
+    }
+    .fr-index-table td.col-num.center { text-align: center; }
+
+    .fr-index-film {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .fr-index-film:hover { text-decoration: underline; }
+    .fr-index-table td.col-film {
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .fr-empty {
+      padding: 24px 14px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
+      color: #555;
+      text-align: center;
+    }
+
+    .fr-note {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 12px;
+      color: #555;
+      text-align: center;
+      margin: 8px 0 0;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">CONTENTS</span>
+      <ul>
+        <li><a href="predictions.html">PREDICTIONS</a></li>
+        <li><a href="analysis.html">ANALYSIS</a></li>
+        <li><a href="features.html">FEATURES</a></li>
+        <li><a href="releases.html">RELEASE SCHEDULE</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li class="active"><a href="franchises.html">FRANCHISES</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li class="derby"><a href="derby.html">THE DERBY</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+
+  <main class="main-content">
+
+    <div class="fr-page-crumb">&gt; FRANCHISES</div>
+    <div class="fr-section-bar"></div>
+
+    <h1 class="fr-page-title">FRANCHISE INDEX</h1>
+    <p class="fr-page-subtitle">Click on the franchise to view its chart.</p>
+
+    <div class="fr-tab-row">
+      <span class="fr-tab-label">View:</span>
+      <a class="fr-tab" id="fr-tab-series" href="?view=series" data-view="series">Series</a>
+      <a class="fr-tab" id="fr-tab-brands" href="?view=brands" data-view="brands">Brands</a>
+    </div>
+
+    <div class="fr-index-wrap">
+      <table class="fr-index-table" id="fr-table">
+        <thead>
+          <tr>
+            <th class="col-head-bold" id="fr-th-name">Franchise<br><span class="th-hint">(click to view chart)</span></th>
+            <th>Total<br>Gross</th>
+            <th colspan="2"># Movies /<br>Average</th>
+            <th>#1<br>Picture</th>
+            <th>Gross</th>
+          </tr>
+        </thead>
+        <tbody id="fr-tbody">
+          <tr><td colspan="6" class="fr-empty">Loading…</td></tr>
+        </tbody>
+      </table>
+      <p class="fr-note">Note: Grosses are in millions of dollars.</p>
+    </div>
+
+  </main>
+</div><!-- /page-wrapper -->
+
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">"Serving your box office needs since 2026."</span>
+  <div style="margin-top:8px;">
+    <img src="assets/images/flag_sm_anim.gif" alt="American flag" style="display:inline-block;height:auto;">
+  </div>
+  <div class="footer-disclaimer">
+    Box Office Jedi is an independent fan project and is not affiliated with Box Office Mojo, IMDb, Amazon, Lucasfilm, or The Walt Disney Company. All trademarks are the property of their respective owners.
+  </div>
+</footer>
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+
+  // Format millions to 1 decimal: 1234.56789 → "1,234.6"
+  function fmtMillions(n) {
+    if (n == null || isNaN(n)) return '—';
+    const m = n / 1_000_000;
+    return '$' + m.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  }
+  function fmtInt(n) {
+    if (n == null) return '—';
+    return Number(n).toLocaleString('en-US');
+  }
+
+  // Compute per-franchise rollup: total, average, top film.
+  // Upcoming films (films marked with upcoming: true) are excluded from
+  // count + average since they have no gross yet.
+  function rollup(franchise) {
+    const films = (franchise.films || []).filter(f => !f.upcoming);
+    const grosses = films.map(f => Number(f.gross || 0));
+    const total = grosses.reduce((a, b) => a + b, 0);
+    const count = films.length;
+    const avg = count ? total / count : 0;
+    let top = null;
+    films.forEach(f => {
+      if (top == null || (Number(f.gross || 0) > Number(top.gross || 0))) top = f;
+    });
+    return { total, count, avg, top };
+  }
+
+  function setActiveTab(view) {
+    document.getElementById('fr-tab-series').classList.toggle('is-active', view === 'series');
+    document.getElementById('fr-tab-brands').classList.toggle('is-active', view === 'brands');
+    const th = document.getElementById('fr-th-name');
+    if (th) th.firstChild.textContent = (view === 'brands') ? 'Brand' : 'Franchise';
+  }
+
+  function render(franchises, view) {
+    const tbody = document.getElementById('fr-tbody');
+    const filtered = franchises.filter(f => (f.category || 'series') === view);
+
+    // Sort by total gross descending (highest grossing franchise first).
+    // Franchises with no grosses sort to the bottom.
+    const rolled = filtered.map(f => ({ f, r: rollup(f) }));
+    rolled.sort((a, b) => b.r.total - a.r.total);
+
+    if (!rolled.length) {
+      tbody.innerHTML =
+        '<tr><td colspan="6" class="fr-empty">No franchises in this view yet.</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = rolled.map(({ f, r }) => {
+      const chartHref = 'franchise-chart.html?id=' + encodeURIComponent(f.id);
+      const top = r.top;
+      const topHref = top
+        ? ('movie.html?title=' + encodeURIComponent(top.title) +
+           (top.year ? '&year=' + top.year : ''))
+        : '#';
+      const topTitle  = top ? escapeHtml(top.title) : '—';
+      const topGross  = top && top.gross ? fmtMillions(top.gross) : '—';
+      return (
+        '<tr>' +
+          '<td class="col-franchise"><a class="fr-index-title" href="' + chartHref + '">' +
+            escapeHtml(f.name) + '</a></td>' +
+          '<td class="col-num">' + (r.total ? fmtMillions(r.total) : '—') + '</td>' +
+          '<td class="col-num center">' + r.count + '</td>' +
+          '<td class="col-num">' + (r.avg ? fmtMillions(r.avg) : '—') + '</td>' +
+          '<td class="col-film"><a class="fr-index-film" href="' + topHref + '">' + topTitle + '</a></td>' +
+          '<td class="col-num">' + topGross + '</td>' +
+        '</tr>'
+      );
+    }).join('');
+  }
+
+  async function load() {
+    const params = new URLSearchParams(window.location.search);
+    const view = params.get('view') === 'brands' ? 'brands' : 'series';
+    setActiveTab(view);
+    let data;
+    try {
+      const r = await fetch('data/franchises.json', { cache: 'no-store' });
+      if (!r.ok) throw new Error('no franchises');
+      data = await r.json();
+    } catch (e) {
+      document.getElementById('fr-tbody').innerHTML =
+        '<tr><td colspan="6" class="fr-empty">Could not load franchises.</td></tr>';
+      return;
+    }
+    const franchises = data.franchises || [];
+    render(franchises, view);
+  }
+
+  load();
+</script>
+
+</body>
+</html>

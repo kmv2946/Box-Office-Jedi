@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080, user-scalable=yes">
+  <title>Franchise — Box Office Jedi</title>
+  <meta name="description" content="Box office chart for a franchise.">
+
+  <meta property="og:type"         content="website">
+  <meta property="og:site_name"    content="Box Office Jedi">
+  <meta property="og:url"          content="https://boxofficejedi.com/franchise-chart.html">
+  <meta property="og:title"        content="Franchise — Box Office Jedi">
+  <meta property="og:image"        content="https://boxofficejedi.com/assets/images/og-default.jpg">
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+
+    .fc-page-crumb {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #00239C;
+      padding: 6px 10px 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .fc-page-crumb a { color: #00239C; text-decoration: none; }
+    .fc-page-crumb a:hover { text-decoration: underline; }
+    .fc-section-bar { height: 5px; background: #7F170E; margin-bottom: 12px; }
+
+    .fc-page-title {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 32px;
+      color: #7F170E;
+      text-align: center;
+      margin: 18px 0 14px;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      line-height: 1.05;
+    }
+
+    .fc-chart-wrap {
+      padding: 0 14px 18px;
+      text-align: center;
+    }
+    .fc-chart-table {
+      width: auto;
+      margin: 0 auto;
+      border-collapse: collapse;
+    }
+    .fc-chart-table thead th {
+      background: #DCDCDC;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #000;
+      padding: 6px 10px;
+      border-right: 1px solid #FFFFFF;
+      border-bottom: 1px solid #FFFFFF;
+      text-align: center;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+    .fc-chart-table thead th:last-child { border-right: none; }
+    .fc-chart-table thead th .th-sub {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      font-size: 12px;
+      color: #444;
+      display: block;
+    }
+
+    .fc-chart-table tbody tr:nth-child(odd)  td { background: #FFFFFF; }
+    .fc-chart-table tbody tr:nth-child(even) td { background: #EEF0FB; }
+    /* In-release row highlight — BOM yellow */
+    .fc-chart-table tbody tr.fc-in-release td { background: #FFFFA6 !important; }
+
+    .fc-chart-table tbody td {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
+      color: #000;
+      padding: 6px 10px;
+      border-right: 1px solid #FFFFFF;
+      border-bottom: 1px solid #FFFFFF;
+      vertical-align: middle;
+    }
+    .fc-chart-table tbody td:last-child { border-right: none; }
+
+    .fc-chart-table td.col-rank { text-align: center; color: #555; }
+    .fc-chart-table td.col-title {
+      text-align: left;
+      white-space: nowrap;
+    }
+    .fc-title-link {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      color: #00007B;
+      text-decoration: none;
+    }
+    .fc-title-link:hover { text-decoration: underline; }
+    .fc-chart-table td.col-num  { text-align: right; white-space: nowrap; }
+    .fc-chart-table td.col-gross strong {
+      font-weight: bold;
+      color: #000;
+    }
+    .fc-chart-table td.col-studio { text-align: center; white-space: nowrap; }
+    .fc-chart-table td.col-date {
+      text-align: center;
+      white-space: nowrap;
+      color: #00007B;
+    }
+
+    .fc-totals {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16px;
+      text-align: center;
+      margin: 16px 0 6px;
+      line-height: 1.5;
+    }
+    .fc-totals .label { font-weight: normal; }
+    .fc-totals .value { font-weight: bold; color: #000; }
+    .fc-totals .avg   { display: block; font-weight: bold; color: #000; }
+
+    /* Upcoming releases — small table below the main chart, mirrors BOM */
+    .fc-upcoming-title {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      color: #7F170E;
+      text-align: center;
+      margin: 26px 0 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .fc-upcoming-wrap {
+      text-align: center;
+    }
+    .fc-upcoming-table {
+      width: auto;
+      margin: 0 auto;
+      border-collapse: collapse;
+    }
+    .fc-upcoming-table thead th {
+      background: #DCDCDC;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #000;
+      padding: 6px 14px;
+      border-right: 1px solid #FFFFFF;
+      border-bottom: 1px solid #FFFFFF;
+      text-align: center;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+    .fc-upcoming-table thead th:last-child { border-right: none; }
+    .fc-upcoming-table tbody tr:nth-child(odd)  td { background: #FFFFFF; }
+    .fc-upcoming-table tbody tr:nth-child(even) td { background: #EEF0FB; }
+    .fc-upcoming-table tbody td {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
+      color: #000;
+      padding: 6px 14px;
+      border-right: 1px solid #FFFFFF;
+      border-bottom: 1px solid #FFFFFF;
+      vertical-align: middle;
+    }
+    .fc-upcoming-table tbody td:last-child { border-right: none; }
+    .fc-upcoming-table td.col-title { text-align: left;  white-space: nowrap; }
+    .fc-upcoming-table td.col-studio { text-align: center; white-space: nowrap; }
+    .fc-upcoming-table td.col-date   { text-align: center; white-space: nowrap; color: #00007B; }
+
+    /* Re-release / variant subtitle under the title in the main chart */
+    .fc-row-note {
+      display: block;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      font-size: 13px;
+      color: #555;
+      margin-top: 1px;
+    }
+
+    .fc-back {
+      display: inline-block;
+      margin: 8px 14px 18px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .fc-back:hover { text-decoration: underline; }
+
+    .fc-empty {
+      padding: 24px 14px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
+      color: #555;
+      text-align: center;
+    }
+
+    .fc-footnote {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 12px;
+      color: #555;
+      text-align: center;
+      margin: 4px 0 18px;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">CONTENTS</span>
+      <ul>
+        <li><a href="predictions.html">PREDICTIONS</a></li>
+        <li><a href="analysis.html">ANALYSIS</a></li>
+        <li><a href="features.html">FEATURES</a></li>
+        <li><a href="releases.html">RELEASE SCHEDULE</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li class="active"><a href="franchises.html">FRANCHISES</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li class="derby"><a href="derby.html">THE DERBY</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+
+  <main class="main-content">
+
+    <div class="fc-page-crumb">&gt; <a href="franchises.html">FRANCHISES</a></div>
+    <div class="fc-section-bar"></div>
+
+    <h1 class="fc-page-title" id="fc-title">—</h1>
+
+    <div class="fc-chart-wrap">
+      <table class="fc-chart-table" id="fc-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Title<br><span class="th-sub">(click to view)</span></th>
+            <th>Studio</th>
+            <th>Gross <span class="th-sub">/ Theaters</span></th>
+            <th>Opening <span class="th-sub">/ Theaters</span></th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody id="fc-tbody">
+          <tr><td colspan="6" class="fc-empty">Loading…</td></tr>
+        </tbody>
+      </table>
+
+      <div class="fc-totals" id="fc-totals" style="display:none;"></div>
+      <p class="fc-footnote" id="fc-footnote" style="display:none;">
+        Yellow rows are still in active release. Final grosses will update once the run closes.
+      </p>
+    </div>
+
+    <!-- Upcoming releases (separate section, BOM-style) -->
+    <div id="fc-upcoming-block" style="display:none;">
+      <div class="fc-upcoming-title">Upcoming Releases</div>
+      <div class="fc-upcoming-wrap">
+        <table class="fc-upcoming-table">
+          <thead>
+            <tr>
+              <th>Title <span style="font-weight:normal;font-size:12px;color:#444;">(click to view)</span></th>
+              <th>Studio</th>
+              <th>Release Date</th>
+            </tr>
+          </thead>
+          <tbody id="fc-upcoming-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <a href="franchises.html" class="fc-back">&lt; Back to Franchise Index</a>
+
+  </main>
+</div><!-- /page-wrapper -->
+
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">"Serving your box office needs since 2026."</span>
+  <div style="margin-top:8px;">
+    <img src="assets/images/flag_sm_anim.gif" alt="American flag" style="display:inline-block;height:auto;">
+  </div>
+  <div class="footer-disclaimer">
+    Box Office Jedi is an independent fan project and is not affiliated with Box Office Mojo, IMDb, Amazon, Lucasfilm, or The Walt Disney Company. All trademarks are the property of their respective owners.
+  </div>
+</footer>
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+  function fmtDollars(n) {
+    if (n == null || isNaN(n)) return '—';
+    return '$' + Number(n).toLocaleString('en-US');
+  }
+  function fmtInt(n) {
+    if (n == null) return '—';
+    return Number(n).toLocaleString('en-US');
+  }
+  // "2001-06-22" → "6/22/01"
+  function fmtShortDate(iso) {
+    if (!iso || typeof iso !== 'string') return '—';
+    const m = iso.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (!m) return iso;
+    const [, y, mo, d] = m;
+    return Number(mo) + '/' + Number(d) + '/' + y.slice(2);
+  }
+
+  function renderFranchise(franchise) {
+    document.getElementById('fc-title').textContent = franchise.name || 'Franchise';
+    document.title = (franchise.name || 'Franchise') + ' — Box Office Jedi';
+
+    const allFilms = (franchise.films || []).slice();
+    if (!allFilms.length) {
+      document.getElementById('fc-tbody').innerHTML =
+        '<tr><td colspan="6" class="fc-empty">No films listed for this franchise yet.</td></tr>';
+      return;
+    }
+
+    // Partition: released films (or in-release) → main ranked chart;
+    //            upcoming films → separate UPCOMING RELEASES table.
+    const released = allFilms.filter(f => !f.upcoming);
+    const upcoming = allFilms.filter(f =>  f.upcoming);
+
+    // Sort released by gross descending. Films without a gross sort to the
+    // bottom; ties broken by date asc.
+    released.sort((a, b) => {
+      const ag = (a.gross != null) ? Number(a.gross) : -1;
+      const bg = (b.gross != null) ? Number(b.gross) : -1;
+      if (ag !== bg) return bg - ag;
+      return (a.date || '') > (b.date || '') ? 1 : -1;
+    });
+
+    let hasInRelease = false;
+
+    const tbodyHtml = released.map((f, i) => {
+      const rank = i + 1;
+      const inRel = !!f.in_release;
+      if (inRel) hasInRelease = true;
+
+      const movieHref = 'movie.html?title=' + encodeURIComponent(f.title || '') +
+                       (f.year ? '&year=' + f.year : '');
+      const grossDisp = (f.gross != null)
+        ? '<strong>' + fmtDollars(f.gross) + '</strong>' +
+          (f.theaters ? '&nbsp;&nbsp;<span style="color:#444;">' + fmtInt(f.theaters) + '</span>' : '')
+        : '—';
+      const openDisp = (f.opening != null)
+        ? fmtDollars(f.opening) +
+          (f.opening_theaters ? '&nbsp;&nbsp;<span style="color:#444;">' + fmtInt(f.opening_theaters) + '</span>' : '')
+        : '—';
+      const noteHtml = f.note
+        ? '<span class="fc-row-note">' + escapeHtml(f.note) + '</span>'
+        : '';
+      const cls = inRel ? ' class="fc-in-release"' : '';
+      return (
+        '<tr' + cls + '>' +
+          '<td class="col-rank">' + rank + '</td>' +
+          '<td class="col-title"><a class="fc-title-link" href="' + movieHref + '">' +
+            escapeHtml(f.title || '') + '</a>' + noteHtml + '</td>' +
+          '<td class="col-studio">' + escapeHtml(f.studio || '—') + '</td>' +
+          '<td class="col-num col-gross">' + grossDisp + '</td>' +
+          '<td class="col-num">' + openDisp + '</td>' +
+          '<td class="col-date">' + fmtShortDate(f.date) + '</td>' +
+        '</tr>'
+      );
+    }).join('');
+
+    document.getElementById('fc-tbody').innerHTML = tbodyHtml ||
+      '<tr><td colspan="6" class="fc-empty">No released films yet.</td></tr>';
+
+    // Totals (only count released films with a real gross)
+    const realGrosses = released.map(f => Number(f.gross || 0)).filter(g => g > 0);
+    const total = realGrosses.reduce((a, b) => a + b, 0);
+    const avg = realGrosses.length ? (total / realGrosses.length) : 0;
+    const openings = released
+      .filter(f => f.opening != null && (f.opening_theaters || 0) > 600) // wide only
+      .map(f => Number(f.opening));
+    const openAvg = openings.length ? (openings.reduce((a, b) => a + b, 0) / openings.length) : 0;
+
+    const totalsEl = document.getElementById('fc-totals');
+    if (realGrosses.length) {
+      totalsEl.style.display = '';
+      totalsEl.innerHTML =
+        '<span class="label">Lifetime Gross Total (' + realGrosses.length + '): </span>' +
+          '<span class="value">' + fmtDollars(total) + '</span>' +
+        '<span class="avg">Average: ' + fmtDollars(avg) + '</span>' +
+        '<span class="label">Opening Gross Average (' + openings.length + '): </span>' +
+          '<span class="value">' + (openings.length ? fmtDollars(Math.round(openAvg)) : '—') + '</span>' +
+          ' <span class="label">(Wide Releases Only)</span>';
+    } else {
+      totalsEl.style.display = 'none';
+    }
+
+    if (hasInRelease) {
+      document.getElementById('fc-footnote').style.display = '';
+    }
+
+    // Upcoming releases (separate table, BOM pattern)
+    const upcomingBlock = document.getElementById('fc-upcoming-block');
+    const upcomingTbody = document.getElementById('fc-upcoming-tbody');
+    if (upcoming.length) {
+      upcoming.sort((a, b) => (a.date || '') > (b.date || '') ? 1 : -1);
+      upcomingTbody.innerHTML = upcoming.map(f => {
+        const movieHref = 'movie.html?title=' + encodeURIComponent(f.title || '') +
+                         (f.year ? '&year=' + f.year : '');
+        return (
+          '<tr>' +
+            '<td class="col-title"><a class="fc-title-link" href="' + movieHref + '">' +
+              escapeHtml(f.title || '') + '</a></td>' +
+            '<td class="col-studio">' + escapeHtml(f.studio || '—') + '</td>' +
+            '<td class="col-date">' + (f.date ? fmtShortDate(f.date) : '—') + '</td>' +
+          '</tr>'
+        );
+      }).join('');
+      upcomingBlock.style.display = '';
+    } else {
+      upcomingBlock.style.display = 'none';
+    }
+  }
+
+  async function load() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    if (!id) {
+      document.getElementById('fc-tbody').innerHTML =
+        '<tr><td colspan="6" class="fc-empty">No franchise ID specified. <a href="franchises.html">Back to index</a>.</td></tr>';
+      return;
+    }
+    let data;
+    try {
+      const r = await fetch('data/franchises.json', { cache: 'no-store' });
+      if (!r.ok) throw new Error('no franchises');
+      data = await r.json();
+    } catch (e) {
+      document.getElementById('fc-tbody').innerHTML =
+        '<tr><td colspan="6" class="fc-empty">Could not load franchise data.</td></tr>';
+      return;
+    }
+    const franchise = (data.franchises || []).find(f => f.id === id);
+    if (!franchise) {
+      document.getElementById('fc-tbody').innerHTML =
+        '<tr><td colspan="6" class="fc-empty">Franchise not found. <a href="franchises.html">Back to index</a>.</td></tr>';
+      return;
+    }
+    renderFranchise(franchise);
+  }
+
+  load();
+</script>
+
+</body>
+</html>
