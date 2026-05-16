@@ -831,14 +831,23 @@
           // top-of-page "estimates notice" banner and the day's column color.
           const grossHtml = `<span class="dc-gross">${fmtGross(dr.daily_gross)}</span>`;
 
-          // Derive pct_change from yesterday's gross when scraped value is missing.
-          let pctChange = (dr.pct_change != null) ? dr.pct_change : null;
-          if (pctChange == null) {
-            const prevIso = prevIsoOf[iso];
-            const prev = prevIso ? entry.days[prevIso] : null;
-            if (prev && prev.daily_gross > 0 && dr.daily_gross > 0) {
-              pctChange = Math.round(((dr.daily_gross - prev.daily_gross) / prev.daily_gross) * 1000) / 10;
-            }
+          // Compute pct_change client-side from yesterday's gross. The
+          // scraper's pct_change field is unreliable — The Numbers' table
+          // sometimes shows a "Change" column that's week-over-week, not
+          // day-over-day, so we can't trust it. We only fall back to the
+          // scraper's value when we genuinely have no prior-day data
+          // (e.g. the first day in the archive). Films with no prior day
+          // show "—" rather than a misleading number.
+          let pctChange = null;
+          const prevIso = prevIsoOf[iso];
+          const prev = prevIso ? entry.days[prevIso] : null;
+          if (prev && prev.daily_gross > 0 && dr.daily_gross > 0) {
+            pctChange = Math.round(((dr.daily_gross - prev.daily_gross) / prev.daily_gross) * 1000) / 10;
+          } else if (prevIso == null && dr.pct_change != null) {
+            // No prior day in our window at all — trust the scraper's value
+            // as a last resort (this happens only on the very first day in
+            // the archive).
+            pctChange = dr.pct_change;
           }
 
           // Derive per-theater avg from gross/theaters when scraped value is missing

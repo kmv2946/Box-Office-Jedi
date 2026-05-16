@@ -1,10 +1,16 @@
 # Box Office Jedi — Automated Data Pipeline
 # ============================================
-# Two separate schedules:
+# Two separate schedules, split by day-of-week because reporting timing
+# differs between weekday and weekend grosses.
 #
-#   DAILY CHART  — every day at 2:00 PM ET (19:00 UTC)
-#     Scrapes yesterday's daily box office numbers.
-#     The Numbers typically posts daily data around midday.
+#   DAILY CHART — weekdays: Mon-Fri at 4:00 PM ET (20:00 UTC)
+#                weekends: Sat-Sun at 2:00 PM ET (18:00 UTC)
+#     Scrapes yesterday's daily box office numbers. The Numbers posts
+#     weekday data later than weekend data — running too early on weekdays
+#     used to fetch empty / partial tables (Disney late-reporting, etc.).
+#     Note: UTC times don't shift for DST, so during standard time
+#     (Nov-Mar) these effectively run an hour earlier in ET. If that
+#     becomes an issue, bump the UTC hour by one for standard time.
 #
 #   WEEKEND CHART — Sundays and Mondays at 5:00 PM ET (22:00 UTC)
 #     Sunday  → Estimates are posted mid-afternoon. Saved as is_estimates: true.
@@ -26,8 +32,10 @@ name: Update Box Office Data
 
 on:
   schedule:
-    # 2:00 PM ET (19:00 UTC) every day — daily chart only
-    - cron: "0 19 * * *"
+    # 4:00 PM ET (20:00 UTC) Mon-Fri — daily chart, weekday timing
+    - cron: "0 20 * * 1-5"
+    # 2:00 PM ET (18:00 UTC) Sat-Sun — daily chart, weekend timing
+    - cron: "0 18 * * 0,6"
     # 5:00 PM ET (22:00 UTC) Sunday + Monday — weekend chart (estimates then actuals)
     - cron: "0 22 * * 0,1"
   workflow_dispatch:
@@ -70,10 +78,10 @@ jobs:
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "mode=${{ github.event.inputs.mode || 'all' }}" >> $GITHUB_OUTPUT
           elif echo "${{ github.event.schedule }}" | grep -q "0 22"; then
-            # 5 PM ET schedule (Sun/Mon) → weekend chart
+            # 5 PM ET Sun/Mon → weekend chart
             echo "mode=weekend" >> $GITHUB_OUTPUT
           else
-            # 2 PM ET schedule → daily chart
+            # 4 PM ET Mon-Fri OR 2 PM ET Sat-Sun → daily chart
             echo "mode=daily" >> $GITHUB_OUTPUT
           fi
 
