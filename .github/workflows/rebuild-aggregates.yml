@@ -1,0 +1,77 @@
+# Box Office Jedi — Rebuild Aggregate Indexes
+# =============================================
+# These files are derived (not source): they're rebuilt from the actual
+# source-of-truth files (article HTMLs, analysis.json, releases data,
+# overrides). When both YOU rebuild locally AND the scheduled scraper
+# rebuilds on origin, the two versions diverge and every pull becomes a
+# merge conflict.
+#
+# This workflow fixes that by making the SERVER the only party that
+# regenerates these files. Whenever you push a change to one of the
+# source files (a new article HTML, an analysis.json entry, an override
+# edit), this workflow runs on origin, rebuilds the aggregates, and
+# commits the result.
+#
+# Your job locally: just edit the SOURCES. Do NOT run the build scripts.
+# Do NOT commit data/distributors.json or data/movie_articles.json. Let
+# them sit at whatever revision origin last produced. The next push of a
+# source file will trigger a rebuild and update them.
+#
+# Loop prevention: the commit message contains "[skip aggregates]" and
+# the `if:` condition below skips when that tag is present, so this
+# workflow doesn't re-trigger itself.
+
+name: Rebuild Aggregate Indexes
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/analysis.json'
+      - 'data/features.json'
+      - 'data/movie_meta_overrides.json'
+      - 'data/distributor_overrides.json'
+      - 'forecast-*.html'
+      - 'roundup-*.html'
+      - 'feature-*.html'
+      - 'showdown-*.html'
+  workflow_dispatch:
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip aggregates]')"
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Rebuild aggregate indexes
+        run: |
+          echo "→ Rebuilding distributor index…"
+          python3 scripts/build_distributor_index.py
+          echo "→ Rebuilding movie articles index…"
+          python3 scripts/build_movie_articles_index.py
+
+      - name: Commit and push (if changed)
+        run: |
+          git config user.name "Box Office Jedi Bot"
+          git config user.email "bot@boxofficejedi.com"
+          git add data/distributors.json data/movie_articles.json
+          if git diff --staged --quiet; then
+            echo "No aggregate changes — nothing to commit."
+          else
+            git commit -m "🔄 Rebuild aggregate indexes [skip aggregates]"
+            # Rebase against latest origin in case another push landed in
+            # the meantime (rare, but defensive).
+            git pull --rebase --autostash origin main
+            git push
+            echo "✓ Aggregates rebuilt and pushed."
+          fi
