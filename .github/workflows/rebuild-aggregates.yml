@@ -1,25 +1,28 @@
 # Box Office Jedi — Rebuild Aggregate Indexes
 # =============================================
-# These files are derived (not source): they're rebuilt from the actual
-# source-of-truth files (article HTMLs, analysis.json, releases data,
-# overrides). When both YOU rebuild locally AND the scheduled scraper
-# rebuilds on origin, the two versions diverge and every pull becomes a
-# merge conflict.
+# These files are DERIVED, not source. They're rebuilt deterministically
+# from other files. When both YOU rebuild them locally AND the scheduled
+# scraper rebuilds them on origin, the two versions diverge and every
+# pull becomes a merge conflict.
 #
-# This workflow fixes that by making the SERVER the only party that
-# regenerates these files. Whenever you push a change to one of the
-# source files (a new article HTML, an analysis.json entry, an override
-# edit), this workflow runs on origin, rebuilds the aggregates, and
-# commits the result.
+# This workflow makes the SERVER the only party that regenerates them.
+# Whenever a source file is pushed (article HTML, analysis.json, an
+# override, or a per-day daily JSON), this workflow runs on origin,
+# regenerates the affected aggregates, and commits the result.
 #
-# Your job locally: just edit the SOURCES. Do NOT run the build scripts.
-# Do NOT commit data/distributors.json or data/movie_articles.json. Let
-# them sit at whatever revision origin last produced. The next push of a
-# source file will trigger a rebuild and update them.
+# Aggregates this workflow rebuilds:
+#   data/distributors.json       — from chart data + distributor_overrides.json
+#   data/movie_articles.json     — from analysis.json + features.json + article HTMLs
+#   data/daily.json              — rolling latest, mirror of newest per-day file
+#   data/daily/index.json        — list of dates with per-day files
+#   data/weekends/index.json     — list of dates with per-weekend files
 #
-# Loop prevention: the commit message contains "[skip aggregates]" and
-# the `if:` condition below skips when that tag is present, so this
-# workflow doesn't re-trigger itself.
+# Your job locally: edit the SOURCES. Do NOT manually edit or commit any
+# of the files listed above — let GitHub Actions rebuild them.
+#
+# Loop prevention: bot commits carry "[skip aggregates]" and the `if:`
+# below short-circuits when that tag is present, so this workflow can't
+# trigger itself.
 
 name: Rebuild Aggregate Indexes
 
@@ -27,14 +30,21 @@ on:
   push:
     branches: [main]
     paths:
+      # Article sources
       - 'data/analysis.json'
       - 'data/features.json'
-      - 'data/movie_meta_overrides.json'
-      - 'data/distributor_overrides.json'
       - 'forecast-*.html'
       - 'roundup-*.html'
       - 'feature-*.html'
       - 'showdown-*.html'
+      # Override files (curated source data)
+      - 'data/movie_meta_overrides.json'
+      - 'data/distributor_overrides.json'
+      - 'data/daily_overrides.json'
+      # Per-day/per-weekend files (changing one means rolling-latest /
+      # nav-index may need rebuild)
+      - 'data/daily/2*.json'
+      - 'data/weekends/2*.json'
   workflow_dispatch:
 
 jobs:
@@ -57,14 +67,85 @@ jobs:
         run: |
           echo "→ Rebuilding distributor index…"
           python3 scripts/build_distributor_index.py
+
           echo "→ Rebuilding movie articles index…"
           python3 scripts/build_movie_articles_index.py
+
+          echo "→ Rebuilding data/daily/index.json from disk…"
+          python3 - <<'PYEOF'
+          import json, glob, os, re
+          dates = []
+          for path in sorted(glob.glob('data/daily/*.json')):
+              fname = os.path.basename(path)
+              if fname == 'index.json':
+                  continue
+              m = re.match(r'(\d{4}-\d{2}-\d{2})\.json$', fname)
+              if m:
+                  dates.append(m.group(1))
+          dates.sort()
+          idx = {'updated': max(dates) if dates else '', 'dates': dates}
+          with open('data/daily/index.json', 'w', encoding='utf-8') as f:
+              json.dump(idx, f, indent=2)
+          print(f'  daily/index.json: {len(dates)} dates')
+          PYEOF
+
+          echo "→ Rebuilding data/weekends/index.json from disk…"
+          python3 - <<'PYEOF'
+          import json, glob, os, re
+          dates = []
+          for path in sorted(glob.glob('data/weekends/*.json')):
+              fname = os.path.basename(path)
+              if fname == 'index.json':
+                  continue
+              m = re.match(r'(\d{4}-\d{2}-\d{2})\.json$', fname)
+              if m:
+                  dates.append(m.group(1))
+          dates.sort()
+          with open('data/weekends/index.json', 'w', encoding='utf-8') as f:
+              json.dump({'dates': dates}, f, indent=2)
+          print(f'  weekends/index.json: {len(dates)} dates')
+          PYEOF
+
+          echo "→ Rebuilding data/daily.json (rolling latest) from newest per-day file…"
+          python3 - <<'PYEOF'
+          import json, glob, os, re, datetime
+          best = None
+          best_iso = ''
+          for path in sorted(glob.glob('data/daily/*.json')):
+              fname = os.path.basename(path)
+              if fname == 'index.json':
+                  continue
+              m = re.match(r'(\d{4}-\d{2}-\d{2})\.json$', fname)
+              if not m:
+                  continue
+              iso = m.group(1)
+              if iso > best_iso:
+                  best_iso = iso
+                  best = json.load(open(path))
+          if best:
+              # Preserve metadata fields if present in existing daily.json
+              try:
+                  existing = json.load(open('data/daily.json'))
+              except Exception:
+                  existing = {}
+              out = {
+                  'updated': datetime.datetime.now().isoformat(),
+                  'date':    best.get('date') or best_iso,
+                  'is_estimates': best.get('is_estimates', False),
+                  'chart':   best.get('chart') or [],
+              }
+              with open('data/daily.json', 'w', encoding='utf-8') as f:
+                  json.dump(out, f, indent=2, ensure_ascii=False)
+              print(f'  daily.json now mirrors {best_iso}')
+          else:
+              print('  no per-day daily files found — daily.json unchanged')
+          PYEOF
 
       - name: Commit and push (if changed)
         run: |
           git config user.name "Box Office Jedi Bot"
           git config user.email "bot@boxofficejedi.com"
-          git add data/distributors.json data/movie_articles.json
+          git add data/distributors.json data/movie_articles.json data/daily.json data/daily/index.json data/weekends/index.json
           if git diff --staged --quiet; then
             echo "No aggregate changes — nothing to commit."
           else
