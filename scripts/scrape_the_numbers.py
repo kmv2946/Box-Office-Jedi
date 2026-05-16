@@ -1218,6 +1218,27 @@ def main():
                 # Save per-date file (individual chart pages + nav)
                 save_json(f"weekends/{friday_str}.json", weekend_payload)
 
+                # Keep data/weekends/index.json in sync — weekend-chart.html
+                # reads this for its Last/Next Weekend navigation. Without
+                # this, newly-scraped weekends get marooned (the latest
+                # weekend's "Last Weekend" link will skip backwards to
+                # whatever the most recently-indexed date was, dropping
+                # everything in between). Earlier versions of the scraper
+                # only maintained weekends.json (the master year-view
+                # index), not weekends/index.json (the navigation index).
+                wnav_path = os.path.join(DATA_DIR, "weekends", "index.json")
+                try:
+                    with open(wnav_path, "r", encoding="utf-8") as f:
+                        wnav = json.load(f)
+                except (FileNotFoundError, json.JSONDecodeError):
+                    wnav = {"dates": []}
+                wnav_dates = set(wnav.get("dates") or [])
+                wnav_dates.add(friday_str)
+                wnav["dates"] = sorted(wnav_dates)
+                os.makedirs(os.path.dirname(wnav_path), exist_ok=True)
+                with open(wnav_path, "w", encoding="utf-8") as f:
+                    json.dump(wnav, f, indent=2)
+
                 # Master files only get updated for "live" runs. Historical
                 # re-scrapes target a specific past weekend and shouldn't
                 # touch the homepage's latest snapshot or master index.
