@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-14",
+  "updated": "2026-05-16",
   "months": {
     "2026-01": {
       "name": "January 2026",
@@ -528,8 +528,8 @@
               "title": "I Love Boosters",
               "genre": "Adventure / Sci-Fi / Comedy",
               "distributor": "Neon",
-              "release": "Limited",
-              "is_wide": false,
+              "release": "Wide",
+              "is_wide": true,
               "theaters": null
             },
             {
@@ -544,8 +544,8 @@
               "title": "Passenger",
               "genre": "Horror",
               "distributor": "Paramount Pictures",
-              "release": "Limited",
-              "is_wide": false,
+              "release": "Wide",
+              "is_wide": true,
               "theaters": null
             }
           ]
