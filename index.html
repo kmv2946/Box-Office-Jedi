@@ -493,9 +493,11 @@
       feats.articles.forEach(a => all.push(Object.assign({}, a)));
     }
 
-    // Newest first, pick top 3.
+    // Newest first, pick top 4. First two render with photos (main layout),
+    // last two render as compact stacked links so the section doesn't get
+    // visually heavy.
     all.sort((a, b) => (b.date > a.date ? 1 : -1));
-    const top = all.slice(0, 3);
+    const top = all.slice(0, 4);
     if (!top.length) {
       container.innerHTML =
         '<div class="top-story-main"><div class="top-story-headline">' +
@@ -510,7 +512,8 @@
       const byline = 'by Box Office Jedi';
       const divider = (i < top.length - 1) ? '<div class="story-divider"></div>' : '';
 
-      // Top TWO stories get a photo (if they have one); the 3rd stays compact.
+      // Top TWO stories get a photo (if they have one); stories 3 and 4
+      // stay compact (no photo).
       if (i <= 1) {
         const imgTag = a.image
           ? '<img class="top-story-photo" src="' + escapeHtmlBasic(a.image) + '" alt="' + title + '">'
@@ -526,7 +529,7 @@
         );
       }
 
-      // Story #3: compact, no photo
+      // Stories #3 and #4: compact, no photo
       return (
         '<div class="top-story-secondary">' +
           '<div class="top-story-headline"><a href="' + url + '">' + title + '</a></div>' +

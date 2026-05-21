@@ -1,6 +1,43 @@
 {
-  "active_poll_id": "2026-summer-underperform",
+  "active_poll_id": "2026-june-highest-grossing",
   "polls": [
+    {
+      "id": "2026-june-highest-grossing",
+      "question": "What will be the highest-grossing movie in June?",
+      "closes": "2026-06-30",
+      "options": [
+        {
+          "id": "disclosure-day",
+          "label": "Disclosure Day",
+          "votes": 0
+        },
+        {
+          "id": "jackass-best-and-last",
+          "label": "Jackass: Best and Last",
+          "votes": 0
+        },
+        {
+          "id": "masters-of-the-universe",
+          "label": "Masters of the Universe",
+          "votes": 0
+        },
+        {
+          "id": "scary-movie",
+          "label": "Scary Movie",
+          "votes": 0
+        },
+        {
+          "id": "supergirl",
+          "label": "Supergirl",
+          "votes": 0
+        },
+        {
+          "id": "toy-story-5",
+          "label": "Toy Story 5",
+          "votes": 0
+        }
+      ]
+    },
     {
       "id": "2026-summer-top-grosser",
       "question": "What will be the top-grossing movie of the summer?",
@@ -66,7 +103,7 @@
     {
       "id": "2026-summer-underperform",
       "question": "What summer movie is most likely to underperform?",
-      "closes": "2026-09-08",
+      "closes": "2026-05-20",
       "options": [
         {
           "id": "devil-wears-prada-2",
