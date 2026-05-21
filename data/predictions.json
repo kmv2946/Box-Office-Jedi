@@ -1,6 +1,113 @@
 {
-  "updated": "2026-05-16",
+  "updated": "2026-05-21",
   "weekends": [
+    {
+      "date_from": "2026-05-22",
+      "date_to": "2026-05-24",
+      "predictions": [
+        {
+          "pred_rank": 1,
+          "title": "Star Wars: The Mandalorian and Grogu",
+          "is_new": true,
+          "theaters": null,
+          "predicted_m": 80.0,
+          "predicted_m_4day": 96.6,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 1
+        },
+        {
+          "pred_rank": 2,
+          "title": "Michael",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 18.3,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 5
+        },
+        {
+          "pred_rank": 3,
+          "title": "Obsession",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 15.0,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 2
+        },
+        {
+          "pred_rank": 4,
+          "title": "The Devil Wears Prada 2",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 10.0,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 4
+        },
+        {
+          "pred_rank": 5,
+          "title": "Passenger",
+          "is_new": true,
+          "theaters": null,
+          "predicted_m": 6.8,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 1
+        },
+        {
+          "pred_rank": 6,
+          "title": "The Sheep Detectives",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 6.2,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 3
+        },
+        {
+          "pred_rank": 7,
+          "title": "Mortal Kombat II",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 6.1,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 3
+        },
+        {
+          "pred_rank": 8,
+          "title": "I Love Boosters",
+          "is_new": true,
+          "theaters": null,
+          "predicted_m": 4.0,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 1
+        },
+        {
+          "pred_rank": 9,
+          "title": "The Super Mario Galaxy Movie",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 2.9,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 8
+        },
+        {
+          "pred_rank": 10,
+          "title": "Project Hail Mary",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 2.7,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 10
+        }
+      ]
+    },
     {
       "date_from": "2026-05-15",
       "date_to": "2026-05-17",
