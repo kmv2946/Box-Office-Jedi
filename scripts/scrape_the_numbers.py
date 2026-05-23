@@ -404,9 +404,36 @@ def apply_preview_filter(day_iso: str, archive_chart: list[dict]) -> list[dict]:
     except (FileNotFoundError, json.JSONDecodeError):
         return archive_chart
 
-    # Walk every release in releases.json, build a {norm_title: earliest_release_date}
-    # map. Earliest wins so re-releases / expansions don't mask the original opener.
-    title_to_release = {}
+    # Tokenize a title into a set of "content" word-tokens, dropping common
+    # stopwords + connectors. We use this for word-overlap matching to
+    # handle cases where The Numbers and our releases.json disagree on
+    # title formatting:
+    #   "Star Wars: The Mandalorian and Grogu"  ↔  "The Mandalorian & Grogu"
+    #   "Hit Me Hard and Soft - The Tour Live in 3D"  ↔  "Hit Me Hard and Soft—The Tour"
+    # Without word-level matching, the normalized strings don't share
+    # enough characters in the same order to pass any prefix/substring
+    # test and the filter silently misses the row.
+    _STOPWORDS = {
+        "a", "an", "the", "and", "of", "in", "on", "to", "with", "for",
+        "from", "by", "as", "at", "is", "or",
+    }
+    def title_tokens(s: str) -> set[str]:
+        # Split on whitespace and any non-alphanumeric (so "&" and ":" act
+        # as separators, not glyphs that vanish silently into adjacent
+        # tokens). Lowercase each token and drop stopwords + very short
+        # tokens (length 1 like "I", or "II"/"3D" survives because len>=2).
+        out = set()
+        for raw in re.split(r"[^A-Za-z0-9]+", s or ""):
+            t = raw.lower()
+            if not t or t in _STOPWORDS or len(t) < 2:
+                continue
+            out.add(t)
+        return out
+
+    # Walk every release in releases.json. For each, store:
+    #   norm_title → (release_date, token_set)
+    # so the lookup can fall back to word-overlap when string matching fails.
+    release_records = {}
     for month_key, month in (releases.get("months") or {}).items():
         for week in (month.get("weeks") or []):
             wk_date = week.get("date") or ""
@@ -420,18 +447,22 @@ def apply_preview_filter(day_iso: str, archive_chart: list[dict]) -> list[dict]:
                 key = _norm_title(t)
                 if not key:
                     continue
-                if key not in title_to_release or rd < title_to_release[key]:
-                    title_to_release[key] = rd
+                toks = title_tokens(t)
+                existing = release_records.get(key)
+                if existing is None or rd < existing[0]:
+                    release_records[key] = (rd, toks)
 
-    if not title_to_release:
+    if not release_records:
         return archive_chart
 
-    def lookup_release(nk: str) -> str | None:
-        """Find the earliest release_date for a normalized title key.
-        Tries exact, then 'the'-stripped, then prefix-prefix matching
-        (handles cases where The Numbers truncates subtitles, e.g.
-        'Hit Me Hard and Soft—The Tour' vs releases.json's
-        'Hit Me Hard and Soft - The Tour Live in 3D')."""
+    title_to_release = {k: v[0] for k, v in release_records.items()}
+
+    def lookup_release(nk: str, raw_title: str) -> str | None:
+        """Find the earliest release_date for a film. Tries exact match,
+        'the' prefix strip, prefix matching (truncated subtitle case), and
+        finally word-overlap matching (handles "Star Wars: The Mandalorian
+        and Grogu" ↔ "The Mandalorian & Grogu" — same film, totally
+        different normalized strings)."""
         if not nk:
             return None
         # 1. Exact
@@ -462,13 +493,46 @@ def apply_preview_filter(day_iso: str, archive_chart: list[dict]) -> list[dict]:
                         best = rd
             if best:
                 return best
-        return None
+        # 5. Word-overlap: tokenize raw_title, find a releases.json entry
+        #    whose token set shares enough content with it. A "match" is:
+        #      - At least 2 shared non-stopword tokens, OR
+        #      - 1 shared token ≥ 7 chars (highly distinctive proper noun
+        #        like "mandalorian" — single match is enough)
+        #    AND the shared tokens cover ≥ 60% of either side's tokens
+        #    (so a passing reference like "Mandalorian" in some other
+        #    film's subtitle doesn't accidentally pull in the wrong rd).
+        scraped_toks = title_tokens(raw_title)
+        if not scraped_toks:
+            return None
+        best = None
+        best_score = 0
+        for k, (rd, rel_toks) in release_records.items():
+            if not rel_toks:
+                continue
+            shared = scraped_toks & rel_toks
+            if not shared:
+                continue
+            # Strong-token shortcut: any shared token ≥ 7 chars is
+            # essentially a unique proper noun ("mandalorian", "obsession",
+            # "thunderbolts"). One is enough.
+            has_strong = any(len(t) >= 7 for t in shared)
+            # Coverage on each side
+            cov_scraped = len(shared) / max(1, len(scraped_toks))
+            cov_release = len(shared) / max(1, len(rel_toks))
+            cov = max(cov_scraped, cov_release)
+            score = len(shared) + (1.0 if has_strong else 0.0) + cov
+            ok = (len(shared) >= 2 and cov >= 0.5) or has_strong
+            if ok and score > best_score:
+                best = rd
+                best_score = score
+        return best
 
     keep = []
     dropped = []
     for row in archive_chart:
-        nk = _norm_title(row.get("title", ""))
-        rd = lookup_release(nk)
+        raw_title = row.get("title", "") or ""
+        nk = _norm_title(raw_title)
+        rd = lookup_release(nk, raw_title)
         is_first_appearance = (
             row.get("total_gross") is not None
             and row.get("daily_gross") is not None
