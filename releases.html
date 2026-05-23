@@ -455,7 +455,20 @@
   }
   function buildWeekTable(week) {
     const weekYear = (week.date || '').slice(0, 4);
-    const rows = (week.releases || []).map(r => buildReleaseRow(r, weekYear)).join('');
+    // Sort each weekend's releases by theater count descending so the
+    // headliner sits at the top of every section (Star Wars > Passenger
+    // > I Love Boosters > Tuner). Films without a theater count fall to
+    // the bottom of the wide group. Limited films stay below all wide
+    // films regardless of count.
+    const sortedReleases = (week.releases || []).slice().sort((a, b) => {
+      const aw = a.is_wide ? 1 : 0;
+      const bw = b.is_wide ? 1 : 0;
+      if (aw !== bw) return bw - aw;             // wide first
+      const at = a.theaters || 0;
+      const bt = b.theaters || 0;
+      return bt - at;                            // theaters desc
+    });
+    const rows = sortedReleases.map(r => buildReleaseRow(r, weekYear)).join('');
     if (!rows) {
       return '<div class="rs-week">' + buildWeekHead(week.date, week.weekday) +
              '<p class="rs-empty">No theatrical releases scheduled.</p></div>';

@@ -137,6 +137,42 @@
     for (var i = 0; i < keys.length && !weekends; i++)
       weekends = await lookup('movie_weekends_shards', keys[i]);
 
+    // Fall back to / merge with movie_meta_overrides.json so manually-
+    // curated entries (posters, distributors, runtime for upcoming or
+    // recent films that haven't been TMDB-enriched yet) flow through to
+    // the showdown. Without this, films like Obsession (added by hand
+    // before TMDB has them) show "No poster" even though the override
+    // file carries the curated poster_url. Overrides win on conflicts —
+    // same precedence rule the movie profile page uses.
+    var overrides = null;
+    try {
+      var rO = await fetch('data/movie_meta_overrides.json', { cache: 'no-store' });
+      if (rO.ok) overrides = await rO.json();
+    } catch (e) { /* fall through */ }
+    if (overrides) {
+      var ovr = null;
+      for (var i = 0; i < keys.length && !ovr; i++) {
+        if (keys[i] && !keys[i].startsWith('_')) ovr = overrides[keys[i]];
+      }
+      // Title-prefix fallback: if no direct slug hit, try matching a
+      // bare title (no year) against any override slug that starts with
+      // it. Mirrors the movie profile page's behavior. Most recent year
+      // wins on ambiguity.
+      if (!ovr) {
+        var bareKey = normKey(film.title);
+        if (bareKey && !bareKey.includes('-')) {
+          var matched = Object.keys(overrides)
+            .filter(function(k){ return !k.startsWith('_') && k.startsWith(bareKey + '-'); })
+            .sort()
+            .pop();
+          if (matched) ovr = overrides[matched];
+        }
+      }
+      if (ovr) {
+        meta = Object.assign({}, meta || {}, ovr);
+      }
+    }
+
     var totals = await loadTotals();
     var totalEntry = null;
     if (totals && totals.by_slug) {

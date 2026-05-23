@@ -381,6 +381,97 @@ def apply_daily_overrides(day_iso: str, archive_chart: list[dict]) -> list[dict]
     return archive_chart
 
 
+def apply_title_canonicalization(archive_chart: list[dict]) -> list[dict]:
+    """Rewrite scraped titles to their releases.json canonical form when
+    we have a strong match.
+
+    The Numbers uses cosmetic shorthand that bites us: "The Mandalorian &
+    Grogu" instead of "Star Wars: The Mandalorian and Grogu", "I.S.S."
+    becoming "ISS", subtitles dropped, ampersands swapped for "and", etc.
+    Each variant creates a different normalized slug, which means:
+      - The movie profile page link goes to an empty page
+      - The daily chart and the franchise / showdown pages don't agree
+        on which film is which
+      - distributor_overrides + movie_meta_overrides have to maintain
+        every variant by hand
+
+    This function scans every row, looks up the film in releases.json by
+    word-overlap (same matcher as the preview filter), and if a strong
+    match exists (2+ shared content words OR one shared token ≥ 7 chars),
+    rewrites the row's `title` to the releases.json title. Movie_url is
+    left alone — daily.html rebuilds the link from title + year anyway.
+    """
+    try:
+        with open(os.path.join(DATA_DIR, "releases.json"), "r", encoding="utf-8") as f:
+            releases = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return archive_chart
+
+    _STOPWORDS = {
+        "a", "an", "the", "and", "of", "in", "on", "to", "with", "for",
+        "from", "by", "as", "at", "is", "or",
+    }
+    def title_tokens(s: str) -> set[str]:
+        out = set()
+        for raw in re.split(r"[^A-Za-z0-9]+", s or ""):
+            t = raw.lower()
+            if not t or t in _STOPWORDS or len(t) < 2:
+                continue
+            out.add(t)
+        return out
+
+    # Build list of (canonical_title, token_set) from every release.
+    canonicals = []
+    for month_key, month in (releases.get("months") or {}).items():
+        for week in (month.get("weeks") or []):
+            for r in (week.get("releases") or []):
+                t = r.get("title")
+                if not t:
+                    continue
+                toks = title_tokens(t)
+                if toks:
+                    canonicals.append((t, toks))
+
+    if not canonicals:
+        return archive_chart
+
+    rewritten = 0
+    for row in archive_chart:
+        raw_title = row.get("title") or ""
+        # Skip rows that already match a canonical exactly
+        if any(raw_title == c for c, _ in canonicals):
+            continue
+        scraped_toks = title_tokens(raw_title)
+        if not scraped_toks:
+            continue
+        best = None
+        best_score = 0.0
+        for canon, rel_toks in canonicals:
+            shared = scraped_toks & rel_toks
+            if not shared:
+                continue
+            has_strong = any(len(t) >= 7 for t in shared)
+            cov_scraped = len(shared) / max(1, len(scraped_toks))
+            cov_release = len(shared) / max(1, len(rel_toks))
+            cov = max(cov_scraped, cov_release)
+            ok = (len(shared) >= 2 and cov >= 0.5) or has_strong
+            score = len(shared) + (1.0 if has_strong else 0.0) + cov
+            if ok and score > best_score:
+                best = canon
+                best_score = score
+        if best and best != raw_title:
+            row["title"] = best
+            # Drop the scraper's movie_url since it's based on the wrong
+            # title; daily.html rebuilds the link from title + year.
+            row["movie_url"] = ""
+            rewritten += 1
+            print(f"  ✎ Canonicalized title: {raw_title!r} -> {best!r}")
+
+    if rewritten:
+        print(f"  ✎ Rewrote {rewritten} title(s) to releases.json canonical form.")
+    return archive_chart
+
+
 def apply_preview_filter(day_iso: str, archive_chart: list[dict]) -> list[dict]:
     """Drop Thursday-preview rows from a daily chart.
 
@@ -1122,6 +1213,12 @@ def main():
                 # into Friday's gross, not surface them as their own row.
                 # The Numbers ignores this rule sometimes; we enforce it.
                 archive_chart = apply_preview_filter(day_iso, archive_chart)
+
+                # Canonicalize titles against releases.json (e.g. "The
+                # Mandalorian & Grogu" → "Star Wars: The Mandalorian and
+                # Grogu"). The Numbers uses cosmetic shorthand that breaks
+                # our slug system; this rewrites to the user-curated form.
+                archive_chart = apply_title_canonicalization(archive_chart)
 
                 # Merge in any hand-patched rows for this date (Disney late-
                 # reporting fixes, etc.) Re-applied automatically on every
