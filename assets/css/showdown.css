@@ -74,6 +74,18 @@
   border-bottom: 2px solid #FFFFFF;
 }
 
+/* Per-tab legend strip. Sits below the tab row, above the chart. Used
+ * to explain the dense compound cells on the Weekend Box Office tab.
+ * Hidden by default — showdown.js toggles display based on active tab. */
+.sd-tab-legend {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: normal;
+  font-size: 12px;
+  color: #000;
+  padding: 8px 16px 0;
+  text-align: center;
+}
+
 .sd-panel { display: none; }
 .sd-panel.active { display: block; }
 
@@ -181,7 +193,12 @@
 .sd-wknd-cell .wg.best { font-weight: bold; }
 .sd-wknd-cell .wm  { font-size: 12px; color: #00239C; display: block; }
 .sd-wknd-cell .wth { font-size: 12px; color: #555; display: block; }
-.sd-wknd-cell .wch { font-size: 12px; color: #CC0000; display: block; }
+/* Weekend-over-weekend pct change. Default is a soft red (legacy
+ * behavior). Up/down modifiers replace that default so the sign carries
+ * the meaning visually: positive change = blue, negative = red. */
+.sd-wknd-cell .wch        { font-size: 12px; color: #555; display: block; }
+.sd-wknd-cell .wch.wch-up   { color: #002AF5; }
+.sd-wknd-cell .wch.wch-down { color: #F23620; }
 .sd-wknd-cell .wgt { font-size: 12px; color: #000; display: block; }
 .sd-wknd-cell .wpend {
   color: #999; font-size: 16px;

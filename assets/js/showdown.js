@@ -296,11 +296,18 @@
           for (var k = 0; k < n; k++) run += (ws[k].gross || 0);
           totalToDate = run;
         }
+        // Weekend-over-weekend pct change — color the cell content by
+        // sign. Up = blue (#002AF5), down = red (#F23620). A flat 0% or
+        // a missing prior week stays default text color.
+        var chTxt = prev ? fmtChange(w.gross, prev.gross) : '—';
+        var chCls = '';
+        if (prev && w.gross && w.gross > prev.gross) chCls = ' wch-up';
+        else if (prev && w.gross && w.gross < prev.gross) chCls = ' wch-down';
         html += '<td class="sd-wknd-cell sd-col-' + col + '" data-val="' + (w.gross || 0) + '">' +
           '<span class="wg' + (isBest ? ' best' : '') + '">' + fmtMoney(w.gross) + '</span>' +
           '<span class="wm">' + fmtSunDate(w.date) + ' / <b>' + (w.rank || '—') + '</b></span>' +
           '<span class="wth">' + ((w.theaters || 0) ? Number(w.theaters).toLocaleString('en-US') + ' / $' + (Math.floor((w.gross||0)/(w.theaters||1))).toLocaleString('en-US') : '—') + '</span>' +
-          '<span class="wch">' + (prev ? fmtChange(w.gross, prev.gross) : '—') + '</span>' +
+          '<span class="wch' + chCls + '">' + chTxt + '</span>' +
           '<span class="wgt">' + fmtMoney(totalToDate) + '</span>' +
         '</td>';
       });
@@ -388,11 +395,24 @@
           '<a class="sd-tab active" href="#" data-panel="summary">Summary Stats</a>' +
           '<a class="sd-tab" href="#" data-panel="weekend">Weekend Box Office</a>' +
         '</div>' +
+      '</div>' +
+      // Per-tab legend that explains the dense weekend-cell layout. Shown
+      // only when the Weekend Box Office tab is active.
+      '<div class="sd-tab-legend sd-tab-legend-weekend" id="sd-tab-legend-weekend">' +
+        '(Weekend Gross / Weekend Date / Weekend Rank / Theaters / Theater Avg. / % Last Wknd / Gross-to-Date)' +
       '</div>'
     );
   }
 
   function attachTabHandlers(root) {
+    var legendEl = root.querySelector('#sd-tab-legend-weekend');
+    function syncLegend() {
+      // Show the legend only when the Weekend Box Office tab is active
+      if (!legendEl) return;
+      var weekendActive = root.querySelector('.sd-tab[data-panel="weekend"].active');
+      legendEl.style.display = weekendActive ? '' : 'none';
+    }
+    syncLegend();
     root.querySelectorAll('.sd-tab').forEach(function(tab) {
       tab.addEventListener('click', function(e) {
         e.preventDefault();
@@ -401,6 +421,7 @@
         root.querySelectorAll('.sd-panel').forEach(function(p){ p.classList.remove('active'); });
         var panel = root.querySelector('#panel-' + tab.dataset.panel);
         if (panel) panel.classList.add('active');
+        syncLegend();
       });
     });
   }
