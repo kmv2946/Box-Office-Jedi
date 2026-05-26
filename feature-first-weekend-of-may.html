@@ -105,6 +105,22 @@
       border-bottom: 1px solid #CCC;
     }
 
+    /* Hero image — sits at the very top of the article body, full column
+       width. No border, slightly wider than the inline illustrative shots
+       so it reads as a deliberate opening flourish. */
+    .article-hero {
+      margin: 4px auto 18px;
+      text-align: center;
+      max-width: 760px;
+    }
+    .article-hero img {
+      display: block;
+      width: 100%;
+      max-width: 760px;
+      height: auto;
+      margin: 0 auto;
+    }
+
     /* Centered article image (used for the big illustrative shots) */
     .article-img-center {
       margin: 18px auto 18px;
@@ -215,6 +231,10 @@
       <span class="article-byline-date">May 9, 2026</span>
 
       <div class="article-body clearfix">
+
+        <div class="article-hero">
+          <img src="assets/images/feature-first-weekend-of-may-main-image.png" alt="The First Weekend of May: A History">
+        </div>
 
         <p class="drop-cap">This May marks the thirtieth anniversary of the first-weekend-of-May summer opener&mdash;the slot that once served as the year&rsquo;s first tentpole arrival, the day from which everything else in the season measured itself. It was made up almost out of nothing in 1996, weaponized by Marvel in the 2010s, lost its hold during the pandemic, and now appears to be in the early stages of something else.</p>
 
