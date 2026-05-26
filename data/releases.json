@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-22",
+  "updated": "2026-05-25",
   "months": {
     "2026-01": {
       "name": "January 2026",
@@ -570,14 +570,6 @@
               "theaters": null
             },
             {
-              "title": "The Furious",
-              "genre": "Action / Crime / Thriller",
-              "distributor": "Lionsgate",
-              "release": "Limited",
-              "is_wide": false,
-              "theaters": null
-            },
-            {
               "title": "Pressure",
               "genre": "Drama / History / Thriller / War",
               "distributor": "Focus Features",
@@ -655,6 +647,14 @@
               "distributor": "",
               "release": "Limited",
               "is_wide": false,
+              "theaters": null
+            },
+            {
+              "title": "The Furious",
+              "genre": "Action / Crime / Thriller",
+              "distributor": "Lionsgate",
+              "release": "Wide",
+              "is_wide": true,
               "theaters": null
             }
           ]

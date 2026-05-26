@@ -450,11 +450,18 @@ def apply_title_canonicalization(archive_chart: list[dict]) -> list[dict]:
             shared = scraped_toks & rel_toks
             if not shared:
                 continue
+            # "Strong token" = a shared word ≥ 7 chars. Treats it as a
+            # unique-enough proper noun ("mandalorian", "obsession"). But
+            # the threshold catches generic words too — "project", "people",
+            # "story", "shadow" — so we ALSO require ≥ 50% coverage of the
+            # shorter title's tokens, otherwise "Project Hail Mary" would
+            # match "Untitled Jordan Peele Project" on the single shared
+            # word "project". See: the Saturday May 23 incident.
             has_strong = any(len(t) >= 7 for t in shared)
             cov_scraped = len(shared) / max(1, len(scraped_toks))
             cov_release = len(shared) / max(1, len(rel_toks))
             cov = max(cov_scraped, cov_release)
-            ok = (len(shared) >= 2 and cov >= 0.5) or has_strong
+            ok = cov >= 0.5 and (len(shared) >= 2 or has_strong)
             score = len(shared) + (1.0 if has_strong else 0.0) + cov
             if ok and score > best_score:
                 best = canon
@@ -604,15 +611,18 @@ def apply_preview_filter(day_iso: str, archive_chart: list[dict]) -> list[dict]:
             if not shared:
                 continue
             # Strong-token shortcut: any shared token ≥ 7 chars is
-            # essentially a unique proper noun ("mandalorian", "obsession",
-            # "thunderbolts"). One is enough.
+            # USUALLY a unique proper noun ("mandalorian", "obsession",
+            # "thunderbolts"). But the threshold catches generic 7+ char
+            # words too ("project", "people", "story", "shadow"), so we
+            # still require ≥ 50% coverage of the shorter title's tokens.
+            # Without the coverage floor "Project Hail Mary" would match
+            # "Untitled Jordan Peele Project" on the single word "project".
             has_strong = any(len(t) >= 7 for t in shared)
-            # Coverage on each side
             cov_scraped = len(shared) / max(1, len(scraped_toks))
             cov_release = len(shared) / max(1, len(rel_toks))
             cov = max(cov_scraped, cov_release)
             score = len(shared) + (1.0 if has_strong else 0.0) + cov
-            ok = (len(shared) >= 2 and cov >= 0.5) or has_strong
+            ok = cov >= 0.5 and (len(shared) >= 2 or has_strong)
             if ok and score > best_score:
                 best = rd
                 best_score = score
