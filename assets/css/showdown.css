@@ -4,19 +4,61 @@
  * showdown.js builds the tables and these classes paint them.
  */
 
-.sd-page-header { padding: 6px 10px 4px; }
-.sd-page-header a {
+/* Page header — flex row with breadcrumb on the left and the
+ * Print | Adjust-for-inflation toolbar on the right. Same pattern as
+ * .at-page-header on the all-time / yearly chart pages. */
+.sd-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px 4px;
+  gap: 16px;
+}
+.sd-page-header .sd-crumb a,
+.sd-page-header .sd-crumb span {
   font-family: Verdana, Geneva, sans-serif;
   font-weight: bold; font-size: 14px;
   color: #00239C; text-decoration: none;
   text-transform: uppercase; letter-spacing: 0.04em;
 }
-.sd-page-header a:hover { text-decoration: underline; }
-.sd-page-header span {
+.sd-page-header .sd-crumb a:hover { text-decoration: underline; }
+
+/* Right-side tools: Print + Adjust this page for inflation */
+.sd-page-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-family: Verdana, Geneva, sans-serif;
-  font-weight: bold; font-size: 14px;
-  color: #00239C; text-transform: uppercase; letter-spacing: 0.04em;
+  font-size: 12px;
+  font-weight: bold;
 }
+.sd-page-tools a {
+  color: #00239C;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.sd-page-tools a:hover { text-decoration: underline; }
+.sd-page-tools .sd-pt-sep { color: #AAA; font-weight: normal; }
+.sd-page-tools img { vertical-align: middle; }
+
+/* Banner shown when inflation adjustment is active */
+.sd-infl-banner {
+  display: none;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 13px;
+  color: #555;
+  font-style: italic;
+  text-align: center;
+  background: #F4F4FE;
+  border-top: 1px solid #C8CCE0;
+  border-bottom: 1px solid #C8CCE0;
+  padding: 6px 14px;
+  margin: 0 14px 8px;
+}
+.sd-infl-banner.is-active { display: block; }
+
 .sd-section-bar { height: 5px; background: #75140C; margin-bottom: 12px; }
 
 /* Showdown title — dark red, matches the rest of the showdown theme */

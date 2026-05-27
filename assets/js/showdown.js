@@ -383,10 +383,22 @@
   function renderHeader(cfg) {
     return (
       '<div class="sd-page-header">' +
-        '<a href="showdowns.html">SHOWDOWNS</a>' +
-        '<span> &gt; ' + escapeHtml(cfg.breadcrumb || cfg.title || '') + '</span>' +
+        '<div class="sd-crumb">' +
+          '<a href="showdowns.html">SHOWDOWNS</a>' +
+          '<span> &gt; ' + escapeHtml(cfg.breadcrumb || cfg.title || '') + '</span>' +
+        '</div>' +
+        '<div class="sd-page-tools">' +
+          '<a href="javascript:window.print()">' +
+            '<img src="article_print.gif" alt="Print"> Print' +
+          '</a>' +
+          '<span class="sd-pt-sep">|</span>' +
+          '<a href="#" id="sd-adjust-link">Adjust this page for inflation&nbsp;...&gt;&gt;&gt;</a>' +
+        '</div>' +
       '</div>' +
       '<div class="sd-section-bar"></div>' +
+      '<div class="sd-infl-banner" id="sd-infl-banner">' +
+        'Showing grosses adjusted for inflation (relative to today&rsquo;s ticket prices).' +
+      '</div>' +
       '<div class="sd-title">' + escapeHtml(cfg.title || '') + '</div>' +
       // "Compare:" label sits just left of the tabs in Times Regular
       '<div class="sd-tabstrip">' +
@@ -426,6 +438,95 @@
     });
   }
 
+  // ── Inflation adjustment ─────────────────────────────────────────────
+  // Loads ticket_prices.json and produces an "adjusted" copy of each film
+  // where every gross figure (Total, Budget, Opening, each weekend) is
+  // multiplied by the ratio of today's ticket price to the price in the
+  // film's release year. The Summary + Weekend tables are then re-rendered
+  // from this adjusted copy. Click toggles back to original numbers.
+  var _priceCache = null;
+  async function loadTicketPrices() {
+    if (_priceCache) return _priceCache;
+    try {
+      var r = await fetch('data/ticket_prices.json', { cache: 'no-store' });
+      if (!r.ok) return null;
+      var d = await r.json();
+      _priceCache = {
+        prices: d.prices || {},
+        ref:    d.current_reference_year || new Date().getFullYear(),
+      };
+      return _priceCache;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function filmReleaseYear(f) {
+    // Prefer the override-supplied year, then meta.release_date, then
+    // the slug suffix as a last resort.
+    if (f.meta && typeof f.meta.year === 'number') return f.meta.year;
+    var rd = f.meta && f.meta.release_date;
+    if (rd && /^\d{4}/.test(rd)) return parseInt(rd.slice(0, 4), 10);
+    var m = (f.film && f.film.slug || '').match(/-(\d{4})$/);
+    return m ? parseInt(m[1], 10) : null;
+  }
+
+  function adjustFilms(films, prices) {
+    if (!prices || !prices.prices) return films;
+    var refPrice = prices.prices[prices.ref];
+    if (!refPrice) return films;
+    return films.map(function(f) {
+      var year = filmReleaseYear(f);
+      var origPrice = year && prices.prices[year];
+      if (!origPrice) return f;  // unknown year — leave this film unadjusted
+      var mult = refPrice / origPrice;
+      // Deep-ish copy: clone meta, weekends.weekends entries, and total.
+      var newMeta = Object.assign({}, f.meta || {});
+      if (newMeta.budget) newMeta.budget = Math.round(newMeta.budget * mult);
+      var newWeekends = null;
+      if (f.weekends && f.weekends.weekends) {
+        newWeekends = Object.assign({}, f.weekends, {
+          weekends: f.weekends.weekends.map(function(w) {
+            return Object.assign({}, w, {
+              gross:       w.gross       ? Math.round(w.gross       * mult) : w.gross,
+              total_gross: w.total_gross ? Math.round(w.total_gross * mult) : w.total_gross,
+            });
+          }),
+        });
+      }
+      var newTotal = null;
+      if (f.total) {
+        newTotal = Object.assign({}, f.total, {
+          total_gross: f.total.total_gross ? Math.round(f.total.total_gross * mult) : f.total.total_gross,
+        });
+      }
+      return Object.assign({}, f, { meta: newMeta, weekends: newWeekends, total: newTotal });
+    });
+  }
+
+  function attachInflationToggle(root, films) {
+    var link    = root.querySelector('#sd-adjust-link');
+    var banner  = root.querySelector('#sd-infl-banner');
+    if (!link || !banner) return;
+    var isAdjusted = false;
+    link.addEventListener('click', async function(e) {
+      e.preventDefault();
+      var prices = await loadTicketPrices();
+      if (!prices) {
+        link.textContent = 'Inflation data unavailable';
+        return;
+      }
+      isAdjusted = !isAdjusted;
+      var view = isAdjusted ? adjustFilms(films, prices) : films;
+      root.querySelector('#panel-summary .sd-wrap').innerHTML = renderSummary(view);
+      root.querySelector('#panel-weekend  .sd-wrap').innerHTML = renderWeekend(view);
+      banner.classList.toggle('is-active', isAdjusted);
+      link.innerHTML = isAdjusted
+        ? 'Show original grosses&nbsp;...&gt;&gt;&gt;'
+        : 'Adjust this page for inflation&nbsp;...&gt;&gt;&gt;';
+    });
+  }
+
   // ── Main ─────────────────────────────────────────────────────────────
   async function init() {
     var cfg = window.SHOWDOWN_CONFIG;
@@ -448,6 +549,8 @@
 
     root.querySelector('#panel-summary .sd-wrap').innerHTML = renderSummary(films);
     root.querySelector('#panel-weekend .sd-wrap').innerHTML = renderWeekend(films);
+
+    attachInflationToggle(root, films);
   }
 
   if (document.readyState === 'loading') {
