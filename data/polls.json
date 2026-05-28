@@ -1,10 +1,37 @@
 {
-  "active_poll_id": "2026-june-highest-grossing",
+  "active_poll_id": "2026-obsession-final-gross",
   "polls": [
+    {
+      "id": "2026-obsession-final-gross",
+      "question": "What will be Obsession's final domestic gross?",
+      "closes": "2026-05-31",
+      "options": [
+        {
+          "id": "100-120",
+          "label": "$100–120 million",
+          "votes": 0
+        },
+        {
+          "id": "120-140",
+          "label": "$120–140 million",
+          "votes": 0
+        },
+        {
+          "id": "140-160",
+          "label": "$140–160 million",
+          "votes": 0
+        },
+        {
+          "id": "over-160",
+          "label": "Over $160 million",
+          "votes": 0
+        }
+      ]
+    },
     {
       "id": "2026-june-highest-grossing",
       "question": "What will be the highest-grossing movie in June?",
-      "closes": "2026-06-30",
+      "closes": "2026-06-05",
       "options": [
         {
           "id": "disclosure-day",
