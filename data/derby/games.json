@@ -1,13 +1,43 @@
 {
-  "updated": "2026-05-25",
-  "current_weekend": "2026-05-29",
+  "updated": "2026-06-01",
+  "current_weekend": "2026-06-05",
   "games": [
+    {
+      "weekend": "2026-06-05",
+      "date_to": "2026-06-07",
+      "label": "June 5–7",
+      "label_long": "June 5–7, 2026",
+      "status": "open",
+      "submit_deadline": "2026-06-04T23:59:59-04:00",
+      "headliner": "Scary Movie",
+      "allowed_titles": [
+        "Backrooms",
+        "The Breadwinner",
+        "The Devil Wears Prada 2",
+        "I Love Boosters",
+        "Masters of the Universe",
+        "Michael",
+        "Mortal Kombat II",
+        "Obsession",
+        "Passenger",
+        "Power Ballad",
+        "Pressure",
+        "Project Hail Mary",
+        "Scary Movie",
+        "The Sheep Detectives",
+        "Star Wars: The Mandalorian and Grogu",
+        "The Super Mario Galaxy Movie",
+        "Tuner"
+      ],
+      "averages_url": null,
+      "leaderboard_url": null
+    },
     {
       "weekend": "2026-05-29",
       "date_to": "2026-05-31",
       "label": "May 29–31",
       "label_long": "May 29–31, 2026",
-      "status": "open",
+      "status": "closed",
       "submit_deadline": "2026-05-28T23:59:59-04:00",
       "headliner": "Backrooms",
       "allowed_titles": [
