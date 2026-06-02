@@ -29,7 +29,17 @@ A `rebuild-aggregates` GitHub Action regenerates these on every push: `distribut
 Thin HTML shells with `window.SHOWDOWN_CONFIG = { title, breadcrumb, films: [{slug, title}] }`. `assets/js/showdown.js` renders. Has Print + Adjust-for-Inflation toolbar (reads `ticket_prices.json`, deep-clones films, recomputes grosses per release year). Index lives in `showdowns.html`.
 
 ## Derby
-Players submit picks via `derby-predict.html` → CF Function writes to D1 → user exports CSV manually → Claude scores against actuals using accuracy formula: `(1 - total_error / top10_actuals_sum) × 100`. Word-overlap matching handles title variations between submissions and actuals. **Current roster: 10 unique players, 17 submissions across 3 real weekends.** April 17 leaderboard is seeded/fake names from launch. Mario LA + Dan Mack on May 22 are also seeded.
+Players submit picks via `derby-predict.html` → CF Function writes to D1 → user exports CSV manually → Claude scores against actuals. **Scoring formula (per-title accuracy average, rank-agnostic):**
+1. Use actuals rounded to 1 decimal place (millions) — matches how Keaton calculates by hand.
+2. For each of a player's 10 picks: `accuracy = max(0, 1 − |pick − actual| / actual) × 100`, where `actual` is that film's actual weekend gross.
+3. If the picked film placed at chart rank 11 or 12, still score normally against its actual gross — no penalty.
+4. If it placed rank 13+, subtract 10 percentage points per rank past 12 (rank 13 = −10pp, rank 14 = −20pp, etc.), floored at 0.
+5. If the picked film isn't on the weekend chart at all (no gross data), score = 0.
+6. Player's score = mean of the 10 per-title accuracies, rounded to 2 decimals.
+
+Keaton's own editorial predictions from `data/predictions.json` get included on the leaderboard as player_name `"Keaton"`, separate from any Derby form submissions. The CSV-form submission from `keatonventura@gmail.com` shows up under whatever name was typed in the form (e.g., "Rae Saunders") and is kept as its own row — don't merge it with Keaton.
+
+`correct_ranks` is a sidecar stat (how many picks landed at the right rank position); not used for scoring, only displayed. Word-overlap matching handles title variations between submissions and actuals. **Current roster: 10 unique players, 17 submissions across 3 real weekends.** April 17 leaderboard is seeded/fake names from launch. Mario LA + Dan Mack on May 22 are also seeded.
 
 ## Recent shipped (May 2026)
 Franchise foundation, Print + Inflation toggle on showdowns, polls D1 backend with Current/Past tabs, Kit newsletter migration, Top Stories expanded to 4 items, Smallest Drops 200-row chart, year-disambiguation across all data sources, scraper preview-filter with word-overlap matching, daily pct_change computed client-side.
