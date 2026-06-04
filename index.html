@@ -486,11 +486,17 @@
     const all = [];
     const ana = await fetchJSON('data/analysis.json');
     if (ana && ana.articles) {
-      ana.articles.forEach(a => all.push(Object.assign({}, a)));
+      ana.articles.forEach(a => {
+        if (a.hide_from_home) return; // honor per-article opt-out
+        all.push(Object.assign({}, a));
+      });
     }
     const feats = await fetchJSON('data/features.json');
     if (feats && feats.articles) {
-      feats.articles.forEach(a => all.push(Object.assign({}, a)));
+      feats.articles.forEach(a => {
+        if (a.hide_from_home) return;
+        all.push(Object.assign({}, a));
+      });
     }
 
     // Newest first, pick top 4. First two render with photos (main layout),
