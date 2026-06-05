@@ -1,6 +1,38 @@
 {
-  "active_poll_id": "2026-obsession-final-gross",
+  "active_poll_id": "2026-disclosure-day-when",
   "polls": [
+    {
+      "id": "2026-disclosure-day-when",
+      "question": "When will you see Disclosure Day?",
+      "closes": "2026-06-19",
+      "options": [
+        {
+          "id": "opening-weekend",
+          "label": "Opening weekend",
+          "votes": 0
+        },
+        {
+          "id": "sometime-in-theaters",
+          "label": "Sometime in theaters",
+          "votes": 0
+        },
+        {
+          "id": "amc-app",
+          "label": "Once the AMC app works again",
+          "votes": 0
+        },
+        {
+          "id": "dvd",
+          "label": "On DVD",
+          "votes": 0
+        },
+        {
+          "id": "never",
+          "label": "Never",
+          "votes": 0
+        }
+      ]
+    },
     {
       "id": "2026-obsession-final-gross",
       "question": "What will be Obsession's final domestic gross?",
@@ -31,7 +63,7 @@
     {
       "id": "2026-june-highest-grossing",
       "question": "What will be the highest-grossing movie in June?",
-      "closes": "2026-06-05",
+      "closes": "2026-06-03",
       "options": [
         {
           "id": "disclosure-day",
