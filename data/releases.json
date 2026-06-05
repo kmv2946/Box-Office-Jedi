@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-25",
+  "updated": "2026-06-04",
   "months": {
     "2026-01": {
       "name": "January 2026",
@@ -593,7 +593,7 @@
               "distributor": "Amazon MGM Studios",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
+              "theaters": 3667,
               "genre": "Action / Adventure / Sci-Fi"
             },
             {
@@ -602,23 +602,23 @@
               "distributor": "Paramount Pictures",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": 3490
+            },
+            {
+              "title": "The Amazing Digital Circus: The Last Act",
+              "genre": "Animation / Adventure",
+              "distributor": "Fathom Entertainment",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": 2221
             },
             {
               "title": "Power Ballad",
               "genre": "Comedy / Drama / Musical",
-              "distributor": "",
+              "distributor": "Lionsgate",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
-            },
-            {
-              "title": "Carolina Caroline",
-              "genre": "Crime / Romance / Thriller",
-              "distributor": "Magnolia Pictures",
-              "release": "Limited",
-              "is_wide": false,
-              "theaters": null
+              "theaters": 1265
             }
           ]
         },

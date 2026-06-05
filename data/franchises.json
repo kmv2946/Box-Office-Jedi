@@ -1,6 +1,6 @@
 {
   "_comment": "Franchise data. Each franchise has `id` (URL slug), `name`, `category` ('series' or 'brands'), and a `films` list. Totals/averages/#1 are computed client-side from the films list — you only maintain per-film numbers. Flags: `in_release: true` marks films currently in theaters (yellow highlight, included in totals); `upcoming: true` marks films not yet released (separate UPCOMING RELEASES table at the bottom, excluded from totals). `note` adds a small subtitle under the title in the main chart (used for re-releases / variants).",
-  "updated": "2026-05-16",
+  "updated": "2026-06-04",
   "franchises": [
     {
       "id": "fast-and-furious",
@@ -71,6 +71,33 @@
       "films": [
         { "title": "Spider-Man", "year": 2002, "studio": "Sony", "gross": 403706375, "theaters": 3876, "opening": 114844116, "opening_theaters": 3615, "date": "2002-05-03" },
         { "title": "X-Men",      "year": 2000, "studio": "Fox",  "gross": 157299717, "theaters": 3104, "opening":  54471475, "opening_theaters": 3025, "date": "2000-07-14" }
+      ]
+    },
+    {
+      "id": "scary-movie",
+      "name": "Scary Movie",
+      "category": "series",
+      "films": [
+        { "title": "Scary Movie",   "year": 2000, "studio": "Dimension Films", "gross": 157019771, "theaters": 2912, "opening": 42346669, "opening_theaters": 2912, "date": "2000-07-07" },
+        { "title": "Scary Movie 3", "year": 2003, "studio": "Dimension Films", "gross": 110003217, "theaters": 3505, "opening": 48113770, "opening_theaters": 3505, "date": "2003-10-24" },
+        { "title": "Scary Movie 4", "year": 2006, "studio": "Dimension Films", "gross":  90710620, "theaters": 3675, "opening": 40222514, "opening_theaters": 3675, "date": "2006-04-14" },
+        { "title": "Scary Movie 2", "year": 2001, "studio": "Dimension Films", "gross":  71308997, "theaters": 3243, "opening": 20510322, "opening_theaters": 3243, "date": "2001-07-04" },
+        { "title": "Scary Movie 5", "year": 2013, "studio": "Dimension Films", "gross":  32030202, "theaters": 3402, "opening": 14156378, "opening_theaters": 3402, "date": "2013-04-12" },
+        { "title": "Scary Movie",   "year": 2026, "studio": "Paramount Pictures", "gross": null, "theaters": 3490, "opening": null, "opening_theaters": 3490, "date": "2026-06-05", "in_release": true, "note": "Reboot" }
+      ]
+    },
+    {
+      "id": "scream",
+      "name": "Scream",
+      "category": "series",
+      "films": [
+        { "title": "Scream VI",  "year": 2023, "studio": "Paramount Pictures", "gross": 108180805, "theaters": 3675, "opening": 44453710, "opening_theaters": 3675, "date": "2023-03-10" },
+        { "title": "Scream",     "year": 1996, "studio": "Dimension Films",    "gross": 103046663, "theaters": 1869, "opening":  6354586, "opening_theaters": 1413, "date": "1996-12-20" },
+        { "title": "Scream 2",   "year": 1997, "studio": "Dimension Films",    "gross": 101363301, "theaters": 2674, "opening": 32926342, "opening_theaters": 2663, "date": "1997-12-12" },
+        { "title": "Scream 3",   "year": 2000, "studio": "Dimension Films",    "gross":  89143175, "theaters": 3467, "opening": 34713342, "opening_theaters": 3467, "date": "2000-02-04" },
+        { "title": "Scream",     "year": 2022, "studio": "Paramount Pictures", "gross":  81643234, "theaters": 3664, "opening": 30018805, "opening_theaters": 3664, "date": "2022-01-14" },
+        { "title": "Scream 4",   "year": 2011, "studio": "Dimension Films",    "gross":  38180928, "theaters": 3314, "opening": 18706015, "opening_theaters": 3305, "date": "2011-04-15" },
+        { "title": "Scream 7",   "year": 2026, "studio": "Paramount Pictures", "gross": null,      "theaters": 3650, "opening": 64119500, "opening_theaters": 3650, "date": "2026-02-27" }
       ]
     },
     {
