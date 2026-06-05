@@ -128,8 +128,13 @@
     // that don't include the year still resolve.
     var keys = [];
     if (film.slug) keys.push(film.slug);
+    // Title-keyed fallback covers old configs with bare slugs (e.g.
+    // 'twister'). Skip it when the slug already carries a year suffix —
+    // otherwise we'd wrongly resolve 'scarymovie-2026' back to the
+    // 'scarymovie' (2000) shard when the 2026 shard isn't built yet.
+    var slugHasYear = film.slug && /-\d{4}$/.test(film.slug);
     var tk = normKey(film.title);
-    if (tk && keys.indexOf(tk) === -1) keys.push(tk);
+    if (tk && !slugHasYear && keys.indexOf(tk) === -1) keys.push(tk);
 
     var meta = null, weekends = null;
     for (var i = 0; i < keys.length && !meta; i++)
@@ -154,11 +159,14 @@
       for (var i = 0; i < keys.length && !ovr; i++) {
         if (keys[i] && !keys[i].startsWith('_')) ovr = overrides[keys[i]];
       }
-      // Title-prefix fallback: if no direct slug hit, try matching a
-      // bare title (no year) against any override slug that starts with
-      // it. Mirrors the movie profile page's behavior. Most recent year
-      // wins on ambiguity.
-      if (!ovr) {
+      // Title-prefix fallback: if no direct slug hit AND no shard meta
+      // was found, try matching a bare title (no year) against any
+      // override slug that starts with it. Mirrors the movie profile
+      // page's behavior. Most recent year wins on ambiguity. Gated on
+      // !meta so a shard hit for one year (e.g. Scary Movie 2000) isn't
+      // silently mismerged with an override for another year
+      // (scarymovie-2026) just because the titles collide.
+      if (!ovr && !meta) {
         var bareKey = normKey(film.title);
         if (bareKey && !bareKey.includes('-')) {
           var matched = Object.keys(overrides)
