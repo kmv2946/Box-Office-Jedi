@@ -96,6 +96,19 @@
       margin: 0 0 8px 12px;
       border: 1px solid #CCCCCC;
     }
+    /* Full-width inline body image — no float, no indent, image spans
+       the full content column with a centered caption below. */
+    .article-img-full {
+      margin: 14px 0;
+      border: 1px solid #CCCCCC;
+      background: #FFFFFF;
+    }
+    .article-img-full img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .article-img-full .article-img-caption { width: 100%; }
     .article-img img, .article-img-right img { display: block; }
     .article-img-caption {
       font-family: Verdana, Geneva, sans-serif;
@@ -106,6 +119,23 @@
       padding: 3px 4px;
       width: 240px;
       box-sizing: border-box;
+    }
+
+    /* Soft ellipsis separator before the bonus story */
+    .article-body .ellipsis-break {
+      text-align: center;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 22pt;
+      color: #AAAAAA;
+      letter-spacing: 4px;
+      margin: 22px 0 8px;
+    }
+    .article-body .bonus-body p {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14pt;
+      line-height: 1.4;
+      color: #222;
+      font-style: italic;
     }
 
     .article-body a.film-link {
@@ -233,27 +263,25 @@
 
         <p>As influential as it was, by the time the original trilogy wrapped in early 2000, the whole thing already felt past tense. The distance between <a href="movie.html?title=Scream%202&year=1997" class="film-link">Scream 2</a>, which opened in December 1997, and <a href="movie.html?title=Scream%203&year=2000" class="film-link">Scream 3</a>, which didn&rsquo;t arrive until February 2000, was an eternity. The slasher boom <span class="film">Scream</span> had revived didn&rsquo;t wait around. The twenty-six months in between produced a decade&rsquo;s worth of teen-horror riffs. Some were hits (<a href="movie.html?title=Halloween%20H20&year=1998" class="film-link">Halloween H20</a>, <a href="movie.html?title=The%20Faculty&year=1998" class="film-link">The Faculty</a>, <a href="movie.html?title=I%20Know%20What%20You%20Did%20Last%20Summer&year=1997" class="film-link">I Know What You Did Last Summer</a>) and others felt like filler (<a href="movie.html?title=Disturbing%20Behavior&year=1998" class="film-link">Disturbing Behavior</a>, <a href="movie.html?title=Idle%20Hands&year=1999" class="film-link">Idle Hands</a>, <a href="movie.html?title=Teaching%20Mrs.%20Tingle&year=1999" class="film-link">Teaching Mrs. Tingle</a>). The adjacent teen-movie bubble also peaked in the spring of 1999&mdash;<a href="movie.html?title=Varsity%20Blues&year=1999" class="film-link">Varsity Blues</a>, <a href="movie.html?title=She%27s%20All%20That&year=1999" class="film-link">She&rsquo;s All That</a>, <a href="movie.html?title=10%20Things%20I%20Hate%20About%20You&year=1999" class="film-link">10 Things I Hate About You</a>, and <a href="movie.html?title=Cruel%20Intentions&year=1999" class="film-link">Cruel Intentions</a> all stacked within a few months.</p>
 
-        <div class="clearfix">
-          <figure class="article-img-right">
-            <img src="assets/images/feature-june-5-2026-teens.jpg" alt="Teen movies of 1999" style="width:240px;display:block;">
-            <figcaption class="article-img-caption"><strong>Teen Movies, 1999</strong></figcaption>
-          </figure>
+        <figure class="article-img-full">
+          <img src="assets/images/feature-june-5-2026-teens.jpg" alt="The cast of Scary Movie, 2000">
+          <figcaption class="article-img-caption"><strong>The cast of Scary Movie, 2000</strong></figcaption>
+        </figure>
 
-          <p>So <span class="film">Scream 3</span> walked into a tired room. It still opened to a franchise-record $34.7 million, but it limped to $89.1 million domestic, well under the $100M-plus each of its predecessors had cleared. If there was one thing driving <span class="film">Scream 3</span>&rsquo;s opening, it was that those pre-adolescent kids (myself included) were finally old enough to see a <span class="film">Scream</span> movie in theaters. But broadly, the franchise had fizzled.</p>
-        </div>
+        <p>So <span class="film">Scream 3</span> walked into a tired room. It still opened to a franchise-record $34.7 million, but it limped to $89.1 million domestic, well under the $100M-plus each of its predecessors had cleared. If there was one thing driving <span class="film">Scream 3</span>&rsquo;s opening, it was that those pre-adolescent kids (myself included) were finally old enough to see a <span class="film">Scream</span> movie in theaters. But broadly, the franchise had fizzled.</p>
 
-        <p>It was fitting that <a href="movie.html?title=Scary%20Movie&year=2000" class="film-link">Scary Movie</a> was waiting three months down the calendar, but no one suspected just how big it would play with audiences. The Wayans&rsquo; previous spoof, <a href="movie.html?title=Don%27t%20Be%20a%20Menace%20to%20South%20Central%20While%20Drinking%20Your%20Juice%20in%20the%20Hood&year=1996" class="film-link">Don&rsquo;t Be a Menace to South Central While Drinking Your Juice in the Hood</a> (one of the greatest titles of all time), came out the same year as <span class="film">Scream</span>, and grossed $20.1M domestic. But we were in a new era. Not only was <span class="film">Scary Movie</span> tapping into the slasher phenomenon, it was the crescendo of the raunch wave (preceded by the Farrelly Brothers, <a href="movie.html?title=American%20Pie&year=1999" class="film-link">American Pie</a>, Tom Green, etc). In July 2000, <span class="film">Scary Movie</span> obliterated expectations and opened to $42.3M ($88M adjusted). That was 22% bigger than <span class="film">Scream 3</span>&rsquo;s record debut, the best opening ever for an R-rated movie to that point, and it ran all the way to $157M domestic ($325M adjusted). The parody outran all three <span class="film">Scream</span>s, opening weekend and final gross.</p>
+        <p>It was fitting that <a href="movie.html?title=Scary%20Movie&year=2000" class="film-link">Scary Movie</a> was waiting three months down the calendar, but no one suspected just how big it would play with audiences. The Wayans&rsquo; previous spoof, <a href="movie.html?title=Don%27t%20Be%20a%20Menace%20to%20South%20Central%20While%20Drinking%20Your%20Juice%20in%20the%20Hood&year=1996" class="film-link">Don&rsquo;t Be a Menace to South Central While Drinking Your Juice in the Hood</a> (one of the greatest titles of all time), came out the same year as <span class="film">Scream</span>, and grossed $20.1M domestic. But we were in a new era. Not only was <span class="film">Scary Movie</span> tapping into the slasher phenomenon, it was the crescendo of the raunch wave (preceded by the Farrelly Brothers, <a href="movie.html?title=American%20Pie&year=1999" class="film-link">American Pie</a>, Tom Green, etc).</p>
+
+        <p>In July 2000, <span class="film">Scary Movie</span> obliterated expectations and opened to $42.3M ($88M adjusted). That was 22% bigger than <span class="film">Scream 3</span>&rsquo;s record debut, the best opening ever for an R-rated movie to that point, and it ran all the way to $157M domestic ($325M adjusted). The parody outran all three <span class="film">Scream</span>s, opening weekend and final gross.</p>
 
         <p class="roundup-link">&#x25B6; <a href="showdown-scream-vs-scary-p1.html">See the Scream vs Scary Movie Pt. 1 showdown &gt;&gt;</a></p>
 
-        <div class="clearfix">
-          <figure class="article-img">
-            <img src="assets/images/forecast-june-5-2026-carmen.png" alt="Carmen Electra in Scary Movie" style="width:240px;display:block;">
-            <figcaption class="article-img-caption"><strong>Carmen Electra in Scary Movie</strong></figcaption>
-          </figure>
+        <figure class="article-img-full">
+          <img src="assets/images/forecast-june-5-2026-carmen.png" alt="Carmen Electra in Scary Movie">
+          <figcaption class="article-img-caption"><strong>Carmen Electra in Scary Movie</strong></figcaption>
+        </figure>
 
-          <p>We simply love context here at Box Office Jedi, but there&rsquo;s a reason for all the history with this one. From a certain angle, it is happening again.</p>
-        </div>
+        <p>We simply love context here at Box Office Jedi, but there&rsquo;s a reason for all the history with this one. From a certain angle, it is happening again.</p>
 
         <p>The new <span class="film">Scream</span> trilogy ran from 2022 to 2026&mdash;<a href="movie.html?title=Scream&year=2022" class="film-link">Scream</a> (2022), <a href="movie.html?title=Scream%20VI&year=2023" class="film-link">Scream VI</a> (2023), and <a href="movie.html?title=Scream%207&year=2026" class="film-link">Scream 7</a> (2026). The first two come out within a year of each other followed by a larger 3-year gap. And <span class="film">Scream 7</span>, which opened February 27, did exactly what <span class="film">Scream 3</span> did a generation earlier. It set a franchise-record opening of $64.1 million.</p>
 
@@ -273,14 +301,12 @@
 
         <p class="roundup-link">&#x25B6; <a href="showdown-scream-vs-scary-p2.html">See the Scream vs Scary Movie Pt. 2 showdown &gt;&gt;</a></p>
 
-        <div class="clearfix">
-          <figure class="article-img-right">
-            <img src="assets/images/forecast-june-5-2026-thegirls.png" alt="Scary Movie cast" style="width:240px;display:block;">
-            <figcaption class="article-img-caption"><strong>Scary Movie (2026)</strong></figcaption>
-          </figure>
+        <figure class="article-img-full">
+          <img src="assets/images/forecast-june-5-2026-thegirls.png" alt="Scary Movie (2026)">
+          <figcaption class="article-img-caption"><strong>Scary Movie (2026)</strong></figcaption>
+        </figure>
 
-          <p>So <span class="film">Scary Movie</span>&rsquo;s role and effectiveness as a good old-fashioned sendup is hard to say. Is it here to lampoon horror, or here to formalize how audiences have been watching it for years?</p>
-        </div>
+        <p>So <span class="film">Scary Movie</span>&rsquo;s role and effectiveness as a good old-fashioned sendup is hard to say. Is it here to lampoon horror, or here to formalize how audiences have been watching it for years?</p>
 
         <p>It will do well no matter what, and full disclosure, Box Office Jedi will be in line. There&rsquo;s a chance the top 3 movies this weekend are horror adjacent. <span class="film">Masters of the Universe</span> could go either way. It&rsquo;s easy to imagine it underperforming, but there&rsquo;s something about it that feels like <a href="movie.html?title=Pirates%20of%20the%20Caribbean%3A%20The%20Curse%20of%20the%20Black%20Pearl&year=2003" class="film-link">Pirates of the Caribbean</a> just before it debuted in 2003, when its best comp was a swashbuckler bomb from 1995, or at least 2016&rsquo;s <a href="movie.html?title=The%20Legend%20of%20Tarzan&year=2016" class="film-link">The Legend of Tarzan</a> (if you don&rsquo;t remember, that reboot had bomb written all over it but somehow just&hellip; didn&rsquo;t).</p>
 
@@ -303,6 +329,11 @@
               <tr><td class="fc-rank">10</td> <td class="fc-title">Power Ballad</td>                           <td class="fc-gross">$3.0M</td></tr>
             </tbody>
           </table>
+        </div>
+
+        <div class="ellipsis-break">&hellip;</div>
+        <div class="bonus-body">
+          <p>Here&rsquo;s how I managed to see <span class="film">Scary Movie</span> at the innocent age of 12. My friend Laura and I had plans to see <a href="movie.html?title=Urban%20Legends%3A%20Final%20Cut&year=2000" class="ext-link">Urban Legends: Final Cut</a> on a weeknight in September. That, too, was Rated R, but not the Hard R that <span class="film">Scary Movie</span> was. When Laura and her grandma arrived at my door to pick me up, I came downstairs with my latest issue of Entertainment Weekly and showed everyone that they had given the new <span class="film">Urban Legends</span> an F grade. We all groaned, suspecting this would be a waste of our precious moviegoing allotment. It was nearing 9 p.m.&mdash;the last showtimes of the night&mdash;and surely we were out of options. I knew better, though. Yes, I had missed <span class="film">Scary Movie</span> during its initial run. My mom and I had already battled that out. But it was back in theaters for a brief second run, and it was the only alternate showtime. We had minutes to get to the theater, and seconds to decide. My poor mother said yes, and off we went. Thanks, Ty Burr. Glad Owen Gleiberman was off duty that day.</p>
         </div>
 
       </div><!-- /article-body -->
