@@ -1,6 +1,112 @@
 {
-  "updated": "2026-06-01",
+  "updated": "2026-06-04",
   "weekends": [
+    {
+      "date_from": "2026-06-05",
+      "date_to": "2026-06-07",
+      "predictions": [
+        {
+          "pred_rank": 1,
+          "title": "Scary Movie",
+          "is_new": true,
+          "theaters": 3490,
+          "predicted_m": 77.8,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 1
+        },
+        {
+          "pred_rank": 2,
+          "title": "Backrooms",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 29.2,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 2
+        },
+        {
+          "pred_rank": 3,
+          "title": "Masters of the Universe",
+          "is_new": true,
+          "theaters": 3667,
+          "predicted_m": 29.0,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 1
+        },
+        {
+          "pred_rank": 4,
+          "title": "Obsession",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 25.6,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 4
+        },
+        {
+          "pred_rank": 5,
+          "title": "The Amazing Digital Circus: The Last Act",
+          "is_new": true,
+          "theaters": 2221,
+          "predicted_m": 11.4,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 1
+        },
+        {
+          "pred_rank": 6,
+          "title": "Star Wars: The Mandalorian and Grogu",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 10.1,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 3
+        },
+        {
+          "pred_rank": 7,
+          "title": "Michael",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 7.9,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 7
+        },
+        {
+          "pred_rank": 8,
+          "title": "The Breadwinner",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 3.4,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 2
+        },
+        {
+          "pred_rank": 9,
+          "title": "Pressure",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 3.2,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 2
+        },
+        {
+          "pred_rank": 10,
+          "title": "Power Ballad",
+          "is_new": true,
+          "theaters": 1265,
+          "predicted_m": 3.0,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 1
+        }
+      ]
+    },
     {
       "date_from": "2026-05-29",
       "date_to": "2026-05-31",
