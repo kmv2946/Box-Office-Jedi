@@ -1,13 +1,39 @@
 {
-  "updated": "2026-06-01",
-  "current_weekend": "2026-06-05",
+  "updated": "2026-06-08",
+  "current_weekend": "2026-06-12",
   "games": [
+    {
+      "weekend": "2026-06-12",
+      "date_to": "2026-06-14",
+      "label": "June 12–14",
+      "label_long": "June 12–14, 2026",
+      "status": "open",
+      "submit_deadline": "2026-06-11T23:59:59-04:00",
+      "headliner": "Disclosure Day",
+      "allowed_titles": [
+        "The Amazing Digital Circus: The Last Act",
+        "Backrooms",
+        "The Breadwinner",
+        "The Devil Wears Prada 2",
+        "Disclosure Day",
+        "Masters of the Universe",
+        "Michael",
+        "Obsession",
+        "Power Ballad",
+        "Pressure",
+        "Scary Movie",
+        "The Sheep Detectives",
+        "Star Wars: The Mandalorian and Grogu"
+      ],
+      "averages_url": null,
+      "leaderboard_url": null
+    },
     {
       "weekend": "2026-06-05",
       "date_to": "2026-06-07",
       "label": "June 5–7",
       "label_long": "June 5–7, 2026",
-      "status": "open",
+      "status": "closed",
       "submit_deadline": "2026-06-04T23:59:59-04:00",
       "headliner": "Scary Movie",
       "allowed_titles": [
@@ -30,7 +56,7 @@
         "Tuner"
       ],
       "averages_url": null,
-      "leaderboard_url": null
+      "leaderboard_url": "data/derby/leaderboard-2026-06-05.json"
     },
     {
       "weekend": "2026-05-29",
