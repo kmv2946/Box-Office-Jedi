@@ -13,9 +13,65 @@ Usage:
 
 Run weekly (recommended: every Monday after weekend actuals are scraped).
 """
-import json, os, sys, glob, argparse
+import json, os, sys, glob, re, argparse
 from datetime import datetime
 from collections import defaultdict
+
+
+# The Numbers gives reissues their own page with the original release year
+# in parens, e.g. /movie/Top-Gun-(1986) or /movie/Shrek-(2001). The original
+# page is the bare slug (/movie/Top-Gun, /movie/Shrek). When that paren-year
+# is OLDER than the year we're aggregating, it's a reissue and shouldn't
+# pollute the year's chart.
+_REISSUE_URL_YEAR_RE = re.compile(r"-\((\d{4})\)/?$")
+
+
+def is_reissue_by_url(movie_url: str, chart_year: int) -> bool:
+    if not movie_url:
+        return False
+    m = _REISSUE_URL_YEAR_RE.search(movie_url.rstrip("/"))
+    if not m:
+        return False
+    return int(m.group(1)) < chart_year
+
+
+# Title-keyword phrases that almost always mark a reissue / restoration /
+# anniversary screening — even when The Numbers' URL uses the chart year.
+# Case-insensitive substring match. Order doesn't matter.
+_REISSUE_TITLE_PHRASES = (
+    "re-release", "rerelease", "re release",
+    "reissue",
+    "restoration", "4k restoration", "restored",
+    "anniversary",
+    "imax re-release",
+    "(re-release)",
+    "remastered",
+)
+
+
+def is_reissue_by_title(title: str) -> bool:
+    if not title:
+        return False
+    low = title.lower()
+    return any(p in low for p in _REISSUE_TITLE_PHRASES)
+
+
+def is_stealth_reissue(record: dict) -> bool:
+    """Catches reissues whose URL DOESN'T encode the original year — e.g.
+    TMNT II, where The Numbers reuses the original page for the reissue.
+    Signal: the source's lifetime cumulative gross dwarfs what the film
+    actually took in this calendar year, AND the film only played in a
+    limited footprint. A genuine current-year release would have lifetime
+    ≈ 1.1-1.3× yearly sum (lifetime adds weekdays); a reissue's lifetime
+    carries the original run, so the ratio explodes."""
+    lifetime = record.get("_latest_total") or 0
+    yearly   = record.get("_running_sum") or 0
+    theaters = record.get("max_theaters") or 0
+    if yearly <= 0 or lifetime <= 0:
+        return False
+    if theaters >= 2000:
+        return False
+    return lifetime > yearly * 5
 
 
 def normalize_title(s):
@@ -147,6 +203,18 @@ def aggregate_year(year):
             if release_year.get(key) != year:
                 continue
 
+            # Reissue filter (primary): The Numbers labels reissues with
+            # the original year in parens. /movie/Shrek-(2001) showing up
+            # in 2026 is a re-release, not a 2026 movie.
+            row_url = (row.get("movie_url") or "").strip()
+            if is_reissue_by_url(row_url, year):
+                continue
+            # Title-keyword filter: catches explicit re-releases the URL
+            # missed, e.g. "Hamilton 2025 Re-release", "Princess Mononoke
+            # 4K Restoration", "Pride & Prejudice 20th Anniversary".
+            if is_reissue_by_title(title):
+                continue
+
             wknd_gross = row.get("weekend_gross") or 0
             theaters   = row.get("theaters") or 0
             distrib    = row.get("distributor") or ""
@@ -167,6 +235,7 @@ def aggregate_year(year):
                     "weekends_in_chart": 0,
                     "best_rank":         9999,
                     "_latest_total":     0,
+                    "_running_sum":      0,
                 }
 
             # Always update distributor when we see a non-empty value.
@@ -174,6 +243,7 @@ def aggregate_year(year):
                 m["distributor"] = distrib
 
             m["total_gross"]       += wknd_gross
+            m["_running_sum"]      += wknd_gross  # year-only sum, for stealth-reissue test
             m["max_theaters"]       = max(m["max_theaters"], theaters or 0)
             m["weekends_in_chart"] += 1
             m["best_rank"]          = min(m["best_rank"], wkn_rank or 9999)
@@ -191,20 +261,37 @@ def aggregate_year(year):
                 except Exception:
                     m["open_date"] = date_from[5:] if date_from else None
 
-    # Prefer the cumulative total from the latest weekend if it's larger
-    # than our running sum (the running sum only counts weekends, while
-    # total_gross from each weekend file already includes weekday gross).
+    # Reissue filter (secondary, stealth): drop films where the source's
+    # lifetime gross dwarfs what they actually took this year on a small
+    # footprint — catches reissues that share the original page's URL
+    # (no -(YYYY) suffix), like TMNT II: The Secret of the Ooze.
+    stealth_filtered = [k for k, m in movies.items() if is_stealth_reissue(m)]
+    for k in stealth_filtered:
+        del movies[k]
+
+    # Prefer the cumulative total from the latest weekend ONLY when it's
+    # within reasonable range of our yearly sum (lifetime should be ≈ 1.1-
+    # 1.3× weekend sum once weekdays are folded in). If lifetime is way
+    # bigger than the yearly sum, that's a reissue's pre-existing total
+    # leaking in — fall back to the year-only sum.
     for m in movies.values():
-        if m["_latest_total"] and m["_latest_total"] > m["total_gross"]:
-            m["total_gross"] = m["_latest_total"]
+        latest = m["_latest_total"]
+        yearly = m["_running_sum"]
+        if latest and yearly and latest <= yearly * 3:
+            # Trustworthy lifetime — use it (it includes weekday grosses).
+            m["total_gross"] = max(latest, yearly)
+        else:
+            # Either no lifetime data or it dwarfs the yearly sum.
+            m["total_gross"] = yearly
         del m["_latest_total"]
+        del m["_running_sum"]
 
     # Rank by total_gross descending
     rows = sorted(movies.values(), key=lambda m: -m["total_gross"])
     for i, m in enumerate(rows, start=1):
         m["rank"] = i
 
-    return rows, weekends_seen
+    return rows, weekends_seen, stealth_filtered
 
 
 def write_output(year, rows, target_path):
@@ -226,8 +313,10 @@ def main():
                     help="Also write data/years/{year}.json (use to freeze a closed year)")
     args = ap.parse_args()
 
-    rows, weekends = aggregate_year(args.year)
+    rows, weekends, stealth_filtered = aggregate_year(args.year)
     print(f"Aggregated {len(rows)} films across {weekends} weekend files for {args.year}")
+    if stealth_filtered:
+        print(f"  Filtered {len(stealth_filtered)} stealth reissues (lifetime gross >> yearly take)")
 
     # Always update yearly.json (current-year live)
     yearly_path = "data/yearly.json"

@@ -41,6 +41,17 @@ Keaton's own editorial predictions from `data/predictions.json` get included on 
 
 `correct_ranks` is a sidecar stat (how many picks landed at the right rank position); not used for scoring, only displayed. Word-overlap matching handles title variations between submissions and actuals. **Current roster: 10 unique players, 17 submissions across 3 real weekends.** April 17 leaderboard is seeded/fake names from launch. Mario LA + Dan Mack on May 22 are also seeded.
 
+## Yearly chart reissue filter (`scripts/build_yearly_chart.py`)
+Three layered filters keep re-releases/restorations off the yearly charts:
+
+1. **URL-paren year**: The Numbers gives reissues a fresh page with the original release year in parens, e.g. `/movie/Shrek-(2001)` or `/movie/Top-Gun-(1986)`. Any row whose `movie_url` ends in `-(YYYY)` where YYYY < chart year is dropped.
+2. **Title-keyword**: drops rows whose title contains "re-release", "rerelease", "reissue", "restoration", "restored", "anniversary", "imax re-release", "remastered". Catches explicit reissues that share the chart year in their URL (e.g. "Hamilton 2025 Re-release", "Princess Mononoke 4K Restoration").
+3. **Stealth-reissue**: catches reissues that share the original page's URL with no year suffix (e.g. TMNT II 2026 reuses `/movie/Teenage-Mutant-Ninja-Turtles-II-The-Secret-of-the-Ooze`). Signal: source's lifetime `total_gross` > 5× the in-year weekend sum AND `max_theaters` < 2000. A genuine current-year release has lifetime ≈ 1.1-1.3× yearly sum (lifetime adds weekday gross).
+
+`total_gross` reported in the chart is `_running_sum` of in-year weekend grosses when the source's lifetime is more than 3× that sum (defensive — prevents reissue lifetime totals from leaking into the displayed gross). Otherwise uses `max(latest_total, running_sum)`.
+
+To re-archive a past year after data corrections or filter tweaks: `python3 scripts/build_yearly_chart.py YYYY --archive` (writes `data/years/YYYY.json`). Current year auto-rebuilds via the `Build Yearly Chart` GitHub Action every Tuesday 9am ET.
+
 ## Recent shipped (May 2026)
 Franchise foundation, Print + Inflation toggle on showdowns, polls D1 backend with Current/Past tabs, Kit newsletter migration, Top Stories expanded to 4 items, Smallest Drops 200-row chart, year-disambiguation across all data sources, scraper preview-filter with word-overlap matching, daily pct_change computed client-side.
 
