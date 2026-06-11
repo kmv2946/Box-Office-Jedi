@@ -631,15 +631,7 @@
               "distributor": "Universal Pictures",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
-            },
-            {
-              "title": "Stop! That! Train!",
-              "genre": "Action / Comedy",
-              "distributor": "",
-              "release": "Limited",
-              "is_wide": false,
-              "theaters": null
+              "theaters": 3824
             },
             {
               "title": "The Furious",
@@ -647,7 +639,15 @@
               "distributor": "Lionsgate",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": 1251
+            },
+            {
+              "title": "Stop! That! Train!",
+              "genre": "Action / Comedy",
+              "distributor": "",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": 1157
             }
           ]
         },
