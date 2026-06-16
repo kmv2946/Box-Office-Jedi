@@ -1,13 +1,41 @@
 {
-  "updated": "2026-06-08",
-  "current_weekend": "2026-06-12",
+  "updated": "2026-06-16",
+  "current_weekend": "2026-06-19",
   "games": [
+    {
+      "weekend": "2026-06-19",
+      "date_to": "2026-06-21",
+      "label": "June 19–21",
+      "label_long": "June 19–21, 2026",
+      "status": "open",
+      "submit_deadline": "2026-06-18T23:59:59-04:00",
+      "headliner": "Toy Story 5",
+      "allowed_titles": [
+        "Backrooms",
+        "The Breadwinner",
+        "BTS World Tour Arirang: Live Viewing",
+        "The Death of Robin Hood",
+        "Disclosure Day",
+        "The Furious",
+        "Girls Like Girls",
+        "Leviticus",
+        "Masters of the Universe",
+        "Michael",
+        "Obsession",
+        "Scary Movie",
+        "Star Wars: The Mandalorian and Grogu",
+        "Stop! That! Train!",
+        "Toy Story 5"
+      ],
+      "averages_url": null,
+      "leaderboard_url": null
+    },
     {
       "weekend": "2026-06-12",
       "date_to": "2026-06-14",
       "label": "June 12–14",
       "label_long": "June 12–14, 2026",
-      "status": "open",
+      "status": "closed",
       "submit_deadline": "2026-06-11T23:59:59-04:00",
       "headliner": "Disclosure Day",
       "allowed_titles": [
@@ -28,7 +56,7 @@
         "Stop! That! Train!"
       ],
       "averages_url": null,
-      "leaderboard_url": null
+      "leaderboard_url": "data/derby/leaderboard-2026-06-12.json"
     },
     {
       "weekend": "2026-06-05",
