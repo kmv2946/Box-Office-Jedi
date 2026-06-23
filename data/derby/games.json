@@ -1,13 +1,41 @@
 {
-  "updated": "2026-06-16",
-  "current_weekend": "2026-06-19",
+  "updated": "2026-06-22",
+  "current_weekend": "2026-06-26",
   "games": [
+    {
+      "weekend": "2026-06-26",
+      "date_to": "2026-06-28",
+      "label": "June 26–28",
+      "label_long": "June 26–28, 2026",
+      "status": "open",
+      "submit_deadline": "2026-06-25T23:59:59-04:00",
+      "headliner": "Supergirl",
+      "allowed_titles": [
+        "Backrooms",
+        "Couture",
+        "The Death of Robin Hood",
+        "Disclosure Day",
+        "Girls Like Girls",
+        "The Invite",
+        "Jackass: Best and Last",
+        "Leviticus",
+        "Masters of the Universe",
+        "Michael",
+        "Obsession",
+        "Scary Movie",
+        "Star Wars: The Mandalorian and Grogu",
+        "Supergirl",
+        "Toy Story 5"
+      ],
+      "averages_url": null,
+      "leaderboard_url": null
+    },
     {
       "weekend": "2026-06-19",
       "date_to": "2026-06-21",
       "label": "June 19–21",
       "label_long": "June 19–21, 2026",
-      "status": "open",
+      "status": "closed",
       "submit_deadline": "2026-06-18T23:59:59-04:00",
       "headliner": "Toy Story 5",
       "allowed_titles": [
@@ -28,7 +56,7 @@
         "Toy Story 5"
       ],
       "averages_url": null,
-      "leaderboard_url": null
+      "leaderboard_url": "data/derby/leaderboard-2026-06-19.json"
     },
     {
       "weekend": "2026-06-12",
