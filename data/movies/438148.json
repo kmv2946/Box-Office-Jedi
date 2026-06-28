@@ -8,10 +8,10 @@
   "budget": 85000000,
   "revenue": 940203765,
   "genres": [
-    "Comedy",
-    "Crime",
-    "Science Fiction",
     "Animation",
+    "Comedy",
+    "Science Fiction",
+    "Crime",
     "Family"
   ],
   "mpaa": "PG",
@@ -40,24 +40,24 @@
       "profile": "https://image.tmdb.org/t/p/w185/jUU2X9mDwJaAniEmJOfvImBS9qb.jpg"
     },
     {
+      "name": "Michelle Yeoh",
+      "character": "Master Chow (voice)",
+      "profile": "https://image.tmdb.org/t/p/w185/i6fHvGt7Rb8oVyjjdQVV6vEHB94.jpg"
+    },
+    {
       "name": "Julie Andrews",
       "character": "Gru's Mom (voice)",
-      "profile": "https://image.tmdb.org/t/p/w185/kTXM2KfsXh2vSav0s9vaDKfs4lR.jpg"
+      "profile": "https://image.tmdb.org/t/p/w185/yQ0J92DMiLtQYoytLJ6CuBkdeN0.jpg"
+    },
+    {
+      "name": "Russell Brand",
+      "character": "Dr. Nefario (voice)",
+      "profile": "https://image.tmdb.org/t/p/w185/AzRt43rdeK5nH7w6uWyyVwYla0.jpg"
     },
     {
       "name": "Jean-Claude Van Damme",
       "character": "Jean Clawed (voice)",
       "profile": "https://image.tmdb.org/t/p/w185/7DP3bm3MS0qa0L8tBLHGebbCu6H.jpg"
-    },
-    {
-      "name": "Lucy Lawless",
-      "character": "Nun-Chuck (voice)",
-      "profile": "https://image.tmdb.org/t/p/w185/7fYfVk6jtdCWuJEo9pEqc6O2JkD.jpg"
-    },
-    {
-      "name": "Michelle Yeoh",
-      "character": "Master Chow (voice)",
-      "profile": "https://image.tmdb.org/t/p/w185/i6fHvGt7Rb8oVyjjdQVV6vEHB94.jpg"
     },
     {
       "name": "Dolph Lundgren",
@@ -72,6 +72,6 @@
   ],
   "trailer_key": "HhIl_XJ-OGA",
   "imdb_id": "tt5113044",
-  "vote_average": 7.3,
-  "vote_count": 4025
+  "vote_average": 7.265,
+  "vote_count": 4031
 }
