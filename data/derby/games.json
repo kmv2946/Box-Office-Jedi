@@ -1,13 +1,41 @@
 {
-  "updated": "2026-06-22",
-  "current_weekend": "2026-06-26",
+  "updated": "2026-06-29",
+  "current_weekend": "2026-07-03",
   "games": [
+    {
+      "weekend": "2026-07-03",
+      "date_to": "2026-07-05",
+      "label": "July 3–5",
+      "label_long": "July 3–5, 2026",
+      "status": "open",
+      "submit_deadline": "2026-07-02T23:59:59-04:00",
+      "headliner": "Minions & Monsters",
+      "allowed_titles": [
+        "Backrooms",
+        "BLEACH: Thousand-Year Blood War — The Calamity",
+        "Disclosure Day",
+        "Jackass: Best and Last",
+        "Leviticus",
+        "Masters of the Universe",
+        "Michael",
+        "Minions & Monsters",
+        "Obsession",
+        "Scary Movie",
+        "Star Wars: The Mandalorian and Grogu",
+        "Supergirl",
+        "Thrash",
+        "Toy Story 5",
+        "Young Washington"
+      ],
+      "averages_url": null,
+      "leaderboard_url": null
+    },
     {
       "weekend": "2026-06-26",
       "date_to": "2026-06-28",
       "label": "June 26–28",
       "label_long": "June 26–28, 2026",
-      "status": "open",
+      "status": "closed",
       "submit_deadline": "2026-06-25T23:59:59-04:00",
       "headliner": "Supergirl",
       "allowed_titles": [
@@ -28,7 +56,7 @@
         "Toy Story 5"
       ],
       "averages_url": null,
-      "leaderboard_url": null
+      "leaderboard_url": "data/derby/leaderboard-2026-06-26.json"
     },
     {
       "weekend": "2026-06-19",
