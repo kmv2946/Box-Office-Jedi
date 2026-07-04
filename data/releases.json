@@ -740,24 +740,16 @@
               "distributor": "Universal Pictures",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
+              "theaters": 4243,
               "note": "(on Weds.)"
-            },
-            {
-              "title": "Thrash",
-              "genre": "Horror / Thriller",
-              "distributor": "Sony Pictures Releasing",
-              "release": "Limited",
-              "is_wide": false,
-              "theaters": null
             },
             {
               "title": "Young Washington",
               "genre": "Action / Biography / History / War",
               "distributor": "Angel Studios",
-              "release": "Limited",
-              "is_wide": false,
-              "theaters": null
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": 2700
             }
           ]
         },
@@ -768,6 +760,14 @@
               "title": "Moana",
               "genre": "Action / Adventure / Family / Musical",
               "distributor": "Walt Disney Studios",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
+            },
+            {
+              "title": "Evil Dead Burn",
+              "genre": "Fantasy / Horror",
+              "distributor": "Warner Bros.",
               "release": "Wide",
               "is_wide": true,
               "theaters": null
@@ -799,9 +799,9 @@
           "date": "2026-07-24",
           "releases": [
             {
-              "title": "Evil Dead Burn",
-              "genre": "Fantasy / Horror",
-              "distributor": "Warner Bros.",
+              "title": "Her Private Hell",
+              "genre": "Crime / Horror / Sci-Fi / Thriller",
+              "distributor": "Neon",
               "release": "Limited",
               "is_wide": false,
               "theaters": null
