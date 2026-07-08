@@ -1,13 +1,41 @@
 {
-  "updated": "2026-06-29",
-  "current_weekend": "2026-07-03",
+  "updated": "2026-07-07",
+  "current_weekend": "2026-07-10",
   "games": [
+    {
+      "weekend": "2026-07-10",
+      "date_to": "2026-07-12",
+      "label": "July 10–12",
+      "label_long": "July 10–12, 2026",
+      "status": "open",
+      "submit_deadline": "2026-07-09T23:59:59-04:00",
+      "headliner": "Moana",
+      "allowed_titles": [
+        "Backrooms",
+        "Disclosure Day",
+        "Evil Dead Burn",
+        "The Invite",
+        "Jackass: Best and Last",
+        "Masters of the Universe",
+        "Michael",
+        "Minions & Monsters",
+        "Moana",
+        "Obsession",
+        "Scary Movie",
+        "Star Wars: The Mandalorian and Grogu",
+        "Supergirl",
+        "Toy Story 5",
+        "Young Washington"
+      ],
+      "averages_url": null,
+      "leaderboard_url": null
+    },
     {
       "weekend": "2026-07-03",
       "date_to": "2026-07-05",
       "label": "July 3–5",
       "label_long": "July 3–5, 2026",
-      "status": "open",
+      "status": "closed",
       "submit_deadline": "2026-07-02T23:59:59-04:00",
       "headliner": "Minions & Monsters",
       "allowed_titles": [
@@ -28,7 +56,7 @@
         "Young Washington"
       ],
       "averages_url": null,
-      "leaderboard_url": null
+      "leaderboard_url": "data/derby/leaderboard-2026-07-03.json"
     },
     {
       "weekend": "2026-06-26",
