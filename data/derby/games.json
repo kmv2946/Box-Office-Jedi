@@ -1,13 +1,39 @@
 {
-  "updated": "2026-07-07",
-  "current_weekend": "2026-07-10",
+  "updated": "2026-07-15",
+  "current_weekend": "2026-07-17",
   "games": [
+    {
+      "weekend": "2026-07-17",
+      "date_to": "2026-07-19",
+      "label": "July 17–19",
+      "label_long": "July 17–19, 2026",
+      "status": "open",
+      "submit_deadline": "2026-07-16T23:59:59-04:00",
+      "headliner": "The Odyssey",
+      "allowed_titles": [
+        "Backrooms",
+        "Disclosure Day",
+        "Evil Dead Burn",
+        "Gail Daughtry and the Celebrity Sex Pass",
+        "The Invite",
+        "Jackass: Best and Last",
+        "Minions & Monsters",
+        "Moana",
+        "Obsession",
+        "The Odyssey",
+        "Supergirl",
+        "Toy Story 5",
+        "Young Washington"
+      ],
+      "averages_url": null,
+      "leaderboard_url": null
+    },
     {
       "weekend": "2026-07-10",
       "date_to": "2026-07-12",
       "label": "July 10–12",
       "label_long": "July 10–12, 2026",
-      "status": "open",
+      "status": "closed",
       "submit_deadline": "2026-07-09T23:59:59-04:00",
       "headliner": "Moana",
       "allowed_titles": [
@@ -28,7 +54,7 @@
         "Young Washington"
       ],
       "averages_url": null,
-      "leaderboard_url": null
+      "leaderboard_url": "data/derby/leaderboard-2026-07-10.json"
     },
     {
       "weekend": "2026-07-03",

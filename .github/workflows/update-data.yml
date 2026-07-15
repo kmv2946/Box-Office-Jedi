@@ -4,7 +4,7 @@
 # differs between weekday and weekend grosses.
 #
 #   DAILY CHART — weekdays: Mon-Fri at 4:00 PM ET (20:00 UTC)
-#                weekends: Sat-Sun at 2:00 PM ET (18:00 UTC)
+#                weekends: Sat-Sun at 3:30 PM ET (19:30 UTC)
 #     Scrapes yesterday's daily box office numbers. The Numbers posts
 #     weekday data later than weekend data — running too early on weekdays
 #     used to fetch empty / partial tables (Disney late-reporting, etc.).
@@ -34,8 +34,8 @@ on:
   schedule:
     # 4:00 PM ET (20:00 UTC) Mon-Fri — daily chart, weekday timing
     - cron: "0 20 * * 1-5"
-    # 2:00 PM ET (18:00 UTC) Sat-Sun — daily chart, weekend timing
-    - cron: "0 18 * * 0,6"
+    # 3:30 PM ET (19:30 UTC) Sat-Sun — daily chart, weekend timing
+    - cron: "30 19 * * 0,6"
     # 5:00 PM ET (22:00 UTC) Sunday + Monday — weekend chart (estimates then actuals)
     - cron: "0 22 * * 0,1"
   workflow_dispatch:
