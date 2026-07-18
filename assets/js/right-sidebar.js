@@ -34,10 +34,12 @@
       return;
     }
 
-    // Find the next Friday on or after today.
+    // Find the Friday to show: upcoming Friday Sun–Thu, but keep showing
+    // that same Friday's slate through Sat (it's still the "current"
+    // releases for the weekend) — only flip to the next Friday on Sunday.
     const today = new Date();
-    const dow = today.getDay();                  // 0 Sun ... 5 Fri
-    const daysUntilFri = (5 - dow + 7) % 7;
+    const dow = today.getDay();                   // 0 Sun ... 5 Fri, 6 Sat
+    const daysUntilFri = 5 - dow;                  // Sun..Thu: 5..1, Fri: 0, Sat: -1
     const fri = new Date(today.getFullYear(), today.getMonth(), today.getDate() + daysUntilFri);
     const friIso = fri.getFullYear() + '-' +
       String(fri.getMonth() + 1).padStart(2, '0') + '-' +
