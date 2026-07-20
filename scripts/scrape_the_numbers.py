@@ -14,9 +14,11 @@ Run manually:
   python3 scrape_the_numbers.py --mode daily --date 2026-04-17 --end-date 2026-04-18
                                                             # scrape an inclusive range
 
-Run via GitHub Actions: see .github/workflows/update-data.yml
-  - Daily chart  : every day at 2 PM ET (19:00 UTC)
-  - Weekend chart: Sundays and Mondays at 5 PM ET (22:00 UTC)
+Run via GitHub Actions: see .github/workflows/update-data.yml for exact times.
+  - Daily chart  : runs daily; Sunday's run additionally scrapes a
+    Saturday-through-Sunday range in one shot so Sunday's same-day
+    estimate posts same-day instead of waiting for Monday's re-scrape.
+  - Weekend chart: Sundays and Mondays.
 
 Output files:
   data/daily.json              — most recent daily chart
@@ -1198,6 +1200,14 @@ def main():
             daily = scrape_daily(_target)
             if daily:
                 day_iso = _target.strftime("%Y-%m-%d")
+                # Same-day scrape (the Sunday same-day-estimate run) means
+                # this figure is The Numbers' estimate, not a confirmed
+                # actual. Every other daily scrape targets a prior day,
+                # which The Numbers has already finalized by the time we
+                # fetch it. The next day's routine re-scrape of this same
+                # date (today becomes "yesterday") overwrites this file
+                # with is_estimates: False once the actual posts.
+                day_is_estimate = _target.date() == now.date()
 
                 # 1) Per-day archive file — this is what daily.html reads.
                 #    Normalize to the same shape the hand-filled files use.
@@ -1269,7 +1279,7 @@ def main():
                 archive_path = os.path.join("daily", day_iso + ".json")
                 save_json(archive_path, {
                     "date":         day_iso,
-                    "is_estimates": False,
+                    "is_estimates": day_is_estimate,
                     "chart":        archive_chart,
                 })
 

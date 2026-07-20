@@ -1,13 +1,27 @@
 # Box Office Jedi — Automated Data Pipeline
 # ============================================
-# Two separate schedules, split by day-of-week because reporting timing
-# differs between weekday and weekend grosses.
+# Split by day-of-week because reporting timing differs between weekday
+# and weekend grosses, and Sunday needs its own range-scrape (see below).
 #
 #   DAILY CHART — weekdays: Mon-Fri at 4:00 PM ET (20:00 UTC)
-#                weekends: Sat-Sun at 3:30 PM ET (19:30 UTC)
-#     Scrapes yesterday's daily box office numbers. The Numbers posts
+#                Saturday : 3:30 PM ET (19:30 UTC) — scrapes yesterday (Friday) only.
+#                Sunday   : 5:30 PM ET (21:30 UTC) — scrapes a Saturday-through-Sunday
+#                           RANGE in one run, not just "yesterday".
+#     Scrapes yesterday's daily box office numbers by default. The Numbers posts
 #     weekday data later than weekend data — running too early on weekdays
 #     used to fetch empty / partial tables (Disney late-reporting, etc.).
+#     Sunday is the exception: the industry (and The Numbers) posts a
+#     same-day ESTIMATE for Sunday alongside Saturday's confirmed actual,
+#     both in the afternoon. Waiting for the normal "yesterday" scrape
+#     meant Sunday's number didn't show up until Monday's run — a full day
+#     late compared to every other box office site. The Sunday run is
+#     pushed to 5:30 PM ET (vs. Saturday's 3:30 PM) to give The Numbers
+#     extra time to post that same-day estimate. The per-day archive file
+#     is saved with is_estimates: true for that same-day figure; Monday's
+#     regular run re-scrapes Sunday (now "yesterday") and overwrites it
+#     with the confirmed actual (is_estimates: false) — no separate
+#     rescrape step needed, it's just the existing Monday run doing its
+#     normal job.
 #     Note: UTC times don't shift for DST, so during standard time
 #     (Nov-Mar) these effectively run an hour earlier in ET. If that
 #     becomes an issue, bump the UTC hour by one for standard time.
@@ -34,8 +48,11 @@ on:
   schedule:
     # 4:00 PM ET (20:00 UTC) Mon-Fri — daily chart, weekday timing
     - cron: "0 20 * * 1-5"
-    # 3:30 PM ET (19:30 UTC) Sat-Sun — daily chart, weekend timing
-    - cron: "30 19 * * 0,6"
+    # 3:30 PM ET (19:30 UTC) Saturday — daily chart, scrapes yesterday (Friday) only
+    - cron: "30 19 * * 6"
+    # 5:30 PM ET (21:30 UTC) Sunday — daily chart, scrapes a Sat-through-Sun RANGE
+    # so Sunday's same-day estimate posts same-day (see header comment above)
+    - cron: "30 21 * * 0"
     # 5:00 PM ET (22:00 UTC) Sunday + Monday — weekend chart (estimates then actuals)
     - cron: "0 22 * * 0,1"
   workflow_dispatch:
@@ -81,18 +98,30 @@ jobs:
             # 5 PM ET Sun/Mon → weekend chart
             echo "mode=weekend" >> $GITHUB_OUTPUT
           else
-            # 4 PM ET Mon-Fri OR 2 PM ET Sat-Sun → daily chart
+            # 4 PM ET Mon-Fri, 3:30 PM ET Sat, or 5:30 PM ET Sun → daily chart
             echo "mode=daily" >> $GITHUB_OUTPUT
+          fi
+
+          # Sunday's daily run (5:30 PM ET) needs to catch BOTH Saturday's
+          # confirmed actual AND Sunday's same-day estimate in one shot —
+          # every other trigger just wants the default "yesterday" scrape.
+          if [ "${{ github.event.schedule }}" = "30 21 * * 0" ]; then
+            echo "start_date=$(date -u -d 'yesterday' +%Y-%m-%d)" >> $GITHUB_OUTPUT
+            echo "end_date=$(date -u +%Y-%m-%d)" >> $GITHUB_OUTPUT
           fi
 
       - name: Run scraper (${{ steps.mode.outputs.mode }} mode)
         run: |
           ARGS="--mode ${{ steps.mode.outputs.mode }}"
-          if [ -n "${{ github.event.inputs.start_date }}" ]; then
-            ARGS="$ARGS --date ${{ github.event.inputs.start_date }}"
+          START="${{ github.event.inputs.start_date }}"
+          END="${{ github.event.inputs.end_date }}"
+          START="${START:-${{ steps.mode.outputs.start_date }}}"
+          END="${END:-${{ steps.mode.outputs.end_date }}}"
+          if [ -n "$START" ]; then
+            ARGS="$ARGS --date $START"
           fi
-          if [ -n "${{ github.event.inputs.end_date }}" ]; then
-            ARGS="$ARGS --end-date ${{ github.event.inputs.end_date }}"
+          if [ -n "$END" ]; then
+            ARGS="$ARGS --end-date $END"
           fi
           echo "Running: python3 scripts/scrape_the_numbers.py $ARGS"
           python3 scripts/scrape_the_numbers.py $ARGS
