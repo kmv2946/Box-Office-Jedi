@@ -60,6 +60,27 @@ HEADERS = {
 BASE_URL = "https://www.the-numbers.com"
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
 
+# Generic "format/subtitle" words that must NEVER count as a distinctive
+# single-token match on their own, no matter how long they are or how
+# rare they currently are in releases.json. A word being ≥7 chars usually
+# means it's a unique proper noun ("mandalorian", "obsession"), but these
+# are common enough as the second half of a title (":  The Musical",
+# "Director's Cut", "The Reunion Concert") that two totally different
+# films can share one and only one of these words. Real incident: a
+# Hadestown row got silently rewritten to "Six: The Musical Live!" (an
+# unrelated, later-dated release) on the single shared word "musical" —
+# doc-frequency filtering alone doesn't catch this if the correct title
+# (Hadestown) hasn't been added to releases.json yet at scrape time, so
+# this static list is the backstop.
+GENERIC_STRONG_TOKEN_EXCLUDE = {
+    "musical", "picture", "chronicle", "chronicles", "collection",
+    "edition", "special", "unrated", "extended", "director", "directors",
+    "presents", "starring", "featuring", "legacy", "legends", "legend",
+    "origins", "returns", "reunion", "anniversary", "concert", "live",
+    "tour", "remastered", "restoration", "restored", "rerelease",
+    "reissue", "revival", "encore", "celebration", "experience",
+}
+
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
 def fetch(url: str, retries: int = 3) -> BeautifulSoup | None:
@@ -437,6 +458,20 @@ def apply_title_canonicalization(archive_chart: list[dict]) -> list[dict]:
     if not canonicals:
         return archive_chart
 
+    # Token document-frequency across every release title. A token that
+    # shows up in 2+ different titles isn't a unique proper noun no matter
+    # how long it is — "musical" is 7 chars but appears in both "Hadestown:
+    # The Musical" and "Six: The Musical Live!", which caused a real
+    # incident: a Hadestown row got silently rewritten to "Six: The Musical
+    # Live!" (an unrelated, later-dated release) because "musical" alone
+    # satisfied the old "any 7+ char shared token" strong-match shortcut.
+    # Only genuinely unique tokens ("mandalorian", "obsession") should get
+    # the single-token shortcut now.
+    _token_doc_freq: dict[str, int] = {}
+    for _, toks in canonicals:
+        for t in toks:
+            _token_doc_freq[t] = _token_doc_freq.get(t, 0) + 1
+
     rewritten = 0
     for row in archive_chart:
         raw_title = row.get("title") or ""
@@ -452,14 +487,21 @@ def apply_title_canonicalization(archive_chart: list[dict]) -> list[dict]:
             shared = scraped_toks & rel_toks
             if not shared:
                 continue
-            # "Strong token" = a shared word ≥ 7 chars. Treats it as a
-            # unique-enough proper noun ("mandalorian", "obsession"). But
-            # the threshold catches generic words too — "project", "people",
-            # "story", "shadow" — so we ALSO require ≥ 50% coverage of the
-            # shorter title's tokens, otherwise "Project Hail Mary" would
-            # match "Untitled Jordan Peele Project" on the single shared
-            # word "project". See: the Saturday May 23 incident.
-            has_strong = any(len(t) >= 7 for t in shared)
+            # "Strong token" = a shared word ≥ 7 chars that's unique to
+            # THIS release (appears in only one title across the whole
+            # schedule) — treats it as a distinctive proper noun
+            # ("mandalorian", "obsession") rather than a generic word that
+            # happens to be long ("project", "musical", "chronicles"). We
+            # ALSO require ≥ 50% coverage of the shorter title's tokens,
+            # otherwise "Project Hail Mary" would match "Untitled Jordan
+            # Peele Project" on the single shared word "project". See: the
+            # Saturday May 23 incident (and the Hadestown/Six incident this
+            # uniqueness check was added for).
+            has_strong = any(
+                len(t) >= 7 and _token_doc_freq.get(t, 0) <= 1
+                and t not in GENERIC_STRONG_TOKEN_EXCLUDE
+                for t in shared
+            )
             cov_scraped = len(shared) / max(1, len(scraped_toks))
             cov_release = len(shared) / max(1, len(rel_toks))
             cov = max(cov_scraped, cov_release)
@@ -557,6 +599,15 @@ def apply_preview_filter(day_iso: str, archive_chart: list[dict]) -> list[dict]:
 
     title_to_release = {k: v[0] for k, v in release_records.items()}
 
+    # Token document-frequency across every release title — a token shared
+    # by 2+ different titles isn't a unique proper noun regardless of
+    # length ("musical" appears in both "Hadestown: The Musical" and "Six:
+    # The Musical Live!"). Used below to gate the single-token shortcut.
+    _token_doc_freq: dict[str, int] = {}
+    for _, toks in release_records.values():
+        for t in toks:
+            _token_doc_freq[t] = _token_doc_freq.get(t, 0) + 1
+
     def lookup_release(nk: str, raw_title: str) -> str | None:
         """Find the earliest release_date for a film. Tries exact match,
         'the' prefix strip, prefix matching (truncated subtitle case), and
@@ -612,14 +663,20 @@ def apply_preview_filter(day_iso: str, archive_chart: list[dict]) -> list[dict]:
             shared = scraped_toks & rel_toks
             if not shared:
                 continue
-            # Strong-token shortcut: any shared token ≥ 7 chars is
-            # USUALLY a unique proper noun ("mandalorian", "obsession",
-            # "thunderbolts"). But the threshold catches generic 7+ char
-            # words too ("project", "people", "story", "shadow"), so we
-            # still require ≥ 50% coverage of the shorter title's tokens.
-            # Without the coverage floor "Project Hail Mary" would match
-            # "Untitled Jordan Peele Project" on the single word "project".
-            has_strong = any(len(t) >= 7 for t in shared)
+            # Strong-token shortcut: any shared token ≥ 7 chars that's
+            # unique to ONE release title is USUALLY a distinctive proper
+            # noun ("mandalorian", "obsession", "thunderbolts"). A token
+            # that recurs across multiple titles is generic no matter how
+            # long it is ("musical", "project"), so it's excluded from the
+            # shortcut. We still require ≥ 50% coverage of the shorter
+            # title's tokens on top of that — without the coverage floor
+            # "Project Hail Mary" would match "Untitled Jordan Peele
+            # Project" on the single word "project".
+            has_strong = any(
+                len(t) >= 7 and _token_doc_freq.get(t, 0) <= 1
+                and t not in GENERIC_STRONG_TOKEN_EXCLUDE
+                for t in shared
+            )
             cov_scraped = len(shared) / max(1, len(scraped_toks))
             cov_release = len(shared) / max(1, len(rel_toks))
             cov = max(cov_scraped, cov_release)
