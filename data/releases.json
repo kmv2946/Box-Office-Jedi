@@ -791,12 +791,28 @@
           "date": "2026-07-24",
           "releases": [
             {
+              "title": "Hadestown: The Musical",
+              "genre": "",
+              "distributor": "Bleecker Street",
+              "release": "1,944",
+              "is_wide": true,
+              "theaters": 1944
+            },
+            {
+              "title": "Motor City",
+              "genre": "",
+              "distributor": "IFC Films",
+              "release": "1,600",
+              "is_wide": true,
+              "theaters": 1600
+            },
+            {
               "title": "Her Private Hell",
               "genre": "Crime / Horror / Sci-Fi / Thriller",
               "distributor": "Neon",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": 670
             }
           ]
         },
