@@ -1,13 +1,40 @@
 {
-  "updated": "2026-07-20",
-  "current_weekend": "2026-07-24",
+  "updated": "2026-07-29",
+  "current_weekend": "2026-07-31",
   "games": [
+    {
+      "weekend": "2026-07-31",
+      "date_to": "2026-08-02",
+      "label": "July 31–Aug. 2",
+      "label_long": "July 31 – August 2, 2026",
+      "status": "open",
+      "submit_deadline": "2026-07-30T23:59:59-04:00",
+      "headliner": "Spider-Man: Brand New Day",
+      "allowed_titles": [
+        "Disclosure Day",
+        "Evil Dead Burn",
+        "Hadestown: The Musical",
+        "The Invite",
+        "Jana Nayagan",
+        "Minions & Monsters",
+        "Moana",
+        "Motor City",
+        "Obsession",
+        "The Odyssey",
+        "Spider-Man: Brand New Day",
+        "Supergirl",
+        "Toy Story 5",
+        "Young Washington"
+      ],
+      "averages_url": null,
+      "leaderboard_url": null
+    },
     {
       "weekend": "2026-07-24",
       "date_to": "2026-07-26",
       "label": "July 24–26",
       "label_long": "July 24–26, 2026",
-      "status": "open",
+      "status": "closed",
       "submit_deadline": "2026-07-23T23:59:59-04:00",
       "headliner": "The Odyssey",
       "allowed_titles": [
@@ -26,7 +53,7 @@
         "Young Washington"
       ],
       "averages_url": null,
-      "leaderboard_url": null
+      "leaderboard_url": "data/derby/leaderboard-2026-07-24.json"
     },
     {
       "weekend": "2026-07-17",
@@ -52,7 +79,7 @@
         "Young Washington"
       ],
       "averages_url": null,
-      "leaderboard_url": null
+      "leaderboard_url": "data/derby/leaderboard-2026-07-17.json"
     },
     {
       "weekend": "2026-07-10",
