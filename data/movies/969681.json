@@ -6,7 +6,7 @@
   "release_date": "2026-07-28",
   "runtime": 145,
   "budget": 225000000,
-  "revenue": 304000000,
+  "revenue": 941800000,
   "genres": [
     "Science Fiction",
     "Action",
@@ -14,7 +14,7 @@
   ],
   "mpaa": "PG-13",
   "poster_url": "https://image.tmdb.org/t/p/w342/iPOn6DinuVyLY17YM9mKuPofV08.jpg",
-  "backdrop_url": "https://image.tmdb.org/t/p/w1280/qeQJx07rK2xm8SD2sJxFKhE7gs0.jpg",
+  "backdrop_url": "https://image.tmdb.org/t/p/w1280/b0LviwKbDto7Qq0D4DzGoVHpF4C.jpg",
   "director": "Destin Daniel Cretton",
   "cast": [
     {
@@ -23,19 +23,19 @@
       "profile": "https://image.tmdb.org/t/p/w185/xKBAaPIa1c7tzZD3Y0MhBLv4hPE.jpg"
     },
     {
+      "name": "Sadie Sink",
+      "character": "Jean Grey",
+      "profile": "https://image.tmdb.org/t/p/w185/92FddzBfK50XOUbtwjqHPraoGHy.jpg"
+    },
+    {
+      "name": "Tramell Tillman",
+      "character": "William 'Bill' Metzger",
+      "profile": "https://image.tmdb.org/t/p/w185/bEA15zMnkcXlRroYjKrFUWiiK7y.jpg"
+    },
+    {
       "name": "Zendaya",
       "character": "MJ",
       "profile": "https://image.tmdb.org/t/p/w185/3WdOloHpjtjL96uVOhFRRCcYSwq.jpg"
-    },
-    {
-      "name": "Mark Ruffalo",
-      "character": "Bruce Banner / Hulk",
-      "profile": "https://image.tmdb.org/t/p/w185/5GilHMOt5PAQh6rlUKZzGmaKEI7.jpg"
-    },
-    {
-      "name": "Jon Bernthal",
-      "character": "Frank Castle / Punisher",
-      "profile": "https://image.tmdb.org/t/p/w185/o0t6EVkJOrFAjESDilZUlf46IbQ.jpg"
     },
     {
       "name": "Jacob Batalon",
@@ -43,9 +43,14 @@
       "profile": "https://image.tmdb.org/t/p/w185/53YhaL4xw4Sb1ssoHkeSSBaO29c.jpg"
     },
     {
-      "name": "Sadie Sink",
-      "character": "Jean Grey",
-      "profile": "https://image.tmdb.org/t/p/w185/92FddzBfK50XOUbtwjqHPraoGHy.jpg"
+      "name": "Jon Bernthal",
+      "character": "Frank Castle / Punisher",
+      "profile": "https://image.tmdb.org/t/p/w185/o0t6EVkJOrFAjESDilZUlf46IbQ.jpg"
+    },
+    {
+      "name": "Mark Ruffalo",
+      "character": "Bruce Banner / Hulk",
+      "profile": "https://image.tmdb.org/t/p/w185/5GilHMOt5PAQh6rlUKZzGmaKEI7.jpg"
     },
     {
       "name": "Florence Pugh",
@@ -58,11 +63,6 @@
       "profile": "https://image.tmdb.org/t/p/w185/q2gHcef0wckji0AS8ZEO6cYx065.jpg"
     },
     {
-      "name": "Tramell Tillman",
-      "character": "William 'Bill' Metzger",
-      "profile": "https://image.tmdb.org/t/p/w185/bEA15zMnkcXlRroYjKrFUWiiK7y.jpg"
-    },
-    {
       "name": "Marisa Tomei",
       "character": "May Parker",
       "profile": "https://image.tmdb.org/t/p/w185/1cT8wWwGX5jEeGAgjydjb5EwnZF.jpg"
@@ -70,6 +70,6 @@
   ],
   "trailer_key": "P3uI5sLosKU",
   "imdb_id": "tt22084616",
-  "vote_average": 8.045,
-  "vote_count": 628
+  "vote_average": 8.0,
+  "vote_count": 805
 }
