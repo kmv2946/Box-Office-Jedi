@@ -866,14 +866,22 @@
               "title": "Super Troopers 3",
               "genre": "Comedy / Crime / Mystery",
               "distributor": "Searchlight Pictures",
-              "release": "Limited",
-              "is_wide": false,
+              "release": "Wide",
+              "is_wide": true,
               "theaters": null
             },
             {
               "title": "Teenage Sex and Death at Camp Miasma",
               "genre": "Comedy / Horror",
               "distributor": "MUBI",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
+            },
+            {
+              "title": "Tony",
+              "genre": "Biography / Comedy / Drama",
+              "distributor": "A24",
               "release": "Limited",
               "is_wide": false,
               "theaters": null
