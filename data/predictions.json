@@ -1,6 +1,112 @@
 {
-  "updated": "2026-07-30",
+  "updated": "2026-08-06",
   "weekends": [
+    {
+      "date_from": "2026-08-07",
+      "date_to": "2026-08-09",
+      "predictions": [
+        {
+          "pred_rank": 1,
+          "title": "Spider-Man: Brand New Day",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 162.4,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 2
+        },
+        {
+          "pred_rank": 2,
+          "title": "The Odyssey",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 35.3,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 4
+        },
+        {
+          "pred_rank": 3,
+          "title": "One Night Only",
+          "is_new": true,
+          "theaters": 3012,
+          "predicted_m": 13.1,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 1
+        },
+        {
+          "pred_rank": 4,
+          "title": "Super Troopers 3",
+          "is_new": true,
+          "theaters": 2760,
+          "predicted_m": 6.9,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 1
+        },
+        {
+          "pred_rank": 5,
+          "title": "Toy Story 5",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 4.2,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 8
+        },
+        {
+          "pred_rank": 6,
+          "title": "Ice Cream Man",
+          "is_new": true,
+          "theaters": 1700,
+          "predicted_m": 4.0,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 1
+        },
+        {
+          "pred_rank": 7,
+          "title": "Minions & Monsters",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 3.9,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 6
+        },
+        {
+          "pred_rank": 8,
+          "title": "Moana",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 3.0,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 5
+        },
+        {
+          "pred_rank": 9,
+          "title": "The Invite",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 0.7,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 7
+        },
+        {
+          "pred_rank": 10,
+          "title": "Evil Dead Burn",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 0.4,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 5
+        }
+      ]
+    },
     {
       "date_from": "2026-07-31",
       "date_to": "2026-08-02",
