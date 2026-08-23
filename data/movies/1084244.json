@@ -6,7 +6,7 @@
   "release_date": "2026-06-17",
   "runtime": 102,
   "budget": 250000000,
-  "revenue": 1114768651,
+  "revenue": 1115340965,
   "genres": [
     "Animation",
     "Family",
@@ -19,6 +19,11 @@
   "director": "Andrew Stanton",
   "cast": [
     {
+      "name": "Joan Cusack",
+      "character": "Jessie (voice)",
+      "profile": "https://image.tmdb.org/t/p/w185/59UIeHZFYrKyP20lXqijtfTXglO.jpg"
+    },
+    {
       "name": "Tom Hanks",
       "character": "Woody (voice)",
       "profile": "https://image.tmdb.org/t/p/w185/oFvZoKI6lvU03n4YoNGAll9rkas.jpg"
@@ -27,11 +32,6 @@
       "name": "Tim Allen",
       "character": "Buzz Lightyear (voice)",
       "profile": "https://image.tmdb.org/t/p/w185/woWhZzFILVhYMAvsPL171HjMY0y.jpg"
-    },
-    {
-      "name": "Joan Cusack",
-      "character": "Jessie (voice)",
-      "profile": "https://image.tmdb.org/t/p/w185/59UIeHZFYrKyP20lXqijtfTXglO.jpg"
     },
     {
       "name": "Conan O'Brien",
@@ -71,6 +71,6 @@
   ],
   "trailer_key": "QftAW9TTmuQ",
   "imdb_id": "tt29355505",
-  "vote_average": 7.4,
-  "vote_count": 832
+  "vote_average": 8.134,
+  "vote_count": 1464
 }
