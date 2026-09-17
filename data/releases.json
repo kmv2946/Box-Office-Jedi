@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-04",
+  "updated": "2026-09-17",
   "months": {
     "2026-01": {
       "name": "January 2026",
@@ -374,7 +374,7 @@
           "date": "2026-04-17",
           "releases": [
             {
-              "title": "Lee Cronin’s The Mummy",
+              "title": "Lee Cronin\u2019s The Mummy",
               "distributor": "Universal Pictures",
               "release": "Wide",
               "is_wide": true,
@@ -1050,6 +1050,14 @@
               "release": "Limited",
               "is_wide": false,
               "theaters": null
+            },
+            {
+              "title": "The History of Concrete",
+              "genre": "Comedy / Documentary",
+              "distributor": "Magnolia Pictures",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
             }
           ]
         },
@@ -1068,6 +1076,30 @@
               "title": "Avengers: Endgame (2026 Re-Release)",
               "genre": "Action / Adventure / IMAX",
               "distributor": "Walt Disney Studios",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
+            },
+            {
+              "title": "Heart of the Beast",
+              "genre": "Action / Adventure",
+              "distributor": "Paramount Pictures",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
+            },
+            {
+              "title": "Primetime",
+              "genre": "Biography / Crime / Drama / Thriller",
+              "distributor": "A24",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
+            },
+            {
+              "title": "Victorian Psycho",
+              "genre": "Comedy / Horror",
+              "distributor": "Bleecker Street",
               "release": "Limited",
               "is_wide": false,
               "theaters": null
@@ -1113,11 +1145,27 @@
               "theaters": null
             },
             {
-              "title": "The Legend of Aang: The Last Airbender",
+              "title": "Avatar Aang: The Last Airbender",
               "genre": "Action / Adventure / Family / Animation",
               "distributor": "Paramount Pictures",
               "release": "Wide",
               "is_wide": true,
+              "theaters": null
+            },
+            {
+              "title": "Fjord",
+              "genre": "Drama / Thriller",
+              "distributor": "Neon",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
+            },
+            {
+              "title": "Misty Green",
+              "genre": "Comedy / Drama",
+              "distributor": "A24",
+              "release": "Limited",
+              "is_wide": false,
               "theaters": null
             }
           ]
@@ -1137,22 +1185,38 @@
               "title": "Sense and Sensibility",
               "genre": "Drama / Romance",
               "distributor": "Focus Features",
-              "release": "Limited",
-              "is_wide": false,
+              "release": "Wide",
+              "is_wide": true,
               "theaters": null
             },
             {
               "title": "Whalefall",
               "genre": "Adventure / Drama",
               "distributor": "20th Century Studios",
-              "release": "Limited",
-              "is_wide": false,
+              "release": "Wide",
+              "is_wide": true,
               "theaters": null
             },
             {
               "title": "Poetic License",
               "genre": "Comedy",
               "distributor": "Row K Entertainment",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
+            },
+            {
+              "title": "La Bola Negra",
+              "genre": "Drama / History / Musical / Romance",
+              "distributor": "Netflix",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
+            },
+            {
+              "title": "The Only Living Pickpocket in New York",
+              "genre": "Crime / Drama",
+              "distributor": "Sony Pictures Releasing",
               "release": "Limited",
               "is_wide": false,
               "theaters": null
@@ -1163,14 +1227,6 @@
           "date": "2026-10-23",
           "releases": [
             {
-              "title": "Untitled Jordan Peele Project",
-              "genre": "Horror / Mystery / Thriller",
-              "distributor": "Universal Pictures",
-              "release": "Wide",
-              "is_wide": true,
-              "theaters": null
-            },
-            {
               "title": "Clayface",
               "genre": "Action / Adventure / Horror / Sci-Fi",
               "distributor": "Warner Bros.",
@@ -1179,17 +1235,25 @@
               "theaters": null
             },
             {
-              "title": "Wife and Dog",
-              "genre": "Thriller",
-              "distributor": "Black Bear",
+              "title": "Klara and the Sun",
+              "genre": "Drama / Sci-Fi",
+              "distributor": "Sony Pictures Releasing",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
+            },
+            {
+              "title": "Wildwood",
+              "genre": "Adventure / Animation / Fantasy",
+              "distributor": "Fathom Entertainment",
               "release": "Wide",
               "is_wide": true,
               "theaters": null
             },
             {
-              "title": "Klara and the Sun",
-              "genre": "Drama / Sci-Fi",
-              "distributor": "Sony Pictures Releasing",
+              "title": "Wicker",
+              "genre": "Comedy / Drama / Fantasy",
+              "distributor": "Black Bear",
               "release": "Limited",
               "is_wide": false,
               "theaters": null
@@ -1232,6 +1296,14 @@
               "release": "Limited",
               "is_wide": false,
               "theaters": null
+            },
+            {
+              "title": "Club Kid",
+              "genre": "Comedy / Drama",
+              "distributor": "A24",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
             }
           ]
         },
@@ -1239,25 +1311,33 @@
           "date": "2026-11-13",
           "releases": [
             {
-              "title": "The Great Beyond",
-              "genre": "Drama / Fantasy / Mystery / Sci-Fi",
-              "distributor": "Warner Bros.",
-              "release": "Wide",
-              "is_wide": true,
-              "theaters": null
-            },
-            {
-              "title": "Ebenezer: A Christmas Carol",
+              "title": "Ebenezer",
               "genre": "Drama / Fantasy",
               "distributor": "Paramount Pictures",
-              "release": "Limited",
-              "is_wide": false,
+              "release": "Wide",
+              "is_wide": true,
               "theaters": null
             },
             {
               "title": "I Play Rocky",
               "genre": "Biography / Drama",
               "distributor": "Amazon MGM Studios",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
+            },
+            {
+              "title": "How to Rob a Bank",
+              "genre": "Action / Crime / Comedy",
+              "distributor": "Amazon MGM Studios",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
+            },
+            {
+              "title": "Paper Tiger",
+              "genre": "Crime / Drama / Thriller",
+              "distributor": "Neon",
               "release": "Limited",
               "is_wide": false,
               "theaters": null
@@ -1273,6 +1353,14 @@
               "distributor": "Lionsgate",
               "release": "Wide",
               "is_wide": true,
+              "theaters": null
+            },
+            {
+              "title": "Elsinore",
+              "genre": "Biography / Drama",
+              "distributor": "Focus Features",
+              "release": "Limited",
+              "is_wide": false,
               "theaters": null
             }
           ]
@@ -1295,6 +1383,14 @@
               "release": "Wide",
               "is_wide": true,
               "theaters": null
+            },
+            {
+              "title": "The Further Mis-Adventures of Cliff Booth",
+              "genre": "Action / Comedy / Crime / Drama",
+              "distributor": "Netflix",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
             }
           ],
           "weekday": "Weds."
@@ -1315,12 +1411,53 @@
               "release": "Wide",
               "is_wide": true,
               "theaters": null
+            },
+            {
+              "title": "Tender Loving Care",
+              "genre": "Comedy / Drama",
+              "distributor": "Bleecker Street",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
+            },
+            {
+              "title": "Behemoth!",
+              "genre": "Drama / Music",
+              "distributor": "Walt Disney Studios",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
             }
           ]
         },
         {
           "date": "2026-12-11",
-          "releases": []
+          "releases": [
+            {
+              "title": "The Debut",
+              "genre": "Comedy / Drama / Musical",
+              "distributor": "A24",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
+            },
+            {
+              "title": "Ink",
+              "genre": "Biography / Drama / Thriller",
+              "distributor": "Netflix",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
+            },
+            {
+              "title": "Zero A.D.: The Birth of Christ",
+              "genre": "Drama / Thriller",
+              "distributor": "Angel Studios",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
+            }
+          ]
         },
         {
           "date": "2026-12-18",
@@ -1380,8 +1517,8 @@
               "theaters": null
             },
             {
-              "title": "A Place in Hell",
-              "genre": "Drama / Thriller",
+              "title": "Artificial",
+              "genre": "Biography / Comedy / Drama",
               "distributor": "Neon",
               "release": "Limited",
               "is_wide": false,
@@ -1431,7 +1568,16 @@
         },
         {
           "date": "2027-02-19",
-          "releases": []
+          "releases": [
+            {
+              "title": "Wife and Dog",
+              "genre": "Thriller",
+              "distributor": "Black Bear",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
+            }
+          ]
         },
         {
           "date": "2027-02-26",
@@ -1620,6 +1766,20 @@
         {
           "date": "2027-10-22",
           "releases": []
+        },
+        {
+          "date": "2027-10-27",
+          "releases": [
+            {
+              "title": "The Great Beyond",
+              "genre": "Drama / Fantasy / Mystery / Sci-Fi",
+              "distributor": "Warner Bros.",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": null
+            }
+          ],
+          "weekday": "Weds."
         },
         {
           "date": "2027-10-29",
