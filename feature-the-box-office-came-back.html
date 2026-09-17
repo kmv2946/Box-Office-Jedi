@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080, user-scalable=yes">
+  <title>The Box Office Came Back, But It Left the Movies Behind &mdash; Box Office Jedi</title>
+  <meta name="description" content="As Spider-Man uneventfully becomes the all-time domestic champ, we offer a postmortem on box office records.">
+
+  <!-- Open Graph / link preview cards -->
+  <meta property="og:type"         content="article">
+  <meta property="og:site_name"    content="Box Office Jedi">
+  <meta property="og:url"          content="https://boxofficejedi.com/feature-the-box-office-came-back.html">
+  <meta property="og:title"        content="The Box Office Came Back, But It Left the Movies Behind — Box Office Jedi">
+  <meta property="og:description"  content="As Spider-Man uneventfully becomes the all-time domestic champ, we offer a postmortem on box office records.">
+  <meta property="og:image"        content="https://boxofficejedi.com/assets/images/feature-the-box-office-came-back-main-image.jpg">
+  <meta property="og:image:width"  content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter / X cards -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="The Box Office Came Back, But It Left the Movies Behind — Box Office Jedi">
+  <meta name="twitter:description" content="As Spider-Man uneventfully becomes the all-time domestic champ, we offer a postmortem on box office records.">
+  <meta name="twitter:image"       content="https://boxofficejedi.com/assets/images/feature-the-box-office-came-back-main-image.jpg">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+
+    .article-wrap { padding: 0; }
+
+    .article-section-header { padding: 4px 10px 2px; }
+    .article-section-header a {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .article-section-header a:hover { text-decoration: underline; }
+    .article-section-bar {
+      height: 5px;
+      background: #7F170E;
+      margin-bottom: 10px;
+    }
+
+    .article-headline {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 22pt;
+      color: #000;
+      line-height: 1.15;
+      margin: 0 10px 4px;
+    }
+    .article-subheadline {
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+      font-size: 14pt;
+      color: #333;
+      margin: 0 10px 8px;
+    }
+    .article-byline-name {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 13pt;
+      color: #000;
+      margin: 0 10px 1px;
+    }
+    .article-byline-date {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 10pt;
+      color: #000;
+      display: block;
+      margin: 0 10px 10px;
+    }
+
+    .article-body { padding: 0 10px; }
+    .article-body p {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16pt;
+      line-height: 1.4;
+      color: #000;
+      margin-bottom: 12px;
+      text-align: justify;
+    }
+    .article-body p.drop-cap::first-letter {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 4em;
+      line-height: 0.75;
+      float: left;
+      margin: 5px 3px 0 0;
+      color: #00239C;
+    }
+
+    /* Period section labels */
+    .period-label {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 13pt;
+      color: #7F170E;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin: 28px 0 6px;
+      padding: 6px 0 4px;
+      border-top: 2px solid #7F170E;
+      border-bottom: 1px solid #CCC;
+    }
+
+    /* Hero image */
+    .article-hero {
+      margin: 4px auto 18px;
+      text-align: center;
+      max-width: 760px;
+    }
+    .article-hero img {
+      display: block;
+      width: 100%;
+      max-width: 760px;
+      height: auto;
+      margin: 0 auto;
+    }
+
+    /* Centered article image */
+    .article-img-center {
+      margin: 18px auto 18px;
+      text-align: center;
+      max-width: 640px;
+    }
+    .article-img-center img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: auto;
+      margin: 0 auto;
+      border: 1px solid #CCCCCC;
+    }
+    .article-img-caption {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 10px;
+      color: #333;
+      text-align: center;
+      background: #EEEEEE;
+      padding: 4px 6px;
+      box-sizing: border-box;
+      margin: 0 auto;
+      max-width: 640px;
+    }
+
+    .article-body a.film-link {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 16pt;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .article-body a.film-link:hover { text-decoration: underline; }
+    .article-body .film {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+    }
+    .article-body em {
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+    }
+
+    .section-break {
+      text-align: center;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      color: #7F170E;
+      letter-spacing: 4px;
+      margin: 22px 0;
+    }
+
+    .clearfix::after { content: ""; display: table; clear: both; }
+
+    /* ---- Historical chart accordions ---- */
+    .article-chart-wrap {
+      margin: 8px 0 20px;
+    }
+    details.chart-details {
+      margin: 10px 0;
+      border-top: 2px solid #7F170E;
+      border-bottom: 1px solid #CCC;
+    }
+    details.chart-details + details.chart-details {
+      border-top: 1px solid #CCC;
+    }
+    details.chart-details summary.chart-summary {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 12.5pt;
+      color: #7F170E;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      padding: 8px 4px;
+      cursor: pointer;
+      list-style: revert;
+    }
+    details.chart-details summary.chart-summary:hover { color: #A0231A; }
+    details.chart-details .chart-inner {
+      padding: 4px 0 14px;
+      text-align: center;
+    }
+
+    table.article-chart {
+      width: auto;
+      margin: 6px auto 4px;
+      border-collapse: collapse;
+    }
+    table.article-chart thead th {
+      background: #DCDCDC;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 11px;
+      color: #000;
+      padding: 5px 10px;
+      border-right: 1px solid #FFFFFF;
+      border-bottom: 1px solid #FFFFFF;
+      text-align: center;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+    table.article-chart thead th:last-child { border-right: none; }
+    table.article-chart tbody tr:nth-child(odd)  td { background: #EEF0FB; }
+    table.article-chart tbody tr:nth-child(even) td { background: #FFFFFF; }
+    table.article-chart td {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      color: #000;
+      padding: 4px 10px;
+      border-right: 1px solid #FFFFFF;
+      border-bottom: 1px solid #FFFFFF;
+      text-align: right;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+    table.article-chart td:last-child { border-right: none; }
+    table.article-chart td.ac-td-rank { text-align: center; color: #444; }
+    table.article-chart td.ac-td-title { text-align: left; white-space: normal; }
+    table.article-chart td.ac-td-title .ac-year { color: #777; font-size: 12px; }
+    table.article-chart td.ac-td-gross { font-weight: bold; color: #000; }
+    table.article-chart td.ac-td-gross sup { font-weight: bold; color: #7F170E; margin-left: 1px; }
+
+    table.article-chart tfoot td.ac-footnote {
+      background: #F7F7F7;
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+      font-size: 11px;
+      color: #555;
+      text-align: left;
+      white-space: normal;
+      padding: 5px 10px;
+    }
+    table.article-chart tfoot td.ac-footnote sup {
+      font-style: normal;
+      color: #7F170E;
+    }
+
+    /* ---- Record breakers list ---- */
+    .record-breakers {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
+      background: #F6F6F6;
+      border: 1px solid #DDD;
+      padding: 10px 16px;
+      margin: 8px 0 16px;
+    }
+    .record-breakers .rb-row {
+      padding: 4px 0;
+      border-bottom: 1px dotted #CCC;
+      overflow: hidden;
+    }
+    .record-breakers .rb-row:last-child { border-bottom: none; }
+    .record-breakers .rb-year {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 11px;
+      color: #7F170E;
+      display: inline-block;
+      width: 44px;
+      vertical-align: middle;
+    }
+    .record-breakers .rb-title { }
+    .record-breakers .rb-gross { font-weight: bold; float: right; }
+    .record-breakers .rb-footnote {
+      font-style: italic;
+      font-size: 12px;
+      color: #555;
+      margin: 2px 0 4px 44px;
+      border-bottom: 1px dotted #CCC;
+      padding-bottom: 6px;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">CONTENTS</span>
+      <ul>
+        <li><a href="predictions.html">PREDICTIONS</a></li>
+        <li><a href="analysis.html">ANALYSIS</a></li>
+        <li class="active"><a href="features.html">FEATURES</a></li>
+        <li><a href="releases.html">RELEASE SCHEDULE</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li><a href="franchises.html">FRANCHISES</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li class="derby"><a href="derby.html">THE DERBY</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+
+  <main class="main-content">
+    <div class="article-wrap">
+
+      <div class="article-section-header">
+        &gt; <a href="features.html">FEATURES</a>
+      </div>
+      <div class="article-section-bar"></div>
+
+      <h1 class="article-headline">The Box Office Came Back, But It Left the Movies Behind</h1>
+      <p class="article-subheadline">As Spider-Man uneventfully becomes the all-time domestic champ, we offer a postmortem on box office records.</p>
+      <p class="article-byline-name">by Box Office Jedi</p>
+      <span class="article-byline-date">September 15, 2026</span>
+
+      <div class="article-body clearfix">
+
+        <div class="article-hero">
+          <img src="assets/images/feature-the-box-office-came-back-main-image.jpg" alt="The Box Office Came Back, But It Left the Movies Behind">
+        </div>
+
+        <p class="drop-cap">It is Tuesday, September 15th. Tonight, <a href="movie.html?title=Spider-Man%3A%20Brand%20New%20Day&year=2026" class="film-link">Spider-Man: Brand New Day</a> will become the highest-grossing domestic earner of all time. As of this morning, it&rsquo;s about $800,000 away from the record, roughly its projected daily gross.</p>
+
+        <p>This comes nearly two months after its release in late July, when it broke the all-time opening weekend record, grossing $360 million domestic in three days.</p>
+
+        <p>I went to see the movie with a friend on a Monday afternoon following its big weekend, and as we ascended those long narrow escalators at AMC Times Square, I shared the news with him. &ldquo;You know this movie just opened bigger than any other movie in history?&rdquo; He thought I was lying.</p>
+
+        <p>I had also told my partner on Sunday night, after weekend estimates reported <span class="film">Brand New Day</span> was just millions shy of stealing the record from <a href="movie.html?title=Avengers%3A%20Endgame&year=2019" class="film-link">Avengers: Endgame</a>, which opened in 2019 to $357 million. They didn&rsquo;t believe me either.</p>
+
+        <p>When the first <a href="movie.html?title=Spider-Man&year=2002" class="film-link">Spider-Man</a> came out in May 2002, its record-breaking opening weekend also left me in disbelief. But it was a different kind of disbelief. With $114.8 million, it shattered the world&rsquo;s perception of event movies. Fresh into the new millennium, it felt like it was showing us the future, and it felt like the movie to do it. This is how things were going to be, and it starts now. I learned about the numbers on the radio before school, the story delivered like breaking news, and it clouded my entire day. It was like my own personal 9/11, except instead of the world ending, it was beginning.</p>
+
+        <p>It was hard to believe because we had never seen anything like it. <span class="film">Brand New Day</span>&rsquo;s $360 million opening weekend was hard to believe because&hellip; how could a movie no one&rsquo;s talking about pull off such a number? It felt more like an epilogue to <a href="movie.html?title=Spider-Man%3A%20No%20Way%20Home&year=2021" class="film-link">No Way Home</a>, its predecessor, rather than any kind of milestone. It&rsquo;s jaw-dropping because of how uneventful it is. Rather than the story breaking over the news like a terrorist attack, you hear about the new record on X from Gitesh Pandya, or in Scott Mendelson&rsquo;s newsletter, and you scroll on.</p>
+
+        <div class="article-img-center">
+          <img src="assets/images/feature-the-box-office-came-back-bom-spiderman.png" alt="Box Office Mojo coverage of Spider-Man's 2002 opening weekend record">
+        </div>
+
+        <p>I wonder about the things that might cloud my grasp of the box office today. Is this about me living in New York City, removed from the rest of the country, where you&rsquo;re deluded into thinking <a href="movie.html?title=One%20Battle%20After%20Another&year=2025" class="film-link">One Battle After Another</a> might smash $100 million, throwing off my sense of what&rsquo;s really happening in movie culture? Is it just about getting jaded the more I work in the actual industry? Or is it simply about me getting older? If I were 38 in 2002, would I have shrugged off that $114 million record?</p>
+
+        <p>No. If anything, I think it&rsquo;s about the movies getting older. In 1998, as <a href="movie.html?title=Titanic&year=1997" class="film-link">Titanic</a> slowly crept up on <a href="movie.html?title=Star%20Wars&year=1977" class="film-link">Star Wars</a>&rsquo; all-time record over the course of months, we all watched with anticipation and disbelief. We didn&rsquo;t know such things happened. <span class="film">Star Wars</span> was the highest-grossing movie of all time, and that was that. It felt like sacred history, but the movies were so young. There were so many records left to break. The movies are now a quarter century older. We know now that nothing is set in stone. We&rsquo;re reminded almost every week, it seems. We&rsquo;re reminded again today, as <span class="film">Spider-Man: Brand New Day</span> passes the all-time record held by <a href="movie.html?title=Star%20Wars%3A%20The%20Force%20Awakens&year=2015" class="film-link">Star Wars: The Force Awakens</a>.</p>
+
+        <p>Box office records are a relatively recent phenomenon, especially when it comes to opening weekends. Before <a href="movie.html?title=Jaws&year=1975" class="film-link">Jaws</a>, movies rolled out slowly&mdash;city by city over months, opening on a handful of screens and widening on word of mouth&mdash;and &ldquo;opening weekend&rdquo; as a tracked number barely existed. <span class="film">Jaws</span>, in the summer of 1975, signaled to studios that a movie could be a national event, but it took time for that to become practice. Even <a href="movie.html?title=The%20Empire%20Strikes%20Back&year=1980" class="film-link">The Empire Strikes Back</a>, the sequel to <span class="film">Star Wars</span>, played in limited release its first few weeks in 1980.</p>
+
+        <p>To put this in perspective, I compiled four charts that I&rsquo;ve never seen before: the twenty biggest opening weekends in history as they stood at the end of 1989, 1999, 2009 and 2019. I don&rsquo;t mean the biggest openings of each decade, but the record book itself, frozen at four moments in time. Read side by side, it&rsquo;s clear how fast the ground moved.</p>
+
+        <div class="article-chart-wrap">
+
+          <details class="chart-details">
+            <summary class="chart-summary">Top 20 Opening Weekends &mdash; As of End of 1989</summary>
+            <div class="chart-inner">
+              <table class="article-chart">
+                <thead>
+                  <tr><th>Rank</th><th>Film</th><th>Opening Weekend</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td class="ac-td-rank">1</td><td class="ac-td-title">Batman <span class="ac-year">(1989)</span></td><td class="ac-td-gross">$40.5M</td></tr>
+                  <tr><td class="ac-td-rank">2</td><td class="ac-td-title">Ghostbusters II <span class="ac-year">(1989)</span></td><td class="ac-td-gross">$29.5M</td></tr>
+                  <tr><td class="ac-td-rank">3</td><td class="ac-td-title">Indiana Jones and the Last Crusade <span class="ac-year">(1989)</span></td><td class="ac-td-gross">$29.4M</td></tr>
+                  <tr><td class="ac-td-rank">4</td><td class="ac-td-title">Back to the Future Part II <span class="ac-year">(1989)</span></td><td class="ac-td-gross">$27.8M</td></tr>
+                  <tr><td class="ac-td-rank">5</td><td class="ac-td-title">Beverly Hills Cop II <span class="ac-year">(1987)</span></td><td class="ac-td-gross">$26.4M</td></tr>
+                  <tr><td class="ac-td-rank">6</td><td class="ac-td-title">Indiana Jones and the Temple of Doom <span class="ac-year">(1984)</span></td><td class="ac-td-gross">$25.3M</td></tr>
+                  <tr><td class="ac-td-rank">7</td><td class="ac-td-title">Crocodile Dundee II <span class="ac-year">(1988)</span></td><td class="ac-td-gross">$24.5M</td></tr>
+                  <tr><td class="ac-td-rank">8</td><td class="ac-td-title">Return of the Jedi <span class="ac-year">(1983)</span></td><td class="ac-td-gross">$23.0M</td></tr>
+                  <tr><td class="ac-td-rank">9</td><td class="ac-td-title">Coming to America <span class="ac-year">(1988)</span></td><td class="ac-td-gross">$21.4M</td></tr>
+                  <tr><td class="ac-td-rank">10</td><td class="ac-td-title">Lethal Weapon 2 <span class="ac-year">(1989)</span></td><td class="ac-td-gross">$20.4M</td></tr>
+                  <tr><td class="ac-td-rank">11</td><td class="ac-td-title">Rambo: First Blood Part II <span class="ac-year">(1985)</span></td><td class="ac-td-gross">$20.2M</td></tr>
+                  <tr><td class="ac-td-rank">12</td><td class="ac-td-title">Rocky IV <span class="ac-year">(1985)</span></td><td class="ac-td-gross">$20.0M</td></tr>
+                  <tr><td class="ac-td-rank">13</td><td class="ac-td-title">Star Trek V: The Final Frontier <span class="ac-year">(1989)</span></td><td class="ac-td-gross">$17.4M</td></tr>
+                  <tr><td class="ac-td-rank">14</td><td class="ac-td-title">Star Trek IV: The Voyage Home <span class="ac-year">(1986)</span></td><td class="ac-td-gross">$16.9M</td></tr>
+                  <tr><td class="ac-td-rank">15</td><td class="ac-td-title">Rambo III <span class="ac-year">(1988)</span></td><td class="ac-td-gross">$16.8M</td></tr>
+                  <tr><td class="ac-td-rank">16</td><td class="ac-td-title">Star Trek III: The Search for Spock <span class="ac-year">(1984)</span></td><td class="ac-td-gross">$16.7M</td></tr>
+                  <tr><td class="ac-td-rank">17</td><td class="ac-td-title">Harlem Nights <span class="ac-year">(1989)</span></td><td class="ac-td-gross">$16.1M</td></tr>
+                  <tr><td class="ac-td-rank">18</td><td class="ac-td-title">Beverly Hills Cop <span class="ac-year">(1984)</span></td><td class="ac-td-gross">$15.2M</td></tr>
+                  <tr><td class="ac-td-rank">19</td><td class="ac-td-title">Star Trek II: The Wrath of Khan <span class="ac-year">(1982)</span></td><td class="ac-td-gross">$14.4M</td></tr>
+                  <tr><td class="ac-td-rank">20</td><td class="ac-td-title">Honey, I Shrunk the Kids <span class="ac-year">(1989)</span></td><td class="ac-td-gross">$14.3M</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+
+          <details class="chart-details">
+            <summary class="chart-summary">Top 20 Opening Weekends &mdash; As of End of 1999</summary>
+            <div class="chart-inner">
+              <table class="article-chart">
+                <thead>
+                  <tr><th>Rank</th><th>Film</th><th>Opening Weekend</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td class="ac-td-rank">1</td><td class="ac-td-title">The Lost World: Jurassic Park <span class="ac-year">(1997)</span></td><td class="ac-td-gross">$72.1M</td></tr>
+                  <tr><td class="ac-td-rank">2</td><td class="ac-td-title">Star Wars: Episode I &ndash; The Phantom Menace <span class="ac-year">(1999)</span></td><td class="ac-td-gross">$64.8M<sup>1</sup></td></tr>
+                  <tr><td class="ac-td-rank">3</td><td class="ac-td-title">Toy Story 2 <span class="ac-year">(1999)</span></td><td class="ac-td-gross">$57.3M</td></tr>
+                  <tr><td class="ac-td-rank">4</td><td class="ac-td-title">Austin Powers: The Spy Who Shagged Me <span class="ac-year">(1999)</span></td><td class="ac-td-gross">$54.9M</td></tr>
+                  <tr><td class="ac-td-rank">5</td><td class="ac-td-title">Batman Forever <span class="ac-year">(1995)</span></td><td class="ac-td-gross">$52.8M</td></tr>
+                  <tr><td class="ac-td-rank">6</td><td class="ac-td-title">Men in Black <span class="ac-year">(1997)</span></td><td class="ac-td-gross">$51.1M</td></tr>
+                  <tr><td class="ac-td-rank">7</td><td class="ac-td-title">Independence Day <span class="ac-year">(1996)</span></td><td class="ac-td-gross">$50.2M<sup>2</sup></td></tr>
+                  <tr><td class="ac-td-rank">8</td><td class="ac-td-title">Jurassic Park <span class="ac-year">(1993)</span></td><td class="ac-td-gross">$47.0M</td></tr>
+                  <tr><td class="ac-td-rank">9</td><td class="ac-td-title">Batman Returns <span class="ac-year">(1992)</span></td><td class="ac-td-gross">$45.7M</td></tr>
+                  <tr><td class="ac-td-rank">10</td><td class="ac-td-title">Mission: Impossible <span class="ac-year">(1996)</span></td><td class="ac-td-gross">$45.4M</td></tr>
+                  <tr><td class="ac-td-rank">11</td><td class="ac-td-title">Godzilla <span class="ac-year">(1998)</span></td><td class="ac-td-gross">$44.1M</td></tr>
+                  <tr><td class="ac-td-rank">12</td><td class="ac-td-title">The Mummy <span class="ac-year">(1999)</span></td><td class="ac-td-gross">$43.4M</td></tr>
+                  <tr><td class="ac-td-rank">13</td><td class="ac-td-title">Batman &amp; Robin <span class="ac-year">(1997)</span></td><td class="ac-td-gross">$42.9M</td></tr>
+                  <tr><td class="ac-td-rank">14</td><td class="ac-td-title">Big Daddy <span class="ac-year">(1999)</span></td><td class="ac-td-gross">$41.5M</td></tr>
+                  <tr><td class="ac-td-rank">15</td><td class="ac-td-title">Deep Impact <span class="ac-year">(1998)</span></td><td class="ac-td-gross">$41.2M</td></tr>
+                  <tr><td class="ac-td-rank">16</td><td class="ac-td-title">Twister <span class="ac-year">(1996)</span></td><td class="ac-td-gross">$41.1M</td></tr>
+                  <tr><td class="ac-td-rank">17</td><td class="ac-td-title">The Lion King <span class="ac-year">(1994)</span></td><td class="ac-td-gross">$40.9M<sup>3</sup></td></tr>
+                  <tr><td class="ac-td-rank">18</td><td class="ac-td-title">Batman <span class="ac-year">(1989)</span></td><td class="ac-td-gross">$40.5M</td></tr>
+                  <tr><td class="ac-td-rank">19</td><td class="ac-td-title">The Waterboy <span class="ac-year">(1998)</span></td><td class="ac-td-gross">$39.4M</td></tr>
+                  <tr><td class="ac-td-rank">20</td><td class="ac-td-title">Ace Ventura: When Nature Calls <span class="ac-year">(1995)</span></td><td class="ac-td-gross">$37.8M</td></tr>
+                </tbody>
+                <tfoot>
+                  <tr><td colspan="3" class="ac-footnote"><sup>1</sup>&nbsp;Massive $105.7M 5-day opening.&nbsp;&nbsp; <sup>2</sup>&nbsp;Massive $96.1M July 4th weekend.&nbsp;&nbsp; <sup>3</sup>&nbsp;First wide weekend.</td></tr>
+                </tfoot>
+              </table>
+            </div>
+          </details>
+
+          <details class="chart-details">
+            <summary class="chart-summary">Top 20 Opening Weekends &mdash; As of End of 2009</summary>
+            <div class="chart-inner">
+              <table class="article-chart">
+                <thead>
+                  <tr><th>Rank</th><th>Film</th><th>Opening Weekend</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td class="ac-td-rank">1</td><td class="ac-td-title">The Dark Knight <span class="ac-year">(2008)</span></td><td class="ac-td-gross">$158.4M</td></tr>
+                  <tr><td class="ac-td-rank">2</td><td class="ac-td-title">Spider-Man 3 <span class="ac-year">(2007)</span></td><td class="ac-td-gross">$151.1M</td></tr>
+                  <tr><td class="ac-td-rank">3</td><td class="ac-td-title">The Twilight Saga: New Moon <span class="ac-year">(2009)</span></td><td class="ac-td-gross">$142.8M</td></tr>
+                  <tr><td class="ac-td-rank">4</td><td class="ac-td-title">Pirates of the Caribbean: Dead Man&rsquo;s Chest <span class="ac-year">(2006)</span></td><td class="ac-td-gross">$135.6M</td></tr>
+                  <tr><td class="ac-td-rank">5</td><td class="ac-td-title">Shrek the Third <span class="ac-year">(2007)</span></td><td class="ac-td-gross">$121.6M</td></tr>
+                  <tr><td class="ac-td-rank">6</td><td class="ac-td-title">Spider-Man <span class="ac-year">(2002)</span></td><td class="ac-td-gross">$114.8M</td></tr>
+                  <tr><td class="ac-td-rank">7</td><td class="ac-td-title">Pirates of the Caribbean: At World&rsquo;s End <span class="ac-year">(2007)</span></td><td class="ac-td-gross">$114.7M</td></tr>
+                  <tr><td class="ac-td-rank">8</td><td class="ac-td-title">Transformers: Revenge of the Fallen <span class="ac-year">(2009)</span></td><td class="ac-td-gross">$109.0M<sup>4</sup></td></tr>
+                  <tr><td class="ac-td-rank">9</td><td class="ac-td-title">Star Wars: Episode III &ndash; Revenge of the Sith <span class="ac-year">(2005)</span></td><td class="ac-td-gross">$108.4M</td></tr>
+                  <tr><td class="ac-td-rank">10</td><td class="ac-td-title">Shrek 2 <span class="ac-year">(2004)</span></td><td class="ac-td-gross">$108.0M</td></tr>
+                  <tr><td class="ac-td-rank">11</td><td class="ac-td-title">X-Men: The Last Stand <span class="ac-year">(2006)</span></td><td class="ac-td-gross">$102.8M</td></tr>
+                  <tr><td class="ac-td-rank">12</td><td class="ac-td-title">Harry Potter and the Goblet of Fire <span class="ac-year">(2005)</span></td><td class="ac-td-gross">$102.7M</td></tr>
+                  <tr><td class="ac-td-rank">13</td><td class="ac-td-title">Indiana Jones and the Kingdom of the Crystal Skull <span class="ac-year">(2008)</span></td><td class="ac-td-gross">$100.1M</td></tr>
+                  <tr><td class="ac-td-rank">14</td><td class="ac-td-title">Iron Man <span class="ac-year">(2008)</span></td><td class="ac-td-gross">$98.6M</td></tr>
+                  <tr><td class="ac-td-rank">15</td><td class="ac-td-title">Harry Potter and the Prisoner of Azkaban <span class="ac-year">(2004)</span></td><td class="ac-td-gross">$93.7M</td></tr>
+                  <tr><td class="ac-td-rank">16</td><td class="ac-td-title">The Matrix Reloaded <span class="ac-year">(2003)</span></td><td class="ac-td-gross">$91.8M</td></tr>
+                  <tr><td class="ac-td-rank">17</td><td class="ac-td-title">Harry Potter and the Sorcerer&rsquo;s Stone <span class="ac-year">(2001)</span></td><td class="ac-td-gross">$90.3M</td></tr>
+                  <tr><td class="ac-td-rank">18</td><td class="ac-td-title">Harry Potter and the Chamber of Secrets <span class="ac-year">(2002)</span></td><td class="ac-td-gross">$88.4M</td></tr>
+                  <tr><td class="ac-td-rank">19</td><td class="ac-td-title">Spider-Man 2 <span class="ac-year">(2004)</span></td><td class="ac-td-gross">$88.2M</td></tr>
+                  <tr><td class="ac-td-rank">20</td><td class="ac-td-title">X2: X-Men United <span class="ac-year">(2003)</span></td><td class="ac-td-gross">$85.6M</td></tr>
+                </tbody>
+                <tfoot>
+                  <tr><td colspan="3" class="ac-footnote"><sup>4</sup>&nbsp;Five-day hit $200M, a first.</td></tr>
+                </tfoot>
+              </table>
+            </div>
+          </details>
+
+          <details class="chart-details">
+            <summary class="chart-summary">Top 20 Opening Weekends &mdash; As of End of 2019</summary>
+            <div class="chart-inner">
+              <table class="article-chart">
+                <thead>
+                  <tr><th>Rank</th><th>Film</th><th>Opening Weekend</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td class="ac-td-rank">1</td><td class="ac-td-title">Avengers: Endgame <span class="ac-year">(2019)</span></td><td class="ac-td-gross">$357.1M</td></tr>
+                  <tr><td class="ac-td-rank">2</td><td class="ac-td-title">Avengers: Infinity War <span class="ac-year">(2018)</span></td><td class="ac-td-gross">$257.7M</td></tr>
+                  <tr><td class="ac-td-rank">3</td><td class="ac-td-title">Star Wars: The Force Awakens <span class="ac-year">(2015)</span></td><td class="ac-td-gross">$248.0M</td></tr>
+                  <tr><td class="ac-td-rank">4</td><td class="ac-td-title">Star Wars: The Last Jedi <span class="ac-year">(2017)</span></td><td class="ac-td-gross">$220.0M</td></tr>
+                  <tr><td class="ac-td-rank">5</td><td class="ac-td-title">Jurassic World <span class="ac-year">(2015)</span></td><td class="ac-td-gross">$208.8M</td></tr>
+                  <tr><td class="ac-td-rank">6</td><td class="ac-td-title">The Avengers <span class="ac-year">(2012)</span></td><td class="ac-td-gross">$207.4M</td></tr>
+                  <tr><td class="ac-td-rank">7</td><td class="ac-td-title">Black Panther <span class="ac-year">(2018)</span></td><td class="ac-td-gross">$202.0M</td></tr>
+                  <tr><td class="ac-td-rank">8</td><td class="ac-td-title">The Lion King <span class="ac-year">(2019)</span></td><td class="ac-td-gross">$191.8M</td></tr>
+                  <tr><td class="ac-td-rank">9</td><td class="ac-td-title">Avengers: Age of Ultron <span class="ac-year">(2015)</span></td><td class="ac-td-gross">$191.3M</td></tr>
+                  <tr><td class="ac-td-rank">10</td><td class="ac-td-title">Incredibles 2 <span class="ac-year">(2018)</span></td><td class="ac-td-gross">$182.7M</td></tr>
+                  <tr><td class="ac-td-rank">11</td><td class="ac-td-title">Captain America: Civil War <span class="ac-year">(2016)</span></td><td class="ac-td-gross">$179.1M</td></tr>
+                  <tr><td class="ac-td-rank">12</td><td class="ac-td-title">Star Wars: The Rise of Skywalker <span class="ac-year">(2019)</span></td><td class="ac-td-gross">$177.4M</td></tr>
+                  <tr><td class="ac-td-rank">13</td><td class="ac-td-title">Beauty and the Beast <span class="ac-year">(2017)</span></td><td class="ac-td-gross">$174.8M</td></tr>
+                  <tr><td class="ac-td-rank">14</td><td class="ac-td-title">Iron Man 3 <span class="ac-year">(2013)</span></td><td class="ac-td-gross">$174.1M</td></tr>
+                  <tr><td class="ac-td-rank">15</td><td class="ac-td-title">Harry Potter and the Deathly Hallows: Part 2 <span class="ac-year">(2011)</span></td><td class="ac-td-gross">$169.2M</td></tr>
+                  <tr><td class="ac-td-rank">16</td><td class="ac-td-title">Batman v Superman: Dawn of Justice <span class="ac-year">(2016)</span></td><td class="ac-td-gross">$166.0M</td></tr>
+                  <tr><td class="ac-td-rank">17</td><td class="ac-td-title">The Dark Knight Rises <span class="ac-year">(2012)</span></td><td class="ac-td-gross">$160.9M</td></tr>
+                  <tr><td class="ac-td-rank">18</td><td class="ac-td-title">The Dark Knight <span class="ac-year">(2008)</span></td><td class="ac-td-gross">$158.4M</td></tr>
+                  <tr><td class="ac-td-rank">19</td><td class="ac-td-title">The Hunger Games: Catching Fire <span class="ac-year">(2013)</span></td><td class="ac-td-gross">$158.1M</td></tr>
+                  <tr><td class="ac-td-rank">20</td><td class="ac-td-title">Rogue One: A Star Wars Story <span class="ac-year">(2016)</span></td><td class="ac-td-gross">$155.1M</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+
+        </div><!-- /article-chart-wrap -->
+
+        <p>It&rsquo;s interesting how late all of this begins. No film had ever opened above $30 million until <span class="film">Batman</span> blew straight past it to $40.5 million in June of 1989&mdash;opening 37% ahead of the next-biggest debut in history, the first opening weekend that felt like a national event unto itself. Everything beneath it on the 1989 chart belongs to a smaller world, the same effect <span class="film">Spider-Man</span>&rsquo;s opening had in 2002.</p>
+
+        <div class="article-img-center">
+          <img src="assets/images/feature-the-box-office-came-back-bom-dark-knight.png" alt="Box Office Mojo coverage of The Dark Knight's 2008 opening weekend record">
+        </div>
+
+        <p>And the ground kept rising under all of it. To make the all-time top twenty in 1989 you needed $14.3 million. In 2009 you needed $85.6 million. In 2019, you needed to open to at least $155 million to join the club. The floor climbed faster than the ceiling, more than tenfold in thirty years. Notably, almost none of this is inflation. Ticket prices barely more than doubled over those three decades while the record itself grew nearly ninefold. <span class="film">Batman</span>&rsquo;s $40.5 million, adjusted into 2009 dollars, comes out around $70 million&mdash;which wouldn&rsquo;t make the 2009 list.</p>
+
+        <p>Each decade kind of erases the history made prior. <span class="film">Batman</span> was the biggest opening the world had ever seen in 1989, but by 1999 it had slipped to eighteenth, and by 2009 it was gone. <span class="film">The Lost World</span>&rsquo;s $72.1 million, the biggest opening in history as of 1999, wouldn&rsquo;t have made the top twenty a decade later. <span class="film">The Dark Knight</span> ran the exact same arc a generation on&mdash;the all-time record in 2009, down to eighteenth by 2019, barely clinging to the list it once topped. The milestones age just as fast: the $100 million weekend that shocked the industry in 2002 was the cost of admission by 2009. $200 million was once unthinkable. There are now ten films that have crossed it, with two above $350 million.</p>
+
+        <div class="article-img-center">
+          <img src="assets/images/feature-the-box-office-came-back-bom-avengers.png" alt="Box Office Mojo coverage of The Avengers' 2012 opening weekend record">
+        </div>
+
+        <p>Over time, the record started to fall more frequently but by less and less. <span class="film">The Lost World</span> saw a relatively big leap with 37%, but then it went up 25% with the first Harry Potter, 27% with <span class="film">Spider-Man</span>, then 18, then 11, then under 5. By the late 2000s it broke in three straight years&mdash;2006, 2007, 2008&mdash;each time by a nudge. What once felt like a generational rift became more of a seasonal formality. In 1989 <span class="film">Batman</span> stood 37% clear of the field. By 1999 the gap between first and second had narrowed to 11%. By 2009 <span class="film">The Dark Knight</span> beat <a href="movie.html?title=Spider-Man%203&year=2007" class="film-link">Spider-Man 3</a> by 4.8%.</p>
+
+        <p>And then, in 2019, the pattern snapped. Before we get into that, here&rsquo;s another view&mdash;each record breaker in sequence:</p>
+
+        <div class="record-breakers">
+          <div class="rb-row"><span class="rb-year">1989</span><span class="rb-title film">Batman</span><span class="rb-gross">$40.5 million</span></div>
+          <div class="rb-row"><span class="rb-year">1992</span><span class="rb-title film">Batman Returns</span><span class="rb-gross">$45.7 million</span></div>
+          <div class="rb-row"><span class="rb-year">1993</span><span class="rb-title film">Jurassic Park</span><span class="rb-gross">$47 million</span></div>
+          <div class="rb-row"><span class="rb-year">1995</span><span class="rb-title film">Batman Forever</span><span class="rb-gross">$52.8 million</span></div>
+          <div class="rb-row"><span class="rb-year">1997</span><span class="rb-title film">The Lost World</span><span class="rb-gross">$72.1 million</span></div>
+          <p class="rb-footnote">It&rsquo;s worth noting <em>Star Wars: Episode I &ndash; The Phantom Menace</em> opened on a Wednesday in 1999, otherwise it likely would have obliterated The Lost World&rsquo;s record and held onto it until 2002.</p>
+          <div class="rb-row"><span class="rb-year">2001</span><span class="rb-title film">Harry Potter</span><span class="rb-gross">$90.3 million</span></div>
+          <div class="rb-row"><span class="rb-year">2002</span><span class="rb-title film">Spider-Man</span><span class="rb-gross">$114.8 million</span></div>
+          <div class="rb-row"><span class="rb-year">2006</span><span class="rb-title film">Pirates of the Caribbean: Dead Man&rsquo;s Chest</span><span class="rb-gross">$135.6 million</span></div>
+          <div class="rb-row"><span class="rb-year">2007</span><span class="rb-title film">Spider-Man 3</span><span class="rb-gross">$151.1 million</span></div>
+          <div class="rb-row"><span class="rb-year">2008</span><span class="rb-title film">The Dark Knight</span><span class="rb-gross">$158.4 million</span></div>
+          <div class="rb-row"><span class="rb-year">2011</span><span class="rb-title film">Harry Potter and the Deathly Hallows: Part 2</span><span class="rb-gross">$169.2 million</span></div>
+          <div class="rb-row"><span class="rb-year">2012</span><span class="rb-title film">The Avengers</span><span class="rb-gross">$207.4 million</span></div>
+          <div class="rb-row"><span class="rb-year">2015</span><span class="rb-title film">Jurassic World</span><span class="rb-gross">$208.8 million</span></div>
+          <div class="rb-row"><span class="rb-year">2015</span><span class="rb-title film">Star Wars: The Force Awakens</span><span class="rb-gross">$248.0 million</span></div>
+          <div class="rb-row"><span class="rb-year">2018</span><span class="rb-title film">Avengers: Infinity War</span><span class="rb-gross">$257.7 million</span></div>
+          <div class="rb-row"><span class="rb-year">2019</span><span class="rb-title film">Avengers: Endgame</span><span class="rb-gross">$357.1 million</span></div>
+          <div class="rb-row"><span class="rb-year">2026</span><span class="rb-title film">Spider-Man: Brand New Day</span><span class="rb-gross">$360 million</span></div>
+        </div>
+
+        <p>From 1989 to 2018, the record was breaking by an average of $15 million. The biggest leap was by $39 million (by <span class="film">The Force Awakens</span>). But in 2019, <span class="film">Endgame</span> broke <span class="film">Infinity War</span>&rsquo;s by $100 million. It took the standing record and stacked nearly a whole <span class="film">Spider-Man</span> 2002 opening on top of it. The era <span class="film">Batman</span> opened as an outlier, <span class="film">Endgame</span> closed as one. Instead of suggesting a new frontier, the milestone felt like a conclusion.</p>
+
+        <p>Because <span class="film">Endgame</span> was the culmination of everything the blockbuster had been building toward since <span class="film">Jaws</span>. Forty-four years, one innovation at a time, all of it in service of the same goal: a bigger event. <span class="film">Jaws</span> introduced the summer popcorn movie. <span class="film">Star Wars</span> added the franchise. <span class="film">Batman</span> added the comic-book property. <a href="movie.html?title=Jurassic%20Park&year=1993" class="film-link">Jurassic Park</a> added the digital-age visual effects spectacle. <span class="film">Titanic</span> added the cross-quadrant mega hit. <span class="film">Spider-Man</span> introduced the 21st century hero. <a href="movie.html?title=The%20Dark%20Knight&year=2008" class="film-link">The Dark Knight</a> added &ldquo;prestige&rdquo;. <a href="movie.html?title=The%20Avengers&year=2012" class="film-link">The Avengers</a> established the cinematic universe.</p>
+
+        <p>Then the pandemic hit. It felt like <span class="film">Endgame</span> had cashed in on all that history just in time, and we&rsquo;d gone as high as we could go. Seven years passed without anyone touching that record&mdash;by far the longest gap between all-time opening records in the modern era.</p>
+
+        <p>This past July, <span class="film">Spider-Man: Brand New Day</span> broke the record by a hair. No one expected it. No one was really watching.</p>
+
+        <p>Some of this is inflation. Tickets averaged $5.81 in 2002. They average $12.75 in 2026. <span class="film">Spider-Man</span> 2002&rsquo;s opening in today&rsquo;s dollars would be roughly $220 million&mdash;bigger than most openings. But that doesn&rsquo;t undercut the point. Adjust <span class="film">The Dark Knight</span>&rsquo;s record-breaking $158 million from 2008 into today&rsquo;s ticket prices and you get about $249 million&mdash;still $110 million short of <span class="film">Brand New Day</span>&rsquo;s opening. Put the cultural footprint of the two movies side by side, and it doesn&rsquo;t make sense.</p>
+
+        <p>The real change is somewhere else. In 2002, when <span class="film">Spider-Man</span> opened, the culture had a shared surface. There were a handful of TV networks and major magazines. Everyone got their movie news from the same few sources. When something big happened at the box office, it was news the way an election was news. The record was a shared piece of information, and the film was a shared piece of culture.</p>
+
+        <div class="article-img-center">
+          <img src="assets/images/feature-the-box-office-came-back-time-magazine.jpg" alt="Time magazine cover">
+        </div>
+
+        <p>Because there&rsquo;s no shared broadcast anymore, it feels increasingly like there are no shared moments that last. Records used to be a proxy for cultural mass&mdash;how much of the country was looking at the same thing at the same time. Now they&rsquo;re a proxy for market share inside a fandom, which can be enormous in dollars and tiny in footprint.</p>
+
+        <p>This is good for theaters and good for studios, at least if you&rsquo;re Sony or Universal this year. The fandoms still show up in enormous numbers, even as each film&rsquo;s cultural life shrinks. There&rsquo;s no financial reason for any of it to change.</p>
+
+        <div class="article-img-center">
+          <img src="assets/images/feature-the-box-office-came-back-titanic-ad.jpg" alt="George Lucas's 1998 congratulatory ad to James Cameron in Variety, showing the Star Wars cast going down with the Titanic">
+          <div class="article-img-caption">George Lucas&rsquo;s congratulations to James Cameron, 1998, when Titanic passed Star Wars. Illustrated by Iain McCaig.</div>
+        </div>
+
+        <p>In 1998, when <span class="film">Titanic</span> dethroned <span class="film">Star Wars</span> as the highest grossing movie of all time, George Lucas took out a full-page ad in <em>Variety</em> addressed to James Cameron, depicting the <span class="film">Star Wars</span> cast going down with the ship. It was illustrated by Iain McCaig, the <span class="film">Star Wars</span> art director who was currently deep in pre-production on the first prequel&mdash;the same artist who&rsquo;d go on to design Darth Maul. Spielberg had done the same for Lucas years before, with R2-D2 reeling in <span class="film">Jaws</span> on a fishing line, and then again in 1997 when the <span class="film">Star Wars</span> re-release passed <span class="film">E.T.</span> We&rsquo;ll likely see the tradition continue tomorrow with the inevitable X graphic, thrown together by a social media intern.</p>
+
+        <p>The business is fine, but the culture around it is not. The records will break, but nobody hears them fall.</p>
+
+      </div><!-- /article-body -->
+    </div><!-- /article-wrap -->
+  </main>
+
+
+  <aside class="right-sidebar">
+
+    <!-- Release Schedule (next Friday's slate; populated by assets/js/right-sidebar.js) -->
+    <div class="rs-widget">
+      <div class="rs-widget-banner">RELEASE SCHEDULE</div>
+      <div class="rs-widget-chart">
+        <table class="rs-widget-table" id="rs-widget-table">
+          <colgroup>
+            <col class="rs-col-date">
+            <col class="rs-col-theaters">
+          </colgroup>
+          <thead>
+            <tr>
+              <th id="rs-widget-date" class="rs-widget-date-th">&mdash;</th>
+              <th class="rs-widget-theaters-th">Theaters</th>
+            </tr>
+          </thead>
+          <tbody id="rs-widget-body">
+            <tr><td colspan="2" class="rs-widget-empty">Loading&hellip;</td></tr>
+          </tbody>
+        </table>
+        <a href="releases.html" class="rs-widget-more">&gt;VIEW FULL SCHEDULE</a>
+      </div>
+    </div>
+
+    <!-- Advertisement (manually rotated every few weeks) -->
+    <div class="ad-block">
+      <div class="ad-label">Advertisement</div>
+      <a href="https://www.ebay.com/sch/i.html?_nkw=disclosure+day+poster&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&LH_TitleDesc=0&_odkw=disclosure+day+poster&_osacat=0" target="_blank" rel="noopener" class="ad-image-link">
+        <img src="assets/images/disclosure_day_ver3_xxlg.jpg" alt="Disclosure Day — In Theaters June 12">
+      </a>
+      <div class="ad-caption">Now Available on DVD</div>
+      <div class="ad-caption">
+        <a href="https://www.ebay.com/sch/i.html?_nkw=disclosure+day+poster&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&LH_TitleDesc=0&_odkw=disclosure+day+poster&_osacat=0" target="_blank" rel="noopener">Buy Poster from Ebay.com</a>
+      </div>
+    </div>
+
+  </aside>
+
+</div><!-- /page-wrapper -->
+
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">&ldquo;Serving your box office needs since 2026.&rdquo;</span>
+  <div style="margin-top:8px;">
+    <img src="assets/images/flag_sm_anim.gif" alt="American flag" style="display:inline-block;height:auto;">
+  </div>
+  <div class="footer-disclaimer">
+    Box Office Jedi is an independent fan project and is not affiliated with Box Office Mojo, IMDb, Amazon, Lucasfilm, or The Walt Disney Company. All trademarks are the property of their respective owners.
+  </div>
+</footer>
+
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+</script>
+
+<script src="assets/js/right-sidebar.js" defer></script>
+</body>
+</html>
