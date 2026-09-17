@@ -374,7 +374,7 @@
           "date": "2026-04-17",
           "releases": [
             {
-              "title": "Lee Cronin\u2019s The Mummy",
+              "title": "Lee Cronin’s The Mummy",
               "distributor": "Universal Pictures",
               "release": "Wide",
               "is_wide": true,
@@ -966,12 +966,28 @@
           "date": "2026-08-28",
           "releases": [
             {
+              "title": "Coyote vs. Acme",
+              "genre": "Adventure / Animation / Comedy",
+              "distributor": "Ketchup Entertainment",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": 3575
+            },
+            {
               "title": "The Dog Stars",
               "genre": "Action / Adventure / Thriller",
               "distributor": "Walt Disney Studios",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": 3330
+            },
+            {
+              "title": "Buddy",
+              "genre": "Fantasy / Horror",
+              "distributor": "Roadside Attractions",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": 1258
             },
             {
               "title": "Idiots",
@@ -1006,7 +1022,24 @@
               "distributor": "Paramount Pictures",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": 2903
+            },
+            {
+              "title": "Onslaught",
+              "genre": "Action / Sci-Fi / Horror",
+              "distributor": "A24",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": 1918
+            },
+            {
+              "title": "Fall 2: Deadpoint",
+              "genre": "Adventure / Thriller",
+              "distributor": "Lionsgate",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": 1704,
+              "note": "(on Weds.)"
             }
           ]
         },
@@ -1019,16 +1052,39 @@
               "distributor": "Warner Bros.",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": 4146
             },
             {
-              "title": "Tom and Jerry: Forbidden Compass",
-              "genre": "Adventure / Animation / Family",
-              "distributor": "Viva Pictures",
+              "title": "Runner",
+              "genre": "Action / Comedy / Thriller",
+              "distributor": "",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": 2568
+            },
+            {
+              "title": "The Uprising",
+              "genre": "Action / Drama / History / War",
+              "distributor": "Focus Features",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": 2068
+            },
+            {
+              "title": "Hope",
+              "genre": "Sci-Fi / Adventure",
+              "distributor": "Neon",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null,
-              "note": "(on Weds.)"
+              "theaters": 1560
+            },
+            {
+              "title": "Oasis: Don’t Look Back in Anger",
+              "genre": "Musical / Documentary",
+              "distributor": "Walt Disney Studios",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": 1225
             }
           ]
         },
