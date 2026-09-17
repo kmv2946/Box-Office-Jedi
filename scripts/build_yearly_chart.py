@@ -74,6 +74,28 @@ def is_stealth_reissue(record: dict) -> bool:
     return lifetime > yearly * 5
 
 
+def norm_title_key(s):
+    """Lowercase + strip everything non-alphanumeric — matches the key
+    format used in data/distributors.json (see build_distributor_index.py)
+    so we can fall back to it when a weekend row's own distributor field
+    is blank."""
+    if not s:
+        return ""
+    return "".join(ch for ch in s.lower() if ch.isalnum())
+
+
+def load_distributor_lookup():
+    """Load data/distributors.json's by_title map, which already merges
+    auto-detected distributors with data/distributor_overrides.json (overrides
+    win). Returns {} if the file doesn't exist yet."""
+    path = "data/distributors.json"
+    try:
+        with open(path) as f:
+            return (json.load(f) or {}).get("by_title", {})
+    except Exception:
+        return {}
+
+
 def normalize_title(s):
     """Light normalization to merge title variants across weekends.
     Mostly trims whitespace; we preserve the canonical-cased title from
@@ -164,6 +186,7 @@ def aggregate_year(year):
     # (b) merge weekends of the same film even if the scraper drops
     # movie_url between weeks.
     release_year, url_for_title = find_release_years()
+    distributor_lookup = load_distributor_lookup()
 
     weekends_dir = "data/weekends"
     pattern = os.path.join(weekends_dir, f"{year}-*.json")
@@ -218,6 +241,11 @@ def aggregate_year(year):
             wknd_gross = row.get("weekend_gross") or 0
             theaters   = row.get("theaters") or 0
             distrib    = row.get("distributor") or ""
+            if not distrib:
+                # Fall back to the site-wide distributor index (auto-detected
+                # + distributor_overrides.json), same source the daily/weekend
+                # chart pages already use for this exact gap.
+                distrib = distributor_lookup.get(norm_title_key(title), "")
             is_new     = bool(row.get("is_new"))
             wkn_rank   = row.get("rank") or 0
             wknd_total = row.get("total_gross") or 0  # film cumulative as of this weekend
@@ -306,6 +334,63 @@ def write_output(year, rows, target_path):
         json.dump(payload, f, indent=2)
 
 
+def update_yearly_index_top_picture(year, rows):
+    """Keep data/yearly_index.json's "#1 Picture" columns for the CURRENT
+    year in sync with the live yearly.json chart. This file powers the
+    yearly.html summary table (separate from yearly.json / yearly-chart.html,
+    which power the full per-year chart view) and nothing else in the
+    pipeline was updating it, so it could silently drift for months.
+
+    Deliberately scoped to just the top_title/top_gross/top_theaters/
+    top_opening fields for THIS year only — total_gross, tickets_sold,
+    avg_ticket_price, num_pictures, and every past year's row are left
+    untouched (they're hand-curated / pending the yearly-chart total_gross
+    redefinition described in CLAUDE.md, not something this script should
+    silently overwrite).
+    """
+    if not rows:
+        return
+    path = "data/yearly_index.json"
+    try:
+        with open(path) as f:
+            idx = json.load(f)
+    except Exception:
+        print(f"  (skipping yearly_index.json update — couldn't read {path})")
+        return
+
+    top = rows[0]
+    found = False
+    for y in idx.get("years", []):
+        if y.get("year") == year:
+            y["top_title"]    = top["title"]
+            y["top_gross"]    = top["total_gross"]
+            y["top_theaters"] = top["max_theaters"]
+            y["top_opening"]  = top["opening_weekend"]
+            found = True
+            break
+    if not found:
+        idx.setdefault("years", []).append({
+            "year": year,
+            "total_gross": None,
+            "change_pct": None,
+            "tickets_sold": None,
+            "tickets_change_pct": None,
+            "total_screens": None,
+            "avg_ticket_price": None,
+            "num_pictures": None,
+            "top_title": top["title"],
+            "top_gross": top["total_gross"],
+            "top_worldwide": None,
+            "top_theaters": top["max_theaters"],
+            "top_opening": top["opening_weekend"],
+        })
+
+    idx["updated"] = datetime.now().strftime("%Y-%m-%d")
+    with open(path, "w") as f:
+        json.dump(idx, f, indent=2, ensure_ascii=False)
+    print(f"  Updated {path}: {year} #1 Picture → {top['title']}")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("year", nargs="?", type=int, default=datetime.now().year)
@@ -322,6 +407,11 @@ def main():
     yearly_path = "data/yearly.json"
     write_output(args.year, rows, yearly_path)
     print(f"Wrote {yearly_path}")
+
+    # Keep yearly_index.json's "#1 Picture" row in sync for the actual
+    # current calendar year only — never touch past years here.
+    if args.year == datetime.now().year:
+        update_yearly_index_top_picture(args.year, rows)
 
     if args.archive:
         archive_path = f"data/years/{args.year}.json"

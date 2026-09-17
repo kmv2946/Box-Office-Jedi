@@ -164,6 +164,40 @@ jobs:
         run: python3 scripts/build_movie_articles_index.py
         continue-on-error: true
 
+      - name: Rebuild all-time domestic grosses chart
+        # Aggregates lifetime domestic gross per film from
+        # data/movie_weekends_shards/*.json into data/charts/domestic-lifetime.json,
+        # which powers alltime-chart.html?chart=domestic-lifetime. Runs before
+        # the movie-charts-index step below so new #1s (e.g. Spider-Man
+        # passing Star Wars: The Force Awakens) show up on movie profile
+        # pages in the same run.
+        run: python3 scripts/build_alltime_chart.py
+        continue-on-error: true
+
+      - name: Rebuild per-movie daily shards
+        # Aggregates data/daily/*.json into data/movie_daily_shards/*.json,
+        # the daily-granularity counterpart to movie_weekends_shards. Not
+        # yet consumed by any live chart (the site's own daily archive
+        # isn't deep enough for genuine all-time daily-precision charts —
+        # see build_movie_daily_shards.py docstring) but kept fresh for
+        # when it is.
+        run: python3 scripts/build_movie_daily_shards.py
+        continue-on-error: true
+
+      - name: Rebuild weekend-based & MPA/worldwide all-time charts
+        # Rebuilds every other data/charts/*.json chart that's computable
+        # live from movie_weekends_shards (opening weekends, monthly/
+        # holiday records, Nth-weekend records, second-weekend drops,
+        # per-theater averages, widest releases, movies that never hit #1,
+        # R-rated weekends) plus the MPA-rating and worldwide-gross charts
+        # (cross-referencing movies_meta_shards). Charts needing single-day
+        # precision the site's daily archive can't yet support (fastest-to-
+        # $X-million, single/opening days, Friday share, Christmas single-
+        # day, Thanksgiving 5-day) are intentionally left static — see the
+        # script's docstring.
+        run: python3 scripts/build_alltime_weekend_charts.py
+        continue-on-error: true
+
       - name: Rebuild movie charts index
         # Walks every all-time chart and records each row's rank so the
         # movie profile "Charts" panel auto-populates (e.g. Devil Wears
