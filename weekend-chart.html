@@ -280,17 +280,34 @@
 
     .wc-tw, .wc-lw { text-align: center; width: 28px; font-weight: normal; color: #333; }
     .wc-lw-new { font-weight: bold; color: #333; }
-    .wc-title-cell { white-space: normal; min-width: 160px; max-width: 280px; word-wrap: break-word; overflow-wrap: break-word; }
+    .wc-title-cell { white-space: normal; min-width: 160px; max-width: 280px; }
+    /* Table columns with auto layout size to a cell's UNWRAPPED content
+       width, so max-width on the <td> alone doesn't reliably cap it —
+       browsers still measure the inline <a>'s preferred (no-wrap) width
+       when computing the column. Making the link itself a block box with
+       its own max-width gives the column-sizing pass a hard constraint to
+       respect, so long titles (e.g. "You Had to Be There: How the...")
+       wrap onto multiple lines instead of stretching the column. */
     .wc-title-top {
+      display: block;
+      max-width: 260px;
       font-family: 'Times New Roman', Times, serif;
       font-weight: bold; font-size: 14px;
       color: #00239C; text-decoration: none;
+      white-space: normal;
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
     .wc-title-top:hover { text-decoration: underline; color: #002AF5 !important; }
     .wc-title-lower {
+      display: block;
+      max-width: 260px;
       font-family: 'Times New Roman', Times, serif;
       font-weight: bold; font-size: 14px;
       color: #00239C; text-decoration: none;
+      white-space: normal;
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
     .wc-title-lower:hover { text-decoration: underline; color: #002AF5 !important; }
     .wc-studio { text-align: center; white-space: nowrap; }
