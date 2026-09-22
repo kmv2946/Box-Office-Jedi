@@ -1,0 +1,94 @@
+{
+  "weekend": "2026-09-18",
+  "date_to": "2026-09-20",
+  "label": "September 18–20, 2026",
+  "scored_at": "2026-09-21T13:00:00-04:00",
+  "actuals": [
+    { "rank": 1, "title": "Resident Evil", "weekend_gross": 60200000 },
+    { "rank": 2, "title": "Practical Magic 2", "weekend_gross": 12200000 },
+    { "rank": 3, "title": "Spider-Man: Brand New Day", "weekend_gross": 6400000 },
+    { "rank": 4, "title": "The Odyssey", "weekend_gross": 5000000 },
+    { "rank": 5, "title": "Coyote vs. Acme", "weekend_gross": 4400000 },
+    { "rank": 6, "title": "Runner", "weekend_gross": 3000000 },
+    { "rank": 7, "title": "Daniel and the Fiery Furnace", "weekend_gross": 3300000 },
+    { "rank": 8, "title": "The Transformers: The Movie", "weekend_gross": 3103922 },
+    { "rank": 9, "title": "The Weight", "weekend_gross": 2315162 },
+    { "rank": 10, "title": "Buddy", "weekend_gross": 2000000 },
+    { "rank": 11, "title": "Shaun the Sheep: The Beast of Mossy Bottom", "weekend_gross": 1800000 },
+    { "rank": 12, "title": "Insidious: Out of the Further", "weekend_gross": 1850000 },
+    { "rank": 13, "title": "The Uprising", "weekend_gross": 1200000 },
+    { "rank": 14, "title": "Hope", "weekend_gross": 1000000 },
+    { "rank": 15, "title": "By Any Means", "weekend_gross": 700000 },
+    { "rank": 16, "title": "PAW Patrol: The Dino Movie", "weekend_gross": 665000 },
+    { "rank": 17, "title": "The End of Oak Street", "weekend_gross": 325000 },
+    { "rank": 18, "title": "Tony", "weekend_gross": 218793 },
+    { "rank": 19, "title": "Cars", "weekend_gross": 160000 },
+    { "rank": 20, "title": "Oasis: Don’t Look Back in Anger", "weekend_gross": 125000 }
+  ],
+  "leaderboard": [
+    {
+      "rank": 1,
+      "player_name": "Ernest P. Worrell",
+      "location": "Avenel, NJ",
+      "score": 75.93,
+      "correct_ranks": 6
+    },
+    {
+      "rank": 2,
+      "player_name": "Rae Saunders",
+      "location": "New York",
+      "score": 74.81,
+      "correct_ranks": 4
+    },
+    {
+      "rank": 3,
+      "player_name": "delfinasu",
+      "location": "Bucharest, Romania",
+      "score": 74.66,
+      "correct_ranks": 3
+    },
+    {
+      "rank": 4,
+      "player_name": "Dan Mack",
+      "location": "Waterloo",
+      "score": 73.31,
+      "correct_ranks": 4
+    },
+    {
+      "rank": 5,
+      "player_name": "rich p",
+      "location": "San Diego",
+      "score": 71.8,
+      "correct_ranks": 0
+    },
+    {
+      "rank": 6,
+      "player_name": "Keaton",
+      "location": "New York",
+      "score": 71.25,
+      "correct_ranks": 2
+    },
+    {
+      "rank": 7,
+      "player_name": "Austin Abrams",
+      "location": "Los Angeles",
+      "score": 67.2,
+      "correct_ranks": 0
+    },
+    {
+      "rank": 8,
+      "player_name": "CodyFSchmidt",
+      "location": "Edmonton",
+      "score": 64.64,
+      "correct_ranks": 3
+    },
+    {
+      "rank": 9,
+      "player_name": "Michael",
+      "location": "Chicago",
+      "score": 62.4,
+      "correct_ranks": 0
+    }
+  ],
+  "notes": "Rank-13+ penalty waived for this week: The Transformers: The Movie (#8) and The Weight (#9) both charted in the top 10 but weren't offered as Derby pick options, so per-title accuracy scoring was used with no rank penalty at all — players and Keaton are scored purely on how close each of their 10 picks landed to that title's actual gross, regardless of where it fell on the chart. Actuals for the 10 titles Keaton predicted were taken from the site's already-published 'Actual' figures on the Predictions page (rounded to 1 decimal, per the standard scoring convention). Insidious: Out of the Further and Oasis: Don’t Look Back in Anger weren’t among Keaton’s 10 picks but were picked by several Derby players; their actuals came from the Sunday estimate still in the local weekend-chart data (is_estimates: true) since Monday's confirmed rescrape hadn't synced yet at scoring time — worth a quick recheck once it does. Michael (Chicago), Austin Abrams (Los Angeles), and rich p (San Diego) are seeded/bonus entries with scores supplied directly."
+}

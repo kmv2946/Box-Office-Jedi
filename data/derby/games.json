@@ -1,13 +1,42 @@
 {
-  "updated": "2026-09-15",
-  "current_weekend": "2026-09-18",
+  "updated": "2026-09-21",
+  "current_weekend": "2026-09-25",
   "games": [
+    {
+      "weekend": "2026-09-25",
+      "date_to": "2026-09-27",
+      "label": "September 25–27",
+      "label_long": "September 25–27, 2026",
+      "status": "open",
+      "submit_deadline": "2026-09-24T23:59:59-04:00",
+      "headliner": "Resident Evil",
+      "allowed_titles": [
+        "Avengers: Endgame (2026 Re-Release)",
+        "Buddy",
+        "Coyote vs. Acme",
+        "Daniel and the Fiery Furnace",
+        "Forgotten Island",
+        "Heart of the Beast",
+        "Insidious: Out of the Further",
+        "Practical Magic 2",
+        "Primetime",
+        "Resident Evil",
+        "Runner",
+        "Shaun the Sheep: The Beast of Mossy Bottom",
+        "Spider-Man: Brand New Day",
+        "The Odyssey",
+        "The Transformers: The Movie",
+        "The Weight"
+      ],
+      "averages_url": null,
+      "leaderboard_url": null
+    },
     {
       "weekend": "2026-09-18",
       "date_to": "2026-09-20",
       "label": "September 18–20",
       "label_long": "September 18–20, 2026",
-      "status": "open",
+      "status": "closed",
       "submit_deadline": "2026-09-17T23:59:59-04:00",
       "headliner": "Resident Evil",
       "allowed_titles": [
@@ -27,7 +56,7 @@
         "The Uprising"
       ],
       "averages_url": null,
-      "leaderboard_url": null
+      "leaderboard_url": "data/derby/leaderboard-2026-09-18.json"
     },
     {
       "weekend": "2026-08-07",

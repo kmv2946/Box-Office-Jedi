@@ -156,10 +156,15 @@
       font-size: 15pt;
     }
 
-    /* Title cell */
+    /* Title cell — wraps long titles onto multiple lines instead of
+       running into the numeric columns (or the sidebar ad on narrow
+       layouts). */
     .pred-table td.td-title {
       font-weight: bold;
-      white-space: nowrap;
+      white-space: normal;
+      max-width: 320px;
+      word-break: break-word;
+      overflow-wrap: break-word;
       padding-right: 30px;
     }
     .pred-title-theaters {
