@@ -1,6 +1,112 @@
 {
-  "updated": "2026-09-17",
+  "updated": "2026-09-25",
   "weekends": [
+    {
+      "date_from": "2026-09-25",
+      "date_to": "2026-09-27",
+      "predictions": [
+        {
+          "pred_rank": 1,
+          "title": "Avengers: Endgame Encore",
+          "is_new": true,
+          "theaters": 3060,
+          "predicted_m": 26.5,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 1
+        },
+        {
+          "pred_rank": 2,
+          "title": "Resident Evil",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 25.6,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 2
+        },
+        {
+          "pred_rank": 3,
+          "title": "Primetime",
+          "is_new": true,
+          "theaters": 2863,
+          "predicted_m": 21.4,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 1
+        },
+        {
+          "pred_rank": 4,
+          "title": "Heart of the Beast",
+          "is_new": true,
+          "theaters": 3435,
+          "predicted_m": 19.5,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 1
+        },
+        {
+          "pred_rank": 5,
+          "title": "Forgotten Island",
+          "is_new": true,
+          "theaters": 3548,
+          "predicted_m": 13.6,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 1
+        },
+        {
+          "pred_rank": 6,
+          "title": "Practical Magic 2",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 6.2,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 3
+        },
+        {
+          "pred_rank": 7,
+          "title": "Spider-Man: Brand New Day",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 4.1,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 9
+        },
+        {
+          "pred_rank": 8,
+          "title": "The Odyssey",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 3.1,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 11
+        },
+        {
+          "pred_rank": 9,
+          "title": "Coyote vs. Acme",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 2.4,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 5
+        },
+        {
+          "pred_rank": 10,
+          "title": "Daniel and the Fiery Furnace",
+          "is_new": false,
+          "theaters": null,
+          "predicted_m": 1.6,
+          "actual_m": null,
+          "actual_total_m": null,
+          "weeks": 2
+        }
+      ]
+    },
     {
       "date_from": "2026-09-18",
       "date_to": "2026-09-20",

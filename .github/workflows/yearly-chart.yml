@@ -66,7 +66,7 @@ jobs:
         run: |
           git config user.name "Box Office Jedi Bot"
           git config user.email "bot@boxofficejedi.com"
-          git add data/yearly.json data/years/ 2>/dev/null || true
+          git add data/yearly.json data/years/ data/yearly_index.json 2>/dev/null || true
           if ! git diff --staged --quiet; then
             git commit -m "📊 Rebuild yearly chart $(date +'%Y-%m-%d')"
             git pull --rebase origin main
