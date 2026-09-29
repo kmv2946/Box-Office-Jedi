@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080, user-scalable=yes">
+  <title>Forecast: Fall Preview — Box Office Jedi</title>
+  <meta name="description" content="The movies take their classic autumn breather, wedged between two IMAX-and-Marvel bookends. Our ranked top ten for the coming months, plus the documentary that could crash the Oscar race.">
+
+  <!-- Open Graph / link preview cards -->
+  <meta property="og:type"         content="article">
+  <meta property="og:site_name"    content="Box Office Jedi">
+  <meta property="og:url"          content="https://boxofficejedi.com/fall-forecast-2026.html">
+  <meta property="og:title"        content="Forecast: Fall Preview — Box Office Jedi">
+  <meta property="og:description"  content="The movies take their classic autumn breather, wedged between two IMAX-and-Marvel bookends. Our ranked top ten for the coming months, plus the documentary that could crash the Oscar race.">
+  <meta property="og:image"        content="https://boxofficejedi.com/assets/images/og-default.jpg">
+  <meta property="og:image:width"  content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter / X cards -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Forecast: Fall Preview — Box Office Jedi">
+  <meta name="twitter:description" content="The movies take their classic autumn breather, wedged between two IMAX-and-Marvel bookends. Our ranked top ten for the coming months, plus the documentary that could crash the Oscar race.">
+  <meta name="twitter:image"       content="https://boxofficejedi.com/assets/images/og-default.jpg">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+
+    .article-wrap {
+      padding: 0;
+    }
+
+    /* FEATURE section bar */
+    .article-section-header {
+      padding: 4px 10px 2px;
+    }
+    .article-section-header a {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .article-section-header a:hover { text-decoration: underline; }
+    .article-section-bar {
+      height: 5px;
+      background: #7F170E;
+      margin-bottom: 10px;
+    }
+
+    /* Headline */
+    .article-headline {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 18pt;
+      color: #000;
+      line-height: 1.15;
+      margin: 0 10px 3px;
+    }
+
+    /* Subheadline */
+    .article-subheadline {
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+      font-size: 14pt;
+      color: #333;
+      margin: 0 10px 6px;
+    }
+
+    /* Byline */
+    .article-byline-name {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 13pt;
+      color: #000;
+      margin: 0 10px 1px;
+    }
+    .article-byline-date {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 10pt;
+      color: #000;
+      display: block;
+      margin: 0 10px 10px;
+    }
+
+    /* Body text */
+    .article-body {
+      padding: 0 10px;
+    }
+    .article-body p {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16pt;
+      line-height: 1.35;
+      color: #000;
+      margin-bottom: 10px;
+      text-align: justify;
+    }
+
+    /* Drop cap */
+    .article-body p.drop-cap::first-letter {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 4em;
+      line-height: 0.75;
+      float: left;
+      margin: 5px 3px 0 0;
+      color: #00239C;
+    }
+
+    /* Film links — first mention */
+    .article-body a.film-link {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 16pt;
+      color: #00239C;
+      text-decoration: none;
+    }
+    .article-body a.film-link:hover { text-decoration: underline; }
+
+    /* Film subsequent mention */
+    .article-body .film {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+    }
+
+    /* External links in body — keep them inline-sized, not bumped up to film-link size */
+    .article-body p a.ext-link {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      font-size: inherit;
+      color: #00239C;
+      text-decoration: underline;
+    }
+    .article-body p a.ext-link:hover { color: #0000EE; }
+
+    /* Hero image (top of article) */
+    .article-hero {
+      width: 100%;
+      margin: 0 0 14px;
+      display: block;
+    }
+    .article-hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Section break */
+    .section-break {
+      text-align: center;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16pt;
+      color: #AAAAAA;
+      letter-spacing: 6px;
+      margin: 16px 0 14px;
+    }
+
+    /* Prediction blocks — ranked list */
+    .prediction-list {
+      margin: 0 0 6px;
+      padding: 0;
+    }
+    .prediction-block {
+      border-top: 2px solid #7F170E;
+      padding: 8px 0 6px;
+      margin-bottom: 6px;
+    }
+    .prediction-block:first-child {
+      border-top: 3px double #7F170E;
+    }
+    .prediction-block:last-child {
+      border-bottom: 2px solid #7F170E;
+      margin-bottom: 14px;
+    }
+    .prediction-header {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+    }
+    .prediction-rank {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 16pt;
+      color: #7F170E;
+      min-width: 34px;
+    }
+    .prediction-title {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      font-size: 15pt;
+      color: #000;
+      flex: 1;
+    }
+    .prediction-date {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: normal;
+      font-size: 11pt;
+      color: #666;
+      white-space: nowrap;
+    }
+    .prediction-block p {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15pt;
+      line-height: 1.35;
+      color: #000;
+      margin: 0 0 8px 42px;
+      text-align: justify;
+    }
+    .prediction-picks {
+      margin: 4px 0 0 42px;
+      padding: 6px 10px;
+      background: #F4F4FE;
+      border-left: 3px solid #00239C;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11pt;
+      line-height: 1.5;
+      color: #000;
+    }
+    .prediction-picks strong {
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: bold;
+      color: #7F170E;
+    }
+
+    /* Clearfix */
+    .clearfix::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <span class="logo-top">BOX OFFICE</span>
+      <span class="logo-bottom">JEDI</span>
+    </a>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search..." id="sidebar-search-input">
+      <button type="button" onclick="doSearch()">Go</button>
+    </div>
+    <div class="sidebar-nav">
+      <span class="nav-banner">BOX OFFICE</span>
+      <ul>
+        <li><a href="daily.html">DAILY</a></li>
+        <li><a href="weekend.html">WEEKEND</a></li>
+        <li><a href="yearly.html">YEARLY</a></li>
+        <li><a href="alltime.html">ALL TIME</a></li>
+      </ul>
+      <span class="nav-banner">CONTENTS</span>
+      <ul>
+        <li><a href="predictions.html">PREDICTIONS</a></li>
+        <li class="active"><a href="analysis.html">ANALYSIS</a></li>
+        <li><a href="features.html">FEATURES</a></li>
+        <li><a href="releases.html">RELEASE SCHEDULE</a></li>
+        <li><a href="showdowns.html">SHOWDOWNS</a></li>
+        <li><a href="franchises.html">FRANCHISES</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li class="derby"><a href="derby.html">THE DERBY</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="sidebar-home">HOME</a>
+  </nav>
+
+
+  <main class="main-content">
+    <div class="article-wrap">
+
+      <div class="article-section-header">
+        &gt; <a href="analysis.html">ANALYSIS</a>
+      </div>
+      <div class="article-section-bar"></div>
+
+      <h1 class="article-headline">Forecast: Fall Preview</h1>
+      <p class="article-byline-name">by Box Office Jedi</p>
+      <span class="article-byline-date">September 14, 2026</span>
+
+      <div class="article-body clearfix">
+
+        <div class="article-hero">
+          <img src="assets/images/forecast-fall-2026.png" alt="Forecast: Fall Preview">
+        </div>
+
+        <p class="drop-cap">After a relatively monumental summer, the movies are taking a classic autumn breather. That used to be normal until the late 2010s, when studios realized they could open tentpole releases in the off months (<span class="film">It Chapter One</span>, <span class="film">It Chapter Two</span>, <span class="film">Joker</span>, <span class="film">Venom</span>, <span class="film">Beetlejuice Beetlejuice</span>). Last September saw two movies open above $70 million in the first two weeks (<span class="film">The Conjuring: Last Rites</span>, <span class="film">Demon Slayer</span>). This year, the only movie that seems poised to come close to that is <a href="movie.html?title=Resident%20Evil&amp;year=2026" class="film-link">Resident Evil</a>.</p>
+
+        <p>More than anything, these coming months are filler between two matching bookends&mdash;each pairing a prestige IMAX event with a Marvel heavy-hitter. Behind us we have <a href="movie.html?title=The%20Odyssey&amp;year=2026" class="film-link">The Odyssey</a> and <a href="movie.html?title=Spider-Man%3A%20Brand%20New%20Day&amp;year=2026" class="film-link">Spider-Man: Brand New Day</a>. Ahead of us, in December, we have <a href="movie.html?title=Dune%3A%20Part%20Three&amp;year=2026" class="film-link">Dune: Part Three</a> and <a href="movie.html?title=Avengers%3A%20Doomsday&amp;year=2026" class="film-link">Avengers: Doomsday</a>.</p>
+
+        <p>And these movies fall in the wake of a lot of industry upheaval. <a href="movie.html?title=Obsession&amp;year=2026" class="film-link">Obsession</a> and <a href="movie.html?title=Backrooms&amp;year=2026" class="film-link">Backrooms</a> have sparked renewed interest in new(ish) talent. Paramount cleared a major hurdle in its bid to buy Warner Bros. Donald Trump is pushing a federal tax credit for Hollywood. And on humanity&rsquo;s behalf, Ben Stiller and Mark Ruffalo have linked arms with Bernie Sanders and Steve Bannon in the good fight against Artificial Intelligence.</p>
+
+        <p>And so the movies have gone quiet, for now. The festival circuit, too. Unlike the year <span class="film">Anora</span>, <span class="film">The Brutalist</span>, and <span class="film">Emilia P&eacute;rez</span> emerged to reshape the Oscar narrative, nothing this year has shaken up the race. It was all decided in July.</p>
+
+        <p>While we don&rsquo;t have it ranked in our projections, the event of the season is surely A24&rsquo;s <a href="movie.html?title=You%20Can%20See%20Everything&amp;year=2026" class="film-link">You Can See Everything</a>. After a loud, surprise premiere at Telluride, the teaser trailer went viral, sparking a lot of speculation around the film. We didn&rsquo;t rank it because it&rsquo;s hard to say how far it will reach without knowing A24&rsquo;s rollout plan. There has only been one documentary to really transcend a limited audience: <span class="film">Fahrenheit 9/11</span> grossed $119.2 million domestic in 2004. Two, if you count <span class="film">March of the Penguins</span>&rsquo; $77.4 million haul a year later. <span class="film">You Can See Everything</span> also reminds us of <span class="film">Borat</span>&mdash;a niche comic who found his way to a mass audience. <span class="film">Borat</span> and <span class="film">Fahrenheit 9/11</span> rolled out almost identically, opening moderately wide, around 800 theaters, then expanding into the thousands. <span class="film">Borat</span> stacked back-to-back $25-million-plus weekends ($26.4M, then $29M as it widened); <span class="film">Fahrenheit 9/11</span> opened just under that, at $23.9 million, and became the highest-grossing traditional documentary ever. That&rsquo;s the sweet spot for <span class="film">You Can See Everything</span>, rather than keeping it in platform release its first couple of weeks. While it could very well end up closer to <span class="film">Bowling for Columbine</span> ($21.6 million domestic total), we absolutely live in a world where a three-hour documentary opens above $25 million and lands a Best Picture nomination.</p>
+
+        <p>Here are our predictions for the top ten grossers in the coming months, including our guess for opening weekend and domestic total gross.</p>
+
+        <div class="prediction-list">
+
+          <div class="prediction-block">
+            <div class="prediction-header">
+              <span class="prediction-rank">1.</span>
+              <span class="prediction-title">The Hunger Games: Sunrise on the Reaping</span>
+              <span class="prediction-date">November 20</span>
+            </div>
+            <p>The original <a href="movie.html?title=The%20Hunger%20Games" class="film-link">Hunger Games</a>, from March 2012, was the peak moment of the YA adaptation era. The <span class="film">Harry Potter</span> franchise had concluded in 2011, the <span class="film">Twilight</span> saga was ending in November 2012, and <span class="film">The Hunger Games</span> launched on the crest of their wave. But since then, YA adaptations have dwindled. The final <span class="film">Hunger Games</span> movie fizzled, and the <span class="film">Divergent</span> franchise didn&rsquo;t even give its final film a theatrical release. So no one was expecting fireworks from 2023&rsquo;s <span class="film">The Hunger Games: The Ballad of Songbirds &amp; Snakes</span>, but it had decent legs, winding up with a domestic total of $161 million (roughly <span class="film">Catching Fire</span>&rsquo;s opening weekend gross).</p>
+            <p>That number feels like the floor here. Since 2023, there&rsquo;s been a palpable nostalgia for the 2012&ndash;2016 era, when the original <span class="film">Hunger Games</span> movies came out. It&rsquo;s not a quantifiable nostalgia, but it does seem to be lending this installment something magnetic.</p>
+            <p>And with no real competition until December 18th, expect it to leg out.</p>
+            <div class="prediction-picks">
+              <div><strong>Opening Weekend:</strong> $65 million</div>
+              <div><strong>Domestic Total:</strong> $180 million</div>
+            </div>
+          </div>
+
+          <div class="prediction-block">
+            <div class="prediction-header">
+              <span class="prediction-rank">2.</span>
+              <span class="prediction-title">Resident Evil</span>
+              <span class="prediction-date">September 18</span>
+            </div>
+            <p>Probably the easiest layup of the season. While this prediction is technically an overperformance, there&rsquo;d be nothing surprising about it.</p>
+            <div class="prediction-picks">
+              <div><strong>Opening Weekend:</strong> $60 million</div>
+              <div><strong>Domestic Total:</strong> $144 million</div>
+            </div>
+          </div>
+
+          <div class="prediction-block">
+            <div class="prediction-header">
+              <span class="prediction-rank">3.</span>
+              <span class="prediction-title">Verity</span>
+              <span class="prediction-date">October 2</span>
+            </div>
+            <p>We consider this a conservative prediction. There&rsquo;s a perfect storm here: the Anne Hathaway&ndash;Dakota Johnson pairing echoes the Amanda Seyfried&ndash;Sydney Sweeney two-hander from <span class="film">The Housemaid</span>, last holiday season&rsquo;s runaway hit&mdash;but with arguably more compelling leads.</p>
+            <div class="prediction-picks">
+              <div><strong>Opening Weekend:</strong> $46 million</div>
+              <div><strong>Domestic Total:</strong> $137 million</div>
+            </div>
+          </div>
+
+          <div class="prediction-block">
+            <div class="prediction-header">
+              <span class="prediction-rank">4.</span>
+              <span class="prediction-title">Other Mommy</span>
+              <span class="prediction-date">October 9</span>
+            </div>
+            <p>Horror is kind of becoming one of the only reasons for people to go to the movies anymore. All you need to do to overperform is not completely fumble the marketing. <a href="movie.html?title=Other%20Mommy&amp;year=2026" class="film-link">Other Mommy</a> seems like it&rsquo;s falling somewhere between <span class="film">Smile</span> and <span class="film">Weapons</span>, which is a great place to be. This also benefits from a lack of competition&mdash;there are literally no wide releases currently slated for Halloween weekend. It could only suffer from showing too much in its later trailers.</p>
+            <div class="prediction-picks">
+              <div><strong>Opening Weekend:</strong> $33 million</div>
+              <div><strong>Domestic Total:</strong> $90 million</div>
+            </div>
+          </div>
+
+          <div class="prediction-block">
+            <div class="prediction-header">
+              <span class="prediction-rank">5.</span>
+              <span class="prediction-title">Hexed</span>
+              <span class="prediction-date">November 25</span>
+            </div>
+            <p>What is this movie? Random and totally safe prediction here. Original animation is generally in trouble, with DreamWorks&rsquo; <a href="movie.html?title=Forgotten%20Island&amp;year=2026" class="film-link">Forgotten Island</a> not even making this list.</p>
+            <div class="prediction-picks">
+              <div><strong>Opening Weekend:</strong> $26 million</div>
+              <div><strong>Domestic Total:</strong> $86 million</div>
+            </div>
+          </div>
+
+          <div class="prediction-block">
+            <div class="prediction-header">
+              <span class="prediction-rank">6.</span>
+              <span class="prediction-title">Focker-In-Law</span>
+              <span class="prediction-date">November 25</span>
+            </div>
+            <p>This is a pretty generous prediction. We don&rsquo;t want to write it off completely, since there&rsquo;s still goodwill around the original movie, but Robert De Niro and Ben Stiller have both driven themselves into irrelevance more so than nearly any other A-lister. If this IP struggled in 2010&mdash;<span class="film">Little Fockers</span> ended its run at just over half of its predecessor ($148 million to <span class="film">Meet the Fockers</span>&rsquo; $279 million)&mdash;it will certainly have trouble in 2026. The floor is very low with this one.</p>
+            <div class="prediction-picks">
+              <div><strong>Opening Weekend:</strong> $29 million</div>
+              <div><strong>Domestic Total:</strong> $82 million</div>
+            </div>
+          </div>
+
+          <div class="prediction-block">
+            <div class="prediction-header">
+              <span class="prediction-rank">7.</span>
+              <span class="prediction-title">Godzilla Minus Zero</span>
+              <span class="prediction-date">November 6</span>
+            </div>
+            <p>This is a real wildcard. The trailer touting &ldquo;the first Japanese production filmed for IMAX,&rdquo; with the promise of Ghidorah, suggests a bump from <span class="film">Godzilla Minus One</span>. But unlike the <span class="film">Godzilla x Kong</span> movies Warner Bros has been putting out, <a href="movie.html?title=Godzilla%20Minus%20Zero&amp;year=2026" class="film-link">Godzilla Minus Zero</a> feels like it has the potential to transcend the kaiju fanbase and net a more general base of nerds. People are rooting for this iteration of Godzilla. <span class="film">Godzilla Minus One</span>&rsquo;s Best Visual Effects win kind of says it all.</p>
+            <p>It could go any way, but our guess feels like it&rsquo;s on the conservative side. If there&rsquo;s real traction in the nerd community, this could reach a $40&ndash;50 million opening weekend.</p>
+            <div class="prediction-picks">
+              <div><strong>Opening Weekend:</strong> $27 million</div>
+              <div><strong>Domestic Total:</strong> $70 million</div>
+            </div>
+          </div>
+
+          <div class="prediction-block">
+            <div class="prediction-header">
+              <span class="prediction-rank">8.</span>
+              <span class="prediction-title">Heart of the Beast</span>
+              <span class="prediction-date">September 25</span>
+            </div>
+            <p>One for the flyover states.</p>
+            <div class="prediction-picks">
+              <div><strong>Opening Weekend:</strong> $19 million</div>
+              <div><strong>Domestic Total:</strong> $70 million</div>
+            </div>
+          </div>
+
+          <div class="prediction-block">
+            <div class="prediction-header">
+              <span class="prediction-rank">9.</span>
+              <span class="prediction-title">Primetime</span>
+              <span class="prediction-date">September 25</span>
+            </div>
+            <p>Doing what <span class="film">The Smashing Machine</span> was supposed to do last year.</p>
+            <div class="prediction-picks">
+              <div><strong>Opening Weekend:</strong> $18 million</div>
+              <div><strong>Domestic Total:</strong> $60 million</div>
+            </div>
+          </div>
+
+          <div class="prediction-block">
+            <div class="prediction-header">
+              <span class="prediction-rank">10.</span>
+              <span class="prediction-title">Digger</span>
+              <span class="prediction-date">October 2</span>
+            </div>
+            <p>This will be a close-to-exact repeat of <span class="film">One Battle After Another</span>, except it&rsquo;s not winning Best Picture (it probably won&rsquo;t even get nominated). With an unrecognizable Tom Cruise, two-time Best Director winner I&ntilde;&aacute;rritu sets out to repeat what he did with Leonardo DiCaprio in <span class="film">The Revenant</span>, but a decade later, people can see through I&ntilde;&aacute;rritu&rsquo;s pseudo-sophistication and, frankly, they don&rsquo;t care. This is a generous prediction.</p>
+            <div class="prediction-picks">
+              <div><strong>Opening Weekend:</strong> $21 million</div>
+              <div><strong>Domestic Total:</strong> $59 million</div>
+            </div>
+          </div>
+
+        </div><!-- /prediction-list -->
+
+        <div class="section-break">* * *</div>
+
+        <p>There are also a handful of titles this season that could very well end their domestic runs below $20 million, but have the potential to break out. <a href="movie.html?title=Wildwood&amp;year=2026" class="film-link">Wildwood</a> is LAIKA&rsquo;s latest, and while the studio hasn&rsquo;t had Pixar-level success at the domestic box office, its more artisanal approach has earned it a good reputation. The 15th-anniversary run of <span class="film">Coraline</span> played spectacularly for a re-release ($33 million domestic) and points to a real devotion to the studio that could pay off for <span class="film">Wildwood</span>. <a href="movie.html?title=Whalefall&amp;year=2026" class="film-link">Whalefall</a> features Austin Abrams leading another very straightforward race for survival&mdash;this time clawing his way out of the belly of a whale, in a tight runtime. Whales aren&rsquo;t as proven as sharks, but this should draw the same crowd. Expect an opening around $6&ndash;8 million, but if the stars align, a $16&ndash;18 million breakout in line with <span class="film">The Shallows</span> (2016) isn&rsquo;t out of the question. <a href="movie.html?title=I%20Play%20Rocky&amp;year=2026" class="film-link">I Play Rocky</a> feels like it&rsquo;s striking a nerve, and could feasibly make a lot of money and land a Best Picture nomination. Realistically, it&rsquo;ll play moderately well for a festival movie ($40&ndash;50 million domestic) and settle for a Golden Globe nomination. <a href="movie.html?title=Ebenezer&amp;year=2026" class="film-link">Ebenezer</a>, the Johnny Depp reboot, leans heavily on the return of &ldquo;the master of misfits,&rdquo; citing the rowdy characters he&rsquo;s given us through the ages. We don&rsquo;t know why Disney didn&rsquo;t just let him go straight to reprising Jack Sparrow. Just kidding&mdash;this is Paramount.</p>
+
+        <p>Likely bombs include <span class="film">Forgotten Island</span>, <a href="movie.html?title=The%20Cat%20in%20the%20Hat&amp;year=2026" class="film-link">The Cat in the Hat</a>, <a href="movie.html?title=Clayface&amp;year=2026" class="film-link">Clayface</a>, <a href="movie.html?title=Street%20Fighter&amp;year=2026" class="film-link">Street Fighter</a>, and, finally, <a href="movie.html?title=The%20Social%20Reckoning&amp;year=2026" class="film-link">The Social Reckoning</a>. What could have been a major event&mdash;and should have been called <span class="film">The Social Network 2</span>&mdash;instead gets a knee-jerk Hollywood approach from Aaron Sorkin (like this season&rsquo;s other billionaire tell-alls, <a href="movie.html?title=Ink&amp;year=2026" class="film-link">Ink</a>, <a href="movie.html?title=Artificial&amp;year=2026" class="film-link">Artificial</a>, and <a href="movie.html?title=Musk&amp;year=2026" class="film-link">Musk</a>) that cheapens the whole thing. This will benefit Nathan Fielder.</p>
+
+        <p>Let&rsquo;s assume <span class="film">You Can See Everything</span> opens to 800 theaters, then expands to 2,100 in its second week. We take a chance and guess a $16 million opening weekend ($20,000 per screen), and a $14 million second weekend. That could be enough for a number one debut.</p>
+
+      </div><!-- /article-body -->
+    </div><!-- /article-wrap -->
+  </main>
+
+
+  <aside class="right-sidebar">
+
+    <!-- Release Schedule (next Friday's slate; populated by assets/js/right-sidebar.js) -->
+    <div class="rs-widget">
+      <div class="rs-widget-banner">RELEASE SCHEDULE</div>
+      <div class="rs-widget-chart">
+        <table class="rs-widget-table" id="rs-widget-table">
+          <colgroup>
+            <col class="rs-col-date">
+            <col class="rs-col-theaters">
+          </colgroup>
+          <thead>
+            <tr>
+              <th id="rs-widget-date" class="rs-widget-date-th">&mdash;</th>
+              <th class="rs-widget-theaters-th">Theaters</th>
+            </tr>
+          </thead>
+          <tbody id="rs-widget-body">
+            <tr><td colspan="2" class="rs-widget-empty">Loading&hellip;</td></tr>
+          </tbody>
+        </table>
+        <a href="releases.html" class="rs-widget-more">&gt;VIEW FULL SCHEDULE</a>
+      </div>
+    </div>
+
+    <!-- Advertisement (manually rotated every few weeks) -->
+    <div class="ad-block">
+      <div class="ad-label">Advertisement</div>
+      <a href="https://www.ebay.com/sch/i.html?_nkw=disclosure+day+poster&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&LH_TitleDesc=0&_odkw=disclosure+day+poster&_osacat=0" target="_blank" rel="noopener" class="ad-image-link">
+        <img src="assets/images/disclosure_day_ver3_xxlg.jpg" alt="Disclosure Day — In Theaters June 12">
+      </a>
+      <div class="ad-caption">Now on DVD</div>
+      <div class="ad-caption">
+        <a href="https://www.ebay.com/sch/i.html?_nkw=disclosure+day+poster&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&LH_TitleDesc=0&_odkw=disclosure+day+poster&_osacat=0" target="_blank" rel="noopener">Buy Poster from Ebay.com</a>
+      </div>
+    </div>
+
+  </aside>
+
+</div><!-- /page-wrapper -->
+
+
+<footer class="site-footer">
+  Box Office Jedi &copy; <span id="footer-year">2026</span>
+  <span class="footer-tagline">&ldquo;Serving your box office needs since 2026.&rdquo;</span>
+  <div style="margin-top:8px;">
+    <img src="assets/images/flag_sm_anim.gif" alt="American flag" style="display:inline-block;height:auto;">
+  </div>
+  <div class="footer-disclaimer">
+    Box Office Jedi is an independent fan project and is not affiliated with Box Office Mojo, IMDb, Amazon, Lucasfilm, or The Walt Disney Company. All trademarks are the property of their respective owners.
+  </div>
+</footer>
+
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  function doSearch() {
+    const q = document.getElementById('sidebar-search-input').value.trim();
+    if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  }
+  document.getElementById('sidebar-search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+</script>
+
+<script src="assets/js/right-sidebar.js" defer></script>
+</body>
+</html>
