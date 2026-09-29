@@ -1,0 +1,93 @@
+{
+  "weekend": "2026-09-25",
+  "date_to": "2026-09-27",
+  "label": "September 25–27, 2026",
+  "scored_at": "2026-09-29T12:00:00-04:00",
+  "actuals": [
+    { "rank": 1, "title": "Avengers: Endgame", "weekend_gross": 26000000 },
+    { "rank": 2, "title": "Resident Evil", "weekend_gross": 23300000 },
+    { "rank": 3, "title": "Heart of the Beast", "weekend_gross": 20000000 },
+    { "rank": 4, "title": "Primetime", "weekend_gross": 19197764 },
+    { "rank": 5, "title": "Forgotten Island", "weekend_gross": 12800000 },
+    { "rank": 6, "title": "Practical Magic 2", "weekend_gross": 5675000 },
+    { "rank": 7, "title": "Spider-Man: Brand New Day", "weekend_gross": 4100000 },
+    { "rank": 8, "title": "The Odyssey", "weekend_gross": 3700000 },
+    { "rank": 9, "title": "Coyote vs. Acme", "weekend_gross": 1912386 },
+    { "rank": 10, "title": "Daniel and the Fiery Furnace", "weekend_gross": 1514000 },
+    { "rank": 11, "title": "Runner", "weekend_gross": 814381 },
+    { "rank": 12, "title": "Insidious: Out of the Further", "weekend_gross": 730000 }
+  ],
+  "leaderboard": [
+    {
+      "rank": 1,
+      "player_name": "Keaton",
+      "location": "New York",
+      "score": 91.0,
+      "correct_ranks": 8
+    },
+    {
+      "rank": 2,
+      "player_name": "delfinasu",
+      "location": "Bucharest, Romania",
+      "score": 83.5,
+      "correct_ranks": 7
+    },
+    {
+      "rank": 3,
+      "player_name": "Rae Saunders",
+      "location": "New York",
+      "score": 77.75,
+      "correct_ranks": 3
+    },
+    {
+      "rank": 4,
+      "player_name": "Ernest P. Worrell",
+      "location": "Avenel, NJ",
+      "score": 74.81,
+      "correct_ranks": 5
+    },
+    {
+      "rank": 5,
+      "player_name": "Dan Mack",
+      "location": "Waterloo",
+      "score": 74.6,
+      "correct_ranks": 0
+    },
+    {
+      "rank": 6,
+      "player_name": "Buster Keaton",
+      "location": "Universal City, CA",
+      "score": 74.2,
+      "correct_ranks": 0
+    },
+    {
+      "rank": 7,
+      "player_name": "OG",
+      "location": "Los Angeles",
+      "score": 71.5,
+      "correct_ranks": 0
+    },
+    {
+      "rank": 8,
+      "player_name": "numbersix",
+      "location": "UK",
+      "score": 62.6,
+      "correct_ranks": 3
+    },
+    {
+      "rank": 9,
+      "player_name": "rich p",
+      "location": "San Diego",
+      "score": 61.2,
+      "correct_ranks": 0
+    },
+    {
+      "rank": 10,
+      "player_name": "Austin Abrams",
+      "location": "Los Angeles",
+      "score": 56.8,
+      "correct_ranks": 0
+    }
+  ],
+  "notes": "Submissions used the pre-rename title ‘Avengers: Endgame (2026 Re-Release)’, which the scraper's own chart lists simply as ‘Avengers: Endgame’ (site pages call it ‘Avengers: Endgame Encore’) — all treated as the same film for scoring. Standard rank-13+ penalty rules applied, but no pick fell past rank 12 this week so nothing was actually docked. Dan Mack, Buster Keaton, OG, rich p, and Austin Abrams are seeded/bonus entries added to round out the top 10, with scores supplied directly."
+}

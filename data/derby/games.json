@@ -1,13 +1,41 @@
 {
-  "updated": "2026-09-21",
-  "current_weekend": "2026-09-25",
+  "updated": "2026-09-29",
+  "current_weekend": "2026-10-02",
   "games": [
+    {
+      "weekend": "2026-10-02",
+      "date_to": "2026-10-04",
+      "label": "October 2–4",
+      "label_long": "October 2–4, 2026",
+      "status": "open",
+      "submit_deadline": "2026-10-01T23:59:59-04:00",
+      "headliner": "Verity",
+      "allowed_titles": [
+        "Avengers: Endgame Encore",
+        "Beware Boiúna",
+        "Coyote vs. Acme",
+        "Daniel and the Fiery Furnace",
+        "Digger",
+        "Forgotten Island",
+        "Heart of the Beast",
+        "Insidious: Out of the Further",
+        "Practical Magic 2",
+        "Primetime",
+        "Resident Evil",
+        "Runner",
+        "Spider-Man: Brand New Day",
+        "The Odyssey",
+        "Verity"
+      ],
+      "averages_url": null,
+      "leaderboard_url": null
+    },
     {
       "weekend": "2026-09-25",
       "date_to": "2026-09-27",
       "label": "September 25–27",
       "label_long": "September 25–27, 2026",
-      "status": "open",
+      "status": "closed",
       "submit_deadline": "2026-09-24T23:59:59-04:00",
       "headliner": "Resident Evil",
       "allowed_titles": [
@@ -29,7 +57,7 @@
         "The Weight"
       ],
       "averages_url": null,
-      "leaderboard_url": null
+      "leaderboard_url": "data/derby/leaderboard-2026-09-25.json"
     },
     {
       "weekend": "2026-09-18",

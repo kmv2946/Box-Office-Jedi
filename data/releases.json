@@ -1159,14 +1159,6 @@
               "release": "Wide",
               "is_wide": true,
               "theaters": 2863
-            },
-            {
-              "title": "Victorian Psycho",
-              "genre": "Comedy / Horror",
-              "distributor": "Bleecker Street",
-              "release": "Limited",
-              "is_wide": false,
-              "theaters": null
             }
           ]
         }
@@ -1193,6 +1185,14 @@
               "distributor": "Amazon MGM Studios",
               "release": "Wide",
               "is_wide": true,
+              "theaters": null
+            },
+            {
+              "title": "Donnie Darko (25th Anniversary)",
+              "genre": "Drama / Mystery / Sci-Fi / Thriller",
+              "distributor": "Fathom Events",
+              "release": "Limited",
+              "is_wide": false,
               "theaters": null
             }
           ]
@@ -1402,6 +1402,14 @@
               "title": "Paper Tiger",
               "genre": "Crime / Drama / Thriller",
               "distributor": "Neon",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
+            },
+            {
+              "title": "Victorian Psycho",
+              "genre": "Comedy / Horror",
+              "distributor": "Bleecker Street",
               "release": "Limited",
               "is_wide": false,
               "theaters": null
