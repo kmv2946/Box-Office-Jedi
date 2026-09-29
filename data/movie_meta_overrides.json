@@ -1,5 +1,19 @@
 {
   "_comment": "Manual movie metadata for upcoming/recent films. Sparse — only fields we want to lock are included. Fields omitted fall through to auto-fetched shard data when post-release scraping populates them. Slugs match the norm_title-year format produced by aggregate_movie_weekends.py so the override entry merges with auto-scraped weekend data on the same key.",
+  "youcanseeeverything-2026": {
+    "title": "You Can See Everything",
+    "year": 2026,
+    "release_date": "2026-10-16",
+    "distributor": "A24",
+    "genres": [
+      "Biography",
+      "Documentary"
+    ],
+    "runtime": 174,
+    "mpaa": "R",
+    "poster_url": "/assets/images/posters/you-can-see-everything-2026.jpg",
+    "_source": "manual"
+  },
   "buddy-2026": {
     "title": "Buddy",
     "year": 2026,
