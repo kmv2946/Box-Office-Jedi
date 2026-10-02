@@ -1172,20 +1172,28 @@
           "date": "2026-10-02",
           "releases": [
             {
-              "title": "Digger",
-              "genre": "Comedy / Drama",
-              "distributor": "Warner Bros.",
-              "release": "Wide",
-              "is_wide": true,
-              "theaters": null
-            },
-            {
               "title": "Verity",
               "genre": "Crime / Drama / Romance / Thriller",
               "distributor": "Amazon MGM Studios",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": 3510
+            },
+            {
+              "title": "Digger",
+              "genre": "Comedy / Drama",
+              "distributor": "Warner Bros.",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": 3321
+            },
+            {
+              "title": "Beware Boiúna",
+              "genre": "Horror / Adventure",
+              "distributor": "Lionsgate Premiere",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": 1121
             },
             {
               "title": "Donnie Darko (25th Anniversary)",
