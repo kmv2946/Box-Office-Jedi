@@ -1,5 +1,12 @@
 {
   "_comment": "Manual movie metadata for upcoming/recent films. Sparse — only fields we want to lock are included. Fields omitted fall through to auto-fetched shard data when post-release scraping populates them. Slugs match the norm_title-year format produced by aggregate_movie_weekends.py so the override entry merges with auto-scraped weekend data on the same key.",
+  "thedarkknight": {
+    "title": "The Dark Knight",
+    "year": 2008,
+    "release_date": "2008-07-16",
+    "distributor": "Warner Bros.",
+    "_source": "manual"
+  },
   "youcanseeeverything-2026": {
     "title": "You Can See Everything",
     "year": 2026,
