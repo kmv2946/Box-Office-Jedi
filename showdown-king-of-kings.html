@@ -27,6 +27,18 @@
     /* Page-specific: equal-width film columns (Michael matches Passion of the Christ) */
     .sd-table .sd-col-1,
     .sd-table .sd-col-2 { width: 140px; min-width: 140px; }
+
+    /* Page-specific: top-align the posters, and give every title a two-line
+       tall box with the text vertically centered, so "Michael" sits centered
+       against the two-line "The Passion of the Christ". */
+    .sd-table th.sd-head-cell { vertical-align: top; }
+    .sd-table th.sd-head-cell .sd-movie-title-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.8em;
+      line-height: 1.2;
+    }
   </style>
 </head>
 <body>
