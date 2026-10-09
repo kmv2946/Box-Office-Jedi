@@ -1214,7 +1214,7 @@
               "distributor": "Universal Pictures",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": 3365
             },
             {
               "title": "The Social Reckoning",
@@ -1222,7 +1222,23 @@
               "distributor": "Sony Pictures Releasing",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": 2606
+            },
+            {
+              "title": "Angel and the Badman",
+              "genre": "Action / Adventure / Romance / Western",
+              "distributor": "Angel Studios",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": 2263
+            },
+            {
+              "title": "9 to 5 (Re-Release)",
+              "genre": "Comedy",
+              "distributor": "20th Century Studios",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": 1275
             },
             {
               "title": "Portrait of an Artist: Stephen Curry",
@@ -1230,15 +1246,7 @@
               "distributor": "Walt Disney Studios",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
-            },
-            {
-              "title": "Fjord",
-              "genre": "Drama / Thriller",
-              "distributor": "Neon",
-              "release": "Limited",
-              "is_wide": false,
-              "theaters": null
+              "theaters": 208
             },
             {
               "title": "Misty Green",
@@ -1246,7 +1254,23 @@
               "distributor": "A24",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": 6
+            },
+            {
+              "title": "Musk",
+              "genre": "Documentary",
+              "distributor": "Bleecker Street",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": 4
+            },
+            {
+              "title": "Fjord",
+              "genre": "Drama / Thriller",
+              "distributor": "Neon",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": 4
             }
           ]
         },
