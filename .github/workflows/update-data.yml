@@ -106,8 +106,11 @@ jobs:
           # confirmed actual AND Sunday's same-day estimate in one shot —
           # every other trigger just wants the default "yesterday" scrape.
           if [ "${{ github.event.schedule }}" = "30 21 * * 0" ]; then
-            echo "start_date=$(date -u -d 'yesterday' +%Y-%m-%d)" >> $GITHUB_OUTPUT
-            echo "end_date=$(date -u +%Y-%m-%d)" >> $GITHUB_OUTPUT
+            # Eastern time, NOT UTC: GitHub often starts this job hours late,
+            # and after 8 PM ET it is already Monday in UTC, which used to
+            # shift the range to Sunday-Monday and skip Saturday entirely.
+            echo "start_date=$(TZ=America/New_York date -d 'yesterday' +%Y-%m-%d)" >> $GITHUB_OUTPUT
+            echo "end_date=$(TZ=America/New_York date +%Y-%m-%d)" >> $GITHUB_OUTPUT
           fi
 
       - name: Run scraper (${{ steps.mode.outputs.mode }} mode)

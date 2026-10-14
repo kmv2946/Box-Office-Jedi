@@ -42,7 +42,21 @@ import json
 import os
 import re
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 import time
+
+
+def now_et():
+    """Current time in US Eastern, as a naive datetime.
+
+    GitHub's scheduler regularly starts cron jobs hours late, and the runner
+    clock is UTC. A Sunday 5 PM ET run that starts after 8 PM ET is already
+    "Monday" in UTC, which made the scraper (a) skip Saturday in the Sunday
+    range scrape and (b) save Sunday's ESTIMATES flagged as confirmed
+    actuals, which the protection rules then refused to overwrite. Every
+    "what day is it" decision uses Eastern time instead.
+    """
+    return datetime.now(ZoneInfo("America/New_York")).replace(tzinfo=None)
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 
@@ -722,7 +736,7 @@ def scrape_daily(date: datetime = None) -> list[dict]:
     Defaults to yesterday (since today's data posts overnight/midday).
     """
     if date is None:
-        date = datetime.now() - timedelta(days=1)
+        date = now_et() - timedelta(days=1)
 
     date_str = date.strftime("%Y/%m/%d")
     url = f"{BASE_URL}/box-office-chart/daily/{date_str}"
@@ -827,7 +841,7 @@ def scrape_weekend(date: datetime = None) -> list[dict]:
     Defaults to most recent weekend with available data.
     """
     if date is None:
-        today = datetime.now()
+        today = now_et()
         days_since_friday = (today.weekday() - 4) % 7
         date = today - timedelta(days=days_since_friday)
         # Go back one more week if it's Friday or Saturday
@@ -928,7 +942,7 @@ def scrape_weekend(date: datetime = None) -> list[dict]:
 def scrape_yearly(year: int = None) -> list[dict]:
     """Scrape The Numbers year-to-date domestic chart."""
     if year is None:
-        year = datetime.now().year
+        year = now_et().year
 
     url = f"{BASE_URL}/box-office-chart/year/{year}"
     print(f"\n[Yearly] Fetching: {url}")
@@ -1220,7 +1234,7 @@ def main():
     )
     args = parser.parse_args()
 
-    now = datetime.now()
+    now = now_et()
     print(f"Box Office Jedi Scraper — {now.strftime('%Y-%m-%d %H:%M:%S')} — mode: {args.mode}")
     print("=" * 60)
 
