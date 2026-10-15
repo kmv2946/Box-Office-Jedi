@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=1080, user-scalable=yes">
-  <title>Documentary Breakouts — Box Office Jedi</title>
+  <title>The 800 Theaters Club — Box Office Jedi</title>
   <meta name="description" content="Side-by-side box office comparison: Fahrenheit 9/11, Borat, and You Can See Everything.">
 
   <!-- Open Graph / link preview cards -->
   <meta property="og:type"         content="website">
   <meta property="og:site_name"    content="Box Office Jedi">
   <meta property="og:url"          content="https://boxofficejedi.com/showdown-documentary-breakouts.html">
-  <meta property="og:title"        content="Documentary Breakouts — Showdown — Box Office Jedi">
+  <meta property="og:title"        content="The 800 Theaters Club — Showdown — Box Office Jedi">
   <meta property="og:description"  content="Side-by-side box office comparison: Fahrenheit 9/11, Borat, and You Can See Everything.">
   <meta property="og:image"        content="https://boxofficejedi.com/assets/images/og-default.jpg">
   <meta property="og:image:width"  content="1200">
@@ -18,11 +18,28 @@
 
   <!-- Twitter / X cards -->
   <meta name="twitter:card"        content="summary_large_image">
-  <meta name="twitter:title"       content="Documentary Breakouts — Showdown — Box Office Jedi">
+  <meta name="twitter:title"       content="The 800 Theaters Club — Showdown — Box Office Jedi">
   <meta name="twitter:description" content="Side-by-side box office comparison: Fahrenheit 9/11, Borat, and You Can See Everything.">
   <meta name="twitter:image"       content="https://boxofficejedi.com/assets/images/og-default.jpg">
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="stylesheet" href="assets/css/showdown.css">
+  <style>
+    /* Page-specific: equal-width film columns */
+    .sd-table .sd-col-1,
+    .sd-table .sd-col-2,
+    .sd-table .sd-col-3 { width: 140px; min-width: 140px; }
+
+    /* Top-align posters; every title gets a two-line-tall box with the text
+       vertically centered so one-line and two-line titles line up. */
+    .sd-table th.sd-head-cell { vertical-align: top; }
+    .sd-table th.sd-head-cell .sd-movie-title-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.8em;
+      line-height: 1.2;
+    }
+  </style>
 </head>
 <body>
 
@@ -89,8 +106,8 @@
   });
 
   window.SHOWDOWN_CONFIG = {
-    title: 'DOCUMENTARY BREAKOUTS',
-    breadcrumb: 'DOCUMENTARY BREAKOUTS',
+    title: 'THE 800 THEATERS CLUB',
+    breadcrumb: 'THE 800 THEATERS CLUB',
     films: [
       { slug: 'fahrenheit911',                title: 'Fahrenheit 9/11'         },
       { slug: 'borat',                        title: 'Borat'                   },
