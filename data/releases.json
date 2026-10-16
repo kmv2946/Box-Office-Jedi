@@ -1278,6 +1278,38 @@
           "date": "2026-10-16",
           "releases": [
             {
+              "title": "Street Fighter",
+              "genre": "Action",
+              "distributor": "Paramount Pictures",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": 3575
+            },
+            {
+              "title": "Whalefall",
+              "genre": "Adventure / Drama",
+              "distributor": "20th Century Studios",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": 3065
+            },
+            {
+              "title": "Sense and Sensibility",
+              "genre": "Drama / Romance",
+              "distributor": "Focus Features",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": 2545
+            },
+            {
+              "title": "Crawlers",
+              "genre": "Horror / Thriller",
+              "distributor": "Roadside Attractions",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": 1037
+            },
+            {
               "title": "You Can See Everything",
               "genre": "Biography / Documentary",
               "distributor": "A24",
@@ -1286,49 +1318,17 @@
               "theaters": 855
             },
             {
-              "title": "Street Fighter",
-              "genre": "Action",
-              "distributor": "Paramount Pictures",
-              "release": "Wide",
-              "is_wide": true,
-              "theaters": null
-            },
-            {
-              "title": "Sense and Sensibility",
-              "genre": "Drama / Romance",
-              "distributor": "Focus Features",
-              "release": "Wide",
-              "is_wide": true,
-              "theaters": null
-            },
-            {
-              "title": "Whalefall",
-              "genre": "Adventure / Drama",
-              "distributor": "20th Century Studios",
-              "release": "Wide",
-              "is_wide": true,
-              "theaters": null
-            },
-            {
-              "title": "Poetic License",
-              "genre": "Comedy",
-              "distributor": "Row K Entertainment",
+              "title": "Ken Russell’s The Devils",
+              "genre": "Horror / Drama / History",
+              "distributor": "Warner Bros.",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": 786
             },
             {
               "title": "La Bola Negra",
               "genre": "Drama / History / Musical / Romance",
               "distributor": "Netflix",
-              "release": "Limited",
-              "is_wide": false,
-              "theaters": null
-            },
-            {
-              "title": "The Only Living Pickpocket in New York",
-              "genre": "Crime / Drama",
-              "distributor": "Sony Pictures Releasing",
               "release": "Limited",
               "is_wide": false,
               "theaters": null
@@ -1366,6 +1366,14 @@
               "title": "Wicker",
               "genre": "Comedy / Drama / Fantasy",
               "distributor": "Black Bear",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": null
+            },
+            {
+              "title": "The Only Living Pickpocket in New York",
+              "genre": "Crime / Drama",
+              "distributor": "Sony Pictures Releasing",
               "release": "Limited",
               "is_wide": false,
               "theaters": null
