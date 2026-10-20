@@ -26,9 +26,12 @@
 #     (Nov-Mar) these effectively run an hour earlier in ET. If that
 #     becomes an issue, bump the UTC hour by one for standard time.
 #
-#   WEEKEND CHART — Sundays and Mondays at 5:00 PM ET (22:00 UTC)
+#   WEEKEND CHART — Sundays, Mondays and Tuesdays at 5:00 PM ET (22:00 UTC)
 #     Sunday  → Estimates are posted mid-afternoon. Saved as is_estimates: true.
-#     Monday  → Actuals are confirmed mid-afternoon. Saved as is_estimates: false.
+#     Monday  → The Numbers' WEEKEND page still shows estimates, so this scrape is
+#               saved as is_estimates: true. The "Derive confirmed weekend actuals"
+#               step then rebuilds the chart from the daily files (Sunday's actual
+#               is re-scraped Monday) and flags it is_estimates: false.
 #     NEVER overwrites a file that already has confirmed actuals (is_estimates: false).
 #     NEVER overwrites weekend.json with data older than what's already there.
 #
@@ -53,8 +56,10 @@ on:
     # 5:30 PM ET (21:30 UTC) Sunday — daily chart, scrapes a Sat-through-Sun RANGE
     # so Sunday's same-day estimate posts same-day (see header comment above)
     - cron: "30 21 * * 0"
-    # 5:00 PM ET (22:00 UTC) Sunday + Monday — weekend chart (estimates then actuals)
-    - cron: "0 22 * * 0,1"
+    # 5:00 PM ET (22:00 UTC) Sunday + Monday + Tuesday — weekend chart.
+    # Sun/Mon are saved as estimates (is_estimates: true); Tuesday, when the
+    # studios' actuals post, is saved as the confirmed actuals.
+    - cron: "0 22 * * 0,1,2"
   workflow_dispatch:
     inputs:
       mode:
@@ -130,10 +135,19 @@ jobs:
           python3 scripts/scrape_the_numbers.py $ARGS
         continue-on-error: true
 
+      - name: Derive confirmed weekend actuals from the daily charts
+        # The Numbers' weekend page keeps showing Sunday's studio ESTIMATES for
+        # days, while its daily chart already has the confirmed Sunday actual.
+        # Once Sunday's daily file is a confirmed actual (Monday's daily run),
+        # rebuild the weekend chart from the daily data and flag it final.
+        # Never touches a weekend file that is already confirmed.
+        run: python3 scripts/derive_weekend_from_daily.py
+        continue-on-error: true
+
       - name: Run TMDB sync (Mondays only)
         if: |
           github.event_name == 'workflow_dispatch' ||
-          (github.event_name == 'schedule' && github.event.schedule == '0 22 * * 0,1')
+          (github.event_name == 'schedule' && github.event.schedule == '0 22 * * 0,1,2')
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: python3 scripts/tmdb_api.py

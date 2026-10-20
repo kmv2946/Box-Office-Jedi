@@ -1,13 +1,43 @@
 {
-  "updated": "2026-10-13",
-  "current_weekend": "2026-10-16",
+  "updated": "2026-10-19",
+  "current_weekend": "2026-10-23",
   "games": [
+    {
+      "weekend": "2026-10-23",
+      "date_to": "2026-10-25",
+      "label": "October 23–25",
+      "label_long": "October 23–25, 2026",
+      "status": "open",
+      "submit_deadline": "2026-10-22T23:59:59-04:00",
+      "headliner": "You Can See Everything",
+      "allowed_titles": [
+        "Clayface",
+        "Forgotten Island",
+        "Heart of the Beast",
+        "Jailer 2",
+        "Klara and the Sun",
+        "Other Mommy",
+        "Primetime",
+        "Resident Evil",
+        "Sense and Sensibility",
+        "Street Fighter",
+        "The Devils",
+        "The Social Reckoning",
+        "Verity",
+        "Whalefall",
+        "Wicker",
+        "Wildwood",
+        "You Can See Everything"
+      ],
+      "averages_url": null,
+      "leaderboard_url": null
+    },
     {
       "weekend": "2026-10-16",
       "date_to": "2026-10-18",
       "label": "October 16–18",
       "label_long": "October 16–18, 2026",
-      "status": "open",
+      "status": "closed",
       "submit_deadline": "2026-10-15T23:59:59-04:00",
       "headliner": "You Can See Everything",
       "allowed_titles": [
@@ -30,7 +60,7 @@
         "You Can See Everything"
       ],
       "averages_url": null,
-      "leaderboard_url": null
+      "leaderboard_url": "data/derby/leaderboard-2026-10-16.json"
     },
     {
       "weekend": "2026-10-09",
@@ -58,7 +88,7 @@
         "Verity"
       ],
       "averages_url": null,
-      "leaderboard_url": null
+      "leaderboard_url": "data/derby/leaderboard-2026-10-09.json"
     },
     {
       "weekend": "2026-10-02",

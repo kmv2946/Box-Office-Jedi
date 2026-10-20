@@ -1397,14 +1397,16 @@ def main():
         week_num = int(sunday.strftime("%U"))
         friday_str = str(friday)
 
-        # is_estimates: True on Sunday (estimates day), False Mon+ (actuals confirmed).
+        # is_estimates: True on Sunday AND Monday: The Numbers' weekend page still
+        # shows studio estimates then. scripts/derive_weekend_from_daily.py upgrades
+        # the file to confirmed actuals from the daily chart; Tue+ scrapes = actuals.
         # When --date is used for a historical backfill, treat as actuals.
         # weekday(): 0=Mon, 1=Tue, ..., 6=Sun
-        is_estimates = (not args.date) and (today.weekday() == 6)
+        is_estimates = (not args.date) and (today.weekday() in (6, 0))
 
         print(f"\n[Weekend] Target: {friday_str} → {sunday}")
         print(f"          is_estimates: {is_estimates} "
-              f"({'Sunday estimates run' if is_estimates else 'Monday+ actuals run'})")
+              f"({'Sun/Mon estimates run' if is_estimates else 'Tue+ actuals run'})")
 
         # Protection check before scraping (skipped with --force)
         if args.force:
