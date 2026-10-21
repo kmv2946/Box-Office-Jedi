@@ -8,6 +8,8 @@
 // so the client also uses localStorage as the primary signal. This endpoint
 // is a secondary check.
 
+import { getUser } from "../../_lib/auth.js";
+
 async function sha256Hex(str) {
   const data = new TextEncoder().encode(str);
   const hash = await crypto.subtle.digest("SHA-256", data);
@@ -18,6 +20,17 @@ export async function onRequestGet({ request, env }) {
   if (!env.DB) return Response.json({ submitted: false });
   const weekend = (new URL(request.url).searchParams.get("weekend") || "").trim();
   if (!weekend) return Response.json({ submitted: false });
+
+  // Signed-in players: check by account first.
+  const user = await getUser(request, env);
+  if (user) {
+    try {
+      const r = await env.DB.prepare(
+        "SELECT 1 FROM submissions WHERE weekend = ? AND (user_id = ? OR lower(player_email) = ?) LIMIT 1"
+      ).bind(weekend, user.id, user.email).first();
+      if (r) return Response.json({ submitted: true });
+    } catch (e) {}
+  }
 
   const ip = request.headers.get("CF-Connecting-IP") || "";
   if (!ip) return Response.json({ submitted: false });

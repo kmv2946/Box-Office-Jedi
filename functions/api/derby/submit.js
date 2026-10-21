@@ -15,6 +15,8 @@
 //
 // Response: JSON { ok: true } on success, or { ok: false, error: "..." }.
 
+import { getUser } from "../../_lib/auth.js";
+
 // Quick SHA-256 helper — Cloudflare Workers runtime has SubtleCrypto.
 async function sha256Hex(str) {
   const data = new TextEncoder().encode(str);
@@ -49,10 +51,13 @@ export async function onRequestPost({ request, env }) {
     });
   }
 
+  // Signed-in players: identity comes from the account, not the form.
+  const user = await getUser(request, env);
+
   const weekend      = (form.get("weekend") || "").toString().trim();
-  const playerName   = (form.get("player_name") || "").toString().trim();
-  const playerEmail  = (form.get("player_email") || "").toString().trim().toLowerCase();
-  const playerLoc    = (form.get("player_location") || "").toString().trim();
+  const playerName   = user ? user.display_name : (form.get("player_name") || "").toString().trim();
+  const playerEmail  = user ? user.email : (form.get("player_email") || "").toString().trim().toLowerCase();
+  const playerLoc    = user ? (user.location || "") : (form.get("player_location") || "").toString().trim();
   const playerNotes  = (form.get("player_comments") || "").toString().trim();
 
   if (!weekend)                                return bad("Missing weekend.");
@@ -118,8 +123,8 @@ export async function onRequestPost({ request, env }) {
   // Check for an existing submission from this IP or email for this weekend.
   try {
     const existing = await db.prepare(
-      "SELECT id FROM submissions WHERE weekend = ? AND (ip_hash = ? OR player_email = ?) LIMIT 1"
-    ).bind(weekend, ipHash, playerEmail).first();
+      "SELECT id FROM submissions WHERE weekend = ? AND (ip_hash = ? OR lower(player_email) = ? OR user_id = ?) LIMIT 1"
+    ).bind(weekend, ipHash, playerEmail, user ? user.id : -1).first();
     if (existing) {
       return new Response(JSON.stringify({
         ok: false,
@@ -136,11 +141,11 @@ export async function onRequestPost({ request, env }) {
     await db.prepare(
       `INSERT INTO submissions
          (weekend, player_name, player_email, player_location, player_comments,
-          picks_json, ip_hash, user_agent, created_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
+          picks_json, ip_hash, user_agent, created_at, user_id)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     ).bind(
       weekend, playerName, playerEmail, playerLoc || null, playerNotes || null,
-      JSON.stringify(picks), ipHash, ua, Math.floor(Date.now() / 1000)
+      JSON.stringify(picks), ipHash, ua, Math.floor(Date.now() / 1000), user ? user.id : null
     ).run();
   } catch (e) {
     return bad("Could not save submission: " + (e.message || e), 500);

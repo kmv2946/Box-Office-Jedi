@@ -235,6 +235,11 @@
         <input type="hidden" name="weekend"   id="weekend-hidden">
         <p style="display:none"><input name="bot-field"></p>
 
+        <div class="derby-instructions" id="acct-bar" style="background:#F4F4FE;color:#000;border:1px solid #999;">
+          Playing as a guest. <a href="account.html" id="acct-bar-link">Create a free account or sign in</a>
+          to keep your entry history and your name on the leaderboard.
+        </div>
+
         <div class="derby-instructions">
           Enter your predicted weekend gross in millions to one decimal point, e.g., <strong>24.7</strong>.
           Select each movie only once. Make only one entry per weekend.
@@ -253,6 +258,7 @@
         </table>
 
         <div class="derby-fields">
+          <div id="guest-fields">
           <label for="player-name">
             Your Name <span class="sublabel">(as you want it to appear on the leaderboard)</span>
           </label>
@@ -267,6 +273,7 @@
             Your Location <span class="sublabel">(City, State or Country)</span>
           </label>
           <input type="text" id="player-location" name="player_location" maxlength="100">
+          </div>
 
           <label for="player-comments">
             Comments <span class="sublabel">(optional &mdash; any interesting thoughts about your predictions)</span>
@@ -477,6 +484,23 @@
   });
 
   loadGame();
+
+  // Accounts: if signed in, identity comes from the account instead of the form.
+  document.getElementById('acct-bar-link').addEventListener('click', function() {
+    try { sessionStorage.setItem('boj_next', 'derby-predict.html'); } catch(e) {}
+  });
+  fetch('/api/auth/me', { cache: 'no-store' })
+    .then(r => r.ok ? r.json() : null)
+    .then(me => {
+      if (!me || !me.user) return;
+      document.getElementById('guest-fields').style.display = 'none';
+      ['player-name','player-email'].forEach(id => document.getElementById(id).required = false);
+      document.getElementById('acct-bar').innerHTML =
+        'Playing as <strong>' + escapeHtml(me.user.display_name) + '</strong>' +
+        (me.user.location ? ' (' + escapeHtml(me.user.location) + ')' : '') +
+        ' &mdash; <a href="account.html">your account</a>';
+    })
+    .catch(() => {});
 </script>
 
 <script src="assets/js/right-sidebar.js" defer></script>
