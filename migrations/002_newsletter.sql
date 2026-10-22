@@ -1,0 +1,1 @@
+ALTER TABLE login_tokens ADD COLUMN newsletter INTEGER NOT NULL DEFAULT 0;

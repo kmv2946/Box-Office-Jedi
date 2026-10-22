@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Account &mdash; Box Office Jedi</title>
+  <title>My Account &mdash; Box Office Jedi</title>
   <meta name="description" content="Sign in or create a free Box Office Jedi account to track your Derby entries.">
 
   <!-- Open Graph / link preview cards -->
@@ -163,26 +163,35 @@
       letter-spacing: 0.01em;
     }
   
-    .acct-box { max-width: 520px; margin: 14px auto; border: 1px solid #999; background: #fff; }
-    .acct-box h2 { margin: 0; background: #7F170E; color: #fff; font-family: Verdana, Geneva, sans-serif; font-size: 13px; padding: 5px 10px; letter-spacing: 0.04em; }
-    .acct-inner { padding: 10px 14px 14px; font-family: 'Times New Roman', Times, serif; font-size: 14px; }
-    .acct-tabs { display: flex; border-bottom: 2px solid #000; margin: 0 14px; }
-    .acct-tabs a { font-family: Verdana, Geneva, sans-serif; font-weight: bold; font-size: 12px; padding: 6px 14px; color: #00239C; text-decoration: none; background: #F4F4FE; border: 1px solid #999; border-bottom: none; margin-right: 4px; cursor: pointer; }
-    .acct-tabs a.on { background: #7F170E; color: #fff; border-color: #7F170E; }
-    .acct-inner label { display: block; font-family: Verdana, Geneva, sans-serif; font-weight: bold; font-size: 12px; margin: 10px 0 2px; }
-    .acct-inner .sublabel { font-family: 'Times New Roman', Times, serif; font-style: italic; font-weight: normal; color: #555; }
-    .acct-inner input[type="text"], .acct-inner input[type="email"] { width: 100%; max-width: 380px; padding: 4px 6px; border: 1px solid #999; font-family: 'Times New Roman', Times, serif; font-size: 14px; box-sizing: border-box; }
-    .acct-check { font-size: 13px; margin: 12px 0 4px; }
-    .acct-check input { vertical-align: middle; margin-right: 4px; }
-    .acct-msg { padding: 8px 12px; margin: 10px 0; font-family: Verdana, Geneva, sans-serif; font-size: 12px; line-height: 1.5; }
+    .acct-title { font-family: Verdana, Geneva, sans-serif; font-weight: bold; font-size: 34px; color: #00239C; padding: 0 10px; letter-spacing: 0.02em; line-height: 1.1; }
+    .acct-bar-red { height: 8px; background: #7F170E; margin: 6px 0 0; }
+    .acct-bar-black { height: 2px; background: #000; margin: 4px 0 18px; }
+    .acct-wrap { max-width: 640px; margin: 0 auto; padding: 0 10px 30px; font-family: 'Times New Roman', Times, serif; font-size: 18px; line-height: 1.35; }
+    .acct-h1 { font-family: Verdana, Geneva, sans-serif; font-weight: bold; font-size: 28px; color: #000; text-align: center; margin: 0 0 18px; letter-spacing: 0.03em; }
+    .acct-wrap a { color: #00239C; }
+    .acct-frame { border: 2px solid #000; background: #fff; padding: 22px 28px 26px; margin-top: 16px; }
+    .acct-frame label.fl { display: block; font-family: Verdana, Geneva, sans-serif; font-weight: bold; font-size: 17px; margin: 16px 0 4px; }
+    .acct-frame .sublabel { font-family: 'Times New Roman', Times, serif; font-weight: normal; font-size: 17px; }
+    .acct-frame input[type="text"], .acct-frame input[type="email"] { width: 100%; padding: 8px 6px; border: 2px solid #888; font-family: 'Times New Roman', Times, serif; font-size: 18px; box-sizing: border-box; }
+    .acct-agree { text-align: center; font-size: 16px; margin: 18px 0 6px; }
+    .acct-agree a { font-family: Verdana, Geneva, sans-serif; font-weight: bold; }
+    .acct-btn { font-family: Verdana, Geneva, sans-serif; font-size: 14px; padding: 6px 14px; border: 1px solid #999; background: #fff; cursor: pointer; border-radius: 3px; }
+    .acct-btn:hover { background: #F4F4FE; }
+    .acct-center { text-align: center; }
+    .acct-note { text-align: center; margin: 14px 0 0; font-size: 17px; }
+    .acct-msg { padding: 8px 12px; margin: 10px auto; max-width: 640px; font-family: Verdana, Geneva, sans-serif; font-size: 13px; line-height: 1.5; }
     .acct-msg.err { background: #F4F4FE; border: 1px solid #7F170E; color: #7F170E; }
     .acct-msg.ok { background: #888; color: #fff; }
-    .acct-note { font-style: italic; color: #444; font-size: 12px; margin-top: 10px; }
     .acct-hist { width: 100%; border-collapse: collapse; margin-top: 6px; }
-    .acct-hist th { background: #7F170E; color: #fff; font-family: Verdana, Geneva, sans-serif; font-size: 11px; padding: 4px 8px; text-align: left; }
-    .acct-hist td { padding: 3px 8px; font-size: 14px; }
+    .acct-hist th { background: #7F170E; color: #fff; font-family: Verdana, Geneva, sans-serif; font-size: 12px; padding: 4px 8px; text-align: left; }
+    .acct-hist td { padding: 3px 8px; font-size: 16px; }
     .acct-hist tr:nth-child(even) td { background: #F4F4FE; }
-
+    .login-mod .widget-body { padding: 10px 12px 12px; font-family: Verdana, Geneva, sans-serif; font-size: 12px; }
+    .login-mod label { font-weight: bold; font-size: 13px; margin-right: 4px; }
+    .login-mod input[type="email"] { width: 140px; padding: 4px; border: 1px solid #ccc; font-size: 12px; box-sizing: border-box; }
+    .login-mod .lm-row { margin-bottom: 10px; }
+    .login-mod .lm-btn { text-align: center; }
+    .login-mod .lm-note { text-align: center; color: #00239C; font-size: 13px; line-height: 1.35; margin: 14px 0 0; }
   </style>
 </head>
 <body class="is-responsive">
@@ -233,123 +242,74 @@
     </div>
     <div class="derby-section-bar"></div>
 
-    <div class="derby-header">
-      <h1>YOUR ACCOUNT</h1>
-      <div class="derby-weekend-label" id="acct-sub">&nbsp;</div>
-    </div>
+    <div class="acct-title">MY ACCOUNT:</div>
+    <div class="acct-bar-red"></div>
+    <div class="acct-bar-black"></div>
 
     <div id="acct-msg"></div>
 
-    <!-- Signed-out -->
-    <div id="acct-out" style="display:none;">
-      <div class="acct-tabs">
-        <a id="tab-signup" class="on">CREATE ACCOUNT</a>
-        <a id="tab-login">SIGN IN</a>
+    <div class="acct-wrap">
+
+      <div id="acct-out" style="display:none;">
+        <h1 class="acct-h1">CREATE YOUR FREE ACCOUNT</h1>
+        <p>Please take a moment and sign up for a free user account. Use your account to play the <a href="derby.html">Box Office Derby</a>.</p>
+        <p style="margin-top:14px;">Forums coming soon.</p>
+        <p id="spots-line" style="margin-top:14px;"></p>
+        <form id="acct-form" class="acct-frame" autocomplete="on">
+          <p style="display:none"><input name="bot-field" tabindex="-1" autocomplete="off"></p>
+          <label class="fl" for="f-name">User Name or Alias <span class="sublabel">(shown on the leaderboard)</span></label>
+          <input type="text" id="f-name" maxlength="30" autocomplete="nickname">
+          <label class="fl" for="f-loc">Location <span class="sublabel">(optional)</span></label>
+          <input type="text" id="f-loc" maxlength="100">
+          <label class="fl" for="f-email">Email Address <span class="sublabel">(never shown publicly)</span></label>
+          <input type="email" id="f-email" maxlength="120" required autocomplete="email">
+          <div class="acct-agree" style="margin-bottom:0;">
+            <label><input type="checkbox" id="f-news"> Send me the occasional Box Office Jedi newsletter.</label>
+          </div>
+          <div class="acct-agree">
+            <label><input type="checkbox" id="f-agree"> I am 13 or older and agree to the <a href="privacy.html">privacy policy</a>.</label>
+          </div>
+          <div class="acct-center"><button type="submit" class="acct-btn" id="f-btn">Email me a link</button></div>
+          <p class="acct-note">No password needed. We e-mail you a one-time link.<br>Click it and you&rsquo;re in.</p>
+        </form>
       </div>
-      <div class="acct-box" style="margin-top:0;">
-        <h2 id="form-title">CREATE A FREE ACCOUNT</h2>
-        <div class="acct-inner">
-          <form id="acct-form" autocomplete="on">
-            <p style="display:none"><input name="bot-field" tabindex="-1" autocomplete="off"></p>
 
-            <div id="signup-only">
-              <p id="spots-line" style="margin:4px 0 0;"></p>
-              <label for="f-name">Display Name <span class="sublabel">(shown on the leaderboard)</span></label>
-              <input type="text" id="f-name" maxlength="30" autocomplete="nickname">
-              <label for="f-loc">Location <span class="sublabel">(optional &mdash; City, State or Country)</span></label>
-              <input type="text" id="f-loc" maxlength="100">
-            </div>
-
-            <label for="f-email">E-mail Address <span class="sublabel">(never shown publicly)</span></label>
-            <input type="email" id="f-email" maxlength="120" required autocomplete="email">
-
-            <div class="acct-check" id="agree-row">
-              <label style="display:block;font-weight:normal;font-family:'Times New Roman',Times,serif;font-size:13px;">
-                <input type="checkbox" id="f-agree"> I am 13 or older and agree to the <a href="privacy.html">privacy policy</a>.
-              </label>
-            </div>
-
-            <button type="submit" class="derby-submit" id="f-btn">E-MAIL ME A LINK</button>
-            <p class="acct-note">No password needed. We e-mail you a one-time link; click it and you&rsquo;re in.
-              Accounts are optional &mdash; you can still play the Derby as a guest.</p>
-          </form>
-        </div>
+      <div id="acct-sent" style="display:none;">
+        <h1 class="acct-h1">CHECK YOUR E-MAIL</h1>
+        <p>If that address can receive a link, one is on its way. It works once and expires in 20 minutes. Check your spam folder if it doesn&rsquo;t show up.</p>
       </div>
+
+      <div id="acct-in" style="display:none;">
+        <h1 class="acct-h1">YOUR PROFILE</h1>
+        <form id="prof-form" class="acct-frame" style="margin-top:0;">
+          <label class="fl" for="p-name">User Name or Alias</label>
+          <input type="text" id="p-name" maxlength="30">
+          <label class="fl" for="p-loc">Location</label>
+          <input type="text" id="p-loc" maxlength="100">
+          <label class="fl">Email Address</label>
+          <div id="p-email"></div>
+          <div class="acct-center" style="margin-top:18px;"><button type="submit" class="acct-btn">Save</button></div>
+        </form>
+        <h1 class="acct-h1" style="margin-top:28px;font-size:22px;">YOUR DERBY ENTRIES</h1>
+        <div id="hist"></div>
+        <p class="acct-center" style="margin-top:18px;"><a href="derby-predict.html">Play this weekend&rsquo;s Derby</a></p>
+      </div>
+
     </div>
-
-    <!-- Link sent -->
-    <div id="acct-sent" style="display:none;">
-      <div class="acct-box">
-        <h2>CHECK YOUR E-MAIL</h2>
-        <div class="acct-inner">
-          <p>If that address can receive a link, one is on its way. It works once and expires in 20 minutes. Check your spam folder if it doesn&rsquo;t show up.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Signed-in -->
-    <div id="acct-in" style="display:none;">
-      <div class="acct-box">
-        <h2>PROFILE</h2>
-        <div class="acct-inner">
-          <form id="prof-form">
-            <label for="p-name">Display Name</label>
-            <input type="text" id="p-name" maxlength="30">
-            <label for="p-loc">Location</label>
-            <input type="text" id="p-loc" maxlength="100">
-            <label>E-mail</label>
-            <div id="p-email"></div>
-            <button type="submit" class="derby-submit" id="p-btn">SAVE</button>
-            <button type="button" class="derby-submit" id="p-out" style="background:#888;border-color:#666;margin-left:8px;">SIGN OUT</button>
-          </form>
-        </div>
-      </div>
-      <div class="acct-box">
-        <h2>YOUR DERBY ENTRIES</h2>
-        <div class="acct-inner" id="hist"></div>
-      </div>
-      <p style="text-align:center;"><a href="derby-predict.html" class="derby-submit" style="text-decoration:none;display:inline-block;">PLAY THIS WEEKEND&rsquo;S DERBY</a></p>
-    </div>
-
   </main>
 
   <aside class="right-sidebar">
-
-    <!-- Release Schedule (next Friday's slate; populated by assets/js/right-sidebar.js) -->
-    <div class="rs-widget">
-      <div class="rs-widget-banner">RELEASE SCHEDULE</div>
-      <div class="rs-widget-chart">
-        <table class="rs-widget-table" id="rs-widget-table">
-          <colgroup>
-            <col class="rs-col-date">
-            <col class="rs-col-theaters">
-          </colgroup>
-          <thead>
-            <tr>
-              <th id="rs-widget-date" class="rs-widget-date-th">&mdash;</th>
-              <th class="rs-widget-theaters-th">Theaters</th>
-            </tr>
-          </thead>
-          <tbody id="rs-widget-body">
-            <tr><td colspan="2" class="rs-widget-empty">Loading&hellip;</td></tr>
-          </tbody>
-        </table>
-        <a href="releases.html" class="rs-widget-more">&gt;VIEW FULL SCHEDULE</a>
+    <div class="widget login-mod">
+      <div class="widget-header" style="font-size:13px;padding:6px 8px;">LOGIN</div>
+      <div class="widget-body" id="login-body">
+        <form id="login-form">
+          <p style="display:none"><input name="bot-field" tabindex="-1" autocomplete="off"></p>
+          <div class="lm-row"><label for="l-email">email:</label><input type="email" id="l-email" maxlength="120" required autocomplete="email"></div>
+          <div class="lm-btn"><button type="submit" class="acct-btn" id="l-btn">Email me a link</button></div>
+          <p class="lm-note">No password needed.<br>We email you a one-time link.<br>Click it and you&rsquo;re in.</p>
+        </form>
       </div>
     </div>
-
-    <!-- Advertisement (manually rotated every few weeks) -->
-    <div class="ad-block">
-      <div class="ad-label">Advertisement</div>
-      <a href="https://www.ebay.com/sch/i.html?_nkw=disclosure+day+poster&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&LH_TitleDesc=0&_odkw=disclosure+day+poster&_osacat=0" target="_blank" rel="noopener" class="ad-image-link">
-        <img src="assets/images/disclosure_day_ver3_xxlg.jpg" alt="Disclosure Day — In Theaters June 12">
-      </a>
-      <div class="ad-caption">Now on DVD</div>
-      <div class="ad-caption">
-        <a href="https://www.ebay.com/sch/i.html?_nkw=disclosure+day+poster&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&LH_TitleDesc=0&_odkw=disclosure+day+poster&_osacat=0" target="_blank" rel="noopener">Buy Poster from Ebay.com</a>
-      </div>
-    </div>
-
   </aside>
 
 </div>
@@ -390,21 +350,8 @@
     ['acct-out','acct-sent','acct-in'].forEach(i => $(i).style.display = (i === which ? '' : 'none'));
   }
   function msg(text, kind) {
-    $('acct-msg').innerHTML = text ? '<div class="acct-msg ' + (kind || 'err') + '" style="max-width:520px;margin:10px auto;">' + escapeHtml(text) + '</div>' : '';
+    $('acct-msg').innerHTML = text ? '<div class="acct-msg ' + (kind || 'err') + '">' + escapeHtml(text) + '</div>' : '';
   }
-  let mode = 'signup';
-  function setMode(m) {
-    mode = m;
-    $('tab-signup').className = m === 'signup' ? 'on' : '';
-    $('tab-login').className = m === 'login' ? 'on' : '';
-    $('signup-only').style.display = m === 'signup' ? '' : 'none';
-    $('agree-row').style.display = m === 'signup' ? '' : 'none';
-    $('form-title').textContent = m === 'signup' ? 'CREATE A FREE ACCOUNT' : 'SIGN IN';
-    msg('');
-  }
-  $('tab-signup').onclick = () => setMode('signup');
-  $('tab-login').onclick = () => setMode('login');
-
   async function post(url, body) {
     const r = await fetch(url, { method: 'POST', headers: {'content-type':'application/json'}, body: JSON.stringify(body) });
     const d = await r.json().catch(() => ({}));
@@ -415,19 +362,32 @@
     e.preventDefault();
     msg('');
     const btn = $('f-btn'); btn.disabled = true; btn.textContent = 'Sending…';
-    const body = {
-      mode, email: $('f-email').value, name: $('f-name').value, location: $('f-loc').value,
-      agree: $('f-agree').checked, 'bot-field': this['bot-field'].value
-    };
     try {
-      const { ok, d } = await post('/api/auth/request', body);
-      if (ok) { show('acct-sent'); } else { msg(d.error || 'Something went wrong.'); }
+      const { ok, d } = await post('/api/auth/request', {
+        mode: 'signup', email: $('f-email').value, name: $('f-name').value, location: $('f-loc').value,
+        agree: $('f-agree').checked, newsletter: $('f-news').checked, 'bot-field': this['bot-field'].value
+      });
+      if (ok) { show('acct-sent'); window.scrollTo(0, 0); } else { msg(d.error || 'Something went wrong.'); }
     } catch (err) { msg('Network error. Please try again.'); }
-    btn.disabled = false; btn.textContent = 'E-MAIL ME A LINK';
+    btn.disabled = false; btn.textContent = 'Email me a link';
   });
 
-  function renderProfile(me) {
-    $('acct-sub').textContent = 'Signed in as ' + me.user.display_name;
+  $('login-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = $('l-btn'); btn.disabled = true; btn.textContent = 'Sending…';
+    try {
+      const { ok, d } = await post('/api/auth/request', { mode: 'login', email: $('l-email').value, 'bot-field': this['bot-field'].value });
+      if (ok) {
+        $('login-body').innerHTML = '<p class="lm-note" style="margin:0;">If that address has an account, a sign-in link is on its way. It expires in 20 minutes.</p>';
+      } else { msg(d.error || 'Something went wrong.'); btn.disabled = false; btn.textContent = 'Email me a link'; }
+    } catch (err) { msg('Network error. Please try again.'); btn.disabled = false; btn.textContent = 'Email me a link'; }
+  });
+
+  function renderSignedIn(me) {
+    $('login-body').innerHTML =
+      '<p class="lm-note" style="margin:0;color:#000;">Signed in as<br><strong>' + escapeHtml(me.user.display_name) + '</strong></p>' +
+      '<p class="lm-btn" style="margin:12px 0 0;"><button type="button" class="acct-btn" id="l-out">Sign out</button></p>';
+    $('l-out').onclick = async function() { await post('/api/auth/logout', {}); location.href = 'account.html'; };
     $('p-name').value = me.user.display_name;
     $('p-loc').value = me.user.location || '';
     $('p-email').textContent = me.user.email;
@@ -445,42 +405,43 @@
     const { ok, d } = await post('/api/auth/profile', { display_name: $('p-name').value, location: $('p-loc').value });
     msg(ok ? 'Profile saved.' : (d.error || 'Could not save.'), ok ? 'ok' : 'err');
   });
-  $('p-out').onclick = async function() {
-    await post('/api/auth/logout', {});
-    location.href = 'account.html';
-  };
 
   async function init() {
     const token = new URLSearchParams(location.search).get('token');
+    let note = '';
     if (token) {
-      $('acct-sub').textContent = 'Signing you in…';
       const { ok, d } = await post('/api/auth/verify', { token });
       history.replaceState(null, '', 'account.html');
-      if (!ok) { $('acct-sub').innerHTML = '&nbsp;'; msg(d.error || 'This link is not valid.'); }
+      if (!ok) { msg(d.error || 'This link is not valid.'); }
       else {
-        const dest = new URLSearchParams(location.search).get('next');
-        const back = sessionStorage.getItem('boj_next');
-        sessionStorage.removeItem('boj_next');
+        let back = null;
+        try { back = sessionStorage.getItem('boj_next'); sessionStorage.removeItem('boj_next'); } catch (e) {}
         if (back) { location.href = back; return; }
-        msg(d.created ? 'Welcome! Your account is ready.' + (d.claimed ? ' ' + d.claimed + ' past Derby entr' + (d.claimed === 1 ? 'y was' : 'ies were') + ' added to your profile.' : '') : 'You are signed in.', 'ok');
+        if (d.newsletter && d.email) {
+          // Same Kit form and no-cors browser POST the homepage subscribe box uses.
+          try {
+            const fd = new FormData(); fd.append('email_address', d.email);
+            fetch('https://app.kit.com/forms/9392593/subscriptions', { method: 'POST', body: fd, mode: 'no-cors' });
+          } catch (e) {}
+        }
+        note = d.created
+          ? 'Welcome! Your account is ready.' + (d.claimed ? ' ' + d.claimed + ' past Derby entr' + (d.claimed === 1 ? 'y was' : 'ies were') + ' added to your profile.' : '')
+          : 'You are signed in.';
       }
     }
     let me = { user: null };
     try { me = await (await fetch('/api/auth/me', { cache: 'no-store' })).json(); } catch (e) {}
-    if (me.user) { renderProfile(me); return; }
-    $('acct-sub').innerHTML = '&nbsp;';
+    if (me.user) { renderSignedIn(me); if (note) msg(note, 'ok'); return; }
     if (typeof me.spots_left === 'number') {
       $('spots-line').innerHTML = me.spots_left > 0
         ? '<strong>' + me.spots_left + '</strong> founding accounts remaining.'
-        : '<strong>All founding accounts have been claimed.</strong> You can still play as a guest.';
+        : '<strong>All founding accounts have been claimed.</strong> You can still play the Derby as a guest.';
     }
-    setMode('signup');
     show('acct-out');
   }
   init();
 
 </script>
 
-<script src="assets/js/right-sidebar.js" defer></script>
 </body>
 </html>

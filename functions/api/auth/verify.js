@@ -62,5 +62,5 @@ export async function onRequestPost({ request, env }) {
   } catch (e) { /* non-fatal */ }
 
   const { cookie } = await createSession(env, user.id);
-  return json({ ok: true, created, claimed }, 200, { "Set-Cookie": cookie });
+  return json({ ok: true, created, claimed, newsletter: created && row.newsletter === 1, email: row.email }, 200, { "Set-Cookie": cookie });
 }

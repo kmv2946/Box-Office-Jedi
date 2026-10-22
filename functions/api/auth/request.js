@@ -43,7 +43,7 @@ export async function onRequestPost({ request, env }) {
 
   const existing = await env.DB.prepare("SELECT id, status FROM users WHERE email = ?").bind(email).first();
 
-  let purpose = "login", name = null, loc = null;
+  let purpose = "login", name = null, loc = null, news = 0;
 
   if (existing) {
     // Same response whether they hit "sign up" or "sign in": send a sign-in link.
@@ -68,14 +68,15 @@ export async function onRequestPost({ request, env }) {
     const taken = await env.DB.prepare("SELECT 1 FROM users WHERE display_name_lc = ?").bind(name.toLowerCase()).first();
     if (taken) return json({ ok: false, error: "That display name is already taken." }, 409);
     purpose = "signup";
+    news = b.newsletter ? 1 : 0;
   }
 
   const token = randomToken(32);
   const hash = await sha256Hex(token);
   try {
     await env.DB.prepare(
-      "INSERT INTO login_tokens (token_hash, email, purpose, display_name, location, expires_at) VALUES (?, ?, ?, ?, ?, ?)"
-    ).bind(hash, email, purpose, name, loc, nowSec() + TOKEN_MINUTES * 60).run();
+      "INSERT INTO login_tokens (token_hash, email, purpose, display_name, location, expires_at, newsletter) VALUES (?, ?, ?, ?, ?, ?, ?)"
+    ).bind(hash, email, purpose, name, loc, nowSec() + TOKEN_MINUTES * 60, news).run();
 
     const origin = new URL(request.url).origin;
     const link = origin + "/account.html?token=" + token;
