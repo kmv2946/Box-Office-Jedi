@@ -192,6 +192,10 @@
     .login-mod .lm-row { margin-bottom: 10px; }
     .login-mod .lm-btn { text-align: center; }
     .login-mod .lm-note { text-align: center; color: #00239C; font-size: 13px; line-height: 1.35; margin: 14px 0 0; }
+    .right-sidebar { padding-top: 84px; }
+    @media (max-width: 768px) {
+      body.is-responsive .right-sidebar { display: block; padding-top: 0; width: auto; }
+    }
   </style>
 </head>
 <body class="is-responsive">
@@ -236,12 +240,6 @@
 
   <main class="main-content">
 
-    <div class="derby-crumb">
-      <span class="arrow">&gt;</span>
-      <a href="derby.html">THE DERBY</a> &gt; ACCOUNT
-    </div>
-    <div class="derby-section-bar"></div>
-
     <div class="acct-title">MY ACCOUNT:</div>
     <div class="acct-bar-red"></div>
     <div class="acct-bar-black"></div>
@@ -254,7 +252,6 @@
         <h1 class="acct-h1">CREATE YOUR FREE ACCOUNT</h1>
         <p>Please take a moment and sign up for a free user account. Use your account to play the <a href="derby.html">Box Office Derby</a>.</p>
         <p style="margin-top:14px;">Forums coming soon.</p>
-        <p id="spots-line" style="margin-top:14px;"></p>
         <form id="acct-form" class="acct-frame" autocomplete="on">
           <p style="display:none"><input name="bot-field" tabindex="-1" autocomplete="off"></p>
           <label class="fl" for="f-name">User Name or Alias <span class="sublabel">(shown on the leaderboard)</span></label>
@@ -432,11 +429,6 @@
     let me = { user: null };
     try { me = await (await fetch('/api/auth/me', { cache: 'no-store' })).json(); } catch (e) {}
     if (me.user) { renderSignedIn(me); if (note) msg(note, 'ok'); return; }
-    if (typeof me.spots_left === 'number') {
-      $('spots-line').innerHTML = me.spots_left > 0
-        ? '<strong>' + me.spots_left + '</strong> founding accounts remaining.'
-        : '<strong>All founding accounts have been claimed.</strong> You can still play the Derby as a guest.';
-    }
     show('acct-out');
   }
   init();

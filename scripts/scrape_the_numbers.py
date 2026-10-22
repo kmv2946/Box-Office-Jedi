@@ -519,7 +519,11 @@ def apply_title_canonicalization(archive_chart: list[dict]) -> list[dict]:
             cov_scraped = len(shared) / max(1, len(scraped_toks))
             cov_release = len(shared) / max(1, len(rel_toks))
             cov = max(cov_scraped, cov_release)
-            ok = cov >= 0.5 and (len(shared) >= 2 or has_strong)
+            # Two generic shared words aren't enough on their own: "You Can't
+            # Leave" shares only {you, can} with "You Can See Everything" and was
+            # silently rewritten to it (Tue 10/20). Without a strong unique token,
+            # require the shared words to cover >= 75% of one title.
+            ok = cov >= 0.5 and (has_strong or (len(shared) >= 2 and cov >= 0.75))
             score = len(shared) + (1.0 if has_strong else 0.0) + cov
             if ok and score > best_score:
                 best = canon
@@ -695,7 +699,7 @@ def apply_preview_filter(day_iso: str, archive_chart: list[dict]) -> list[dict]:
             cov_release = len(shared) / max(1, len(rel_toks))
             cov = max(cov_scraped, cov_release)
             score = len(shared) + (1.0 if has_strong else 0.0) + cov
-            ok = cov >= 0.5 and (len(shared) >= 2 or has_strong)
+            ok = cov >= 0.5 and (has_strong or (len(shared) >= 2 and cov >= 0.75))
             if ok and score > best_score:
                 best = rd
                 best_score = score
