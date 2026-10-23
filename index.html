@@ -113,6 +113,65 @@
           </div>
         </div>
 
+        <!-- LOG IN (accounts). Signed-out: e-mail magic-link form. Signed-in: greeting + links. -->
+        <div class="home-section" id="login-section">
+          <div class="cell-header" id="login-header">LOG IN</div>
+          <div class="login-box" id="login-box">
+            <form id="home-login-form">
+              <p style="display:none"><input name="bot-field" tabindex="-1" autocomplete="off"></p>
+              <label for="home-login-email" class="login-label">E-mail Address:</label>
+              <input type="email" id="home-login-email" class="login-input" maxlength="120" required autocomplete="email">
+              <div class="login-btn-row"><button type="submit" class="login-btn" id="home-login-btn">Email me a link</button></div>
+              <div class="login-create"><a href="account.html">Create Account</a></div>
+            </form>
+          </div>
+        </div>
+        <script>
+          (function () {
+            var box = document.getElementById('login-box');
+            var header = document.getElementById('login-header');
+            function note(html) { box.innerHTML = '<div class="login-note">' + html + '</div>'; }
+            var form = document.getElementById('home-login-form');
+            form.addEventListener('submit', function (e) {
+              e.preventDefault();
+              var btn = document.getElementById('home-login-btn');
+              btn.disabled = true; btn.textContent = 'Sending\u2026';
+              fetch('/api/auth/request', {
+                method: 'POST', headers: { 'content-type': 'application/json' },
+                body: JSON.stringify({ mode: 'login', email: document.getElementById('home-login-email').value, 'bot-field': form['bot-field'].value })
+              }).then(function (r) { return r.json().then(function (d) { return { ok: r.ok && d.ok, d: d }; }); })
+                .then(function (x) {
+                  if (x.ok) { note('If that address has an account, a sign-in link is on its way. It expires in 20 minutes.'); }
+                  else { btn.disabled = false; btn.textContent = 'Email me a link'; alert(x.d.error || 'Something went wrong.'); }
+                })
+                .catch(function () { btn.disabled = false; btn.textContent = 'Email me a link'; });
+            });
+            fetch('/api/auth/me', { cache: 'no-store' })
+              .then(function (r) { return r.ok ? r.json() : null; })
+              .then(function (me) {
+                if (!me || !me.user) return;
+                header.textContent = 'MY ACCOUNT';
+                box.innerHTML = '<div class="login-note login-in"></div>';
+                var d = box.firstChild;
+                d.appendChild(document.createTextNode('Signed in as '));
+                var b = document.createElement('strong'); b.textContent = me.user.display_name; d.appendChild(b);
+                d.appendChild(document.createElement('br'));
+                d.appendChild(document.createElement('br'));
+                [['derby-predict.html', 'Make your Derby picks'], ['account.html', 'My Account']].forEach(function (l) {
+                  var a = document.createElement('a'); a.href = l[0]; a.textContent = l[1];
+                  d.appendChild(a); d.appendChild(document.createElement('br'));
+                });
+                var out = document.createElement('a'); out.href = '#'; out.textContent = 'Sign out';
+                out.addEventListener('click', function (ev) {
+                  ev.preventDefault();
+                  fetch('/api/auth/logout', { method: 'POST' }).then(function () { location.reload(); });
+                });
+                d.appendChild(out);
+              })
+              .catch(function () {});
+          })();
+        </script>
+
         <!-- LATEST UPDATES (populated dynamically) -->
         <div class="home-section">
           <div class="cell-header">LATEST UPDATES</div>
