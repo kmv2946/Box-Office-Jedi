@@ -184,6 +184,8 @@
     .pv-label { font-family: Verdana, Geneva, sans-serif; font-weight: bold; font-size: 17px; margin: 14px 0 2px; }
     .pv-label:first-child { margin-top: 0; }
     .pv-val { font-size: 18px; min-height: 1.2em; }
+    .acct-stats { text-align: center; font-family: Verdana, Geneva, sans-serif; font-weight: bold; font-size: 15px; margin: 4px 0 12px; }
+    .acct-stats-note { text-align: center; font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 16px; margin: -6px 0 12px; }
     .acct-hist { width: 100%; border-collapse: collapse; margin-top: 6px; }
     .acct-hist th { background: #7F170E; color: #fff; font-family: Verdana, Geneva, sans-serif; font-size: 12px; padding: 4px 8px; text-align: left; }
     .acct-hist td { padding: 3px 8px; font-size: 16px; }
@@ -297,6 +299,7 @@
           <div class="acct-center" style="margin-top:18px;"><button type="submit" class="acct-btn">Save</button> <button type="button" class="acct-btn" id="p-cancel">Cancel</button></div>
         </form>
         <h1 class="acct-h1" style="margin-top:28px;font-size:22px;">YOUR DERBY ENTRIES</h1>
+        <div id="acct-stats"></div>
         <div id="hist"></div>
         <p class="acct-center" style="margin-top:18px;"><a href="derby-predict.html">Play this weekend&rsquo;s Derby</a></p>
       </div>
@@ -410,6 +413,7 @@
   async function renderHistory(history) {
     const el = $('hist');
     if (!history.length) {
+      $('acct-stats').innerHTML = '<div class="acct-stats">Accuracy Average: N/A &nbsp;|&nbsp; All-Time Rank: N/A</div><div class="acct-stats-note">You need to play at least 3 rounds in order to rank.</div>';
       el.innerHTML = '<p>No entries yet. Past entries made with this e-mail address are attached automatically when you sign in.</p>';
       return;
     }
@@ -423,6 +427,41 @@
     }));
     const scoredWeekends = Object.keys(boards).sort();
     const lastScored = scoredWeekends.length ? scoredWeekends[scoredWeekends.length - 1] : '';
+    // Average + all-time rank. Every player on a published leaderboard (real, seeded and
+    // Keaton) is ranked by average accuracy once they have 3+ scored rounds.
+    const MIN_ROUNDS = 3;
+    const players = {};
+    Object.keys(boards).forEach(wk => boards[wk].forEach(r => {
+      const k = (r.player_name || '').toLowerCase();
+      if (typeof r.score === 'number') (players[k] = players[k] || []).push(r.score);
+    }));
+    const avg = a => a.reduce((t, v) => t + v, 0) / a.length;
+    const mine = [];
+    const myNames = new Set();
+    history.forEach(x => {
+      const b = boards[x.weekend]; if (!b) return;
+      const nm = (x.player_name || '').toLowerCase();
+      const row = b.find(r => (r.player_name || '').toLowerCase() === nm);
+      if (row && typeof row.score === 'number') { mine.push(row.score); myNames.add(nm); }
+    });
+    const ranked = Object.keys(players).filter(k => players[k].length >= MIN_ROUNDS && !myNames.has(k)).map(k => avg(players[k]));
+    let statsHtml;
+    if (mine.length) {
+      const myAvg = avg(mine);
+      if (mine.length >= MIN_ROUNDS) {
+        const rank = 1 + ranked.filter(a => a > myAvg).length;
+        const total = ranked.length + 1;
+        statsHtml = '<div class="acct-stats">Accuracy Average: ' + myAvg.toFixed(2) + '% &nbsp;|&nbsp; All-Time Rank: #' + rank + ' of ' + total + '</div>';
+      } else {
+        statsHtml = '<div class="acct-stats">Accuracy Average: ' + myAvg.toFixed(2) + '% &nbsp;|&nbsp; All-Time Rank: N/A</div>' +
+          '<div class="acct-stats-note">You need to play at least ' + MIN_ROUNDS + ' rounds in order to rank.</div>';
+      }
+    } else {
+      statsHtml = '<div class="acct-stats">Accuracy Average: N/A &nbsp;|&nbsp; All-Time Rank: N/A</div>' +
+        '<div class="acct-stats-note">You need to play at least ' + MIN_ROUNDS + ' rounds in order to rank.</div>';
+    }
+    $('acct-stats').innerHTML = statsHtml;
+
     function accuracy(x) {
       const b = boards[x.weekend];
       if (b) {
