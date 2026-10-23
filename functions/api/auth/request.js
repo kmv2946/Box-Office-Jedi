@@ -4,7 +4,7 @@
 
 import {
   json, sha256Hex, randomToken, nowSec, EMAIL_RE, cleanName,
-  getSetting, accountCount, sendEmail, TOKEN_MINUTES,
+  getSetting, accountCount, sendEmail, TOKEN_MINUTES, isReserved,
 } from "../../_lib/auth.js";
 
 export async function onRequestPost({ request, env }) {
@@ -65,6 +65,7 @@ export async function onRequestPost({ request, env }) {
     if ((await accountCount(env)) >= cap) {
       return json({ ok: false, full: true, error: "All " + cap + " founding accounts have been claimed. You can still play the Derby as a guest." }, 403);
     }
+    if (isReserved(name)) return json({ ok: false, error: "That display name is reserved." }, 409);
     const taken = await env.DB.prepare("SELECT 1 FROM users WHERE display_name_lc = ?").bind(name.toLowerCase()).first();
     if (taken) return json({ ok: false, error: "That display name is already taken." }, 409);
     purpose = "signup";

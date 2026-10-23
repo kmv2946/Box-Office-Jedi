@@ -90,6 +90,14 @@ export function cleanName(s) {
   return s;
 }
 
+// Names nobody can register (they'd look like official / editorial accounts).
+const RESERVED = ["keaton", "admin", "administrator", "moderator", "mod", "staff", "jedi",
+  "boxofficejedi", "box office jedi", "official", "support", "system"];
+export function isReserved(name) {
+  const n = (name || "").toLowerCase().replace(/\s+/g, " ").trim();
+  return RESERVED.includes(n) || RESERVED.includes(n.replace(/[^a-z0-9]/g, ""));
+}
+
 export async function sendEmail(env, to, subject, text) {
   if (!env.RESEND_API_KEY) throw new Error("RESEND_API_KEY not set");
   const from = env.MAIL_FROM || "Box Office Jedi <login@boxofficejedi.com>";
