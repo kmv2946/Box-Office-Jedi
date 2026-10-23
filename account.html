@@ -175,13 +175,15 @@
     .acct-frame input[type="text"], .acct-frame input[type="email"] { width: 100%; padding: 8px 6px; border: 2px solid #888; font-family: 'Times New Roman', Times, serif; font-size: 18px; box-sizing: border-box; }
     .acct-agree { text-align: center; font-size: 16px; margin: 18px 0 6px; }
     .acct-agree a { font-family: Verdana, Geneva, sans-serif; font-weight: bold; }
-    .acct-btn { font-family: Verdana, Geneva, sans-serif; font-size: 14px; padding: 6px 14px; border: 1px solid #999; background: #fff; cursor: pointer; border-radius: 3px; }
-    .acct-btn:hover { background: #F4F4FE; }
+    .acct-btn { font-family: Verdana, Geneva, sans-serif; font-size: 12px; padding: 2px 10px; cursor: pointer; }  /* same as home Subscribe/Login buttons */
     .acct-center { text-align: center; }
     .acct-note { text-align: center; margin: 14px 0 0; font-size: 17px; }
     .acct-msg { padding: 8px 12px; margin: 10px auto; max-width: 640px; font-family: Verdana, Geneva, sans-serif; font-size: 13px; line-height: 1.5; }
     .acct-msg.err { background: #F4F4FE; border: 1px solid #7F170E; color: #7F170E; }
     .acct-msg.ok { background: #888; color: #fff; }
+    .pv-label { font-family: Verdana, Geneva, sans-serif; font-weight: bold; font-size: 17px; margin: 14px 0 2px; }
+    .pv-label:first-child { margin-top: 0; }
+    .pv-val { font-size: 18px; min-height: 1.2em; }
     .acct-hist { width: 100%; border-collapse: collapse; margin-top: 6px; }
     .acct-hist th { background: #7F170E; color: #fff; font-family: Verdana, Geneva, sans-serif; font-size: 12px; padding: 4px 8px; text-align: left; }
     .acct-hist td { padding: 3px 8px; font-size: 16px; }
@@ -280,14 +282,19 @@
 
       <div id="acct-in" style="display:none;">
         <h1 class="acct-h1">YOUR PROFILE</h1>
-        <form id="prof-form" class="acct-frame" style="margin-top:0;">
+        <div id="prof-view" class="acct-frame" style="margin-top:0;">
+          <div class="pv-label">User Name or Alias</div><div class="pv-val" id="v-name"></div>
+          <div class="pv-label">Location</div><div class="pv-val" id="v-loc"></div>
+          <div class="pv-label">Email Address</div><div class="pv-val" id="v-email"></div>
+          <div class="acct-center" style="margin-top:18px;"><button type="button" class="acct-btn" id="p-edit">Edit</button></div>
+        </div>
+        <form id="prof-form" class="acct-frame" style="margin-top:0;display:none;">
           <label class="fl" for="p-name">User Name or Alias</label>
           <input type="text" id="p-name" maxlength="30">
           <label class="fl" for="p-loc">Location</label>
           <input type="text" id="p-loc" maxlength="100">
-          <label class="fl">Email Address</label>
-          <div id="p-email"></div>
-          <div class="acct-center" style="margin-top:18px;"><button type="submit" class="acct-btn">Save</button></div>
+          <div class="pv-label">Email Address</div><div class="pv-val" id="p-email"></div>
+          <div class="acct-center" style="margin-top:18px;"><button type="submit" class="acct-btn">Save</button> <button type="button" class="acct-btn" id="p-cancel">Cancel</button></div>
         </form>
         <h1 class="acct-h1" style="margin-top:28px;font-size:22px;">YOUR DERBY ENTRIES</h1>
         <div id="hist"></div>
@@ -382,27 +389,78 @@
     } catch (err) { msg('Network error. Please try again.'); btn.disabled = false; btn.textContent = 'Email me a link'; }
   });
 
+  let CUR = null;
+  function showView() {
+    $('v-name').textContent = CUR.display_name;
+    $('v-loc').textContent = CUR.location || '\u2014';
+    $('v-email').textContent = CUR.email;
+    $('prof-form').style.display = 'none';
+    $('prof-view').style.display = '';
+  }
+  $('p-edit').onclick = function() {
+    $('p-name').value = CUR.display_name;
+    $('p-loc').value = CUR.location || '';
+    $('p-email').textContent = CUR.email;
+    $('prof-view').style.display = 'none';
+    $('prof-form').style.display = '';
+    msg('');
+  };
+  $('p-cancel').onclick = function() { showView(); msg(''); };
+
+  async function renderHistory(history) {
+    const el = $('hist');
+    if (!history.length) {
+      el.innerHTML = '<p>No entries yet. Past entries made with this e-mail address are attached automatically when you sign in.</p>';
+      return;
+    }
+    // Weekend labels + published leaderboards (for accuracy)
+    let games = [];
+    try { games = (await (await fetch('data/derby/games.json', { cache: 'no-store' })).json()).games || []; } catch (e) {}
+    const byWk = {}; games.forEach(g => byWk[g.weekend] = g);
+    const boards = {};
+    await Promise.all(games.filter(g => g.leaderboard_url).map(async g => {
+      try { boards[g.weekend] = (await (await fetch(g.leaderboard_url, { cache: 'no-store' })).json()).leaderboard || []; } catch (e) {}
+    }));
+    const scoredWeekends = Object.keys(boards).sort();
+    const lastScored = scoredWeekends.length ? scoredWeekends[scoredWeekends.length - 1] : '';
+    function accuracy(x) {
+      const b = boards[x.weekend];
+      if (b) {
+        const me = (x.player_name || '').toLowerCase();
+        const row = b.find(r => (r.player_name || '').toLowerCase() === me);
+        return row && typeof row.score === 'number' ? row.score.toFixed(2) + '%' : '\u2014';
+      }
+      return x.weekend > lastScored ? 'Pending' : '\u2014';
+    }
+    el.innerHTML = '<table class="acct-hist"><thead><tr><th>Weekend</th><th>Your #1 pick</th><th style="text-align:right;">Accuracy</th></tr></thead><tbody>' +
+      history.map(x => {
+        const g = byWk[x.weekend];
+        return '<tr><td>' + escapeHtml(g ? (g.label_long || g.label) : x.weekend) + '</td><td>' + escapeHtml((x.picks[0] || {}).title || '') +
+          '</td><td style="text-align:right;">' + accuracy(x) + '</td></tr>';
+      }).join('') + '</tbody></table>';
+  }
+
   function renderSignedIn(me) {
     $('login-body').innerHTML =
       '<p class="lm-note" style="margin:0;color:#000;">Signed in as<br><strong>' + escapeHtml(me.user.display_name) + '</strong></p>' +
       '<p class="lm-btn" style="margin:12px 0 0;"><button type="button" class="acct-btn" id="l-out">Sign out</button></p>';
     $('l-out').onclick = async function() { await post('/api/auth/logout', {}); location.href = 'account.html'; };
-    $('p-name').value = me.user.display_name;
-    $('p-loc').value = me.user.location || '';
-    $('p-email').textContent = me.user.email;
-    const h = me.history || [];
-    $('hist').innerHTML = h.length
-      ? '<table class="acct-hist"><thead><tr><th>Weekend</th><th>Your #1 pick</th><th>Picks</th></tr></thead><tbody>' +
-        h.map(x => '<tr><td>' + escapeHtml(x.weekend) + '</td><td>' + escapeHtml((x.picks[0] || {}).title || '') + '</td><td>' + x.picks.length + '</td></tr>').join('') +
-        '</tbody></table>'
-      : '<p>No entries yet. Past entries made with this e-mail address are attached automatically when you sign in.</p>';
+    CUR = me.user;
+    showView();
+    renderHistory(me.history || []);
     show('acct-in');
   }
 
   $('prof-form').addEventListener('submit', async function(e) {
     e.preventDefault();
     const { ok, d } = await post('/api/auth/profile', { display_name: $('p-name').value, location: $('p-loc').value });
-    msg(ok ? 'Profile saved.' : (d.error || 'Could not save.'), ok ? 'ok' : 'err');
+    if (ok) {
+      CUR.display_name = $('p-name').value.trim().replace(/\s+/g, ' ');
+      CUR.location = $('p-loc').value.trim();
+      showView();
+      const so = document.querySelector('#login-body strong'); if (so) so.textContent = CUR.display_name;
+      msg('Profile saved.', 'ok');
+    } else { msg(d.error || 'Could not save.'); }
   });
 
   async function init() {

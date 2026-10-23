@@ -14,9 +14,9 @@ export async function onRequestGet({ request, env }) {
   let history = [];
   try {
     const r = await env.DB.prepare(
-      "SELECT weekend, picks_json FROM submissions WHERE user_id = ? ORDER BY weekend DESC LIMIT 100"
+      "SELECT weekend, player_name, picks_json FROM submissions WHERE user_id = ? ORDER BY weekend DESC LIMIT 100"
     ).bind(user.id).all();
-    history = (r.results || []).map(x => ({ weekend: x.weekend, picks: JSON.parse(x.picks_json || "[]") }));
+    history = (r.results || []).map(x => ({ weekend: x.weekend, player_name: x.player_name, picks: JSON.parse(x.picks_json || "[]") }));
   } catch (e) {}
   return json({
     user: { display_name: user.display_name, email: user.email, location: user.location || "", role: user.role },
