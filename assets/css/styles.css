@@ -1442,7 +1442,7 @@ body.is-responsive .mobile-menu-toggle { display: none; }
 .login-box {
   border: 1px solid #DCDCDC;       /* same border as the other home modules */
   background: #DDDDDD;
-  padding: 10px 12px 12px;
+  padding: 5px 6px 6px;
   text-align: center;
   font-family: Verdana, Geneva, sans-serif;
 }
@@ -1452,7 +1452,7 @@ body.is-responsive .mobile-menu-toggle { display: none; }
   font-weight: bold;
   font-size: 12px;                 /* matches the date label in Latest Updates */
   text-align: center;
-  margin: 2px 0 6px;
+  margin: 0 0 3px;
 }
 .login-box .login-input {
   display: block;
@@ -1460,23 +1460,20 @@ body.is-responsive .mobile-menu-toggle { display: none; }
   max-width: 340px;
   margin: 0 auto;
   box-sizing: border-box;
-  padding: 4px 6px;
+  padding: 2px 4px;
   border: 2px solid #EEEEEE;
   background: #FFFFFF;
   font-family: Verdana, Geneva, sans-serif;
   font-size: 12px;
 }
-.login-btn-row { margin: 10px 0 8px; }
-.login-btn {
+.login-btn-row { margin: 6px 0 2px; }
+.login-create { margin-left: 12px; }
+.login-btn {            /* same as the Subscribe button: default browser button, Verdana 12px */
   font-family: Verdana, Geneva, sans-serif;
   font-size: 12px;
-  padding: 4px 12px;
-  border: 1px solid #bbb;
-  border-radius: 3px;
-  background: #FFFFFF;
+  padding: 2px 10px;
   cursor: pointer;
 }
-.login-btn:hover { background: #F4F4FE; }
 .login-create a { font-weight: bold; font-size: 12px; color: #000F80; }
-.login-note { font-size: 12px; line-height: 1.5; color: #000; padding: 4px 0; }
+.login-note { font-size: 12px; line-height: 1.4; color: #000; padding: 2px 0; }
 .login-note a { font-weight: bold; color: #00239C; }
