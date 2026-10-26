@@ -1,13 +1,41 @@
 {
-  "updated": "2026-10-19",
-  "current_weekend": "2026-10-23",
+  "updated": "2026-10-26",
+  "current_weekend": "2026-10-30",
   "games": [
+    {
+      "weekend": "2026-10-30",
+      "date_to": "2026-11-01",
+      "label": "October 30–November 1",
+      "label_long": "October 30–November 1, 2026",
+      "status": "open",
+      "submit_deadline": "2026-10-29T23:59:59-04:00",
+      "headliner": "You Can See Everything",
+      "allowed_titles": [
+        "Christmas at the Kringles",
+        "Clayface",
+        "Everest: The Other Side",
+        "Forgotten Island",
+        "Heart of the Beast",
+        "Other Mommy",
+        "Resident Evil",
+        "Sense and Sensibility",
+        "Street Fighter",
+        "The Mongoose",
+        "Verity",
+        "Whalefall",
+        "Wicker",
+        "Wildwood",
+        "You Can See Everything"
+      ],
+      "averages_url": null,
+      "leaderboard_url": null
+    },
     {
       "weekend": "2026-10-23",
       "date_to": "2026-10-25",
       "label": "October 23–25",
       "label_long": "October 23–25, 2026",
-      "status": "open",
+      "status": "closed",
       "submit_deadline": "2026-10-22T23:59:59-04:00",
       "headliner": "You Can See Everything",
       "allowed_titles": [
