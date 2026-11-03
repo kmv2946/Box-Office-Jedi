@@ -1,13 +1,43 @@
 {
-  "updated": "2026-10-26",
-  "current_weekend": "2026-10-30",
+  "updated": "2026-11-03",
+  "current_weekend": "2026-11-06",
   "games": [
+    {
+      "weekend": "2026-11-06",
+      "date_to": "2026-11-08",
+      "label": "November 6–8",
+      "label_long": "November 6–8, 2026",
+      "status": "open",
+      "submit_deadline": "2026-11-05T23:59:59-05:00",
+      "headliner": "Godzilla Minus Zero",
+      "allowed_titles": [
+        "Clayface",
+        "Drummer Boy",
+        "Godzilla Minus Zero",
+        "Heart of the Beast",
+        "Jimmy",
+        "Other Mommy",
+        "Ramayana: Rise of a Legend",
+        "Resident Evil",
+        "Sense and Sensibility",
+        "Street Fighter",
+        "The Cat in the Hat",
+        "The Only Living Pickpocket in New York",
+        "Verity",
+        "Wicker",
+        "Wild Horse Nine",
+        "Wildwood",
+        "You Can See Everything"
+      ],
+      "averages_url": null,
+      "leaderboard_url": null
+    },
     {
       "weekend": "2026-10-30",
       "date_to": "2026-11-01",
       "label": "October 30–November 1",
       "label_long": "October 30–November 1, 2026",
-      "status": "open",
+      "status": "closed",
       "submit_deadline": "2026-10-29T23:59:59-04:00",
       "headliner": "You Can See Everything",
       "allowed_titles": [
@@ -27,7 +57,7 @@
         "You Can See Everything"
       ],
       "averages_url": null,
-      "leaderboard_url": null
+      "leaderboard_url": "data/derby/leaderboard-2026-10-30.json"
     },
     {
       "weekend": "2026-10-23",
@@ -57,7 +87,7 @@
         "You Can See Everything"
       ],
       "averages_url": null,
-      "leaderboard_url": null
+      "leaderboard_url": "data/derby/leaderboard-2026-10-23.json"
     },
     {
       "weekend": "2026-10-16",
