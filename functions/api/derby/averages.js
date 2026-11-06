@@ -14,9 +14,12 @@
 //     ]
 //   }
 //
-// The "avg_pred" is the arithmetic mean of predicted grosses (in millions)
-// across every submission that included that title. "votes" shows how
-// many submissions even picked that film. The list is sorted by avg_pred
+// The "avg_pred" is the total predicted gross (in millions) for that title
+// divided by ALL submissions for the weekend. An entry that left a film out
+// of its top 10 counts as $0 for it. (Averaging only over the people who
+// picked a film let a single stray pick, e.g. one player putting a $5.9M on
+// a film nobody else chose, outrank the real consensus.) "votes" shows how
+// many submissions actually picked the film. The list is sorted by avg_pred
 // descending and truncated to the top 10.
 
 function bad(msg, status = 400) {
@@ -69,7 +72,7 @@ export async function onRequestGet({ request, env }) {
 
   const averages = [...agg.entries()].map(([title, v]) => ({
     title,
-    avg_pred: Math.round((v.total / v.votes) * 10) / 10,
+    avg_pred: Math.round((v.total / submissions) * 10) / 10,   // omitted picks count as $0
     votes:    v.votes,
   }));
   averages.sort((a, b) => b.avg_pred - a.avg_pred);
