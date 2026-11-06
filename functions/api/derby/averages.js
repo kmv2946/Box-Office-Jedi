@@ -14,13 +14,17 @@
 //     ]
 //   }
 //
-// The "avg_pred" is the total predicted gross (in millions) for that title
-// divided by ALL submissions for the weekend. An entry that left a film out
-// of its top 10 counts as $0 for it. (Averaging only over the people who
-// picked a film let a single stray pick, e.g. one player putting a $5.9M on
-// a film nobody else chose, outrank the real consensus.) "votes" shows how
-// many submissions actually picked the film. The list is sorted by avg_pred
-// descending and truncated to the top 10.
+// The "avg_pred" averages predicted grosses (in millions) across ALL
+// submissions for the weekend. An entry that left a film out of its top 10
+// is counted as OMITTED_DEFAULT_M ($1.0M) for it: nobody thinks a film will
+// gross $0, and a film that missed someone's top 10 is more likely to land
+// around $1M. (Averaging only over the people who picked a film let one
+// stray pick, e.g. a lone $5.9M on a film nobody else chose, outrank the real
+// consensus.) "votes" shows how many submissions actually picked the film.
+// The list is sorted by avg_pred descending and truncated to the top 10.
+
+// What an entry that omitted a film is assumed to have meant for it (in $ millions).
+const OMITTED_DEFAULT_M = 1.0;
 
 function bad(msg, status = 400) {
   return new Response(JSON.stringify({ ok: false, error: msg }), {
@@ -72,7 +76,7 @@ export async function onRequestGet({ request, env }) {
 
   const averages = [...agg.entries()].map(([title, v]) => ({
     title,
-    avg_pred: Math.round((v.total / submissions) * 10) / 10,   // omitted picks count as $0
+    avg_pred: Math.round(((v.total + (submissions - v.votes) * OMITTED_DEFAULT_M) / submissions) * 10) / 10,
     votes:    v.votes,
   }));
   averages.sort((a, b) => b.avg_pred - a.avg_pred);
