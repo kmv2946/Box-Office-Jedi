@@ -1485,7 +1485,8 @@
               "distributor": "Paramount Pictures",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": 3500,
+              "theaters_plus": true
             },
             {
               "title": "How to Rob a Bank",
@@ -1493,7 +1494,8 @@
               "distributor": "Amazon MGM Studios",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": 2700,
+              "theaters_plus": true
             },
             {
               "title": "Ghost Soldier",
@@ -1501,16 +1503,8 @@
               "distributor": "Columbia Pictures",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null,
+              "theaters": 2558,
               "note": "(on Weds.)"
-            },
-            {
-              "title": "Paper Tiger",
-              "genre": "Crime / Drama / Thriller",
-              "distributor": "Neon",
-              "release": "Limited",
-              "is_wide": false,
-              "theaters": null
             },
             {
               "title": "Victorian Psycho",
@@ -1518,7 +1512,15 @@
               "distributor": "Bleecker Street",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": 1206
+            },
+            {
+              "title": "Paper Tiger",
+              "genre": "Crime / Drama / Thriller",
+              "distributor": "Neon",
+              "release": "Limited",
+              "is_wide": false,
+              "theaters": 6
             }
           ]
         },

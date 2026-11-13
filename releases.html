@@ -430,7 +430,7 @@
     // Theater count takes priority once it's confirmed. Falls back to the
     // generic "Wide" / "Limited" label, then "TBD" if neither is known.
     const release = r.theaters
-      ? r.theaters.toLocaleString('en-US')
+      ? r.theaters.toLocaleString('en-US') + (r.theaters_plus ? '+' : '')
       : (r.release || 'TBD');
     const genreHtml = r.genre
       ? '<span class="rs-td-genre">' + escapeHtml(r.genre) + '</span>'

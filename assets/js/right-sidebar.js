@@ -90,7 +90,7 @@
     const weekYear = (week.date || '').slice(0, 4);
     tbody.innerHTML = realReleases.map(r => {
       const release = r.theaters
-        ? r.theaters.toLocaleString('en-US')
+        ? r.theaters.toLocaleString('en-US') + (r.theaters_plus ? '+' : '')
         : (r.release || 'TBD');
       const yPart = weekYear ? '&year=' + weekYear : '';
       const titleHref = 'movie.html?title=' + encodeURIComponent(r.title) + yPart;
