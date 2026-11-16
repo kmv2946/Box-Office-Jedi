@@ -1,6 +1,38 @@
 {
-  "active_poll_id": "2026-fall-highest-grossing",
+  "active_poll_id": "2026-avengers-doomsday-opening",
   "polls": [
+    {
+      "id": "2026-avengers-doomsday-opening",
+      "question": "How much will ‘Avengers: Doomsday’ gross on its opening weekend?",
+      "closes": "2026-12-11",
+      "options": [
+        {
+          "id": "below-150",
+          "label": "Below $150 million",
+          "votes": 0
+        },
+        {
+          "id": "150-200",
+          "label": "$150–$200 million",
+          "votes": 0
+        },
+        {
+          "id": "200-250",
+          "label": "$200–$250 million",
+          "votes": 0
+        },
+        {
+          "id": "250-300",
+          "label": "$250–$300 million",
+          "votes": 0
+        },
+        {
+          "id": "above-300",
+          "label": "Above $300 million",
+          "votes": 0
+        }
+      ]
+    },
     {
       "id": "2026-fall-highest-grossing",
       "question": "What will be the highest grossing Fall release (September–November)?",
