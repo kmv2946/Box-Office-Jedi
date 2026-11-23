@@ -44,20 +44,35 @@
     const friIso = fri.getFullYear() + '-' +
       String(fri.getMonth() + 1).padStart(2, '0') + '-' +
       String(fri.getDate()).padStart(2, '0');
-    const monthKey = friIso.slice(0, 7);
-
-    const month = data.months[monthKey];
-    if (!month) {
+    // A release "week" is keyed by the date its first films open. That is
+    // usually the Friday, but holiday weeks (Thanksgiving, Christmas) open on
+    // Wednesday, so a week dated Wed 11/25 belongs to the weekend that starts
+    // Fri 11/27. Map every week to the Friday of its release weekend, then
+    // show the target Friday's slate (merging a Wed slate and a Fri slate if
+    // both exist), falling back to the next weekend that has releases.
+    function weekendFriday(iso) {
+      const p = iso.split('-').map(Number);
+      const d = new Date(p[0], p[1] - 1, p[2]);
+      d.setDate(d.getDate() + ((5 - d.getDay() + 7) % 7));   // Fri stays Fri; Wed -> Fri
+      return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    }
+    const allWeeks = [];
+    Object.keys(data.months).forEach(function (mk) {
+      ((data.months[mk] || {}).weeks || []).forEach(function (w) {
+        if (w && w.date && (w.releases || []).length) allWeeks.push({ week: w, fri: weekendFriday(w.date) });
+      });
+    });
+    allWeeks.sort(function (a, b) { return a.week.date < b.week.date ? -1 : 1; });
+    const targetFri = allWeeks.map(function (x) { return x.fri; }).find(function (f) { return f >= friIso; });
+    if (!targetFri) {
       tbody.innerHTML = '<tr><td colspan="2" class="rs-widget-empty">No releases scheduled.</td></tr>';
       return;
     }
-
-    let week = (month.weeks || []).find(w => w.date === friIso)
-            || (month.weeks || []).find(w => w.date >= friIso);
-    if (!week || !(week.releases || []).length) {
-      tbody.innerHTML = '<tr><td colspan="2" class="rs-widget-empty">No releases scheduled.</td></tr>';
-      return;
-    }
+    const group = allWeeks.filter(function (x) { return x.fri === targetFri; });
+    const week = {
+      date: group[0].week.date,   // earliest opening date in the group (e.g. the Wednesday)
+      releases: [].concat.apply([], group.map(function (x) { return x.week.releases; }))
+    };
 
     // Header label (e.g. "May 1")
     const monNames = ['Jan.','Feb.','Mar.','Apr.','May','June','July','Aug.','Sept.','Oct.','Nov.','Dec.'];

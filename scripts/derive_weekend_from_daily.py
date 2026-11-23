@@ -163,15 +163,59 @@ def derive(friday: date) -> bool:
     return True
 
 
+def sync_master_index(weeks_back: int = 12):
+    """
+    Keep data/weekends.json (the master index behind weekend.html's year table)
+    in step with the per-weekend files for the most recent weekends.
+
+    The scraper writes an index entry when it first saves a weekend (Sunday,
+    flagged is_estimates: true). When a weekend is later confirmed - either by
+    the derive step above or by a later scrape - the per-weekend file is
+    updated but the index entry kept its old est. flag and its estimated
+    top-10 total. This refreshes is_estimates, top_film and top_total from the
+    weekend files so confirmed weekends stop showing "est.".
+    """
+    idx = load("weekends.json")
+    if not isinstance(idx, dict) or "weekends" not in idx:
+        return
+    today = date.today()
+    friday = today - timedelta(days=(today.weekday() - 4) % 7)
+    changed = 0
+    for back in range(0, weeks_back):
+        fri = (friday - timedelta(days=7 * back)).isoformat()
+        wk = load(f"weekends/{fri}.json")
+        if not wk or not wk.get("chart"):
+            continue
+        top10 = wk["chart"][:10]
+        top_total = sum(m.get("weekend_gross", 0) or 0 for m in top10)
+        entry = next((e for e in idx["weekends"] if e.get("date_from") == fri), None)
+        if entry is None:
+            continue   # the scraper creates new entries; we only correct existing ones
+        new = {
+            "top_film": wk["chart"][0]["title"],
+            "top_total": top_total,
+            "is_estimates": bool(wk.get("is_estimates", False)),
+        }
+        if any(entry.get(k) != v for k, v in new.items()):
+            entry.update(new)
+            changed += 1
+    if changed:
+        idx["updated"] = datetime.now().isoformat()
+        save("weekends.json", idx)
+        print(f"  weekends.json: refreshed {changed} index entr{'y' if changed == 1 else 'ies'}.")
+
+
 def main():
     if len(sys.argv) > 1:
         derive(datetime.strptime(sys.argv[1], "%Y-%m-%d").date())
+        sync_master_index()
         return
     today = date.today()
     # Check the last few weekends; derive() skips anything not eligible.
     d = today - timedelta(days=(today.weekday() - 4) % 7)   # most recent Friday
     for back in range(0, 3):
         derive(d - timedelta(days=7 * back))
+    sync_master_index()
 
 
 if __name__ == "__main__":
