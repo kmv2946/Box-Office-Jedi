@@ -1,6 +1,12 @@
 {
-  "updated": "2026-11-24T05:43:10.376232",
+  "updated": "2026-11-25T04:44:53.678848",
   "movies": [
+    {
+      "tmdb_id": 453,
+      "title": "A Beautiful Mind",
+      "release_date": "2001-12-21",
+      "poster_url": "https://image.tmdb.org/t/p/w342/rEIg5yJdNOt9fmX4P8gU9LeNoTQ.jpg"
+    },
     {
       "tmdb_id": 1084409,
       "title": "A Talent for Murder",
@@ -20,22 +26,10 @@
       "poster_url": "https://image.tmdb.org/t/p/w342/9l1NuFjel2j89hiuiJbsxfblqjy.jpg"
     },
     {
-      "tmdb_id": 1376400,
-      "title": "Crawlers",
-      "release_date": "2026-10-16",
-      "poster_url": "https://image.tmdb.org/t/p/w342/lNXeEpg4yLSRwXwOeR5lbPgwbqL.jpg"
-    },
-    {
       "tmdb_id": 1697911,
       "title": "Drummer Boy",
       "release_date": "2026-11-06",
       "poster_url": "https://image.tmdb.org/t/p/w342/bhjdgMm2fFrysSzVqv5RwRwIbVf.jpg"
-    },
-    {
-      "tmdb_id": 438631,
-      "title": "Dune",
-      "release_date": "2021-10-22",
-      "poster_url": "https://image.tmdb.org/t/p/w342/v1tRXZ4JtD2Iv6fjkPvT4GiwslV.jpg"
     },
     {
       "tmdb_id": 693134,
@@ -53,13 +47,7 @@
       "tmdb_id": 1401459,
       "title": "Fjord",
       "release_date": "2026-10-09",
-      "poster_url": "https://image.tmdb.org/t/p/w342/bD6ynFDUP3PZvdIBjPi9VGhyi5a.jpg"
-    },
-    {
-      "tmdb_id": 1400336,
-      "title": "Focker In-Law",
-      "release_date": "2026-11-25",
-      "poster_url": "https://image.tmdb.org/t/p/w342/iHJhSfqFpDMOyeMc6h6BOeHxse2.jpg"
+      "poster_url": "https://image.tmdb.org/t/p/w342/3PPPIeSdeivjUn3O9RahGiaJ9b8.jpg"
     },
     {
       "tmdb_id": 1562642,
@@ -92,10 +80,22 @@
       "poster_url": "https://image.tmdb.org/t/p/w342/jKW6b89n5EGbJXtxTZYBcDHLpYg.jpg"
     },
     {
-      "tmdb_id": 1234139,
-      "title": "Jailer 2",
-      "release_date": "2026-10-14",
-      "poster_url": "https://image.tmdb.org/t/p/w342/upwdEyhhYZ7pT2hD535fr2MGfpx.jpg"
+      "tmdb_id": 1241478,
+      "title": "Jimmy",
+      "release_date": "2026-11-06",
+      "poster_url": "https://image.tmdb.org/t/p/w342/xcMiTqj4kvSnUHhSLZ1WUvI9rzH.jpg"
+    },
+    {
+      "tmdb_id": 858035,
+      "title": "Klara and the Sun",
+      "release_date": "2026-10-23",
+      "poster_url": "https://image.tmdb.org/t/p/w342/xqovj2p6HRsgHxN81qYAYF4StgM.jpg"
+    },
+    {
+      "tmdb_id": 1491920,
+      "title": "Kung Fu Soccer",
+      "release_date": "2026-10-23",
+      "poster_url": "https://image.tmdb.org/t/p/w342/kTf9kJ3QMQqYs6wNdYJeVtwIZ2Z.jpg"
     },
     {
       "tmdb_id": 1422041,
@@ -113,7 +113,7 @@
       "tmdb_id": 1384528,
       "title": "O.M: Operation Mole",
       "release_date": "2026-11-19",
-      "poster_url": "https://image.tmdb.org/t/p/w342/vFnFLqXjf7RQfkNxrrys43BZKxJ.jpg"
+      "poster_url": "https://image.tmdb.org/t/p/w342/gWWedXJXLrEaKCTrC4nMPPumDSb.jpg"
     },
     {
       "tmdb_id": 1339713,
@@ -122,10 +122,34 @@
       "poster_url": "https://image.tmdb.org/t/p/w342/bRwnj8WEKBCvmfeUNOukJPwB43K.jpg"
     },
     {
+      "tmdb_id": 1307474,
+      "title": "On Behalf of My Son",
+      "release_date": "2026-11-05",
+      "poster_url": "https://image.tmdb.org/t/p/w342/EE0nu2jPKGio3ICEG193Z7DDSe.jpg"
+    },
+    {
+      "tmdb_id": 466272,
+      "title": "Once Upon a Time in... Hollywood",
+      "release_date": "2019-07-26",
+      "poster_url": "https://image.tmdb.org/t/p/w342/8j58iEBw9pOXFD2L0nt0ZXeHviB.jpg"
+    },
+    {
       "tmdb_id": 1381273,
       "title": "Paper Tiger",
       "release_date": "2026-11-13",
       "poster_url": "https://image.tmdb.org/t/p/w342/p6oLmq5KmuWY6uRXBQBL2q30jia.jpg"
+    },
+    {
+      "tmdb_id": 8913,
+      "title": "Pet Sematary",
+      "release_date": "1989-04-21",
+      "poster_url": "https://image.tmdb.org/t/p/w342/8ZtH1V4rhrtP53ezlEWrCaMALXF.jpg"
+    },
+    {
+      "tmdb_id": 1483525,
+      "title": "Possible Love",
+      "release_date": "2026-10-23",
+      "poster_url": "https://image.tmdb.org/t/p/w342/dLz9yHeLw4x4sD0WTSNi7HuK2ke.jpg"
     },
     {
       "tmdb_id": 656908,
@@ -134,22 +158,10 @@
       "poster_url": "https://image.tmdb.org/t/p/w342/vBQ7wks68OhJKlb3RnXSl2yXBXK.jpg"
     },
     {
-      "tmdb_id": 1389379,
-      "title": "Ranabaali",
-      "release_date": "2026-10-16",
-      "poster_url": "https://image.tmdb.org/t/p/w342/cXaCyYYbafVyMrs8rwKmxezBYPJ.jpg"
-    },
-    {
       "tmdb_id": 1366,
       "title": "Rocky",
       "release_date": "1976-12-03",
       "poster_url": "https://image.tmdb.org/t/p/w342/1mcJmdbRLusxhoSGjFI3pbEboXt.jpg"
-    },
-    {
-      "tmdb_id": 1503762,
-      "title": "Sense and Sensibility",
-      "release_date": "2026-10-16",
-      "poster_url": "https://image.tmdb.org/t/p/w342/czsyPHosFNbh4PPqXfqWu1aBXnA.jpg"
     },
     {
       "tmdb_id": 1595124,
@@ -176,10 +188,16 @@
       "poster_url": "https://image.tmdb.org/t/p/w342/mWN6knIVJ2o7eGwSm7mOgSCwNUc.jpg"
     },
     {
+      "tmdb_id": 9495,
+      "title": "The Crow",
+      "release_date": "1994-05-11",
+      "poster_url": "https://image.tmdb.org/t/p/w342/rMMB3v6jYHjsvXRNJYESacoTD7j.jpg"
+    },
+    {
       "tmdb_id": 1300968,
       "title": "The Hunger Games: Sunrise on the Reaping",
       "release_date": "2026-11-20",
-      "poster_url": "https://image.tmdb.org/t/p/w342/jNcZH8yplxttRlf0wwqfGGMKHxX.jpg"
+      "poster_url": "https://image.tmdb.org/t/p/w342/ffJaYMtB6v1TrvkyhCOqwqCKm0o.jpg"
     },
     {
       "tmdb_id": 1642568,
@@ -200,22 +218,10 @@
       "poster_url": "https://image.tmdb.org/t/p/w342/pNdB9va2AEPQe9UfhKAdIt8nus9.jpg"
     },
     {
-      "tmdb_id": 2034,
-      "title": "Training Day",
-      "release_date": "2001-10-05",
-      "poster_url": "https://image.tmdb.org/t/p/w342/bUeiwBQdupBLQthMCHKV7zv56uv.jpg"
-    },
-    {
-      "tmdb_id": 1255833,
-      "title": "Whalefall",
-      "release_date": "2026-10-16",
-      "poster_url": "https://image.tmdb.org/t/p/w342/vjTYUTgh9nO88i6HZ4YPRhiFL05.jpg"
-    },
-    {
-      "tmdb_id": 1195803,
-      "title": "Wicker",
-      "release_date": "2026-10-23",
-      "poster_url": "https://image.tmdb.org/t/p/w342/6FcBZOKvyrLCKGCyBG0ySCR4okt.jpg"
+      "tmdb_id": 1379486,
+      "title": "Victorian Psycho",
+      "release_date": "2026-11-13",
+      "poster_url": "https://image.tmdb.org/t/p/w342/9LHVZevgdsdbjJdkFr6bk9EwX7q.jpg"
     },
     {
       "tmdb_id": 891621,
@@ -234,12 +240,6 @@
       "title": "You Can See Everything",
       "release_date": "2026-10-16",
       "poster_url": "https://image.tmdb.org/t/p/w342/mVh3qkw2NUFxWWyF0G1hg2Wh0K5.jpg"
-    },
-    {
-      "tmdb_id": 1437396,
-      "title": "Your Mother Your Mother Your Mother",
-      "release_date": "2026-09-25",
-      "poster_url": "https://image.tmdb.org/t/p/w342/58g3PjU11nBszOWc836lC8t2Mzi.jpg"
     }
   ]
 }
