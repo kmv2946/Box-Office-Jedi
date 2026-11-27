@@ -1563,20 +1563,20 @@
           "date": "2026-11-25",
           "releases": [
             {
-              "title": "Focker-In-Law",
-              "genre": "Comedy",
-              "distributor": "Paramount Pictures",
-              "release": "Wide",
-              "is_wide": true,
-              "theaters": null
-            },
-            {
               "title": "Hexed",
               "genre": "Adventure / Animation / Comedy / Fantasy",
               "distributor": "Walt Disney Studios",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": 3725
+            },
+            {
+              "title": "Focker-In-Law",
+              "genre": "Comedy",
+              "distributor": "Paramount Pictures",
+              "release": "Wide",
+              "is_wide": true,
+              "theaters": 3381
             },
             {
               "title": "Hershey",
@@ -1584,7 +1584,7 @@
               "distributor": "Angel Studios",
               "release": "Wide",
               "is_wide": true,
-              "theaters": null
+              "theaters": 2275
             },
             {
               "title": "The Further Mis-Adventures of Cliff Booth",
@@ -1592,7 +1592,7 @@
               "distributor": "Netflix",
               "release": "Limited",
               "is_wide": false,
-              "theaters": null
+              "theaters": 251
             }
           ],
           "weekday": "Weds."
